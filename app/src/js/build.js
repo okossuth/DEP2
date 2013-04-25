@@ -3,7 +3,7 @@
     "underscore": "../../lib/underscore",
     "backbone": "../../lib/backbone",
     "handlebars": "../../lib/handlebars",
-    "ovivo-desktop-employee": "../../dist/ovivo-desktop-employee",
+    "ovivo": "../../dist/ovivo-desktop-employee",
     "jquery": "../../lib/jquery-1.9.1",
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
@@ -11,7 +11,7 @@
   },
 
   shim: {
-    "ovivo-desktop-employee": {
+    "ovivo": {
       deps: ["templates"]
     },
     
@@ -32,11 +32,7 @@
     },
     
     "jquery": {
-      deps: ["fastclick"]
-    },
-    
-    "fastclick": {
-      deps: ["airbrake"]
+      deps: []
     }
   },
 

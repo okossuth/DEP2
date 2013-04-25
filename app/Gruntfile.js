@@ -34,6 +34,11 @@ module.exports = function(grunt) {
 
                 dest: 'app.appcache'
             },
+
+            ie: {
+                src: ['src/css/ie/*.css'],
+                dest: 'dist/ovivo-desktop-employee-ie.css'
+            }
         },
 
         shell: {
@@ -53,11 +58,6 @@ module.exports = function(grunt) {
                 dict: 'i18n/en.json',
                 src: 'app.untranslated.html',
                 dest: 'app.html'
-            }, 
-            ru: {
-                dict: 'i18n/ru.json',
-                src: 'app.untranslated.html',
-                dest: 'app_ru.html'
             }, 
             da: {
                 dict: 'i18n/da.json',
@@ -87,5 +87,5 @@ module.exports = function(grunt) {
     // Default task.
     // grunt.registerTask('default', ['shell:templates', 'concat', 'shell:optimize', 'translate', 'concat:pre-manifest', 'concat:manifest']);
 
-    grunt.registerTask('default', ['shell:templates', 'concat', 'shell:optimize', 'translate']);
+    grunt.registerTask('default', ['shell:templates', 'concat:css', 'concat:ie', 'concat:js', 'shell:optimize', 'translate']);
 }; 

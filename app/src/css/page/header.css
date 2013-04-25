@@ -1,0 +1,47 @@
+.page > header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background: white;
+  padding: 28px 0 28px 0; }
+  .page > header i {
+    cursor: pointer; }
+  .page > header > div.line {
+    height: 38px;
+    line-height: 16px; }
+    .page > header > div.line > * {
+      vertical-align: middle; }
+    .page > header > div.line > i.navigation {
+      position: relative;
+      top: 1px; }
+    .page > header > div.line > div.placeholder {
+      height: 38px;
+      width: 1px;
+      display: inline-block; }
+    .page > header > div.line > span.title {
+      font-size: 21px;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      color: #007550;
+      margin: 0 10px 0 30px; }
+    .page > header > div.line > em.title {
+      font-size: 21px;
+      font-style: normal;
+      color: #333333;
+      margin: 0 15px 0 0; }
+    .page > header > div.line > div.button {
+      width: 158px;
+      margin: 0 30px 0 0;
+      float: right; }
+    .page > header > div.line > ul.switcher {
+      display: inline-block;
+      float: right;
+      margin: 0 20px 0 0; }
+      .page > header > div.line > ul.switcher > li {
+        display: inline-block;
+        position: relative;
+        top: 4px;
+        border: 2px solid transparent; }
+        .page > header > div.line > ul.switcher > li.selected {
+          border: 2px solid #007550; }
