@@ -9,7 +9,7 @@ define [
       @trigger.apply @, _args
       
     initialize: (attrs, options) ->
-      @page = new options.Page {}, options.options
+      @page = new options.Page { name: options.name }, options.options
 
       @name = options.name
 

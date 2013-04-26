@@ -1,8 +1,13 @@
 define [
   'views/pages/PageBase',
 
+  'views/pages/Settings/General',
+  'views/pages/Settings/Notifications',
+  'views/pages/Settings/Availability',
+  'views/pages/Settings/Connections',
+
   'ovivo'
-], (PageBase) ->
+], (PageBase, GeneralView, NotificationsView, AvailabilityView, ConnectionsView) ->
   PageBase.extend
     el: '.page.page-settings'
 
@@ -19,6 +24,9 @@ define [
       true
 
     initialize: () ->
+      @SubViews = [GeneralView, NotificationsView, AvailabilityView, ConnectionsView]
+      @defaultSubView = 'general'
+
       @proxyCall 'initialize', arguments
 
       true

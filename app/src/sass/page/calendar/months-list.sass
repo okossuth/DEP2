@@ -1,0 +1,258 @@
+ul.months-list
+  > li
+    > .title-line
+      background: white
+
+      padding: 20px 0 20px 0
+
+      i
+        cursor: pointer
+
+      > div.line
+        height: 38px
+
+        line-height: 16px
+
+        > *
+          vertical-align: middle
+
+        > div.placeholder
+          height: 38px
+          width: 1px
+
+          display: inline-block
+
+        > span.title
+          font-size: 21px
+
+          font-family: 'Helvetica Neue Bold', HelveticaNeueBold
+
+          color: #007550
+
+          margin: 0 10px 0 30px
+
+        > em.title
+          font-size: 21px
+          font-style: normal
+
+          color: #333333
+
+          margin: 0 15px 0 0
+
+    section.tablet-calendar
+      font-size: 12px
+
+      margin: 0 30px 15px 30px
+
+      tr.row
+        overflow: visible
+
+        > td
+          width: 14.28571428571429%
+
+      ul.weekdays-row
+        overflow: auto
+        > li
+          > span
+            margin: 0 0 0 9px
+
+      > table.days-container
+        margin: 15px 0 0 0
+
+        border: 1px solid #c9c7b6
+
+        background: white
+
+        width: 100%
+
+        border-collapse: collapse
+
+        border-spacing: 0
+
+        border: 1px solid #c9c7b6
+
+        .week-row:last-child
+          border-bottom: none
+
+        .week-row
+          > .cell.expanded
+            z-index: 1
+
+            &:last-child
+              > div
+                right: 0
+                left: auto
+
+            > div
+              position: absolute
+
+              top: -1px
+              left: -1px
+
+              height: auto
+              min-height: 100px
+              width: 150%
+
+              overflow: visible
+
+              border: 1px solid #b2b0a1
+
+              padding-bottom: 1px
+
+              z-index: 1
+
+              box-shadow: 0 0 5px #a7a382
+
+              .event-item, .working-hour
+                > div.end_time
+                  display: inline-block
+
+              > em.add-working-hours
+                display: inline-block
+
+          > .cell
+            position: relative
+
+            z-index: 0
+
+            border: 1px solid #c9c7b6
+
+            padding: 0
+
+            vertical-align: top
+
+            &:hover
+              > div
+                > em.add-working-hours
+                  display: inline-block
+                
+
+            &.show-popup
+              z-index: 1
+
+              > div
+                > em.add-working-hours
+                  display: inline-block
+
+            &.disabled
+              &:hover
+                > div
+                  > em.add-working-hours
+                    display: none
+
+              > div
+                > ul
+                  display: none
+
+                > em
+                  display: none
+
+                > span, > em
+                  color: #a19f92
+
+            &.current
+              > div
+                background: #f3f2ec
+
+            > div
+              padding: 0 9px 0 9px
+
+              min-height: 100px
+
+              position: relative
+
+              overflow: hidden
+
+              z-index: 0
+
+              background: white
+
+              div.strip
+                color: white
+
+                position: absolute
+
+                left: -1px
+
+                padding: 3px 1px 3px 0
+
+                border-radius: 2px
+
+                z-index: 1
+
+                &.available
+                  background: #2d94e3
+
+                &.assigned
+                  background: #85aa1e
+
+                &.open
+                  background: #aa1e1e
+
+                &.replied
+                  background: #cfcd4f
+
+                &.privat
+                  background: black
+
+                > span
+                  margin: 0 0 0 12px
+
+              > em, > span
+                margin: 10px 0 0 0
+
+                display: inline-block
+
+              > em
+                float: right
+
+                font-style: normal
+
+                margin-left: 10px
+
+              > em.add-working-hours
+                display: none
+
+                color: #535353
+
+                position: relative
+
+              > strong.week-number
+                position: absolute
+
+                top: 0
+                right: 0
+
+                width: 17px
+                height: 15px
+
+                padding: 2px 0 0 0
+
+                display: none
+
+                background: #87867a
+
+                font-size: 10px
+                font-weight: normal
+
+                text-align: center
+
+                color: white
+
+              > ul
+                margin: 11px 0 0 0
+
+                > li:first-child
+                  margin-top: 0
+
+                > li
+                  &.holiday
+                    margin-top: 46px
+
+          > .cell:first-child
+            > div
+              > em.events-counter
+                margin-right: 12px
+
+              > strong.week-number
+                display: block

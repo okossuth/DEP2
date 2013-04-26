@@ -7,6 +7,21 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       this.model.trigger.apply(this.model, ['show'].concat(Array.prototype.slice.call(arguments, 0)));
       return true;
     },
+    events: {
+      'click .no-selection': 'clearSelection'
+    },
+    clearSelection: function() {
+      if (window.getSelection != null) {
+        if (window.getSelection().empty != null) {
+          window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges != null) {
+          window.getSelection().removeAllRanges();
+        }
+      } else if (document.selection != null) {
+        document.selection.empty();
+      }
+      return true;
+    },
     showEl: function() {
       return this.$el.removeClass('hide');
     },
@@ -20,8 +35,50 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       }
       return true;
     },
+    showSubView: function(name) {
+      return this.model.set('subView', name);
+    },
+    subView: function() {
+      return this.model.get('subView');
+    },
+    processSubView: function(page) {
+      var _subView, _subViewName;
+
+      _subViewName = this.subView();
+      if (this.prevSubView != null) {
+        this.prevSubView.hideEl();
+      }
+      if ((_subView = this.subViews[_subViewName]) != null) {
+        _subView.showEl();
+        this.trigger('subViewChange', _subViewName);
+        this.prevSubView = _subView;
+      }
+      return true;
+    },
+    _initSubView: function() {
+      var _subViewName;
+
+      if ((_subViewName = this.subView()) == null) {
+        this.model.set('subView', this.defaultSubView);
+      } else {
+        this.processSubView();
+      }
+      return true;
+    },
     initialize: function() {
+      var _this = this;
+
+      this.model.on('change:subView', this.processSubView, this);
       this.content = this.$('div.content')[0];
+      this.subViews = [];
+      _.each(this.SubViews, function(SubView) {
+        var _subView;
+
+        _subView = new SubView();
+        _this.subViews[_subView.name] = _subView;
+        return _this.subViews.push(_subView);
+      });
+      this._initSubView();
       return true;
     }
   }));

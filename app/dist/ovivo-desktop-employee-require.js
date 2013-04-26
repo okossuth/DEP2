@@ -14248,6 +14248,115 @@ define("handlebars", ["backbone"], function(){});
 
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['calendarMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n            <tr class=\"row week-row\">\r\n                ";
+  foundHelper = helpers.cells;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </tr>\r\n        ";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <td class=\"cell";
+  foundHelper = helpers.disabled;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\r\n                        <div>\r\n                            <span class=\"date-value\">";
+  foundHelper = helpers.date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n                            <em class=\"events-counter\"></em>\r\n\r\n                            <strong class=\"week-number\">";
+  foundHelper = helpers.week_number;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</strong>\r\n\r\n                            <ul class=\"calendar-items\"></ul>\r\n                        </div>\r\n                    </td>\r\n                ";
+  return buffer;}
+function program3(depth0,data) {
+  
+  
+  return " disabled";}
+
+  buffer += "<section class=\"tablet-calendar\">\r\n    <table class=\"days-container\">\r\n        ";
+  foundHelper = helpers.rows;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </div>\r\n</section>";
+  return buffer;});
+templates['calendarMonth_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n    <section class=\"tablet-calendar\">\r\n        <table class=\"days-container\">\r\n            ";
+  foundHelper = helpers.rows;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                <tr class=\"row week-row\">\r\n                    ";
+  foundHelper = helpers.cells;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                </tr>\r\n            ";
+  return buffer;}
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                        <td class=\"cell";
+  foundHelper = helpers.disabled;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\r\n                            <div>\r\n                                <span class=\"date-value\">";
+  foundHelper = helpers.date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n                                <em class=\"events-counter\"></em>\r\n\r\n                                <strong class=\"week-number\">";
+  foundHelper = helpers.week_number;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</strong>\r\n\r\n                                <ul class=\"calendar-items\"></ul>\r\n                            </div>\r\n                        </td>\r\n                    ";
+  return buffer;}
+function program4(depth0,data) {
+  
+  
+  return " disabled";}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
 templates['comment'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "";
@@ -14278,9 +14387,22 @@ function program1(depth0,data) {
   return buffer;});
 templates['event'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "";
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
+  buffer += "<span>";
+  foundHelper = helpers.group;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span><span>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>";
   return buffer;});
 templates['eventDetails'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14299,7 +14421,19 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"event\">\r\n   \r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" class=\"event\">\r\n   <span>";
+  foundHelper = helpers.group;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span><span>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n";
@@ -15056,7 +15190,9 @@ define('models/Page',['ovivo'], function() {
       return this.trigger.apply(this, _args);
     },
     initialize: function(attrs, options) {
-      this.page = new options.Page({}, options.options);
+      this.page = new options.Page({
+        name: options.name
+      }, options.options);
       this.name = options.name;
       ovivo.desktop.pages[this.name] = this.page;
       this.page.on('all', this.forwardEvent, this);
@@ -15128,9 +15264,34 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
     show: function() {
       return this.view.show.apply(this.view, Array.prototype.slice.call(arguments, 0));
     },
+    processChange: function() {
+      var _localStorage;
+
+      if ((_localStorage = window.localStorage) != null) {
+        _localStorage[this.id] = JSON.stringify(this.toJSON());
+      }
+      return true;
+    },
+    _getFromLocalStorage: function() {
+      var _localStorage, _objStr;
+
+      if (((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
+        this.set(JSON.parse(_objStr));
+      }
+      return true;
+    },
+    toJSON: function() {
+      return {
+        subView: this.get('subView')
+      };
+    },
     initialize: function(attrs, options) {
       var _obj;
 
+      this.name = attrs.name;
+      this.on('change:subView', this.processChange, this);
+      this.id = "page-" + this.name;
+      this._getFromLocalStorage();
       _obj = {
         model: this
       };
@@ -15159,6 +15320,21 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       this.model.trigger.apply(this.model, ['show'].concat(Array.prototype.slice.call(arguments, 0)));
       return true;
     },
+    events: {
+      'click .no-selection': 'clearSelection'
+    },
+    clearSelection: function() {
+      if (window.getSelection != null) {
+        if (window.getSelection().empty != null) {
+          window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges != null) {
+          window.getSelection().removeAllRanges();
+        }
+      } else if (document.selection != null) {
+        document.selection.empty();
+      }
+      return true;
+    },
     showEl: function() {
       return this.$el.removeClass('hide');
     },
@@ -15172,8 +15348,50 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       }
       return true;
     },
+    showSubView: function(name) {
+      return this.model.set('subView', name);
+    },
+    subView: function() {
+      return this.model.get('subView');
+    },
+    processSubView: function(page) {
+      var _subView, _subViewName;
+
+      _subViewName = this.subView();
+      if (this.prevSubView != null) {
+        this.prevSubView.hideEl();
+      }
+      if ((_subView = this.subViews[_subViewName]) != null) {
+        _subView.showEl();
+        this.trigger('subViewChange', _subViewName);
+        this.prevSubView = _subView;
+      }
+      return true;
+    },
+    _initSubView: function() {
+      var _subViewName;
+
+      if ((_subViewName = this.subView()) == null) {
+        this.model.set('subView', this.defaultSubView);
+      } else {
+        this.processSubView();
+      }
+      return true;
+    },
     initialize: function() {
+      var _this = this;
+
+      this.model.on('change:subView', this.processSubView, this);
       this.content = this.$('div.content')[0];
+      this.subViews = [];
+      _.each(this.SubViews, function(SubView) {
+        var _subView;
+
+        _subView = new SubView();
+        _this.subViews[_subView.name] = _subView;
+        return _this.subViews.push(_subView);
+      });
+      this._initSubView();
       return true;
     }
   }));
@@ -15182,11 +15400,560 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/Calendar/Page',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+define('_common/CalendarBase',[], function() {
+  return {
+    year: function() {
+      return this.get('year');
+    },
+    month: function() {
+      return this.get('month');
+    },
+    isLeap: function(year) {
+      if ((year % 4) === 0) {
+        if ((year % 100) === 0) {
+          if ((year % 400) === 0) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
+    getNumberOfDaysInMonth: function(month, year) {
+      if (month !== 1) {
+        return ovivo.config.DAYS_IN_MONTH[month];
+      } else if (this.isLeap(year)) {
+        return 29;
+      } else {
+        return 28;
+      }
+    },
+    setMonth: function(value) {
+      value = value > 11 ? (this.setYear(this.year() + 1), value % 12) : value < 0 ? (this.setYear(this.year() - 1), value % 12 + 12) : value;
+      return this.set('month', value);
+    },
+    setYear: function(value) {
+      return this.set('year', value);
+    },
+    transformDayOfWeek: function(day) {
+      return (day + 6) % 7;
+    },
+    _getWeekNumber: function(d) {
+      var weekNo, yearStart;
+
+      d = new Date(d);
+      d.setHours(0, 0, 0);
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      yearStart = new Date(d.getFullYear(), 0, 1);
+      return weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    },
+    getDaysArr: function(weeks) {
+      return Array.prototype.concat.apply([], weeks);
+    },
+    getWeeksArr: function(year, month) {
+      var _daysAfter, _daysBefore, _daysNum, _firstDayOfMonth, _i, _lastDayOfMonth, _month, _nextDaysNum, _nextMonth, _nextYear, _prevDaysNum, _prevMonth, _prevYear, _returnValue, _weeks, _year;
+
+      _returnValue = [];
+      _year = year != null ? year : this.year();
+      _month = month != null ? month : this.month();
+      _prevYear = _year;
+      _nextYear = _year;
+      _prevMonth = _month - 1;
+      _nextMonth = _month + 1;
+      if (_month === 0) {
+        _prevYear = _year - 1;
+        _prevMonth = 11;
+      } else if (_month === 11) {
+        _nextYear = _year + 1;
+        _nextMonth = 0;
+      }
+      _prevDaysNum = this.getNumberOfDaysInMonth(_prevMonth, _prevYear);
+      _nextDaysNum = this.getNumberOfDaysInMonth(_nextMonth, _nextYear);
+      _daysNum = this.getNumberOfDaysInMonth(_month, _year);
+      _weeks = [];
+      _firstDayOfMonth = this.transformDayOfWeek((new Date(_year, _month, 1)).getDay());
+      _lastDayOfMonth = this.transformDayOfWeek((new Date(_year, _month, _daysNum)).getDay());
+      _daysBefore = _firstDayOfMonth;
+      _daysAfter = 6 - _lastDayOfMonth;
+      if (_daysBefore > 0) {
+        _weeks = _weeks.concat((function() {
+          var _j, _ref, _results;
+
+          _results = [];
+          for (_i = _j = _ref = _prevDaysNum - _daysBefore + 1; _ref <= _prevDaysNum ? _j <= _prevDaysNum : _j >= _prevDaysNum; _i = _ref <= _prevDaysNum ? ++_j : --_j) {
+            _results.push({
+              date: _i,
+              month: _prevMonth,
+              year: _prevYear,
+              week_number: this._getWeekNumber(new Date(_prevYear, _prevMonth, _i)),
+              disabled: true
+            });
+          }
+          return _results;
+        }).call(this));
+      }
+      _weeks = _weeks.concat((function() {
+        var _j, _results;
+
+        _results = [];
+        for (_i = _j = 1; 1 <= _daysNum ? _j <= _daysNum : _j >= _daysNum; _i = 1 <= _daysNum ? ++_j : --_j) {
+          _results.push({
+            date: _i,
+            month: _month,
+            year: _year,
+            week_number: this._getWeekNumber(new Date(_year, _month, _i)),
+            disabled: false
+          });
+        }
+        return _results;
+      }).call(this));
+      if (_daysAfter > 0) {
+        _weeks = _weeks.concat((function() {
+          var _j, _results;
+
+          _results = [];
+          for (_i = _j = 1; 1 <= _daysAfter ? _j <= _daysAfter : _j >= _daysAfter; _i = 1 <= _daysAfter ? ++_j : --_j) {
+            _results.push({
+              date: _i,
+              month: _nextMonth,
+              year: _nextYear,
+              week_number: this._getWeekNumber(new Date(_nextYear, _nextMonth, _i)),
+              disabled: true
+            });
+          }
+          return _results;
+        }).call(this));
+      }
+      if (_weeks.length === 35) {
+        _weeks = _weeks.concat((function() {
+          var _j, _results;
+
+          _results = [];
+          for (_i = _j = 1; _j <= 7; _i = ++_j) {
+            _results.push({
+              date: _daysAfter + _i,
+              month: _nextMonth,
+              year: _nextYear,
+              week_number: this._getWeekNumber(new Date(_nextYear, _nextMonth, _daysAfter + _i)),
+              disabled: true
+            });
+          }
+          return _results;
+        }).call(this));
+      }
+      _returnValue = (function() {
+        var _j, _ref, _results;
+
+        _results = [];
+        for (_i = _j = 0, _ref = _weeks.length / 7; 0 <= _ref ? _j < _ref : _j > _ref; _i = 0 <= _ref ? ++_j : --_j) {
+          _results.push(_weeks.slice(_i * 7, (_i + 1) * 7));
+        }
+        return _results;
+      })();
+      return _returnValue;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
+  var _Base;
+
+  _Base = Backbone.View.extend(_.extend({}, ToolsBase, {
+    _render: function() {
+      this.$el.html(this.template(this));
+      if (this.model.view == null) {
+        this.model.view = this;
+      }
+      if (this.postRender != null) {
+        this.postRender();
+      }
+      this.model.trigger('rendered');
+      return true;
+    },
+    events: {},
+    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
+      var _this = this;
+
+      return _.each(this.model._gettersNames, function(name) {
+        if (_this.constructor.prototype[name] == null) {
+          return _this.constructor.prototype[name] = function() {
+            return this.model[name]();
+          };
+        }
+      });
+    }),
+    render: ToolsBase.throttleGroup('render', 'renderGroup', 50),
+    renderGroup: function(views) {
+      var _DOM, _hash;
+
+      views = _.pluck(views, 'ctx');
+      _hash = {};
+      views = _.filter(views, function(view) {
+        if (_hash[view.model.id] !== true) {
+          _hash[view.model.id] = true;
+          return true;
+        } else {
+          return false;
+        }
+      });
+      _DOM = $(this.groupTemplate({
+        elements: views
+      }));
+      _.each(views, function(view) {
+        var _elements;
+
+        _elements = $('#element-view-' + view.model.pk(), _DOM);
+        view.$el.children().remove();
+        view.$el.append(_elements.children());
+        if (view.model.view == null) {
+          view.model.view = this;
+        }
+        if (view.postRender != null) {
+          view.postRender();
+        }
+        view.model.trigger('rendered');
+        return true;
+      });
+      if (this.groupRenderComplete != null) {
+        return this.groupRenderComplete();
+      }
+    },
+    stopPropagation: function(e) {
+      e.stopPropagation();
+      return false;
+    },
+    _processRemove: function() {
+      return this.remove();
+    },
+    initialize: function() {
+      this.exposeAttrs();
+      this.render();
+      this.model.on('change', this.render, this);
+      this.model.on('remove', this._processRemove, this);
+      return true;
+    }
+  }));
+  _Base.prototype._base = _Base;
+  return _Base;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/Month',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    template: Handlebars.templates['calendarMonth'],
+    groupTemplate: Handlebars.templates['calendarMonth_group'],
+    events: {},
+    show: function() {
+      return this.$el.removeClass('hide');
+    },
+    hide: function() {
+      return this.$el.addClass('hide');
+    },
+    month: function() {
+      return ovivo.config.MONTHS[this.model.month()];
+    },
+    rows: function() {
+      return _.map(this.model.weeks, function(week) {
+        return {
+          cells: week
+        };
+      });
+    },
+    postRender: function() {
+      this.dayElements = this.$('.days-container .week-row > td');
+      return this.hide();
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/Month',['_common/CalendarBase', 'models/resources/ResourceBase', 'views/Month', 'ovivo'], function(CalendarBase, ResourceBase, View) {
+  return ResourceBase.extend(_.extend({}, CalendarBase, {
+    firstDate: function() {
+      return this._firstDate;
+    },
+    _gettersNames: ['month', 'year', 'pk'],
+    show: function() {
+      return this.view.show();
+    },
+    hide: function() {
+      return this.view.hide();
+    },
+    initDays: function() {
+      return this.collection.monthDays.initElements(this.view.dayElements, this.days);
+    },
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.set('pk', "" + (this.year()) + "-" + (this.month()));
+      this.on('rendered', this.initDays, this);
+      this._firstDate = new Date(this.year(), this.month(), 1);
+      this.weeks = this.getWeeksArr(this.year(), this.month());
+      this.days = this.getDaysArr(this.weeks);
+      this.proxyCall('initialize', arguments);
+      ovivo.desktop.resources.events.fetchMonth(this.month(), this.year());
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/MonthDay',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    events: {},
+    render: function() {
+      return true;
+    },
+    addEvent: function(view) {
+      this.events.push(view);
+      this.calendarItems.append(view.el);
+      this.updateEventsCounter();
+      return true;
+    },
+    updateEventsCounter: function() {
+      var _html;
+
+      _html = this.events.length > 1 ? this.events.length + ' ' + ngettext('event', 'events', this.events) : '';
+      return this.eventsCounter.html(_html);
+    },
+    processClick: function() {
+      return this.$el.toggleClass('expanded');
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      this.events = [];
+      this.calendarItems = this.$('.calendar-items');
+      this.eventsCounter = this.$('.events-counter');
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/MonthDay',['models/resources/ResourceBase', 'views/MonthDay', 'ovivo'], function(ResourceBase, View) {
+  return ResourceBase.extend({
+    _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year'],
+    addEvent: function(event) {
+      return this.view.addEvent(event.view);
+    },
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      this.set('pk', "" + (this.year()) + "-" + (this.month()) + "-" + (this.date()) + (this.disabled() === true ? '-disabled' : ''));
+      this.view = new View({
+        model: this,
+        el: options.el
+      });
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/MonthDays',['models/MonthDay', 'ovivo'], function(Model) {
+  return Backbone.Collection.extend({
+    model: Model,
+    initElements: function(elements, days) {
+      var _this = this;
+
+      return _.each(_.zip(elements, days), function(_arg) {
+        var day, element;
+
+        element = _arg[0], day = _arg[1];
+        _this.add(day, {
+          el: element
+        });
+        return _this;
+      });
+    },
+    processEventAdd: function(event) {
+      var _ref;
+
+      return (_ref = this.get(event.getKey())) != null ? _ref.addEvent(event) : void 0;
+    },
+    initialize: function(models, options) {
+      _.extend(this, options);
+      ovivo.desktop.resources.events.on('add', this.processEventAdd, this);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/Months',['models/Month', 'collections/MonthDays', 'ovivo'], function(Model, MonthDays) {
+  return Backbone.Collection.extend({
+    model: Model,
+    comparator: function(month) {
+      return month.firstDate();
+    },
+    addMonth: function(obj) {
+      var _month;
+
+      _month = new Model(obj, {
+        collection: this
+      });
+      this.add(_month);
+      return _month;
+    },
+    show: function(month) {
+      if (this.prevMonth != null) {
+        this.prevMonth.hide();
+        this.trigger('hide', this.prevMonth);
+      }
+      month.show();
+      this.trigger('show', month);
+      return this.prevMonth = month;
+    },
+    prev: function() {
+      var _first, _prev;
+
+      _first = this.first();
+      _prev = new Date(_first.year(), _first.month() - 1, 1);
+      return this.add({
+        month: _prev.getMonth(),
+        year: _prev.getFullYear()
+      });
+    },
+    next: function() {
+      var _last, _next;
+
+      _last = this.last();
+      _next = new Date(_last.year(), _last.month() + 1, 1);
+      return this.add({
+        month: _next.getMonth(),
+        year: _next.getFullYear()
+      });
+    },
+    initialize: function(models, options) {
+      ovivo.desktop.monthDays = this.monthDays = new MonthDays();
+      _.extend(this, options);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Calendar/Month',['views/pages/PageBase', 'collections/Months', 'ovivo'], function(PageBase, Months) {
+  return PageBase.extend({
+    el: '.page.page-calendar .month-view',
+    name: 'month',
+    events: {},
+    prev: function() {
+      this.current.setMonth(this.current.getMonth() - 1);
+      return this.navigateMonth(this.current.getFullYear(), this.current.getMonth());
+    },
+    next: function() {
+      this.current.setMonth(this.current.getMonth() + 1);
+      return this.navigateMonth(this.current.getFullYear(), this.current.getMonth());
+    },
+    navigateMonth: function(year, month) {
+      var _month;
+
+      if ((_month = this.months.get("" + year + "-" + month)) == null) {
+        _month = this.months.addMonth({
+          month: month,
+          year: year
+        });
+      }
+      this.months.show(_month);
+      return true;
+    },
+    processMonthAdd: function(month, months) {
+      return this.$('.months-list').append(month.view.el);
+    },
+    processMonthShow: function(month) {
+      this.title.html(ovivo.config.MONTHS[month.month()] + ' ' + month.year());
+      return console.log('Show ' + ovivo.config.MONTHS[month.month()] + ' ' + month.year());
+    },
+    processMonthHide: function(month) {},
+    initialize: function() {
+      var _now;
+
+      this.current = _now = new Date();
+      this.title = $('.page.page-calendar header span.title');
+      ovivo.desktop.months = this.months = new Months();
+      this.months.on('add', this.processMonthAdd, this);
+      this.months.on('show', this.processMonthShow, this);
+      this.months.on('hide', this.processMonthHide, this);
+      this.navigateMonth(_now.getFullYear(), _now.getMonth());
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Calendar/Week',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-calendar .week-view',
+    name: 'week',
+    events: {},
+    initialize: function() {
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('_features/Switcher',['ovivo'], function() {
+  var _Switcher;
+
+  _Switcher = function(container, data) {
+    this.container = container;
+    container.children().each(function(i, el) {
+      return $(el).addClass('switcher-option').data('value', data[i]);
+    });
+    container.on('click', _.bind(this._clickHandler, this));
+    return this;
+  };
+  _.extend(_Switcher.prototype, Backbone.Events);
+  _Switcher.prototype.clear = function() {
+    return $('.switcher-option.selected', this.container).removeClass('selected');
+  };
+  _Switcher.prototype._clickHandler = function(e) {
+    var _el;
+
+    _el = $(e.target).closest('.switcher-option');
+    if (_el.length > 0) {
+      this.clear();
+      _el.addClass('selected');
+      this.trigger('value', _el.data('value'));
+    }
+    return true;
+  };
+  _Switcher.prototype.setValue = function(value) {
+    this.clear();
+    $('.switcher-option', this.container).filter(function(i, el) {
+      return $(el).data('value') === value;
+    }).addClass('selected');
+    return this.trigger('value', value);
+  };
+  return _Switcher;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calendar/Week', '_features/Switcher', 'ovivo'], function(PageBase, MonthView, WeekView, Switcher) {
   return PageBase.extend({
     el: '.page.page-calendar',
     events: function() {
-      return _.extend({}, PageBase.prototype.events, {});
+      return _.extend({}, PageBase.prototype.events, {
+        'click .navigate-left': 'prev',
+        'click .navigate-right': 'next'
+      });
+    },
+    prev: function() {
+      return this.subViews[this.mode].prev();
+    },
+    next: function() {
+      return this.subViews[this.mode].next();
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);
@@ -15196,7 +15963,20 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'ovivo'], function(P
       this.proxyCall('transitionComplete', arguments);
       return true;
     },
+    processViewSwitcherValue: function(value) {
+      return this.showSubView(value);
+    },
+    processSubViewChange: function(name) {
+      this.mode = name;
+      this.viewSwitcher.setValue(name);
+      return true;
+    },
     initialize: function() {
+      this.SubViews = [MonthView, WeekView];
+      this.defaultSubView = 'week';
+      this.on('subViewChange', this.processSubViewChange, this);
+      this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['month', 'week']);
+      this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -15215,7 +15995,55 @@ define('models/pages/Calendar',['models/pages/PageBase', 'views/pages/Calendar/P
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/Settings/Page',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+define('views/pages/Settings/General',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-settings .general-view',
+    name: 'general',
+    events: {},
+    initialize: function() {
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Settings/Notifications',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-settings .notifications-view',
+    name: 'notifications',
+    events: {},
+    initialize: function() {
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Settings/Availability',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-settings .availability-view',
+    name: 'availability',
+    events: {},
+    initialize: function() {
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Settings/Connections',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-settings .connections-view',
+    name: 'connections',
+    events: {},
+    initialize: function() {
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Settings/Page',['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Settings/Notifications', 'views/pages/Settings/Availability', 'views/pages/Settings/Connections', 'ovivo'], function(PageBase, GeneralView, NotificationsView, AvailabilityView, ConnectionsView) {
   return PageBase.extend({
     el: '.page.page-settings',
     events: function() {
@@ -15230,6 +16058,8 @@ define('views/pages/Settings/Page',['views/pages/PageBase', 'ovivo'], function(P
       return true;
     },
     initialize: function() {
+      this.SubViews = [GeneralView, NotificationsView, AvailabilityView, ConnectionsView];
+      this.defaultSubView = 'general';
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -15373,89 +16203,6 @@ define('_features/dateFormatter',['_features/trailZero', 'ovivo'], function(trai
       return returnValue;
     }
   };
-});
-
-// Generated by CoffeeScript 1.6.2
-define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
-  var _Base;
-
-  _Base = Backbone.View.extend(_.extend({}, ToolsBase, {
-    _render: function() {
-      this.$el.html(this.template(this));
-      if (this.model.view == null) {
-        this.model.view = this;
-      }
-      if (this.postRender != null) {
-        this.postRender();
-      }
-      this.model.trigger('rendered');
-      return true;
-    },
-    events: {},
-    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
-      var _this = this;
-
-      return _.each(this.model._gettersNames, function(name) {
-        if (_this.constructor.prototype[name] == null) {
-          return _this.constructor.prototype[name] = function() {
-            return this.model[name]();
-          };
-        }
-      });
-    }),
-    render: ToolsBase.throttleGroup('render', 'renderGroup', 50),
-    renderGroup: function(views) {
-      var _DOM, _hash;
-
-      views = _.pluck(views, 'ctx');
-      _hash = {};
-      views = _.filter(views, function(view) {
-        if (_hash[view.model.id] !== true) {
-          _hash[view.model.id] = true;
-          return true;
-        } else {
-          return false;
-        }
-      });
-      _DOM = $(this.groupTemplate({
-        elements: views
-      }));
-      _.each(views, function(view) {
-        var _elements;
-
-        _elements = $('#element-view-' + view.model.pk(), _DOM);
-        view.$el.children().remove();
-        view.$el.append(_elements.children());
-        if (view.model.view == null) {
-          view.model.view = this;
-        }
-        if (view.postRender != null) {
-          view.postRender();
-        }
-        view.model.trigger('rendered');
-        return true;
-      });
-      if (this.groupRenderComplete != null) {
-        return this.groupRenderComplete();
-      }
-    },
-    stopPropagation: function(e) {
-      e.stopPropagation();
-      return false;
-    },
-    _processRemove: function() {
-      return this.remove();
-    },
-    initialize: function() {
-      this.exposeAttrs();
-      this.render();
-      this.model.on('change', this.render, this);
-      this.model.on('remove', this._processRemove, this);
-      return true;
-    }
-  }));
-  _Base.prototype._base = _Base;
-  return _Base;
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -16602,7 +17349,7 @@ require(['models/resources/User', 'models/resources/Communication', 'collections
     socketIO.init();
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities'], function(resourceName) {
+    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);

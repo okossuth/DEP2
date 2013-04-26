@@ -4,21 +4,12 @@ define [
   'ovivo'
 ], (PageBase) ->
   PageBase.extend
-    el: '.page.page-settings'
+    el: '.page.page-settings .general-view'
 
-    events: () -> _.extend {}, PageBase.prototype.events, {}
+    name: 'general'
 
-    transitionStart: () ->
-      @proxyCall 'transitionStart', arguments
-
-      true
-
-    transitionComplete: () ->
-      @proxyCall 'transitionComplete', arguments
-
-      true
+    events: {}
 
     initialize: () ->
-      @proxyCall 'initialize', arguments
 
       true

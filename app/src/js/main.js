@@ -37,7 +37,7 @@ require(['models/resources/User', 'models/resources/Communication', 'collections
     socketIO.init();
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities'], function(resourceName) {
+    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);

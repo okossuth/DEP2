@@ -34,18 +34,18 @@
             <header>
                 <div class="line">
                     <div class="placeholder"></div>
+                    <i class="icon left inline no-selection navigation navigate-left"></i>
+                    <i class="icon right inline no-selection navigation navigate-right"></i>
+
                     <span class="title">Uge 52. Dec. 2012</span>
                     <em class="title">16</em>
-
-                    <i class="icon left inline navigation"></i>
-                    <i class="icon right inline navigation"></i>
 
                     <div class="button capital">
                         <span>Create new</span>
                     </div>
 
-                    <ul class="switcher">
-                        <li class="selected">
+                    <ul class="switcher switcher-view">
+                        <li>
                             <i class="icon month"></i>
                         </li>
 
@@ -53,10 +53,51 @@
                             <i class="icon week"></i>
                         </li>
                     </ul>
+
+                    <div class="shadow"></div>
+                </div>
+
+                <div class="weekdays">
+                    <ul class="row weekdays-row">
+                        <li>
+                            <span>{{#i18n}}monday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}tuesday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}wednesday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}thursday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}friday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}saturday{{/i18n}}</span>
+                        </li>
+
+                        <li>
+                            <span>{{#i18n}}sunday{{/i18n}}</span>
+                        </li>
+                    </ul>
                 </div>
             </header>
 
-            <div class="content"></div>
+            <div class="content month-view hide">
+                <ul class="months-list">
+                </ul>
+            </div>
+
+            <div class="content week-view hide">
+                Week View
+            </div>
         </section>
 
         <section class="page page-feedback hide">
@@ -78,7 +119,21 @@
                 </div>
             </header>
 
-            <div class="content"></div>
+            <div class="content general-view hide">
+                General View
+            </div>
+
+            <div class="content notifications-view hide">
+                Notifications View
+            </div>
+
+            <div class="content availability-view hide">
+                Availability View
+            </div>
+
+            <div class="content connections-view hide">
+                Connections View
+            </div>
         </section>
 
         <section class="page page-help hide">

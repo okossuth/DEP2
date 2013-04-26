@@ -4,21 +4,12 @@ define [
   'ovivo'
 ], (PageBase) ->
   PageBase.extend
-    el: '.page.page-calendar'
+    el: '.page.page-calendar .week-view'
 
-    events: () -> _.extend {}, PageBase.prototype.events, {}
+    name: 'week'
 
-    transitionStart: () ->
-      @proxyCall 'transitionStart', arguments
-
-      true
-
-    transitionComplete: () ->
-      @proxyCall 'transitionComplete', arguments
-
-      true
+    events: {}
 
     initialize: () ->
-      @proxyCall 'initialize', arguments
 
       true

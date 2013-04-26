@@ -73,7 +73,8 @@ require [
         'Communication',
         'GroupRelations',
         'WorkingHours',
-        'Inactivities'
+        'Inactivities',
+        'Events'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
 
