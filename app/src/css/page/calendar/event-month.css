@@ -1,4 +1,4 @@
-ul.months-list li.event {
+ul.months-list li.event, ul.weeks-list li.event {
   color: white;
   font-size: 12px;
   margin: 0 0 1px 0;
@@ -6,13 +6,13 @@ ul.months-list li.event {
   width: 100%;
   position: relative;
   left: -8px; }
-  ul.months-list li.event > span {
+  ul.months-list li.event > span, ul.weeks-list li.event > span {
     margin: 0 0 0 10px; }
-    ul.months-list li.event > span:first-child {
+    ul.months-list li.event > span:first-child, ul.weeks-list li.event > span:first-child {
       margin-left: 0; }
-  ul.months-list li.event.open {
+  ul.months-list li.event.open, ul.weeks-list li.event.open {
     background: #b23333; }
-  ul.months-list li.event.open-responses {
+  ul.months-list li.event.open-responses, ul.weeks-list li.event.open-responses {
     background: #cc9900; }
-  ul.months-list li.event.closed {
+  ul.months-list li.event.closed, ul.weeks-list li.event.closed {
     background: #007550; }

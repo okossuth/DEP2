@@ -1,4 +1,151 @@
 
+/**
+ * @version: 1.0 Alpha-1
+ * @author: Coolite Inc. http://www.coolite.com/
+ * @date: 2008-05-13
+ * @copyright: Copyright (c) 2006-2008, Coolite Inc. (http://www.coolite.com/). All rights reserved.
+ * @license: Licensed under The MIT License. See license.txt and http://www.datejs.com/license/. 
+ * @website: http://www.datejs.com/
+ */
+Date.CultureInfo={name:"da-DK",englishName:"Danish (Denmark)",nativeName:"dansk (Danmark)",dayNames:["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],abbreviatedDayNames:["sø","ma","ti","on","to","fr","lø"],shortestDayNames:["sø","ma","ti","on","to","fr","lø"],firstLetterDayNames:["s","m","t","o","t","f","l"],monthNames:["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december"],abbreviatedMonthNames:["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"],amDesignator:"",pmDesignator:"",firstDayOfWeek:1,twoDigitYearMax:2029,dateElementOrder:"dmy",formatPatterns:{shortDate:"dd-MM-yyyy",longDate:"d. MMMM yyyy",shortTime:"HH:mm",longTime:"HH:mm:ss",fullDateTime:"d. MMMM yyyy HH:mm:ss",sortableDateTime:"yyyy-MM-ddTHH:mm:ss",universalSortableDateTime:"yyyy-MM-dd HH:mm:ssZ",rfc1123:"ddd, dd MMM yyyy HH:mm:ss GMT",monthDay:"d. MMMM",yearMonth:"MMMM yyyy"},regexPatterns:{jan:/^jan(uar)?/i,feb:/^feb(ruar)?/i,mar:/^mar(ts)?/i,apr:/^apr(il)?/i,may:/^maj/i,jun:/^jun(i)?/i,jul:/^jul(i)?/i,aug:/^aug(ust)?/i,sep:/^sep(t(ember)?)?/i,oct:/^okt(ober)?/i,nov:/^nov(ember)?/i,dec:/^dec(ember)?/i,sun:/^søndag/i,mon:/^mandag/i,tue:/^tirsdag/i,wed:/^onsdag/i,thu:/^torsdag/i,fri:/^fredag/i,sat:/^lørdag/i,future:/^next/i,past:/^last|past|prev(ious)?/i,add:/^(\+|aft(er)?|from|hence)/i,subtract:/^(\-|bef(ore)?|ago)/i,yesterday:/^yes(terday)?/i,today:/^t(od(ay)?)?/i,tomorrow:/^tom(orrow)?/i,now:/^n(ow)?/i,millisecond:/^ms|milli(second)?s?/i,second:/^sec(ond)?s?/i,minute:/^mn|min(ute)?s?/i,hour:/^h(our)?s?/i,week:/^w(eek)?s?/i,month:/^m(onth)?s?/i,day:/^d(ay)?s?/i,year:/^y(ear)?s?/i,shortMeridian:/^(a|p)/i,longMeridian:/^(a\.?m?\.?|p\.?m?\.?)/i,timezone:/^((e(s|d)t|c(s|d)t|m(s|d)t|p(s|d)t)|((gmt)?\s*(\+|\-)\s*\d\d\d\d?)|gmt|utc)/i,ordinalSuffix:/^\s*(st|nd|rd|th)/i,timeContext:/^\s*(\:|a(?!u|p)|p)/i},timezones:[{name:"UTC",offset:"-000"},{name:"GMT",offset:"-000"},{name:"EST",offset:"-0500"},{name:"EDT",offset:"-0400"},{name:"CST",offset:"-0600"},{name:"CDT",offset:"-0500"},{name:"MST",offset:"-0700"},{name:"MDT",offset:"-0600"},{name:"PST",offset:"-0800"},{name:"PDT",offset:"-0700"}]};
+(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo,p=function(s,l){if(!l){l=2;}
+return("000"+s).slice(l*-1);};$P.clearTime=function(){this.setHours(0);this.setMinutes(0);this.setSeconds(0);this.setMilliseconds(0);return this;};$P.setTimeToNow=function(){var n=new Date();this.setHours(n.getHours());this.setMinutes(n.getMinutes());this.setSeconds(n.getSeconds());this.setMilliseconds(n.getMilliseconds());return this;};$D.today=function(){return new Date().clearTime();};$D.compare=function(date1,date2){if(isNaN(date1)||isNaN(date2)){throw new Error(date1+" - "+date2);}else if(date1 instanceof Date&&date2 instanceof Date){return(date1<date2)?-1:(date1>date2)?1:0;}else{throw new TypeError(date1+" - "+date2);}};$D.equals=function(date1,date2){return(date1.compareTo(date2)===0);};$D.getDayNumberFromName=function(name){var n=$C.dayNames,m=$C.abbreviatedDayNames,o=$C.shortestDayNames,s=name.toLowerCase();for(var i=0;i<n.length;i++){if(n[i].toLowerCase()==s||m[i].toLowerCase()==s||o[i].toLowerCase()==s){return i;}}
+return-1;};$D.getMonthNumberFromName=function(name){var n=$C.monthNames,m=$C.abbreviatedMonthNames,s=name.toLowerCase();for(var i=0;i<n.length;i++){if(n[i].toLowerCase()==s||m[i].toLowerCase()==s){return i;}}
+return-1;};$D.isLeapYear=function(year){return((year%4===0&&year%100!==0)||year%400===0);};$D.getDaysInMonth=function(year,month){return[31,($D.isLeapYear(year)?29:28),31,30,31,30,31,31,30,31,30,31][month];};$D.getTimezoneAbbreviation=function(offset){var z=$C.timezones,p;for(var i=0;i<z.length;i++){if(z[i].offset===offset){return z[i].name;}}
+return null;};$D.getTimezoneOffset=function(name){var z=$C.timezones,p;for(var i=0;i<z.length;i++){if(z[i].name===name.toUpperCase()){return z[i].offset;}}
+return null;};$P.clone=function(){return new Date(this.getTime());};$P.compareTo=function(date){return Date.compare(this,date);};$P.equals=function(date){return Date.equals(this,date||new Date());};$P.between=function(start,end){return this.getTime()>=start.getTime()&&this.getTime()<=end.getTime();};$P.isAfter=function(date){return this.compareTo(date||new Date())===1;};$P.isBefore=function(date){return(this.compareTo(date||new Date())===-1);};$P.isToday=function(){return this.isSameDay(new Date());};$P.isSameDay=function(date){return this.clone().clearTime().equals(date.clone().clearTime());};$P.addMilliseconds=function(value){this.setMilliseconds(this.getMilliseconds()+value);return this;};$P.addSeconds=function(value){return this.addMilliseconds(value*1000);};$P.addMinutes=function(value){return this.addMilliseconds(value*60000);};$P.addHours=function(value){return this.addMilliseconds(value*3600000);};$P.addDays=function(value){this.setDate(this.getDate()+value);return this;};$P.addWeeks=function(value){return this.addDays(value*7);};$P.addMonths=function(value){var n=this.getDate();this.setDate(1);this.setMonth(this.getMonth()+value);this.setDate(Math.min(n,$D.getDaysInMonth(this.getFullYear(),this.getMonth())));return this;};$P.addYears=function(value){return this.addMonths(value*12);};$P.add=function(config){if(typeof config=="number"){this._orient=config;return this;}
+var x=config;if(x.milliseconds){this.addMilliseconds(x.milliseconds);}
+if(x.seconds){this.addSeconds(x.seconds);}
+if(x.minutes){this.addMinutes(x.minutes);}
+if(x.hours){this.addHours(x.hours);}
+if(x.weeks){this.addWeeks(x.weeks);}
+if(x.months){this.addMonths(x.months);}
+if(x.years){this.addYears(x.years);}
+if(x.days){this.addDays(x.days);}
+return this;};var $y,$m,$d;$P.getWeek=function(){var a,b,c,d,e,f,g,n,s,w;$y=(!$y)?this.getFullYear():$y;$m=(!$m)?this.getMonth()+1:$m;$d=(!$d)?this.getDate():$d;if($m<=2){a=$y-1;b=(a/4|0)-(a/100|0)+(a/400|0);c=((a-1)/4|0)-((a-1)/100|0)+((a-1)/400|0);s=b-c;e=0;f=$d-1+(31*($m-1));}else{a=$y;b=(a/4|0)-(a/100|0)+(a/400|0);c=((a-1)/4|0)-((a-1)/100|0)+((a-1)/400|0);s=b-c;e=s+1;f=$d+((153*($m-3)+2)/5)+58+s;}
+g=(a+b)%7;d=(f+g-e)%7;n=(f+3-d)|0;if(n<0){w=53-((g-s)/5|0);}else if(n>364+s){w=1;}else{w=(n/7|0)+1;}
+$y=$m=$d=null;return w;};$P.getISOWeek=function(){$y=this.getUTCFullYear();$m=this.getUTCMonth()+1;$d=this.getUTCDate();return p(this.getWeek());};$P.setWeek=function(n){return this.moveToDayOfWeek(1).addWeeks(n-this.getWeek());};$D._validate=function(n,min,max,name){if(typeof n=="undefined"){return false;}else if(typeof n!="number"){throw new TypeError(n+" is not a Number.");}else if(n<min||n>max){throw new RangeError(n+" is not a valid value for "+name+".");}
+return true;};$D.validateMillisecond=function(value){return $D._validate(value,0,999,"millisecond");};$D.validateSecond=function(value){return $D._validate(value,0,59,"second");};$D.validateMinute=function(value){return $D._validate(value,0,59,"minute");};$D.validateHour=function(value){return $D._validate(value,0,23,"hour");};$D.validateDay=function(value,year,month){return $D._validate(value,1,$D.getDaysInMonth(year,month),"day");};$D.validateMonth=function(value){return $D._validate(value,0,11,"month");};$D.validateYear=function(value){return $D._validate(value,0,9999,"year");};$P.set=function(config){if($D.validateMillisecond(config.millisecond)){this.addMilliseconds(config.millisecond-this.getMilliseconds());}
+if($D.validateSecond(config.second)){this.addSeconds(config.second-this.getSeconds());}
+if($D.validateMinute(config.minute)){this.addMinutes(config.minute-this.getMinutes());}
+if($D.validateHour(config.hour)){this.addHours(config.hour-this.getHours());}
+if($D.validateMonth(config.month)){this.addMonths(config.month-this.getMonth());}
+if($D.validateYear(config.year)){this.addYears(config.year-this.getFullYear());}
+if($D.validateDay(config.day,this.getFullYear(),this.getMonth())){this.addDays(config.day-this.getDate());}
+if(config.timezone){this.setTimezone(config.timezone);}
+if(config.timezoneOffset){this.setTimezoneOffset(config.timezoneOffset);}
+if(config.week&&$D._validate(config.week,0,53,"week")){this.setWeek(config.week);}
+return this;};$P.moveToFirstDayOfMonth=function(){return this.set({day:1});};$P.moveToLastDayOfMonth=function(){return this.set({day:$D.getDaysInMonth(this.getFullYear(),this.getMonth())});};$P.moveToNthOccurrence=function(dayOfWeek,occurrence){var shift=0;if(occurrence>0){shift=occurrence-1;}
+else if(occurrence===-1){this.moveToLastDayOfMonth();if(this.getDay()!==dayOfWeek){this.moveToDayOfWeek(dayOfWeek,-1);}
+return this;}
+return this.moveToFirstDayOfMonth().addDays(-1).moveToDayOfWeek(dayOfWeek,+1).addWeeks(shift);};$P.moveToDayOfWeek=function(dayOfWeek,orient){var diff=(dayOfWeek-this.getDay()+7*(orient||+1))%7;return this.addDays((diff===0)?diff+=7*(orient||+1):diff);};$P.moveToMonth=function(month,orient){var diff=(month-this.getMonth()+12*(orient||+1))%12;return this.addMonths((diff===0)?diff+=12*(orient||+1):diff);};$P.getOrdinalNumber=function(){return Math.ceil((this.clone().clearTime()-new Date(this.getFullYear(),0,1))/86400000)+1;};$P.getTimezone=function(){return $D.getTimezoneAbbreviation(this.getUTCOffset());};$P.setTimezoneOffset=function(offset){var here=this.getTimezoneOffset(),there=Number(offset)*-6/10;return this.addMinutes(there-here);};$P.setTimezone=function(offset){return this.setTimezoneOffset($D.getTimezoneOffset(offset));};$P.hasDaylightSavingTime=function(){return(Date.today().set({month:0,day:1}).getTimezoneOffset()!==Date.today().set({month:6,day:1}).getTimezoneOffset());};$P.isDaylightSavingTime=function(){return(this.hasDaylightSavingTime()&&new Date().getTimezoneOffset()===Date.today().set({month:6,day:1}).getTimezoneOffset());};$P.getUTCOffset=function(){var n=this.getTimezoneOffset()*-10/6,r;if(n<0){r=(n-10000).toString();return r.charAt(0)+r.substr(2);}else{r=(n+10000).toString();return"+"+r.substr(1);}};$P.getElapsed=function(date){return(date||new Date())-this;};if(!$P.toISOString){$P.toISOString=function(){function f(n){return n<10?'0'+n:n;}
+return'"'+this.getUTCFullYear()+'-'+
+f(this.getUTCMonth()+1)+'-'+
+f(this.getUTCDate())+'T'+
+f(this.getUTCHours())+':'+
+f(this.getUTCMinutes())+':'+
+f(this.getUTCSeconds())+'Z"';};}
+$P._toString=$P.toString;$P.toString=function(format){var x=this;if(format&&format.length==1){var c=$C.formatPatterns;x.t=x.toString;switch(format){case"d":return x.t(c.shortDate);case"D":return x.t(c.longDate);case"F":return x.t(c.fullDateTime);case"m":return x.t(c.monthDay);case"r":return x.t(c.rfc1123);case"s":return x.t(c.sortableDateTime);case"t":return x.t(c.shortTime);case"T":return x.t(c.longTime);case"u":return x.t(c.universalSortableDateTime);case"y":return x.t(c.yearMonth);}}
+var ord=function(n){switch(n*1){case 1:case 21:case 31:return"st";case 2:case 22:return"nd";case 3:case 23:return"rd";default:return"th";}};return format?format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|S)/g,function(m){if(m.charAt(0)==="\\"){return m.replace("\\","");}
+x.h=x.getHours;switch(m){case"hh":return p(x.h()<13?(x.h()===0?12:x.h()):(x.h()-12));case"h":return x.h()<13?(x.h()===0?12:x.h()):(x.h()-12);case"HH":return p(x.h());case"H":return x.h();case"mm":return p(x.getMinutes());case"m":return x.getMinutes();case"ss":return p(x.getSeconds());case"s":return x.getSeconds();case"yyyy":return p(x.getFullYear(),4);case"yy":return p(x.getFullYear());case"dddd":return $C.dayNames[x.getDay()];case"ddd":return $C.abbreviatedDayNames[x.getDay()];case"dd":return p(x.getDate());case"d":return x.getDate();case"MMMM":return $C.monthNames[x.getMonth()];case"MMM":return $C.abbreviatedMonthNames[x.getMonth()];case"MM":return p((x.getMonth()+1));case"M":return x.getMonth()+1;case"t":return x.h()<12?$C.amDesignator.substring(0,1):$C.pmDesignator.substring(0,1);case"tt":return x.h()<12?$C.amDesignator:$C.pmDesignator;case"S":return ord(x.getDate());default:return m;}}):this._toString();};}());
+(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo,$N=Number.prototype;$P._orient=+1;$P._nth=null;$P._is=false;$P._same=false;$P._isSecond=false;$N._dateElement="day";$P.next=function(){this._orient=+1;return this;};$D.next=function(){return $D.today().next();};$P.last=$P.prev=$P.previous=function(){this._orient=-1;return this;};$D.last=$D.prev=$D.previous=function(){return $D.today().last();};$P.is=function(){this._is=true;return this;};$P.same=function(){this._same=true;this._isSecond=false;return this;};$P.today=function(){return this.same().day();};$P.weekday=function(){if(this._is){this._is=false;return(!this.is().sat()&&!this.is().sun());}
+return false;};$P.at=function(time){return(typeof time==="string")?$D.parse(this.toString("d")+" "+time):this.set(time);};$N.fromNow=$N.after=function(date){var c={};c[this._dateElement]=this;return((!date)?new Date():date.clone()).add(c);};$N.ago=$N.before=function(date){var c={};c[this._dateElement]=this*-1;return((!date)?new Date():date.clone()).add(c);};var dx=("sunday monday tuesday wednesday thursday friday saturday").split(/\s/),mx=("january february march april may june july august september october november december").split(/\s/),px=("Millisecond Second Minute Hour Day Week Month Year").split(/\s/),pxf=("Milliseconds Seconds Minutes Hours Date Week Month FullYear").split(/\s/),nth=("final first second third fourth fifth").split(/\s/),de;$P.toObject=function(){var o={};for(var i=0;i<px.length;i++){o[px[i].toLowerCase()]=this["get"+pxf[i]]();}
+return o;};$D.fromObject=function(config){config.week=null;return Date.today().set(config);};var df=function(n){return function(){if(this._is){this._is=false;return this.getDay()==n;}
+if(this._nth!==null){if(this._isSecond){this.addSeconds(this._orient*-1);}
+this._isSecond=false;var ntemp=this._nth;this._nth=null;var temp=this.clone().moveToLastDayOfMonth();this.moveToNthOccurrence(n,ntemp);if(this>temp){throw new RangeError($D.getDayName(n)+" does not occur "+ntemp+" times in the month of "+$D.getMonthName(temp.getMonth())+" "+temp.getFullYear()+".");}
+return this;}
+return this.moveToDayOfWeek(n,this._orient);};};var sdf=function(n){return function(){var t=$D.today(),shift=n-t.getDay();if(n===0&&$C.firstDayOfWeek===1&&t.getDay()!==0){shift=shift+7;}
+return t.addDays(shift);};};for(var i=0;i<dx.length;i++){$D[dx[i].toUpperCase()]=$D[dx[i].toUpperCase().substring(0,3)]=i;$D[dx[i]]=$D[dx[i].substring(0,3)]=sdf(i);$P[dx[i]]=$P[dx[i].substring(0,3)]=df(i);}
+var mf=function(n){return function(){if(this._is){this._is=false;return this.getMonth()===n;}
+return this.moveToMonth(n,this._orient);};};var smf=function(n){return function(){return $D.today().set({month:n,day:1});};};for(var j=0;j<mx.length;j++){$D[mx[j].toUpperCase()]=$D[mx[j].toUpperCase().substring(0,3)]=j;$D[mx[j]]=$D[mx[j].substring(0,3)]=smf(j);$P[mx[j]]=$P[mx[j].substring(0,3)]=mf(j);}
+var ef=function(j){return function(){if(this._isSecond){this._isSecond=false;return this;}
+if(this._same){this._same=this._is=false;var o1=this.toObject(),o2=(arguments[0]||new Date()).toObject(),v="",k=j.toLowerCase();for(var m=(px.length-1);m>-1;m--){v=px[m].toLowerCase();if(o1[v]!=o2[v]){return false;}
+if(k==v){break;}}
+return true;}
+if(j.substring(j.length-1)!="s"){j+="s";}
+return this["add"+j](this._orient);};};var nf=function(n){return function(){this._dateElement=n;return this;};};for(var k=0;k<px.length;k++){de=px[k].toLowerCase();$P[de]=$P[de+"s"]=ef(px[k]);$N[de]=$N[de+"s"]=nf(de);}
+$P._ss=ef("Second");var nthfn=function(n){return function(dayOfWeek){if(this._same){return this._ss(arguments[0]);}
+if(dayOfWeek||dayOfWeek===0){return this.moveToNthOccurrence(dayOfWeek,n);}
+this._nth=n;if(n===2&&(dayOfWeek===undefined||dayOfWeek===null)){this._isSecond=true;return this.addSeconds(this._orient);}
+return this;};};for(var l=0;l<nth.length;l++){$P[nth[l]]=(l===0)?nthfn(-1):nthfn(l);}}());
+(function(){Date.Parsing={Exception:function(s){this.message="Parse error at '"+s.substring(0,10)+" ...'";}};var $P=Date.Parsing;var _=$P.Operators={rtoken:function(r){return function(s){var mx=s.match(r);if(mx){return([mx[0],s.substring(mx[0].length)]);}else{throw new $P.Exception(s);}};},token:function(s){return function(s){return _.rtoken(new RegExp("^\s*"+s+"\s*"))(s);};},stoken:function(s){return _.rtoken(new RegExp("^"+s));},until:function(p){return function(s){var qx=[],rx=null;while(s.length){try{rx=p.call(this,s);}catch(e){qx.push(rx[0]);s=rx[1];continue;}
+break;}
+return[qx,s];};},many:function(p){return function(s){var rx=[],r=null;while(s.length){try{r=p.call(this,s);}catch(e){return[rx,s];}
+rx.push(r[0]);s=r[1];}
+return[rx,s];};},optional:function(p){return function(s){var r=null;try{r=p.call(this,s);}catch(e){return[null,s];}
+return[r[0],r[1]];};},not:function(p){return function(s){try{p.call(this,s);}catch(e){return[null,s];}
+throw new $P.Exception(s);};},ignore:function(p){return p?function(s){var r=null;r=p.call(this,s);return[null,r[1]];}:null;},product:function(){var px=arguments[0],qx=Array.prototype.slice.call(arguments,1),rx=[];for(var i=0;i<px.length;i++){rx.push(_.each(px[i],qx));}
+return rx;},cache:function(rule){var cache={},r=null;return function(s){try{r=cache[s]=(cache[s]||rule.call(this,s));}catch(e){r=cache[s]=e;}
+if(r instanceof $P.Exception){throw r;}else{return r;}};},any:function(){var px=arguments;return function(s){var r=null;for(var i=0;i<px.length;i++){if(px[i]==null){continue;}
+try{r=(px[i].call(this,s));}catch(e){r=null;}
+if(r){return r;}}
+throw new $P.Exception(s);};},each:function(){var px=arguments;return function(s){var rx=[],r=null;for(var i=0;i<px.length;i++){if(px[i]==null){continue;}
+try{r=(px[i].call(this,s));}catch(e){throw new $P.Exception(s);}
+rx.push(r[0]);s=r[1];}
+return[rx,s];};},all:function(){var px=arguments,_=_;return _.each(_.optional(px));},sequence:function(px,d,c){d=d||_.rtoken(/^\s*/);c=c||null;if(px.length==1){return px[0];}
+return function(s){var r=null,q=null;var rx=[];for(var i=0;i<px.length;i++){try{r=px[i].call(this,s);}catch(e){break;}
+rx.push(r[0]);try{q=d.call(this,r[1]);}catch(ex){q=null;break;}
+s=q[1];}
+if(!r){throw new $P.Exception(s);}
+if(q){throw new $P.Exception(q[1]);}
+if(c){try{r=c.call(this,r[1]);}catch(ey){throw new $P.Exception(r[1]);}}
+return[rx,(r?r[1]:s)];};},between:function(d1,p,d2){d2=d2||d1;var _fn=_.each(_.ignore(d1),p,_.ignore(d2));return function(s){var rx=_fn.call(this,s);return[[rx[0][0],r[0][2]],rx[1]];};},list:function(p,d,c){d=d||_.rtoken(/^\s*/);c=c||null;return(p instanceof Array?_.each(_.product(p.slice(0,-1),_.ignore(d)),p.slice(-1),_.ignore(c)):_.each(_.many(_.each(p,_.ignore(d))),px,_.ignore(c)));},set:function(px,d,c){d=d||_.rtoken(/^\s*/);c=c||null;return function(s){var r=null,p=null,q=null,rx=null,best=[[],s],last=false;for(var i=0;i<px.length;i++){q=null;p=null;r=null;last=(px.length==1);try{r=px[i].call(this,s);}catch(e){continue;}
+rx=[[r[0]],r[1]];if(r[1].length>0&&!last){try{q=d.call(this,r[1]);}catch(ex){last=true;}}else{last=true;}
+if(!last&&q[1].length===0){last=true;}
+if(!last){var qx=[];for(var j=0;j<px.length;j++){if(i!=j){qx.push(px[j]);}}
+p=_.set(qx,d).call(this,q[1]);if(p[0].length>0){rx[0]=rx[0].concat(p[0]);rx[1]=p[1];}}
+if(rx[1].length<best[1].length){best=rx;}
+if(best[1].length===0){break;}}
+if(best[0].length===0){return best;}
+if(c){try{q=c.call(this,best[1]);}catch(ey){throw new $P.Exception(best[1]);}
+best[1]=q[1];}
+return best;};},forward:function(gr,fname){return function(s){return gr[fname].call(this,s);};},replace:function(rule,repl){return function(s){var r=rule.call(this,s);return[repl,r[1]];};},process:function(rule,fn){return function(s){var r=rule.call(this,s);return[fn.call(this,r[0]),r[1]];};},min:function(min,rule){return function(s){var rx=rule.call(this,s);if(rx[0].length<min){throw new $P.Exception(s);}
+return rx;};}};var _generator=function(op){return function(){var args=null,rx=[];if(arguments.length>1){args=Array.prototype.slice.call(arguments);}else if(arguments[0]instanceof Array){args=arguments[0];}
+if(args){for(var i=0,px=args.shift();i<px.length;i++){args.unshift(px[i]);rx.push(op.apply(null,args));args.shift();return rx;}}else{return op.apply(null,arguments);}};};var gx="optional not ignore cache".split(/\s/);for(var i=0;i<gx.length;i++){_[gx[i]]=_generator(_[gx[i]]);}
+var _vector=function(op){return function(){if(arguments[0]instanceof Array){return op.apply(null,arguments[0]);}else{return op.apply(null,arguments);}};};var vx="each any all".split(/\s/);for(var j=0;j<vx.length;j++){_[vx[j]]=_vector(_[vx[j]]);}}());(function(){var $D=Date,$P=$D.prototype,$C=$D.CultureInfo;var flattenAndCompact=function(ax){var rx=[];for(var i=0;i<ax.length;i++){if(ax[i]instanceof Array){rx=rx.concat(flattenAndCompact(ax[i]));}else{if(ax[i]){rx.push(ax[i]);}}}
+return rx;};$D.Grammar={};$D.Translator={hour:function(s){return function(){this.hour=Number(s);};},minute:function(s){return function(){this.minute=Number(s);};},second:function(s){return function(){this.second=Number(s);};},meridian:function(s){return function(){this.meridian=s.slice(0,1).toLowerCase();};},timezone:function(s){return function(){var n=s.replace(/[^\d\+\-]/g,"");if(n.length){this.timezoneOffset=Number(n);}else{this.timezone=s.toLowerCase();}};},day:function(x){var s=x[0];return function(){this.day=Number(s.match(/\d+/)[0]);};},month:function(s){return function(){this.month=(s.length==3)?"jan feb mar apr may jun jul aug sep oct nov dec".indexOf(s)/4:Number(s)-1;};},year:function(s){return function(){var n=Number(s);this.year=((s.length>2)?n:(n+(((n+2000)<$C.twoDigitYearMax)?2000:1900)));};},rday:function(s){return function(){switch(s){case"yesterday":this.days=-1;break;case"tomorrow":this.days=1;break;case"today":this.days=0;break;case"now":this.days=0;this.now=true;break;}};},finishExact:function(x){x=(x instanceof Array)?x:[x];for(var i=0;i<x.length;i++){if(x[i]){x[i].call(this);}}
+var now=new Date();if((this.hour||this.minute)&&(!this.month&&!this.year&&!this.day)){this.day=now.getDate();}
+if(!this.year){this.year=now.getFullYear();}
+if(!this.month&&this.month!==0){this.month=now.getMonth();}
+if(!this.day){this.day=1;}
+if(!this.hour){this.hour=0;}
+if(!this.minute){this.minute=0;}
+if(!this.second){this.second=0;}
+if(this.meridian&&this.hour){if(this.meridian=="p"&&this.hour<12){this.hour=this.hour+12;}else if(this.meridian=="a"&&this.hour==12){this.hour=0;}}
+if(this.day>$D.getDaysInMonth(this.year,this.month)){throw new RangeError(this.day+" is not a valid value for days.");}
+var r=new Date(this.year,this.month,this.day,this.hour,this.minute,this.second);if(this.timezone){r.set({timezone:this.timezone});}else if(this.timezoneOffset){r.set({timezoneOffset:this.timezoneOffset});}
+return r;},finish:function(x){x=(x instanceof Array)?flattenAndCompact(x):[x];if(x.length===0){return null;}
+for(var i=0;i<x.length;i++){if(typeof x[i]=="function"){x[i].call(this);}}
+var today=$D.today();if(this.now&&!this.unit&&!this.operator){return new Date();}else if(this.now){today=new Date();}
+var expression=!!(this.days&&this.days!==null||this.orient||this.operator);var gap,mod,orient;orient=((this.orient=="past"||this.operator=="subtract")?-1:1);if(!this.now&&"hour minute second".indexOf(this.unit)!=-1){today.setTimeToNow();}
+if(this.month||this.month===0){if("year day hour minute second".indexOf(this.unit)!=-1){this.value=this.month+1;this.month=null;expression=true;}}
+if(!expression&&this.weekday&&!this.day&&!this.days){var temp=Date[this.weekday]();this.day=temp.getDate();if(!this.month){this.month=temp.getMonth();}
+this.year=temp.getFullYear();}
+if(expression&&this.weekday&&this.unit!="month"){this.unit="day";gap=($D.getDayNumberFromName(this.weekday)-today.getDay());mod=7;this.days=gap?((gap+(orient*mod))%mod):(orient*mod);}
+if(this.month&&this.unit=="day"&&this.operator){this.value=(this.month+1);this.month=null;}
+if(this.value!=null&&this.month!=null&&this.year!=null){this.day=this.value*1;}
+if(this.month&&!this.day&&this.value){today.set({day:this.value*1});if(!expression){this.day=this.value*1;}}
+if(!this.month&&this.value&&this.unit=="month"&&!this.now){this.month=this.value;expression=true;}
+if(expression&&(this.month||this.month===0)&&this.unit!="year"){this.unit="month";gap=(this.month-today.getMonth());mod=12;this.months=gap?((gap+(orient*mod))%mod):(orient*mod);this.month=null;}
+if(!this.unit){this.unit="day";}
+if(!this.value&&this.operator&&this.operator!==null&&this[this.unit+"s"]&&this[this.unit+"s"]!==null){this[this.unit+"s"]=this[this.unit+"s"]+((this.operator=="add")?1:-1)+(this.value||0)*orient;}else if(this[this.unit+"s"]==null||this.operator!=null){if(!this.value){this.value=1;}
+this[this.unit+"s"]=this.value*orient;}
+if(this.meridian&&this.hour){if(this.meridian=="p"&&this.hour<12){this.hour=this.hour+12;}else if(this.meridian=="a"&&this.hour==12){this.hour=0;}}
+if(this.weekday&&!this.day&&!this.days){var temp=Date[this.weekday]();this.day=temp.getDate();if(temp.getMonth()!==today.getMonth()){this.month=temp.getMonth();}}
+if((this.month||this.month===0)&&!this.day){this.day=1;}
+if(!this.orient&&!this.operator&&this.unit=="week"&&this.value&&!this.day&&!this.month){return Date.today().setWeek(this.value);}
+if(expression&&this.timezone&&this.day&&this.days){this.day=this.days;}
+return(expression)?today.add(this):today.set(this);}};var _=$D.Parsing.Operators,g=$D.Grammar,t=$D.Translator,_fn;g.datePartDelimiter=_.rtoken(/^([\s\-\.\,\/\x27]+)/);g.timePartDelimiter=_.stoken(":");g.whiteSpace=_.rtoken(/^\s*/);g.generalDelimiter=_.rtoken(/^(([\s\,]|at|@|on)+)/);var _C={};g.ctoken=function(keys){var fn=_C[keys];if(!fn){var c=$C.regexPatterns;var kx=keys.split(/\s+/),px=[];for(var i=0;i<kx.length;i++){px.push(_.replace(_.rtoken(c[kx[i]]),kx[i]));}
+fn=_C[keys]=_.any.apply(null,px);}
+return fn;};g.ctoken2=function(key){return _.rtoken($C.regexPatterns[key]);};g.h=_.cache(_.process(_.rtoken(/^(0[0-9]|1[0-2]|[1-9])/),t.hour));g.hh=_.cache(_.process(_.rtoken(/^(0[0-9]|1[0-2])/),t.hour));g.H=_.cache(_.process(_.rtoken(/^([0-1][0-9]|2[0-3]|[0-9])/),t.hour));g.HH=_.cache(_.process(_.rtoken(/^([0-1][0-9]|2[0-3])/),t.hour));g.m=_.cache(_.process(_.rtoken(/^([0-5][0-9]|[0-9])/),t.minute));g.mm=_.cache(_.process(_.rtoken(/^[0-5][0-9]/),t.minute));g.s=_.cache(_.process(_.rtoken(/^([0-5][0-9]|[0-9])/),t.second));g.ss=_.cache(_.process(_.rtoken(/^[0-5][0-9]/),t.second));g.hms=_.cache(_.sequence([g.H,g.m,g.s],g.timePartDelimiter));g.t=_.cache(_.process(g.ctoken2("shortMeridian"),t.meridian));g.tt=_.cache(_.process(g.ctoken2("longMeridian"),t.meridian));g.z=_.cache(_.process(_.rtoken(/^((\+|\-)\s*\d\d\d\d)|((\+|\-)\d\d\:?\d\d)/),t.timezone));g.zz=_.cache(_.process(_.rtoken(/^((\+|\-)\s*\d\d\d\d)|((\+|\-)\d\d\:?\d\d)/),t.timezone));g.zzz=_.cache(_.process(g.ctoken2("timezone"),t.timezone));g.timeSuffix=_.each(_.ignore(g.whiteSpace),_.set([g.tt,g.zzz]));g.time=_.each(_.optional(_.ignore(_.stoken("T"))),g.hms,g.timeSuffix);g.d=_.cache(_.process(_.each(_.rtoken(/^([0-2]\d|3[0-1]|\d)/),_.optional(g.ctoken2("ordinalSuffix"))),t.day));g.dd=_.cache(_.process(_.each(_.rtoken(/^([0-2]\d|3[0-1])/),_.optional(g.ctoken2("ordinalSuffix"))),t.day));g.ddd=g.dddd=_.cache(_.process(g.ctoken("sun mon tue wed thu fri sat"),function(s){return function(){this.weekday=s;};}));g.M=_.cache(_.process(_.rtoken(/^(1[0-2]|0\d|\d)/),t.month));g.MM=_.cache(_.process(_.rtoken(/^(1[0-2]|0\d)/),t.month));g.MMM=g.MMMM=_.cache(_.process(g.ctoken("jan feb mar apr may jun jul aug sep oct nov dec"),t.month));g.y=_.cache(_.process(_.rtoken(/^(\d\d?)/),t.year));g.yy=_.cache(_.process(_.rtoken(/^(\d\d)/),t.year));g.yyy=_.cache(_.process(_.rtoken(/^(\d\d?\d?\d?)/),t.year));g.yyyy=_.cache(_.process(_.rtoken(/^(\d\d\d\d)/),t.year));_fn=function(){return _.each(_.any.apply(null,arguments),_.not(g.ctoken2("timeContext")));};g.day=_fn(g.d,g.dd);g.month=_fn(g.M,g.MMM);g.year=_fn(g.yyyy,g.yy);g.orientation=_.process(g.ctoken("past future"),function(s){return function(){this.orient=s;};});g.operator=_.process(g.ctoken("add subtract"),function(s){return function(){this.operator=s;};});g.rday=_.process(g.ctoken("yesterday tomorrow today now"),t.rday);g.unit=_.process(g.ctoken("second minute hour day week month year"),function(s){return function(){this.unit=s;};});g.value=_.process(_.rtoken(/^\d\d?(st|nd|rd|th)?/),function(s){return function(){this.value=s.replace(/\D/g,"");};});g.expression=_.set([g.rday,g.operator,g.value,g.unit,g.orientation,g.ddd,g.MMM]);_fn=function(){return _.set(arguments,g.datePartDelimiter);};g.mdy=_fn(g.ddd,g.month,g.day,g.year);g.ymd=_fn(g.ddd,g.year,g.month,g.day);g.dmy=_fn(g.ddd,g.day,g.month,g.year);g.date=function(s){return((g[$C.dateElementOrder]||g.mdy).call(this,s));};g.format=_.process(_.many(_.any(_.process(_.rtoken(/^(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|zz?z?)/),function(fmt){if(g[fmt]){return g[fmt];}else{throw $D.Parsing.Exception(fmt);}}),_.process(_.rtoken(/^[^dMyhHmstz]+/),function(s){return _.ignore(_.stoken(s));}))),function(rules){return _.process(_.each.apply(null,rules),t.finishExact);});var _F={};var _get=function(f){return _F[f]=(_F[f]||g.format(f)[0]);};g.formats=function(fx){if(fx instanceof Array){var rx=[];for(var i=0;i<fx.length;i++){rx.push(_get(fx[i]));}
+return _.any.apply(null,rx);}else{return _get(fx);}};g._formats=g.formats(["\"yyyy-MM-ddTHH:mm:ssZ\"","yyyy-MM-ddTHH:mm:ssZ","yyyy-MM-ddTHH:mm:ssz","yyyy-MM-ddTHH:mm:ss","yyyy-MM-ddTHH:mmZ","yyyy-MM-ddTHH:mmz","yyyy-MM-ddTHH:mm","ddd, MMM dd, yyyy H:mm:ss tt","ddd MMM d yyyy HH:mm:ss zzz","MMddyyyy","ddMMyyyy","Mddyyyy","ddMyyyy","Mdyyyy","dMyyyy","yyyy","Mdyy","dMyy","d"]);g._start=_.process(_.set([g.date,g.time,g.expression],g.generalDelimiter,g.whiteSpace),t.finish);g.start=function(s){try{var r=g._formats.call({},s);if(r[1].length===0){return r;}}catch(e){}
+return g._start.call({},s);};$D._parse=$D.parse;$D.parse=function(s){var r=null;if(!s){return null;}
+if(s instanceof Date){return s;}
+try{r=$D.Grammar.start.call({},s.replace(/^\s*(\S*(\s+\S+)*)\s*$/,"$1"));}catch(e){return null;}
+return((r[1].length===0)?r[0]:null);};$D.getParseFunction=function(fx){var fn=$D.Grammar.formats(fx);return function(s){var r=null;try{r=fn.call({},s);}catch(e){return null;}
+return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.getParseFunction(fx)(s);};}());
+define("date", function(){});
+
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
@@ -14306,6 +14453,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\">\r\n    <section class=\"tablet-calendar\">\r\n        <table class=\"days-container\">\r\n            ";
   foundHelper = helpers.rows;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
@@ -14357,6 +14508,69 @@ function program4(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['calendarWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <span class=\"date-value\">";
+  foundHelper = helpers.date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n                            <em class=\"events-counter\"></em>\r\n\r\n                            <ul class=\"calendar-items\"></ul>\r\n                        </div>\r\n                    </td>\r\n                ";
+  return buffer;}
+
+  buffer += "<section class=\"tablet-calendar\">\r\n    <table class=\"days-container\">\r\n        <tbody>\r\n            <tr class=\"row week-row\">\r\n                ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</section>";
+  return buffer;});
+templates['calendarWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n    <section class=\"tablet-calendar\">\r\n        <table class=\"days-container\">\r\n            <tbody>\r\n                <tr class=\"row week-row\">\r\n                    ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </section>\r\n</li>\r\n\r\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <span class=\"date-value\">";
+  foundHelper = helpers.date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n                                <em class=\"events-counter\"></em>\r\n\r\n                                <ul class=\"calendar-items\"></ul>\r\n                            </div>\r\n                        </td>\r\n                    ";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
 templates['comment'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "";
@@ -14374,6 +14588,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" class=\"comment\">\r\n\r\n</li>\r\n\r\n";
   return buffer;}
 
@@ -14421,6 +14639,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" class=\"event\">\r\n   <span>";
   foundHelper = helpers.group;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
@@ -14461,6 +14683,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" class=\"inactivity\">\r\n\r\n</li>\r\n\r\n";
   return buffer;}
 
@@ -14513,6 +14739,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" class=\"notification\">\r\n\r\n</li>\r\n\r\n";
   return buffer;}
 
@@ -14541,6 +14771,10 @@ function program1(depth0,data) {
   foundHelper = helpers.pk;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" class=\"working-hour\">\r\n</li>\r\n\r\n";
   return buffer;}
 
@@ -15349,6 +15583,10 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       return true;
     },
     showSubView: function(name) {
+      _.each(_.without(this.subViews, this.subViews[name]), function(subView) {
+        return this.$("." + subView.name + "-only").hide();
+      });
+      this.$("." + name + "-only").show();
       return this.model.set('subView', name);
     },
     subView: function() {
@@ -15392,6 +15630,99 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
         return _this.subViews.push(_subView);
       });
       this._initSubView();
+      return true;
+    }
+  }));
+  _Base.prototype._base = _Base;
+  return _Base;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
+  return {
+    navigate: function() {
+      var _collector, _key;
+
+      _key = this._getKey.apply(this, Array.prototype.slice.call(arguments, 0));
+      if ((_collector = this.collectors.get(_key)) == null) {
+        _collector = this.collectors.addElement(this._getObj.apply(this, Array.prototype.slice.call(arguments, 0)));
+      }
+      this.collectors.show(_collector);
+      return true;
+    },
+    processCollectorAdd: function(collector, collectors) {
+      return this.collectorsList.append(collector.view.el);
+    },
+    _initialize: function() {
+      this.collectors = new this.Collectors();
+      this.collectors.on('add', this.processCollectorAdd, this);
+      this.collectors.on('show', this.processCollectorShow, this);
+      this.collectors.on('hide', this.processCollectorHide, this);
+      return true;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/calendar/Days',['ovivo'], function() {
+  return Backbone.Collection.extend({
+    initElements: function(elements, days) {
+      var _this = this;
+
+      return _.each(_.zip(elements, days), function(_arg) {
+        var day, element;
+
+        element = _arg[0], day = _arg[1];
+        _this.add(day, {
+          el: element
+        });
+        return _this;
+      });
+    },
+    processEventAdd: function(event) {
+      var _ref;
+
+      return (_ref = this.get(event.getKey())) != null ? _ref.addEvent(event) : void 0;
+    },
+    initialize: function(models, options) {
+      _.extend(this, options);
+      ovivo.desktop.resources.events.on('add', this.processEventAdd, this);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/calendar/DaysCollectors',['_common/ToolsBase', 'collections/calendar/Days', 'ovivo'], function(ToolsBase, Days) {
+  var _Base;
+
+  _Base = Backbone.Collection.extend(_.extend({}, ToolsBase, {
+    comparator: function(elem) {
+      return elem.firstDate();
+    },
+    addElement: function(obj) {
+      var _elem;
+
+      _elem = new this.model(obj, {
+        collection: this
+      });
+      this.add(_elem);
+      return _elem;
+    },
+    show: function(elem) {
+      if (this.prevElem != null) {
+        this.prevElem.hide();
+        this.trigger('hide', this.prevElem);
+      }
+      elem.show();
+      this.trigger('show', elem);
+      return this.prevElem = elem;
+    },
+    initialize: function(models, options) {
+      _.extend(this, options);
+      this.days = new Days([], {
+        model: this.DayModel
+      });
       return true;
     }
   }));
@@ -15560,6 +15891,45 @@ define('_common/CalendarBase',[], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
+define('models/calendar/DaysCollector',['ovivo'], function() {
+  return {
+    firstDate: function() {
+      return this._firstDate;
+    },
+    show: function() {
+      return this.view.show();
+    },
+    hide: function() {
+      return this.view.hide();
+    },
+    initDays: function() {
+      return this.collection.days.initElements(this.view.dayElements, this.days);
+    },
+    _initialize: function(attrs, options) {
+      this.on('rendered', this.initDays, this);
+      return true;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/DaysCollector',['ovivo'], function() {
+  return {
+    tagName: 'li',
+    show: function() {
+      return this.$el.removeClass('hide');
+    },
+    hide: function() {
+      return this.$el.addClass('hide');
+    },
+    postRender: function() {
+      this.dayElements = this.$('.days-container .week-row > td');
+      return this.hide();
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
 define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
 
@@ -15594,8 +15964,8 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       views = _.pluck(views, 'ctx');
       _hash = {};
       views = _.filter(views, function(view) {
-        if (_hash[view.model.id] !== true) {
-          _hash[view.model.id] = true;
+        if (_hash[view.cid] !== true) {
+          _hash[view.cid] = true;
           return true;
         } else {
           return false;
@@ -15607,7 +15977,7 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       _.each(views, function(view) {
         var _elements;
 
-        _elements = $('#element-view-' + view.model.pk(), _DOM);
+        _elements = $('#element-view-' + view.model.pk() + '-' + view.cid, _DOM);
         view.$el.children().remove();
         view.$el.append(_elements.children());
         if (view.model.view == null) {
@@ -15643,19 +16013,12 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/Month',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
-  return ResourceBase.extend({
+define('views/calendar/Month',['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'ovivo'], function(DaysCollector, ResourceBase) {
+  return ResourceBase.extend(_.extend({}, DaysCollector, {
     common: {},
-    tagName: 'li',
     template: Handlebars.templates['calendarMonth'],
     groupTemplate: Handlebars.templates['calendarMonth_group'],
     events: {},
-    show: function() {
-      return this.$el.removeClass('hide');
-    },
-    hide: function() {
-      return this.$el.addClass('hide');
-    },
     month: function() {
       return ovivo.config.MONTHS[this.model.month()];
     },
@@ -15674,29 +16037,17 @@ define('views/Month',['views/resources/ResourceBase', 'ovivo'], function(Resourc
       this.proxyCall('initialize', arguments);
       return true;
     }
-  });
+  }));
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/Month',['_common/CalendarBase', 'models/resources/ResourceBase', 'views/Month', 'ovivo'], function(CalendarBase, ResourceBase, View) {
-  return ResourceBase.extend(_.extend({}, CalendarBase, {
-    firstDate: function() {
-      return this._firstDate;
-    },
+define('models/calendar/Month',['_common/CalendarBase', 'models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views/calendar/Month', 'ovivo'], function(CalendarBase, ResourceBase, DaysCollector, View) {
+  return ResourceBase.extend(_.extend({}, CalendarBase, DaysCollector, {
     _gettersNames: ['month', 'year', 'pk'],
-    show: function() {
-      return this.view.show();
-    },
-    hide: function() {
-      return this.view.hide();
-    },
-    initDays: function() {
-      return this.collection.monthDays.initElements(this.view.dayElements, this.days);
-    },
     initialize: function(attrs, options) {
+      this._initialize();
       this.View = View;
       this.set('pk', "" + (this.year()) + "-" + (this.month()));
-      this.on('rendered', this.initDays, this);
       this._firstDate = new Date(this.year(), this.month(), 1);
       this.weeks = this.getWeeksArr(this.year(), this.month());
       this.days = this.getDaysArr(this.weeks);
@@ -15708,8 +16059,35 @@ define('models/Month',['_common/CalendarBase', 'models/resources/ResourceBase', 
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/MonthDay',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
-  return ResourceBase.extend({
+define('models/calendar/Day',['ovivo'], function() {
+  return {
+    _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year'],
+    addEvent: function(event) {
+      var _view;
+
+      _view = event.getView();
+      return this.view.addEvent(_view);
+    },
+    initialize: function(attrs, options) {
+      var _this = this;
+
+      this.proxyCall('initialize', arguments);
+      this.set('pk', "" + (this.year()) + "-" + (this.month()) + "-" + (this.date()) + (this.disabled() === true ? '-disabled' : ''));
+      this.view = new this.View({
+        model: this,
+        el: options.el
+      });
+      _.each(ovivo.desktop.resources.events.dateCache["" + (this.year()) + "-" + (this.month() + 1) + "-" + (this.date())], function(event) {
+        return _this.addEvent(event);
+      });
+      return true;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/Day',['ovivo'], function() {
+  return {
     events: {},
     render: function() {
       return true;
@@ -15726,9 +16104,6 @@ define('views/MonthDay',['views/resources/ResourceBase', 'ovivo'], function(Reso
       _html = this.events.length > 1 ? this.events.length + ' ' + ngettext('event', 'events', this.events) : '';
       return this.eventsCounter.html(_html);
     },
-    processClick: function() {
-      return this.$el.toggleClass('expanded');
-    },
     initialize: function() {
       this.proxyCall('initialize', arguments);
       this.events = [];
@@ -15736,170 +16111,195 @@ define('views/MonthDay',['views/resources/ResourceBase', 'ovivo'], function(Reso
       this.eventsCounter = this.$('.events-counter');
       return true;
     }
-  });
+  };
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/MonthDay',['models/resources/ResourceBase', 'views/MonthDay', 'ovivo'], function(ResourceBase, View) {
-  return ResourceBase.extend({
-    _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year'],
-    addEvent: function(event) {
-      return this.view.addEvent(event.view);
-    },
-    initialize: function(attrs, options) {
+define('views/calendar/MonthDay',['views/calendar/Day', 'views/resources/ResourceBase', 'ovivo'], function(Day, ResourceBase) {
+  return ResourceBase.extend(_.extend({}, Day, {}));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/calendar/MonthDay',['models/calendar/Day', 'models/resources/ResourceBase', 'views/calendar/MonthDay', 'ovivo'], function(Day, ResourceBase, View) {
+  return ResourceBase.extend(_.extend({}, Day, {
+    View: View
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/calendar/Months',['collections/calendar/DaysCollectors', 'models/calendar/Month', 'models/calendar/MonthDay', 'ovivo'], function(DaysCollectors, Model, MonthDay) {
+  return DaysCollectors.extend({
+    model: Model,
+    DayModel: MonthDay,
+    initialize: function(models, options) {
       this.proxyCall('initialize', arguments);
-      this.set('pk', "" + (this.year()) + "-" + (this.month()) + "-" + (this.date()) + (this.disabled() === true ? '-disabled' : ''));
-      this.view = new View({
-        model: this,
-        el: options.el
-      });
       return true;
     }
   });
 });
 
 // Generated by CoffeeScript 1.6.2
-define('collections/MonthDays',['models/MonthDay', 'ovivo'], function(Model) {
-  return Backbone.Collection.extend({
-    model: Model,
-    initElements: function(elements, days) {
-      var _this = this;
-
-      return _.each(_.zip(elements, days), function(_arg) {
-        var day, element;
-
-        element = _arg[0], day = _arg[1];
-        _this.add(day, {
-          el: element
-        });
-        return _this;
-      });
-    },
-    processEventAdd: function(event) {
-      var _ref;
-
-      return (_ref = this.get(event.getKey())) != null ? _ref.addEvent(event) : void 0;
-    },
-    initialize: function(models, options) {
-      _.extend(this, options);
-      ovivo.desktop.resources.events.on('add', this.processEventAdd, this);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('collections/Months',['models/Month', 'collections/MonthDays', 'ovivo'], function(Model, MonthDays) {
-  return Backbone.Collection.extend({
-    model: Model,
-    comparator: function(month) {
-      return month.firstDate();
-    },
-    addMonth: function(obj) {
-      var _month;
-
-      _month = new Model(obj, {
-        collection: this
-      });
-      this.add(_month);
-      return _month;
-    },
-    show: function(month) {
-      if (this.prevMonth != null) {
-        this.prevMonth.hide();
-        this.trigger('hide', this.prevMonth);
-      }
-      month.show();
-      this.trigger('show', month);
-      return this.prevMonth = month;
-    },
-    prev: function() {
-      var _first, _prev;
-
-      _first = this.first();
-      _prev = new Date(_first.year(), _first.month() - 1, 1);
-      return this.add({
-        month: _prev.getMonth(),
-        year: _prev.getFullYear()
-      });
-    },
-    next: function() {
-      var _last, _next;
-
-      _last = this.last();
-      _next = new Date(_last.year(), _last.month() + 1, 1);
-      return this.add({
-        month: _next.getMonth(),
-        year: _next.getFullYear()
-      });
-    },
-    initialize: function(models, options) {
-      ovivo.desktop.monthDays = this.monthDays = new MonthDays();
-      _.extend(this, options);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('views/pages/Calendar/Month',['views/pages/PageBase', 'collections/Months', 'ovivo'], function(PageBase, Months) {
-  return PageBase.extend({
+define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'collections/calendar/Months', 'ovivo'], function(DaysCollectorPage, PageBase, Months) {
+  return PageBase.extend(_.extend({}, DaysCollectorPage, {
     el: '.page.page-calendar .month-view',
     name: 'month',
+    Collectors: Months,
     events: {},
+    _getKey: function(year, month) {
+      return "" + year + "-" + month;
+    },
+    _getObj: function(year, month) {
+      return {
+        year: year,
+        month: month
+      };
+    },
     prev: function() {
       this.current.setMonth(this.current.getMonth() - 1);
-      return this.navigateMonth(this.current.getFullYear(), this.current.getMonth());
+      return this.navigate(this.current.getFullYear(), this.current.getMonth());
     },
     next: function() {
       this.current.setMonth(this.current.getMonth() + 1);
-      return this.navigateMonth(this.current.getFullYear(), this.current.getMonth());
+      return this.navigate(this.current.getFullYear(), this.current.getMonth());
     },
-    navigateMonth: function(year, month) {
-      var _month;
-
-      if ((_month = this.months.get("" + year + "-" + month)) == null) {
-        _month = this.months.addMonth({
-          month: month,
-          year: year
-        });
-      }
-      this.months.show(_month);
-      return true;
+    processCollectorShow: function(collector) {
+      return this.title.html(ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
-    processMonthAdd: function(month, months) {
-      return this.$('.months-list').append(month.view.el);
-    },
-    processMonthShow: function(month) {
-      this.title.html(ovivo.config.MONTHS[month.month()] + ' ' + month.year());
-      return console.log('Show ' + ovivo.config.MONTHS[month.month()] + ' ' + month.year());
-    },
-    processMonthHide: function(month) {},
+    processCollectorHide: function(collector) {},
     initialize: function() {
       var _now;
 
       this.current = _now = new Date();
-      this.title = $('.page.page-calendar header span.title');
-      ovivo.desktop.months = this.months = new Months();
-      this.months.on('add', this.processMonthAdd, this);
-      this.months.on('show', this.processMonthShow, this);
-      this.months.on('hide', this.processMonthHide, this);
-      this.navigateMonth(_now.getFullYear(), _now.getMonth());
+      this._initialize();
+      this.title = $('.page.page-calendar header span.title.month-title');
+      this.collectorsList = this.$('.months-list');
+      this.navigate(_now.getFullYear(), _now.getMonth());
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'ovivo'], function(DaysCollector, ResourceBase) {
+  return ResourceBase.extend(_.extend({}, DaysCollector, {
+    common: {},
+    template: Handlebars.templates['calendarWeek'],
+    groupTemplate: Handlebars.templates['calendarWeek_group'],
+    events: {},
+    days: function() {
+      return this.model.days;
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/calendar/Week',['models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views/calendar/Week', 'ovivo'], function(ResourceBase, DaysCollector, View) {
+  return ResourceBase.extend(_.extend({}, DaysCollector, {
+    _gettersNames: ['number', 'month', 'year', 'pk'],
+    getDaysArr: function() {
+      var _arr, _date;
+
+      _arr = [];
+      _date = new Date(this._firstDate);
+      _date.moveToDayOfWeek(1, -1);
+      _.each([1, 2, 3, 4, 5, 6, 7], function(i) {
+        _arr.push({
+          date: _date.getDate(),
+          month: _date.getMonth(),
+          year: _date.getFullYear(),
+          week_number: _date.getWeek(),
+          disabled: false
+        });
+        return _date.setDate(_date.getDate() + 1);
+      });
+      return _arr;
+    },
+    initialize: function(attrs, options) {
+      this._initialize();
+      this.View = View;
+      this.set('pk', "" + attrs.year + "-" + attrs.number);
+      this._firstDate = Date.today();
+      this._firstDate.setFullYear(attrs.year);
+      this._firstDate.setWeek(attrs.number);
+      this._firstDate.moveToDayOfWeek(4);
+      this.set('month', this._firstDate.getMonth());
+      this.days = this.getDaysArr();
+      this.proxyCall('initialize', arguments);
+      ovivo.desktop.resources.events.fetchWeek(this.number(), this.year(), this._firstDate);
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/WeekDay',['views/calendar/Day', 'views/resources/ResourceBase', 'ovivo'], function(Day, ResourceBase) {
+  return ResourceBase.extend(_.extend({}, Day, {}));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/calendar/WeekDay',['models/calendar/Day', 'models/resources/ResourceBase', 'views/calendar/WeekDay', 'ovivo'], function(Day, ResourceBase, View) {
+  return ResourceBase.extend(_.extend({}, Day, {
+    View: View
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/calendar/Weeks',['collections/calendar/DaysCollectors', 'models/calendar/Week', 'models/calendar/WeekDay', 'ovivo'], function(DaysCollectors, Model, WeekDay) {
+  return DaysCollectors.extend({
+    model: Model,
+    DayModel: WeekDay,
+    initialize: function(models, options) {
+      this.proxyCall('initialize', arguments);
       return true;
     }
   });
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/Calendar/Week',['views/pages/PageBase', 'ovivo'], function(PageBase) {
-  return PageBase.extend({
+define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'collections/calendar/Weeks', 'ovivo'], function(DaysCollectorPage, PageBase, Weeks) {
+  return PageBase.extend(_.extend({}, DaysCollectorPage, {
     el: '.page.page-calendar .week-view',
     name: 'week',
+    Collectors: Weeks,
     events: {},
+    _getKey: function(year, number) {
+      return "" + year + "-" + number;
+    },
+    _getObj: function(year, number) {
+      return {
+        year: year,
+        number: number
+      };
+    },
+    prev: function() {
+      this.current.moveToDayOfWeek(4, -1);
+      return this.navigate(this.current.getFullYear(), this.current.getWeek());
+    },
+    next: function() {
+      this.current.moveToDayOfWeek(4, 1);
+      return this.navigate(this.current.getFullYear(), this.current.getWeek());
+    },
+    processCollectorShow: function(collector) {
+      return this.title.html(gettext('Week ') + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
+    },
+    processCollectorHide: function(month) {},
     initialize: function() {
+      var _now;
+
+      this.current = _now = new Date.today();
+      _now.setWeek(_now.getWeek());
+      _now.moveToDayOfWeek(4);
+      this._initialize();
+      this.title = $('.page.page-calendar header span.title.week-title');
+      this.collectorsList = this.$('.weeks-list');
+      this.navigate(_now.getFullYear(), _now.getWeek());
       return true;
     }
-  });
+  }));
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -16640,6 +17040,11 @@ define('models/resources/Event',['models/resources/ResourceBase', 'collections/r
         return this.save();
       }
     },
+    getView: function() {
+      return new this.View({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
       this.comments = new Comments([], {
         event: this
@@ -16716,16 +17121,19 @@ define('collections/resources/Events',['_features/localStorageCache', 'collectio
       if (typeof this.monthCache["" + year + "-" + month] !== 'undefined') {
         _def.resolve();
       } else {
+        this.monthCache["" + year + "-" + month] = true;
         (this._fetch({
           month: month + 1,
           year: year
         })).then(function() {
           _def.resolve();
-          _this.monthCache["" + year + "-" + month] = true;
           return true;
         });
       }
       return _def;
+    },
+    fetchWeek: function(number, year, date) {
+      return this.fetchMonth(date.getMonth(), year);
     },
     fetchBetween: function(start_pk, end_pk) {
       return this._fetch({
@@ -17320,7 +17728,8 @@ requirejs.config({
     'jquery': '../../lib/jquery-1.9.1',
     'templates': '../../dist/templates',
     'fastclick': '../../lib/fastclick',
-    'airbrake': '../../lib/airbrake'
+    'airbrake': '../../lib/airbrake',
+    'date': '../../lib/date'
   },
   shim: {
     'ovivo': {
@@ -17339,6 +17748,9 @@ requirejs.config({
       deps: ['jquery']
     },
     'jquery': {
+      deps: ['date']
+    },
+    'date': {
       deps: []
     }
   }

@@ -1,58 +1,49 @@
 define [
+  'views/pages/Calendar/DaysCollectorPage',
   'views/pages/PageBase',
 
-  'collections/Months',
+  'collections/calendar/Months',
 
   'ovivo'
-], (PageBase, Months) ->
-  PageBase.extend
+], (DaysCollectorPage, PageBase, Months) ->
+  PageBase.extend _.extend {}, DaysCollectorPage,
     el: '.page.page-calendar .month-view'
 
     name: 'month'
 
+    Collectors: Months
+
     events: {}
+
+    _getKey: (year, month) -> "#{year}-#{month}"
+
+    _getObj: (year, month) ->
+      year: year
+      month: month
 
     prev: () -> 
       @current.setMonth @current.getMonth() - 1
 
-      @navigateMonth @current.getFullYear(), @current.getMonth()
+      @navigate @current.getFullYear(), @current.getMonth()
 
     next: () ->
       @current.setMonth @current.getMonth() + 1
 
-      @navigateMonth @current.getFullYear(), @current.getMonth()
+      @navigate @current.getFullYear(), @current.getMonth()
 
-    navigateMonth: (year, month) ->
-      if not (_month = @months.get "#{year}-#{month}")?
-        _month = @months.addMonth
-          month: month
-          year: year
+    processCollectorShow: (collector) ->
+      @title.html ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
 
-      @months.show _month
-
-      true
-
-    processMonthAdd: (month, months) -> @$('.months-list').append month.view.el
-
-    processMonthShow: (month) ->
-      @title.html ovivo.config.MONTHS[month.month()] + ' ' + month.year()
-
-      console.log 'Show ' + ovivo.config.MONTHS[month.month()] + ' ' + month.year()
-
-    processMonthHide: (month) ->
+    processCollectorHide: (collector) ->
 
     initialize: () ->
       @current = _now = new Date()
 
-      @title = $('.page.page-calendar header span.title')
-      
-      ovivo.desktop.months = @months = new Months()
+      @_initialize()
 
-      @months.on 'add', @processMonthAdd, @
+      @title = $('.page.page-calendar header span.title.month-title')
+      @collectorsList = @$ '.months-list'
 
-      @months.on 'show', @processMonthShow, @
-      @months.on 'hide', @processMonthHide, @
-
-      @navigateMonth _now.getFullYear(), _now.getMonth()
+      @navigate _now.getFullYear(), _now.getMonth()
 
       true

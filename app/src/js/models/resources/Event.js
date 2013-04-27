@@ -74,6 +74,11 @@ define(['models/resources/ResourceBase', 'collections/resources/Comments', 'view
         return this.save();
       }
     },
+    getView: function() {
+      return new this.View({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
       this.comments = new Comments([], {
         event: this

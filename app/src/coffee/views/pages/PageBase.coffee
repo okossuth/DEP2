@@ -35,7 +35,13 @@ define [
 
       true
 
-    showSubView: (name) -> @model.set 'subView', name
+    showSubView: (name) -> 
+      _.each _.without(@subViews, @subViews[name]), (subView) ->
+        @$(".#{subView.name}-only").hide()
+
+      @$(".#{name}-only").show()
+
+      @model.set 'subView', name
 
     subView: () -> @model.get 'subView'
 

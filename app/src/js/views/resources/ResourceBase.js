@@ -33,8 +33,8 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       views = _.pluck(views, 'ctx');
       _hash = {};
       views = _.filter(views, function(view) {
-        if (_hash[view.model.id] !== true) {
-          _hash[view.model.id] = true;
+        if (_hash[view.cid] !== true) {
+          _hash[view.cid] = true;
           return true;
         } else {
           return false;
@@ -46,7 +46,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       _.each(views, function(view) {
         var _elements;
 
-        _elements = $('#element-view-' + view.model.pk(), _DOM);
+        _elements = $('#element-view-' + view.model.pk() + '-' + view.cid, _DOM);
         view.$el.children().remove();
         view.$el.append(_elements.children());
         if (view.model.view == null) {

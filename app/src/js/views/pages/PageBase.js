@@ -36,6 +36,10 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       return true;
     },
     showSubView: function(name) {
+      _.each(_.without(this.subViews, this.subViews[name]), function(subView) {
+        return this.$("." + subView.name + "-only").hide();
+      });
+      this.$("." + name + "-only").show();
       return this.model.set('subView', name);
     },
     subView: function() {

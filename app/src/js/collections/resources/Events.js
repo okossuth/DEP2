@@ -62,16 +62,19 @@ define(['_features/localStorageCache', 'collections/resources/CachableCollection
       if (typeof this.monthCache["" + year + "-" + month] !== 'undefined') {
         _def.resolve();
       } else {
+        this.monthCache["" + year + "-" + month] = true;
         (this._fetch({
           month: month + 1,
           year: year
         })).then(function() {
           _def.resolve();
-          _this.monthCache["" + year + "-" + month] = true;
           return true;
         });
       }
       return _def;
+    },
+    fetchWeek: function(number, year, date) {
+      return this.fetchMonth(date.getMonth(), year);
     },
     fetchBetween: function(start_pk, end_pk) {
       return this._fetch({

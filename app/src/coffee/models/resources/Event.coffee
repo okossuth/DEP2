@@ -80,6 +80,9 @@ define [
     changeApplicationStatus: (model, flag, obj) -> 
       if (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
 
+    getView: () -> new @View
+      model: @
+
     initialize: (attrs, options) ->
       @comments = new Comments [],
         event: @

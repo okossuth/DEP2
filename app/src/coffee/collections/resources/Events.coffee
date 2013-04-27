@@ -62,17 +62,19 @@ define [
         _def.resolve()
 
       else
+        @monthCache["#{year}-#{month}"] = true
+
         (@_fetch
           month: month + 1
           year: year).then () =>
 
           _def.resolve()
 
-          @monthCache["#{year}-#{month}"] = true
-
           true
 
       _def
+
+    fetchWeek: (number, year, date) -> @fetchMonth date.getMonth(), year
 
     fetchBetween: (start_pk, end_pk) ->
       @_fetch

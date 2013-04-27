@@ -25,13 +25,14 @@ define [
       views = _.pluck views, 'ctx'
 
       _hash = {}
-      views = _.filter views, (view) -> if _hash[view.model.id] isnt true then _hash[view.model.id] = true; true else false
+      views = _.filter views, (view) -> if _hash[view.cid] isnt true then _hash[view.cid] = true; true else false
 
       _DOM = $ @groupTemplate 
         elements: views
 
       _.each views, (view) ->
-        _elements = $('#element-view-' + view.model.pk(), _DOM)
+        _elements = $('#element-view-' + view.model.pk() + '-' + view.cid, _DOM)
+
         view.$el.children().remove()
         view.$el.append _elements.children()
 

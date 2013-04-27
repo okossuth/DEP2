@@ -1,0 +1,18 @@
+<section class="tablet-calendar">
+    <table class="days-container">
+        <tbody>
+            <tr class="row week-row">
+                {{#days}}
+                    <td class="cell">
+                        <div>
+                            <span class="date-value">{{date}}</span>
+                            <em class="events-counter"></em>
+
+                            <ul class="calendar-items"></ul>
+                        </div>
+                    </td>
+                {{/days}}
+            </tr>
+        </tbody>
+    </table>
+</section>

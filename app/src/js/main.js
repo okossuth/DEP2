@@ -8,7 +8,8 @@ requirejs.config({
     'jquery': '../../lib/jquery-1.9.1',
     'templates': '../../dist/templates',
     'fastclick': '../../lib/fastclick',
-    'airbrake': '../../lib/airbrake'
+    'airbrake': '../../lib/airbrake',
+    'date': '../../lib/date'
   },
   shim: {
     'ovivo': {
@@ -27,6 +28,9 @@ requirejs.config({
       deps: ['jquery']
     },
     'jquery': {
+      deps: ['date']
+    },
+    'date': {
       deps: []
     }
   }

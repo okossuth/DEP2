@@ -7,7 +7,8 @@
     "jquery": "../../lib/jquery-1.9.1",
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
-    "airbrake": "../../lib/airbrake"
+    "airbrake": "../../lib/airbrake",
+    "date": "../../lib/date"
   },
 
   shim: {
@@ -32,6 +33,10 @@
     },
     
     "jquery": {
+      deps: ["date"]
+    },
+
+    "date": {
       deps: []
     }
   },
