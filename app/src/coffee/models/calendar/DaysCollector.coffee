@@ -8,6 +8,8 @@ define [
 
   initDays: () -> @collection.days.initElements @view.dayElements, @days
 
+  removeLoading: () -> @view.removeLoading()
+
   _initialize: (attrs, options) ->
     @on 'rendered', @initDays, @
 

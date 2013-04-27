@@ -14434,13 +14434,28 @@ function program3(depth0,data) {
   
   return " disabled";}
 
+function program5(depth0,data) {
+  
+  
+  return "Content loading";}
+
   buffer += "<section class=\"tablet-calendar\">\r\n    <table class=\"days-container\">\r\n        ";
   foundHelper = helpers.rows;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n</section>";
+  buffer += "\r\n    </div>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span><br />\r\n            <img src=\"";
+  foundHelper = helpers.loaderUrl;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" />\r\n        </em>\r\n\r\n    </div>\r\n</section>";
   return buffer;});
 templates['calendarMonth_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14463,7 +14478,17 @@ function program1(depth0,data) {
   else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
+  buffer += "\r\n        </div>\r\n\r\n        <div class=\"overlay\">\r\n            <em>\r\n                <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span><br />\r\n                <img src=\"";
+  foundHelper = helpers.loaderUrl;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" />\r\n            </em>\r\n\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -14500,6 +14525,11 @@ function program4(depth0,data) {
   
   return " disabled";}
 
+function program6(depth0,data) {
+  
+  
+  return "Content loading";}
+
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
@@ -14522,13 +14552,28 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "</span>\r\n                            <em class=\"events-counter\"></em>\r\n\r\n                            <ul class=\"calendar-items\"></ul>\r\n                        </div>\r\n                    </td>\r\n                ";
   return buffer;}
 
+function program3(depth0,data) {
+  
+  
+  return "Content loading";}
+
   buffer += "<section class=\"tablet-calendar\">\r\n    <table class=\"days-container\">\r\n        <tbody>\r\n            <tr class=\"row week-row\">\r\n                ";
   foundHelper = helpers.days;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</section>";
+  buffer += "\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span><br />\r\n            <img src=\"";
+  foundHelper = helpers.loaderUrl;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" />\r\n        </em>\r\n\r\n    </div>\r\n</section>";
   return buffer;});
 templates['calendarWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14551,7 +14596,17 @@ function program1(depth0,data) {
   else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </section>\r\n</li>\r\n\r\n";
+  buffer += "\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <div class=\"overlay\">\r\n            <em>\r\n                <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span><br />\r\n                <img src=\"";
+  foundHelper = helpers.loaderUrl;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" />\r\n            </em>\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -14562,6 +14617,11 @@ function program2(depth0,data) {
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "</span>\r\n                                <em class=\"events-counter\"></em>\r\n\r\n                                <ul class=\"calendar-items\"></ul>\r\n                            </div>\r\n                        </td>\r\n                    ";
   return buffer;}
+
+function program4(depth0,data) {
+  
+  
+  return "Content loading";}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;
@@ -15905,6 +15965,9 @@ define('models/calendar/DaysCollector',['ovivo'], function() {
     initDays: function() {
       return this.collection.days.initElements(this.view.dayElements, this.days);
     },
+    removeLoading: function() {
+      return this.view.removeLoading();
+    },
     _initialize: function(attrs, options) {
       this.on('rendered', this.initDays, this);
       return true;
@@ -15921,6 +15984,12 @@ define('views/calendar/DaysCollector',['ovivo'], function() {
     },
     hide: function() {
       return this.$el.addClass('hide');
+    },
+    removeLoading: function() {
+      return this.$('.overlay').remove();
+    },
+    loaderUrl: function() {
+      return ovivo.config.LOADER_URL;
     },
     postRender: function() {
       this.dayElements = this.$('.days-container .week-row > td');
@@ -16052,7 +16121,7 @@ define('models/calendar/Month',['_common/CalendarBase', 'models/resources/Resour
       this.weeks = this.getWeeksArr(this.year(), this.month());
       this.days = this.getDaysArr(this.weeks);
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.events.fetchMonth(this.month(), this.year());
+      ovivo.desktop.resources.events.fetchMonth(this.month(), this.year()).done(_.bind(this.removeLoading, this));
       return true;
     }
   }));
@@ -16229,7 +16298,7 @@ define('models/calendar/Week',['models/resources/ResourceBase', 'models/calendar
       this.set('month', this._firstDate.getMonth());
       this.days = this.getDaysArr();
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.events.fetchWeek(this.number(), this.year(), this._firstDate);
+      ovivo.desktop.resources.events.fetchWeek(this.number(), this.year(), this._firstDate).done(_.bind(this.removeLoading, this));
       return true;
     }
   }));

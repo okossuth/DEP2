@@ -29,6 +29,6 @@ define [
 
       @proxyCall 'initialize', arguments
 
-      ovivo.desktop.resources.events.fetchMonth(@month(), @year())
+      ovivo.desktop.resources.events.fetchMonth(@month(), @year()).done _.bind @removeLoading, @
 
       true

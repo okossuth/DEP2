@@ -8,6 +8,12 @@ define(['ovivo'], function() {
     hide: function() {
       return this.$el.addClass('hide');
     },
+    removeLoading: function() {
+      return this.$('.overlay').remove();
+    },
+    loaderUrl: function() {
+      return ovivo.config.LOADER_URL;
+    },
     postRender: function() {
       this.dayElements = this.$('.days-container .week-row > td');
       return this.hide();
