@@ -3,7 +3,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
     tagName: 'li',
-    className: 'working-hour',
+    className: 'working-hour element',
     template: Handlebars.templates['workingHour'],
     groupTemplate: Handlebars.templates['workingHour_group'],
     _getDateStr: function(_date) {
@@ -39,6 +39,13 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         return gettext('Unavailable');
       }
+    },
+    postRender: function() {
+      var _className;
+
+      this.$el.removeClass('available unavailable');
+      _className = this.model.available() === true ? 'available' : 'unavailable';
+      return this.$el.addClass(_className);
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

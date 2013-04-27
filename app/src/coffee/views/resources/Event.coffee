@@ -11,7 +11,7 @@ define [
     common: {}
     
     tagName: 'li'
-    className: 'event'
+    className: 'event element'
 
     template: Handlebars.templates['event']
     groupTemplate: Handlebars.templates['event_group']

@@ -14,6 +14,9 @@ define [
 
     true
 
+  addWorkingHour: (view) ->
+    @calendarItems.append view.el
+
   updateEventsCounter: () ->
     _html = if @events.length > 1
         @events.length + ' ' + ngettext('event', 'events', @events)

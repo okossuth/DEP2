@@ -6,6 +6,11 @@ define(['models/resources/WorkingHour', '_common/ResourceManagerBase', 'ovivo'],
     comparator: function(workingHour) {
       return Date.parse(workingHour.start_date()).valueOf();
     },
+    processRange: function(start, end) {
+      return this.reduce((function(arr, workingHour) {
+        return arr.concat(workingHour.processRange(start, end));
+      }), []);
+    },
     initialize: function() {
       this.initResource();
       return true;

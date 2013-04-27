@@ -7,6 +7,7 @@ define [
     'month'
     'week_number'
     'year'
+    'dateObj'
   ]
 
   addEvent: (event) ->
@@ -14,10 +15,18 @@ define [
 
     @view.addEvent _view
 
+  addWorkingHour: (workingHour) ->
+    _view = workingHour.getView()
+
+    @view.addWorkingHour _view
+    
+    true
+
   initialize: (attrs, options) ->
     @proxyCall 'initialize', arguments
 
     @set 'pk', "#{@year()}-#{@month()}-#{@date()}#{if @disabled() is true then '-disabled' else ''}"
+    @set 'dateObj', new Date @year(), @month(), @date()
 
     @view = new @View
       model: @

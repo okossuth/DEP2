@@ -7,7 +7,7 @@ define [
     common: {}
     
     tagName: 'li'
-    className: 'working-hour'
+    className: 'working-hour element'
 
     template: Handlebars.templates['workingHour']
     groupTemplate: Handlebars.templates['workingHour_group']
@@ -23,6 +23,13 @@ define [
       else if (_end_date = @model.end_date())? then " – #{@_getDateStr new Date Date.parse _end_date}" else ' – \u221E'
 
     available: () -> if @model.available() is true then gettext('Available') else gettext('Unavailable')
+
+    postRender: () ->
+      @$el.removeClass 'available unavailable'
+
+      _className = if @model.available() is true then 'available' else 'unavailable'
+
+      @$el.addClass _className
 
     initialize: () ->
       @proxyCall 'initialize', arguments

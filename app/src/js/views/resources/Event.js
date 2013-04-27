@@ -3,7 +3,7 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
   return ResourceBase.extend({
     common: {},
     tagName: 'li',
-    className: 'event',
+    className: 'event element',
     template: Handlebars.templates['event'],
     groupTemplate: Handlebars.templates['event_group'],
     groupRenderComplete: function() {},

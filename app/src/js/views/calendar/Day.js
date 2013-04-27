@@ -11,6 +11,9 @@ define(['ovivo'], function() {
       this.updateEventsCounter();
       return true;
     },
+    addWorkingHour: function(view) {
+      return this.calendarItems.append(view.el);
+    },
     updateEventsCounter: function() {
       var _html;
 
