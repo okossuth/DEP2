@@ -7,7 +7,13 @@ define(['_features/dateFormatter', 'views/resources/ResourceBase', 'ovivo'], fun
     template: Handlebars.templates['comment'],
     groupTemplate: Handlebars.templates['comment_group'],
     pub_date: function() {
-      return dateFormatter(this.model.pub_date());
+      var _pub_date;
+
+      if ((_pub_date = this.model.pub_date()) != null) {
+        return dateFormatter(this.model.pub_date());
+      } else {
+        return '';
+      }
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

@@ -11,7 +11,8 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       'click .type-button': 'changeType'
     },
     processClick: function() {
-      return this.$el.toggleClass('expanded');
+      ovivo.desktop.pages.eventDetails.set('event', this.model);
+      return ovivo.desktop.pages.eventDetails.view.showEl();
     },
     groupRenderComplete: function() {},
     group: function() {

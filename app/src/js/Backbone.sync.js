@@ -130,7 +130,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       } else {
         return setTimeout((function() {
           return _call.call(_this);
-        }), 4000);
+        }), 300);
       }
     };
   })();

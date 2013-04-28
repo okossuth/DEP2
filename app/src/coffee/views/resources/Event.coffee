@@ -20,7 +20,12 @@ define [
       'click': 'processClick'
       'click .type-button': 'changeType'
 
-    processClick: () -> @$el.toggleClass 'expanded'
+    processClick: () -> 
+      # @$el.toggleClass 'expanded'
+
+      ovivo.desktop.pages.eventDetails.set 'event', @model
+
+      ovivo.desktop.pages.eventDetails.view.showEl()
 
     groupRenderComplete: () ->
       # ovivo.mobile.pages.list.trigger 'eventsRendered'

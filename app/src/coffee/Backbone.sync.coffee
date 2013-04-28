@@ -122,4 +122,4 @@ requirejs [
         _call.call @
 
       else
-        setTimeout (() => _call.call @), 4000
+        setTimeout (() => _call.call @), 300

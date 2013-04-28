@@ -14633,9 +14633,22 @@ function program4(depth0,data) {
   return buffer;});
 templates['comment'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "";
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
+  buffer += "<h2>\r\n    <span>";
+  foundHelper = helpers.commenter;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.commenter; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</h2>\r\n<p class=\"message\">";
+  foundHelper = helpers.comment;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.comment; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</p>\r\n<p class=\"time\">";
+  foundHelper = helpers.pub_date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pub_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</p>";
   return buffer;});
 templates['comment_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14652,7 +14665,19 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"comment\">\r\n\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" class=\"comment\">\r\n    <h2>\r\n        <span>";
+  foundHelper = helpers.commenter;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.commenter; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n    </h2>\r\n    <p class=\"message\">";
+  foundHelper = helpers.comment;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.comment; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</p>\r\n    <p class=\"time\">";
+  foundHelper = helpers.pub_date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pub_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</p>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -14834,9 +14859,188 @@ function program18(depth0,data) {
   return buffer;});
 templates['eventDetails'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "";
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
+function program1(depth0,data) {
+  
+  
+  return "hour|hours";}
 
+function program3(depth0,data) {
+  
+  
+  return "Created by";}
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                ";
+  foundHelper = helpers.isClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                ";
+  foundHelper = helpers.isOpenResponses;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                ";
+  foundHelper = helpers.isOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            ";
+  return buffer;}
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program7(depth0,data) {
+  
+  
+  return "Assigned";}
+
+function program9(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program10(depth0,data) {
+  
+  
+  return "Awaiting reply";}
+
+function program12(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program13(depth0,data) {
+  
+  
+  return "Make a bid";}
+
+function program15(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                <div class=\"button-inner\">\r\n                    </i><span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                </div>\r\n            ";
+  return buffer;}
+function program16(depth0,data) {
+  
+  
+  return "Bidding closed";}
+
+  buffer += "<div class=\"element-container\">\r\n    <div class=\"strip\"></div>\r\n\r\n    <div class=\"info\">\r\n        <h2>\r\n            <span>";
+  foundHelper = helpers.primaryDepartment;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.primaryDepartment; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> - <span>";
+  foundHelper = helpers.groupChainName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.groupChainName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h2>\r\n\r\n        <h2>\r\n            <span>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> - <span>";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> <em>(";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")</em>\r\n        </h2>\r\n\r\n        <h3>\r\n            <span>";
+  foundHelper = helpers.municipality;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.municipality; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h3>\r\n\r\n        <h4>\r\n            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  foundHelper = helpers.creator_name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creator_name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  foundHelper = helpers.creationTime;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creationTime; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h4>\r\n    </div>\r\n\r\n    <div class=\"buttons\">\r\n        <div class=\"button-element single type-button\">\r\n            <div class=\"button-background\">\r\n                <div></div>\r\n            </div>\r\n\r\n            ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n            ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<ul class=\"comments\">\r\n</ul>";
+  return buffer;});
+templates['eventDetailsHeader'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  return "hour|hours";}
+
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " - ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " (";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")";
   return buffer;});
 templates['event_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -15507,7 +15711,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       } else {
         return setTimeout((function() {
           return _call.call(_this);
-        }), 4000);
+        }), 300);
       }
     };
   })();
@@ -17329,6 +17533,187 @@ define('models/pages/Notifications',['models/pages/PageBase', 'views/pages/Notif
 });
 
 // Generated by CoffeeScript 1.6.2
+define('_features/trailZero',[], function() {
+  return function(str) {
+    return ("0" + str).slice(-2);
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('_features/dateFormatter',['_features/trailZero', 'ovivo'], function(trailZero) {
+  var NORMAL_DATE_RANGE, TIME_TITLES;
+
+  TIME_TITLES = [[-10800000, gettext('just now')], [0, gettext('just now')], [1000, gettext('a second ago')], [60000, gettext('a minute ago')], [180000, gettext('few minutes ago')], [3600000, gettext('an hour ago')], [7200000, gettext('few hours ago')]];
+  NORMAL_DATE_RANGE = 10800000;
+  return function(date) {
+    var delta, returnValue;
+
+    if ((date instanceof Date) !== true) {
+      date = new Date(Date.parse(date));
+    }
+    delta = (new Date()) - date + date.getTimezoneOffset() * 60 * 1000 + ovivo.config.TIMEZONE_OFFSET;
+    if (delta > NORMAL_DATE_RANGE) {
+      return "" + (ovivo.config.DAYS[date.getDay()].toLowerCase().slice(0, 1)) + ". " + (date.getDate()) + ". " + ovivo.config.MONTHS[date.getMonth()] + " " + (date.getFullYear()) + " " + (trailZero(date.getHours())) + ":" + (trailZero(date.getMinutes()));
+    } else {
+      returnValue = '';
+      _.each(TIME_TITLES, function(title) {
+        if (delta > title[0]) {
+          return returnValue = title[1];
+        }
+      });
+      return returnValue;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/resources/Comment',['_features/dateFormatter', 'views/resources/ResourceBase', 'ovivo'], function(dateFormatter, ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'comment',
+    template: Handlebars.templates['comment'],
+    groupTemplate: Handlebars.templates['comment_group'],
+    pub_date: function() {
+      var _pub_date;
+
+      if ((_pub_date = this.model.pub_date()) != null) {
+        return dateFormatter(this.model.pub_date());
+      } else {
+        return '';
+      }
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Comment',['models/resources/ResourceBase', 'views/resources/Comment', 'ovivo'], function(ResourceBase, View) {
+  return ResourceBase.extend({
+    _gettersNames: ['commenter', 'pub_date', 'comment', 'reply_to', 'pk'],
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/EventDetails/Page',['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(PageBase, Comment) {
+  return PageBase.extend({
+    el: '.page.page-event-details',
+    events: function() {
+      return _.extend({}, PageBase.prototype.events, {
+        'click .post-comment': 'postComment',
+        'keyup .comment-input': 'keyCommentInput'
+      });
+    },
+    headerTemplate: Handlebars.templates['eventDetailsHeader'],
+    transitionStart: function() {
+      this.proxyCall('transitionStart', arguments);
+      return true;
+    },
+    transitionComplete: function() {
+      this.proxyCall('transitionComplete', arguments);
+      return true;
+    },
+    postComment: function() {
+      var _comment, _commentText;
+
+      _commentText = this.$('.comment-input').val();
+      if (_commentText !== '') {
+        _comment = new Comment({
+          comment: _commentText,
+          reply_to: null
+        });
+        this.model.get('event').comments.add(_comment);
+        _comment.save();
+        this.clearInput();
+      }
+      return true;
+    },
+    keyCommentInput: function() {
+      if (this.$('.comment-input').val() !== '') {
+        this.$('footer').addClass('active');
+      } else {
+        this.clearInput();
+      }
+      return true;
+    },
+    clearInput: function() {
+      this.$('footer').removeClass('active');
+      return this.$('.comment-input').val('');
+    },
+    renderComments: function() {
+      var _comments;
+
+      _comments = this.model.get('event').comments;
+      _comments.each(function(comment) {
+        return this.$('ul.comments').append(comment.view.el);
+      });
+      return true;
+    },
+    addComment: function(comment) {
+      this.$('ul.comments').append(comment.view.el);
+      return true;
+    },
+    syncEvent: function(event) {
+      var _text;
+
+      _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
+      return notificationMessage.post(this.el, _text);
+    },
+    changeEvent: function() {
+      var _event, _eventDetailsView, _prevEvent,
+        _this = this;
+
+      this.clearInput();
+      _event = this.model.get('event');
+      _prevEvent = this.model.previous('event');
+      _event.createDetailsView();
+      _eventDetailsView = _event.detailsView;
+      this.$('header span.title').html(this.headerTemplate(_eventDetailsView));
+      this.$('.event-container').html('');
+      this.$('.event-container').append(_eventDetailsView.el);
+      _eventDetailsView.delegateEvents();
+      _event.comments.on('add', this.addComment, this);
+      _event.on('sync', this.syncEvent, this);
+      if (_prevEvent != null) {
+        _prevEvent.comments.off('add', this.addComment);
+      }
+      if (_prevEvent != null) {
+        _prevEvent.off('sync', this.syncEvent);
+      }
+      _event.comments.def.done(function() {
+        return _this.renderComments();
+      });
+      return true;
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      this.model.on('change:event', this.changeEvent, this);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/pages/EventDetails',['models/pages/PageBase', 'views/pages/EventDetails/Page', 'ovivo'], function(PageBase, View) {
+  return PageBase.extend({
+    popup: true,
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
 define('views/SideBar',['ovivo'], function() {
   return Backbone.View.extend({
     el: '.side-bar',
@@ -17373,40 +17758,6 @@ define('views/SideBar',['ovivo'], function() {
       return true;
     }
   });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('_features/trailZero',[], function() {
-  return function(str) {
-    return ("0" + str).slice(-2);
-  };
-});
-
-// Generated by CoffeeScript 1.6.2
-define('_features/dateFormatter',['_features/trailZero', 'ovivo'], function(trailZero) {
-  var NORMAL_DATE_RANGE, TIME_TITLES;
-
-  TIME_TITLES = [[-10800000, gettext('just now')], [0, gettext('just now')], [1000, gettext('a second ago')], [60000, gettext('a minute ago')], [180000, gettext('few minutes ago')], [3600000, gettext('an hour ago')], [7200000, gettext('few hours ago')]];
-  NORMAL_DATE_RANGE = 10800000;
-  return function(date) {
-    var delta, returnValue;
-
-    if ((date instanceof Date) !== true) {
-      date = new Date(Date.parse(date));
-    }
-    delta = (new Date()) - date + date.getTimezoneOffset() * 60 * 1000 + ovivo.config.TIMEZONE_OFFSET;
-    if (delta > NORMAL_DATE_RANGE) {
-      return "" + (ovivo.config.DAYS[date.getDay()].toLowerCase().slice(0, 1)) + ". " + (date.getDate()) + ". " + ovivo.config.MONTHS[date.getMonth()] + " " + (date.getFullYear()) + " " + (trailZero(date.getHours())) + ":" + (trailZero(date.getMinutes()));
-    } else {
-      returnValue = '';
-      _.each(TIME_TITLES, function(title) {
-        if (delta > title[0]) {
-          return returnValue = title[1];
-        }
-      });
-      return returnValue;
-    }
-  };
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -17568,36 +17919,6 @@ define('collections/CollectionBase',[], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/resources/Comment',['_features/dateFormatter', 'views/resources/ResourceBase', 'ovivo'], function(dateFormatter, ResourceBase) {
-  return ResourceBase.extend({
-    common: {},
-    tagName: 'li',
-    className: 'comment',
-    template: Handlebars.templates['comment'],
-    groupTemplate: Handlebars.templates['comment_group'],
-    pub_date: function() {
-      return dateFormatter(this.model.pub_date());
-    },
-    initialize: function() {
-      this.proxyCall('initialize', arguments);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('models/resources/Comment',['models/resources/ResourceBase', 'views/resources/Comment', 'ovivo'], function(ResourceBase, View) {
-  return ResourceBase.extend({
-    _gettersNames: ['commenter', 'pub_date', 'comment', 'reply_to', 'pk'],
-    initialize: function(attrs, options) {
-      this.View = View;
-      this.proxyCall('initialize', arguments);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Comments',['models/resources/Comment', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -17647,7 +17968,8 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       'click .type-button': 'changeType'
     },
     processClick: function() {
-      return this.$el.toggleClass('expanded');
+      ovivo.desktop.pages.eventDetails.set('event', this.model);
+      return ovivo.desktop.pages.eventDetails.view.showEl();
     },
     groupRenderComplete: function() {},
     group: function() {
@@ -18677,7 +18999,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'models/resources/Communication', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
+require(['models/resources/User', 'models/resources/Communication', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -18692,7 +19014,7 @@ require(['models/resources/User', 'models/resources/Communication', 'collections
       return ovivo.desktop.pages.calendar.show();
     });
     ovivo.desktop.sideBar = new SideBar();
-    _.each(['Calendar', 'Settings', 'Feedback', 'Help', 'Notifications'], function(pageVarName) {
+    _.each(['Calendar', 'Settings', 'Feedback', 'Help', 'Notifications', 'EventDetails'], function(pageVarName) {
       var _page, _pageInstanceName;
 
       _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);

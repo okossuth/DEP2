@@ -13,8 +13,11 @@ define [
     template: Handlebars.templates['comment']
     groupTemplate: Handlebars.templates['comment_group']
 
-    pub_date: () -> 
-      dateFormatter @model.pub_date()
+    pub_date: () ->
+      if (_pub_date = @model.pub_date())?
+        dateFormatter @model.pub_date()
+
+      else ''
 
     initialize: () ->
       @proxyCall 'initialize', arguments
