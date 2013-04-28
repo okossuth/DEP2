@@ -6,6 +6,8 @@ define [
   'ovivo'
 ], (ResourceBase, View) ->
   ResourceBase.extend
+    typeName: 'inactivity'
+
     _gettersNames: [
       'start'
       'end'
@@ -23,6 +25,26 @@ define [
       else gettext('Params are missing')
 
     processChange: () -> if @id? then @save()
+
+    processRange: (start, end) ->
+      _arr = []
+
+      _start = new Date Date.parse @start()
+      _end = new Date Date.parse @end()
+
+      if _start > start then start = _start
+      if _end < end then end = _end
+
+      _i = new Date start
+
+      while _i <= end
+        _arr.push
+          date: new Date _i
+          model: @
+
+        _i.setDate _i.getDate() + 1
+
+      _arr
 
     initialize: (attrs, options) ->
       @View = View

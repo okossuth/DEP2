@@ -25,13 +25,13 @@ define [
     available: () -> if @model.available() is true then gettext('Available') else gettext('Unavailable')
 
     postRender: () ->
-      @$el.removeClass 'available unavailable'
-
       _className = if @model.available() is true then 'available' else 'unavailable'
 
-      @$el.addClass _className
+      @$('.element-container').removeClass('available unavailable').addClass _className
 
     initialize: () ->
+      @model.setDeltaHours()
+
       @proxyCall 'initialize', arguments
 
       true

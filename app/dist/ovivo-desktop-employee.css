@@ -108,6 +108,36 @@ i.icon {
   i.icon.wait {
     background-position: -100px -174px; }
 
+section.page .notification-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 210px;
+  margin: -105px 0 0 -105px;
+  z-index: 1000;
+  text-align: center; }
+  section.page .notification-message div.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333333;
+    opacity: 0.75;
+    border-radius: 5px;
+    z-index: 1; }
+  section.page .notification-message i.icon-huge {
+    position: relative;
+    z-index: 2;
+    margin: 20px auto 0 auto; }
+  section.page .notification-message span {
+    position: relative;
+    z-index: 2;
+    font: normal 14px "HelveticaNeueBold";
+    font-style: italic;
+    color: white; }
+
 
 .page > div.content {
   overflow: auto;
@@ -236,27 +266,103 @@ i.icon {
       text-align: center; }
 
 ul.months-list li.element, ul.weeks-list li.element {
-  color: white;
-  font-size: 12px;
-  margin: 0 0 1px 0;
-  padding: 5px 7px 5px 9px;
-  width: 100%;
-  position: relative;
-  left: -8px; }
-  ul.months-list li.element > span, ul.weeks-list li.element > span {
-    margin: 0 0 0 10px; }
-    ul.months-list li.element > span:first-child, ul.weeks-list li.element > span:first-child {
-      margin-left: 0; }
-  ul.months-list li.element.open, ul.weeks-list li.element.open {
-    background: #b23333; }
-  ul.months-list li.element.open-responses, ul.weeks-list li.element.open-responses {
-    background: #cc9900; }
-  ul.months-list li.element.closed, ul.weeks-list li.element.closed {
-    background: #007550; }
-  ul.months-list li.element.unavailable, ul.weeks-list li.element.unavailable {
-    background: #6d0088; }
-  ul.months-list li.element.available, ul.weeks-list li.element.available {
-    background: #0066cc; }
+  -webkit-transition: height 300ms; }
+  ul.months-list li.element.event, ul.weeks-list li.element.event {
+    max-height: 24px;
+    position: relative;
+    z-index: 1; }
+    ul.months-list li.element.event .info, ul.weeks-list li.element.event .info {
+      cursor: pointer; }
+    ul.months-list li.element.event:last-child, ul.months-list li.element.event.expanded, ul.weeks-list li.element.event:last-child, ul.weeks-list li.element.event.expanded {
+      max-height: none; }
+  ul.months-list li.element > div.element-container, ul.weeks-list li.element > div.element-container {
+    border-radius: 2px;
+    overflow: hidden;
+    background: white;
+    margin: 10px 8px 0 8px;
+    box-shadow: 0 1px 2px #cccccc, 0 0 0 #999999;
+    -webkit-transition: 0 box-shadow 300ms; }
+    ul.months-list li.element > div.element-container.clicked, ul.weeks-list li.element > div.element-container.clicked {
+      box-shadow: 0 1px 2px #cccccc, 0 0 10px #999999; }
+    ul.months-list li.element > div.element-container > div.strip, ul.weeks-list li.element > div.element-container > div.strip {
+      height: 5px;
+      background: red; }
+    ul.months-list li.element > div.element-container.closed > div.strip, ul.weeks-list li.element > div.element-container.closed > div.strip {
+      background: #007550; }
+    ul.months-list li.element > div.element-container.open > div.strip, ul.weeks-list li.element > div.element-container.open > div.strip {
+      background: #da4444; }
+    ul.months-list li.element > div.element-container.open-responses > div.strip, ul.weeks-list li.element > div.element-container.open-responses > div.strip {
+      background: #d8da44; }
+    ul.months-list li.element > div.element-container.available > div.strip, ul.weeks-list li.element > div.element-container.available > div.strip {
+      background: #0066cc; }
+    ul.months-list li.element > div.element-container.unavailable > div.strip, ul.weeks-list li.element > div.element-container.unavailable > div.strip {
+      background: #6d0088; }
+    ul.months-list li.element > div.element-container > div.info, ul.weeks-list li.element > div.element-container > div.info {
+      padding: 7px 15px;
+      border-bottom: 1px solid #cccccc; }
+      ul.months-list li.element > div.element-container > div.info > h2, ul.months-list li.element > div.element-container > div.info > h3, ul.months-list li.element > div.element-container > div.info > h4, ul.weeks-list li.element > div.element-container > div.info > h2, ul.weeks-list li.element > div.element-container > div.info > h3, ul.weeks-list li.element > div.element-container > div.info > h4 {
+        display: inline-block;
+        width: 100%; }
+      ul.months-list li.element > div.element-container > div.info > h4, ul.weeks-list li.element > div.element-container > div.info > h4 {
+        margin-top: 5px;
+        font-size: 11px;
+        color: #666666;
+        font-weight: lighter; }
+      ul.months-list li.element > div.element-container > div.info > h3, ul.months-list li.element > div.element-container > div.info > h2, ul.weeks-list li.element > div.element-container > div.info > h3, ul.weeks-list li.element > div.element-container > div.info > h2 {
+        font-size: 15px; }
+      ul.months-list li.element > div.element-container > div.info > h3, ul.weeks-list li.element > div.element-container > div.info > h3 {
+        font-weight: lighter;
+        margin: 1px 0 0 0; }
+      ul.months-list li.element > div.element-container > div.info > h2, ul.weeks-list li.element > div.element-container > div.info > h2 {
+        font-family: HelveticaNeueBold;
+        font-weight: lighter; }
+        ul.months-list li.element > div.element-container > div.info > h2 > em, ul.weeks-list li.element > div.element-container > div.info > h2 > em {
+          font-family: HelveticaNeue;
+          font-style: normal;
+          font-weight: lighter;
+          color: #666666; }
+    ul.months-list li.element > div.element-container > div.buttons, ul.weeks-list li.element > div.element-container > div.buttons {
+      background: #f0efec;
+      box-shadow: inset 0 1px 0 #f6f5f4;
+      overflow: hidden;
+      border-radius: 0 0 2px 2px;
+      height: 41px; }
+      ul.months-list li.element > div.element-container > div.buttons > div.button-element, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element {
+        position: relative;
+        float: left;
+        width: 50%;
+        padding: 9px 0;
+        overflow: hidden; }
+        ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-background, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-background {
+          position: absolute;
+          top: 1px;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 0; }
+          ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-background > div, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-background > div {
+            width: 100%;
+            height: 100%;
+            background: -webkit-linear-gradient(top, #f0efec, rgba(240, 239, 236, 0)); }
+        ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner {
+          position: relative;
+          z-index: 1;
+          height: 23px;
+          line-height: 23px;
+          text-align: center; }
+          ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
+            vertical-align: middle; }
+          ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > span, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > span {
+            font-family: HelveticaNeueBold;
+            font-weight: lighter;
+            font-size: 13px;
+            color: #807e73; }
+          ul.months-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > i, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element > div.button-inner > i {
+            margin-right: 5px; }
+        ul.months-list li.element > div.element-container > div.buttons > div.button-element.left > div.button-background, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element.left > div.button-background {
+          box-shadow: inset -1px 0 0 #cccccc; }
+        ul.months-list li.element > div.element-container > div.buttons > div.button-element.right > div.button-background, ul.weeks-list li.element > div.element-container > div.buttons > div.button-element.right > div.button-background {
+          box-shadow: inset 1px 0 0 #f6f5f4; }
 
 .page.page-calendar > header {
   padding: 23px 0 33px 0; }
@@ -276,6 +382,16 @@ ul.months-list li.element, ul.weeks-list li.element {
         float: left; }
         .page.page-calendar > header .weekdays ul.row > li > span {
           margin: 0 0 0 7px; }
+
+ul.months-list li.inactivity, ul.weeks-list li.inactivity {
+  width: 100%;
+  padding: 5px 8px;
+  position: relative;
+  left: -8px;
+  background: black; }
+  ul.months-list li.inactivity > span, ul.weeks-list li.inactivity > span {
+    color: white; }
+
 
 ul.months-list > li > .title-line, ul.weeks-list > li > .title-line {
   background: white;
@@ -388,31 +504,12 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     ul.months-list > li table.days-container .week-row > .cell.current > div, ul.weeks-list > li table.days-container .week-row > .cell.current > div {
       background: #f3f2ec; }
     ul.months-list > li table.days-container .week-row > .cell > div, ul.weeks-list > li table.days-container .week-row > .cell > div {
-      padding: 0 9px 0 9px;
+      padding: 0 9px 10px 9px;
       min-height: 100px;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       z-index: 0;
       background: white; }
-      ul.months-list > li table.days-container .week-row > .cell > div div.strip, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip {
-        color: white;
-        position: absolute;
-        left: -1px;
-        padding: 3px 1px 3px 0;
-        border-radius: 2px;
-        z-index: 1; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip.available, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip.available {
-          background: #2d94e3; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip.assigned, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip.assigned {
-          background: #85aa1e; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip.open, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip.open {
-          background: #aa1e1e; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip.replied, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip.replied {
-          background: #cfcd4f; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip.privat, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip.privat {
-          background: black; }
-        ul.months-list > li table.days-container .week-row > .cell > div div.strip > span, ul.weeks-list > li table.days-container .week-row > .cell > div div.strip > span {
-          margin: 0 0 0 12px; }
       ul.months-list > li table.days-container .week-row > .cell > div > em, ul.months-list > li table.days-container .week-row > .cell > div > span, ul.weeks-list > li table.days-container .week-row > .cell > div > em, ul.weeks-list > li table.days-container .week-row > .cell > div > span {
         margin: 10px 0 0 0;
         display: inline-block; }
@@ -450,3 +547,4 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
 
 .page.page-calendar .content {
   overflow-y: scroll; }
+

@@ -15,7 +15,19 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
         }
       });
     }),
+    addDay: function(day) {
+      return this.calendarDays.push(day);
+    },
+    addDays: function(days) {
+      return this.calendarDays = this.calendarDays.concat(days);
+    },
+    getView: function() {
+      return new this.View({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
+      this.calendarDays = [];
       this.createGetters();
       if (this.View != null) {
         this.view = new this.View({

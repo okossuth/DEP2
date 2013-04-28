@@ -10,17 +10,26 @@ define [
     'dateObj'
   ]
 
-  addEvent: (event) ->
-    _view = event.getView()
+  addEvent: (model) ->
+    _view = model.getView()
 
-    @view.addEvent _view
+    @view.addEvent _view, model
 
-  addWorkingHour: (workingHour) ->
-    _view = workingHour.getView()
+  removeEvent: (model) -> @view.removeEvent model
 
-    @view.addWorkingHour _view
-    
-    true
+  addWorkingHour: (model) ->
+    _view = model.getView()
+
+    @view.addWorkingHour _view, model
+
+  removeWorkingHour: (model) -> @view.removeWorkingHour model
+
+  addInactivity: (model) ->
+    _view = model.getView()
+
+    @view.addInactivity _view, model
+
+  removeInactivity: (model) -> @view.removeInactivity model
 
   initialize: (attrs, options) ->
     @proxyCall 'initialize', arguments

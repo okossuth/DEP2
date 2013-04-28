@@ -1,1 +1,65 @@
-<span>{{group}}</span><span>{{start_time}} – {{end_time}}</span>
+<div class="element-container">
+    <div class="strip"></div>
+
+    <div class="info">
+        <h2>
+            <span>{{start_time}}</span> - <span>{{end_time}}</span> <em>({{deltaHours}} {{#i18n deltaHours}}hour|hours{{/i18n}})</em>
+        </h2>
+
+        <h2>
+            <span>{{primaryDepartment}}</span> - <span>{{groupChainName}}</span>
+        </h2>
+
+        <h3>
+            <span>{{municipality}}</span>
+        </h3>
+
+        <h4>
+            <span>{{#i18n}}Created by{{/i18n}} {{creator_name}} {{creationTime}}</span>
+        </h4>
+    </div>
+
+    <div class="buttons">
+        <div class="button-element left type-button">
+            <div class="button-background">
+                <div></div>
+            </div>
+
+            {{^biddingClosed}}
+                {{#isClosed}}
+                    <div class="button-inner">
+                        <span>{{#i18n}}Assigned{{/i18n}}</span>
+                    </div>
+                {{/isClosed}}
+
+                {{#isOpenResponses}}
+                    <div class="button-inner">
+                        <span>{{#i18n}}Awaiting reply{{/i18n}}</span>
+                    </div>
+                {{/isOpenResponses}}
+
+                {{#isOpen}}
+                    <div class="button-inner">
+                        <span>{{#i18n}}Make a bid{{/i18n}}</span>
+                    </div>
+                {{/isOpen}}
+            {{/biddingClosed}}
+
+            {{#biddingClosed}}
+                <div class="button-inner">
+                    <span>{{#i18n}}Bidding closed{{/i18n}}</span>
+                </div>
+            {{/biddingClosed}}
+        </div>
+
+        <div class="button-element right comment-button">
+            <div class="button-background">
+                <div></div>
+            </div>
+
+            <div class="button-inner">
+                <span>{{#i18n}}Comment{{/i18n}}</span>
+            </div>
+        </div>
+    </div>
+</div>

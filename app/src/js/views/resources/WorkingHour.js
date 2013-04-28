@@ -43,11 +43,11 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     postRender: function() {
       var _className;
 
-      this.$el.removeClass('available unavailable');
       _className = this.model.available() === true ? 'available' : 'unavailable';
-      return this.$el.addClass(_className);
+      return this.$('.element-container').removeClass('available unavailable').addClass(_className);
     },
     initialize: function() {
+      this.model.setDeltaHours();
       this.proxyCall('initialize', arguments);
       return true;
     }

@@ -6,6 +6,13 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
     className: 'event element',
     template: Handlebars.templates['event'],
     groupTemplate: Handlebars.templates['event_group'],
+    events: {
+      'click': 'processClick',
+      'click .type-button': 'changeType'
+    },
+    processClick: function() {
+      return this.$el.toggleClass('expanded');
+    },
     groupRenderComplete: function() {},
     group: function() {
       var _ref;
@@ -93,14 +100,14 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       }
     },
     postRender: function() {
-      this.$el.removeClass('open open-responses closed').addClass(this.type());
+      this.$('.element-container').removeClass('open open-responses closed').addClass(this.type());
       return true;
     },
     processSync: function(event, events, options) {
       var _text;
 
       _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
-      return notificationMessage.post(ovivo.desktop.pages.list.view.$el, _text);
+      return notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, _text);
     },
     initialize: function() {
       this.model.setDeltaHours();

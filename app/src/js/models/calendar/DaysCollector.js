@@ -10,7 +10,7 @@ define(['ovivo'], function() {
     hide: function() {
       return this.view.hide();
     },
-    initWorkingHours: function() {
+    initResources: function() {
       var _end, _start,
         _this = this;
 
@@ -35,11 +35,12 @@ define(['ovivo'], function() {
       _start = new Date(_start.year, _start.month, _start.date);
       _end = new Date(_end.year, _end.month, _end.date);
       this.collection.days.processWorkingHours(_start, _end);
+      this.collection.days.processInactivities(_start, _end);
       return true;
     },
     initDays: function() {
       this.collection.days.initElements(this.view.dayElements, this.days);
-      this.initWorkingHours();
+      this.initResources();
       return true;
     },
     removeLoading: function() {

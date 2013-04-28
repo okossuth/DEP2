@@ -6,7 +6,7 @@ define [
   show: () -> @view.show()
   hide: () -> @view.hide()
 
-  initWorkingHours: () ->
+  initResources: () ->
     _start = do =>
       _i = 0
 
@@ -27,13 +27,14 @@ define [
     _end = new Date _end.year, _end.month, _end.date
 
     @collection.days.processWorkingHours _start, _end
+    @collection.days.processInactivities _start, _end
 
     true
 
   initDays: () -> 
     @collection.days.initElements @view.dayElements, @days
 
-    @initWorkingHours()
+    @initResources()
 
     true
 

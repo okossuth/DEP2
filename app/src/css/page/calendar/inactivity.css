@@ -1,0 +1,8 @@
+ul.months-list li.inactivity, ul.weeks-list li.inactivity {
+  width: 100%;
+  padding: 5px 8px;
+  position: relative;
+  left: -8px;
+  background: black; }
+  ul.months-list li.inactivity > span, ul.weeks-list li.inactivity > span {
+    color: white; }

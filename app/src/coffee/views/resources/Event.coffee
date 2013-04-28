@@ -16,6 +16,12 @@ define [
     template: Handlebars.templates['event']
     groupTemplate: Handlebars.templates['event_group']
 
+    events: 
+      'click': 'processClick'
+      'click .type-button': 'changeType'
+
+    processClick: () -> @$el.toggleClass 'expanded'
+
     groupRenderComplete: () ->
       # ovivo.mobile.pages.list.trigger 'eventsRendered'
 
@@ -69,14 +75,14 @@ define [
       if (_now > _date) and (@type() isnt 'closed') then true else false
 
     postRender: () ->
-      @$el.removeClass('open open-responses closed').addClass @type()
+      @$('.element-container').removeClass('open open-responses closed').addClass @type()
 
       true
 
     processSync: (event, events, options) ->
       _text = if event.has_applied() is true then gettext('Your bid has now been received') else gettext('Your bid has been removed')
 
-      notificationMessage.post ovivo.desktop.pages.list.view.$el, _text
+      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, _text
 
     initialize: () ->
       @model.setDeltaHours()

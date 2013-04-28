@@ -14665,22 +14665,172 @@ function program1(depth0,data) {
   return buffer;});
 templates['event'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
+function program1(depth0,data) {
+  
+  
+  return "hour|hours";}
 
-  buffer += "<span>";
-  foundHelper = helpers.group;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span><span>";
+function program3(depth0,data) {
+  
+  
+  return "Created by";}
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                ";
+  foundHelper = helpers.isClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                ";
+  foundHelper = helpers.isOpenResponses;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                ";
+  foundHelper = helpers.isOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            ";
+  return buffer;}
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program7(depth0,data) {
+  
+  
+  return "Assigned";}
+
+function program9(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program10(depth0,data) {
+  
+  
+  return "Awaiting reply";}
+
+function program12(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program13(depth0,data) {
+  
+  
+  return "Make a bid";}
+
+function program15(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                <div class=\"button-inner\">\r\n                    <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                </div>\r\n            ";
+  return buffer;}
+function program16(depth0,data) {
+  
+  
+  return "Bidding closed";}
+
+function program18(depth0,data) {
+  
+  
+  return "Comment";}
+
+  buffer += "<div class=\"element-container\">\r\n    <div class=\"strip\"></div>\r\n\r\n    <div class=\"info\">\r\n        <h2>\r\n            <span>";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
+  buffer += escapeExpression(stack1) + "</span> - <span>";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
+  buffer += escapeExpression(stack1) + "</span> <em>(";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")</em>\r\n        </h2>\r\n\r\n        <h2>\r\n            <span>";
+  foundHelper = helpers.primaryDepartment;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.primaryDepartment; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> - <span>";
+  foundHelper = helpers.groupChainName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.groupChainName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h2>\r\n\r\n        <h3>\r\n            <span>";
+  foundHelper = helpers.municipality;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.municipality; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h3>\r\n\r\n        <h4>\r\n            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  foundHelper = helpers.creator_name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creator_name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  foundHelper = helpers.creationTime;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creationTime; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </h4>\r\n    </div>\r\n\r\n    <div class=\"buttons\">\r\n        <div class=\"button-element left type-button\">\r\n            <div class=\"button-background\">\r\n                <div></div>\r\n            </div>\r\n\r\n            ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n            ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </div>\r\n\r\n        <div class=\"button-element right comment-button\">\r\n            <div class=\"button-background\">\r\n                <div></div>\r\n            </div>\r\n\r\n            <div class=\"button-inner\">\r\n                <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
   return buffer;});
 templates['eventDetails'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14690,7 +14840,7 @@ templates['eventDetails'] = template(function (Handlebars,depth0,helpers,partial
   return buffer;});
 templates['event_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -14703,20 +14853,170 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"event element\">\r\n   <span>";
-  foundHelper = helpers.group;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span><span>";
+  buffer += escapeExpression(stack1) + "\" class=\"event element\">\r\n    <div class=\"element-container\">\r\n        <div class=\"strip\"></div>\r\n\r\n        <div class=\"info\">\r\n            <h2>\r\n                <span>";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
+  buffer += escapeExpression(stack1) + "</span> - <span>";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "</span> <em>(";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")</em>\r\n            </h2>\r\n\r\n            <h2>\r\n                <span>";
+  foundHelper = helpers.primaryDepartment;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.primaryDepartment; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> - <span>";
+  foundHelper = helpers.groupChainName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.groupChainName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n            </h2>\r\n\r\n            <h3>\r\n                <span>";
+  foundHelper = helpers.municipality;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.municipality; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n            </h3>\r\n\r\n            <h4>\r\n                <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  foundHelper = helpers.creator_name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creator_name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  foundHelper = helpers.creationTime;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.creationTime; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n            </h4>\r\n        </div>\r\n\r\n        <div class=\"buttons\">\r\n            <div class=\"button-element left type-button\">\r\n                <div class=\"button-background\">\r\n                    <div></div>\r\n                </div>\r\n\r\n                ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(6, program6, data),fn:self.noop}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.noop}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                ";
+  foundHelper = helpers.biddingClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  else { stack1 = depth0.biddingClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.biddingClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </div>\r\n\r\n            <div class=\"button-element right comment-button\">\r\n                <div class=\"button-background\">\r\n                    <div></div>\r\n                </div>\r\n\r\n                <div class=\"button-inner\">\r\n                    <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
+function program2(depth0,data) {
+  
+  
+  return "hour|hours";}
+
+function program4(depth0,data) {
+  
+  
+  return "Created by";}
+
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    ";
+  foundHelper = helpers.isClosed;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                    ";
+  foundHelper = helpers.isOpenResponses;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n                    ";
+  foundHelper = helpers.isOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                ";
+  return buffer;}
+function program7(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                        <div class=\"button-inner\">\r\n                            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                        </div>\r\n                    ";
+  return buffer;}
+function program8(depth0,data) {
+  
+  
+  return "Assigned";}
+
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                        <div class=\"button-inner\">\r\n                            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                        </div>\r\n                    ";
+  return buffer;}
+function program11(depth0,data) {
+  
+  
+  return "Awaiting reply";}
+
+function program13(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                        <div class=\"button-inner\">\r\n                            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(14, program14, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(14, program14, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                        </div>\r\n                    ";
+  return buffer;}
+function program14(depth0,data) {
+  
+  
+  return "Make a bid";}
+
+function program16(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                    <div class=\"button-inner\">\r\n                        <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</span>\r\n                    </div>\r\n                ";
+  return buffer;}
+function program17(depth0,data) {
+  
+  
+  return "Bidding closed";}
+
+function program19(depth0,data) {
+  
+  
+  return "Comment";}
 
   buffer += "<ul>\r\n";
   foundHelper = helpers.elements;
@@ -14728,9 +15028,14 @@ function program1(depth0,data) {
   return buffer;});
 templates['inactivity'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "";
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
+  buffer += "<span class=\"reason\">";
+  foundHelper = helpers.reason;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.reason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>";
   return buffer;});
 templates['inactivity_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -14747,7 +15052,11 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"inactivity\">\r\n\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" class=\"inactivity\">\r\n    <span class=\"reason\">";
+  foundHelper = helpers.reason;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.reason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -14816,22 +15125,35 @@ function program1(depth0,data) {
   return buffer;});
 templates['workingHour'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
+function program1(depth0,data) {
+  
+  
+  return "hour|hours";}
 
-  buffer += "<span>";
+  buffer += "<div class=\"element-container\">\r\n    <div class=\"strip\"></div>\r\n\r\n    <div class=\"info\">\r\n        <h2>\r\n            <span>";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
+  buffer += escapeExpression(stack1) + "</span> - <span>";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
+  buffer += escapeExpression(stack1) + "</span> <em>(";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n</div>";
   return buffer;});
 templates['workingHour_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
@@ -14844,16 +15166,29 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <span>";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"element-container\">\r\n        <div class=\"strip\"></div>\r\n\r\n        <div class=\"info\">\r\n            <h2>\r\n                <span>";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
+  buffer += escapeExpression(stack1) + "</span> - <span>";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "</span> <em>(";
+  foundHelper = helpers.deltaHours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = depth0.deltaHours;
+  foundHelper = helpers.i18n;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
+function program2(depth0,data) {
+  
+  
+  return "hour|hours";}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;
@@ -15303,7 +15638,19 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
         }
       });
     }),
+    addDay: function(day) {
+      return this.calendarDays.push(day);
+    },
+    addDays: function(days) {
+      return this.calendarDays = this.calendarDays.concat(days);
+    },
+    getView: function() {
+      return new this.View({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
+      this.calendarDays = [];
       this.createGetters();
       if (this.View != null) {
         this.view = new this.View({
@@ -15759,35 +16106,109 @@ define('collections/calendar/Days',['ovivo'], function() {
         return _this;
       });
     },
-    processEventAdd: function(event) {
-      var _ref;
+    _addDayCache: function(day, cache, model) {
+      var _arr, _key;
 
-      return (_ref = this.get(event.getKey())) != null ? _ref.addEvent(event) : void 0;
+      _key = model.id;
+      if ((_arr = cache[_key]) == null) {
+        _arr = cache[_key] = [];
+      }
+      return _arr.push(day);
     },
-    _workingHourProcessor: function(rangeResult) {
+    _getDaysCache: function(cache, model) {
+      return cache[model.id];
+    },
+    _clearDayCache: function(cache, model) {
+      return cache[model.id] = [];
+    },
+    processEventAdd: function(event) {
+      var _day;
+
+      _day = this.get(event.getKey());
+      if (_day != null) {
+        this._addDayCache(_day, this.eventsCache, event);
+        _day.addEvent(event);
+      }
+      return true;
+    },
+    _rangeResultProcessor: function(rangeResult, hash, adderName) {
       var _this = this;
 
       return _.each(rangeResult, function(obj) {
-        var _key, _ref;
+        var _day, _key;
 
         _key = "" + (obj.date.getFullYear()) + "-" + (obj.date.getMonth()) + "-" + (obj.date.getDate());
-        return (_ref = _this.get(_key)) != null ? _ref.addWorkingHour(obj.model) : void 0;
+        _day = _this.get(_key);
+        if (_day != null) {
+          _this._addDayCache(_day, hash, obj.model);
+          return _day[adderName](obj.model);
+        }
       });
     },
     processWorkingHours: function(start, end) {
-      return this._workingHourProcessor(ovivo.desktop.resources.workingHours.processRange(start, end));
+      return this._rangeResultProcessor(ovivo.desktop.resources.workingHours.processRange(start, end), this.workingHoursCache, 'addWorkingHour');
+    },
+    processInactivities: function(start, end) {
+      return this._rangeResultProcessor(ovivo.desktop.resources.inactivities.processRange(start, end), this.inactivitiesCache, 'addInactivity');
     },
     processWorkingHourAdd: function(workingHour) {
       var end, start;
 
       start = this.first().dateObj();
       end = this.last().dateObj();
-      return this._workingHourProcessor(workingHour.processRange(start, end));
+      return this._rangeResultProcessor(workingHour.processRange(start, end), this.workingHoursCache, 'addWorkingHour');
+    },
+    processInactivityAdd: function(workingHour) {
+      var end, start;
+
+      start = this.first().dateObj();
+      end = this.last().dateObj();
+      return this._rangeResultProcessor(workingHour.processRange(start, end), this.inactivitiesCache, 'addInactivity');
+    },
+    processEventRemove: function(model) {
+      _.each(this._getDaysCache(this.eventsCache, model), function(day) {
+        return day.removeEvent(model);
+      });
+      return this._clearDayCache(this.eventsCache, model);
+    },
+    processWorkingHourRemove: function(model) {
+      _.each(this._getDaysCache(this.workingHoursCache, model), function(day) {
+        return day.removeWorkingHour(model);
+      });
+      return this._clearDayCache(this.workingHoursCache, model);
+    },
+    processInactivityRemove: function(model) {
+      _.each(this._getDaysCache(this.inactivitiesCache, model), function(day) {
+        return day.removeInactivity(model);
+      });
+      return this._clearDayCache(this.inactivitiesCache, model);
+    },
+    processEventChange: function(model) {
+      this.processEventRemove(model);
+      return this.processEventAdd(model);
+    },
+    processWorkingHourChange: function(model) {
+      this.processWorkingHourRemove(model);
+      return this.processWorkingHourAdd(model);
+    },
+    processInactivityChange: function(model) {
+      this.processInactivityRemove(model);
+      return this.processInactivityAdd(model);
     },
     initialize: function(models, options) {
       _.extend(this, options);
+      this.workingHoursCache = {};
+      this.eventsCache = {};
+      this.inactivitiesCache = {};
       ovivo.desktop.resources.events.on('add', this.processEventAdd, this);
       ovivo.desktop.resources.workingHours.on('add', this.processWorkingHourAdd, this);
+      ovivo.desktop.resources.inactivities.on('add', this.processInactivityAdd, this);
+      ovivo.desktop.resources.events.on('remove', this.processEventRemove, this);
+      ovivo.desktop.resources.workingHours.on('remove', this.processWorkingHourRemove, this);
+      ovivo.desktop.resources.inactivities.on('remove', this.processInactivityRemove, this);
+      ovivo.desktop.resources.events.on('change:type', this.processEventChange, this);
+      ovivo.desktop.resources.workingHours.on('change', this.processWorkingHourChange, this);
+      ovivo.desktop.resources.inactivities.on('change', this.processInactivityChange, this);
       return true;
     }
   });
@@ -16003,7 +16424,7 @@ define('models/calendar/DaysCollector',['ovivo'], function() {
     hide: function() {
       return this.view.hide();
     },
-    initWorkingHours: function() {
+    initResources: function() {
       var _end, _start,
         _this = this;
 
@@ -16028,11 +16449,12 @@ define('models/calendar/DaysCollector',['ovivo'], function() {
       _start = new Date(_start.year, _start.month, _start.date);
       _end = new Date(_end.year, _end.month, _end.date);
       this.collection.days.processWorkingHours(_start, _end);
+      this.collection.days.processInactivities(_start, _end);
       return true;
     },
     initDays: function() {
       this.collection.days.initElements(this.view.dayElements, this.days);
-      this.initWorkingHours();
+      this.initResources();
       return true;
     },
     removeLoading: function() {
@@ -16201,18 +16623,32 @@ define('models/calendar/Month',['_common/CalendarBase', 'models/resources/Resour
 define('models/calendar/Day',['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
-    addEvent: function(event) {
+    addEvent: function(model) {
       var _view;
 
-      _view = event.getView();
-      return this.view.addEvent(_view);
+      _view = model.getView();
+      return this.view.addEvent(_view, model);
     },
-    addWorkingHour: function(workingHour) {
+    removeEvent: function(model) {
+      return this.view.removeEvent(model);
+    },
+    addWorkingHour: function(model) {
       var _view;
 
-      _view = workingHour.getView();
-      this.view.addWorkingHour(_view);
-      return true;
+      _view = model.getView();
+      return this.view.addWorkingHour(_view, model);
+    },
+    removeWorkingHour: function(model) {
+      return this.view.removeWorkingHour(model);
+    },
+    addInactivity: function(model) {
+      var _view;
+
+      _view = model.getView();
+      return this.view.addInactivity(_view, model);
+    },
+    removeInactivity: function(model) {
+      return this.view.removeInactivity(model);
     },
     initialize: function(attrs, options) {
       var _this = this;
@@ -16239,24 +16675,115 @@ define('views/calendar/Day',['ovivo'], function() {
     render: function() {
       return true;
     },
-    addEvent: function(view) {
-      this.events.push(view);
-      this.calendarItems.append(view.el);
+    _removeFromArr: function(elem, arr) {
+      var _i;
+
+      _i = _.indexOf(arr, elem);
+      return arr.splice(_i, 1);
+    },
+    _insertBefore: function(elem, arr, next) {
+      var _i;
+
+      _i = _.indexOf(arr, next);
+      return arr.splice(_i, 0, elem);
+    },
+    _getFromHash: function(elem) {
+      var _name;
+
+      _name = elem.typeName;
+      if (_name === 'inactivity') {
+        return this.inactivities[elem.id];
+      } else if (_name === 'workingHour') {
+        return this.workingHours[elem.id];
+      } else if (_name === 'event') {
+        return this.events[elem.id];
+      }
+    },
+    _removeModel: function(model, hash) {
+      var _view;
+
+      _view = hash[model.id];
+      if (_view != null) {
+        _view.remove();
+        delete hash[model.id];
+        this._removeFromArr(model, this.elements);
+      }
+      return true;
+    },
+    _insertElement: (function() {
+      var _compare, _eventTypeOrder, _order;
+
+      _order = ['inactivity', 'workingHour', 'event'];
+      _eventTypeOrder = ['closed', 'open-responses', 'open'];
+      _compare = function(a, b) {
+        var _delta, _eventOrderA, _eventOrderB, _orderA, _orderB, _timeA, _timeB;
+
+        _orderA = _.indexOf(_order, a.typeName);
+        _orderB = _.indexOf(_order, b.typeName);
+        if (((_delta = _orderB - _orderA) !== 0) || (_orderA === 0)) {
+          return _delta;
+        } else {
+          if (((_orderA === 2) && ((_eventOrderA = _.indexOf(_eventTypeOrder, a.type())) === (_eventOrderB = _.indexOf(_eventTypeOrder, b.type())))) || (_orderA !== 2)) {
+            _timeA = new Date(Date.parse(a.start_time()));
+            _timeB = new Date(Date.parse(b.start_time()));
+            return _timeB - _timeA;
+          } else {
+            return _eventOrderB - _eventOrderA;
+          }
+        }
+      };
+      return function(model, view, hash) {
+        var _element, _i;
+
+        _i = 0;
+        while ((_i < this.elements.length) && (_compare((_element = this.elements[_i]), model) > 0)) {
+          _i += 1;
+        }
+        if (_i < this.elements.length) {
+          this._getFromHash(_element).$el.before(view.el);
+        } else {
+          this.calendarItems.append(view.el);
+        }
+        return this.elements.splice(_i, 0, model);
+      };
+    })(),
+    _addModel: function(model, view, hash) {
+      hash[model.id] = view;
+      return this._insertElement(model, view, hash);
+    },
+    addEvent: function(view, model) {
+      this._addModel(model, view, this.events);
       this.updateEventsCounter();
       return true;
     },
-    addWorkingHour: function(view) {
-      return this.calendarItems.append(view.el);
+    removeEvent: function(model) {
+      return this._removeModel(model, this.events);
+    },
+    addWorkingHour: function(view, model) {
+      return this._addModel(model, view, this.workingHours);
+    },
+    removeWorkingHour: function(model) {
+      return this._removeModel(model, this.workingHours);
+    },
+    addInactivity: function(view, model) {
+      return this._addModel(model, view, this.inactivities);
+    },
+    removeInactivity: function(model) {
+      return this._removeModel(model, this.inactivities);
     },
     updateEventsCounter: function() {
-      var _html;
+      var _amount, _html;
 
-      _html = this.events.length > 1 ? this.events.length + ' ' + ngettext('event', 'events', this.events) : '';
+      _amount = _.keys(this.events).length;
+      _html = _amount > 1 ? _amount + ' ' + ngettext('event', 'events', this.events) : '';
       return this.eventsCounter.html(_html);
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
-      this.events = [];
+      this.events = {};
+      this.workingHours = {};
+      this.inactivities = {};
+      this.elements = [];
       this.calendarItems = this.$('.calendar-items');
       this.eventsCounter = this.$('.events-counter');
       return true;
@@ -16988,6 +17515,13 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
     className: 'event element',
     template: Handlebars.templates['event'],
     groupTemplate: Handlebars.templates['event_group'],
+    events: {
+      'click': 'processClick',
+      'click .type-button': 'changeType'
+    },
+    processClick: function() {
+      return this.$el.toggleClass('expanded');
+    },
     groupRenderComplete: function() {},
     group: function() {
       var _ref;
@@ -17075,14 +17609,14 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       }
     },
     postRender: function() {
-      this.$el.removeClass('open open-responses closed').addClass(this.type());
+      this.$('.element-container').removeClass('open open-responses closed').addClass(this.type());
       return true;
     },
     processSync: function(event, events, options) {
       var _text;
 
       _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
-      return notificationMessage.post(ovivo.desktop.pages.list.view.$el, _text);
+      return notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, _text);
     },
     initialize: function() {
       this.model.setDeltaHours();
@@ -17117,6 +17651,7 @@ define('views/resources/EventDetails',['views/resources/Event', 'ovivo'], functi
 // Generated by CoffeeScript 1.6.2
 define('models/resources/Event',['models/resources/ResourceBase', 'collections/resources/Comments', 'views/resources/Event', 'views/resources/EventDetails', 'ovivo'], function(ResourceBase, Comments, View, DetailsView) {
   return ResourceBase.extend({
+    typeName: 'event',
     _gettersNames: ['pk', 'comment', 'start_time', 'has_applied', 'skill', 'group', 'num_comments', 'response_deadline', 'end_time', 'type', 'start_date', 'deltaHours', 'pub_date', 'creator_name', 'start_time_hours', 'start_time_minutes', 'end_time_hours', 'end_time_minutes'],
     start_time_hours: function() {
       var _ref;
@@ -17189,11 +17724,6 @@ define('models/resources/Event',['models/resources/ResourceBase', 'collections/r
       if ((obj.socket_io !== true) && (obj.cache_update !== true)) {
         return this.save();
       }
-    },
-    getView: function() {
-      return new this.View({
-        model: this
-      });
     },
     initialize: function(attrs, options) {
       this.comments = new Comments([], {
@@ -17571,11 +18101,11 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
     postRender: function() {
       var _className;
 
-      this.$el.removeClass('available unavailable');
       _className = this.model.available() === true ? 'available' : 'unavailable';
-      return this.$el.addClass(_className);
+      return this.$('.element-container').removeClass('available unavailable').addClass(_className);
     },
     initialize: function() {
+      this.model.setDeltaHours();
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -17585,7 +18115,8 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
 // Generated by CoffeeScript 1.6.2
 define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/resources/WorkingHour', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
-    _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj'],
+    typeName: 'workingHour',
+    _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj', 'deltaHours'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -17679,30 +18210,64 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
       }
       return _arr;
     },
-    getView: function() {
-      return new this.View({
-        model: this
-      });
+    setDeltaHours: (function() {
+      var _getMinutes;
+
+      _getMinutes = function(str) {
+        var hours, minutes, _ref, _ref1;
+
+        _ref = _.compact(ovivo.config.VALIDATION_REGEXP_TIME.exec(str)).slice(-2), hours = _ref[0], minutes = _ref[1];
+        _ref1 = [parseInt(hours), parseInt(minutes)], hours = _ref1[0], minutes = _ref1[1];
+        return hours * 60 + minutes;
+      };
+      return function() {
+        var _delta, _end, _start;
+
+        _end = _getMinutes(this.end_time());
+        _start = _getMinutes(this.start_time());
+        if (_start <= _end) {
+          _delta = (_end - _start) / 60;
+        } else {
+          _delta = (_end - _start) / 60 + 24;
+        }
+        return this.set('deltaHours', Math.round(_delta));
+      };
+    })(),
+    updateWeekdaysHash: function() {
+      var _ref;
+
+      return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
+        memo[elem] = true;
+        return memo;
+      }), {});
+    },
+    updateStartDate: function() {
+      return this.set('start_date_obj', new Date(Date.parse(this.start_date())));
+    },
+    updateEndDate: function() {
+      var _end_date;
+
+      if ((_end_date = this.end_date()) != null) {
+        return this.set('end_date_obj', new Date(Date.parse(_end_date)));
+      } else {
+        return this.set('end_date_obj', void 0);
+      }
     },
     initialize: function(attrs, options) {
-      var _end_date, _ref;
-
       this.View = View;
       this.proxyCall('initialize', arguments);
-      this.set('start_date_obj', new Date(Date.parse(this.start_date())));
-      if ((_end_date = this.end_date()) != null) {
-        this.set('end_date_obj', new Date(Date.parse(_end_date)));
-      }
+      this.updateStartDate();
+      this.updateEndDate();
       this.on('change', this.processChange, this);
       this.on('change:group', this.processChange, this);
+      this.on('change:weekdays', this.updateWeekdaysHash, this);
+      this.on('change:start_date', this.updateStartDate, this);
+      this.on('change:end_date', this.updateEndDate, this);
       this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
         memo[elem] = true;
         return memo;
       }), {});
-      this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
-        memo[elem] = true;
-        return memo;
-      }), {});
+      this.updateWeekdaysHash();
       return true;
     }
   });
@@ -17789,6 +18354,7 @@ define('views/resources/Inactivity',['views/resources/ResourceBase', 'ovivo'], f
 // Generated by CoffeeScript 1.6.2
 define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/resources/Inactivity', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
+    typeName: 'inactivity',
     _gettersNames: ['start', 'end', 'reason', 'approved', 'municipality', 'type', 'pk'],
     validate: function(attrs) {
       if ((attrs.start != null) && (attrs.end != null) && (attrs.municipality != null)) {
@@ -17801,6 +18367,28 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
       if (this.id != null) {
         return this.save();
       }
+    },
+    processRange: function(start, end) {
+      var _arr, _end, _i, _start;
+
+      _arr = [];
+      _start = new Date(Date.parse(this.start()));
+      _end = new Date(Date.parse(this.end()));
+      if (_start > start) {
+        start = _start;
+      }
+      if (_end < end) {
+        end = _end;
+      }
+      _i = new Date(start);
+      while (_i <= end) {
+        _arr.push({
+          date: new Date(_i),
+          model: this
+        });
+        _i.setDate(_i.getDate() + 1);
+      }
+      return _arr;
     },
     initialize: function(attrs, options) {
       this.View = View;
@@ -17818,6 +18406,11 @@ define('collections/resources/Inactivities',['models/resources/Inactivity', '_co
     url: "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/inactivity/",
     comparator: function(inactivity) {
       return Date.parse(inactivity.start()).valueOf();
+    },
+    processRange: function(start, end) {
+      return this.reduce((function(arr, inactivity) {
+        return arr.concat(inactivity.processRange(start, end));
+      }), []);
     },
     initialize: function() {
       this.initResource();

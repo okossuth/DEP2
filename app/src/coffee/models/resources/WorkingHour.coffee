@@ -6,6 +6,8 @@ define [
   'ovivo'
 ], (ResourceBase, View) ->
   ResourceBase.extend
+    typeName: 'workingHour'
+
     _gettersNames: [
       'weekdays'
       'available'
@@ -19,6 +21,7 @@ define [
       'pk'
       'start_date_obj'
       'end_date_obj'
+      'deltaHours'
     ]
 
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then arr[0] else undefined
@@ -95,22 +98,54 @@ define [
 
       _arr
 
-    getView: () -> new @View
-      model: @
+    setDeltaHours: do () ->
+      _getMinutes = (str) ->
+        [hours, minutes] = _.compact(ovivo.config.VALIDATION_REGEXP_TIME.exec(str)).slice -2
+        [hours, minutes] = [parseInt(hours), parseInt(minutes)]
+
+        hours * 60 + minutes
+
+      () -> 
+        _end = _getMinutes(@end_time())
+        _start = _getMinutes(@start_time())
+
+        if _start <= _end
+          _delta = (_end - _start) / 60
+
+        else 
+          _delta = (_end - _start) / 60 + 24
+
+        @set 'deltaHours', Math.round _delta
+
+    updateWeekdaysHash: () ->
+      @weekdaysHash = _.reduce @weekdays()?.split(','), ((memo, elem) -> memo[elem] = true; memo), {}
+
+    updateStartDate: () ->
+      @set 'start_date_obj', new Date Date.parse @start_date()
+
+    updateEndDate: () ->
+      if (_end_date = @end_date())? 
+        @set 'end_date_obj', new Date Date.parse _end_date
+
+      else 
+        @set 'end_date_obj', undefined
 
     initialize: (attrs, options) ->
       @View = View
 
       @proxyCall 'initialize', arguments
 
-      @set 'start_date_obj', new Date Date.parse @start_date()
-      
-      if (_end_date = @end_date())? then @set 'end_date_obj', new Date Date.parse _end_date
+      @updateStartDate()
+      @updateEndDate()
 
       @on 'change', @processChange, @
       @on 'change:group', @processChange, @
+      @on 'change:weekdays', @updateWeekdaysHash, @
+
+      @on 'change:start_date', @updateStartDate, @
+      @on 'change:end_date', @updateEndDate, @
 
       @groupsHash = _.reduce @groups(), ((memo, elem) -> memo[elem] = true; memo), {}
-      @weekdaysHash = _.reduce @weekdays()?.split(','), ((memo, elem) -> memo[elem] = true; memo), {}
+      @updateWeekdaysHash()
 
       true

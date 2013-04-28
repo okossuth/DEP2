@@ -2,18 +2,32 @@
 define(['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
-    addEvent: function(event) {
+    addEvent: function(model) {
       var _view;
 
-      _view = event.getView();
-      return this.view.addEvent(_view);
+      _view = model.getView();
+      return this.view.addEvent(_view, model);
     },
-    addWorkingHour: function(workingHour) {
+    removeEvent: function(model) {
+      return this.view.removeEvent(model);
+    },
+    addWorkingHour: function(model) {
       var _view;
 
-      _view = workingHour.getView();
-      this.view.addWorkingHour(_view);
-      return true;
+      _view = model.getView();
+      return this.view.addWorkingHour(_view, model);
+    },
+    removeWorkingHour: function(model) {
+      return this.view.removeWorkingHour(model);
+    },
+    addInactivity: function(model) {
+      var _view;
+
+      _view = model.getView();
+      return this.view.addInactivity(_view, model);
+    },
+    removeInactivity: function(model) {
+      return this.view.removeInactivity(model);
     },
     initialize: function(attrs, options) {
       var _this = this;
