@@ -681,3 +681,40 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     width: 40px; }
   .page.page-notifications > .content {
     background: white; }
+
+.page.page-settings .content {
+  margin: 135px 40px 40px 40px; }
+  .page.page-settings .content > .line {
+    overflow: auto; }
+    .page.page-settings .content > .line > * {
+      vertical-align: middle; }
+  .page.page-settings .content h2.title {
+    color: #807e73;
+    font-weight: normal;
+    font-size: 21px;
+    display: inline-block;
+    margin: 0 30px 0 0; }
+
+.page.page-settings .content ul.sections-menu {
+  overflow: auto;
+  display: inline-block; }
+  .page.page-settings .content ul.sections-menu > li {
+    float: left;
+    border: 1px solid #807e73;
+    border-radius: 2px;
+    width: 120px;
+    text-align: center;
+    margin: 0 0 0 28px;
+    font-size: 15px;
+    color: #807e73;
+    cursor: pointer; }
+    .page.page-settings .content ul.sections-menu > li.selected {
+      background: #807e73;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      color: white; }
+    .page.page-settings .content ul.sections-menu > li:first-child {
+      margin-left: 0; }
+    .page.page-settings .content ul.sections-menu > li > span {
+      display: inline-block;
+      margin: 8px 0; }
+
