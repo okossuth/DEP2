@@ -11,6 +11,7 @@ define [
 
     events:
       'click .no-selection': 'clearSelection'
+      'click .button-close': 'close'
 
     clearSelection: () ->
       if window.getSelection?
@@ -24,6 +25,8 @@ define [
         document.selection.empty()
 
       true
+
+    close: () -> @hideEl()
 
     showEl: () -> @$el.removeClass 'hide'
     hideEl: () -> @$el.addClass 'hide'

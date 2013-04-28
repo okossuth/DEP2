@@ -146,7 +146,8 @@ section.page .notification-message {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0; }
+  bottom: 0;
+  background: #f3f2ec; }
 
 .page > header {
   position: absolute;
@@ -168,7 +169,7 @@ section.page .notification-message {
     opacity: 0.05;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)"; }
   .page > header > div.line {
-    height: 38px;
+    height: 39px;
     line-height: 16px; }
     .page > header > div.line > * {
       vertical-align: middle; }
@@ -548,3 +549,55 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
 .page.page-calendar .content {
   overflow-y: scroll; }
 
+
+.page.page-notifications .load-more-button {
+  margin: 7px;
+  display: block; }
+
+.page.page-notifications ul.notifications-list {
+  margin: 10px 7px;
+  box-shadow: 0 1px 4px #aaaaaa; }
+
+.page.page-notifications ul.notifications-list > li.notification {
+  background: white;
+  padding: 9px 15px;
+  border-top: 1px solid #cccccc;
+  position: relative; }
+  .page.page-notifications ul.notifications-list > li.notification:first-child {
+    border-top: 0; }
+  .page.page-notifications ul.notifications-list > li.notification.visited {
+    background: #f0efec; }
+    .page.page-notifications ul.notifications-list > li.notification.visited > div > i.mark {
+      display: none; }
+  .page.page-notifications ul.notifications-list > li.notification > div {
+    position: relative; }
+    .page.page-notifications ul.notifications-list > li.notification > div > h2 {
+      font: lighter 12px HelveticaNeueBold;
+      color: #807e73; }
+    .page.page-notifications ul.notifications-list > li.notification > div > p.message {
+      font: normal 12px HelveticaNeue;
+      margin: 7px 0 0 0; }
+    .page.page-notifications ul.notifications-list > li.notification > div > p.time {
+      font: normal 11px HelveticaNeue;
+      margin: 8px 0 0 0;
+      color: #807e73; }
+    .page.page-notifications ul.notifications-list > li.notification > div > i.mark {
+      position: absolute;
+      display: block;
+      line-height: 0;
+      top: 0;
+      right: 0;
+      width: 11px;
+      height: 11px;
+      background: #007550;
+      box-shadow: inset 0 0 2px rgba(3, 46, 32, 0.75);
+      border-radius: 2px; }
+
+.page.page-notifications {
+  width: 300px;
+  z-index: 9999;
+  box-shadow: 2px 0 30px #888888; }
+  .page.page-notifications > header > div.line > div.button {
+    width: 40px; }
+  .page.page-notifications > .content {
+    background: white; }

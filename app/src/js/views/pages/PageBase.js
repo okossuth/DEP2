@@ -8,7 +8,8 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       return true;
     },
     events: {
-      'click .no-selection': 'clearSelection'
+      'click .no-selection': 'clearSelection',
+      'click .button-close': 'close'
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -21,6 +22,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
         document.selection.empty();
       }
       return true;
+    },
+    close: function() {
+      return this.hideEl();
     },
     showEl: function() {
       return this.$el.removeClass('hide');

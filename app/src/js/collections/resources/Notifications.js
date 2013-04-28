@@ -40,7 +40,7 @@ define(['models/resources/Notification', '_common/ResourceManagerBase', 'ovivo']
         _jsonArr.push(notification.toJSON());
         return true;
       });
-      ovivo.desktop.pages.list.view.updateNotifications();
+      ovivo.desktop.sideBar.updateNotifications();
       if (_jsonArr.length > 0) {
         return $.ajax({
           url: this.url,

@@ -33,7 +33,7 @@ define [
 
         true
 
-      ovivo.desktop.pages.list.view.updateNotifications()
+      ovivo.desktop.sideBar.updateNotifications()
       
       if _jsonArr.length > 0
         $.ajax

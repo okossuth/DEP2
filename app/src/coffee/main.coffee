@@ -42,6 +42,7 @@ require [
   'models/pages/Settings',
   'models/pages/Feedback',
   'models/pages/Help',
+  'models/pages/Notifications',
 
   'views/SideBar',
 
@@ -57,7 +58,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
+], (User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -95,7 +96,8 @@ require [
         'Calendar',
         'Settings',
         'Feedback',
-        'Help'
+        'Help',
+        'Notifications'
       ], (pageVarName) ->
         _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))
         _page = ovivo.desktop.pages.addPage eval(pageVarName + 'Page'), _pageInstanceName

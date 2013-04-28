@@ -42,10 +42,11 @@ define [
       _args = Array.prototype.slice.call arguments, 1
 
       if @current isnt page
-        if (@current isnt undefined)
+        if (@current isnt undefined) and (page.page.popup isnt true)
           @transition @current, page, _args
 
-        else page.page.view.showEl()
+        else 
+          page.page.view.showEl()
 
         @current = page
 

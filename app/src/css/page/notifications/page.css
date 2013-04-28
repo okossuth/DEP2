@@ -1,0 +1,8 @@
+.page.page-notifications {
+  width: 300px;
+  z-index: 9999;
+  box-shadow: 2px 0 30px #888888; }
+  .page.page-notifications > header > div.line > div.button {
+    width: 40px; }
+  .page.page-notifications > .content {
+    background: white; }

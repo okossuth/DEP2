@@ -37,7 +37,7 @@ define(['_features/transition', 'models/Page', 'ovivo'], function(transition, Mo
 
       _args = Array.prototype.slice.call(arguments, 1);
       if (this.current !== page) {
-        if (this.current !== void 0) {
+        if ((this.current !== void 0) && (page.page.popup !== true)) {
           this.transition(this.current, page, _args);
         } else {
           page.page.view.showEl();
