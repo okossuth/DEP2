@@ -64,6 +64,9 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
         _json.groups = null;
       }
       delete _json.exclusions;
+      delete _json.start_date_obj;
+      delete _json.end_date_obj;
+      delete _json.deltaHours;
       return _json;
     },
     processRange: function(start, end) {

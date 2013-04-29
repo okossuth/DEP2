@@ -3,8 +3,20 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
   return PageBase.extend({
     el: '.page.page-settings .timeoff-view',
     name: 'timeoff',
-    events: {},
+    events: {
+      'click .button-add-new': 'addNew'
+    },
+    addNew: function() {
+      ovivo.desktop.popups.editPopupTimeoff.show();
+      ovivo.desktop.popups.editPopupTimeoff.createNew();
+      return true;
+    },
+    addInactivity: function(inactivity) {
+      return this.inactivities.append(inactivity.editView.el);
+    },
     initialize: function() {
+      this.inactivities = this.$('.inactivities');
+      ovivo.desktop.resources.inactivities.on('add', this.addInactivity, this);
       return true;
     }
   });

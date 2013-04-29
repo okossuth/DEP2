@@ -17,6 +17,9 @@ define [
 
     events: {}
 
+    processRemove: () ->
+      @model.destroy()
+
     exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) => if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
 
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50)

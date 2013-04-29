@@ -450,7 +450,10 @@ ul.months-list li.inactivity, ul.weeks-list li.inactivity {
   left: -8px;
   background: black; }
   ul.months-list li.inactivity > span, ul.weeks-list li.inactivity > span {
-    color: white; }
+    color: white;
+    height: 13px;
+    width: 100%;
+    display: block; }
 
 
 ul.months-list > li > .title-line, ul.weeks-list > li > .title-line {
@@ -821,15 +824,21 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     margin-top: 0; }
   .page.page-settings .elements > li.element > .wireframe .side-container {
     border-right: 1px solid #e4e2d6; }
-  .page.page-settings .elements > li.element > .wireframe .edit-button {
+  .page.page-settings .elements > li.element > .wireframe .edit-button, .page.page-settings .elements > li.element > .wireframe .remove-button {
     position: absolute;
     background: #e4e2d6;
     color: #807e73;
     font-size: 13px;
     right: 0;
     top: 0;
-    padding: 4px 15px;
-    cursor: pointer; }
+    padding: 4px 0;
+    width: 70px;
+    cursor: pointer;
+    text-align: center; }
+  .page.page-settings .elements > li.element > .wireframe .edit-button {
+    right: 0; }
+  .page.page-settings .elements > li.element > .wireframe .remove-button {
+    right: 73px; }
 
 .page.page-settings .timeoff-view .attributes {
   padding: 22px 0 0 30px; }

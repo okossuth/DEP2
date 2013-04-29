@@ -3,7 +3,8 @@ define(['ovivo'], function() {
   return Backbone.View.extend({
     events: {
       'change .property-value': 'changeProperty',
-      'click .close': 'close'
+      'click .close': 'close',
+      'click .button-add': 'add'
     },
     propertyRegExp: /\bproperty-value-(.+)\b/,
     changeProperty: function(e) {
@@ -11,15 +12,21 @@ define(['ovivo'], function() {
 
       _input = $(e.target).closest('.property-value');
       _name = this.propertyRegExp.exec(_input[0].className)[1];
-      return this.model.set(_name, eval(_input.val()));
+      return this.model.set(_name, this.types[_name](_input.val()));
     },
     close: function() {
       return this.hide();
+    },
+    add: function() {
+      this.collection.add(this.model);
+      this.model.save();
+      return this.close();
     },
     setModel: function(model) {
       var _this = this;
 
       this.model = model;
+      this.$('.button-add').hide();
       return _.each(this.fields, function(field) {
         return _this.$('.property-value-' + field).val(model[field]().toString());
       });

@@ -3,7 +3,14 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
   return PageBase.extend({
     el: '.page.page-settings .availability-view',
     name: 'availability',
-    events: {},
+    events: {
+      'click .button-add-new': 'addNew'
+    },
+    addNew: function() {
+      ovivo.desktop.popups.editPopupWorkingHour.show();
+      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      return true;
+    },
     addWorkingHour: function(workingHour) {
       return this.workingHours.append(workingHour.editView.el);
     },

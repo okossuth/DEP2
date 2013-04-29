@@ -2,9 +2,10 @@ define [
   'models/resources/ResourceBase',
 
   'views/resources/Inactivity'
+  'views/resources/InactivityEdit',
 
   'ovivo'
-], (ResourceBase, View) ->
+], (ResourceBase, View, EditView) ->
   ResourceBase.extend
     typeName: 'inactivity'
 
@@ -52,5 +53,8 @@ define [
       @on 'change', @processChange, @
 
       @proxyCall 'initialize', arguments
+
+      @editView = new EditView
+        model: @
 
       true

@@ -15,6 +15,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       return true;
     },
     events: {},
+    processRemove: function() {
+      return this.model.destroy();
+    },
     exposeAttrs: ToolsBase.once('exposeAttrs', function() {
       var _this = this;
 

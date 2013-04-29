@@ -15,12 +15,13 @@ define [
     events:
       'click li.weekday': 'weekdayClick'
       'click .edit-button': 'edit'
+      'click .remove-button': 'processRemove'
 
     weekdayClick: (e) ->
       _item = $(e.target).closest('.weekday')
       _i = _item.index()
 
-      @model.processWeek _i, @model.weekdaysHash[_i]
+      @model.processWeek (_i), @model.weekdaysHash[_i]
 
     edit: () -> 
       ovivo.desktop.popups.editPopupWorkingHour.show()

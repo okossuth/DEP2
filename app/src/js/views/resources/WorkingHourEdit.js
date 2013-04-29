@@ -8,7 +8,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     groupTemplate: Handlebars.templates['workingHourEdit_group'],
     events: {
       'click li.weekday': 'weekdayClick',
-      'click .edit-button': 'edit'
+      'click .edit-button': 'edit',
+      'click .remove-button': 'processRemove'
     },
     weekdayClick: function(e) {
       var _i, _item;

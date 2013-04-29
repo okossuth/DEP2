@@ -8,7 +8,14 @@ define [
 
     name: 'availability'
 
-    events: {}
+    events: 
+      'click .button-add-new': 'addNew'
+
+    addNew: () ->
+      ovivo.desktop.popups.editPopupWorkingHour.show()
+      ovivo.desktop.popups.editPopupWorkingHour.createNew()
+      
+      true
 
     addWorkingHour: (workingHour) ->
       @workingHours.append workingHour.editView.el

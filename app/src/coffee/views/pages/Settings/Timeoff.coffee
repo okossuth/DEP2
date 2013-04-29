@@ -8,8 +8,21 @@ define [
 
     name: 'timeoff'
 
-    events: {}
+    events: 
+      'click .button-add-new': 'addNew'
+
+    addNew: () ->
+      ovivo.desktop.popups.editPopupTimeoff.show()
+      ovivo.desktop.popups.editPopupTimeoff.createNew()
+      
+      true
+
+    addInactivity: (inactivity) ->
+      @inactivities.append inactivity.editView.el
 
     initialize: () ->
+      @inactivities = @$('.inactivities')
+
+      ovivo.desktop.resources.inactivities.on 'add', @addInactivity, @
 
       true
