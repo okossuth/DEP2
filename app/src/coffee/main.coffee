@@ -36,6 +36,9 @@ require [
   'models/resources/User',
   'models/resources/Communication',
 
+  'views/popups/EditPopupWorkingHour',
+  'views/popups/EditPopupTimeoff',
+
   'collections/Pages',
 
   'models/pages/Calendar',
@@ -59,7 +62,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
+], (User, Communication, EditPopupWorkingHour, EditPopupTimeoff, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -105,6 +108,17 @@ require [
         _page = ovivo.desktop.pages.addPage eval(pageVarName + 'Page'), _pageInstanceName
 
         true
+
+      ovivo.desktop.popups = {}
+
+
+      _.each [
+        'EditPopupWorkingHour',
+        'EditPopupTimeoff'
+      ], (popupName) ->
+        _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
+
+        ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))()
 
       _.each ovivo.desktop.resources, do () ->
         _num = 0

@@ -815,7 +815,10 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
   background: white;
   border-radius: 2px;
   box-shadow: 0 1px 0 #d9d6c6;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 10px 0 0 0; }
+  .page.page-settings .elements > li.element:first-child {
+    margin-top: 0; }
   .page.page-settings .elements > li.element > .wireframe .side-container {
     border-right: 1px solid #e4e2d6; }
   .page.page-settings .elements > li.element > .wireframe .edit-button {
@@ -825,7 +828,8 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     font-size: 13px;
     right: 0;
     top: 0;
-    padding: 4px 15px; }
+    padding: 4px 15px;
+    cursor: pointer; }
 
 .page.page-settings .timeoff-view .attributes {
   padding: 22px 0 0 30px; }
@@ -855,7 +859,8 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
   .page.page-settings .availability-view ul.columns > li {
     width: 14.28571%;
     text-align: center;
-    float: left; }
+    float: left;
+    cursor: pointer; }
     .page.page-settings .availability-view ul.columns > li > i.checked {
       display: none; }
     .page.page-settings .availability-view ul.columns > li.checked > i.unchecked {

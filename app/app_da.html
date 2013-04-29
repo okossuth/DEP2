@@ -384,72 +384,8 @@
                     </ul>
                 </div>
 
-                <ul class="elements">
-                    <li class="element">
-                        <div class="wireframe">
-                            <div class="side-container">
-                                <ul class="attributes">
-                                    <li>
-                                        <strong>Time</strong>
-                                        <span>07:00 to 23:50</span>
-                                    </li>
-                                    <li>
-                                        <strong>Status</strong>
-                                        <span>Available</span>
-                                    </li>
-                                    <li>
-                                        <strong>Date</strong>
-                                        <span>8 apr. – 26 apr.</span>
-                                    </li>
-                                    <li>
-                                        <strong>Repeat </strong>
-                                        <span>every other week</span>
-                                    </li>
-                                </ul>
-                            </div>
+                <ul class="elements working-hours">
 
-                            <ul class="columns weekdays">
-                                <li class="checked">
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-
-                                <li>
-                                    <i class="icon inline unchecked"></i>
-                                    <i class="icon inline checked"></i>
-                                </li>
-                            </ul>
-
-                            <div class="edit-button">
-                                Edit
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
 
@@ -632,9 +568,9 @@
                     </div>
 
                     <div class="item-content two">
-                        <input type="text" value="07:00" />
+                        <input type="text" class="property-value property-value-start_time" />
                         <span>to</span>
-                        <input type="text" />
+                        <input type="text" class="property-value property-value-end_time" />
                     </div>
                 </li>
 
@@ -644,9 +580,9 @@
                     </div>
 
                     <div class="item-content two">
-                        <select>
-                            <option>Available</option>
-                            <option>Unavailable</option>
+                        <select class="property-value property-value-available">
+                            <option value="true">Available</option>
+                            <option value="false">Unavailable</option>
                         </select>
                     </div>
                 </li>
@@ -657,9 +593,9 @@
                     </div>
 
                     <div class="item-content two">
-                        <input type="text" value="8 apr." />
+                        <input type="text" class="property-value property-value-start_date" />
                         <span>to</span>
-                        <input type="text" />
+                        <input type="text" class="property-value property-value-end_date" />
                     </div>
                 </li>
 
@@ -669,8 +605,11 @@
                     </div>
 
                     <div class="item-content two">
-                        <select>
-                            <option>Every other week</option>
+                        <select class="property-value property-value-repeat">
+                            <option value="1">Every other week</option>
+                            <option value="2">Every second week</option>
+                            <option value="3">Every third week</option>
+                            <option value="4">Every forth week</option>
                         </select>
                     </div>
                 </li>
@@ -693,9 +632,9 @@
                     </div>
 
                     <div class="item-content two">
-                        <input type="text" value="8 apr." />
+                        <input type="text" class="property-value property-value-start" />
                         <span>to</span>
-                        <input type="text" />
+                        <input type="text" class="property-value property-value-end" />
                     </div>
                 </li>
 
@@ -705,7 +644,7 @@
                     </div>
 
                     <div class="item-content">
-                        <input type="text" placeholder="Reason" />
+                        <input type="text" placeholder="Reason" class="property-value property-value-reason" />
                     </div>
                 </li>
             </ul>

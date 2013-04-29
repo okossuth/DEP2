@@ -1,0 +1,73 @@
+<ul>
+
+{{#elements}}
+
+<li id="element-view-{{pk}}-{{cid}}" class="working-hour element">
+    <div class="wireframe">
+        <div class="side-container">
+            <ul class="attributes">
+                <li>
+                    <strong>Time</strong>
+                    <span>{{start_time}} to {{end_time}}</span>
+                </li>
+                <li>
+                    <strong>Status</strong>
+                    <span>{{available}}</span>
+                </li>
+                <li>
+                    <strong>Date</strong>
+                    <span>{{start_date}}{{end_date}}</span>
+                </li>
+                <li>
+                    <strong>Repeat </strong>
+                    <span>{{repeat}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="columns weekdays">
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+
+            <li class="weekday">
+                <i class="icon inline unchecked"></i>
+                <i class="icon inline checked"></i>
+            </li>
+        </ul>
+
+        <div class="edit-button">
+            Edit
+        </div>
+    </div>
+</li>
+
+{{/elements}}
+
+</ul>

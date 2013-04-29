@@ -36,7 +36,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'models/resources/Communication', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(User, Communication, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
+require(['models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(User, Communication, EditPopupWorkingHour, EditPopupTimeoff, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -57,6 +57,13 @@ require(['models/resources/User', 'models/resources/Communication', 'collections
       _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);
       _page = ovivo.desktop.pages.addPage(eval(pageVarName + 'Page'), _pageInstanceName);
       return true;
+    });
+    ovivo.desktop.popups = {};
+    _.each(['EditPopupWorkingHour', 'EditPopupTimeoff'], function(popupName) {
+      var _popupInstanceName;
+
+      _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);
+      return ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))();
     });
     _.each(ovivo.desktop.resources, (function() {
       var _complete, _num, _total;

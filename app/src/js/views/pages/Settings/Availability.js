@@ -4,7 +4,12 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
     el: '.page.page-settings .availability-view',
     name: 'availability',
     events: {},
+    addWorkingHour: function(workingHour) {
+      return this.workingHours.append(workingHour.editView.el);
+    },
     initialize: function() {
+      this.workingHours = this.$('.working-hours');
+      ovivo.desktop.resources.workingHours.on('add', this.addWorkingHour, this);
       return true;
     }
   });

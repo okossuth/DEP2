@@ -2,9 +2,10 @@ define [
   'models/resources/ResourceBase',
 
   'views/resources/WorkingHour',
+  'views/resources/WorkingHourEdit',
 
   'ovivo'
-], (ResourceBase, View) ->
+], (ResourceBase, View, EditView) ->
   ResourceBase.extend
     typeName: 'workingHour'
 
@@ -147,5 +148,8 @@ define [
 
       @groupsHash = _.reduce @groups(), ((memo, elem) -> memo[elem] = true; memo), {}
       @updateWeekdaysHash()
+
+      @editView = new EditView
+        model: @
 
       true
