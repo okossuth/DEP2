@@ -131,7 +131,7 @@ section.page .notification-message {
   width: 210px;
   height: 210px;
   margin: -105px 0 0 -105px;
-  z-index: 1000;
+  z-index: 9999999;
   text-align: center; }
   section.page .notification-message div.background {
     position: absolute;
@@ -277,7 +277,11 @@ section.page .notification-message {
         display: inline-block;
         position: relative;
         top: 4px;
-        border: 2px solid transparent; }
+        border: 2px solid transparent;
+        cursor: pointer; }
+        .page > header > div.line > ul.switcher > li > span {
+          display: inline-block;
+          padding: 6px; }
         .page > header > div.line > ul.switcher > li.selected {
           border: 2px solid #007550; }
 

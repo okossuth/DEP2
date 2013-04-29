@@ -5,7 +5,7 @@ section.page .notification-message {
   width: 210px;
   height: 210px;
   margin: -105px 0 0 -105px;
-  z-index: 1000;
+  z-index: 9999999;
   text-align: center; }
   section.page .notification-message div.background {
     position: absolute;

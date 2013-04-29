@@ -57,12 +57,6 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       this.$('ul.comments').append(comment.view.el);
       return true;
     },
-    syncEvent: function(event) {
-      var _text;
-
-      _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
-      return notificationMessage.post(this.el, _text);
-    },
     changeEvent: function() {
       var _event, _eventDetailsView, _prevEvent,
         _this = this;
@@ -77,12 +71,8 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       this.$('.event-container').append(_eventDetailsView.el);
       _eventDetailsView.delegateEvents();
       _event.comments.on('add', this.addComment, this);
-      _event.on('sync', this.syncEvent, this);
       if (_prevEvent != null) {
         _prevEvent.comments.off('add', this.addComment);
-      }
-      if (_prevEvent != null) {
-        _prevEvent.off('sync', this.syncEvent);
       }
       _event.comments.def.done(function() {
         return _this.renderComments();

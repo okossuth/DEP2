@@ -65,11 +65,6 @@ define [
 
       true
 
-    syncEvent: (event) ->
-      _text = if event.has_applied() is true then gettext('Your bid has now been received') else gettext('Your bid has been removed')
-
-      notificationMessage.post @el, _text
-
     changeEvent: () ->
       @clearInput()
       
@@ -89,10 +84,7 @@ define [
 
       _event.comments.on 'add', @addComment, @
 
-      _event.on 'sync', @syncEvent, @
-
       _prevEvent?.comments.off 'add', @addComment
-      _prevEvent?.off 'sync', @syncEvent
 
       _event.comments.def.done () => @renderComments()
 
