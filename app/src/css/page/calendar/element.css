@@ -8,6 +8,8 @@ ul.months-list .element, ul.weeks-list .element, .page-event-details .element {
       cursor: pointer; }
     ul.months-list .element.event:last-child, ul.months-list .element.event.expanded, ul.weeks-list .element.event:last-child, ul.weeks-list .element.event.expanded, .page-event-details .element.event:last-child, .page-event-details .element.event.expanded {
       max-height: none; }
+    ul.months-list .element.event .element-container > div.buttons > div.button-element.single, ul.weeks-list .element.event .element-container > div.buttons > div.button-element.single, .page-event-details .element.event .element-container > div.buttons > div.button-element.single {
+      width: 100%; }
   ul.months-list .element > div.element-container, ul.weeks-list .element > div.element-container, .page-event-details .element > div.element-container {
     border-radius: 2px;
     overflow: hidden;
@@ -59,7 +61,8 @@ ul.months-list .element, ul.weeks-list .element, .page-event-details .element {
       box-shadow: inset 0 1px 0 #f6f5f4;
       overflow: hidden;
       border-radius: 0 0 2px 2px;
-      height: 41px; }
+      height: 41px;
+      cursor: pointer; }
       ul.months-list .element > div.element-container > div.buttons > div.button-element, ul.weeks-list .element > div.element-container > div.buttons > div.button-element, .page-event-details .element > div.element-container > div.buttons > div.button-element {
         position: relative;
         float: left;

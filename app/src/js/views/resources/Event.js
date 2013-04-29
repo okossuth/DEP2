@@ -104,16 +104,9 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       this.$('.element-container').removeClass('open open-responses closed').addClass(this.type());
       return true;
     },
-    processSync: function(event, events, options) {
-      var _text;
-
-      _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
-      return notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, _text);
-    },
     initialize: function() {
       this.model.setDeltaHours();
       this.proxyCall('initialize', arguments);
-      this.model.on('sync', this.processSync, this);
       this.biddingClosed = this._biddingClosed();
       if ((ovivo.desktop.resources.groups.def.state() !== 'resolved') || (ovivo.desktop.resources.municipalities.def.state() !== 'resolved') || (ovivo.desktop.resources.primaryDepartments.def.state() !== 'resolved')) {
         $.when(ovivo.desktop.resources.groups.def, ovivo.desktop.resources.municipalities.def, ovivo.desktop.resources.primaryDepartments.def).then(_.bind(this.render, this));

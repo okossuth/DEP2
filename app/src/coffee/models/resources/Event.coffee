@@ -6,8 +6,10 @@ define [
   'views/resources/Event',
   'views/resources/EventDetails',
 
+  '_features/notificationMessage',
+
   'ovivo'
-], (ResourceBase, Comments, View, DetailsView) ->
+], (ResourceBase, Comments, View, DetailsView, notificationMessage) ->
   ResourceBase.extend
     typeName: 'event'
 
@@ -82,6 +84,11 @@ define [
     changeApplicationStatus: (model, flag, obj) -> 
       if (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
 
+    processSync: (event, events, options) ->
+      _text = if event.has_applied() is true then gettext('Your bid has now been received') else gettext('Your bid has been removed')
+
+      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, _text
+
     initialize: (attrs, options) ->
       @comments = new Comments [],
         event: @
@@ -91,5 +98,7 @@ define [
       @proxyCall 'initialize', arguments
 
       @on 'change:has_applied', @changeApplicationStatus, @
+
+      @on 'sync', @processSync, @
 
       true

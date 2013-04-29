@@ -84,17 +84,10 @@ define [
 
       true
 
-    processSync: (event, events, options) ->
-      _text = if event.has_applied() is true then gettext('Your bid has now been received') else gettext('Your bid has been removed')
-
-      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, _text
-
     initialize: () ->
       @model.setDeltaHours()
 
       @proxyCall 'initialize', arguments
-
-      @model.on 'sync', @processSync, @
 
       @biddingClosed = @_biddingClosed()
 
