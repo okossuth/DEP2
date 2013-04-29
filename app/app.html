@@ -230,7 +230,7 @@
                         </div>
 
                         <div class="item-content">
-                            <ul class="options-group">
+                            <ul class="options-group options-notify_email">
                                 <li class="option selected">
                                     <span>Yes</span>
                                 </li>
@@ -248,7 +248,7 @@
                         </div>
 
                         <div class="item-content">
-                            <ul class="options-group">
+                            <ul class="options-group options-notify_sms">
                                 <li class="option selected">
                                     <span>Yes</span>
                                 </li>
@@ -266,7 +266,7 @@
                         </div>
 
                         <div class="item-content">
-                            <ul class="options-group">
+                            <ul class="options-group options-activity_digest">
                                 <li class="option selected">
                                     <span>Yes</span>
                                 </li>
@@ -284,7 +284,7 @@
                         </div>
 
                         <div class="item-content">
-                            <ul class="options-group">
+                            <ul class="options-group options-response_confirmation">
                                 <li class="option selected">
                                     <span>Yes</span>
                                 </li>
@@ -302,13 +302,35 @@
                         </div>
 
                         <div class="item-content">
-                            <ul class="options-group">
+                            <ul class="options-group options-event_reminders">
                                 <li class="option selected">
                                     <span>Yes</span>
                                 </li>
 
                                 <li class="option">
                                     <span>No</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>The number of days inside of which a user will be notified of a new event immediately by text and/or email</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <ul class="options-group options-event_urgent_within">
+                                <li class="option selected">
+                                    <span>3d</span>
+                                </li>
+
+                                <li class="option">
+                                    <span>7d</span>
+                                </li>
+
+                                <li class="option">
+                                    <span>14d</span>
                                 </li>
                             </ul>
                         </div>
@@ -734,7 +756,7 @@
 
             ovivo._config = {
                 USER_ID: 1979,
-                TEST_SESSIONID_COOKIE: 'df38275cdad52e31194a5bbfb8b0bac9',
+                TEST_SESSIONID_COOKIE: '5d54d02bdd61fef7a05063b9501a7d01',
                 SOCKET_IO_CONNECT_URL: 'http://dev.ovivo.dk:8888/',
                 FB_APP_ID: 450545431639022,
                 TIMEZONE_OFFSET: 7200000,

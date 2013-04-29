@@ -17,7 +17,7 @@ var precacheResources = [
 ];
 
 var proxyFunc = function (req, res) {
-    req.headers.cookie = 'sessionid=df38275cdad52e31194a5bbfb8b0bac9';
+    req.headers.cookie = 'sessionid=5d54d02bdd61fef7a05063b9501a7d01';
 
     proxy.proxyRequest(req, res);
 };
