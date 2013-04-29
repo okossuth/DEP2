@@ -42,6 +42,8 @@ define [
       _.each _.without(@subViews, @subViews[name]), (subView) ->
         @$(".#{subView.name}-only").hide()
 
+      @processScroll.call @subViews[name].el
+
       @$(".#{name}-only").show()
 
       @model.set 'subView', name
@@ -71,10 +73,28 @@ define [
 
       true
 
+    processContentScrollBind: ($el) ->
+      () ->
+        if (this.scrollTop isnt 0) and (@scrolled isnt true)
+          $el.addClass('scrolled')
+
+          @scrolled = true
+
+        if this.scrollTop is 0
+          $el.removeClass('scrolled')
+
+          @scrolled = false
+
+        true
+
     initialize: () ->
       @model.on 'change:subView', @processSubView, @
 
-      @content = @$('div.content')[0]
+      @content = @$('div.content')
+
+      @processScroll = @processContentScrollBind @$el
+
+      @content.on 'scroll', @processScroll
 
       @subViews = []
 

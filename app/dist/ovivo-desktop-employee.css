@@ -219,6 +219,9 @@ section.page .notification-message {
   bottom: 0;
   background: #f3f2ec; }
 
+.page.scrolled > header div.shadow {
+  display: block; }
+
 .page > header {
   position: absolute;
   top: 0;
@@ -237,7 +240,8 @@ section.page .notification-message {
     width: 100%;
     background: black;
     opacity: 0.05;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)"; }
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
+    display: none; }
   .page > header > div.line {
     height: 39px;
     line-height: 16px; }

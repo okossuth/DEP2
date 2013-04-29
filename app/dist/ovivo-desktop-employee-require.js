@@ -16483,6 +16483,7 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       _.each(_.without(this.subViews, this.subViews[name]), function(subView) {
         return this.$("." + subView.name + "-only").hide();
       });
+      this.processScroll.call(this.subViews[name].el);
       this.$("." + name + "-only").show();
       return this.model.set('subView', name);
     },
@@ -16513,11 +16514,26 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       }
       return true;
     },
+    processContentScrollBind: function($el) {
+      return function() {
+        if ((this.scrollTop !== 0) && (this.scrolled !== true)) {
+          $el.addClass('scrolled');
+          this.scrolled = true;
+        }
+        if (this.scrollTop === 0) {
+          $el.removeClass('scrolled');
+          this.scrolled = false;
+        }
+        return true;
+      };
+    },
     initialize: function() {
       var _this = this;
 
       this.model.on('change:subView', this.processSubView, this);
-      this.content = this.$('div.content')[0];
+      this.content = this.$('div.content');
+      this.processScroll = this.processContentScrollBind(this.$el);
+      this.content.on('scroll', this.processScroll);
       this.subViews = [];
       _.each(this.SubViews, function(SubView) {
         var _subView;
