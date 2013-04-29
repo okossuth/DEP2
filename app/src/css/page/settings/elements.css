@@ -19,28 +19,30 @@
     display: inline-block;
     font-family: "Helvetica Neue Bold", HelveticaNeueBold;
     font-weight: normal; }
-.page.page-settings .elements > li.element {
-  background: white;
-  border-radius: 2px;
-  box-shadow: 0 1px 0 #d9d6c6;
-  overflow: hidden;
-  margin: 10px 0 0 0; }
-  .page.page-settings .elements > li.element:first-child {
-    margin-top: 0; }
-  .page.page-settings .elements > li.element > .wireframe .side-container {
-    border-right: 1px solid #e4e2d6; }
-  .page.page-settings .elements > li.element > .wireframe .edit-button, .page.page-settings .elements > li.element > .wireframe .remove-button {
-    position: absolute;
-    background: #e4e2d6;
-    color: #807e73;
-    font-size: 13px;
-    right: 0;
-    top: 0;
-    padding: 4px 0;
-    width: 70px;
-    cursor: pointer;
-    text-align: center; }
-  .page.page-settings .elements > li.element > .wireframe .edit-button {
-    right: 0; }
-  .page.page-settings .elements > li.element > .wireframe .remove-button {
-    right: 73px; }
+.page.page-settings .elements {
+  margin: 200px 0 0 0; }
+  .page.page-settings .elements > li.element {
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 #d9d6c6;
+    overflow: hidden;
+    margin: 10px 0 0 0; }
+    .page.page-settings .elements > li.element:first-child {
+      margin-top: 0; }
+    .page.page-settings .elements > li.element > .wireframe .side-container {
+      border-right: 1px solid #e4e2d6; }
+    .page.page-settings .elements > li.element > .wireframe .edit-button, .page.page-settings .elements > li.element > .wireframe .remove-button {
+      position: absolute;
+      background: #e4e2d6;
+      color: #807e73;
+      font-size: 13px;
+      right: 0;
+      top: 0;
+      padding: 4px 0;
+      width: 70px;
+      cursor: pointer;
+      text-align: center; }
+    .page.page-settings .elements > li.element > .wireframe .edit-button {
+      right: 0; }
+    .page.page-settings .elements > li.element > .wireframe .remove-button {
+      right: 73px; }
