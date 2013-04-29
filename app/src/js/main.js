@@ -9,7 +9,8 @@ requirejs.config({
     'templates': '../../dist/templates',
     'fastclick': '../../lib/fastclick',
     'airbrake': '../../lib/airbrake',
-    'date': '../../lib/date'
+    'date': '../../lib/date',
+    'pickadate': '../../lib/pickadate.legacy'
   },
   shim: {
     'ovivo': {
@@ -25,6 +26,9 @@ requirejs.config({
       deps: ['underscore']
     },
     'underscore': {
+      deps: ['pickadate']
+    },
+    'pickadate': {
       deps: ['jquery']
     },
     'jquery': {

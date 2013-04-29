@@ -4,8 +4,10 @@ define [
   'views/resources/WorkingHour',
   'views/resources/WorkingHourEdit',
 
+  '_features/validators',
+
   'ovivo'
-], (ResourceBase, View, EditView) ->
+], (ResourceBase, View, EditView, validators) ->
   ResourceBase.extend
     typeName: 'workingHour'
 
@@ -56,6 +58,20 @@ define [
         undefined
 
       else gettext('Params are missing')
+
+    validate: (attrs) ->
+      _.reduce [{
+          name: 'start_time',
+          value: attrs.start_time, 
+        }, {
+          name: 'end_time',
+          value: attrs.end_time
+      }], ((memo, obj) =>
+        if typeof memo isnt 'undefined'
+          memo
+        else
+          validators.time obj.name, obj.value
+        ), undefined
 
     processChange: (model, obj) ->
       if @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()

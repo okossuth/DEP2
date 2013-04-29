@@ -8,7 +8,8 @@
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
     "airbrake": "../../lib/airbrake",
-    "date": "../../lib/date"
+    "date": "../../lib/date",
+    "pickadate": "../../lib/pickadate.legacy"
   },
 
   shim: {
@@ -29,6 +30,10 @@
     },
     
     "underscore": {
+      deps: ["pickadate"]
+    },
+
+    "pickadate": {
       deps: ["jquery"]
     },
     

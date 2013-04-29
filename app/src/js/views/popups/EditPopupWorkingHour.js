@@ -32,6 +32,11 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;
+      this.$('.datepicker').pickadate({
+        format: 'yyyy-mm-dd',
+        formatSubmit: 'yyyy-mm-dd',
+        firstDay: 1
+      });
       this._initialize();
       return true;
     }

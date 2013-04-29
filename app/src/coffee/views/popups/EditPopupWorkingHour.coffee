@@ -41,6 +41,11 @@ define [
     initialize: () ->
       @collection = ovivo.desktop.resources.workingHours
 
+      @$('.datepicker').pickadate
+        format: 'yyyy-mm-dd'
+        formatSubmit: 'yyyy-mm-dd'
+        firstDay: 1
+
       @_initialize()
 
       true

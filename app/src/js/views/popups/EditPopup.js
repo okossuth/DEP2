@@ -6,13 +6,15 @@ define(['ovivo'], function() {
       'click .close': 'close',
       'click .button-add': 'add'
     },
-    propertyRegExp: /\bproperty-value-(.+)\b/,
+    propertyRegExp: /\bproperty-value-(\w+)\b/,
     changeProperty: function(e) {
       var _input, _name;
 
       _input = $(e.target).closest('.property-value');
       _name = this.propertyRegExp.exec(_input[0].className)[1];
-      return this.model.set(_name, this.types[_name](_input.val()));
+      return this.model.set(_name, this.types[_name](_input.val()), {
+        validate: true
+      });
     },
     close: function() {
       return this.hide();
@@ -28,7 +30,15 @@ define(['ovivo'], function() {
       this.model = model;
       this.$('.button-add').hide();
       return _.each(this.fields, function(field) {
-        return _this.$('.property-value-' + field).val(model[field]().toString());
+        var _date, _input;
+
+        _input = _this.$('.property-value-' + field);
+        if (_input.hasClass('datepicker')) {
+          _date = new Date(Date.parse(model[field]()));
+          return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+        } else {
+          return _this.$('.property-value-' + field).val(model[field]().toString());
+        }
       });
     },
     show: function() {
