@@ -1,0 +1,28 @@
+.page.page-settings .availability-view .wireframe.elements-header {
+  height: 50px; }
+.page.page-settings .availability-view .attributes {
+  display: block;
+  width: 180px;
+  margin: 13px auto 0 auto; }
+.page.page-settings .availability-view ul.columns {
+  overflow: auto; }
+  .page.page-settings .availability-view ul.columns.weekdays {
+    padding: 34px 0 0 0; }
+  .page.page-settings .availability-view ul.columns.weekdays-titles {
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    padding: 10px 0 0 0; }
+    .page.page-settings .availability-view ul.columns.weekdays-titles > li {
+      color: #807e73;
+      font-size: 13px; }
+  .page.page-settings .availability-view ul.columns > li {
+    width: 14.28571%;
+    text-align: center;
+    float: left; }
+    .page.page-settings .availability-view ul.columns > li > i.checked {
+      display: none; }
+    .page.page-settings .availability-view ul.columns > li.checked > i.unchecked {
+      display: none; }
+    .page.page-settings .availability-view ul.columns > li.checked > i.checked {
+      display: inline-block; }
+.page.page-settings .availability-view .elements > li.element > .wireframe {
+  height: 94px; }

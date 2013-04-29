@@ -20,6 +20,11 @@ html, body {
   font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
 
 input {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  background: white;
   font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
 
 body {
@@ -137,6 +142,60 @@ section.page .notification-message {
     font: normal 14px "HelveticaNeueBold";
     font-style: italic;
     color: white; }
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: #e4e2d6;
+  opacity: 0.75;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; }
+
+.popup {
+  width: 300px;
+  background: white;
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  z-index: 100000;
+  margin: 0 0 0 -158px;
+  padding: 16px; }
+  .popup > h1, .popup > div.close {
+    color: #807e73;
+    font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold; }
+  .popup > h1 {
+    text-align: center;
+    padding: 7px 0 0 0; }
+  .popup > div.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; }
+  .popup > div.button-add {
+    width: 156px;
+    margin: 0 auto;
+    display: block; }
+  .popup > .settings-items {
+    margin: 20px 0; }
+    .popup > .settings-items > li.settings-item > div.item-content {
+      text-align: center; }
+      .popup > .settings-items > li.settings-item > div.item-content > input, .popup > .settings-items > li.settings-item > div.item-content > select {
+        background: #ebe9e0;
+        color: #525044;
+        font-size: 15px;
+        text-align: center;
+        padding: 9px 9px;
+        width: 287px; }
+      .popup > .settings-items > li.settings-item > div.item-content > span {
+        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold;
+        font-style: italic;
+        color: #807e73;
+        margin: 0 4px; }
+      .popup > .settings-items > li.settings-item > div.item-content.two > input {
+        width: 110px; }
 
 
 .page > div.content {
@@ -694,6 +753,19 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     font-size: 21px;
     display: inline-block;
     margin: 0 30px 0 0; }
+  .page.page-settings .content > div.info {
+    margin: 40px 0 0 0; }
+    .page.page-settings .content > div.info > h2, .page.page-settings .content > div.info > h3 {
+      text-align: center;
+      font-weight: normal; }
+    .page.page-settings .content > div.info > h2 {
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-size: 17px;
+      color: #807e73; }
+    .page.page-settings .content > div.info > h3 {
+      margin: 20px 0 0 0;
+      font-size: 15px;
+      color: #807e73; }
 
 .page.page-settings .content ul.sections-menu {
   overflow: auto;
@@ -718,3 +790,122 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
       display: inline-block;
       margin: 8px 0; }
 
+.page.page-settings .wireframe {
+  margin: 0 0 0 210px;
+  position: relative; }
+  .page.page-settings .wireframe .side-container {
+    position: absolute;
+    top: 0;
+    left: -210px;
+    width: 210px;
+    height: 100%; }
+.page.page-settings .wireframe.elements-header {
+  height: 60px;
+  margin-top: 23px; }
+  .page.page-settings .wireframe.elements-header .button {
+    width: 158px; }
+.page.page-settings .attributes > li {
+  font-size: 13px; }
+  .page.page-settings .attributes > li > strong {
+    width: 70px;
+    display: inline-block;
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    font-weight: normal; }
+.page.page-settings .elements > li.element {
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 #d9d6c6;
+  overflow: hidden; }
+  .page.page-settings .elements > li.element > .wireframe .side-container {
+    border-right: 1px solid #e4e2d6; }
+  .page.page-settings .elements > li.element > .wireframe .edit-button {
+    position: absolute;
+    background: #e4e2d6;
+    color: #807e73;
+    font-size: 13px;
+    right: 0;
+    top: 0;
+    padding: 4px 15px; }
+
+.page.page-settings .timeoff-view .attributes {
+  padding: 22px 0 0 30px; }
+.page.page-settings .timeoff-view .elements > li.element > .wireframe {
+  height: 94px; }
+  .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container {
+    text-align: center; }
+    .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container i {
+      margin: 32px 0 0 0; }
+
+.page.page-settings .availability-view .wireframe.elements-header {
+  height: 50px; }
+.page.page-settings .availability-view .attributes {
+  display: block;
+  width: 180px;
+  margin: 13px auto 0 auto; }
+.page.page-settings .availability-view ul.columns {
+  overflow: auto; }
+  .page.page-settings .availability-view ul.columns.weekdays {
+    padding: 34px 0 0 0; }
+  .page.page-settings .availability-view ul.columns.weekdays-titles {
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    padding: 10px 0 0 0; }
+    .page.page-settings .availability-view ul.columns.weekdays-titles > li {
+      color: #807e73;
+      font-size: 13px; }
+  .page.page-settings .availability-view ul.columns > li {
+    width: 14.28571%;
+    text-align: center;
+    float: left; }
+    .page.page-settings .availability-view ul.columns > li > i.checked {
+      display: none; }
+    .page.page-settings .availability-view ul.columns > li.checked > i.unchecked {
+      display: none; }
+    .page.page-settings .availability-view ul.columns > li.checked > i.checked {
+      display: inline-block; }
+.page.page-settings .availability-view .elements > li.element > .wireframe {
+  height: 94px; }
+
+
+.settings-items {
+  margin: 50px 0 0 0; }
+  .settings-items > li.settings-item {
+    font-size: 15px;
+    margin: 22px 0 0 0; }
+    .settings-items > li.settings-item:first-child {
+      margin-top: 0; }
+    .settings-items > li.settings-item > div.header span {
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      color: #525044;
+      margin: 0 10px 0 0; }
+    .settings-items > li.settings-item > div.header em {
+      font-style: normal;
+      color: #807e73; }
+    .settings-items > li.settings-item > div.item-content {
+      margin: 13px 0 0 0; }
+      .settings-items > li.settings-item > div.item-content > div.input-wrapper {
+        background: white;
+        border-radius: 1px;
+        box-shadow: 0 1px 0 #d9d6c6;
+        padding: 10px; }
+        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input {
+          font-size: 15px;
+          color: #525044;
+          width: 100%; }
+      .settings-items > li.settings-item > div.item-content > ul.options-group {
+        overflow: auto; }
+        .settings-items > li.settings-item > div.item-content > ul.options-group > li.option {
+          display: block;
+          float: left;
+          margin: 0 0 0 30px;
+          padding: 8px 10px;
+          border: 1px solid #807e73;
+          border-radius: 2px;
+          font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+          color: #807e73;
+          width: 80px; }
+          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option.selected {
+            color: white;
+            border-color: #007550;
+            background: #007550; }
+          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option:first-child {
+            margin-left: 0; }

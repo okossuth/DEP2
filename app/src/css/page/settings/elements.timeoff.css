@@ -1,0 +1,8 @@
+.page.page-settings .timeoff-view .attributes {
+  padding: 22px 0 0 30px; }
+.page.page-settings .timeoff-view .elements > li.element > .wireframe {
+  height: 94px; }
+  .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container {
+    text-align: center; }
+    .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container i {
+      margin: 32px 0 0 0; }

@@ -3,8 +3,28 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
   return PageBase.extend({
     el: '.page.page-settings .general-view',
     name: 'general',
-    events: {},
+    events: {
+      'change input.value': 'changeValue'
+    },
+    nameRegExp: /\bvalue-(.+)\b/,
+    keys: ['first_name', 'last_name', 'mobile_phone', 'email'],
+    changeValue: function(e) {
+      var _input, _name;
+
+      _input = $(e.target).closest('.value')[0];
+      _name = this.nameRegExp.exec(_input.className)[1];
+      return ovivo.desktop.resources.user.set(_name, _input.value);
+    },
+    setValues: function() {
+      var _this = this;
+
+      return _.each(this.keys, function(key) {
+        return _this.$('input.value-' + key).val(ovivo.desktop.resources.user[key]());
+      });
+    },
     initialize: function() {
+      ovivo.desktop.resources.user.def.done(_.bind(this.setValues, this));
+      ovivo.desktop.resources.user.on('sync', this.setValues, this);
       return true;
     }
   });
