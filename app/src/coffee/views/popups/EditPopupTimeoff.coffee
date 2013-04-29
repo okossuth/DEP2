@@ -36,6 +36,16 @@ define [
     initialize: () ->
       @collection = ovivo.desktop.resources.inactivities
 
+      _min = Date.today()
+      _min.setDate _min.getDate() + 1
+
+      @$('.datepicker').pickadate
+        format: 'yyyy-mm-dd'
+        formatSubmit: 'yyyy-mm-dd'
+        firstDay: 1
+        min: 1
+        max: false
+
       @_initialize()
 
       true
