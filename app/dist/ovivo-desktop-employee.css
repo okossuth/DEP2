@@ -1034,8 +1034,6 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
       ul.months-list.specific .element.event > div.element-container > div.buttons > div.button-element > div.button-inner, ul.weeks-list.specific .element.event > div.element-container > div.buttons > div.button-element > div.button-inner {
         height: 13px;
         line-height: 13px; }
-        ul.months-list.specific .element.event > div.element-container > div.buttons > div.button-element > div.button-inner > span, ul.weeks-list.specific .element.event > div.element-container > div.buttons > div.button-element > div.button-inner > span {
-          font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
   ul.months-list.specific .element.event:last-child, ul.months-list.specific .element.event.expanded, ul.weeks-list.specific .element.event:last-child, ul.weeks-list.specific .element.event.expanded {
     max-height: none; }
   ul.months-list.specific .element.event .element-container > div.buttons > div.button-element.single, ul.weeks-list.specific .element.event .element-container > div.buttons > div.button-element.single {
