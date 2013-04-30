@@ -9,6 +9,25 @@
 
     .elements
       > li.element
+        .side-container
+          i
+            display: none
+
+        &.pending
+          .side-container
+            i.pending
+              display: inline-block
+
+        &.approved
+          .side-container
+            i.approved
+              display: inline-block
+
+        &.not-approved
+          .side-container
+            i.not-approved
+              display: inline-block
+
         > .wireframe
           height: 94px
 

@@ -1,5 +1,13 @@
 .page.page-settings .timeoff-view .attributes {
   padding: 22px 0 0 30px; }
+.page.page-settings .timeoff-view .elements > li.element .side-container i {
+  display: none; }
+.page.page-settings .timeoff-view .elements > li.element.pending .side-container i.pending {
+  display: inline-block; }
+.page.page-settings .timeoff-view .elements > li.element.approved .side-container i.approved {
+  display: inline-block; }
+.page.page-settings .timeoff-view .elements > li.element.not-approved .side-container i.not-approved {
+  display: inline-block; }
 .page.page-settings .timeoff-view .elements > li.element > .wireframe {
   height: 94px; }
   .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container {

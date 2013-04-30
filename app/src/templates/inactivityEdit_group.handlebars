@@ -5,7 +5,9 @@
 <li id="element-view-{{pk}}-{{cid}}" class="working-hour element">
     <div class="wireframe">
         <div class="side-container">
-            <i class="icon wait inline"></i>
+            <i class="pending icon wait inline"></i>
+            <i class="approved icon checked inline"></i>
+            <i class="not-approved icon unchecked inline"></i>
         </div>
 
         <ul class="attributes">
@@ -17,10 +19,13 @@
                 <strong>Date </strong>
                 <span>{{start}} – {{end}}</span>
             </li>
+
+            {{#isReason}}
             <li>
                 <strong>Note</strong>
                 <span>{{reason}}</span>
             </li>
+            {{/isReason}}
         </ul>
 
         <div class="edit-button">

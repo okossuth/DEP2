@@ -34,6 +34,14 @@ define [
 
       else gettext('Pending')
 
+    postRender: () ->
+      @$el.removeClass 'approved not-approved pending'
+
+      @$el.addClass if (_approved = @model.approved())?
+        if _approved is true then 'approved' else 'not-approved'
+
+      else 'pending'
+
     isReason: () -> (_reason = @reason())? and (_reason isnt '')
 
     initialize: () ->

@@ -52,6 +52,12 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return gettext('Pending');
       }
     },
+    postRender: function() {
+      var _approved;
+
+      this.$el.removeClass('approved not-approved pending');
+      return this.$el.addClass((_approved = this.model.approved()) != null ? _approved === true ? 'approved' : 'not-approved' : 'pending');
+    },
     isReason: function() {
       var _reason;
 

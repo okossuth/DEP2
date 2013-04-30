@@ -826,10 +826,19 @@ templates['inactivity'] = template(function (Handlebars,depth0,helpers,partials,
   return buffer;});
 templates['inactivityEdit'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n        <li>\r\n            <strong>Note</strong>\r\n            <span>";
+  foundHelper = helpers.reason;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.reason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </li>\r\n        ";
+  return buffer;}
 
-  buffer += "<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <i class=\"icon wait inline\"></i>\r\n    </div>\r\n\r\n    <ul class=\"attributes\">\r\n        <li>\r\n            <strong>Status</strong>\r\n            <span>";
+  buffer += "<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <i class=\"pending icon wait inline\"></i>\r\n        <i class=\"approved icon checked inline\"></i>\r\n        <i class=\"not-approved icon unchecked inline\"></i>\r\n    </div>\r\n\r\n    <ul class=\"attributes\">\r\n        <li>\r\n            <strong>Status</strong>\r\n            <span>";
   foundHelper = helpers.approved;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.approved; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -841,11 +850,13 @@ templates['inactivityEdit'] = template(function (Handlebars,depth0,helpers,parti
   foundHelper = helpers.end;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        </li>\r\n        <li>\r\n            <strong>Note</strong>\r\n            <span>";
-  foundHelper = helpers.reason;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.reason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        Edit\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        Remove\r\n    </div>\r\n</div>";
+  buffer += escapeExpression(stack1) + "</span>\r\n        </li>\r\n\r\n        ";
+  foundHelper = helpers.isReason;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.isReason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isReason) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        Edit\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        Remove\r\n    </div>\r\n</div>";
   return buffer;});
 templates['inactivityEdit_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -862,7 +873,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"wireframe\">\r\n        <div class=\"side-container\">\r\n            <i class=\"icon wait inline\"></i>\r\n        </div>\r\n\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>Status</strong>\r\n                <span>";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"wireframe\">\r\n        <div class=\"side-container\">\r\n            <i class=\"pending icon wait inline\"></i>\r\n            <i class=\"approved icon checked inline\"></i>\r\n            <i class=\"not-approved icon unchecked inline\"></i>\r\n        </div>\r\n\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>Status</strong>\r\n                <span>";
   foundHelper = helpers.approved;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.approved; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -874,11 +885,22 @@ function program1(depth0,data) {
   foundHelper = helpers.end;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>Note</strong>\r\n                <span>";
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n\r\n            ";
+  foundHelper = helpers.isReason;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.isReason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.isReason) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </ul>\r\n\r\n        <div class=\"edit-button\">\r\n            Edit\r\n        </div>\r\n\r\n        <div class=\"remove-button\">\r\n            Remove\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n            <li>\r\n                <strong>Note</strong>\r\n                <span>";
   foundHelper = helpers.reason;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.reason; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        </ul>\r\n\r\n        <div class=\"edit-button\">\r\n            Edit\r\n        </div>\r\n\r\n        <div class=\"remove-button\">\r\n            Remove\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            ";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
