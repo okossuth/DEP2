@@ -1,10 +1,11 @@
 define [
+  'views/popups/Popup',
+
   'ovivo'
-], () ->
-  Backbone.View.extend
-    events:
+], (Popup) ->
+  Popup.extend
+    events: _.extend {}, Popup.prototype.events,
       'change .property-value': 'changeProperty'
-      'click .close': 'close'
       'click .button-add': 'add'
       'click .button-delete': 'delete'
 
@@ -16,8 +17,6 @@ define [
 
       @model.set _name, @types[_name](_input.val()),
         validate: true
-
-    close: () -> @hide()
 
     _getSyncHandler: (collection, model) ->
       _handler = () -> 
@@ -69,16 +68,3 @@ define [
 
         else
           @$('.property-value-' + field).val model[field]().toString()
-
-    show: () ->
-      @$el.show()
-
-      $('.popup-overlay').show()
-
-    hide: () ->
-      @$el.hide()
-
-      $('.popup-overlay').hide()
-
-    _initialize: () ->
-      true

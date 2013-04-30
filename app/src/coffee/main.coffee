@@ -42,6 +42,7 @@ require [
 
   'views/popups/EditPopupWorkingHour',
   'views/popups/EditPopupTimeoff',
+  'views/popups/CreateNewPopup',
 
   'collections/Pages',
 
@@ -66,7 +67,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, Communication, EditPopupWorkingHour, EditPopupTimeoff, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
+], (User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -118,7 +119,8 @@ require [
 
       _.each [
         'EditPopupWorkingHour',
-        'EditPopupTimeoff'
+        'EditPopupTimeoff',
+        'CreateNewPopup'
       ], (popupName) ->
         _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
 

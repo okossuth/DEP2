@@ -107,9 +107,7 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     ul.months-list > li table.days-container .week-row > .cell.disabled > div > span, ul.months-list > li table.days-container .week-row > .cell.disabled > div > em, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > span, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > em {
       color: #a19f92; }
     ul.months-list > li table.days-container .week-row > .cell.current, ul.weeks-list > li table.days-container .week-row > .cell.current {
-      background: #f3f2ec; }
-      ul.months-list > li table.days-container .week-row > .cell.current > div, ul.weeks-list > li table.days-container .week-row > .cell.current > div {
-        background: #f3f2ec; }
+      border: 3px solid #007550; }
     ul.months-list > li table.days-container .week-row > .cell > div, ul.weeks-list > li table.days-container .week-row > .cell > div {
       padding: 0 9px 10px 9px;
       min-height: 100px;

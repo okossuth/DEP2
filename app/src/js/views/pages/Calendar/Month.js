@@ -27,6 +27,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
 
       _today = Date.today();
       this.current.setMonth(_today.getMonth());
+      this.current.setFullYear(_today.getFullYear());
       return this.navigate(this.current.getFullYear(), this.current.getMonth());
     },
     _isToday: function(year, month) {
@@ -39,6 +40,14 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       return this.title.html(ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
     processCollectorHide: function(collector) {},
+    moveToday: function() {
+      var _currentTop;
+
+      _currentTop = this.$('.cell.current').offset().top;
+      return this.$el.animate({
+        scrollTop: _currentTop
+      });
+    },
     initialize: function() {
       var _now;
 
@@ -48,6 +57,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this.collectorsList = this.$('.months-list');
       this.todayButton = $('.page.page-calendar header .month-today');
       this.navigate(_now.getFullYear(), _now.getMonth());
+      setTimeout(_.bind(this.moveToday, this), 1000);
       return true;
     }
   }));

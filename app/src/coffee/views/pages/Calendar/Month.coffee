@@ -35,6 +35,7 @@ define [
       _today = Date.today()
 
       @current.setMonth _today.getMonth()
+      @current.setFullYear _today.getFullYear()
 
       @navigate @current.getFullYear(), @current.getMonth()
 
@@ -48,6 +49,12 @@ define [
 
     processCollectorHide: (collector) ->
 
+    moveToday: () ->
+      _currentTop = @$('.cell.current').offset().top
+
+      @$el.animate
+        scrollTop: _currentTop
+
     initialize: () ->
       @current = _now = new Date()
 
@@ -59,5 +66,7 @@ define [
       @todayButton = $('.page.page-calendar header .month-today')
 
       @navigate _now.getFullYear(), _now.getMonth()
+
+      setTimeout _.bind(@moveToday, @), 1000
 
       true

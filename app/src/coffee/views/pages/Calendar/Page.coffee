@@ -15,12 +15,16 @@ define [
       'click .navigate-left': 'prev'
       'click .navigate-right': 'next'
       'click .today': 'today'
+      'click .button-create-new': 'createNew'
 
     prev: () -> @subViews[@mode].prev()
     next: () -> @subViews[@mode].next()
 
     today: () ->
       @subViews[@mode].today()
+
+    createNew: () ->
+      ovivo.desktop.popups.createNewPopup.show()
 
     transitionStart: () ->
       @proxyCall 'transitionStart', arguments

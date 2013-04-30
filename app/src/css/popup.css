@@ -29,9 +29,9 @@
     top: 10px;
     right: 10px;
     cursor: pointer; }
-  .popup > div.button-add, .popup > div.button-delete {
+  .popup > div.button {
     width: 156px;
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
     display: block; }
   .popup > .settings-items {
     margin: 20px 0; }

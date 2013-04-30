@@ -6,7 +6,8 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       return _.extend({}, PageBase.prototype.events, {
         'click .navigate-left': 'prev',
         'click .navigate-right': 'next',
-        'click .today': 'today'
+        'click .today': 'today',
+        'click .button-create-new': 'createNew'
       });
     },
     prev: function() {
@@ -17,6 +18,9 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     },
     today: function() {
       return this.subViews[this.mode].today();
+    },
+    createNew: function() {
+      return ovivo.desktop.popups.createNewPopup.show();
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);

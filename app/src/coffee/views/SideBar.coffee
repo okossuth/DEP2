@@ -23,22 +23,30 @@ define [
     showNotifications: (e) ->
       ovivo.desktop.pages.notifications.view.showEl()
 
-    processItemClick: (e) ->
-      _item = $(e.target).closest('.menu-item')
-
-      ovivo.desktop.pages[@menuItemRegExp.exec(_item[0].id)[1]].show()
-
+    _processItem: (item) ->
       if @prev?
         @prev.removeClass 'selected'
 
       else
         @$('.selected').removeClass 'selected'
 
-      _item.addClass 'selected'
+      item.addClass 'selected'
 
-      @prev = _item
+      @prev = item
+
+    processItemClick: (e) ->
+      _item = $(e.target).closest('.menu-item')
+
+      ovivo.desktop.pages[@menuItemRegExp.exec(_item[0].id)[1]].show()
+
+      @_processItem _item
 
       true
+
+    setPage: (name) ->
+      _item = @$('#menu-item-' + name)
+
+      @_processItem _item
 
     initialize: () ->
       ovivo.desktop.resources.notifications.on 'reset', @updateNotifications, @

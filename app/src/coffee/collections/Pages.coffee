@@ -41,6 +41,8 @@ define [
     processShow: (page) ->
       _args = Array.prototype.slice.call arguments, 1
 
+      ovivo.desktop.sideBar.setPage page.page.name
+
       if @current isnt page
         if (@current isnt undefined) and (page.page.popup isnt true)
           @transition @current, page, _args
