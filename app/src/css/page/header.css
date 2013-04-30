@@ -23,7 +23,8 @@
     display: none; }
   .page > header > div.line {
     height: 39px;
-    line-height: 16px; }
+    line-height: 16px;
+    margin-left: 20px; }
     .page > header > div.line > * {
       vertical-align: middle; }
     .page > header > div.line > i.navigation {

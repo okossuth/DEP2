@@ -584,7 +584,8 @@ section.page .notification-message {
     display: none; }
   .page > header > div.line {
     height: 39px;
-    line-height: 16px; }
+    line-height: 16px;
+    margin-left: 20px; }
     .page > header > div.line > * {
       vertical-align: middle; }
     .page > header > div.line > i.navigation {
@@ -650,7 +651,7 @@ section.page .notification-message {
 
 .side-bar {
   position: absolute;
-  overflow: auto;
+  overflow: visible;
   top: 0;
   left: 0;
   bottom: 0;
@@ -667,8 +668,9 @@ body.loading .side-bar > h1.title > img {
   cursor: pointer; }
   .side-bar > h1.title > img {
     position: absolute;
-    left: -55px;
-    top: -5px;
+    left: 200px;
+    top: 1px;
+    z-index: 9000;
     display: none; }
   .side-bar > h1.title .notifications-indicator-container {
     position: absolute;
@@ -794,24 +796,22 @@ ul.months-list .element, ul.weeks-list .element, .page-event-details .element {
         ul.months-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, ul.weeks-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, .page-event-details .element > div.element-container > div.buttons > div.button-element.right > div.button-background {
           box-shadow: inset 1px 0 0 #f6f5f4; }
 
-.page.page-calendar > header {
-  padding: 23px 0 33px 0; }
-  .page.page-calendar > header > div.line > span.title {
-    margin-left: 20px; }
-  .page.page-calendar > header .weekdays {
-    position: absolute;
-    left: 0;
-    bottom: 8px;
-    width: 100%; }
-    .page.page-calendar > header .weekdays ul.row {
-      font-size: 12px;
-      margin: 0 50px 0 30px;
-      overflow: auto; }
-      .page.page-calendar > header .weekdays ul.row > li {
-        width: 14.28571%;
-        float: left; }
-        .page.page-calendar > header .weekdays ul.row > li > span {
-          margin: 0 0 0 7px; }
+.page.page-calendar > header > div.line > span.title {
+  margin-left: 20px; }
+.page.page-calendar > header .weekdays {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 100%; }
+  .page.page-calendar > header .weekdays ul.row {
+    font-size: 12px;
+    margin: 0 50px 0 30px;
+    overflow: auto; }
+    .page.page-calendar > header .weekdays ul.row > li {
+      width: 14.28571%;
+      float: left; }
+      .page.page-calendar > header .weekdays ul.row > li > span {
+        margin: 0 0 0 7px; }
 
 ul.months-list .row > td:first-child li.inactivity > span, ul.weeks-list .row > td:first-child li.inactivity > span {
   visibility: visible; }
