@@ -1,7 +1,7 @@
 .button {
   background: #007550;
   font-size: 13px;
-  font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+  font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
   color: white;
   display: inline-block;
   border-radius: 1px;

@@ -11,7 +11,7 @@
       border-top: 1px solid #cccccc;
       position: relative; }
       .page.page-event-details div.content .event > ul.comments > li.comment > h2 {
-        font: lighter 12px HelveticaNeueBold; }
+        font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif; }
         .page.page-event-details div.content .event > ul.comments > li.comment > h2 > span {
           color: #807e73; }
         .page.page-event-details div.content .event > ul.comments > li.comment > h2 > em {

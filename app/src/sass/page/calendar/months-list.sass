@@ -25,7 +25,7 @@ ul.months-list, ul.weeks-list
         > span.title
           font-size: 21px
 
-          font-family: 'Helvetica Neue Bold', HelveticaNeueBold
+          font-family: 'Helvetica Neue Bold', HelveticaNeueBold, Helvetica, Arial, sans-serif
 
           color: #007550
 
@@ -100,11 +100,9 @@ ul.months-list, ul.weeks-list
 
       width: 100%
 
-      border-collapse: collapse
+      border: 1px solid #c9c7b6
 
       border-spacing: 0
-
-      border: 1px solid #c9c7b6
 
       .week-row:last-child
         border-bottom: none
@@ -156,6 +154,10 @@ ul.months-list, ul.weeks-list
 
           vertical-align: top
 
+          min-height: 100px
+
+          overflow: visible
+
           &:hover
             > div
               > em.add-working-hours
@@ -186,20 +188,20 @@ ul.months-list, ul.weeks-list
                 color: #a19f92
 
           &.current
-            border: 3px solid #007550
+            background: #f3f2ec
+
+            z-index: 0
 
           > div
             padding: 0 9px 10px 9px
-
-            min-height: 100px
 
             position: relative
 
             overflow: visible
 
-            z-index: 0
+            z-index: 1
 
-            background: white
+            min-height: 100px
 
             > em, > span
               margin: 10px 0 0 0

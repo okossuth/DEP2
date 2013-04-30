@@ -77,7 +77,7 @@ define [
 
       @$('header span.title').html _event.view.startDateFormated()
 
-      @$('.event-container').html ''
+      @$('.event-container').children().remove()
       @$('.event-container').append _eventDetailsView.el
 
       _eventDetailsView.delegateEvents()

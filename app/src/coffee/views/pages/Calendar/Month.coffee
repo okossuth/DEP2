@@ -39,6 +39,8 @@ define [
 
       @navigate @current.getFullYear(), @current.getMonth()
 
+      @moveToday()
+
     _isToday: (year, month) ->
       _today = Date.today()
 

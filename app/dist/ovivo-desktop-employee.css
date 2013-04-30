@@ -1,7 +1,7 @@
 .button {
   background: #007550;
   font-size: 13px;
-  font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+  font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
   color: white;
   display: inline-block;
   border-radius: 1px;
@@ -170,7 +170,7 @@ section.page .notification-message {
   section.page .notification-message span {
     position: relative;
     z-index: 2;
-    font: normal 14px "HelveticaNeueBold";
+    font: normal 14px "HelveticaNeueBold", Helvetica, Arial, sans-serif;
     font-style: italic;
     color: white; }
 
@@ -527,7 +527,7 @@ section.page .notification-message {
   padding: 16px; }
   .popup > h1, .popup > div.close {
     color: #807e73;
-    font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold; }
+    font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
   .popup > h1 {
     text-align: center;
     padding: 7px 0 0 0; }
@@ -552,13 +552,12 @@ section.page .notification-message {
         padding: 9px 9px;
         width: 287px; }
       .popup > .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold;
+        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-style: italic;
         color: #807e73;
         margin: 0 4px; }
       .popup > .settings-items > li.settings-item > div.item-content.two > input {
         width: 110px; }
-
 
 .page > div.content {
   overflow: auto;
@@ -609,7 +608,7 @@ section.page .notification-message {
       margin: 0 0 0 0; }
     .page > header > div.line > span.title {
       font-size: 21px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #007550;
       margin: 0 10px 0 20px; }
     .page > header > div.line > em.title {
@@ -659,7 +658,7 @@ section.page .notification-message {
     font-size: 14px;
     color: #cccccc; }
     .side-bar ul.menu > li.selected {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: white; }
     .side-bar ul.menu > li > a {
       color: inherit;
@@ -739,8 +738,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
   ul.months-list .element > div.element-container.unavailable > div.strip, ul.weeks-list .element > div.element-container.unavailable > div.strip, .page-event-details .element > div.element-container.unavailable > div.strip {
     background: #6d0088; }
   ul.months-list .element > div.element-container > div.info, ul.weeks-list .element > div.element-container > div.info, .page-event-details .element > div.element-container > div.info {
-    padding: 7px 15px;
-    border-bottom: 1px solid #cccccc; }
+    padding: 7px 15px; }
     ul.months-list .element > div.element-container > div.info > h2, ul.months-list .element > div.element-container > div.info > h3, ul.months-list .element > div.element-container > div.info > h4, ul.weeks-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h3, ul.weeks-list .element > div.element-container > div.info > h4, .page-event-details .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h3, .page-event-details .element > div.element-container > div.info > h4 {
       display: inline-block;
       width: 100%; }
@@ -755,7 +753,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       font-weight: lighter;
       margin: 1px 0 0 0; }
     ul.months-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h2 {
-      font-family: HelveticaNeueBold;
+      font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
       font-weight: lighter; }
       ul.months-list .element > div.element-container > div.info > h2 > em, ul.weeks-list .element > div.element-container > div.info > h2 > em, .page-event-details .element > div.element-container > div.info > h2 > em {
         font-family: HelveticaNeue;
@@ -768,7 +766,8 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     overflow: hidden;
     border-radius: 0 0 2px 2px;
     height: 41px;
-    cursor: pointer; }
+    cursor: pointer;
+    border-top: 1px solid #cccccc; }
     ul.months-list .element > div.element-container > div.buttons > div.button-element, ul.weeks-list .element > div.element-container > div.buttons > div.button-element, .page-event-details .element > div.element-container > div.buttons > div.button-element {
       position: relative;
       float: left;
@@ -795,7 +794,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
           vertical-align: middle; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > span {
-          font-family: HelveticaNeueBold;
+          font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
           font-weight: lighter;
           font-size: 13px;
           color: #807e73; }
@@ -869,7 +868,7 @@ ul.months-list > li > .title-line, ul.weeks-list > li > .title-line {
       display: inline-block; }
     ul.months-list > li > .title-line > div.line > span.title, ul.weeks-list > li > .title-line > div.line > span.title {
       font-size: 21px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #007550;
       margin: 0 10px 0 30px; }
     ul.months-list > li > .title-line > div.line > em.title, ul.weeks-list > li > .title-line > div.line > em.title {
@@ -915,9 +914,8 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
   border: 1px solid #c9c7b6;
   background: white;
   width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 1px solid #c9c7b6; }
+  border: 1px solid #c9c7b6;
+  border-spacing: 0; }
   ul.months-list > li table.days-container .week-row:last-child, ul.weeks-list > li table.days-container .week-row:last-child {
     border-bottom: none; }
   ul.months-list > li table.days-container .week-row > .cell.expanded, ul.weeks-list > li table.days-container .week-row > .cell.expanded {
@@ -946,7 +944,9 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     z-index: 0;
     border: 1px solid #c9c7b6;
     padding: 0;
-    vertical-align: top; }
+    vertical-align: top;
+    min-height: 100px;
+    overflow: visible; }
     ul.months-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours, ul.weeks-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours {
       display: inline-block; }
     ul.months-list > li table.days-container .week-row > .cell.show-popup, ul.weeks-list > li table.days-container .week-row > .cell.show-popup {
@@ -962,14 +962,14 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     ul.months-list > li table.days-container .week-row > .cell.disabled > div > span, ul.months-list > li table.days-container .week-row > .cell.disabled > div > em, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > span, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > em {
       color: #a19f92; }
     ul.months-list > li table.days-container .week-row > .cell.current, ul.weeks-list > li table.days-container .week-row > .cell.current {
-      border: 3px solid #007550; }
+      background: #f3f2ec;
+      z-index: 0; }
     ul.months-list > li table.days-container .week-row > .cell > div, ul.weeks-list > li table.days-container .week-row > .cell > div {
       padding: 0 9px 10px 9px;
-      min-height: 100px;
       position: relative;
       overflow: visible;
-      z-index: 0;
-      background: white; }
+      z-index: 1;
+      min-height: 100px; }
       ul.months-list > li table.days-container .week-row > .cell > div > em, ul.months-list > li table.days-container .week-row > .cell > div > span, ul.weeks-list > li table.days-container .week-row > .cell > div > em, ul.weeks-list > li table.days-container .week-row > .cell > div > span {
         margin: 10px 0 0 0;
         display: inline-block; }
@@ -1017,7 +1017,7 @@ ul.months-list.specific .element > div.element-container, ul.weeks-list.specific
       font-size: 13px;
       font-weight: lighter; }
       ul.months-list.specific .element > div.element-container .info > h2:first-child, ul.weeks-list.specific .element > div.element-container .info > h2:first-child {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-size: 14px; }
       ul.months-list.specific .element > div.element-container .info > h2 > em, ul.weeks-list.specific .element > div.element-container .info > h2 > em {
         display: none; }
@@ -1064,7 +1064,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
       border-top: 1px solid #cccccc;
       position: relative; }
       .page.page-event-details div.content .event > ul.comments > li.comment > h2 {
-        font: lighter 12px HelveticaNeueBold; }
+        font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif; }
         .page.page-event-details div.content .event > ul.comments > li.comment > h2 > span {
           color: #807e73; }
         .page.page-event-details div.content .event > ul.comments > li.comment > h2 > em {
@@ -1088,6 +1088,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   padding: 7px 0 7px 0;
   width: 100%;
   box-shadow: 0 -1px 0 white, 0 -2px 0 #cccccc;
+  background: #f0f1f3;
   background: -webkit-linear-gradient(top, #f0f1f3, #c1c4cd); }
   .page.page-event-details > footer.active > div.button-post {
     color: #2658c2; }
@@ -1116,7 +1117,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     border: 1px solid #bdbfc6;
     border-radius: 4px;
     box-shadow: 0 1px 1px #e0e1e4, 0 -1px 0 #e0e1e4;
-    font: lighter 14px HelveticaNeueBold;
+    font: lighter 14px HelveticaNeueBold, Helvetica, Arial, sans-serif;
     text-shadow: 0 1px 0 #ebedf0;
     color: #abadb6; }
     .page.page-event-details > footer > div.button-post > span {
@@ -1129,7 +1130,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 .page.page-event-details {
   width: 500px;
   z-index: 9999;
-  box-shadow: 2px 0 30px #888888;
+  box-shadow: -2px 0 30px #888888;
   left: auto; }
   .page.page-event-details > header > div.line > div.button {
     width: 40px; }
@@ -1156,7 +1157,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   .page.page-notifications ul.notifications-list > li.notification > div {
     position: relative; }
     .page.page-notifications ul.notifications-list > li.notification > div > h2 {
-      font: lighter 12px HelveticaNeueBold;
+      font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.message {
       font: normal 12px HelveticaNeue;
@@ -1227,7 +1228,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     cursor: pointer; }
     .page.page-settings .content ul.sections-menu > li.selected {
       background: #807e73;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: white; }
     .page.page-settings .content ul.sections-menu > li:first-child {
       margin-left: 0; }
@@ -1254,7 +1255,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   .page.page-settings .attributes > li > strong {
     width: 70px;
     display: inline-block;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
     font-weight: normal; }
 .page.page-settings .elements {
   margin: 200px 0 0 0; }
@@ -1348,7 +1349,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
     .settings-items > li.settings-item > div.header span {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #525044;
       margin: 0 10px 0 0; }
     .settings-items > li.settings-item > div.header em {
@@ -1374,7 +1375,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
           padding: 8px 10px;
           border: 1px solid #807e73;
           border-radius: 2px;
-          font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+          font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
           color: #807e73;
           width: 80px; }
           .settings-items > li.settings-item > div.item-content > ul.options-group > li.option.selected {

@@ -52,7 +52,7 @@ define [
 
       @on 'subViewChange', @processSubViewChange, @
 
-      @viewSwitcher = new Switcher @$('.switcher-view'), ['month', 'week']
+      @viewSwitcher = new Switcher @$('.switcher-view'), ['week', 'month']
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
 
       @proxyCall 'initialize', arguments

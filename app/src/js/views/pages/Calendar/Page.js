@@ -42,7 +42,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       this.SubViews = [MonthView, WeekView];
       this.defaultSubView = 'week';
       this.on('subViewChange', this.processSubViewChange, this);
-      this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['month', 'week']);
+      this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
       this.proxyCall('initialize', arguments);
       return true;

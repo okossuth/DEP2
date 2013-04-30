@@ -28,7 +28,8 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       _today = Date.today();
       this.current.setMonth(_today.getMonth());
       this.current.setFullYear(_today.getFullYear());
-      return this.navigate(this.current.getFullYear(), this.current.getMonth());
+      this.navigate(this.current.getFullYear(), this.current.getMonth());
+      return this.moveToday();
     },
     _isToday: function(year, month) {
       var _today;

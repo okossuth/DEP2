@@ -67,7 +67,7 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       _event.createDetailsView();
       _eventDetailsView = _event.detailsView;
       this.$('header span.title').html(_event.view.startDateFormated());
-      this.$('.event-container').html('');
+      this.$('.event-container').children().remove();
       this.$('.event-container').append(_eventDetailsView.el);
       _eventDetailsView.delegateEvents();
       _event.comments.on('add', this.addComment, this);

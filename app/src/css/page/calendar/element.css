@@ -27,8 +27,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
   ul.months-list .element > div.element-container.unavailable > div.strip, ul.weeks-list .element > div.element-container.unavailable > div.strip, .page-event-details .element > div.element-container.unavailable > div.strip {
     background: #6d0088; }
   ul.months-list .element > div.element-container > div.info, ul.weeks-list .element > div.element-container > div.info, .page-event-details .element > div.element-container > div.info {
-    padding: 7px 15px;
-    border-bottom: 1px solid #cccccc; }
+    padding: 7px 15px; }
     ul.months-list .element > div.element-container > div.info > h2, ul.months-list .element > div.element-container > div.info > h3, ul.months-list .element > div.element-container > div.info > h4, ul.weeks-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h3, ul.weeks-list .element > div.element-container > div.info > h4, .page-event-details .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h3, .page-event-details .element > div.element-container > div.info > h4 {
       display: inline-block;
       width: 100%; }
@@ -43,7 +42,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       font-weight: lighter;
       margin: 1px 0 0 0; }
     ul.months-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h2 {
-      font-family: HelveticaNeueBold;
+      font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
       font-weight: lighter; }
       ul.months-list .element > div.element-container > div.info > h2 > em, ul.weeks-list .element > div.element-container > div.info > h2 > em, .page-event-details .element > div.element-container > div.info > h2 > em {
         font-family: HelveticaNeue;
@@ -56,7 +55,8 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     overflow: hidden;
     border-radius: 0 0 2px 2px;
     height: 41px;
-    cursor: pointer; }
+    cursor: pointer;
+    border-top: 1px solid #cccccc; }
     ul.months-list .element > div.element-container > div.buttons > div.button-element, ul.weeks-list .element > div.element-container > div.buttons > div.button-element, .page-event-details .element > div.element-container > div.buttons > div.button-element {
       position: relative;
       float: left;
@@ -83,7 +83,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
           vertical-align: middle; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > span {
-          font-family: HelveticaNeueBold;
+          font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
           font-weight: lighter;
           font-size: 13px;
           color: #807e73; }

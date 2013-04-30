@@ -10,7 +10,7 @@ ul.months-list.specific .element > div.element-container, ul.weeks-list.specific
       font-size: 13px;
       font-weight: lighter; }
       ul.months-list.specific .element > div.element-container .info > h2:first-child, ul.weeks-list.specific .element > div.element-container .info > h2:first-child {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-size: 14px; }
       ul.months-list.specific .element > div.element-container .info > h2 > em, ul.weeks-list.specific .element > div.element-container .info > h2 > em {
         display: none; }

@@ -6,6 +6,7 @@
   padding: 7px 0 7px 0;
   width: 100%;
   box-shadow: 0 -1px 0 white, 0 -2px 0 #cccccc;
+  background: #f0f1f3;
   background: -webkit-linear-gradient(top, #f0f1f3, #c1c4cd); }
   .page.page-event-details > footer.active > div.button-post {
     color: #2658c2; }
@@ -34,7 +35,7 @@
     border: 1px solid #bdbfc6;
     border-radius: 4px;
     box-shadow: 0 1px 1px #e0e1e4, 0 -1px 0 #e0e1e4;
-    font: lighter 14px HelveticaNeueBold;
+    font: lighter 14px HelveticaNeueBold, Helvetica, Arial, sans-serif;
     text-shadow: 0 1px 0 #ebedf0;
     color: #abadb6; }
     .page.page-event-details > footer > div.button-post > span {

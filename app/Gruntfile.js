@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
             css: {
-                src: ['src/css/*.css', 'src/css/*/*.css', 'src/css/*/*/*.css'],
+                src: ['src/css/*.css', 'src/css/*/*.css', 'src/css/*/*/*.css', '!src/css/ie/*.css'],
                 dest: 'dist/ovivo-desktop-employee.css',
                 stdout: false
             },

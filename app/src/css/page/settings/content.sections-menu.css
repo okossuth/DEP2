@@ -13,7 +13,7 @@
     cursor: pointer; }
     .page.page-settings .content ul.sections-menu > li.selected {
       background: #807e73;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: white; }
     .page.page-settings .content ul.sections-menu > li:first-child {
       margin-left: 0; }

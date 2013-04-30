@@ -19336,7 +19336,8 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
       _today = Date.today();
       this.current.setMonth(_today.getMonth());
       this.current.setFullYear(_today.getFullYear());
-      return this.navigate(this.current.getFullYear(), this.current.getMonth());
+      this.navigate(this.current.getFullYear(), this.current.getMonth());
+      return this.moveToday();
     },
     _isToday: function(year, month) {
       var _today;
@@ -19592,7 +19593,7 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       this.SubViews = [MonthView, WeekView];
       this.defaultSubView = 'week';
       this.on('subViewChange', this.processSubViewChange, this);
-      this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['month', 'week']);
+      this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
       this.proxyCall('initialize', arguments);
       return true;
@@ -20071,7 +20072,7 @@ define('views/pages/EventDetails/Page',['views/pages/PageBase', 'models/resource
       _event.createDetailsView();
       _eventDetailsView = _event.detailsView;
       this.$('header span.title').html(_event.view.startDateFormated());
-      this.$('.event-container').html('');
+      this.$('.event-container').children().remove();
       this.$('.event-container').append(_eventDetailsView.el);
       _eventDetailsView.delegateEvents();
       _event.comments.on('add', this.addComment, this);

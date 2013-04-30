@@ -12,7 +12,7 @@
   .page.page-notifications ul.notifications-list > li.notification > div {
     position: relative; }
     .page.page-notifications ul.notifications-list > li.notification > div > h2 {
-      font: lighter 12px HelveticaNeueBold;
+      font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.message {
       font: normal 12px HelveticaNeue;
