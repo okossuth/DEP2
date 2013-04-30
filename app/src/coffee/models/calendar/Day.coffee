@@ -40,6 +40,9 @@ define [
 
         @collection.todayFound = true
 
+  highlight: (model) -> @view.highlight model
+  removeHighlight: (model) -> @view.removeHighlight model
+
   initialize: (attrs, options) ->
     @proxyCall 'initialize', arguments
 

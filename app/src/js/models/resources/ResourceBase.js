@@ -16,18 +16,35 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       });
     }),
     addDay: function(day) {
-      return this.calendarDays.push(day);
+      return this.calendarDays[day.cid] = day;
     },
     addDays: function(days) {
       return this.calendarDays = this.calendarDays.concat(days);
+    },
+    removeDay: function(day) {
+      return delete this.calendarDays[day.cid];
     },
     getView: function() {
       return new this.View({
         model: this
       });
     },
+    highlight: function() {
+      var _this = this;
+
+      return _.each(_.values(this.calendarDays), function(day) {
+        return day.highlight(_this);
+      });
+    },
+    removeHighlight: function() {
+      var _this = this;
+
+      return _.each(_.values(this.calendarDays), function(day) {
+        return day.removeHighlight(_this);
+      });
+    },
     initialize: function(attrs, options) {
-      this.calendarDays = [];
+      this.calendarDays = {};
       this.createGetters();
       if (this.View != null) {
         this.view = new this.View({

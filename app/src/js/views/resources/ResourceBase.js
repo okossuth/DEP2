@@ -14,6 +14,12 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       this.model.trigger('rendered');
       return true;
     },
+    highlight: function() {
+      return this.$el.addClass('highlight');
+    },
+    removeHighlight: function() {
+      return this.$el.removeClass('highlight');
+    },
     events: {},
     processRemove: function() {
       return this.model.destroy();

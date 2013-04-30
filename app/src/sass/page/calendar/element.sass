@@ -1,17 +1,25 @@
 ul.months-list, ul.weeks-list, .page-event-details
   .element
+    &.highlight
+      > div.element-container
+        background: #ddd
+
     > div.element-container
       border-radius: 2px
 
       overflow: hidden
+
+      -webkit-transition: background 200ms
+      -moz-transition: background 200ms
+      -ms-transition: background 200ms
+      -o-transition: background 200ms
+      transition: background 200ms
 
       background: white
 
       margin: 10px 8px 0 8px
 
       box-shadow: 0 1px 2px #cccccc, 0 0 0 #999999
-
-      -webkit-transition: 0 box-shadow 300ms
 
       &.clicked
         box-shadow: 0 1px 2px #cccccc, 0 0 10px #999999

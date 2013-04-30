@@ -33,6 +33,7 @@ define(['ovivo'], function() {
       var _view;
 
       _view = hash[model.id];
+      model.removeDay(this.model);
       if (_view != null) {
         _view.remove();
         delete hash[model.id];
@@ -77,8 +78,15 @@ define(['ovivo'], function() {
         return this.elements.splice(_i, 0, model);
       };
     })(),
+    highlight: function(model) {
+      return this._getFromHash(model).highlight();
+    },
+    removeHighlight: function(model) {
+      return this._getFromHash(model).removeHighlight();
+    },
     _addModel: function(model, view, hash) {
       hash[model.id] = view;
+      model.addDay(this.model);
       return this._insertElement(model, view, hash);
     },
     addEvent: function(view, model) {

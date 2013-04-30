@@ -1,7 +1,28 @@
-ul.months-list, ul.weeks-list
+ul.months-list.specific, ul.weeks-list.specific
   .element
     > div.element-container
       margin: 7px 0 0 0
+
+      .info
+        cursor: pointer
+
+        padding: 4px 7px
+
+        > h3, > h4
+          display: none
+
+        > h2
+          font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif
+          font-size: 13px
+          font-weight: lighter
+
+          &:first-child
+            font-family: 'Helvetica Neue Bold', HelveticaNeueBold
+
+            font-size: 14px
+
+          > em
+            display: none
 
     &.event
       // max-height: 24px
@@ -38,6 +59,9 @@ ul.months-list, ul.weeks-list
             > div.button-inner
               height: 13px
               line-height: 13px
+
+              > span
+                font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif
 
       &:last-child, &.expanded
         max-height: none

@@ -17817,18 +17817,35 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
       });
     }),
     addDay: function(day) {
-      return this.calendarDays.push(day);
+      return this.calendarDays[day.cid] = day;
     },
     addDays: function(days) {
       return this.calendarDays = this.calendarDays.concat(days);
+    },
+    removeDay: function(day) {
+      return delete this.calendarDays[day.cid];
     },
     getView: function() {
       return new this.View({
         model: this
       });
     },
+    highlight: function() {
+      var _this = this;
+
+      return _.each(_.values(this.calendarDays), function(day) {
+        return day.highlight(_this);
+      });
+    },
+    removeHighlight: function() {
+      var _this = this;
+
+      return _.each(_.values(this.calendarDays), function(day) {
+        return day.removeHighlight(_this);
+      });
+    },
     initialize: function(attrs, options) {
-      this.calendarDays = [];
+      this.calendarDays = {};
       this.createGetters();
       if (this.View != null) {
         this.view = new this.View({
@@ -18871,6 +18888,12 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       this.model.trigger('rendered');
       return true;
     },
+    highlight: function() {
+      return this.$el.addClass('highlight');
+    },
+    removeHighlight: function() {
+      return this.$el.removeClass('highlight');
+    },
     events: {},
     processRemove: function() {
       return this.model.destroy();
@@ -19029,6 +19052,12 @@ define('models/calendar/Day',['ovivo'], function() {
         }
       }
     },
+    highlight: function(model) {
+      return this.view.highlight(model);
+    },
+    removeHighlight: function(model) {
+      return this.view.removeHighlight(model);
+    },
     initialize: function(attrs, options) {
       var _this = this;
 
@@ -19083,6 +19112,7 @@ define('views/calendar/Day',['ovivo'], function() {
       var _view;
 
       _view = hash[model.id];
+      model.removeDay(this.model);
       if (_view != null) {
         _view.remove();
         delete hash[model.id];
@@ -19127,8 +19157,15 @@ define('views/calendar/Day',['ovivo'], function() {
         return this.elements.splice(_i, 0, model);
       };
     })(),
+    highlight: function(model) {
+      return this._getFromHash(model).highlight();
+    },
+    removeHighlight: function(model) {
+      return this._getFromHash(model).removeHighlight();
+    },
     _addModel: function(model, view, hash) {
       hash[model.id] = view;
+      model.addDay(this.model);
       return this._insertElement(model, view, hash);
     },
     addEvent: function(view, model) {
@@ -20752,6 +20789,18 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
     className: 'working-hour element',
     template: Handlebars.templates['workingHour'],
     groupTemplate: Handlebars.templates['workingHour_group'],
+    events: {
+      'mouseenter': 'processMouseEnter',
+      'mouseleave': 'processMouseLeave',
+      'click': 'processClick'
+    },
+    processMouseEnter: function() {
+      return this.model.highlight();
+    },
+    processMouseLeave: function() {
+      return this.model.removeHighlight();
+    },
+    processClick: function() {},
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());

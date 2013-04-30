@@ -40,6 +40,12 @@ define(['ovivo'], function() {
         }
       }
     },
+    highlight: function(model) {
+      return this.view.highlight(model);
+    },
+    removeHighlight: function(model) {
+      return this.view.removeHighlight(model);
+    },
     initialize: function(attrs, options) {
       var _this = this;
 

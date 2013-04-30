@@ -1,10 +1,16 @@
+ul.months-list .element.highlight > div.element-container, ul.weeks-list .element.highlight > div.element-container, .page-event-details .element.highlight > div.element-container {
+  background: #dddddd; }
 ul.months-list .element > div.element-container, ul.weeks-list .element > div.element-container, .page-event-details .element > div.element-container {
   border-radius: 2px;
   overflow: hidden;
+  -webkit-transition: background 200ms;
+  -moz-transition: background 200ms;
+  -ms-transition: background 200ms;
+  -o-transition: background 200ms;
+  transition: background 200ms;
   background: white;
   margin: 10px 8px 0 8px;
-  box-shadow: 0 1px 2px #cccccc, 0 0 0 #999999;
-  -webkit-transition: 0 box-shadow 300ms; }
+  box-shadow: 0 1px 2px #cccccc, 0 0 0 #999999; }
   ul.months-list .element > div.element-container.clicked, ul.weeks-list .element > div.element-container.clicked, .page-event-details .element > div.element-container.clicked {
     box-shadow: 0 1px 2px #cccccc, 0 0 10px #999999; }
   ul.months-list .element > div.element-container > div.strip, ul.weeks-list .element > div.element-container > div.strip, .page-event-details .element > div.element-container > div.strip {

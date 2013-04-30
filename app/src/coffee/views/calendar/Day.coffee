@@ -29,6 +29,8 @@ define [
   _removeModel: (model, hash) ->
     _view = hash[model.id]
 
+    model.removeDay @model
+
     if _view?
       _view.remove()
 
@@ -74,8 +76,16 @@ define [
 
       @elements.splice _i, 0, model
 
+  highlight: (model) ->
+    @_getFromHash(model).highlight()
+
+  removeHighlight: (model) ->
+    @_getFromHash(model).removeHighlight()
+
   _addModel: (model, view, hash) ->
     hash[model.id] = view
+
+    model.addDay @model
 
     @_insertElement model, view, hash
 

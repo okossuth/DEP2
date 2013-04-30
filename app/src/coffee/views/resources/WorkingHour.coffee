@@ -12,6 +12,17 @@ define [
     template: Handlebars.templates['workingHour']
     groupTemplate: Handlebars.templates['workingHour_group']
 
+    events:
+      'mouseenter': 'processMouseEnter'
+      'mouseleave': 'processMouseLeave'
+      'click': 'processClick'
+
+    processMouseEnter: () -> @model.highlight()
+    processMouseLeave: () -> @model.removeHighlight()
+
+    processClick: () ->
+      
+
     _getDateStr: (_date) ->
       if _date?
         "#{ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)} #{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()].toLowerCase()}"

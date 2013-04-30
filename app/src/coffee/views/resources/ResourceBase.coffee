@@ -15,6 +15,9 @@ define [
 
       true
 
+    highlight: () -> @$el.addClass 'highlight'
+    removeHighlight: () -> @$el.removeClass 'highlight'
+
     events: {}
 
     processRemove: () ->
