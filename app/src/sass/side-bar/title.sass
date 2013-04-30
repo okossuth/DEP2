@@ -1,3 +1,9 @@
+body.loading
+  .side-bar
+    > h1.title
+      > img
+        display: block
+        
 .side-bar
   > h1.title
     position: relative
@@ -7,6 +13,14 @@
     width: 100px
 
     cursor: pointer
+
+    > img
+      position: absolute
+
+      left: -55px
+      top: -5px
+
+      display: none
 
     .notifications-indicator-container
       position: absolute
