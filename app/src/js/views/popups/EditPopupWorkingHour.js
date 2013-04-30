@@ -28,7 +28,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
       }));
-      return this.$('.button-add').show();
+      return this.initEditMode();
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;

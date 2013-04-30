@@ -4,7 +4,8 @@ define(['ovivo'], function() {
     events: {
       'change .property-value': 'changeProperty',
       'click .close': 'close',
-      'click .button-add': 'add'
+      'click .button-add': 'add',
+      'click .button-delete': 'delete'
     },
     propertyRegExp: /\bproperty-value-(\w+)\b/,
     changeProperty: function(e) {
@@ -35,11 +36,24 @@ define(['ovivo'], function() {
       this.model.save();
       return this.close();
     },
+    "delete": function() {
+      this.model.destroy();
+      return this.close();
+    },
+    initEditMode: function() {
+      this.$('.button-add').show();
+      this.$('.button-delete').hide();
+      this.$('.create-mode').show();
+      return this.$('.edit-mode').hide();
+    },
     setModel: function(model) {
       var _this = this;
 
       this.model = model;
       this.$('.button-add').hide();
+      this.$('.button-delete').show();
+      this.$('.create-mode').hide();
+      this.$('.edit-mode').show();
       return _.each(this.fields, function(field) {
         var _date, _input;
 

@@ -31,7 +31,7 @@ define [
         reason: ''
         municipality: ovivo.desktop.resources.municipalities.at(0).id
 
-      @$('.button-add').show()
+      @initEditMode()
 
     initialize: () ->
       @collection = ovivo.desktop.resources.inactivities

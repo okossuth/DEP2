@@ -17997,7 +17997,8 @@ define('views/popups/EditPopup',['ovivo'], function() {
     events: {
       'change .property-value': 'changeProperty',
       'click .close': 'close',
-      'click .button-add': 'add'
+      'click .button-add': 'add',
+      'click .button-delete': 'delete'
     },
     propertyRegExp: /\bproperty-value-(\w+)\b/,
     changeProperty: function(e) {
@@ -18028,11 +18029,24 @@ define('views/popups/EditPopup',['ovivo'], function() {
       this.model.save();
       return this.close();
     },
+    "delete": function() {
+      this.model.destroy();
+      return this.close();
+    },
+    initEditMode: function() {
+      this.$('.button-add').show();
+      this.$('.button-delete').hide();
+      this.$('.create-mode').show();
+      return this.$('.edit-mode').hide();
+    },
     setModel: function(model) {
       var _this = this;
 
       this.model = model;
       this.$('.button-add').hide();
+      this.$('.button-delete').show();
+      this.$('.create-mode').hide();
+      this.$('.edit-mode').show();
       return _.each(this.fields, function(field) {
         var _date, _input;
 
@@ -18096,7 +18110,7 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
       }));
-      return this.$('.button-add').show();
+      return this.initEditMode();
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;
@@ -18136,7 +18150,7 @@ define('views/popups/EditPopupTimeoff',['views/popups/EditPopup', '_features/tra
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
       }));
-      return this.$('.button-add').show();
+      return this.initEditMode();
     },
     initialize: function() {
       var _min;

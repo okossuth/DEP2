@@ -6,6 +6,7 @@ define [
       'change .property-value': 'changeProperty'
       'click .close': 'close'
       'click .button-add': 'add'
+      'click .button-delete': 'delete'
 
     propertyRegExp: /\bproperty-value-(\w+)\b/
 
@@ -37,10 +38,26 @@ define [
 
       @close()
 
+    delete: () ->
+      @model.destroy()
+
+      @close()
+
+    initEditMode: () ->
+      @$('.button-add').show()
+      @$('.button-delete').hide()
+
+      @$('.create-mode').show()
+      @$('.edit-mode').hide()
+
     setModel: (model) ->
       @model = model
 
       @$('.button-add').hide()
+      @$('.button-delete').show()
+
+      @$('.create-mode').hide()
+      @$('.edit-mode').show()
 
       _.each @fields, (field) =>
         _input = @$('.property-value-' + field)

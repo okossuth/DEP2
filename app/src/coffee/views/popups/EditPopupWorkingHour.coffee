@@ -36,7 +36,7 @@ define [
         repeat: 1
         weekdays: '1,2,3,4,5,6,7'
 
-      @$('.button-add').show()
+      @initEditMode()
 
     initialize: () ->
       @collection = ovivo.desktop.resources.workingHours
