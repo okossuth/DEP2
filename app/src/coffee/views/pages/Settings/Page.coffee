@@ -41,5 +41,6 @@ define [
       @proxyCall 'initialize', arguments
 
       ovivo.desktop.resources.user.on 'change:first_name', @changeName, @
+      ovivo.desktop.resources.user.on 'change:last_name', @changeName, @
 
       true

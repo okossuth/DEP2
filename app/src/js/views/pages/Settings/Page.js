@@ -30,6 +30,7 @@ define(['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Set
       this.defaultSubView = 'general';
       this.proxyCall('initialize', arguments);
       ovivo.desktop.resources.user.on('change:first_name', this.changeName, this);
+      ovivo.desktop.resources.user.on('change:last_name', this.changeName, this);
       return true;
     }
   });

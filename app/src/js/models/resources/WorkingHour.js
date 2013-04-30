@@ -89,11 +89,15 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
       return _json;
     },
     processRange: function(start, end) {
-      var _arr, _day, _end, _i, _repeat, _start, _startWeek;
+      var _arr, _day, _end, _i, _repeat, _start, _startMonday, _startWeek;
 
       _arr = [];
       _start = this.start_date_obj();
       _startWeek = _start.getWeek();
+      _startMonday = new Date(_start);
+      if (_startMonday.getDay() !== 1) {
+        _startMonday.moveToDayOfWeek(1, -1);
+      }
       _end = this.end_date_obj();
       _repeat = this.repeat();
       if (_start > start) {
@@ -108,7 +112,7 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
         if (_day < 0) {
           _day = 7 + _day;
         }
-        if ((this.weekdaysHash[_day] === true) && ((_repeat === 1) || (((Math.floor(_i - _start) / 86400000 / 7) % _repeat) === 0))) {
+        if ((this.weekdaysHash[_day] === true) && ((_repeat === 1) || (((Math.floor((_i - _startMonday) / 86400000 / 7)) % _repeat) === 0))) {
           _arr.push({
             date: new Date(_i),
             model: this
