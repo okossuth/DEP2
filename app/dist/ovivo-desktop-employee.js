@@ -138,6 +138,14 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
     _processReadSuccess = function(url, model, resp, options) {
       localStorageCache.cache(resp, url);
       if ((model instanceof Backbone.Collection) && (resp instanceof Array)) {
+        if (model.fullResponse === true) {
+          _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
+            var _model;
+
+            console.log(_model = model.get(pk));
+            return model.remove(_model);
+          });
+        }
         _.each(resp, function(obj, i) {
           var _model;
 

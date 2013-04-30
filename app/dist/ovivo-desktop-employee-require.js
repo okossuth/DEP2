@@ -17582,6 +17582,14 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
     _processReadSuccess = function(url, model, resp, options) {
       localStorageCache.cache(resp, url);
       if ((model instanceof Backbone.Collection) && (resp instanceof Array)) {
+        if (model.fullResponse === true) {
+          _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
+            var _model;
+
+            console.log(_model = model.get(pk));
+            return model.remove(_model);
+          });
+        }
         _.each(resp, function(obj, i) {
           var _model;
 
@@ -21072,6 +21080,7 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
 define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
+    fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/working-hours/",
     comparator: function(workingHour) {
       return Date.parse(workingHour.start_date()).valueOf();
@@ -21285,6 +21294,7 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
 define('collections/resources/Inactivities',['models/resources/Inactivity', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
+    fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/inactivity/",
     comparator: function(inactivity) {
       return Date.parse(inactivity.start()).valueOf();

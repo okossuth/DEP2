@@ -2,6 +2,7 @@
 define(['models/resources/WorkingHour', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
+    fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/working-hours/",
     comparator: function(workingHour) {
       return Date.parse(workingHour.start_date()).valueOf();

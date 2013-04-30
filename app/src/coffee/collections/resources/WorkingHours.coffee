@@ -8,6 +8,8 @@ define [
   Backbone.Collection.extend _.extend {}, ResourceManagerBase,
     model: Model
 
+    fullResponse: true
+
     url: "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/working-hours/"
 
     comparator: (workingHour) -> Date.parse(workingHour.start_date()).valueOf()
