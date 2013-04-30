@@ -6,7 +6,7 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
-          return arr[0];
+          return parseInt(arr[0]) + 1;
         } else {
           return void 0;
         }
@@ -68,7 +68,7 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
       }), void 0);
     },
     processChange: function(model, obj) {
-      if ((this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
         return this.save();
       }
     },
@@ -149,7 +149,7 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
       var _ref;
 
       return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
-        memo[elem] = true;
+        memo[parseInt(elem) - 1] = true;
         return memo;
       }), {});
     },

@@ -18,8 +18,20 @@ define [
 
     close: () -> @hide()
 
-    add: () -> 
-      @collection.add @model
+    _getSyncHandler: (collection, model) ->
+      _handler = () -> 
+        collection.add model
+
+        model.off 'sync', _handler
+        
+        delete model.url
+
+      _handler
+
+    add: () ->
+      @model.on 'sync', @_getSyncHandler @collection, @model
+
+      @model.url = @collection.url
 
       @model.save()
 

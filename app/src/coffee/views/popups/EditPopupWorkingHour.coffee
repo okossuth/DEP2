@@ -28,13 +28,13 @@ define [
       _end = new Date _now
 
       @setModel new @collection.model
-        start_date: "#{_start.getFullYear()}-#{trailZero(_start.getMonth())}-#{trailZero(_start.getDate())}"
-        end_date: "#{_end.getFullYear()}-#{trailZero(_end.getMonth())}-#{trailZero(_end.getDate())}"
+        start_date: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
+        end_date: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
         start_time: '09:00'
         end_time: '17:00'
         available: true
         repeat: 1
-        weekdays: '0,1,2,3,4,5,6'
+        weekdays: '1,2,3,4,5,6,7'
 
       @$('.button-add').show()
 

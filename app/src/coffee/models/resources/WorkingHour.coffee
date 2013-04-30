@@ -27,7 +27,7 @@ define [
       'deltaHours'
     ]
 
-    _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then arr[0] else undefined
+    _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined
 
     processWeek: (num, value) ->
       value = !value
@@ -74,7 +74,7 @@ define [
         ), undefined
 
     processChange: (model, obj) ->
-      if @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
+      if (not model.changed.pk?) and @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
 
     toJSON: () ->
       _json = Backbone.Model.prototype.toJSON.call @
@@ -143,7 +143,7 @@ define [
         @set 'deltaHours', Math.round _delta
 
     updateWeekdaysHash: () ->
-      @weekdaysHash = _.reduce @weekdays()?.split(','), ((memo, elem) -> memo[elem] = true; memo), {}
+      @weekdaysHash = _.reduce @weekdays()?.split(','), ((memo, elem) -> memo[parseInt(elem) - 1] = true; memo), {}
 
     updateStartDate: () ->
       @set 'start_date_obj', new Date Date.parse @start_date()

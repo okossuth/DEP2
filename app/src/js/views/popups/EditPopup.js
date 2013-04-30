@@ -19,8 +19,19 @@ define(['ovivo'], function() {
     close: function() {
       return this.hide();
     },
+    _getSyncHandler: function(collection, model) {
+      var _handler;
+
+      _handler = function() {
+        collection.add(model);
+        model.off('sync', _handler);
+        return delete model.url;
+      };
+      return _handler;
+    },
     add: function() {
-      this.collection.add(this.model);
+      this.model.on('sync', this._getSyncHandler(this.collection, this.model));
+      this.model.url = this.collection.url;
       this.model.save();
       return this.close();
     },

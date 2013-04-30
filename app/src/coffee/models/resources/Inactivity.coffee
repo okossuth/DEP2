@@ -25,7 +25,7 @@ define [
 
       else gettext('Params are missing')
 
-    processChange: () -> if @id? then @save()
+    processChange: () -> if (not @changed.pk?) and @id? then @save()
 
     processRange: (start, end) ->
       _arr = []

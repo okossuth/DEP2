@@ -11,7 +11,7 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
       }
     },
     processChange: function() {
-      if (this.id != null) {
+      if ((this.changed.pk == null) && (this.id != null)) {
         return this.save();
       }
     },

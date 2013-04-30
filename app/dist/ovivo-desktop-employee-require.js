@@ -17957,8 +17957,19 @@ define('views/popups/EditPopup',['ovivo'], function() {
     close: function() {
       return this.hide();
     },
+    _getSyncHandler: function(collection, model) {
+      var _handler;
+
+      _handler = function() {
+        collection.add(model);
+        model.off('sync', _handler);
+        return delete model.url;
+      };
+      return _handler;
+    },
     add: function() {
-      this.collection.add(this.model);
+      this.model.on('sync', this._getSyncHandler(this.collection, this.model));
+      this.model.url = this.collection.url;
       this.model.save();
       return this.close();
     },
@@ -18022,13 +18033,13 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
       this.setModel(new this.collection.model({
-        start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth())) + "-" + (trailZero(_start.getDate())),
-        end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth())) + "-" + (trailZero(_end.getDate())),
+        start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
+        end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         start_time: '09:00',
         end_time: '17:00',
         available: true,
         repeat: 1,
-        weekdays: '0,1,2,3,4,5,6'
+        weekdays: '1,2,3,4,5,6,7'
       }));
       return this.$('.button-add').show();
     },
@@ -20853,7 +20864,7 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
-          return arr[0];
+          return parseInt(arr[0]) + 1;
         } else {
           return void 0;
         }
@@ -20915,7 +20926,7 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
       }), void 0);
     },
     processChange: function(model, obj) {
-      if ((this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
         return this.save();
       }
     },
@@ -20996,7 +21007,7 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
       var _ref;
 
       return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
-        memo[elem] = true;
+        memo[parseInt(elem) - 1] = true;
         return memo;
       }), {});
     },
@@ -21192,7 +21203,7 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
       }
     },
     processChange: function() {
-      if (this.id != null) {
+      if ((this.changed.pk == null) && (this.id != null)) {
         return this.save();
       }
     },
