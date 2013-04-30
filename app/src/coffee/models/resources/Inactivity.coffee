@@ -39,13 +39,26 @@ define [
       _i = new Date start
 
       while _i <= end
+        _type = if (_i - _start) is 0 
+            'first'
+
+          else if (_i - _end) is 0
+            'last'
+
+          else 'none'
+
         _arr.push
           date: new Date _i
           model: @
+          itemType: _type
 
         _i.setDate _i.getDate() + 1
 
       _arr
+
+    getView: (obj) -> new @View
+      model: @
+      itemType: obj.itemType
 
     initialize: (attrs, options) ->
       @View = View

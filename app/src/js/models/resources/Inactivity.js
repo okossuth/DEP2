@@ -16,7 +16,7 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
       }
     },
     processRange: function(start, end) {
-      var _arr, _end, _i, _start;
+      var _arr, _end, _i, _start, _type;
 
       _arr = [];
       _start = new Date(Date.parse(this.start()));
@@ -29,13 +29,21 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
       }
       _i = new Date(start);
       while (_i <= end) {
+        _type = (_i - _start) === 0 ? 'first' : (_i - _end) === 0 ? 'last' : 'none';
         _arr.push({
           date: new Date(_i),
-          model: this
+          model: this,
+          itemType: _type
         });
         _i.setDate(_i.getDate() + 1);
       }
       return _arr;
+    },
+    getView: function(obj) {
+      return new this.View({
+        model: this,
+        itemType: obj.itemType
+      });
     },
     initialize: function(attrs, options) {
       this.View = View;

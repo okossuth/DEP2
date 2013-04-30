@@ -49,7 +49,11 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
 
       return ((_reason = this.reason()) != null) && (_reason !== '');
     },
-    initialize: function() {
+    postRender: function() {
+      return this.$el.addClass(this.itemType);
+    },
+    initialize: function(options) {
+      this.itemType = options.itemType;
       this.proxyCall('initialize', arguments);
       return true;
     }

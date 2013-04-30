@@ -20,10 +20,10 @@ define(['ovivo'], function() {
     removeWorkingHour: function(model) {
       return this.view.removeWorkingHour(model);
     },
-    addInactivity: function(model) {
+    addInactivity: function(model, obj) {
       var _view;
 
-      _view = model.getView();
+      _view = model.getView(obj);
       return this.view.addInactivity(_view, model);
     },
     removeInactivity: function(model) {

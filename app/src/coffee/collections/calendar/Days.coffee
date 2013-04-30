@@ -37,7 +37,7 @@ define [
         if _day?
           @_addDayCache _day, hash, obj.model
 
-          _day[adderName] obj.model
+          _day[adderName] obj.model, obj
 
     processWorkingHours: (start, end) ->
       @_rangeResultProcessor ovivo.desktop.resources.workingHours.processRange(start, end), @workingHoursCache, 'addWorkingHour'

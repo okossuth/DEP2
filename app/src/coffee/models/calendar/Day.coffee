@@ -24,8 +24,8 @@ define [
 
   removeWorkingHour: (model) -> @view.removeWorkingHour model
 
-  addInactivity: (model) ->
-    _view = model.getView()
+  addInactivity: (model, obj) ->
+    _view = model.getView obj
 
     @view.addInactivity _view, model
 

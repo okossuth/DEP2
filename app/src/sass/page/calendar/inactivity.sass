@@ -1,4 +1,11 @@
 ul.months-list, ul.weeks-list
+  .row
+    > td
+      &:first-child
+        li.inactivity
+          > span
+            visibility: visible
+
   li.inactivity
     width: 100%
 
@@ -10,10 +17,27 @@ ul.months-list, ul.weeks-list
 
     background: black
 
+    &.first
+      padding: 5px 10px 5px 8px
+
+      > span
+        visibility: visible
+
+    &.last
+      padding: 5px 8px 5px 10px
+      left: -10px
+
+    &.none
+      padding: 5px 10px
+
+      left: -10px
+
     > span
+      visibility: hidden
+
       color: white
 
       height: 13px
       width: 100%
-      display: block
 
+      display: block

@@ -28,7 +28,12 @@ define [
 
     isReason: () -> (_reason = @reason())? and (_reason isnt '')
 
-    initialize: () ->
+    postRender: () ->
+      @$el.addClass @itemType
+
+    initialize: (options) ->
+      @itemType = options.itemType
+
       @proxyCall 'initialize', arguments
 
       true

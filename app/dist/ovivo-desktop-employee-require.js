@@ -18497,7 +18497,7 @@ define('collections/calendar/Days',['ovivo'], function() {
         _day = _this.get(_key);
         if (_day != null) {
           _this._addDayCache(_day, hash, obj.model);
-          return _day[adderName](obj.model);
+          return _day[adderName](obj.model, obj);
         }
       });
     },
@@ -19000,10 +19000,10 @@ define('models/calendar/Day',['ovivo'], function() {
     removeWorkingHour: function(model) {
       return this.view.removeWorkingHour(model);
     },
-    addInactivity: function(model) {
+    addInactivity: function(model, obj) {
       var _view;
 
-      _view = model.getView();
+      _view = model.getView(obj);
       return this.view.addInactivity(_view, model);
     },
     removeInactivity: function(model) {
@@ -21139,7 +21139,11 @@ define('views/resources/Inactivity',['views/resources/ResourceBase', 'ovivo'], f
 
       return ((_reason = this.reason()) != null) && (_reason !== '');
     },
-    initialize: function() {
+    postRender: function() {
+      return this.$el.addClass(this.itemType);
+    },
+    initialize: function(options) {
+      this.itemType = options.itemType;
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -21236,7 +21240,7 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
       }
     },
     processRange: function(start, end) {
-      var _arr, _end, _i, _start;
+      var _arr, _end, _i, _start, _type;
 
       _arr = [];
       _start = new Date(Date.parse(this.start()));
@@ -21249,13 +21253,21 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
       }
       _i = new Date(start);
       while (_i <= end) {
+        _type = (_i - _start) === 0 ? 'first' : (_i - _end) === 0 ? 'last' : 'none';
         _arr.push({
           date: new Date(_i),
-          model: this
+          model: this,
+          itemType: _type
         });
         _i.setDate(_i.getDate() + 1);
       }
       return _arr;
+    },
+    getView: function(obj) {
+      return new this.View({
+        model: this,
+        itemType: obj.itemType
+      });
     },
     initialize: function(attrs, options) {
       this.View = View;

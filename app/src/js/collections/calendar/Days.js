@@ -52,7 +52,7 @@ define(['ovivo'], function() {
         _day = _this.get(_key);
         if (_day != null) {
           _this._addDayCache(_day, hash, obj.model);
-          return _day[adderName](obj.model);
+          return _day[adderName](obj.model, obj);
         }
       });
     },
