@@ -15,6 +15,7 @@ section.page .notification-message {
     height: 100%;
     background: #333333;
     opacity: 0.75;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
     border-radius: 5px;
     z-index: 1; }
   section.page .notification-message i.icon-huge {

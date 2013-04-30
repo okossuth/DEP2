@@ -24,7 +24,7 @@
   .page > header > div.line {
     height: 39px;
     line-height: 16px;
-    margin-left: 20px; }
+    margin-left: 15px; }
     .page > header > div.line > * {
       vertical-align: middle; }
     .page > header > div.line > i.navigation {
@@ -34,12 +34,12 @@
       height: 38px;
       width: 1px;
       display: inline-block;
-      margin: 0 30px 0 0; }
+      margin: 0 0 0 0; }
     .page > header > div.line > span.title {
       font-size: 21px;
       font-family: "Helvetica Neue Bold", HelveticaNeueBold;
       color: #007550;
-      margin: 0 10px 0 0; }
+      margin: 0 10px 0 20px; }
     .page > header > div.line > em.title {
       font-size: 21px;
       font-style: normal;

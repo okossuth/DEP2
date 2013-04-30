@@ -58,6 +58,11 @@ define [
 
       else ''
 
+    startDateFormated: () ->
+      _date = new Date Date.parse @model.start_date()
+
+      "#{ovivo.config.DAYS[_date.getDay()].toLowerCase()}, #{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()]}"
+
     changeType: (e) ->
       if @_isActual() is true then @model.switchType()
 

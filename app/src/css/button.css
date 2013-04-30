@@ -8,7 +8,13 @@
   padding: 11px 0 11px 0;
   text-align: center;
   cursor: pointer; }
+  .button.bordered {
+    background: transparent;
+    padding: 9px 0 9px 0;
+    border: 2px solid #007550;
+    color: #007550; }
   .button.disabled {
-    background: #6e9c8d; }
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
   .button.capital {
     text-transform: uppercase; }

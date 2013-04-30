@@ -78,7 +78,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         position: relative;
         z-index: 1;
         height: 23px;
-        line-height: 23px;
+        line-height: 19px;
         text-align: center; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
           vertical-align: middle; }

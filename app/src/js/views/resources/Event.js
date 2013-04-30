@@ -70,6 +70,12 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
         return '';
       }
     },
+    startDateFormated: function() {
+      var _date;
+
+      _date = new Date(Date.parse(this.model.start_date()));
+      return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase()) + ", " + (_date.getDate()) + ". " + ovivo.config.MONTHS[_date.getMonth()];
+    },
     changeType: function(e) {
       if (this._isActual() === true) {
         this.model.switchType();

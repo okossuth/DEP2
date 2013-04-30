@@ -75,7 +75,7 @@ define [
 
       _eventDetailsView = _event.detailsView
 
-      @$('header span.title').html @headerTemplate _eventDetailsView
+      @$('header span.title').html _event.view.startDateFormated()
 
       @$('.event-container').html ''
       @$('.event-container').append _eventDetailsView.el

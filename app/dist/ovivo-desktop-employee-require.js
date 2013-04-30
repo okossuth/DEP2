@@ -20004,7 +20004,7 @@ define('views/pages/EventDetails/Page',['views/pages/PageBase', 'models/resource
       _prevEvent = this.model.previous('event');
       _event.createDetailsView();
       _eventDetailsView = _event.detailsView;
-      this.$('header span.title').html(this.headerTemplate(_eventDetailsView));
+      this.$('header span.title').html(_event.view.startDateFormated());
       this.$('.event-container').html('');
       this.$('.event-container').append(_eventDetailsView.el);
       _eventDetailsView.delegateEvents();
@@ -20350,6 +20350,12 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       } else {
         return '';
       }
+    },
+    startDateFormated: function() {
+      var _date;
+
+      _date = new Date(Date.parse(this.model.start_date()));
+      return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase()) + ", " + (_date.getDate()) + ". " + ovivo.config.MONTHS[_date.getMonth()];
     },
     changeType: function(e) {
       if (this._isActual() === true) {

@@ -66,7 +66,7 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       _prevEvent = this.model.previous('event');
       _event.createDetailsView();
       _eventDetailsView = _event.detailsView;
-      this.$('header span.title').html(this.headerTemplate(_eventDetailsView));
+      this.$('header span.title').html(_event.view.startDateFormated());
       this.$('.event-container').html('');
       this.$('.event-container').append(_eventDetailsView.el);
       _eventDetailsView.delegateEvents();

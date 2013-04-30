@@ -8,8 +8,8 @@ body.loading .side-bar > h1.title > img {
   cursor: pointer; }
   .side-bar > h1.title > img {
     position: absolute;
-    left: 200px;
-    top: 1px;
+    left: 120px;
+    top: 4px;
     z-index: 9000;
     display: none; }
   .side-bar > h1.title .notifications-indicator-container {

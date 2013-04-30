@@ -8,8 +8,14 @@
   padding: 11px 0 11px 0;
   text-align: center;
   cursor: pointer; }
+  .button.bordered {
+    background: transparent;
+    padding: 9px 0 9px 0;
+    border: 2px solid #007550;
+    color: #007550; }
   .button.disabled {
-    background: #6e9c8d; }
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
   .button.capital {
     text-transform: uppercase; }
 
@@ -152,6 +158,7 @@ section.page .notification-message {
     height: 100%;
     background: #333333;
     opacity: 0.75;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
     border-radius: 5px;
     z-index: 1; }
   section.page .notification-message i.icon-huge {
@@ -587,7 +594,7 @@ section.page .notification-message {
   .page > header > div.line {
     height: 39px;
     line-height: 16px;
-    margin-left: 20px; }
+    margin-left: 15px; }
     .page > header > div.line > * {
       vertical-align: middle; }
     .page > header > div.line > i.navigation {
@@ -597,12 +604,12 @@ section.page .notification-message {
       height: 38px;
       width: 1px;
       display: inline-block;
-      margin: 0 30px 0 0; }
+      margin: 0 0 0 0; }
     .page > header > div.line > span.title {
       font-size: 21px;
       font-family: "Helvetica Neue Bold", HelveticaNeueBold;
       color: #007550;
-      margin: 0 10px 0 0; }
+      margin: 0 10px 0 20px; }
     .page > header > div.line > em.title {
       font-size: 21px;
       font-style: normal;
@@ -675,8 +682,8 @@ body.loading .side-bar > h1.title > img {
   cursor: pointer; }
   .side-bar > h1.title > img {
     position: absolute;
-    left: 200px;
-    top: 1px;
+    left: 120px;
+    top: 4px;
     z-index: 9000;
     display: none; }
   .side-bar > h1.title .notifications-indicator-container {
@@ -781,7 +788,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         position: relative;
         z-index: 1;
         height: 23px;
-        line-height: 23px;
+        line-height: 19px;
         text-align: center; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
           vertical-align: middle; }
@@ -1020,7 +1027,8 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   ul.months-list.specific .element.event > div.element-container.closed > div.buttons, ul.months-list.specific .element.event > div.element-container.bidding-closed > div.buttons, ul.weeks-list.specific .element.event > div.element-container.closed > div.buttons, ul.weeks-list.specific .element.event > div.element-container.bidding-closed > div.buttons {
     display: none; }
   ul.months-list.specific .element.event > div.element-container.non-actual, ul.weeks-list.specific .element.event > div.element-container.non-actual {
-    opacity: 0.5; }
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
     ul.months-list.specific .element.event > div.element-container.non-actual > div.strip, ul.weeks-list.specific .element.event > div.element-container.non-actual > div.strip {
       background: gray; }
   ul.months-list.specific .element.event > div.element-container .info, ul.weeks-list.specific .element.event > div.element-container .info {
@@ -1114,6 +1122,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     .page.page-event-details > footer > div.button-post > span {
       display: block;
       height: 17px; }
+
+.page.page-event-details > header > div.line > .placeholder {
+  margin-right: 0; }
 
 .page.page-event-details {
   width: 500px;
