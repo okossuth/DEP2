@@ -29,6 +29,17 @@ define(['ovivo'], function() {
     removeInactivity: function(model) {
       return this.view.removeInactivity(model);
     },
+    checkToday: function() {
+      var _now;
+
+      if (this.collection.todayFound !== true) {
+        _now = Date.today();
+        if ((_now - this.dateObj()) === 0) {
+          this.view.setToday();
+          return this.collection.todayFound = true;
+        }
+      }
+    },
     initialize: function(attrs, options) {
       var _this = this;
 
@@ -39,6 +50,7 @@ define(['ovivo'], function() {
         model: this,
         el: options.el
       });
+      this.checkToday();
       _.each(ovivo.desktop.resources.events.dateCache["" + (this.year()) + "-" + (this.month() + 1) + "-" + (this.date())], function(event) {
         return _this.addEvent(event);
       });

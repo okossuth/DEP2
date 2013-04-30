@@ -31,6 +31,15 @@ define [
 
   removeInactivity: (model) -> @view.removeInactivity model
 
+  checkToday: () ->
+    if @collection.todayFound isnt true
+      _now = Date.today()
+
+      if (_now - @dateObj()) is 0
+        @view.setToday()
+
+        @collection.todayFound = true
+
   initialize: (attrs, options) ->
     @proxyCall 'initialize', arguments
 
@@ -40,6 +49,8 @@ define [
     @view = new @View
       model: @
       el: options.el
+
+    @checkToday()
 
     _.each ovivo.desktop.resources.events.dateCache["#{@year()}-#{@month() + 1}-#{@date()}"], (event) =>
       @addEvent event

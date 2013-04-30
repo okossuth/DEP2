@@ -1,0 +1,49 @@
+ul.months-list, ul.weeks-list
+  .element
+    > div.element-container
+      margin: 7px 0 0 0
+
+    &.event
+      // max-height: 24px
+
+      position: relative
+
+      z-index: 1
+
+      > div.element-container
+
+        &.closed, &.bidding-closed
+          > div.buttons
+            display: none
+
+        &.non-actual
+          opacity: 0.5
+
+          > div.strip
+            background: gray
+
+      > div.element-container
+        .info
+          cursor: pointer
+
+          > h3, > h4
+            display: none
+
+        > div.buttons
+          height: 21px
+
+          > div.button-element
+            padding: 3px 0
+
+            > div.button-inner
+              height: 13px
+              line-height: 13px
+
+      &:last-child, &.expanded
+        max-height: none
+
+      .element-container
+        > div.buttons
+          > div.button-element
+            &.single
+              width: 100%

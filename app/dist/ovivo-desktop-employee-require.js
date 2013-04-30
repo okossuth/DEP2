@@ -18561,6 +18561,7 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     initialize: function(models, options) {
       _.extend(this, options);
+      this.todayFound = false;
       this.workingHoursCache = {};
       this.eventsCache = {};
       this.inactivitiesCache = {};
@@ -19017,6 +19018,17 @@ define('models/calendar/Day',['ovivo'], function() {
     removeInactivity: function(model) {
       return this.view.removeInactivity(model);
     },
+    checkToday: function() {
+      var _now;
+
+      if (this.collection.todayFound !== true) {
+        _now = Date.today();
+        if ((_now - this.dateObj()) === 0) {
+          this.view.setToday();
+          return this.collection.todayFound = true;
+        }
+      }
+    },
     initialize: function(attrs, options) {
       var _this = this;
 
@@ -19027,6 +19039,7 @@ define('models/calendar/Day',['ovivo'], function() {
         model: this,
         el: options.el
       });
+      this.checkToday();
       _.each(ovivo.desktop.resources.events.dateCache["" + (this.year()) + "-" + (this.month() + 1) + "-" + (this.date())], function(event) {
         return _this.addEvent(event);
       });
@@ -19144,6 +19157,9 @@ define('views/calendar/Day',['ovivo'], function() {
       _amount = _.keys(this.events).length;
       _html = _amount > 1 ? _amount + ' ' + ngettext('event', 'events', this.events) : '';
       return this.eventsCounter.html(_html);
+    },
+    setToday: function() {
+      return this.$el.addClass('current');
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
@@ -20275,7 +20291,13 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       }
     },
     postRender: function() {
-      this.$('.element-container').removeClass('open open-responses closed').addClass(this.type());
+      this.$('.element-container').removeClass('open open-responses closed bidding-closed non-actual').addClass(this.type());
+      if (this._biddingClosed() === true) {
+        this.$('.element-container').addClass('bidding-closed');
+      }
+      if (this._isActual() !== true) {
+        this.$('.element-container').addClass('non-actual');
+      }
       return true;
     },
     initialize: function() {

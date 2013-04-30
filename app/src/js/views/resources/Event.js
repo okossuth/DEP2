@@ -101,7 +101,13 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       }
     },
     postRender: function() {
-      this.$('.element-container').removeClass('open open-responses closed').addClass(this.type());
+      this.$('.element-container').removeClass('open open-responses closed bidding-closed non-actual').addClass(this.type());
+      if (this._biddingClosed() === true) {
+        this.$('.element-container').addClass('bidding-closed');
+      }
+      if (this._isActual() !== true) {
+        this.$('.element-container').addClass('non-actual');
+      }
       return true;
     },
     initialize: function() {

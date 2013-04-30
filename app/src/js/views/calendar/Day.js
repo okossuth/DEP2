@@ -108,6 +108,9 @@ define(['ovivo'], function() {
       _html = _amount > 1 ? _amount + ' ' + ngettext('event', 'events', this.events) : '';
       return this.eventsCounter.html(_html);
     },
+    setToday: function() {
+      return this.$el.addClass('current');
+    },
     initialize: function() {
       this.proxyCall('initialize', arguments);
       this.events = {};

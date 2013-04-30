@@ -108,6 +108,7 @@ define(['ovivo'], function() {
     },
     initialize: function(models, options) {
       _.extend(this, options);
+      this.todayFound = false;
       this.workingHoursCache = {};
       this.eventsCache = {};
       this.inactivitiesCache = {};

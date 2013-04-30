@@ -87,6 +87,8 @@ define [
     initialize: (models, options) ->
       _.extend @, options
 
+      @todayFound = false
+
       @workingHoursCache = {}
       @eventsCache = {}
       @inactivitiesCache = {}

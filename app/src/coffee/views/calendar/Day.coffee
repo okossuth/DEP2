@@ -107,6 +107,8 @@ define [
 
     @eventsCounter.html _html
 
+  setToday: () -> @$el.addClass 'current'
+
   initialize: () ->
     @proxyCall 'initialize', arguments
 

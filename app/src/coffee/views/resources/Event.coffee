@@ -80,7 +80,13 @@ define [
       if (_now > _date) and (@type() isnt 'closed') then true else false
 
     postRender: () ->
-      @$('.element-container').removeClass('open open-responses closed').addClass @type()
+      @$('.element-container').removeClass('open open-responses closed bidding-closed non-actual').addClass @type()
+
+      if @_biddingClosed() is true
+        @$('.element-container').addClass 'bidding-closed'
+
+      if @_isActual() isnt true
+        @$('.element-container').addClass 'non-actual'
 
       true
 
