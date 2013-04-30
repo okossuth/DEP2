@@ -6,6 +6,13 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     className: 'inactivity',
     template: Handlebars.templates['inactivity'],
     groupTemplate: Handlebars.templates['inactivity_group'],
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      ovivo.desktop.popups.editPopupTimeoff.show();
+      return ovivo.desktop.popups.editPopupTimeoff.setModel(this.model);
+    },
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());

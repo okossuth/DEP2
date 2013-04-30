@@ -8,6 +8,8 @@
   padding: 11px 0 11px 0;
   text-align: center;
   cursor: pointer; }
+  .button.disabled {
+    background: #6e9c8d; }
   .button.capital {
     text-transform: uppercase; }
 
@@ -607,9 +609,14 @@ section.page .notification-message {
       color: #333333;
       margin: 0 15px 0 0; }
     .page > header > div.line > div.button {
-      width: 158px;
-      margin: 0 30px 0 0;
-      float: right; }
+      margin: 0 10px 0 0; }
+      .page > header > div.line > div.button.today {
+        width: 100px;
+        margin-left: 10px; }
+      .page > header > div.line > div.button.right {
+        float: right;
+        width: 158px;
+        margin: 0 30px 0 0; }
     .page > header > div.line > ul.switcher {
       display: inline-block;
       float: right;
@@ -814,7 +821,11 @@ ul.months-list li.inactivity, ul.weeks-list li.inactivity {
   padding: 5px 8px;
   position: relative;
   left: -8px;
-  background: black; }
+  background: black;
+  margin: 2px 0 0 0;
+  cursor: pointer; }
+  ul.months-list li.inactivity:first-child, ul.weeks-list li.inactivity:first-child {
+    margin-top: 0; }
   ul.months-list li.inactivity.first, ul.weeks-list li.inactivity.first {
     padding: 5px 10px 5px 8px; }
     ul.months-list li.inactivity.first > span, ul.weeks-list li.inactivity.first > span {

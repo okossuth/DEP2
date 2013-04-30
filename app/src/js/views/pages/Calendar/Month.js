@@ -22,6 +22,19 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this.current.setMonth(this.current.getMonth() + 1);
       return this.navigate(this.current.getFullYear(), this.current.getMonth());
     },
+    today: function() {
+      var _today;
+
+      _today = Date.today();
+      this.current.setMonth(_today.getMonth());
+      return this.navigate(this.current.getFullYear(), this.current.getMonth());
+    },
+    _isToday: function(year, month) {
+      var _today;
+
+      _today = Date.today();
+      return (_today.getFullYear() === year) && (_today.getMonth() === month);
+    },
     processCollectorShow: function(collector) {
       return this.title.html(ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
@@ -33,6 +46,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this._initialize();
       this.title = $('.page.page-calendar header span.title.month-title');
       this.collectorsList = this.$('.months-list');
+      this.todayButton = $('.page.page-calendar header .month-today');
       this.navigate(_now.getFullYear(), _now.getMonth());
       return true;
     }

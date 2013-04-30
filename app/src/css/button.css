@@ -8,5 +8,7 @@
   padding: 11px 0 11px 0;
   text-align: center;
   cursor: pointer; }
+  .button.disabled {
+    background: #6e9c8d; }
   .button.capital {
     text-transform: uppercase; }

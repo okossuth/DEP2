@@ -31,6 +31,20 @@ define [
 
       @navigate @current.getFullYear(), @current.getWeek()
 
+    today: () ->
+      _now = Date.today()
+      _now.setWeek _now.getWeek()
+      _now.moveToDayOfWeek(4)
+
+      @navigate _now.getFullYear(), _now.getWeek()
+
+    _isToday: (year, number) ->
+      _now = Date.today()
+      _now.setWeek _now.getWeek()
+      _now.moveToDayOfWeek(4)
+
+      (_now.getFullYear() is year) and (_now.getWeek() is number)
+
     processCollectorShow: (collector) ->
       @title.html gettext('Week ') + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
 
@@ -46,6 +60,8 @@ define [
 
       @title = $('.page.page-calendar header span.title.week-title')
       @collectorsList = @$ '.weeks-list'
+
+      @todayButton = $('.page.page-calendar header .week-today')
 
       @navigate _now.getFullYear(), _now.getWeek()
 

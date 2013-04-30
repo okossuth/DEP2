@@ -21,7 +21,8 @@ define [
     processMouseLeave: () -> @model.removeHighlight()
 
     processClick: () ->
-      
+      ovivo.desktop.popups.editPopupWorkingHour.show()
+      ovivo.desktop.popups.editPopupWorkingHour.setModel @model
 
     _getDateStr: (_date) ->
       if _date?

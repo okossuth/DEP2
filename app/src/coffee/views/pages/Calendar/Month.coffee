@@ -29,7 +29,19 @@ define [
     next: () ->
       @current.setMonth @current.getMonth() + 1
 
+      @navigate @current.getFullYear(), @current.getMonth() 
+
+    today: () ->
+      _today = Date.today()
+
+      @current.setMonth _today.getMonth()
+
       @navigate @current.getFullYear(), @current.getMonth()
+
+    _isToday: (year, month) ->
+      _today = Date.today()
+
+      (_today.getFullYear() is year) and (_today.getMonth() is month)
 
     processCollectorShow: (collector) ->
       @title.html ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
@@ -43,6 +55,8 @@ define [
 
       @title = $('.page.page-calendar header span.title.month-title')
       @collectorsList = @$ '.months-list'
+
+      @todayButton = $('.page.page-calendar header .month-today')
 
       @navigate _now.getFullYear(), _now.getMonth()
 

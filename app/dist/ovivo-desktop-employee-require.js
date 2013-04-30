@@ -18449,11 +18449,22 @@ define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
       var _collector, _key;
 
       _key = this._getKey.apply(this, Array.prototype.slice.call(arguments, 0));
+      if (this._isToday.apply(this, Array.prototype.slice.call(arguments, 0)) === true) {
+        this.processToday();
+      } else {
+        this.processNotToday();
+      }
       if ((_collector = this.collectors.get(_key)) == null) {
         _collector = this.collectors.addElement(this._getObj.apply(this, Array.prototype.slice.call(arguments, 0)));
       }
       this.collectors.show(_collector);
       return true;
+    },
+    processToday: function() {
+      return this.todayButton.addClass('disabled');
+    },
+    processNotToday: function() {
+      return this.todayButton.removeClass('disabled');
     },
     processCollectorAdd: function(collector, collectors) {
       return this.collectorsList.append(collector.view.el);
@@ -19259,6 +19270,19 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
       this.current.setMonth(this.current.getMonth() + 1);
       return this.navigate(this.current.getFullYear(), this.current.getMonth());
     },
+    today: function() {
+      var _today;
+
+      _today = Date.today();
+      this.current.setMonth(_today.getMonth());
+      return this.navigate(this.current.getFullYear(), this.current.getMonth());
+    },
+    _isToday: function(year, month) {
+      var _today;
+
+      _today = Date.today();
+      return (_today.getFullYear() === year) && (_today.getMonth() === month);
+    },
     processCollectorShow: function(collector) {
       return this.title.html(ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
@@ -19270,6 +19294,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
       this._initialize();
       this.title = $('.page.page-calendar header span.title.month-title');
       this.collectorsList = this.$('.months-list');
+      this.todayButton = $('.page.page-calendar header .month-today');
       this.navigate(_now.getFullYear(), _now.getMonth());
       return true;
     }
@@ -19380,6 +19405,22 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       this.current.moveToDayOfWeek(4, 1);
       return this.navigate(this.current.getFullYear(), this.current.getWeek());
     },
+    today: function() {
+      var _now;
+
+      _now = Date.today();
+      _now.setWeek(_now.getWeek());
+      _now.moveToDayOfWeek(4);
+      return this.navigate(_now.getFullYear(), _now.getWeek());
+    },
+    _isToday: function(year, number) {
+      var _now;
+
+      _now = Date.today();
+      _now.setWeek(_now.getWeek());
+      _now.moveToDayOfWeek(4);
+      return (_now.getFullYear() === year) && (_now.getWeek() === number);
+    },
     processCollectorShow: function(collector) {
       return this.title.html(gettext('Week ') + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
@@ -19393,6 +19434,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       this._initialize();
       this.title = $('.page.page-calendar header span.title.week-title');
       this.collectorsList = this.$('.weeks-list');
+      this.todayButton = $('.page.page-calendar header .week-today');
       this.navigate(_now.getFullYear(), _now.getWeek());
       return true;
     }
@@ -19443,7 +19485,8 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     events: function() {
       return _.extend({}, PageBase.prototype.events, {
         'click .navigate-left': 'prev',
-        'click .navigate-right': 'next'
+        'click .navigate-right': 'next',
+        'click .today': 'today'
       });
     },
     prev: function() {
@@ -19451,6 +19494,9 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     },
     next: function() {
       return this.subViews[this.mode].next();
+    },
+    today: function() {
+      return this.subViews[this.mode].today();
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);
@@ -20800,7 +20846,10 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
     processMouseLeave: function() {
       return this.model.removeHighlight();
     },
-    processClick: function() {},
+    processClick: function() {
+      ovivo.desktop.popups.editPopupWorkingHour.show();
+      return ovivo.desktop.popups.editPopupWorkingHour.setModel(this.model);
+    },
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());
@@ -21176,6 +21225,13 @@ define('views/resources/Inactivity',['views/resources/ResourceBase', 'ovivo'], f
     className: 'inactivity',
     template: Handlebars.templates['inactivity'],
     groupTemplate: Handlebars.templates['inactivity_group'],
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      ovivo.desktop.popups.editPopupTimeoff.show();
+      return ovivo.desktop.popups.editPopupTimeoff.setModel(this.model);
+    },
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());

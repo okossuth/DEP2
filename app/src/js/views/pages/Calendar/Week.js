@@ -22,6 +22,22 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this.current.moveToDayOfWeek(4, 1);
       return this.navigate(this.current.getFullYear(), this.current.getWeek());
     },
+    today: function() {
+      var _now;
+
+      _now = Date.today();
+      _now.setWeek(_now.getWeek());
+      _now.moveToDayOfWeek(4);
+      return this.navigate(_now.getFullYear(), _now.getWeek());
+    },
+    _isToday: function(year, number) {
+      var _now;
+
+      _now = Date.today();
+      _now.setWeek(_now.getWeek());
+      _now.moveToDayOfWeek(4);
+      return (_now.getFullYear() === year) && (_now.getWeek() === number);
+    },
     processCollectorShow: function(collector) {
       return this.title.html(gettext('Week ') + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
@@ -35,6 +51,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this._initialize();
       this.title = $('.page.page-calendar header span.title.week-title');
       this.collectorsList = this.$('.weeks-list');
+      this.todayButton = $('.page.page-calendar header .week-today');
       this.navigate(_now.getFullYear(), _now.getWeek());
       return true;
     }

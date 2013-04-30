@@ -12,6 +12,13 @@ define [
     template: Handlebars.templates['inactivity']
     groupTemplate: Handlebars.templates['inactivity_group']
 
+    events:
+      'click': 'processClick'
+
+    processClick: () ->
+      ovivo.desktop.popups.editPopupTimeoff.show()
+      ovivo.desktop.popups.editPopupTimeoff.setModel @model
+
     _getDateStr: (_date) ->
       if _date?
         "#{ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)} #{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()].toLowerCase()}"

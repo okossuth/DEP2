@@ -5,7 +5,8 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     events: function() {
       return _.extend({}, PageBase.prototype.events, {
         'click .navigate-left': 'prev',
-        'click .navigate-right': 'next'
+        'click .navigate-right': 'next',
+        'click .today': 'today'
       });
     },
     prev: function() {
@@ -13,6 +14,9 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     },
     next: function() {
       return this.subViews[this.mode].next();
+    },
+    today: function() {
+      return this.subViews[this.mode].today();
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);

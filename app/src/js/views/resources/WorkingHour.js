@@ -17,7 +17,10 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     processMouseLeave: function() {
       return this.model.removeHighlight();
     },
-    processClick: function() {},
+    processClick: function() {
+      ovivo.desktop.popups.editPopupWorkingHour.show();
+      return ovivo.desktop.popups.editPopupWorkingHour.setModel(this.model);
+    },
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());

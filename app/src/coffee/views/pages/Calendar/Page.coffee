@@ -14,9 +14,13 @@ define [
     events: () -> _.extend {}, PageBase.prototype.events,
       'click .navigate-left': 'prev'
       'click .navigate-right': 'next'
+      'click .today': 'today'
 
     prev: () -> @subViews[@mode].prev()
     next: () -> @subViews[@mode].next()
+
+    today: () ->
+      @subViews[@mode].today()
 
     transitionStart: () ->
       @proxyCall 'transitionStart', arguments
