@@ -19814,7 +19814,7 @@ define('views/pages/Feedback/Page',['_features/Switcher', '_features/indicator',
       return _.extend({}, PageBase.prototype.events, {
         'click div.back-button': 'back',
         'click div.send-button': 'send',
-        'change textarea': 'changeTextarea'
+        'keyup textarea': 'changeTextarea'
       });
     },
     back: function() {
