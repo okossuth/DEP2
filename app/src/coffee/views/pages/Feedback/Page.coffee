@@ -55,7 +55,7 @@ define [
       @text = @$('textarea').val()
 
       if @text is '' then @sendButton.addClass 'disabled'
-      else if @value isnt null then @sendButton.removeClass 'disabled'
+      else if @type isnt null then @sendButton.removeClass 'disabled'
 
     transitionStart: () ->
       @proxyCall 'transitionStart', arguments
@@ -91,5 +91,7 @@ define [
       @typeSwitcher.on 'value', @processType, @
 
       @sendButton = @$('.send-button')
+
+      @clear()
 
       true

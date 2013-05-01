@@ -45,7 +45,7 @@ define(['_features/Switcher', '_features/indicator', 'views/pages/PageBase', '_f
       this.text = this.$('textarea').val();
       if (this.text === '') {
         return this.sendButton.addClass('disabled');
-      } else if (this.value !== null) {
+      } else if (this.type !== null) {
         return this.sendButton.removeClass('disabled');
       }
     },
@@ -76,6 +76,7 @@ define(['_features/Switcher', '_features/indicator', 'views/pages/PageBase', '_f
       this.typeSwitcher = new Switcher(this.$('.switcher-feedback-type'), ['error', 'comment', 'suggestion']);
       this.typeSwitcher.on('value', this.processType, this);
       this.sendButton = this.$('.send-button');
+      this.clear();
       return true;
     }
   });
