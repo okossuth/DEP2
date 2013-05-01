@@ -3,7 +3,7 @@ define [
 
   '_common/ResourceManagerBase',
 
-  'ovivo-ella'
+  'ovivo'
 ], (Model, ResourceManagerBase) ->
   Backbone.Collection.extend _.extend {}, ResourceManagerBase,
     model: Model
@@ -13,7 +13,7 @@ define [
     postProcess: () ->
       _allowed = @pluck 'pk'
 
-      _.each ovivo.mobile.resources.groups.each (group) ->
+      _.each ovivo.desktop.resources.groups.each (group) ->
         _value = if (_allowed.indexOf(group.id) is -1) then false else true
 
         group.set 'allowed', _value
@@ -23,6 +23,6 @@ define [
 
       @initResource()
 
-      $.when(@def, ovivo.mobile.resources.groups.def).then _.bind @postProcess, @
+      $.when(@def, ovivo.desktop.resources.groups.def).then _.bind @postProcess, @
 
       true

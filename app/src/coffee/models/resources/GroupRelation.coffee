@@ -1,7 +1,7 @@
 define [
   'models/resources/ResourceBase',
 
-  'ovivo-ella'
+  'ovivo'
 ], (ResourceBase, View) ->
   ResourceBase.extend
     _gettersNames: [
