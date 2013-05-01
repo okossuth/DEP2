@@ -39,7 +39,7 @@ define [
 
     available: () -> if @model.available() is true then gettext('Available') else gettext('Unavailable')
 
-    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every forth week').toLowerCase()]
+    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()]
 
     repeat: () -> @_repeatStrs[@model.repeat() - 1]
 
