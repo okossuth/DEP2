@@ -1,8 +1,8 @@
 define [
   'models/resources/ResourceBase',
 
-  'ovivo'
-], (ResourceBase) ->
+  'ovivo-ella'
+], (ResourceBase, View) ->
   ResourceBase.extend
     _gettersNames: [
       'checked'

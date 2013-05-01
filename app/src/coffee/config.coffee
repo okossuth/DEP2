@@ -34,6 +34,8 @@ ovivo.config.DAYS = [
 ovivo.config.DAYS_IN_MONTH = [
     31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
   ]
+
+ovivo.config.HELP_URL = 'http://ovivo.desk.com'
   
 ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d)(\d\d)))$/
 

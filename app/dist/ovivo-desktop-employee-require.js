@@ -17706,6 +17706,8 @@ ovivo.config.DAYS = [gettext('Sunday'), gettext('Monday'), gettext('Tuesday'), g
 
 ovivo.config.DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+ovivo.config.HELP_URL = 'http://ovivo.desk.com';
+
 ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d)(\d\d)))$/;
 
 if (ovivo._config != null) {
@@ -19826,11 +19828,20 @@ define('views/pages/Help/Page',['views/pages/PageBase', 'ovivo'], function(PageB
       this.proxyCall('transitionStart', arguments);
       return true;
     },
-    transitionComplete: function() {
+    transitionComplete: function(type) {
       this.proxyCall('transitionComplete', arguments);
+      if ((type === 'enter') && (this.loaded === false)) {
+        this.iframe.src = ovivo.config.HELP_URL;
+      }
       return true;
     },
+    iframeLoad: function() {
+      return this.loaded = true;
+    },
     initialize: function() {
+      this.loaded = false;
+      this.iframe = this.$('iframe')[0];
+      this.iframe.onload = _.bind(this.iframeLoad, this);
       this.proxyCall('initialize', arguments);
       return true;
     }

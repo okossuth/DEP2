@@ -3,39 +3,26 @@ define [
 
   '_common/ResourceManagerBase',
 
-  'ovivo'
+  'ovivo-ella'
 ], (Model, ResourceManagerBase) ->
   Backbone.Collection.extend _.extend {}, ResourceManagerBase,
     model: Model
 
     url: () -> "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/groups/"
 
-    postProcess: do () ->
-      _processGroup = (allowed, parent, group) ->
-        if (_.indexOf(allowed, group.id) isnt -1)
-          _groupResource = @get(group.id)
-          _groupResource.set 'parent', parent
-          _groupResource.set 'primary_department', group.primary_department()
+    postProcess: () ->
+      _allowed = @pluck 'pk'
 
-          if (parent isnt null) then @get(parent).get('children').push _groupResource
+      _.each ovivo.mobile.resources.groups.each (group) ->
+        _value = if (_allowed.indexOf(group.id) is -1) then false else true
 
-          parent = group.id
-
-        _.each group.children(), (pk) => _processGroup.call @, allowed, parent, ovivo.desktop.resources.groups.get pk
-
-        true
-
-      () ->
-        _allowed = @pluck 'pk'
-
-        _.each ovivo.desktop.resources.groups.filter((group) -> group.parent() is null), (group) => _processGroup.call @, _allowed, null, group
-
+        group.set 'allowed', _value
 
     initialize: (models, options) ->
       _.extend @, options
 
       @initResource()
 
-      $.when(@def, ovivo.desktop.resources.groups).then _.bind @postProcess, @
+      $.when(@def, ovivo.mobile.resources.groups.def).then _.bind @postProcess, @
 
       true

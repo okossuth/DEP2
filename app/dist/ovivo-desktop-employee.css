@@ -1135,6 +1135,16 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   .page.page-event-details > header > div.line > div.button {
     width: 40px; }
 
+.page.page-help .content {
+  overflow: hidden; }
+.page.page-help iframe {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
 .page.page-notifications .load-more-button {
   margin: 7px;
   display: block; }

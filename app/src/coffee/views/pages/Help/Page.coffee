@@ -13,12 +13,24 @@ define [
 
       true
 
-    transitionComplete: () ->
+    transitionComplete: (type) ->
       @proxyCall 'transitionComplete', arguments
+
+      if (type is 'enter') and (@loaded is false)
+        @iframe.src = ovivo.config.HELP_URL
 
       true
 
+    iframeLoad: () ->
+      @loaded = true
+
     initialize: () ->
+      @loaded = false
+
+      @iframe = @$('iframe')[0]
+
+      @iframe.onload = _.bind @iframeLoad, @
+
       @proxyCall 'initialize', arguments
 
       true

@@ -3,7 +3,7 @@ define [
 
   '_common/ResourceManagerBase',
 
-  'ovivo'
+  'ovivo-ella'
 ], (Model, ResourceManagerBase) ->
   Backbone.Collection.extend _.extend {}, ResourceManagerBase,
     model: Model
