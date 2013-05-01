@@ -33,7 +33,7 @@ define(['_features/Switcher', '_features/indicator', 'views/pages/PageBase', '_f
     processSuccess: function() {
       indicator.success();
       ovivo.desktop.pages.calendar.show();
-      notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, 'Thanks for your feedback');
+      notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, gettext('Thanks for your feedback'));
       return true;
     },
     processError: function() {

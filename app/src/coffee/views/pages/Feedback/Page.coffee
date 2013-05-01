@@ -40,7 +40,7 @@ define [
 
       ovivo.desktop.pages.calendar.show()
 
-      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, 'Thanks for your feedback'
+      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, gettext('Thanks for your feedback')
 
       true
 

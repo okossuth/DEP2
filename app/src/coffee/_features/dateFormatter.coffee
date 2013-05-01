@@ -4,7 +4,7 @@ define [
   'ovivo'
 ], (trailZero) ->
   TIME_TITLES = [
-    [-10800000, gettext('just now')]
+    [-10800000, gettext('just now')],
     [0, gettext('just now')],
     [1000, gettext('a second ago')],
     [60000, gettext('a minute ago')],

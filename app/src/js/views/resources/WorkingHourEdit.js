@@ -56,7 +56,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return gettext('Unavailable');
       }
     },
-    _repeatStrs: [gettext('every other week'), gettext('every second week'), gettext('every third week'), gettext('every forth week')],
+    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every forth week').toLowerCase()],
     repeat: function() {
       return this._repeatStrs[this.model.repeat() - 1];
     },
