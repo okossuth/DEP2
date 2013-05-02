@@ -38,6 +38,7 @@ define [
         repeat: 1
         weekdays: '1,2,3,4,5,6,7'
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
+        groups: [ovivo.desktop.resources.groups.at(0)?.pk()]
 
       @initEditMode()
 

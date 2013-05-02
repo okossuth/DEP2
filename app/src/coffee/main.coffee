@@ -51,11 +51,12 @@ require [
 
   'collections/resources/ResourceNeeds',
   'collections/resources/Skills',
+  'collections/resources/Groups',
 
   '_features/socket.io',
 
   'ovivo'
-], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, socketIO) ->
+], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Groups, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -70,6 +71,7 @@ require [
         'User',
         'ResourceNeeds',
         'Skills'
+        'Groups'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
 

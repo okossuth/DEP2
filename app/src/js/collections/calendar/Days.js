@@ -70,9 +70,9 @@ define(['ovivo'], function() {
       _.extend(this, options);
       this.todayFound = false;
       this.resourceNeedsCache = {};
-      ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedsAdd, this);
-      ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedsRemove, this);
-      ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedsChange, this);
+      ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedAdd, this);
+      ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedRemove, this);
+      ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedChange, this);
       return true;
     }
   });

@@ -13,7 +13,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       'skill': eval
     },
     createNew: function() {
-      var _end, _now, _ref, _start;
+      var _end, _now, _ref, _ref1, _start;
 
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
@@ -29,7 +29,8 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         num_employees: 1,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7',
-        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0
+        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
+        groups: [(_ref1 = ovivo.desktop.resources.groups.at(0)) != null ? _ref1.pk() : void 0]
       }));
       return this.initEditMode();
     },

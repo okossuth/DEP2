@@ -40,12 +40,12 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Groups', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Groups, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Skills'], function(resourceName) {
+    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Skills', 'Groups'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
