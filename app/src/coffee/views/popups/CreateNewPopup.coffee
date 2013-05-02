@@ -7,25 +7,15 @@ define [
     el: '.popup-create-new'
 
     events: _.extend {}, Popup.prototype.events,
-      'click .button-create-time': 'createTime'
-      'click .button-create-timeoff': 'createTimeoff'
+      'click .button-create-resource-need': 'createResourceNeed'
 
-    createTime: () ->
+    createResourceNeed: () ->
       ovivo.desktop.pages.settings.show()
-      ovivo.desktop.pages.settings.view.showSubView('availability')
-      ovivo.desktop.popups.editPopupWorkingHour.createNew()
+      ovivo.desktop.pages.settings.view.showSubView('resourceNeed')
+      ovivo.desktop.popups.editPopupResourceNeed.createNew()
 
       @close()
-      ovivo.desktop.popups.editPopupWorkingHour.show()
-
-    createTimeoff: () ->
-      ovivo.desktop.pages.settings.show()
-      ovivo.desktop.pages.settings.view.showSubView('timeoff')
-      ovivo.desktop.popups.editPopupTimeoff.createNew()
-
-      @close()
-      ovivo.desktop.popups.editPopupTimeoff.show()
-
+      ovivo.desktop.popups.editPopupResourceNeed.show()
 
     initialize: () ->
       @_initialize()

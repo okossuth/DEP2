@@ -3,22 +3,14 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
   return Popup.extend({
     el: '.popup-create-new',
     events: _.extend({}, Popup.prototype.events, {
-      'click .button-create-time': 'createTime',
-      'click .button-create-timeoff': 'createTimeoff'
+      'click .button-create-resource-need': 'createResourceNeed'
     }),
-    createTime: function() {
+    createResourceNeed: function() {
       ovivo.desktop.pages.settings.show();
-      ovivo.desktop.pages.settings.view.showSubView('availability');
-      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      ovivo.desktop.pages.settings.view.showSubView('resourceNeed');
+      ovivo.desktop.popups.editPopupResourceNeed.createNew();
       this.close();
-      return ovivo.desktop.popups.editPopupWorkingHour.show();
-    },
-    createTimeoff: function() {
-      ovivo.desktop.pages.settings.show();
-      ovivo.desktop.pages.settings.view.showSubView('timeoff');
-      ovivo.desktop.popups.editPopupTimeoff.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupTimeoff.show();
+      return ovivo.desktop.popups.editPopupResourceNeed.show();
     },
     initialize: function() {
       this._initialize();

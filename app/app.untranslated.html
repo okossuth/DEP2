@@ -232,163 +232,17 @@
                 </ul>
             </div>
 
-            <div class="content notifications-view hide">
+            <div class="content resource-need-view hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
 
                     <ul class="sections-menu">
                         <li class="sections-menu-item sections-menu-item-general">
                             <span>{{#i18n}}General{{/i18n}}</span>
-                        </li>
-
-                        <li class="selected sections-menu-item sections-menu-item-notifications">
-                            <span>{{#i18n}}Notifications{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-availability">
-                            <span>{{#i18n}}Availability{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>{{#i18n}}Time off{{/i18n}}</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="scroll-container settings-items">
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Send me notifications via e-mail{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-notify_email">
-                                <li class="option selected">
-                                    <span>{{#i18n}}Yes{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>{{#i18n}}No{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Send me notifications via SMS{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-notify_sms">
-                                <li class="option selected">
-                                    <span>{{#i18n}}Yes{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>{{#i18n}}No{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Activity report{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-activity_digest">
-                                <li class="option selected">
-                                    <span>{{#i18n}}Yes{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>{{#i18n}}No{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Send me confirmation when bidding through SMS{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-response_confirmation">
-                                <li class="option selected">
-                                    <span>{{#i18n}}Yes{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>{{#i18n}}No{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Send me notifications 24 hour before assigned events starts{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-event_reminders">
-                                <li class="option selected">
-                                    <span>{{#i18n}}Yes{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>{{#i18n}}No{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}The number of days inside of which a user will be notified of a new event immediately by text and/or email{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content">
-                            <ul class="options-group options-event_urgent_within">
-                                <li class="option selected">
-                                    <span>3{{#i18n}}d{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>7{{#i18n}}d{{/i18n}}</span>
-                                </li>
-
-                                <li class="option">
-                                    <span>14{{#i18n}}d{{/i18n}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="content availability-view hide">
-                <div class="line">
-                    <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
-
-                    <ul class="sections-menu">
-                        <li class="sections-menu-item sections-menu-item-general">
-                            <span>{{#i18n}}General{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-notifications">
-                            <span>{{#i18n}}Notifications{{/i18n}}</span>
                         </li>
 
                         <li class="selected sections-menu-item sections-menu-item-availability">
-                            <span>{{#i18n}}Availability{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>{{#i18n}}Time off{{/i18n}}</span>
+                            <span>{{#i18n}}Resource needs{{/i18n}}</span>
                         </li>
                     </ul>
                 </div>
@@ -401,7 +255,7 @@
                 <div class="wireframe elements-header">
                     <div class="side-container">
                         <div class="button button-add-new">
-                            <span>+ {{#i18n}}Add new time{{/i18n}}</span>
+                            <span>+ {{#i18n}}Add new resource need{{/i18n}}</span>
                         </div>
                     </div>
 
@@ -416,49 +270,7 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container elements working-hours">
-
-                </ul>
-            </div>
-
-            <div class="content timeoff-view hide">
-                <div class="line">
-                    <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
-
-                    <ul class="sections-menu">
-                        <li class="sections-menu-item sections-menu-item-general">
-                            <span>{{#i18n}}General{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-notifications">
-                            <span>{{#i18n}}Notifications{{/i18n}}</span>
-                        </li>
-
-                        <li class="sections-menu-item sections-menu-item-availability">
-                            <span>{{#i18n}}Availability{{/i18n}}</span>
-                        </li>
-
-                        <li class="selected sections-menu-item sections-menu-item-timeoff">
-                            <span>{{#i18n}}Time off{{/i18n}}</span>
-                        </li>
-                    </ul>
-
-                </div>
-
-                <div class="info">
-                    <h2>This headline should explain how this works</h2>
-                    <h3>Some more explanation text and here we have a link where the user can add specific time periodes to the overview below</h3>
-                </div>
-
-                <div class="wireframe elements-header">
-                    <div class="side-container">
-                        <div class="button button-add-new">
-                            <span>+ {{#i18n}}Add time off{{/i18n}}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="scroll-container elements inactivities">
+                <ul class="scroll-container elements resource-needs">
 
                 </ul>
             </div>
@@ -574,16 +386,12 @@
             <h1 class="create-mode">{{#i18n}}Choose an option{{/i18n}}</h1>
             <div class="close">X</div>
 
-            <div class="button capital button-create-time">
-                {{#i18n}}Create time{{/i18n}}
-            </div>
-
-            <div class="button capital button-create-timeoff">
-                {{#i18n}}Create timeoff{{/i18n}}
+            <div class="button capital button-create-resource-need">
+                {{#i18n}}Create resource need{{/i18n}}
             </div>
         </div>
 
-        <div class="popup popup-working-hour" style="display: none;">
+        <div class="popup popup-resource-need" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time{{/i18n}}</h1>
 
@@ -604,19 +412,6 @@
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>{{#i18n}}Status{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content two">
-                        <select class="property-value property-value-available">
-                            <option value="true">{{#i18n}}Available{{/i18n}}</option>
-                            <option value="false">{{#i18n}}Unavailable{{/i18n}}</option>
-                        </select>
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
                         <span>{{#i18n}}Date{{/i18n}}</span><em>some explanation text</em>
                     </div>
 
@@ -624,6 +419,19 @@
                         <input type="text" class="property-value property-value-start_date datepicker" />
                         <span>{{#i18n}}to{{/i18n}}</span>
                         <input type="date" class="property-value property-value-end_date datepicker" />
+                    </div>
+                </li>
+
+                <li class="settings-item">
+                    <div class="header">
+                        <span>{{#i18n}}Employee type{{/i18n}}</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content two">
+                        <select class="property-value property-value-employee_type">
+                            <option value="fulltime">{{#i18n}}Full time{{/i18n}}</option>
+                            <option value="parttime">{{#i18n}}Part time{{/i18n}}</option>
+                        </select>
                     </div>
                 </li>
 
@@ -645,45 +453,6 @@
 
             <div class="button capital button-add">
                 + {{#i18n}}Add time{{/i18n}}
-            </div>
-
-            <div class="button capital warning button-delete">
-                {{#i18n}}Delete{{/i18n}}
-            </div>
-        </div>
-
-        <div class="popup popup-timeoff" style="display: none;">
-            <h1 class="create-mode">{{#i18n}}Add new time off{{/i18n}}</h1>
-            <h1 class="edit-mode">{{#i18n}}Edit time off{{/i18n}}</h1>
-
-            <div class="close">X</div>
-
-            <ul class="settings-items">
-                <li class="settings-item">
-                    <div class="header">
-                        <span>{{#i18n}}Date{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content two">
-                        <input type="text" class="datepicker property-value property-value-start" />
-                        <span>{{#i18n}}to{{/i18n}}</span>
-                        <input type="text" class="datepicker property-value property-value-end" />
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
-                        <span>{{#i18n}}Reason{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <input type="text" placeholder="{{#i18n}}Reason{{/i18n}}" class="property-value property-value-reason" />
-                    </div>
-                </li>
-            </ul>
-
-            <div class="button capital button-add">
-                + {{#i18n}}Add time off{{/i18n}}
             </div>
 
             <div class="button capital warning button-delete">
@@ -732,7 +501,7 @@
 
             ovivo._config = {
                 USER_ID: 1979,
-                TEST_SESSIONID_COOKIE: '5d54d02bdd61fef7a05063b9501a7d01',
+                TEST_SESSIONID_COOKIE: '02635e2a16ad82a93f3389d75b7c7774',
                 SOCKET_IO_CONNECT_URL: 'http://dev.ovivo.dk:8888/',
                 FB_APP_ID: 450545431639022,
                 TIMEZONE_OFFSET: 7200000,
