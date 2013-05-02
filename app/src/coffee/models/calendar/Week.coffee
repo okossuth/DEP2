@@ -51,6 +51,4 @@ define [
 
       @proxyCall 'initialize', arguments
 
-      ovivo.desktop.resources.events.fetchWeek(@number(), @year(), @_firstDate).done _.bind @removeLoading, @
-
       true

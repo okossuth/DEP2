@@ -1,5 +1,5 @@
 define [
-  'models/resources/WorkingHour',
+  'models/resources/ResourceNeed',
 
   '_common/ResourceManagerBase',
 
@@ -10,7 +10,7 @@ define [
 
     fullResponse: true
 
-    url: "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/working-hours/"
+    url: "#{ovivo.config.API_URL_PREFIX}resource-needs/"
 
     comparator: (workingHour) -> Date.parse(workingHour.start_date()).valueOf()
 

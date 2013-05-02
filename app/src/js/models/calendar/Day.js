@@ -2,32 +2,14 @@
 define(['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
-    addEvent: function(model) {
+    addResourceNeed: function(model) {
       var _view;
 
       _view = model.getView();
-      return this.view.addEvent(_view, model);
+      return this.view.addResourceNeed(_view, model);
     },
-    removeEvent: function(model) {
-      return this.view.removeEvent(model);
-    },
-    addWorkingHour: function(model) {
-      var _view;
-
-      _view = model.getView();
-      return this.view.addWorkingHour(_view, model);
-    },
-    removeWorkingHour: function(model) {
-      return this.view.removeWorkingHour(model);
-    },
-    addInactivity: function(model, obj) {
-      var _view;
-
-      _view = model.getView(obj);
-      return this.view.addInactivity(_view, model);
-    },
-    removeInactivity: function(model) {
-      return this.view.removeInactivity(model);
+    removeResourceNeed: function(model) {
+      return this.view.removeResourceNeed(model);
     },
     checkToday: function() {
       var _now;
@@ -47,8 +29,6 @@ define(['ovivo'], function() {
       return this.view.removeHighlight(model);
     },
     initialize: function(attrs, options) {
-      var _this = this;
-
       this.proxyCall('initialize', arguments);
       this.set('pk', "" + (this.year()) + "-" + (this.month()) + "-" + (this.date()) + (this.disabled() === true ? '-disabled' : ''));
       this.set('dateObj', new Date(this.year(), this.month(), this.date()));
@@ -57,9 +37,6 @@ define(['ovivo'], function() {
         el: options.el
       });
       this.checkToday();
-      _.each(ovivo.desktop.resources.events.dateCache["" + (this.year()) + "-" + (this.month() + 1) + "-" + (this.date())], function(event) {
-        return _this.addEvent(event);
-      });
       return true;
     }
   };

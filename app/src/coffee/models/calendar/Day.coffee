@@ -10,26 +10,12 @@ define [
     'dateObj'
   ]
 
-  addEvent: (model) ->
+  addResourceNeed: (model) ->
     _view = model.getView()
 
-    @view.addEvent _view, model
+    @view.addResourceNeed _view, model
 
-  removeEvent: (model) -> @view.removeEvent model
-
-  addWorkingHour: (model) ->
-    _view = model.getView()
-
-    @view.addWorkingHour _view, model
-
-  removeWorkingHour: (model) -> @view.removeWorkingHour model
-
-  addInactivity: (model, obj) ->
-    _view = model.getView obj
-
-    @view.addInactivity _view, model
-
-  removeInactivity: (model) -> @view.removeInactivity model
+  removeResourceNeed: (model) -> @view.removeResourceNeed model
 
   checkToday: () ->
     if @collection.todayFound isnt true
@@ -55,7 +41,4 @@ define [
 
     @checkToday()
 
-    _.each ovivo.desktop.resources.events.dateCache["#{@year()}-#{@month() + 1}-#{@date()}"], (event) =>
-      @addEvent event
- 
     true

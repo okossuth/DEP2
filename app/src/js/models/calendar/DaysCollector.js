@@ -34,13 +34,13 @@ define(['ovivo'], function() {
       })();
       _start = new Date(_start.year, _start.month, _start.date);
       _end = new Date(_end.year, _end.month, _end.date);
-      this.collection.days.processWorkingHours(_start, _end);
-      this.collection.days.processInactivities(_start, _end);
+      this.collection.days.processResourceNeeds(_start, _end);
       return true;
     },
     initDays: function() {
       this.collection.days.initElements(this.view.dayElements, this.days);
       this.initResources();
+      this.removeLoading();
       return true;
     },
     removeLoading: function() {

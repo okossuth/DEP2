@@ -29,7 +29,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         num_employees: 1,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7',
-        skill: (_ref = ovivo.desktop.skills.at(0)) != null ? _ref.pk() : void 0
+        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0
       }));
       return this.initEditMode();
     },

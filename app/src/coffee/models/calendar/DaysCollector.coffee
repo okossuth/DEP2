@@ -26,8 +26,7 @@ define [
     _start = new Date _start.year, _start.month, _start.date
     _end = new Date _end.year, _end.month, _end.date
 
-    @collection.days.processWorkingHours _start, _end
-    @collection.days.processInactivities _start, _end
+    @collection.days.processResourceNeeds _start, _end
 
     true
 
@@ -35,6 +34,8 @@ define [
     @collection.days.initElements @view.dayElements, @days
 
     @initResources()
+
+    @removeLoading()
 
     true
 

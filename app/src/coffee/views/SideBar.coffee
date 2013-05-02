@@ -49,7 +49,7 @@ define [
       @_processItem _item
 
     initialize: () ->
-      ovivo.desktop.resources.notifications.on 'reset', @updateNotifications, @
-      ovivo.desktop.resources.notifications.on 'add', @updateNotifications, @
+      # ovivo.desktop.resources.notifications.on 'reset', @updateNotifications, @
+      # ovivo.desktop.resources.notifications.on 'add', @updateNotifications, @
 
       true

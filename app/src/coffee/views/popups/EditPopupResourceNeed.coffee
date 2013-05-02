@@ -37,7 +37,7 @@ define [
         num_employees: 1
         repeat: 1
         weekdays: '1,2,3,4,5,6,7'
-        skill: ovivo.desktop.skills.at(0)?.pk()
+        skill: ovivo.desktop.resources.skills.at(0)?.pk()
 
       @initEditMode()
 

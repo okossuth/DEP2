@@ -31,7 +31,6 @@ define(['models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views
       this.set('month', this._firstDate.getMonth());
       this.days = this.getDaysArr();
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.events.fetchWeek(this.number(), this.year(), this._firstDate).done(_.bind(this.removeLoading, this));
       return true;
     }
   }));

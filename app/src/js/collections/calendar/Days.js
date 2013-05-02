@@ -32,16 +32,6 @@ define(['ovivo'], function() {
     _clearDayCache: function(cache, model) {
       return cache[model.id] = [];
     },
-    processEventAdd: function(event) {
-      var _day;
-
-      _day = this.get(event.getKey());
-      if (_day != null) {
-        this._addDayCache(_day, this.eventsCache, event);
-        _day.addEvent(event);
-      }
-      return true;
-    },
     _rangeResultProcessor: function(rangeResult, hash, adderName) {
       var _this = this;
 
@@ -56,71 +46,33 @@ define(['ovivo'], function() {
         }
       });
     },
-    processWorkingHours: function(start, end) {
-      return this._rangeResultProcessor(ovivo.desktop.resources.workingHours.processRange(start, end), this.workingHoursCache, 'addWorkingHour');
+    processResourceNeeds: function(start, end) {
+      return this._rangeResultProcessor(ovivo.desktop.resources.resourceNeeds.processRange(start, end), this.resourceNeedsCache, 'addResourceNeed');
     },
-    processInactivities: function(start, end) {
-      return this._rangeResultProcessor(ovivo.desktop.resources.inactivities.processRange(start, end), this.inactivitiesCache, 'addInactivity');
-    },
-    processWorkingHourAdd: function(workingHour) {
+    processResourceNeedAdd: function(workingHour) {
       var end, start;
 
       start = this.first().dateObj();
       end = this.last().dateObj();
-      return this._rangeResultProcessor(workingHour.processRange(start, end), this.workingHoursCache, 'addWorkingHour');
+      return this._rangeResultProcessor(workingHour.processRange(start, end), this.resourceNeedsCache, 'addResourceNeed');
     },
-    processInactivityAdd: function(workingHour) {
-      var end, start;
-
-      start = this.first().dateObj();
-      end = this.last().dateObj();
-      return this._rangeResultProcessor(workingHour.processRange(start, end), this.inactivitiesCache, 'addInactivity');
-    },
-    processEventRemove: function(model) {
-      _.each(this._getDaysCache(this.eventsCache, model), function(day) {
-        return day.removeEvent(model);
+    processResourceNeedRemove: function(model) {
+      _.each(this._getDaysCache(this.resourceNeedsCache, model), function(day) {
+        return day.removeResourceNeed(model);
       });
-      return this._clearDayCache(this.eventsCache, model);
+      return this._clearDayCache(this.resourceNeedsCache, model);
     },
-    processWorkingHourRemove: function(model) {
-      _.each(this._getDaysCache(this.workingHoursCache, model), function(day) {
-        return day.removeWorkingHour(model);
-      });
-      return this._clearDayCache(this.workingHoursCache, model);
-    },
-    processInactivityRemove: function(model) {
-      _.each(this._getDaysCache(this.inactivitiesCache, model), function(day) {
-        return day.removeInactivity(model);
-      });
-      return this._clearDayCache(this.inactivitiesCache, model);
-    },
-    processEventChange: function(model) {
-      this.processEventRemove(model);
-      return this.processEventAdd(model);
-    },
-    processWorkingHourChange: function(model) {
-      this.processWorkingHourRemove(model);
-      return this.processWorkingHourAdd(model);
-    },
-    processInactivityChange: function(model) {
-      this.processInactivityRemove(model);
-      return this.processInactivityAdd(model);
+    processResourceNeedChange: function(model) {
+      this.processResourceNeedRemove(model);
+      return this.processResourceNeedAdd(model);
     },
     initialize: function(models, options) {
       _.extend(this, options);
       this.todayFound = false;
-      this.workingHoursCache = {};
-      this.eventsCache = {};
-      this.inactivitiesCache = {};
-      ovivo.desktop.resources.events.on('add', this.processEventAdd, this);
-      ovivo.desktop.resources.workingHours.on('add', this.processWorkingHourAdd, this);
-      ovivo.desktop.resources.inactivities.on('add', this.processInactivityAdd, this);
-      ovivo.desktop.resources.events.on('remove', this.processEventRemove, this);
-      ovivo.desktop.resources.workingHours.on('remove', this.processWorkingHourRemove, this);
-      ovivo.desktop.resources.inactivities.on('remove', this.processInactivityRemove, this);
-      ovivo.desktop.resources.events.on('change:type', this.processEventChange, this);
-      ovivo.desktop.resources.workingHours.on('change', this.processWorkingHourChange, this);
-      ovivo.desktop.resources.inactivities.on('change', this.processInactivityChange, this);
+      this.resourceNeedsCache = {};
+      ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedsAdd, this);
+      ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedsRemove, this);
+      ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedsChange, this);
       return true;
     }
   });

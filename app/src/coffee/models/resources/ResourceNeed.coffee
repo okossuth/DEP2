@@ -2,7 +2,7 @@ define [
   'models/resources/ResourceBase',
 
   'views/resources/ResourceNeed',
-  'views/resources/WorkingHouEdit',
+  'views/resources/ResourceNeedEdit',
 
   '_features/validators',
 

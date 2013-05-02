@@ -17,14 +17,8 @@ define [
   _getFromHash: (elem) ->
     _name = elem.typeName
 
-    if _name is 'inactivity'
-      @inactivities[elem.id]
-
-    else if _name is 'workingHour'
-      @workingHours[elem.id]
-
-    else if _name is 'event'
-      @events[elem.id]
+    if _name is 'resourceNeed'
+      @resourceNeeds[elem.id]
 
   _removeModel: (model, hash) ->
     _view = hash[model.id]
@@ -41,9 +35,7 @@ define [
     true
 
   _insertElement: do ->
-    _order = ['inactivity', 'workingHour', 'event']
-
-    _eventTypeOrder = ['closed', 'open-responses', 'open']
+    _order = ['resourceNeed']
 
     _compare = (a, b) ->
       _orderA = _.indexOf _order, a.typeName
@@ -53,14 +45,10 @@ define [
         _delta
 
       else
-        if ((_orderA is 2) and ((_eventOrderA = _.indexOf(_eventTypeOrder, a.type())) is (_eventOrderB = _.indexOf(_eventTypeOrder, b.type())))) or (_orderA isnt 2)
-          _timeA = new Date(Date.parse a.start_time()) 
-          _timeB = new Date(Date.parse b.start_time())
+        _timeA = new Date(Date.parse a.start_time()) 
+        _timeB = new Date(Date.parse b.start_time())
 
-          _timeB - _timeA
-
-        else
-          _eventOrderB - _eventOrderA
+        _timeB - _timeA
 
     (model, view, hash) ->
       _i = 0
@@ -89,46 +77,20 @@ define [
 
     @_insertElement model, view, hash
 
-  addEvent: (view, model) ->
-    @_addModel model, view, @events
+  addResourceNeed: (view, model) ->
+    @_addModel model, view, @resourceNeeds
 
-    @updateEventsCounter()
-
-    true
-
-  removeEvent: (model) -> @_removeModel model, @events
-
-  addWorkingHour: (view, model) ->
-    @_addModel model, view, @workingHours
-
-  removeWorkingHour: (model) -> @_removeModel model, @workingHours
-
-  addInactivity: (view, model) ->
-    @_addModel model, view, @inactivities
-
-  removeInactivity: (model) -> @_removeModel model, @inactivities
-
-  updateEventsCounter: () ->
-    _amount = _.keys(@events).length
-    _html = if _amount > 1
-        _amount + ' ' + ngettext('event', 'events', @events)
-      else
-        ''
-
-    @eventsCounter.html _html
+  removeResourceNeed: (model) -> @_removeModel model, @resourceNeeds
 
   setToday: () -> @$el.addClass 'current'
 
   initialize: () ->
     @proxyCall 'initialize', arguments
 
-    @events = {}
-    @workingHours = {}
-    @inactivities = {}
+    @resourceNeeds = {}
 
     @elements = []
 
     @calendarItems = @$('.calendar-items')
-    @eventsCounter = @$('.events-counter')
 
     true
