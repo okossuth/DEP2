@@ -54,16 +54,22 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       return _.reduce([
         {
           name: 'start_time',
-          value: attrs.start_time
+          value: attrs.start_time,
+          validator: 'time'
         }, {
           name: 'end_time',
-          value: attrs.end_time
+          value: attrs.end_time,
+          validator: 'time'
+        }, {
+          name: 'num_employees',
+          value: attrs.num_employees,
+          validator: 'number'
         }
       ], (function(memo, obj) {
         if (typeof memo !== 'undefined') {
           return memo;
         } else {
-          return validators.time(obj.name, obj.value);
+          return validators[obj.validator](obj.name, obj.value);
         }
       }), void 0);
     },
@@ -72,6 +78,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         return this.save();
       }
     },
+    processModelChange: function() {},
     toJSON: function() {
       var _json;
 
@@ -165,21 +172,38 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         return this.set('end_date_obj', void 0);
       }
     },
+    _getTimeValue: function(str) {
+      var _hours, _minutes, _ref, _ref1;
+
+      _ref = str.split(':'), _hours = _ref[0], _minutes = _ref[1];
+      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
+      return _hours * 60 + _minutes;
+    },
+    updateGroups: function() {
+      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
+        memo[elem] = true;
+        return memo;
+      }), {});
+      return this._groups = _.map(this.groups(), String);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
       this.updateStartDate();
       this.updateEndDate();
       this.on('change', this.processChange, this);
-      this.on('change:group', this.processChange, this);
+      this.on('change:groups', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:start_date', this.updateStartDate, this);
       this.on('change:end_date', this.updateEndDate, this);
-      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
-        memo[elem] = true;
-        return memo;
-      }), {});
       this.updateWeekdaysHash();
+      this.startValue = this._getTimeValue(this.start_time());
+      this.endValue = this._getTimeValue(this.end_time());
+      this.on('change:groups', this.updateGroups, this);
+      this.updateGroups();
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
       this.editView = new EditView({
         model: this
       });

@@ -2,15 +2,31 @@
 define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill'],
-    types: {
-      'start_time': String,
-      'end_time': String,
-      'start_date': String,
-      'end_date': String,
-      'repeat': eval,
-      'employee_type': String,
-      'skill': eval
+    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill', 'num_employees', 'groups'],
+    skillsTemplate: Handlebars.templates['skills'],
+    groupsTemplate: Handlebars.templates['groups'],
+    groupsProcessor: function(value) {
+      return _.map(value, function(group) {
+        return parseInt(group);
+      });
+    },
+    types: function() {
+      return {
+        'start_time': String,
+        'end_time': String,
+        'start_date': String,
+        'end_date': String,
+        'repeat': Number,
+        'employee_type': String,
+        'skill': Number,
+        'num_employees': Number,
+        'groups': this.groupsProcessor
+      };
+    },
+    skills: function() {
+      return ovivo.desktop.resources.skills.map(function(skill) {
+        return skill;
+      });
     },
     createNew: function() {
       var _end, _now, _ref, _ref1, _start;
@@ -34,7 +50,16 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       }));
       return this.initEditMode();
     },
+    processSkills: function() {
+      return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
+    },
+    processGroups: function() {
+      return this.$('.property-value-groups').append($(this.groupsTemplate({
+        tree: ovivo.desktop.resources.groups.tree
+      })).children());
+    },
     initialize: function() {
+      this.types = this.types();
       this.collection = ovivo.desktop.resources.resourceNeeds;
       this.$('.datepicker').pickadate({
         format: 'yyyy-mm-dd',
@@ -42,6 +67,8 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         firstDay: 1
       });
       this._initialize();
+      ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
+      ovivo.desktop.resources.groups.on('tree-ready', this.processGroups, this);
       return true;
     }
   });

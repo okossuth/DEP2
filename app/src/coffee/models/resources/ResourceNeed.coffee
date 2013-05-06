@@ -63,19 +63,27 @@ define [
     validate: (attrs) ->
       _.reduce [{
           name: 'start_time',
-          value: attrs.start_time, 
+          value: attrs.start_time,
+          validator: 'time'
         }, {
           name: 'end_time',
-          value: attrs.end_time
+          value: attrs.end_time,
+          validator: 'time'
+        }, {
+          name: 'num_employees',
+          value: attrs.num_employees,
+          validator: 'number'
       }], ((memo, obj) =>
         if typeof memo isnt 'undefined'
           memo
         else
-          validators.time obj.name, obj.value
+          validators[obj.validator] obj.name, obj.value
         ), undefined
 
     processChange: (model, obj) ->
       if (not model.changed.pk?) and @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
+
+    processModelChange: () ->
 
     toJSON: () ->
       _json = Backbone.Model.prototype.toJSON.call @
@@ -156,6 +164,18 @@ define [
       else 
         @set 'end_date_obj', undefined
 
+    _getTimeValue: (str) ->
+      [_hours, _minutes] = str.split(':')
+
+      [_hours, _minutes] = [parseInt(_hours), parseInt(_minutes)]
+
+      _hours * 60 + _minutes
+
+    updateGroups: () ->
+      @groupsHash = _.reduce @groups(), ((memo, elem) -> memo[elem] = true; memo), {}
+      
+      @_groups = _.map @groups(), String
+
     initialize: (attrs, options) ->
       @View = View
 
@@ -165,14 +185,22 @@ define [
       @updateEndDate()
 
       @on 'change', @processChange, @
-      @on 'change:group', @processChange, @
+      @on 'change:groups', @processChange, @
       @on 'change:weekdays', @updateWeekdaysHash, @
 
       @on 'change:start_date', @updateStartDate, @
       @on 'change:end_date', @updateEndDate, @
-
-      @groupsHash = _.reduce @groups(), ((memo, elem) -> memo[elem] = true; memo), {}
+      
       @updateWeekdaysHash()
+
+      @startValue = @_getTimeValue @start_time()
+      @endValue = @_getTimeValue @end_time()
+
+      @on 'change:groups', @updateGroups, @
+
+      @updateGroups()
+
+      if @endValue < @startValue then @endValue += 24 * 60
 
       @editView = new EditView
         model: @

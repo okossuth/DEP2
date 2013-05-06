@@ -37,11 +37,12 @@ define [
       if @model.end_date() is @model.start_date() then ''
       else if (_end_date = @model.end_date())? then " – #{@_getDateStr new Date Date.parse _end_date}" else ' – \u221E'
 
-    available: () -> if @model.available() is true then gettext('Available') else gettext('Unavailable')
-
     _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()]
 
     repeat: () -> @_repeatStrs[@model.repeat() - 1]
+
+    renderSkill: () ->
+      @$('.skill-value').html ovivo.desktop.resources.skills.get(@model.skill())?.name()
 
     postRender: () ->
       @$('.columns.weekdays > li').each (i, elem) =>
@@ -50,6 +51,8 @@ define [
 
         else
           $(elem).removeClass 'checked'
+
+      ovivo.desktop.resources.skills.def.done _.bind @renderSkill, @
 
     initialize: () ->
       @proxyCall 'initialize', arguments

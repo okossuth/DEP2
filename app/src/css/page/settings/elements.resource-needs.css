@@ -1,13 +1,15 @@
 .page.page-settings .resource-need-view .wireframe.elements-header {
   height: 50px; }
+  .page.page-settings .resource-need-view .wireframe.elements-header .button {
+    width: 198px; }
 .page.page-settings .resource-need-view .attributes {
   display: block;
-  width: 180px;
+  width: 200px;
   margin: 13px auto 0 auto; }
 .page.page-settings .resource-need-view ul.columns {
   overflow: auto; }
   .page.page-settings .resource-need-view ul.columns.weekdays {
-    padding: 34px 0 0 0; }
+    padding: 40px 0 0 0; }
   .page.page-settings .resource-need-view ul.columns.weekdays-titles {
     font-family: "Helvetica Neue Bold", HelveticaNeueBold;
     padding: 10px 0 0 0; }
@@ -26,4 +28,4 @@
     .page.page-settings .resource-need-view ul.columns > li.checked > i.checked {
       display: inline-block; }
 .page.page-settings .resource-need-view .elements > li.element > .wireframe {
-  height: 94px; }
+  height: 105px; }

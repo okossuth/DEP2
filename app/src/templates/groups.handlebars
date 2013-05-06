@@ -1,0 +1,9 @@
+<select>
+{{#tree}}
+    {{#pd}}<optgroup label="{{name}}">{{/pd}}
+    {{#groups}}
+        {{#group}}<option value="{{pk}}">{{treeName}}</option>{{/group}}
+    {{/groups}}
+    </optgroup>
+{{/tree}}
+</select>

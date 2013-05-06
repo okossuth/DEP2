@@ -21,3 +21,6 @@ define [
           _returnValue = name
 
     _returnValue
+
+  number: (name, value) ->
+    if (typeof value isnt 'number') or (value <= 0) or ((value - Math.floor(value)) isnt 0) then name else undefined

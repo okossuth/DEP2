@@ -58,7 +58,7 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
           _date = new Date(Date.parse(model[field]()));
           return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
         } else {
-          return _this.$('.property-value-' + field).val(model[field]().toString());
+          return _this.$('.property-value-' + field).val(model[field]());
         }
       });
     }

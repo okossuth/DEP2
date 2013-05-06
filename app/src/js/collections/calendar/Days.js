@@ -66,6 +66,14 @@ define(['ovivo'], function() {
       this.processResourceNeedRemove(model);
       return this.processResourceNeedAdd(model);
     },
+    processAvailabilityAdd: function(model) {
+      var _data, _day, _key;
+
+      _data = new Date(Date.parse(model.start()));
+      _key = model._key = "" + (_data.getFullYear()) + "-" + (_data.getMonth()) + "-" + (_data.getDate());
+      _day = this.get(_key);
+      return _day != null ? _day.addAvailability(model) : void 0;
+    },
     initialize: function(models, options) {
       _.extend(this, options);
       this.todayFound = false;
@@ -73,6 +81,7 @@ define(['ovivo'], function() {
       ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedAdd, this);
       ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedRemove, this);
       ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedChange, this);
+      ovivo.desktop.resources.availabilities.on('add', this.processAvailabilityAdd, this);
       return true;
     }
   });

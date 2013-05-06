@@ -63,6 +63,11 @@ define(['ovivo'], function() {
         return true;
       };
     },
+    _resolveDef: function(def) {
+      return function() {
+        return def.resolve();
+      };
+    },
     throttleGroup: function(funcName, groupFuncName, limit) {
       var _processGroupCall;
 

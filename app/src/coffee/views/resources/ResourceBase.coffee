@@ -47,6 +47,7 @@ define [
         if view.postRender? then view.postRender()
 
         view.model.trigger 'rendered'
+        view.trigger 'rendered'
 
         true
 

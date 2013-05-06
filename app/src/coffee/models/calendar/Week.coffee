@@ -51,4 +51,6 @@ define [
 
       @proxyCall 'initialize', arguments
 
+      # ovivo.desktop.resources.availabilities.fetchWeek attrs.number, attrs.year
+
       true

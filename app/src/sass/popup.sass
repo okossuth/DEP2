@@ -21,11 +21,35 @@
   position: absolute
 
   left: 50%
-  top: 200px
+  top: 100px
   z-index: 100000
 
-  margin: 0 0 0 -158px
+  margin: 0 0 0 -166px
   padding: 16px
+
+  &.wide
+    width: 700px
+
+    margin: 0 0 0 -366px
+
+    > .settings-items
+      width: 400px
+
+      margin: 20px auto
+
+      > li.settings-item
+        > div.item-content
+          > select
+            width: 400px
+
+    .columns-container
+      > .settings-items
+        float: left
+
+        margin: 0 0 0 40px
+
+        &:first-child
+          margin-left: 30px
 
   > h1, > div.close
     color: #807e73
@@ -46,18 +70,40 @@
     cursor: pointer
 
   > div.button
-    width: 156px
+    width: 196px
 
     margin: 10px auto 0 auto
 
     display: block
 
-  > .settings-items
+  .columns-container
+    overflow: auto
+
+    margin: 20px 0
+
+  .settings-items
     margin: 20px 0
 
     > li.settings-item
       > div.item-content
-        text-align: center
+        > input
+          width: 268px
+
+          height: 22px
+
+          line-height: 22px
+
+        > select
+          width: 287px
+
+          height: 40px
+
+          line-height: 19px
+
+          &[multiple="multiple"]
+            min-height: 150px
+
+            text-align: left
 
         > input, > select
           background: #ebe9e0
@@ -70,7 +116,7 @@
 
           padding: 9px 9px
 
-          width: 287px
+          vertical-align: middle
 
         > span
           font: normal 17px 'Helvetica Neue Bold', HelveticaNeueBold, Helvetica, Arial, sans-serif

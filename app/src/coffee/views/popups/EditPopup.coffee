@@ -67,4 +67,4 @@ define [
           _input.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
 
         else
-          @$('.property-value-' + field).val model[field]().toString()
+          @$('.property-value-' + field).val model[field]()

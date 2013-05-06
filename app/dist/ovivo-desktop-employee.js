@@ -142,7 +142,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
             var _model;
 
-            console.log(_model = model.get(pk));
+            _model = model.get(pk);
             return model.remove(_model);
           });
         }

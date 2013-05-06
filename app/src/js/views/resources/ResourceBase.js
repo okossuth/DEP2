@@ -65,6 +65,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
           view.postRender();
         }
         view.model.trigger('rendered');
+        view.trigger('rendered');
         return true;
       });
       if (this.groupRenderComplete != null) {

@@ -52,6 +52,10 @@ define [
 
       true
 
+  _resolveDef: (def) ->
+    () ->
+      def.resolve()
+
   throttleGroup: (funcName, groupFuncName, limit) ->
     _processGroupCall = () ->
       @[groupFuncName] @common.calls

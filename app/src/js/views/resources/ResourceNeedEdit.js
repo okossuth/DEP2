@@ -49,27 +49,26 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return ' – \u221E';
       }
     },
-    available: function() {
-      if (this.model.available() === true) {
-        return gettext('Available');
-      } else {
-        return gettext('Unavailable');
-      }
-    },
     _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()],
     repeat: function() {
       return this._repeatStrs[this.model.repeat() - 1];
     },
+    renderSkill: function() {
+      var _ref;
+
+      return this.$('.skill-value').html((_ref = ovivo.desktop.resources.skills.get(this.model.skill())) != null ? _ref.name() : void 0);
+    },
     postRender: function() {
       var _this = this;
 
-      return this.$('.columns.weekdays > li').each(function(i, elem) {
+      this.$('.columns.weekdays > li').each(function(i, elem) {
         if (_this.model.weekdaysHash[i] === true) {
           return $(elem).addClass('checked');
         } else {
           return $(elem).removeClass('checked');
         }
       });
+      return ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

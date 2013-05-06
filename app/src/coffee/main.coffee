@@ -51,12 +51,16 @@ require [
 
   'collections/resources/ResourceNeeds',
   'collections/resources/Skills',
+  'collections/resources/Municipalities',
+  'collections/resources/PrimaryDepartments',
   'collections/resources/Groups',
+  'collections/resources/Availabilities',
+  'collections/resources/Users',
 
   '_features/socket.io',
 
   'ovivo'
-], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Groups, socketIO) ->
+], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -68,10 +72,14 @@ require [
       ovivo.desktop.resources = {}
 
       $.when.apply($, _.map [
-        'User',
-        'ResourceNeeds',
+        'User'
+        'ResourceNeeds'
         'Skills'
+        'Municipalities'
+        'PrimaryDepartments'
         'Groups'
+        'Availabilities'
+        'Users'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
 
@@ -85,7 +93,7 @@ require [
       ovivo.desktop.sideBar = new SideBar()
 
       _.each [
-        'Calendar',
+        'Calendar'
         'Settings'
       ], (pageVarName) ->
         _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))
@@ -95,9 +103,8 @@ require [
 
       ovivo.desktop.popups = {}
 
-
       _.each [
-        'EditPopupResourceNeed',
+        'EditPopupResourceNeed'
         'CreateNewPopup'
       ], (popupName) ->
         _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))

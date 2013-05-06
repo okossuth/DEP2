@@ -21,6 +21,13 @@ define([], function() {
         }
       }
       return _returnValue;
+    },
+    number: function(name, value) {
+      if ((typeof value !== 'number') || (value <= 0) || ((value - Math.floor(value)) !== 0)) {
+        return name;
+      } else {
+        return void 0;
+      }
     }
   };
 });

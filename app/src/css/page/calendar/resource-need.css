@@ -1,0 +1,14 @@
+ul.months-list .resource-need.element ul.groups, ul.weeks-list .resource-need.element ul.groups {
+  margin: 8px; }
+  ul.months-list .resource-need.element ul.groups > li, ul.weeks-list .resource-need.element ul.groups > li {
+    margin: 10px 0 0 0; }
+    ul.months-list .resource-need.element ul.groups > li:first-child, ul.weeks-list .resource-need.element ul.groups > li:first-child {
+      margin-top: 0; }
+    ul.months-list .resource-need.element ul.groups > li > span, ul.weeks-list .resource-need.element ul.groups > li > span {
+      font-size: 13px;
+      font-style: italic; }
+ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource-need.element ul.availabilities {
+  padding: 3px 0 0 5px; }
+  ul.months-list .resource-need.element ul.availabilities > li > .user, ul.weeks-list .resource-need.element ul.availabilities > li > .user {
+    display: block;
+    margin: 0 10px 0 0; }

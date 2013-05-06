@@ -8,16 +8,26 @@ define [
   EditPopup.extend
     el: '.popup-resource-need'
 
-    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill']
+    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill', 'num_employees', 'groups']
 
-    types: 
+    skillsTemplate: Handlebars.templates['skills']
+    groupsTemplate: Handlebars.templates['groups']
+
+    groupsProcessor: (value) ->
+      _.map value, (group) -> parseInt group
+
+    types: () ->
       'start_time': String
       'end_time': String
       'start_date': String
       'end_date': String
-      'repeat': eval
+      'repeat': Number
       'employee_type': String
-      'skill': eval
+      'skill': Number
+      'num_employees': Number
+      'groups': @groupsProcessor
+
+    skills: () -> ovivo.desktop.resources.skills.map (skill) -> skill
 
     createNew: () ->
       _now = Date.today()
@@ -42,7 +52,14 @@ define [
 
       @initEditMode()
 
+    processSkills: () ->
+      @$('.property-value-skill').append $(@skillsTemplate @).children()
+
+    processGroups: () ->
+      @$('.property-value-groups').append $(@groupsTemplate { tree: ovivo.desktop.resources.groups.tree }).children()
+
     initialize: () ->
+      @types = @types()
       @collection = ovivo.desktop.resources.resourceNeeds
 
       @$('.datepicker').pickadate
@@ -51,5 +68,9 @@ define [
         firstDay: 1
 
       @_initialize()
+
+      ovivo.desktop.resources.skills.def.then _.bind @processSkills, @
+
+      ovivo.desktop.resources.groups.on 'tree-ready', @processGroups, @
 
       true

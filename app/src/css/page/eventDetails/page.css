@@ -1,7 +1,0 @@
-.page.page-event-details {
-  width: 500px;
-  z-index: 9999;
-  box-shadow: -2px 0 30px #888888;
-  left: auto; }
-  .page.page-event-details > header > div.line > div.button {
-    width: 40px; }

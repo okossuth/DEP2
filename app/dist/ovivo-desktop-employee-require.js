@@ -16203,6 +16203,55 @@ define("handlebars", ["backbone"], function(){});
 
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['availability'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<span class=\"user\"></span><span class=\"time\">";
+  foundHelper = helpers.start;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " - ";
+  foundHelper = helpers.end;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>";
+  return buffer;});
+templates['availability_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <span class=\"user\"></span><span class=\"time\">";
+  foundHelper = helpers.start;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " - ";
+  foundHelper = helpers.end;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
 templates['calendarMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -16439,6 +16488,96 @@ function program4(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['groups'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    ";
+  foundHelper = helpers.pd;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.pd; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.pd) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    ";
+  foundHelper = helpers.groups;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </optgroup>\r\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "<optgroup label=\"";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  return buffer;}
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n        ";
+  foundHelper = helpers.group;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.group) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    ";
+  return buffer;}
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "<option value=\"";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.treeName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.treeName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</option>";
+  return buffer;}
+
+  buffer += "<select>\r\n";
+  foundHelper = helpers.tree;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.tree; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.tree) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</select>";
+  return buffer;});
+templates['groupsResourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <li class=\"group-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n        <span class=\"group-title\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        <ul class=\"availabilities\">\r\n        </ul>\r\n    </li>\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n";
+  foundHelper = helpers.groups;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;});
 templates['notificationMessage'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -16476,7 +16615,7 @@ function program1(depth0,data) {
   foundHelper = helpers.i18n;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n</div>";
+  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n\r\n    <ul class=\"groups\">\r\n    </ul>\r\n</div>";
   return buffer;});
 templates['resourceNeedEdit'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -16505,9 +16644,19 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   
-  return "Edit";}
+  return "Skill";}
 
 function program11(depth0,data) {
+  
+  
+  return "Employees";}
+
+function program13(depth0,data) {
+  
+  
+  return "Edit";}
+
+function program15(depth0,data) {
   
   
   return "Remove";}
@@ -16556,17 +16705,33 @@ function program11(depth0,data) {
   foundHelper = helpers.repeat;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.repeat; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <ul class=\"columns weekdays\">\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        ";
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        ";
+  buffer += " </strong>\r\n                <span class=\"skill-value\"></span>\r\n            </li>\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " </strong>\r\n                <span>";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <ul class=\"columns weekdays\">\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        ";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        ";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n    </div>\r\n</div>";
   return buffer;});
@@ -16713,7 +16878,7 @@ function program1(depth0,data) {
   foundHelper = helpers.i18n;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n\r\n        <ul class=\"groups\">\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -16727,6 +16892,32 @@ function program2(depth0,data) {
   if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
+  return buffer;});
+templates['skills'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <option value=\"";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\r\n";
+  return buffer;}
+
+  buffer += "<select>\r\n";
+  foundHelper = helpers.skills;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</select>";
   return buffer;});
 })();
 define("templates", ["handlebars"], function(){});
@@ -16946,7 +17137,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
             var _model;
 
-            console.log(_model = model.get(pk));
+            _model = model.get(pk);
             return model.remove(_model);
           });
         }
@@ -17131,6 +17322,11 @@ define('_common/ToolsBase',['ovivo'], function() {
           }), limit);
         }
         return true;
+      };
+    },
+    _resolveDef: function(def) {
+      return function() {
+        return def.resolve();
       };
     },
     throttleGroup: function(funcName, groupFuncName, limit) {
@@ -17412,7 +17608,7 @@ define('views/popups/EditPopup',['views/popups/Popup', 'ovivo'], function(Popup)
           _date = new Date(Date.parse(model[field]()));
           return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
         } else {
-          return _this.$('.property-value-' + field).val(model[field]().toString());
+          return _this.$('.property-value-' + field).val(model[field]());
         }
       });
     }
@@ -17430,15 +17626,31 @@ define('_features/trailZero',[], function() {
 define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill'],
-    types: {
-      'start_time': String,
-      'end_time': String,
-      'start_date': String,
-      'end_date': String,
-      'repeat': eval,
-      'employee_type': String,
-      'skill': eval
+    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill', 'num_employees', 'groups'],
+    skillsTemplate: Handlebars.templates['skills'],
+    groupsTemplate: Handlebars.templates['groups'],
+    groupsProcessor: function(value) {
+      return _.map(value, function(group) {
+        return parseInt(group);
+      });
+    },
+    types: function() {
+      return {
+        'start_time': String,
+        'end_time': String,
+        'start_date': String,
+        'end_date': String,
+        'repeat': Number,
+        'employee_type': String,
+        'skill': Number,
+        'num_employees': Number,
+        'groups': this.groupsProcessor
+      };
+    },
+    skills: function() {
+      return ovivo.desktop.resources.skills.map(function(skill) {
+        return skill;
+      });
     },
     createNew: function() {
       var _end, _now, _ref, _ref1, _start;
@@ -17462,7 +17674,16 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       }));
       return this.initEditMode();
     },
+    processSkills: function() {
+      return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
+    },
+    processGroups: function() {
+      return this.$('.property-value-groups').append($(this.groupsTemplate({
+        tree: ovivo.desktop.resources.groups.tree
+      })).children());
+    },
     initialize: function() {
+      this.types = this.types();
       this.collection = ovivo.desktop.resources.resourceNeeds;
       this.$('.datepicker').pickadate({
         format: 'yyyy-mm-dd',
@@ -17470,6 +17691,8 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         firstDay: 1
       });
       this._initialize();
+      ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
+      ovivo.desktop.resources.groups.on('tree-ready', this.processGroups, this);
       return true;
     }
   });
@@ -17895,6 +18118,14 @@ define('collections/calendar/Days',['ovivo'], function() {
       this.processResourceNeedRemove(model);
       return this.processResourceNeedAdd(model);
     },
+    processAvailabilityAdd: function(model) {
+      var _data, _day, _key;
+
+      _data = new Date(Date.parse(model.start()));
+      _key = model._key = "" + (_data.getFullYear()) + "-" + (_data.getMonth()) + "-" + (_data.getDate());
+      _day = this.get(_key);
+      return _day != null ? _day.addAvailability(model) : void 0;
+    },
     initialize: function(models, options) {
       _.extend(this, options);
       this.todayFound = false;
@@ -17902,6 +18133,7 @@ define('collections/calendar/Days',['ovivo'], function() {
       ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedAdd, this);
       ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedRemove, this);
       ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedChange, this);
+      ovivo.desktop.resources.availabilities.on('add', this.processAvailabilityAdd, this);
       return true;
     }
   });
@@ -18250,6 +18482,7 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
           view.postRender();
         }
         view.model.trigger('rendered');
+        view.trigger('rendered');
         return true;
       });
       if (this.groupRenderComplete != null) {
@@ -18315,6 +18548,7 @@ define('models/calendar/Month',['_common/CalendarBase', 'models/resources/Resour
       this.weeks = this.getWeeksArr(this.year(), this.month());
       this.days = this.getDaysArr(this.weeks);
       this.proxyCall('initialize', arguments);
+      ovivo.desktop.resources.availabilities.fetchMonth(attrs.month, attrs.year);
       return true;
     }
   }));
@@ -18325,13 +18559,31 @@ define('models/calendar/Day',['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
     addResourceNeed: function(model) {
-      var _view;
+      var _view,
+        _this = this;
 
       _view = model.getView();
-      return this.view.addResourceNeed(_view, model);
+      this.view.addResourceNeed(_view, model);
+      return _.each(_.reduce(_.intersection(model._groups, _.keys(this.groupCache)), (function(memo, group) {
+        return memo.concat(_this.groupCache[group]);
+      }), []), function(av) {
+        return _view.addAvailability(av);
+      });
     },
     removeResourceNeed: function(model) {
       return this.view.removeResourceNeed(model);
+    },
+    addAvailability: function(model) {
+      var _arr,
+        _this = this;
+
+      if ((_arr = this.groupCache[model.group()]) == null) {
+        _arr = this.groupCache[model.group()] = [];
+      }
+      _arr.push(model);
+      return _.each(this.resourceNeeds, function(view) {
+        return view.addAvailability(model, _this.groupCache);
+      });
     },
     checkToday: function() {
       var _now;
@@ -18359,6 +18611,7 @@ define('models/calendar/Day',['ovivo'], function() {
         el: options.el
       });
       this.checkToday();
+      this.groupCache = {};
       return true;
     }
   };
@@ -18367,7 +18620,12 @@ define('models/calendar/Day',['ovivo'], function() {
 // Generated by CoffeeScript 1.6.2
 define('views/calendar/Day',['ovivo'], function() {
   return {
-    events: {},
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      return console.log(this.model.groupCache);
+    },
     render: function() {
       return true;
     },
@@ -18457,7 +18715,7 @@ define('views/calendar/Day',['ovivo'], function() {
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
-      this.resourceNeeds = {};
+      this.model.resourceNeeds = this.resourceNeeds = {};
       this.elements = [];
       this.calendarItems = this.$('.calendar-items');
       return true;
@@ -18961,6 +19219,7 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
     className: 'resource-need element',
     template: Handlebars.templates['resourceNeed'],
     groupTemplate: Handlebars.templates['resourceNeed_group'],
+    groupsTemplate: Handlebars.templates['groupsResourceNeed'],
     events: {
       'mouseenter': 'processMouseEnter',
       'mouseleave': 'processMouseLeave',
@@ -19010,9 +19269,45 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
         return gettext('Unavailable');
       }
     },
-    postRender: function() {},
+    groups: function() {
+      return _.map(this.model.groups(), function(pk) {
+        return ovivo.desktop.resources.groups.get(pk);
+      });
+    },
+    renderGroups: function() {
+      var _container;
+
+      _container = this.$('ul.groups');
+      return _container.append($(this.groupsTemplate(this)).children());
+    },
+    postRender: function() {
+      return ovivo.desktop.resources.groups.def.done(_.bind(this.renderGroups, this));
+    },
+    _checkMatch: function(av_, need) {
+      var end, start, _end, _start;
+
+      _start = av_.startValue;
+      _end = av_.endValue;
+      start = need.startValue;
+      end = need.endValue;
+      return (_start >= start) && (_end <= end);
+    },
+    _addAvailability: function(model) {
+      var _container, _el;
+
+      _el = model.getView().el;
+      _container = this.$('li.group-' + model.group() + ' ul.availabilities');
+      return _container.append(_el);
+    },
+    addAvailability: function(model) {
+      if ((this.model.groupsHash[model.group()] === true) && (this._checkMatch(model, this.model))) {
+        return this.rendered.done(_.bind(_.wrap(model, this._addAvailability), this));
+      }
+    },
     initialize: function() {
       this.model.setDeltaHours();
+      this.rendered = new $.Deferred();
+      this.on('rendered', this._resolveDef(this.rendered));
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -19070,27 +19365,26 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
         return ' – \u221E';
       }
     },
-    available: function() {
-      if (this.model.available() === true) {
-        return gettext('Available');
-      } else {
-        return gettext('Unavailable');
-      }
-    },
     _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()],
     repeat: function() {
       return this._repeatStrs[this.model.repeat() - 1];
     },
+    renderSkill: function() {
+      var _ref;
+
+      return this.$('.skill-value').html((_ref = ovivo.desktop.resources.skills.get(this.model.skill())) != null ? _ref.name() : void 0);
+    },
     postRender: function() {
       var _this = this;
 
-      return this.$('.columns.weekdays > li').each(function(i, elem) {
+      this.$('.columns.weekdays > li').each(function(i, elem) {
         if (_this.model.weekdaysHash[i] === true) {
           return $(elem).addClass('checked');
         } else {
           return $(elem).removeClass('checked');
         }
       });
+      return ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
@@ -19123,6 +19417,13 @@ define('_features/validators',[], function() {
         }
       }
       return _returnValue;
+    },
+    number: function(name, value) {
+      if ((typeof value !== 'number') || (value <= 0) || ((value - Math.floor(value)) !== 0)) {
+        return name;
+      } else {
+        return void 0;
+      }
     }
   };
 });
@@ -19183,16 +19484,22 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       return _.reduce([
         {
           name: 'start_time',
-          value: attrs.start_time
+          value: attrs.start_time,
+          validator: 'time'
         }, {
           name: 'end_time',
-          value: attrs.end_time
+          value: attrs.end_time,
+          validator: 'time'
+        }, {
+          name: 'num_employees',
+          value: attrs.num_employees,
+          validator: 'number'
         }
       ], (function(memo, obj) {
         if (typeof memo !== 'undefined') {
           return memo;
         } else {
-          return validators.time(obj.name, obj.value);
+          return validators[obj.validator](obj.name, obj.value);
         }
       }), void 0);
     },
@@ -19201,6 +19508,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         return this.save();
       }
     },
+    processModelChange: function() {},
     toJSON: function() {
       var _json;
 
@@ -19294,21 +19602,38 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         return this.set('end_date_obj', void 0);
       }
     },
+    _getTimeValue: function(str) {
+      var _hours, _minutes, _ref, _ref1;
+
+      _ref = str.split(':'), _hours = _ref[0], _minutes = _ref[1];
+      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
+      return _hours * 60 + _minutes;
+    },
+    updateGroups: function() {
+      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
+        memo[elem] = true;
+        return memo;
+      }), {});
+      return this._groups = _.map(this.groups(), String);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
       this.updateStartDate();
       this.updateEndDate();
       this.on('change', this.processChange, this);
-      this.on('change:group', this.processChange, this);
+      this.on('change:groups', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:start_date', this.updateStartDate, this);
       this.on('change:end_date', this.updateEndDate, this);
-      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
-        memo[elem] = true;
-        return memo;
-      }), {});
       this.updateWeekdaysHash();
+      this.startValue = this._getTimeValue(this.start_time());
+      this.endValue = this._getTimeValue(this.end_time());
+      this.on('change:groups', this.updateGroups, this);
+      this.updateGroups();
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
       this.editView = new EditView({
         model: this
       });
@@ -19364,11 +19689,69 @@ define('collections/resources/Skills',['models/resources/Skill', '_common/Resour
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/resources/Group',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase, View, EditView, validators) {
+define('models/resources/Municipality',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
-    typeName: 'group',
+    typeName: 'municipality',
     _gettersNames: ['pk', 'name'],
     initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/Municipalities',['models/resources/Municipality', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "departments/municipalities/",
+    initialize: function() {
+      this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/PrimaryDepartment',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    typeName: 'primaryDepartment',
+    _gettersNames: ['pk', 'name', 'municipality'],
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/PrimaryDepartments',['models/resources/PrimaryDepartment', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "departments/primary_departments/",
+    initialize: function() {
+      this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Group',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    typeName: 'group',
+    _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName'],
+    levelChange: function() {
+      var _level;
+
+      _level = this.level();
+      return this.set('treeName', Array(_level + 1).join('\u2003') + '\u21b3 ' + this.name());
+    },
+    initialize: function(attrs, options) {
+      this.children = [];
+      this.on('change:level', this.levelChange, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -19381,6 +19764,230 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
     model: Model,
     fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "groups/",
+    createTree: (function() {
+      var _processGroup, _processPD;
+
+      _processGroup = function(group, level) {
+        var _arr,
+          _this = this;
+
+        _arr = [];
+        group.set('level', level);
+        _arr.push({
+          group: group,
+          level: level
+        });
+        return _.reduce(group.children, (function(memo, pk) {
+          return memo.concat(_processGroup.call(_this, _this.get(pk), level + 1));
+        }), _arr);
+      };
+      _processPD = function(pd) {
+        var _this = this;
+
+        return {
+          pd: pd,
+          groups: _.reduce(this.filter(function(group) {
+            return (group.primary_department() === pd.pk()) && (group.parent() === null);
+          }), (function(memo, group) {
+            return memo.concat(_processGroup.call(_this, group, 0));
+          }), [])
+        };
+      };
+      return function() {
+        var _this = this;
+
+        this.tree = ovivo.desktop.resources.primaryDepartments.map((function(pd) {
+          return _processPD.call(_this, pd);
+        }));
+        return this.trigger('tree-ready');
+      };
+    })(),
+    setChildren: function() {
+      var _this = this;
+
+      return this.each(function(group) {
+        var _parent;
+
+        if ((_parent = group.parent()) != null) {
+          return _this.get(group.parent()).children.push(group);
+        }
+      });
+    },
+    initialize: function() {
+      this.tree = [];
+      this.initResource();
+      this.def.then(_.bind(this.setChildren, this));
+      $.when(ovivo.desktop.resources.municipalities.def, ovivo.desktop.resources.primaryDepartments.def, this.def).then(_.bind(this.createTree, this));
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/resources/Availability',['views/resources/ResourceBase', '_features/trailZero', 'ovivo'], function(ResourceBase, trailZero) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'availability',
+    template: Handlebars.templates['availability'],
+    groupTemplate: Handlebars.templates['availability_group'],
+    start: function() {
+      var _date;
+
+      _date = new Date(Date.parse(this.model.start()));
+      return "" + (trailZero(_date.getHours())) + ":" + (trailZero(_date.getMinutes()));
+    },
+    end: function() {
+      var _date;
+
+      _date = new Date(Date.parse(this.model.end()));
+      return "" + (trailZero(_date.getHours())) + ":" + (trailZero(_date.getMinutes()));
+    },
+    events: {},
+    renderUser: function() {
+      return this.$('span.user').html(ovivo.desktop.resources.users.get(this.model.user()).name());
+    },
+    postRender: function() {
+      return ovivo.desktop.resources.users.def.then(_.bind(this.renderUser, this));
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Availability',['models/resources/ResourceBase', 'views/resources/Availability', 'ovivo'], function(ResourceBase, View) {
+  return ResourceBase.extend({
+    typeName: 'availability',
+    _gettersNames: ['pk', 'start', 'end', 'available', 'time_span', 'group', 'user'],
+    _getTimeValue: function(str) {
+      var _obj;
+
+      _obj = new Date(Date.parse(str));
+      return _obj.getHours() * 60 + _obj.getMinutes();
+    },
+    getView: function() {
+      return new View({
+        model: this
+      });
+    },
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      this.set('pk', this.cid);
+      this.startValue = this._getTimeValue(this.start());
+      this.endValue = this._getTimeValue(this.end());
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/Availabilities',['models/resources/Availability', '_common/ResourceManagerBase', '_features/trailZero', 'ovivo'], function(Model, ResourceManagerBase, trailZero) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    _url: function() {
+      return "" + ovivo.config.API_URL_PREFIX + "availability/" + this._start + "/" + this._end + "/?group=" + this._group;
+    },
+    processResponse: (function() {
+      var _processUser;
+
+      _processUser = function(group, arr, user) {
+        var _this = this;
+
+        return _.each(arr, function(obj) {
+          obj.user = user;
+          obj.group = group;
+          return _this.add(obj);
+        });
+      };
+      return function(group, data) {
+        return _.each(data, _.bind(_.wrap(group, _processUser), this));
+      };
+    })(),
+    _fetchGroup: function(start, end, group) {
+      var _request,
+        _this = this;
+
+      this._start = "" + (start.getFullYear()) + "-" + (trailZero(start.getMonth() + 1)) + "-" + (trailZero(start.getDate()));
+      this._end = "" + (end.getFullYear()) + "-" + (trailZero(end.getMonth() + 1)) + "-" + (trailZero(end.getDate()));
+      this._group = group;
+      _request = $.ajax({
+        dataType: 'json',
+        type: 'GET',
+        url: this._url()
+      });
+      return _request.done(function(data) {
+        return _this.processResponse(group, data);
+      });
+    },
+    _fetch: function(start, end) {
+      var _this = this;
+
+      return ovivo.desktop.resources.groups.def.then(function() {
+        return ovivo.desktop.resources.groups.each(function(group) {
+          return _this._fetchGroup(start, end, group.pk());
+        });
+      });
+    },
+    fetchMonth: function(month, year) {
+      var _end, _key, _start;
+
+      _key = "" + year + "-" + month;
+      if (this._monthsCache[_key] == null) {
+        this._monthsCache[_key] = true;
+        _start = new Date(year, month, 1);
+        _end = new Date(_start);
+        _end.moveToLastDayOfMonth();
+        return this._fetch(_start, _end);
+      }
+    },
+    fetchWeek: function(number, year) {
+      var _date;
+
+      _date = new Date(year, 0, 1);
+      _date.setWeek(number);
+      return this.fetchMonth(_date.getMonth(), year);
+    },
+    initFetch: function() {
+      var _def;
+
+      _def = new $.Deferred();
+      _def.resolve();
+      return _def;
+    },
+    initialize: function() {
+      this._monthsCache = {};
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/UserModel',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    _gettersNames: ['first_name', 'last_name', 'groups', 'skills', 'email', 'email_confirmed', 'mobile_phone_prefix', 'mobile_phone'],
+    name: function() {
+      return this.first_name() + ' ' + this.last_name();
+    },
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/Users',['models/resources/UserModel', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "users/?type=employees",
     initialize: function() {
       this.initResource();
       return true;
@@ -19523,12 +20130,12 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Groups', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Groups, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Skills', 'Groups'], function(resourceName) {
+    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Availabilities', 'Users'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);

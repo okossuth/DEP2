@@ -1,7 +1,10 @@
 define [
   'ovivo'
 ], () ->
-  events: {}
+  events:
+    'click': 'processClick'
+
+  processClick: () -> console.log @model.groupCache
 
   render: () -> true
 
@@ -87,7 +90,7 @@ define [
   initialize: () ->
     @proxyCall 'initialize', arguments
 
-    @resourceNeeds = {}
+    @model.resourceNeeds = @resourceNeeds = {}
 
     @elements = []
 

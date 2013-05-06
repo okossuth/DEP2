@@ -3,13 +3,31 @@ define(['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
     addResourceNeed: function(model) {
-      var _view;
+      var _view,
+        _this = this;
 
       _view = model.getView();
-      return this.view.addResourceNeed(_view, model);
+      this.view.addResourceNeed(_view, model);
+      return _.each(_.reduce(_.intersection(model._groups, _.keys(this.groupCache)), (function(memo, group) {
+        return memo.concat(_this.groupCache[group]);
+      }), []), function(av) {
+        return _view.addAvailability(av);
+      });
     },
     removeResourceNeed: function(model) {
       return this.view.removeResourceNeed(model);
+    },
+    addAvailability: function(model) {
+      var _arr,
+        _this = this;
+
+      if ((_arr = this.groupCache[model.group()]) == null) {
+        _arr = this.groupCache[model.group()] = [];
+      }
+      _arr.push(model);
+      return _.each(this.resourceNeeds, function(view) {
+        return view.addAvailability(model, _this.groupCache);
+      });
     },
     checkToday: function() {
       var _now;
@@ -37,6 +55,7 @@ define(['ovivo'], function() {
         el: options.el
       });
       this.checkToday();
+      this.groupCache = {};
       return true;
     }
   };
