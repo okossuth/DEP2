@@ -17,6 +17,12 @@
         <h4>
             <span>{{#i18n}}Created by{{/i18n}} {{creator_name}} {{creationTime}}</span>
         </h4>
+
+        {{#hasComment}}
+        <h4>
+            <span>{{comment}}</span>
+        </h4>
+        {{/hasComment}}
     </div>
 
     <div class="buttons">

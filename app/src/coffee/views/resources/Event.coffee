@@ -84,6 +84,11 @@ define [
 
       if (_now > _date) and (@type() isnt 'closed') then true else false
 
+    hasComment: () -> 
+      _comment = @comment()
+
+      (typeof _comment is 'string') and (_comment isnt '')
+
     postRender: () ->
       @$('.element-container').removeClass('open open-responses closed bidding-closed non-actual').addClass @type()
 
