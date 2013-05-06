@@ -106,6 +106,12 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
         return false;
       }
     },
+    hasComment: function() {
+      var _comment;
+
+      _comment = this.comment();
+      return (typeof _comment === 'string') && (_comment !== '');
+    },
     postRender: function() {
       this.$('.element-container').removeClass('open open-responses closed bidding-closed non-actual').addClass(this.type());
       if (this._biddingClosed() === true) {
