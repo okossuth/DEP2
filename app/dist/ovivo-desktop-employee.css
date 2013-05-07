@@ -521,7 +521,7 @@ section.page .notification-message {
   background: white;
   position: absolute;
   left: 50%;
-  top: 200px;
+  top: 50%;
   z-index: 100000;
   margin: 0 0 0 -158px;
   padding: 16px; }
@@ -558,6 +558,16 @@ section.page .notification-message {
         margin: 0 4px; }
       .popup > .settings-items > li.settings-item > div.item-content.two > input {
         width: 110px; }
+
+.popup.popup-create-new {
+  height: 124px;
+  margin-top: -62px; }
+.popup.popup-working-hour {
+  height: 445px;
+  margin-top: -222.5px; }
+.popup.popup-timeoff {
+  height: 260px;
+  margin-top: -130px; }
 
 .page > div.content {
   overflow: auto;
