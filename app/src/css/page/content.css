@@ -1,5 +1,6 @@
 .page > div.content {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   position: absolute;
   margin-top: 95px;
   left: 0;

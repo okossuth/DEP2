@@ -20,7 +20,7 @@
         <![endif]-->
      </head>
 
-    <body class="loading loading-running initial-load" style="overflow: hidden;">
+    <body class="loading loading-running initial-load">
         <!-- <div id="splash" style="background: #f3f2ec; position: absolute; top: 0; left: 0; z-index: 10000; width: 100%; height: 100%;">
             <div style="width: 160px; height: 30px; margin: 0 auto 0 auto; position: relative; top: 50%;">
                 <div style="position: relative; top: -15px; width: 100%; height: 100%; text-align:center;">
@@ -29,6 +29,24 @@
                 </div>
             </div>
         </div> -->
+
+        <style>
+            .orientation-overlay {
+                display: none;
+            }
+
+            @media all and (orientation: portrait) {
+                .orientation-overlay {
+                     display: block; 
+                }
+            }
+        </style>
+
+        <div class="orientation-overlay" style="position: absolute; top: 0px; left: 0px; z-index: 10000; width: 100%; height: 100%; background: #f3f2ec;">
+            <div style="position: absolute; top: 50%; left: 50%; height: 50px; width: 200px; margin: -25px 0 0 -100px; text-align: center;">
+                Please, use landscape device orientation.
+            </div>
+        </div>
 
         <section class="page page-calendar hide">
             <header>
@@ -574,7 +592,10 @@
 
         <div class="popup popup-create-new" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Choose an option{{/i18n}}</h1>
-            <div class="close">X</div>
+            
+            <div class="button capital close">
+                <span>X</span>
+            </div>
 
             <div class="button capital button-create-time">
                 {{#i18n}}Create time{{/i18n}}
@@ -589,7 +610,9 @@
             <h1 class="create-mode">{{#i18n}}Add new time{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time{{/i18n}}</h1>
 
-            <div class="close">X</div>
+            <div class="button capital close">
+                <span>X</span>
+            </div>
 
             <ul class="settings-items">
                 <li class="settings-item">
@@ -658,7 +681,9 @@
             <h1 class="create-mode">{{#i18n}}Add new time off{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time off{{/i18n}}</h1>
 
-            <div class="close">X</div>
+            <div class="button capital close">
+                <span>X</span>
+            </div>
 
             <ul class="settings-items">
                 <li class="settings-item">

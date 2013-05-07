@@ -26,8 +26,8 @@ html, body {
   margin: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
+  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: none; }
 
 input {
   border: 0;
@@ -525,16 +525,17 @@ section.page .notification-message {
   z-index: 100000;
   margin: 0 0 0 -158px;
   padding: 16px; }
-  .popup > h1, .popup > div.close {
+  .popup > h1 {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
   .popup > h1 {
     text-align: center;
     padding: 7px 0 0 0; }
-  .popup > div.close {
+  .popup > div.close.button {
     position: absolute;
-    top: 10px;
+    top: 2px;
     right: 10px;
+    width: 50px;
     cursor: pointer; }
   .popup > div.button {
     width: 156px;
@@ -571,6 +572,7 @@ section.page .notification-message {
 
 .page > div.content {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   position: absolute;
   margin-top: 95px;
   left: 0;
@@ -657,7 +659,9 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   right: 0;
-  margin: 0 0 0 261px; }
+  margin: 0 0 0 261px;
+  min-width: 1000px;
+  min-height: 600px; }
 
 .side-bar ul.menu {
   margin: 16px 0 0 0; }
@@ -681,6 +685,7 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   width: 261px;
+  min-height: 600px;
   background: #007550; }
 
 body.loading .side-bar > h1.title > img {
@@ -1139,6 +1144,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 
 .page.page-event-details {
   width: 500px;
+  min-width: auto;
   z-index: 9999;
   box-shadow: -2px 0 30px #888888;
   left: auto; }
@@ -1219,6 +1225,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 
 .page.page-notifications {
   width: 300px;
+  min-width: auto;
   z-index: 9999;
   box-shadow: 2px 0 30px #888888; }
   .page.page-notifications > header > div.line > div.button {
@@ -1378,7 +1385,8 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   bottom: 0;
   left: 0;
   right: 0;
-  overflow: auto; }
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; }
 
 .settings-items {
   margin: 50px 0 0 0; }

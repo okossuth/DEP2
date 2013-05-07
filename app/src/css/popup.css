@@ -18,16 +18,17 @@
   z-index: 100000;
   margin: 0 0 0 -158px;
   padding: 16px; }
-  .popup > h1, .popup > div.close {
+  .popup > h1 {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
   .popup > h1 {
     text-align: center;
     padding: 7px 0 0 0; }
-  .popup > div.close {
+  .popup > div.close.button {
     position: absolute;
-    top: 10px;
+    top: 2px;
     right: 10px;
+    width: 50px;
     cursor: pointer; }
   .popup > div.button {
     width: 156px;
