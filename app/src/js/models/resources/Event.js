@@ -71,7 +71,7 @@ define(['models/resources/ResourceBase', 'collections/resources/Comments', 'view
       return true;
     },
     changeApplicationStatus: function(model, flag, obj) {
-      if ((obj.socket_io !== true) && (obj.cache_update !== true)) {
+      if ((this.previous('has_applied') !== void 0) && (obj.fetching !== true) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
         return this.save();
       }
     },
@@ -79,7 +79,9 @@ define(['models/resources/ResourceBase', 'collections/resources/Comments', 'view
       var _text;
 
       _text = event.has_applied() === true ? gettext('Your bid has now been received') : gettext('Your bid has been removed');
-      return notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, _text);
+      if (options.fetching !== true) {
+        return notificationMessage.post(ovivo.desktop.pages.calendar.view.$el, _text);
+      }
     },
     initialize: function(attrs, options) {
       this.comments = new Comments([], {

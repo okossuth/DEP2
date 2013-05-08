@@ -82,12 +82,12 @@ define [
       true
 
     changeApplicationStatus: (model, flag, obj) -> 
-      if (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
+      if (@previous('has_applied') isnt undefined) and (obj.fetching isnt true) and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
 
     processSync: (event, events, options) ->
       _text = if event.has_applied() is true then gettext('Your bid has now been received') else gettext('Your bid has been removed')
 
-      notificationMessage.post ovivo.desktop.pages.calendar.view.$el, _text
+      if (options.fetching isnt true) then notificationMessage.post ovivo.desktop.pages.calendar.view.$el, _text
 
     initialize: (attrs, options) ->
       @comments = new Comments [],

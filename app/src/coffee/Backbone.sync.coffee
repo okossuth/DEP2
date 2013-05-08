@@ -48,7 +48,7 @@ requirejs [
       if (model instanceof Backbone.Collection) and (resp instanceof Array)
         if model.fullResponse is true
           _.each _.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), (pk) ->
-            console.log _model = model.get pk
+            _model = model.get pk
             model.remove _model
 
         _.each resp, (obj, i) ->
@@ -81,7 +81,7 @@ requirejs [
     _processLocalStorageCache = (model, options) ->
       if localStorageCache.allowed() is true
         if localStorageCache.reset(model, options._url, options) is true
-          model.def.resolve options.resp
+          model.def?.resolve options.resp
 
           false
 
