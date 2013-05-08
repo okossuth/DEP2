@@ -21,11 +21,7 @@ define [
       'click .type-button': 'changeType'
 
     processClick: () -> 
-      # @$el.toggleClass 'expanded'
-
-      ovivo.desktop.pages.eventDetails.set 'event', @model
-
-      ovivo.desktop.pages.eventDetails.view.showEl()
+      ovivo.desktop.routers.main.navigate "/events/#{@model.id}/", { trigger: true }
 
     groupRenderComplete: () ->
       # ovivo.mobile.pages.list.trigger 'eventsRendered'

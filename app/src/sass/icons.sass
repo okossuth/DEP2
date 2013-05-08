@@ -1,5 +1,5 @@
 $spriteWidth: 254px
-$spriteHeight: 203px
+$spriteHeight: 250px
 
 @mixin icon-body($sizeW, $sizeH, $shift, $iconNames, $backgroundUrl)
   display: block
@@ -25,5 +25,5 @@ i.icon
   @include icon-body(29px, 29px, -100px, ('left', 'right', 'month', 'week', 'checked', 'unchecked', 'wait') , '../assets/img/sprite.png')
 
 i.icon-huge
-  @include icon-body(125px, 125px, -129px, ('ok') , '../assets/img/sprite.png')
+  @include icon-body(125px, 125px, -129px, ('ok', 'facebook') , '../assets/img/sprite.png')
     
