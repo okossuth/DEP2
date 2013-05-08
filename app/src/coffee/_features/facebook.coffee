@@ -21,6 +21,9 @@ define [
 
       true
 
+    _setHandlers: () ->
+      @on 'change:status', @linkFacebook, @
+
     processAuth: (data, textStatus, jqXHR) ->
       indicator.success()
 
@@ -31,8 +34,8 @@ define [
 
         @_set 'status', true
 
-      @on 'change:status', @linkFacebook, @
-
+      @trigger '_setHandlers'
+      
       true
 
     initFB: () ->
@@ -117,6 +120,7 @@ define [
       false
 
     initialize: () ->
+      @once '_setHandlers', @_setHandlers, @
       if window.FB? then @initFB()
       else window.fbAsyncInit = () => @initFB()
       

@@ -16,9 +16,18 @@ define(['views/pages/PageBase', '_features/Switcher', '_features/facebook', 'ovi
       return _.bind(_func, this);
     },
     _valueHandlerSetCreator: function(key) {
-      var _func;
+      var _connect, _disconnect, _func;
 
+      _connect = this.$(".options-" + key + " .option-connect");
+      _disconnect = this.$(".options-" + key + " .option-disconnect");
       _func = function(value) {
+        if (value === true) {
+          _connect.html(gettext('Connected'));
+          _disconnect.html(gettext('Disconnect'));
+        } else {
+          _connect.html(gettext('Connect'));
+          _disconnect.html(gettext('Disconnected'));
+        }
         return this.switchers[key].setValue(value);
       };
       return _.bind(_func, this);

@@ -27,7 +27,18 @@ define [
       _.bind _func, @
 
     _valueHandlerSetCreator: (key) ->
+      _connect = @$(".options-#{key} .option-connect")
+      _disconnect = @$(".options-#{key} .option-disconnect")
+
       _func = (value) ->
+        if value is true
+          _connect.html gettext('Connected')
+          _disconnect.html gettext('Disconnect')
+
+        else
+          _connect.html gettext('Connect')
+          _disconnect.html gettext('Disconnected')
+
         @switchers[key].setValue value
 
       _.bind _func, @

@@ -22,6 +22,9 @@ define(['_features/indicator', 'ovivo'], function(indicator) {
       }
       return true;
     },
+    _setHandlers: function() {
+      return this.on('change:status', this.linkFacebook, this);
+    },
     processAuth: function(data, textStatus, jqXHR) {
       indicator.success();
       if (jqXHR.status === 204) {
@@ -29,7 +32,7 @@ define(['_features/indicator', 'ovivo'], function(indicator) {
       } else if (jqXHR.status === 200) {
         this._set('status', true);
       }
-      this.on('change:status', this.linkFacebook, this);
+      this.trigger('_setHandlers');
       return true;
     },
     initFB: function() {
@@ -123,6 +126,7 @@ define(['_features/indicator', 'ovivo'], function(indicator) {
     initialize: function() {
       var _this = this;
 
+      this.once('_setHandlers', this._setHandlers, this);
       if (window.FB != null) {
         this.initFB();
       } else {
