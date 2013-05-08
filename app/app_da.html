@@ -765,6 +765,18 @@
             }(document, 'script', 'socket_io'));
         </script>
 
+        {% mixpanel %}
+        <script type="text/javascript">
+            mixpanel.people.identify({{ user.id }});
+            mixpanel.people.set({
+                $name: '{{ user.get_full_name }}',
+                $email: '{{ user.email }}',
+                $first_name: '{{ user.first_name }}',
+                $last_name: '{{ user.last_name }}',
+                "id": {{ user.id }}
+            });
+        </script>
+
         {% googleanalyticsjs %}
     </body>
 </html>
