@@ -52,7 +52,7 @@ define [
     processCollectorHide: (collector) ->
 
     moveToday: () ->
-      _currentTop = @$('.cell.current').offset().top
+      _currentTop = @$('.cell.current').position().top
 
       @$el.animate
         scrollTop: _currentTop
