@@ -19630,7 +19630,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     moveToday: function() {
       var _currentTop;
 
-      _currentTop = this.$('.cell.current').offset().top;
+      _currentTop = this.$('.cell.current').position().top;
       return this.$el.animate({
         scrollTop: _currentTop
       });

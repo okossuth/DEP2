@@ -1,5 +1,6 @@
 .page.page-event-details {
   width: 500px;
+  min-width: auto;
   z-index: 9999;
   box-shadow: -2px 0 30px #888888;
   left: auto; }
