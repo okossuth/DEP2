@@ -94,7 +94,7 @@ i.logo {
   width: 100px;
   height: 40px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.logo.inline {
     display: inline-block; }
   i.logo.title {
@@ -105,7 +105,7 @@ i.icon {
   width: 29px;
   height: 29px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon.inline {
     display: inline-block; }
   i.icon.left {
@@ -128,11 +128,13 @@ i.icon-huge {
   width: 125px;
   height: 125px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon-huge.inline {
     display: inline-block; }
   i.icon-huge.ok {
     background-position: -129px 0px; }
+  i.icon-huge.facebook {
+    background-position: -129px -125px; }
 
 div.loader {
   position: absolute;
@@ -1226,6 +1228,22 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   .page.page-notifications > .content {
     background: white; }
 
+.page.page-settings .connections-view .connections-container {
+  text-align: center;
+  margin: 20px 0 0 0; }
+  .page.page-settings .connections-view .connections-container > li {
+    display: inline-block;
+    width: 300px;
+    text-align: center; }
+    .page.page-settings .connections-view .connections-container > li > i, .page.page-settings .connections-view .connections-container > li > .options-group {
+      display: inline-block; }
+.page.page-settings .connections-view ul.options-group > li.option {
+  margin: 0 0 0 20px;
+  padding: 8px 10px;
+  width: 100px; }
+  .page.page-settings .connections-view ul.options-group > li.option:first-child {
+    margin-left: 0; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
   .page.page-settings .content > .line {
@@ -1405,21 +1423,23 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
           font-size: 15px;
           color: #525044;
           width: 100%; }
-      .settings-items > li.settings-item > div.item-content > ul.options-group {
-        overflow: auto; }
-        .settings-items > li.settings-item > div.item-content > ul.options-group > li.option {
-          display: block;
-          float: left;
-          margin: 0 0 0 30px;
-          padding: 8px 10px;
-          border: 1px solid #807e73;
-          border-radius: 2px;
-          font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-          color: #807e73;
-          width: 80px; }
-          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option.selected {
-            color: white;
-            border-color: #007550;
-            background: #007550; }
-          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option:first-child {
-            margin-left: 0; }
+
+ul.options-group {
+  overflow: auto; }
+  ul.options-group > li.option {
+    display: block;
+    float: left;
+    margin: 0 0 0 30px;
+    padding: 8px 10px;
+    border: 1px solid #807e73;
+    border-radius: 2px;
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+    color: #807e73;
+    width: 80px;
+    cursor: pointer; }
+    ul.options-group > li.option.selected {
+      color: white;
+      border-color: #007550;
+      background: #007550; }
+    ul.options-group > li.option:first-child {
+      margin-left: 0; }

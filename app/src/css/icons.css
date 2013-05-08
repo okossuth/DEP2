@@ -3,7 +3,7 @@ i.logo {
   width: 100px;
   height: 40px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.logo.inline {
     display: inline-block; }
   i.logo.title {
@@ -14,7 +14,7 @@ i.icon {
   width: 29px;
   height: 29px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon.inline {
     display: inline-block; }
   i.icon.left {
@@ -37,8 +37,10 @@ i.icon-huge {
   width: 125px;
   height: 125px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon-huge.inline {
     display: inline-block; }
   i.icon-huge.ok {
     background-position: -129px 0px; }
+  i.icon-huge.facebook {
+    background-position: -129px -125px; }

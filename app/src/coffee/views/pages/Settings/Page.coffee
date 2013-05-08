@@ -5,9 +5,10 @@ define [
   'views/pages/Settings/Notifications',
   'views/pages/Settings/Availability',
   'views/pages/Settings/Timeoff',
+  'views/pages/Settings/Connections',
 
   'ovivo'
-], (PageBase, GeneralView, NotificationsView, AvailabilityView, TimeoffView) ->
+], (PageBase, GeneralView, NotificationsView, AvailabilityView, TimeoffView, ConnectionsView) ->
   PageBase.extend
     el: '.page.page-settings'
 
@@ -35,7 +36,7 @@ define [
       @$('header span.title').html ovivo.desktop.resources.user.first_name() + ' ' + ovivo.desktop.resources.user.last_name()
 
     initialize: () ->
-      @SubViews = [GeneralView, NotificationsView, AvailabilityView, TimeoffView]
+      @SubViews = [GeneralView, NotificationsView, AvailabilityView, TimeoffView, ConnectionsView]
       @defaultSubView = 'general'
 
       @proxyCall 'initialize', arguments
