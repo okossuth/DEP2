@@ -57,6 +57,12 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       this.$('ul.comments').append(comment.view.el);
       return true;
     },
+    close: function() {
+      ovivo.desktop.routers.main.navigate("/", {
+        trigger: true
+      });
+      return this.hideEl();
+    },
     changeEvent: function() {
       var _event, _eventDetailsView, _prevEvent,
         _this = this;
@@ -64,7 +70,6 @@ define(['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(P
       this.clearInput();
       _event = this.model.get('event');
       _prevEvent = this.model.previous('event');
-      _event.createDetailsView();
       _eventDetailsView = _event.detailsView;
       this.$('header span.title').html(_event.view.startDateFormated());
       this.$('.event-container').children().remove();

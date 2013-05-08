@@ -65,13 +65,16 @@ define [
 
       true
 
+    close: () ->
+      ovivo.desktop.routers.main.navigate "/", { trigger: true }
+
+      @hideEl()
+
     changeEvent: () ->
       @clearInput()
       
       _event = @model.get('event')
       _prevEvent = @model.previous('event')
-
-      _event.createDetailsView()
 
       _eventDetailsView = _event.detailsView
 
