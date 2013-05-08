@@ -51,7 +51,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
             var _model;
 
-            console.log(_model = model.get(pk));
+            _model = model.get(pk);
             return model.remove(_model);
           });
         }
@@ -86,9 +86,13 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       return true;
     };
     _processLocalStorageCache = function(model, options) {
+      var _ref;
+
       if (localStorageCache.allowed() === true) {
         if (localStorageCache.reset(model, options._url, options) === true) {
-          model.def.resolve(options.resp);
+          if ((_ref = model.def) != null) {
+            _ref.resolve(options.resp);
+          }
           return false;
         } else {
           return true;
