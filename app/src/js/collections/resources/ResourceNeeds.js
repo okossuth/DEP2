@@ -4,9 +4,6 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', 'ovivo']
     model: Model,
     fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
-    comparator: function(workingHour) {
-      return Date.parse(workingHour.start_date()).valueOf();
-    },
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {
         return arr.concat(workingHour.processRange(start, end));

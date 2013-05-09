@@ -7,3 +7,13 @@
   top: 0;
   bottom: 0;
   background: #f3f2ec; }
+  .page > div.content.side {
+    margin-top: 0;
+    left: -260px;
+    right: auto;
+    width: 260px;
+    background: #007550; }
+    .page > div.content.side > .button {
+      display: block;
+      width: 180px;
+      margin: 29px auto 0 auto; }

@@ -38,15 +38,7 @@ define(['models/resources/Availability', '_common/ResourceManagerBase', '_featur
         return _this.processResponse(group, data);
       });
     },
-    _fetch: function(start, end) {
-      var _this = this;
-
-      return ovivo.desktop.resources.groups.def.then(function() {
-        return ovivo.desktop.resources.groups.each(function(group) {
-          return _this._fetchGroup(start, end, group.pk());
-        });
-      });
-    },
+    _fetch: function(start, end) {},
     fetchMonth: function(month, year) {
       var _end, _key, _start;
 

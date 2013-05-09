@@ -40,7 +40,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -55,7 +55,7 @@ require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/p
       return ovivo.desktop.pages.calendar.show();
     });
     ovivo.desktop.sideBar = new SideBar();
-    _.each(['Calendar', 'Settings'], function(pageVarName) {
+    _.each(['Calendar', 'Resources', 'Settings'], function(pageVarName) {
       var _page, _pageInstanceName;
 
       _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);

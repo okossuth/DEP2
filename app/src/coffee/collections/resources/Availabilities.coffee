@@ -38,8 +38,8 @@ define [
       _request.done (data) => @processResponse group, data
 
     _fetch: (start, end) ->
-      ovivo.desktop.resources.groups.def.then () =>
-        ovivo.desktop.resources.groups.each (group) => @_fetchGroup start, end, group.pk()
+      # ovivo.desktop.resources.groups.def.then () =>
+      #   ovivo.desktop.resources.groups.each (group) => @_fetchGroup start, end, group.pk()
 
     fetchMonth: (month, year) ->
       _key = "#{year}-#{month}"

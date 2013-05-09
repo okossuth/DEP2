@@ -29,30 +29,6 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return '';
       }
     },
-    start_date: function() {
-      var _start_date;
-
-      if ((_start_date = this.model.start_date()) != null) {
-        return this._getDateStr(new Date(Date.parse(_start_date)));
-      } else {
-        return '';
-      }
-    },
-    end_date: function() {
-      var _end_date;
-
-      if (this.model.end_date() === this.model.start_date()) {
-        return '';
-      } else if ((_end_date = this.model.end_date()) != null) {
-        return " – " + (this._getDateStr(new Date(Date.parse(_end_date))));
-      } else {
-        return ' – \u221E';
-      }
-    },
-    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()],
-    repeat: function() {
-      return this._repeatStrs[this.model.repeat() - 1];
-    },
     renderSkill: function() {
       var _ref;
 

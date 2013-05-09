@@ -45,6 +45,7 @@ require [
   'collections/Pages',
 
   'models/pages/Calendar',
+  'models/pages/Resources',
   'models/pages/Settings',
 
   'views/SideBar',
@@ -60,7 +61,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
+], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -94,6 +95,7 @@ require [
 
       _.each [
         'Calendar'
+        'Resources'
         'Settings'
       ], (pageVarName) ->
         _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))

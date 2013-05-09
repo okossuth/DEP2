@@ -20,3 +20,5 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
   .button.capital {
     text-transform: uppercase; }
+  .button.dark {
+    background: #003927; }

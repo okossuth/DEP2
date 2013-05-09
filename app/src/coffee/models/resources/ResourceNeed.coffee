@@ -13,15 +13,9 @@ define [
 
     _gettersNames: [
       'weekdays'
-      'repeat'
-      'groups'
-      'start_date'
-      'end_date'
       'start_time'
       'end_time'
       'pk'
-      'start_date_obj'
-      'end_date_obj'
       'deltaHours'
       'num_employees'
       'employee_type'
@@ -41,21 +35,8 @@ define [
 
       true
 
-    processGroup: (pk, value) ->
-      value = !value
-
-      @groupsHash[pk] = value
-
-      _groups = @_getTrueHash(@groupsHash)
-
-      @set 'groups', _.map _groups, (group) -> parseInt group
-
-      true
-
-    groups: () -> if (_groups = @.get('groups'))? then _groups else []
-
     validate: (attrs) -> 
-      if attrs.available? and attrs.start_date? and attrs.start_time? and attrs.end_time? and attrs.weekdays? and attrs.repeat
+      if attrs.available? and attrs.start_time? and attrs.end_time? and attrs.weekdays?
         undefined
 
       else gettext('Params are missing')
@@ -92,9 +73,6 @@ define [
         @set 'groups', null, { silent: true }
         _json.groups = null
 
-      delete _json.exclusions
-      delete _json.start_date_obj
-      delete _json.end_date_obj
       delete _json.deltaHours
 
       _json
@@ -154,16 +132,6 @@ define [
     updateWeekdaysHash: () ->
       @weekdaysHash = _.reduce @weekdays()?.split(','), ((memo, elem) -> memo[parseInt(elem) - 1] = true; memo), {}
 
-    updateStartDate: () ->
-      @set 'start_date_obj', new Date Date.parse @start_date()
-
-    updateEndDate: () ->
-      if (_end_date = @end_date())? 
-        @set 'end_date_obj', new Date Date.parse _end_date
-
-      else 
-        @set 'end_date_obj', undefined
-
     _getTimeValue: (str) ->
       [_hours, _minutes] = str.split(':')
 
@@ -171,34 +139,18 @@ define [
 
       _hours * 60 + _minutes
 
-    updateGroups: () ->
-      @groupsHash = _.reduce @groups(), ((memo, elem) -> memo[elem] = true; memo), {}
-      
-      @_groups = _.map @groups(), String
-
     initialize: (attrs, options) ->
       @View = View
 
       @proxyCall 'initialize', arguments
 
-      @updateStartDate()
-      @updateEndDate()
-
       @on 'change', @processChange, @
-      @on 'change:groups', @processChange, @
       @on 'change:weekdays', @updateWeekdaysHash, @
 
-      @on 'change:start_date', @updateStartDate, @
-      @on 'change:end_date', @updateEndDate, @
-      
       @updateWeekdaysHash()
 
       @startValue = @_getTimeValue @start_time()
       @endValue = @_getTimeValue @end_time()
-
-      @on 'change:groups', @updateGroups, @
-
-      @updateGroups()
 
       if @endValue < @startValue then @endValue += 24 * 60
 

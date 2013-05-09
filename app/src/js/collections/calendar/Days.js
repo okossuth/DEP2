@@ -78,10 +78,6 @@ define(['ovivo'], function() {
       _.extend(this, options);
       this.todayFound = false;
       this.resourceNeedsCache = {};
-      ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedAdd, this);
-      ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedRemove, this);
-      ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedChange, this);
-      ovivo.desktop.resources.availabilities.on('add', this.processAvailabilityAdd, this);
       return true;
     }
   });

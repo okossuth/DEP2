@@ -22,33 +22,6 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
     },
-    _getDateStr: function(_date) {
-      if (_date != null) {
-        return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());
-      } else {
-        return '';
-      }
-    },
-    start_date: function() {
-      var _start_date;
-
-      if ((_start_date = this.model.start_date()) != null) {
-        return this._getDateStr(new Date(Date.parse(_start_date)));
-      } else {
-        return '';
-      }
-    },
-    end_date: function() {
-      var _end_date;
-
-      if (this.model.end_date() === this.model.start_date()) {
-        return '';
-      } else if ((_end_date = this.model.end_date()) != null) {
-        return " – " + (this._getDateStr(new Date(Date.parse(_end_date))));
-      } else {
-        return ' – \u221E';
-      }
-    },
     available: function() {
       if (this.model.available() === true) {
         return gettext('Available');
@@ -56,20 +29,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return gettext('Unavailable');
       }
     },
-    groups: function() {
-      return _.map(this.model.groups(), function(pk) {
-        return ovivo.desktop.resources.groups.get(pk);
-      });
-    },
-    renderGroups: function() {
-      var _container;
-
-      _container = this.$('ul.groups');
-      return _container.append($(this.groupsTemplate(this)).children());
-    },
-    postRender: function() {
-      return ovivo.desktop.resources.groups.def.done(_.bind(this.renderGroups, this));
-    },
+    postRender: function() {},
     _checkMatch: function(av_, need) {
       var end, start, _end, _start;
 

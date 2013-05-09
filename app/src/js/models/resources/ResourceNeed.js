@@ -2,7 +2,7 @@
 define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
-    _gettersNames: ['weekdays', 'repeat', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj', 'deltaHours', 'num_employees', 'employee_type', 'skill'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -21,28 +21,8 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       this.set('weekdays', _weeks.length > 0 ? _weeks.join(',') : null);
       return true;
     },
-    processGroup: function(pk, value) {
-      var _groups;
-
-      value = !value;
-      this.groupsHash[pk] = value;
-      _groups = this._getTrueHash(this.groupsHash);
-      this.set('groups', _.map(_groups, function(group) {
-        return parseInt(group);
-      }));
-      return true;
-    },
-    groups: function() {
-      var _groups;
-
-      if ((_groups = this.get('groups')) != null) {
-        return _groups;
-      } else {
-        return [];
-      }
-    },
     validate: function(attrs) {
-      if ((attrs.available != null) && (attrs.start_date != null) && (attrs.start_time != null) && (attrs.end_time != null) && (attrs.weekdays != null) && attrs.repeat) {
+      if ((attrs.available != null) && (attrs.start_time != null) && (attrs.end_time != null) && (attrs.weekdays != null)) {
         return void 0;
       } else {
         return gettext('Params are missing');
@@ -89,9 +69,6 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         });
         _json.groups = null;
       }
-      delete _json.exclusions;
-      delete _json.start_date_obj;
-      delete _json.end_date_obj;
       delete _json.deltaHours;
       return _json;
     },
@@ -160,18 +137,6 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         return memo;
       }), {});
     },
-    updateStartDate: function() {
-      return this.set('start_date_obj', new Date(Date.parse(this.start_date())));
-    },
-    updateEndDate: function() {
-      var _end_date;
-
-      if ((_end_date = this.end_date()) != null) {
-        return this.set('end_date_obj', new Date(Date.parse(_end_date)));
-      } else {
-        return this.set('end_date_obj', void 0);
-      }
-    },
     _getTimeValue: function(str) {
       var _hours, _minutes, _ref, _ref1;
 
@@ -179,28 +144,14 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
-    updateGroups: function() {
-      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
-        memo[elem] = true;
-        return memo;
-      }), {});
-      return this._groups = _.map(this.groups(), String);
-    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
-      this.updateStartDate();
-      this.updateEndDate();
       this.on('change', this.processChange, this);
-      this.on('change:groups', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
-      this.on('change:start_date', this.updateStartDate, this);
-      this.on('change:end_date', this.updateEndDate, this);
       this.updateWeekdaysHash();
       this.startValue = this._getTimeValue(this.start_time());
       this.endValue = this._getTimeValue(this.end_time());
-      this.on('change:groups', this.updateGroups, this);
-      this.updateGroups();
       if (this.endValue < this.startValue) {
         this.endValue += 24 * 60;
       }

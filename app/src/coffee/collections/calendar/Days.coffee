@@ -62,10 +62,10 @@ define [
 
       @resourceNeedsCache = {}
 
-      ovivo.desktop.resources.resourceNeeds.on 'add', @processResourceNeedAdd, @
-      ovivo.desktop.resources.resourceNeeds.on 'remove', @processResourceNeedRemove, @
-      ovivo.desktop.resources.resourceNeeds.on 'change', @processResourceNeedChange, @
+      # ovivo.desktop.resources.resourceNeeds.on 'add', @processResourceNeedAdd, @
+      # ovivo.desktop.resources.resourceNeeds.on 'remove', @processResourceNeedRemove, @
+      # ovivo.desktop.resources.resourceNeeds.on 'change', @processResourceNeedChange, @
 
-      ovivo.desktop.resources.availabilities.on 'add', @processAvailabilityAdd, @
+      # ovivo.desktop.resources.availabilities.on 'add', @processAvailabilityAdd, @
 
       true

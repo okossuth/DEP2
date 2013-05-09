@@ -32,15 +32,6 @@ define [
         "#{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3)}"
       else ''
 
-    start_date: () -> if (_start_date = @model.start_date())? then @_getDateStr new Date Date.parse _start_date else ''
-    end_date: () -> 
-      if @model.end_date() is @model.start_date() then ''
-      else if (_end_date = @model.end_date())? then " – #{@_getDateStr new Date Date.parse _end_date}" else ' – \u221E'
-
-    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()]
-
-    repeat: () -> @_repeatStrs[@model.repeat() - 1]
-
     renderSkill: () ->
       @$('.skill-value').html ovivo.desktop.resources.skills.get(@model.skill())?.name()
 

@@ -16615,7 +16615,7 @@ function program1(depth0,data) {
   foundHelper = helpers.i18n;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n\r\n    <ul class=\"groups\">\r\n    </ul>\r\n</div>";
+  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n</div>";
   return buffer;});
 templates['resourceNeedEdit'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -16634,29 +16634,19 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   
-  return "Date";}
+  return "Skill";}
 
 function program7(depth0,data) {
   
   
-  return "Repeat";}
+  return "Employees";}
 
 function program9(depth0,data) {
   
   
-  return "Skill";}
-
-function program11(depth0,data) {
-  
-  
-  return "Employees";}
-
-function program13(depth0,data) {
-  
-  
   return "Edit";}
 
-function program15(depth0,data) {
+function program11(depth0,data) {
   
   
   return "Remove";}
@@ -16687,35 +16677,11 @@ function program15(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</strong>\r\n                <span>";
-  foundHelper = helpers.start_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1);
-  foundHelper = helpers.end_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
+  buffer += " </strong>\r\n                <span class=\"skill-value\"></span>\r\n            </li>\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span>";
-  foundHelper = helpers.repeat;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.repeat; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span class=\"skill-value\"></span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += " </strong>\r\n                <span>";
   foundHelper = helpers.num_employees;
@@ -16723,15 +16689,15 @@ function program15(depth0,data) {
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <ul class=\"columns weekdays\">\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        ";
   foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        ";
   foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n    </div>\r\n</div>";
   return buffer;});
@@ -16878,7 +16844,7 @@ function program1(depth0,data) {
   foundHelper = helpers.i18n;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n\r\n        <ul class=\"groups\">\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -17626,7 +17592,7 @@ define('_features/trailZero',[], function() {
 define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'start_date', 'end_date', 'repeat', 'employee_type', 'skill', 'num_employees', 'groups'],
+    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees'],
     skillsTemplate: Handlebars.templates['skills'],
     groupsTemplate: Handlebars.templates['groups'],
     groupsProcessor: function(value) {
@@ -17638,13 +17604,9 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       return {
         'start_time': String,
         'end_time': String,
-        'start_date': String,
-        'end_date': String,
-        'repeat': Number,
         'employee_type': String,
         'skill': Number,
-        'num_employees': Number,
-        'groups': this.groupsProcessor
+        'num_employees': Number
       };
     },
     skills: function() {
@@ -17653,7 +17615,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       });
     },
     createNew: function() {
-      var _end, _now, _ref, _ref1, _start;
+      var _end, _now, _ref, _start;
 
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
@@ -17661,38 +17623,23 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
       this.setModel(new this.collection.model({
-        start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
-        end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         start_time: '09:00',
         end_time: '17:00',
         employee_type: 'fulltime',
         num_employees: 1,
-        repeat: 1,
         weekdays: '1,2,3,4,5,6,7',
-        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
-        groups: [(_ref1 = ovivo.desktop.resources.groups.at(0)) != null ? _ref1.pk() : void 0]
+        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0
       }));
       return this.initEditMode();
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
     },
-    processGroups: function() {
-      return this.$('.property-value-groups').append($(this.groupsTemplate({
-        tree: ovivo.desktop.resources.groups.tree
-      })).children());
-    },
     initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.resourceNeeds;
-      this.$('.datepicker').pickadate({
-        format: 'yyyy-mm-dd',
-        formatSubmit: 'yyyy-mm-dd',
-        firstDay: 1
-      });
       this._initialize();
       ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
-      ovivo.desktop.resources.groups.on('tree-ready', this.processGroups, this);
       return true;
     }
   });
@@ -18130,10 +18077,6 @@ define('collections/calendar/Days',['ovivo'], function() {
       _.extend(this, options);
       this.todayFound = false;
       this.resourceNeedsCache = {};
-      ovivo.desktop.resources.resourceNeeds.on('add', this.processResourceNeedAdd, this);
-      ovivo.desktop.resources.resourceNeeds.on('remove', this.processResourceNeedRemove, this);
-      ovivo.desktop.resources.resourceNeeds.on('change', this.processResourceNeedChange, this);
-      ovivo.desktop.resources.availabilities.on('add', this.processAvailabilityAdd, this);
       return true;
     }
   });
@@ -18378,7 +18321,6 @@ define('models/calendar/DaysCollector',['ovivo'], function() {
     },
     initDays: function() {
       this.collection.days.initElements(this.view.dayElements, this.days);
-      this.initResources();
       this.removeLoading();
       return true;
     },
@@ -19109,6 +19051,72 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', 'ovivo'], fu
 });
 
 // Generated by CoffeeScript 1.6.2
+define('_features/PercentageIndicator',[], function() {
+  var _PercentageIndicator;
+
+  _PercentageIndicator = function(container, width, height, value) {
+    var _ref, _ref1, _ref2, _ref3;
+
+    this.container = $(container);
+    this.canvas = $('canvas', this.container);
+    this.valueSpan = $('.value', this.container);
+    this.value = value;
+    this.ctx = (_ref = this.canvas[0]) != null ? _ref.getContext('2d') : void 0;
+    _ref1 = [width, height], (_ref2 = this.canvas[0]) != null ? _ref2.width = _ref1[0] : void 0, (_ref3 = this.canvas[0]) != null ? _ref3.height = _ref1[1] : void 0;
+    this._render();
+    return this;
+  };
+  _PercentageIndicator.prototype._render = function() {
+    if (this.ctx != null) {
+      this.ctx.beginPath();
+      this.ctx.arc(50, 50, 40, 1.5 * Math.PI - 2 * Math.PI * (this.value / 100), 1.5 * Math.PI);
+      this.ctx.strokeStyle = "007550";
+      this.ctx.lineWidth = 7;
+      this.ctx.stroke();
+      this.valueSpan.html(this.value + '%');
+    }
+    return true;
+  };
+  return _PercentageIndicator;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Settings/ResourceNeed', '_features/PercentageIndicator', 'ovivo'], function(PageBase, GeneralView, ResourceNeedView, PercentageIndicator) {
+  return PageBase.extend({
+    el: '.page.page-resources',
+    events: function() {
+      return _.extend({}, PageBase.prototype.events, {});
+    },
+    transitionStart: function() {
+      this.proxyCall('transitionStart', arguments);
+      return true;
+    },
+    transitionComplete: function() {
+      this.proxyCall('transitionComplete', arguments);
+      return true;
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      this.$('li.period .percentage').each(function(i, el) {
+        return new PercentageIndicator(el, 100, 100, Math.floor(Math.random() * 50 + 50));
+      });
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources/Page', 'ovivo'], function(PageBase, View) {
+  return PageBase.extend({
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/Page',['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Settings/ResourceNeed', 'ovivo'], function(PageBase, GeneralView, ResourceNeedView) {
   return PageBase.extend({
     el: '.page.page-settings',
@@ -19235,33 +19243,6 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
     },
-    _getDateStr: function(_date) {
-      if (_date != null) {
-        return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase().slice(0, 3)) + " " + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase());
-      } else {
-        return '';
-      }
-    },
-    start_date: function() {
-      var _start_date;
-
-      if ((_start_date = this.model.start_date()) != null) {
-        return this._getDateStr(new Date(Date.parse(_start_date)));
-      } else {
-        return '';
-      }
-    },
-    end_date: function() {
-      var _end_date;
-
-      if (this.model.end_date() === this.model.start_date()) {
-        return '';
-      } else if ((_end_date = this.model.end_date()) != null) {
-        return " – " + (this._getDateStr(new Date(Date.parse(_end_date))));
-      } else {
-        return ' – \u221E';
-      }
-    },
     available: function() {
       if (this.model.available() === true) {
         return gettext('Available');
@@ -19269,20 +19250,7 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
         return gettext('Unavailable');
       }
     },
-    groups: function() {
-      return _.map(this.model.groups(), function(pk) {
-        return ovivo.desktop.resources.groups.get(pk);
-      });
-    },
-    renderGroups: function() {
-      var _container;
-
-      _container = this.$('ul.groups');
-      return _container.append($(this.groupsTemplate(this)).children());
-    },
-    postRender: function() {
-      return ovivo.desktop.resources.groups.def.done(_.bind(this.renderGroups, this));
-    },
+    postRender: function() {},
     _checkMatch: function(av_, need) {
       var end, start, _end, _start;
 
@@ -19344,30 +19312,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
       } else {
         return '';
       }
-    },
-    start_date: function() {
-      var _start_date;
-
-      if ((_start_date = this.model.start_date()) != null) {
-        return this._getDateStr(new Date(Date.parse(_start_date)));
-      } else {
-        return '';
-      }
-    },
-    end_date: function() {
-      var _end_date;
-
-      if (this.model.end_date() === this.model.start_date()) {
-        return '';
-      } else if ((_end_date = this.model.end_date()) != null) {
-        return " – " + (this._getDateStr(new Date(Date.parse(_end_date))));
-      } else {
-        return ' – \u221E';
-      }
-    },
-    _repeatStrs: [gettext('Every other week').toLowerCase(), gettext('Every second week').toLowerCase(), gettext('Every third week').toLowerCase(), gettext('Every fourth week').toLowerCase()],
-    repeat: function() {
-      return this._repeatStrs[this.model.repeat() - 1];
     },
     renderSkill: function() {
       var _ref;
@@ -19432,7 +19376,7 @@ define('_features/validators',[], function() {
 define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
-    _gettersNames: ['weekdays', 'repeat', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj', 'deltaHours', 'num_employees', 'employee_type', 'skill'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -19451,28 +19395,8 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       this.set('weekdays', _weeks.length > 0 ? _weeks.join(',') : null);
       return true;
     },
-    processGroup: function(pk, value) {
-      var _groups;
-
-      value = !value;
-      this.groupsHash[pk] = value;
-      _groups = this._getTrueHash(this.groupsHash);
-      this.set('groups', _.map(_groups, function(group) {
-        return parseInt(group);
-      }));
-      return true;
-    },
-    groups: function() {
-      var _groups;
-
-      if ((_groups = this.get('groups')) != null) {
-        return _groups;
-      } else {
-        return [];
-      }
-    },
     validate: function(attrs) {
-      if ((attrs.available != null) && (attrs.start_date != null) && (attrs.start_time != null) && (attrs.end_time != null) && (attrs.weekdays != null) && attrs.repeat) {
+      if ((attrs.available != null) && (attrs.start_time != null) && (attrs.end_time != null) && (attrs.weekdays != null)) {
         return void 0;
       } else {
         return gettext('Params are missing');
@@ -19519,9 +19443,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         });
         _json.groups = null;
       }
-      delete _json.exclusions;
-      delete _json.start_date_obj;
-      delete _json.end_date_obj;
       delete _json.deltaHours;
       return _json;
     },
@@ -19590,18 +19511,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         return memo;
       }), {});
     },
-    updateStartDate: function() {
-      return this.set('start_date_obj', new Date(Date.parse(this.start_date())));
-    },
-    updateEndDate: function() {
-      var _end_date;
-
-      if ((_end_date = this.end_date()) != null) {
-        return this.set('end_date_obj', new Date(Date.parse(_end_date)));
-      } else {
-        return this.set('end_date_obj', void 0);
-      }
-    },
     _getTimeValue: function(str) {
       var _hours, _minutes, _ref, _ref1;
 
@@ -19609,28 +19518,14 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
-    updateGroups: function() {
-      this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
-        memo[elem] = true;
-        return memo;
-      }), {});
-      return this._groups = _.map(this.groups(), String);
-    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
-      this.updateStartDate();
-      this.updateEndDate();
       this.on('change', this.processChange, this);
-      this.on('change:groups', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
-      this.on('change:start_date', this.updateStartDate, this);
-      this.on('change:end_date', this.updateEndDate, this);
       this.updateWeekdaysHash();
       this.startValue = this._getTimeValue(this.start_time());
       this.endValue = this._getTimeValue(this.end_time());
-      this.on('change:groups', this.updateGroups, this);
-      this.updateGroups();
       if (this.endValue < this.startValue) {
         this.endValue += 24 * 60;
       }
@@ -19648,9 +19543,6 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     model: Model,
     fullResponse: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
-    comparator: function(workingHour) {
-      return Date.parse(workingHour.start_date()).valueOf();
-    },
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {
         return arr.concat(workingHour.processRange(start, end));
@@ -19926,15 +19818,7 @@ define('collections/resources/Availabilities',['models/resources/Availability', 
         return _this.processResponse(group, data);
       });
     },
-    _fetch: function(start, end) {
-      var _this = this;
-
-      return ovivo.desktop.resources.groups.def.then(function() {
-        return ovivo.desktop.resources.groups.each(function(group) {
-          return _this._fetchGroup(start, end, group.pk());
-        });
-      });
-    },
+    _fetch: function(start, end) {},
     fetchMonth: function(month, year) {
       var _end, _key, _start;
 
@@ -20130,7 +20014,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -20145,7 +20029,7 @@ require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/p
       return ovivo.desktop.pages.calendar.show();
     });
     ovivo.desktop.sideBar = new SideBar();
-    _.each(['Calendar', 'Settings'], function(pageVarName) {
+    _.each(['Calendar', 'Resources', 'Settings'], function(pageVarName) {
       var _page, _pageInstanceName;
 
       _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);

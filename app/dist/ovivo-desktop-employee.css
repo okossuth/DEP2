@@ -20,6 +20,8 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
   .button.capital {
     text-transform: uppercase; }
+  .button.dark {
+    background: #003927; }
 
 html, body {
   padding: 0;
@@ -593,6 +595,16 @@ section.page .notification-message {
   top: 0;
   bottom: 0;
   background: #f3f2ec; }
+  .page > div.content.side {
+    margin-top: 0;
+    left: -260px;
+    right: auto;
+    width: 260px;
+    background: #007550; }
+    .page > div.content.side > .button {
+      display: block;
+      width: 180px;
+      margin: 29px auto 0 auto; }
 
 .page.scrolled > header div.shadow {
   display: block; }
@@ -672,19 +684,29 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   right: 0;
-  margin: 0 0 0 261px; }
+  margin: 45px 0 0 0; }
+  .page.side-enabled {
+    margin-left: 260px; }
 
 .side-bar ul.menu {
-  margin: 16px 0 0 0; }
+  margin: 0 0 0 185px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
   .side-bar ul.menu > li {
     display: block;
-    padding: 11px 0 11px 29px;
+    padding: 12px 20px;
     cursor: pointer;
-    font-size: 14px;
-    color: #cccccc; }
+    float: left;
+    height: 21px;
+    font-size: 16px;
+    color: #dddddd; }
     .side-bar ul.menu > li.selected {
       font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      color: white; }
+      color: white;
+      background: black; }
     .side-bar ul.menu > li > a {
       color: inherit;
       text-decoration: none; }
@@ -694,16 +716,18 @@ section.page .notification-message {
   overflow: visible;
   top: 0;
   left: 0;
-  bottom: 0;
-  width: 261px;
-  background: #007550; }
+  width: 100%;
+  height: 45px;
+  background: #222222; }
 
 body.loading .side-bar > h1.title > img {
   display: block; }
 
 .side-bar > h1.title {
-  position: relative;
-  margin: 31px auto 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 4px 0 0 30px;
   width: 100px;
   cursor: pointer; }
   .side-bar > h1.title > img {
@@ -1090,6 +1114,94 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     display: block;
     margin: 0 10px 0 0; }
 
+
+.page.page-resources .content.content-periods > ul.month-sections {
+  margin: 10px 25px 30px 25px; }
+  .page.page-resources .content.content-periods > ul.month-sections > li.month-section {
+    position: relative;
+    border-top: 1px solid transparent; }
+    .page.page-resources .content.content-periods > ul.month-sections > li.month-section.current > h1.title {
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      color: #007550;
+      border-bottom: 5px solid #007550; }
+    .page.page-resources .content.content-periods > ul.month-sections > li.month-section > h1.title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 12px 17px;
+      color: #7c7a6c;
+      font-size: 14px;
+      font-weight: normal;
+      border-bottom: 1px solid #c3c0ae; }
+    .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods {
+      margin: 65px 0 0 110px; }
+      .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period {
+        display: block;
+        background: white;
+        border-radius: 2px;
+        box-shadow: 0 1px 0 #d1d1c0;
+        margin-top: 20px; }
+        .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period:first-child {
+          margin-top: 0; }
+        .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top {
+          padding: 8px 0;
+          border-bottom: 1px solid #d1d1c0;
+          overflow: auto; }
+          .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl {
+            font-size: 14px;
+            line-height: 16px;
+            float: left; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dt {
+              text-align: right;
+              width: 100px;
+              float: left;
+              color: #7c7a6c; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dd {
+              margin-left: 110px; }
+          .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top .percentage {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            float: right; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top .percentage > canvas {
+              width: 100%;
+              height: 100%; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top .percentage > span.value {
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+              font-size: 18px;
+              width: 100px;
+              height: 22px;
+              margin: -11px 0 0 -50px;
+              text-align: center; }
+        .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-bottom > ul.operations {
+          text-align: right; }
+          .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-bottom > ul.operations > li.operation {
+            display: inline-block;
+            padding: 10px 0 12px 0; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-bottom > ul.operations > li.operation > span {
+              color: #7c7a6c;
+              font-size: 14px; }
+        .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-bottom, .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top {
+          padding-right: 22px; }
+
+.page.page-resources .content.content-templates > h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #cccccc;
+  margin: 28px 0 0 30px; }
+.page.page-resources .content.content-templates > ul.templates {
+  margin: 7px 0 0 0; }
+  .page.page-resources .content.content-templates > ul.templates > li.template {
+    font-size: 12px;
+    color: white;
+    cursor: pointer; }
+    .page.page-resources .content.content-templates > ul.templates > li.template > span {
+      display: block;
+      padding: 5px 0 5px 30px; }
 
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }

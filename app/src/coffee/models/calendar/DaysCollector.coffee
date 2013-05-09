@@ -33,7 +33,7 @@ define [
   initDays: () -> 
     @collection.days.initElements @view.dayElements, @days
 
-    @initResources()
+    # @initResources()
 
     @removeLoading()
 

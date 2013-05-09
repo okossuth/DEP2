@@ -15,6 +15,7 @@
 
         <!--[if lte IE 8]>
         <script src="/lib/html5shiv.js"></script>
+        <script src="/lib/excanvas.compiled.js"></script>
 
         <link href="/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
         <![endif]-->
@@ -290,8 +291,6 @@
                     <div class="button capital right button-close">
                         <span>X</span>
                     </div>
-
-                    <br />
                 </div>
 
                 <div class="shadow"></div>
@@ -325,6 +324,8 @@
                         <span>X</span>
                     </div>
                 </div>
+
+                <div class="shadow"></div>
             </header>
 
             <div class="content">
@@ -334,6 +335,257 @@
                 <div class="button load-more-button">
                     <span>Hent mere</span>
                 </div>
+            </div>
+        </section>
+
+        <section class="page side-enabled page-resources hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title">Current running periodes</span>
+
+                    <div class="button right button-add-periode capital">
+                        <span>Add periode</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content content-periods">
+                <ul class="month-sections">
+                    <li class="month-section current">
+                        <h1 class="title">
+                            September
+                        </h1>
+
+                        <ul class="periods">
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="month-section">
+                        <h1 class="title">
+                            October
+                        </h1>
+
+                        <ul class="periods">
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="month-section">
+                        <h1 class="title">
+                            October
+                        </h1>
+
+                        <ul class="periods">
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="period">
+                                <div class="container-top">
+                                    <dl>
+                                        <dt>Groups</dt>
+                                        <dd>Group 1, Group 2</dd>
+
+                                        <dt>Templates</dt>
+                                        <dd>Template 1, Template 2</dd>
+
+                                        <dt>Start date</dt>
+                                        <dd>Mandag d. 1. September 2013</dd>
+
+                                        <dt>End date</dt>
+                                        <dd>Søndag d. 31. September</dd>
+                                    </dl>
+
+                                    <div class="percentage">
+                                        <canvas></canvas>
+                                        <span class="value">95%</span>
+                                    </div>
+                                </div>
+
+                                <div class="container-bottom">
+                                    <ul class="operations">
+                                        <li class="operation">
+                                            <span>Options</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="side content content-templates">
+                <div class="button dark button-add-template capital">
+                    <span>Create new template</span>
+                </div>
+
+                <h2>Saved templates</h2>
+
+                <ul class="templates">
+                    <li class="template">
+                        <span>Template 1</span>
+                    </li>
+
+                    <li class="template">
+                        <span>Template 2</span>
+                    </li>
+
+                    <li class="template">
+                        <span>Template 3</span>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -350,8 +602,12 @@
             </h1>
 
             <ul class="menu">
-                <li id="menu-item-calendar" class="menu-item selected">
+                <li id="menu-item-calendar" class="menu-item">
                     Kalender
+                </li>
+
+                <li id="menu-item-resources" class="menu-item">
+                    Resources
                 </li>
 
                 <li id="menu-item-settings" class="menu-item">
@@ -395,6 +651,7 @@
                         </div>
                     </li>
 
+                    <!--
                     <li class="settings-item">
                         <div class="header">
                             <span>Dato</span><em>some explanation text</em>
@@ -405,7 +662,7 @@
                             <span>til</span>
                             <input type="date" class="property-value property-value-end_date datepicker" />
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="settings-item">
                         <div class="header">
@@ -422,6 +679,7 @@
                 </ul>
 
                 <ul class="settings-items">
+                    <!--
                     <li class="settings-item">
                         <div class="header">
                             <span>Gentag</span><em>some explanation text</em>
@@ -435,7 +693,7 @@
                                 <option value="4">Every fourth week</option>
                             </select>
                         </div>
-                    </li>
+                    </li>-->
 
                     <li class="settings-item">
                         <div class="header">
@@ -460,7 +718,7 @@
                 </ul>
             </div>
 
-            <ul class="settings-items">
+            <!-- <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
                         <span>Groups</span><em>some explanation text</em>
@@ -472,7 +730,7 @@
                         </select>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
 
             <div class="button capital button-add">
                 + Tilføj tid
@@ -524,7 +782,7 @@
 
             ovivo._config = {
                 USER_ID: 1979,
-                TEST_SESSIONID_COOKIE: '02635e2a16ad82a93f3389d75b7c7774',
+                TEST_SESSIONID_COOKIE: 'ff33f59a30bc6cc9465e65d994111ace',
                 SOCKET_IO_CONNECT_URL: 'http://dev.ovivo.dk:8888/',
                 FB_APP_ID: 450545431639022,
                 TIMEZONE_OFFSET: 7200000,
