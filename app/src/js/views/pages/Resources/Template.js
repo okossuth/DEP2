@@ -44,6 +44,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
     },
     initEditMode: function() {
       _resourceEditCommon.initEditMode.call(this);
+      this.page.subViews.templates.removeHighlight();
       this.page.showElements('template', '.edit-mode');
       return this.page.hideElements('template', '.create-mode');
     },

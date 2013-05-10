@@ -11,8 +11,12 @@ define [
     events:
       'click .button-add-template': 'createTemplate'
 
-    highlight: () ->
+    highlight: (el) ->
       @$el.addClass 'selected'
+
+      if el? then $(el).addClass 'selected'
+
+      true
 
     removeHighlight: () ->
       @$el.removeClass 'selected'
@@ -20,12 +24,12 @@ define [
       @$('.selected').removeClass 'selected'
 
     createTemplate: () ->
+      ovivo.desktop.pages.resources.view.showSubView('template')
+      ovivo.desktop.pages.resources.view.subViews.template.createNew()
+
       @highlight()
 
       @$('.button-add-template').addClass('selected')
-
-      ovivo.desktop.pages.resources.view.showSubView('template')
-      ovivo.desktop.pages.resources.view.subViews.template.createNew()
 
     addTemplate: (model) ->
       @$('ul.templates').append model.view.el

@@ -11,7 +11,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     processClick: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      return ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      return ovivo.desktop.pages.resources.view.subViews.templates.highlight(this.$el);
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

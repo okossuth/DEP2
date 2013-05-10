@@ -6,18 +6,22 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
     events: {
       'click .button-add-template': 'createTemplate'
     },
-    highlight: function() {
-      return this.$el.addClass('selected');
+    highlight: function(el) {
+      this.$el.addClass('selected');
+      if (el != null) {
+        $(el).addClass('selected');
+      }
+      return true;
     },
     removeHighlight: function() {
       this.$el.removeClass('selected');
       return this.$('.selected').removeClass('selected');
     },
     createTemplate: function() {
-      this.highlight();
-      this.$('.button-add-template').addClass('selected');
       ovivo.desktop.pages.resources.view.showSubView('template');
-      return ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      this.highlight();
+      return this.$('.button-add-template').addClass('selected');
     },
     addTemplate: function(model) {
       return this.$('ul.templates').append(model.view.el);

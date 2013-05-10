@@ -19202,18 +19202,22 @@ define('views/pages/Resources/Templates',['views/pages/PageBase', 'ovivo'], func
     events: {
       'click .button-add-template': 'createTemplate'
     },
-    highlight: function() {
-      return this.$el.addClass('selected');
+    highlight: function(el) {
+      this.$el.addClass('selected');
+      if (el != null) {
+        $(el).addClass('selected');
+      }
+      return true;
     },
     removeHighlight: function() {
       this.$el.removeClass('selected');
       return this.$('.selected').removeClass('selected');
     },
     createTemplate: function() {
-      this.highlight();
-      this.$('.button-add-template').addClass('selected');
       ovivo.desktop.pages.resources.view.showSubView('template');
-      return ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      this.highlight();
+      return this.$('.button-add-template').addClass('selected');
     },
     addTemplate: function(model) {
       return this.$('ul.templates').append(model.view.el);
@@ -19316,6 +19320,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     initEditMode: function() {
       _resourceEditCommon.initEditMode.call(this);
+      this.page.subViews.templates.removeHighlight();
       this.page.showElements('template', '.edit-mode');
       return this.page.hideElements('template', '.create-mode');
     },
@@ -19911,7 +19916,8 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
     },
     processClick: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      return ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      return ovivo.desktop.pages.resources.view.subViews.templates.highlight(this.$el);
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

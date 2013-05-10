@@ -23,13 +23,15 @@
 
         &.selected
           > span
-            background: #003927
+            background: #f3f2ec
 
-            border: 1px solid #469a7f
-            border-bottom: 0
+            border: 2px solid #469a7f
+            border-right: 0
+
+            color: #007550
 
         > span
-          display: inline-block
+          display: block
 
           margin: 0 0 0 20px
 
@@ -37,28 +39,9 @@
 
           position: relative
 
-          top: 1px
+          border: 2px solid transparent
+          border-right: 0
+
+          left: 2px
           z-index: 2
-
-        > ul.dropdown
-          position: absolute
-
-          top: 100%
-          left: 20px
-
-          width: 100px
-
-          padding: 4px 0
-
-          background: #003927
-
-          border: 1px solid #469a7f
-
-          z-index: 1
-
-          > li
-            padding: 5px
-
-            &:hover
-              background: #096548
 

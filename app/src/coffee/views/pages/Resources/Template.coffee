@@ -40,6 +40,8 @@ define [
     initEditMode: () ->
       _resourceEditCommon.initEditMode.call @
 
+      @page.subViews.templates.removeHighlight()
+
       @page.showElements 'template', '.edit-mode'
       @page.hideElements 'template', '.create-mode'
 

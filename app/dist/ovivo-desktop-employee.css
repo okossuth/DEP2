@@ -1241,29 +1241,19 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     position: relative;
     z-index: 1; }
     .page.page-resources .content.content-templates > ul.templates > li.template.selected > span {
-      background: #003927;
-      border: 1px solid #469a7f;
-      border-bottom: 0; }
+      background: #f3f2ec;
+      border: 2px solid #469a7f;
+      border-right: 0;
+      color: #007550; }
     .page.page-resources .content.content-templates > ul.templates > li.template > span {
-      display: inline-block;
+      display: block;
       margin: 0 0 0 20px;
       padding: 5px 10px;
       position: relative;
-      top: 1px;
+      border: 2px solid transparent;
+      border-right: 0;
+      left: 2px;
       z-index: 2; }
-    .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown {
-      position: absolute;
-      top: 100%;
-      left: 20px;
-      width: 100px;
-      padding: 4px 0;
-      background: #003927;
-      border: 1px solid #469a7f;
-      z-index: 1; }
-      .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown > li {
-        padding: 5px; }
-        .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown > li:hover {
-          background: #096548; }
 
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
