@@ -23,12 +23,11 @@
       position: relative;
       left: 2px;
       padding: 9px 0 9px 0;
-      border: 2px solid transparent; }
+      border: 2px solid #007550; }
       .page > div.content.side > .button > span {
         display: block;
         width: 198px; }
       .page > div.content.side > .button.selected {
-        margin: 29px 0 0 30px;
         background: white;
         color: #007550;
         border: 2px solid #469a7f;
