@@ -9,7 +9,16 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     },
     events: {
       'click .no-selection': 'clearSelection',
-      'click .button-close': 'close'
+      'click .button-close': 'close',
+      'click .button-close-subview': 'closeSubview',
+      'click .button-add': 'addButton',
+      'click .button-delete': 'deleteButton'
+    },
+    addButton: function() {
+      return this.subViews[this.subView()].trigger('action:add');
+    },
+    deleteButton: function() {
+      return this.subViews[this.subView()].trigger('action:delete');
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -25,6 +34,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     },
     close: function() {
       return this.hideEl();
+    },
+    closeSubview: function() {
+      return this.subViews[this.subView()].close();
     },
     showEl: function() {
       return this.$el.removeClass('hide');
@@ -45,10 +57,19 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       });
       this.processScroll.call(this.subViews[name].el);
       this.$("." + name + "-only").show();
-      return this.model.set('subView', name);
+      this.model.set('subView', name, {
+        silent: true
+      });
+      return this.model.trigger('change:subView', this.model, this.model.collection);
     },
     subView: function() {
       return this.model.get('subView');
+    },
+    hideElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).hide();
+    },
+    showElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).show();
     },
     processSubView: function(page) {
       var _subView, _subViewName;
@@ -68,10 +89,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       var _subViewName;
 
       if ((_subViewName = this.subView()) == null) {
-        this.model.set('subView', this.defaultSubView);
-      } else {
-        this.processSubView();
+        _subViewName = this.defaultSubView;
       }
+      this.showSubView(_subViewName);
       return true;
     },
     processContentScrollBind: function($el) {
@@ -99,6 +119,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
         var _subView;
 
         _subView = new SubView();
+        _subView.page = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);
       });

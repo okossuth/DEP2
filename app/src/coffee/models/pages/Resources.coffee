@@ -6,6 +6,8 @@ define [
   'ovivo'
 ], (PageBase, View) ->
   PageBase.extend
+    saveState: false
+    
     initialize: (attrs, options) ->
       @View = View
       

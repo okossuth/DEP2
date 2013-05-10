@@ -5,13 +5,15 @@
     margin: 22px 0 0 0; }
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
-    .settings-items > li.settings-item > div.header span {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      color: #525044;
-      margin: 0 10px 0 0; }
-    .settings-items > li.settings-item > div.header em {
-      font-style: normal;
-      color: #807e73; }
+    .settings-items > li.settings-item > div.header {
+      text-align: left; }
+      .settings-items > li.settings-item > div.header span {
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        color: #525044;
+        margin: 0 10px 0 0; }
+      .settings-items > li.settings-item > div.header em {
+        font-style: normal;
+        color: #807e73; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {
@@ -41,3 +43,28 @@
             background: #007550; }
           .settings-items > li.settings-item > div.item-content > ul.options-group > li.option:first-child {
             margin-left: 0; }
+      .settings-items > li.settings-item > div.item-content > input {
+        width: 268px;
+        height: 22px;
+        line-height: 22px; }
+      .settings-items > li.settings-item > div.item-content > select {
+        width: 287px;
+        height: 40px;
+        line-height: 19px; }
+        .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
+          min-height: 150px;
+          text-align: left; }
+      .settings-items > li.settings-item > div.item-content > input, .settings-items > li.settings-item > div.item-content > select {
+        background: #ebe9e0;
+        color: #525044;
+        font-size: 15px;
+        text-align: center;
+        padding: 9px 9px;
+        vertical-align: middle; }
+      .settings-items > li.settings-item > div.item-content > span {
+        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-style: italic;
+        color: #807e73;
+        margin: 0 4px; }
+      .settings-items > li.settings-item > div.item-content.two > input {
+        width: 110px; }

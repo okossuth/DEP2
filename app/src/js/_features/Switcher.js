@@ -15,22 +15,27 @@ define(['ovivo'], function() {
     return $('.switcher-option.selected', this.container).removeClass('selected');
   };
   _Switcher.prototype._clickHandler = function(e) {
-    var _el;
+    var _el, _value;
 
     _el = $(e.target).closest('.switcher-option');
     if (_el.length > 0) {
       this.clear();
       _el.addClass('selected');
-      this.trigger('value', _el.data('value'));
+      _value = _el.data('value');
+      if (this.value !== _value) {
+        this.trigger('value', this.value = _value);
+      }
     }
     return true;
   };
   _Switcher.prototype.setValue = function(value) {
-    this.clear();
-    $('.switcher-option', this.container).filter(function(i, el) {
-      return $(el).data('value') === value;
-    }).addClass('selected');
-    return this.trigger('value', value);
+    if (this.value !== value) {
+      this.clear();
+      $('.switcher-option', this.container).filter(function(i, el) {
+        return $(el).data('value') === value;
+      }).addClass('selected');
+      return this.trigger('value', this.value = value);
+    }
   };
   return _Switcher;
 });

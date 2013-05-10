@@ -2,7 +2,8 @@
 define(['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'period',
-    _gettersNames: ['pk', 'start_date', 'end_date', 'templates'],
+    localStorageOnly: true,
+    _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department'],
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       return true;

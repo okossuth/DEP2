@@ -46,7 +46,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
         primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
       }));
-      return this.initEditMode();
+      return this.initCreateMode();
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());

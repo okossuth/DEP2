@@ -42,7 +42,7 @@ define [
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
         primary_department: ovivo.desktop.resources.primaryDepartments.at(0)?.pk()
 
-      @initEditMode()
+      @initCreateMode()
 
     processSkills: () ->
       @$('.property-value-skill').append $(@skillsTemplate @).children()

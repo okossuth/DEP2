@@ -12,6 +12,15 @@ define [
     events:
       'click .no-selection': 'clearSelection'
       'click .button-close': 'close'
+      'click .button-close-subview': 'closeSubview'
+      'click .button-add': 'addButton'
+      'click .button-delete': 'deleteButton'
+
+    addButton: () ->
+      @subViews[@subView()].trigger 'action:add'
+
+    deleteButton: () ->
+      @subViews[@subView()].trigger 'action:delete'
 
     clearSelection: () ->
       if window.getSelection?
@@ -27,6 +36,7 @@ define [
       true
 
     close: () -> @hideEl()
+    closeSubview: () -> @subViews[@subView()].close()
 
     showEl: () -> @$el.removeClass 'hide'
     hideEl: () -> @$el.addClass 'hide'
@@ -46,9 +56,17 @@ define [
 
       @$(".#{name}-only").show()
 
-      @model.set 'subView', name
+      @model.set 'subView', name, { silent: true }
+
+      @model.trigger 'change:subView', @model, @model.collection
 
     subView: () -> @model.get 'subView'
+
+    hideElements: (name, selector) ->
+      @$(".#{name}-only #{selector}").hide()
+
+    showElements: (name, selector) ->
+      @$(".#{name}-only #{selector}").show()
 
     processSubView: (page) ->
       _subViewName = @subView()
@@ -65,11 +83,10 @@ define [
       true
 
     _initSubView: () ->
-      if not (_subViewName = @subView())? 
-        @model.set 'subView', @defaultSubView
+      if not (_subViewName = @subView())?
+        _subViewName = @defaultSubView
 
-      else
-        @processSubView()
+      @showSubView _subViewName
 
       true
 
@@ -100,6 +117,7 @@ define [
 
       _.each @SubViews, (SubView) => 
         _subView = new SubView()
+        _subView.page = @
 
         @subViews[_subView.name] = _subView
         @subViews.push _subView

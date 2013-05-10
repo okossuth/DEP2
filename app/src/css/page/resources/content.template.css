@@ -1,0 +1,6 @@
+.page.page-resources .content.content-template ul.settings-items {
+  text-align: center;
+  margin-top: 0; }
+  .page.page-resources .content.content-template ul.settings-items > li.settings-item {
+    display: inline-block;
+    margin: 22px 15px 0 15px; }

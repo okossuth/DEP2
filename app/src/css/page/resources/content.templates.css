@@ -8,7 +8,30 @@
   .page.page-resources .content.content-templates > ul.templates > li.template {
     font-size: 12px;
     color: white;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative;
+    z-index: 1; }
+    .page.page-resources .content.content-templates > ul.templates > li.template.selected > span {
+      background: #003927;
+      border: 1px solid #469a7f;
+      border-bottom: 0; }
     .page.page-resources .content.content-templates > ul.templates > li.template > span {
-      display: block;
-      padding: 5px 0 5px 30px; }
+      display: inline-block;
+      margin: 0 0 0 20px;
+      padding: 5px 10px;
+      position: relative;
+      top: 1px;
+      z-index: 2; }
+    .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown {
+      position: absolute;
+      top: 100%;
+      left: 20px;
+      width: 100px;
+      padding: 4px 0;
+      background: #003927;
+      border: 1px solid #469a7f;
+      z-index: 1; }
+      .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown > li {
+        padding: 5px; }
+        .page.page-resources .content.content-templates > ul.templates > li.template > ul.dropdown > li:hover {
+          background: #096548; }

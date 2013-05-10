@@ -340,7 +340,7 @@
 
         <section class="page side-enabled page-resources hide">
             <header>
-                <div class="line">
+                <div class="line periods-only">
                     <div class="placeholder"></div>
                     <span class="title">Current running periodes</span>
 
@@ -349,10 +349,28 @@
                     </div>
                 </div>
 
+                <div class="line template-only">
+                    <div class="placeholder"></div>
+                    <span class="title create-mode">Create template</span>
+                    <span class="title edit-mode">Edit template</span>
+
+                    <div class="button right button-close-subview capital">
+                        <span>X</span>
+                    </div>
+                    
+                    <div class="button right create-mode button-add capital">
+                        <span>Save template</span>
+                    </div>
+
+                    <div class="button warning right edit-mode button-delete capital">
+                        <span>Delete</span>
+                    </div>
+                </div>
+
                 <div class="shadow"></div>
             </header>
 
-            <div class="content content-periods">
+            <div class="content content-periods hide">
                 <ul class="month-sections">
                     <li class="month-section current">
                         <h1 class="title">
@@ -574,16 +592,45 @@
                 <h2>Saved templates</h2>
 
                 <ul class="templates">
-                    <li class="template">
-                        <span>Template 1</span>
+                </ul>
+            </div>
+
+            <div class="content content-template hide">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Name</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <input type="text" class="property-value property-value-name" />
+                        </div>
                     </li>
 
-                    <li class="template">
-                        <span>Template 2</span>
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Repeat</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-repeat">
+                                <option value="1">Every other week</option>
+                                <option value="2">Every second week</option>
+                                <option value="3">Every third week</option>
+                                <option value="4">Every fourth week</option>
+                            </select>
+                        </div>
                     </li>
 
-                    <li class="template">
-                        <span>Template 3</span>
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Primary department</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-primary_department">
+                            </select>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -742,11 +789,11 @@
                 </li> -->
             </ul>
 
-            <div class="button capital button-add">
+            <div class="button capital create-mode button-add">
                 + Add time
             </div>
 
-            <div class="button capital warning button-delete">
+            <div class="button capital warning edit-mode button-delete">
                 Delete
             </div>
         </div>
@@ -796,11 +843,11 @@
                 </li>
             </ul>
 
-            <div class="button capital button-add">
+            <div class="button capital create-mode button-add">
                 + Add template
             </div>
 
-            <div class="button capital warning button-delete">
+            <div class="button capital warning edit-mode button-delete">
                 Delete
             </div>
         </div>

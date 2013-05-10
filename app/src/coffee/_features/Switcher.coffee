@@ -22,15 +22,19 @@ define [
 
       _el.addClass 'selected'
 
-      @trigger 'value', _el.data 'value'
+      _value = _el.data 'value'
+
+      if @value isnt _value
+        @trigger 'value', @value = _value
 
     true
 
   _Switcher.prototype.setValue = (value) ->
-    @clear()
+    if @value isnt value
+      @clear()
 
-    $('.switcher-option', @container).filter((i, el) -> $(el).data('value') is value).addClass('selected')
+      $('.switcher-option', @container).filter((i, el) -> $(el).data('value') is value).addClass('selected')
 
-    @trigger 'value', value
+      @trigger 'value', @value = value
 
   _Switcher

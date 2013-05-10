@@ -40,7 +40,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -63,7 +63,7 @@ require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/p
       return true;
     });
     ovivo.desktop.popups = {};
-    _.each(['EditPopupResourceNeed', 'CreateNewPopup'], function(popupName) {
+    _.each(['EditPopupResourceNeed', 'EditPopupTemplate', 'CreateNewPopup'], function(popupName) {
       var _popupInstanceName;
 
       _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);

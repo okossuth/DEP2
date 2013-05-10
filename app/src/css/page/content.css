@@ -11,9 +11,25 @@
     margin-top: 0;
     left: -260px;
     right: auto;
-    width: 260px;
-    background: #007550; }
+    width: 258px;
+    background: #007550;
+    border-right: 2px solid #007550;
+    overflow: visible; }
+    .page > div.content.side.selected {
+      border-right: 2px solid #469a7f; }
     .page > div.content.side > .button {
       display: block;
-      width: 180px;
-      margin: 29px auto 0 auto; }
+      margin: 27px 30px 0 30px;
+      position: relative;
+      left: 2px;
+      padding: 9px 0 9px 0;
+      border: 2px solid transparent; }
+      .page > div.content.side > .button > span {
+        display: block;
+        width: 198px; }
+      .page > div.content.side > .button.selected {
+        margin: 29px 0 0 30px;
+        background: white;
+        color: #007550;
+        border: 2px solid #469a7f;
+        border-right: 0; }

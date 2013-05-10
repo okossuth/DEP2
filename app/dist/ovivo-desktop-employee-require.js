@@ -16838,6 +16838,36 @@ function program12(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['resourceNeeds'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <option value=\"";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " - ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\r\n";
+  return buffer;}
+
+  buffer += "<select>\r\n";
+  foundHelper = helpers.resourceNeeds;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.resourceNeeds; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.resourceNeeds) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</select>";
+  return buffer;});
 templates['resourceNeed_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
@@ -16910,6 +16940,47 @@ function program1(depth0,data) {
   if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</select>";
+  return buffer;});
+templates['template'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<span>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n<ul class=\"dropdown\" style=\"display: none;\">\r\n    <li>Edit</li>\r\n    <li>Delete</li>\r\n</ul>";
+  return buffer;});
+templates['template_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"template\">\r\n    <span>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n    <ul class=\"dropdown\" style=\"display: none;\">\r\n        <li>Edit</li>\r\n        <li>Delete</li>\r\n    </ul>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
   return buffer;});
 })();
 define("templates", ["handlebars"], function(){});
@@ -17543,70 +17614,78 @@ define('views/popups/Popup',['ovivo'], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/popups/EditPopup',['views/popups/Popup', 'ovivo'], function(Popup) {
-  return Popup.extend({
-    events: _.extend({}, Popup.prototype.events, {
-      'change .property-value': 'changeProperty',
-      'click .button-add': 'add',
-      'click .button-delete': 'delete'
-    }),
-    propertyRegExp: /\bproperty-value-(\w+)\b/,
-    changeProperty: function(e) {
-      var _input, _name;
+define('_common/ResourceEditCommon',[], function() {
+  return {
+    get: function(parentEvents) {
+      return {
+        events: _.extend({}, parentEvents, {
+          'change .property-value': 'changeProperty',
+          'click .button-add': 'add',
+          'click .button-delete': 'delete'
+        }),
+        propertyRegExp: /\bproperty-value-(\w+)\b/,
+        changeProperty: function(e) {
+          var _input, _name;
 
-      _input = $(e.target).closest('.property-value');
-      _name = this.propertyRegExp.exec(_input[0].className)[1];
-      return this.model.set(_name, this.types[_name](_input.val()), {
-        validate: true
-      });
-    },
-    _getSyncHandler: function(collection, model) {
-      var _handler;
+          _input = $(e.target).closest('.property-value');
+          _name = this.propertyRegExp.exec(_input[0].className)[1];
+          return this.model.set(_name, this.types[_name](_input.val()), {
+            validate: true
+          });
+        },
+        _getSyncHandler: function(collection, model) {
+          var _handler;
 
-      _handler = function() {
-        collection.add(model);
-        model.off('sync', _handler);
-        return delete model.url;
-      };
-      return _handler;
-    },
-    add: function() {
-      this.model.on('sync', this._getSyncHandler(this.collection, this.model));
-      this.model.url = this.collection.url;
-      this.model.save();
-      return this.close();
-    },
-    "delete": function() {
-      this.model.destroy();
-      return this.close();
-    },
-    initEditMode: function() {
-      this.$('.button-add').show();
-      this.$('.button-delete').hide();
-      this.$('.create-mode').show();
-      return this.$('.edit-mode').hide();
-    },
-    setModel: function(model) {
-      var _this = this;
+          _handler = function() {
+            collection.add(model);
+            model.off('sync', _handler);
+            return delete model.url;
+          };
+          return _handler;
+        },
+        add: function() {
+          this.model.on('sync', this._getSyncHandler(this.collection, this.model));
+          this.model.url = this.collection.url;
+          this.model.save();
+          return this.close();
+        },
+        "delete": function() {
+          this.model.destroy();
+          return this.close();
+        },
+        initCreateMode: function() {
+          this.$('.create-mode').show();
+          return this.$('.edit-mode').hide();
+        },
+        initEditMode: function() {
+          this.$('.create-mode').hide();
+          return this.$('.edit-mode').show();
+        },
+        setModel: function(model) {
+          var _this = this;
 
-      this.model = model;
-      this.$('.button-add').hide();
-      this.$('.button-delete').show();
-      this.$('.create-mode').hide();
-      this.$('.edit-mode').show();
-      return _.each(this.fields, function(field) {
-        var _date, _input;
+          this.model = model;
+          this.initEditMode();
+          return _.each(this.fields, function(field) {
+            var _date, _input;
 
-        _input = _this.$('.property-value-' + field);
-        if (_input.hasClass('datepicker')) {
-          _date = new Date(Date.parse(model[field]()));
-          return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
-        } else {
-          return _this.$('.property-value-' + field).val(model[field]());
+            _input = _this.$('.property-value-' + field);
+            if (_input.hasClass('datepicker')) {
+              _date = new Date(Date.parse(model[field]()));
+              return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+            } else {
+              return _this.$('.property-value-' + field).val(model[field]());
+            }
+          });
         }
-      });
+      };
     }
-  });
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/popups/EditPopup',['views/popups/Popup', '_common/ResourceEditCommon', 'ovivo'], function(Popup, ResourceEditCommon) {
+  return Popup.extend(ResourceEditCommon.get(Popup.prototype.events));
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -17664,7 +17743,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
         primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
       }));
-      return this.initEditMode();
+      return this.initCreateMode();
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
@@ -17678,6 +17757,63 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       this._initialize();
       ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
       ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
+  return EditPopup.extend({
+    el: '.popup-template',
+    fields: ['name', 'repeat', 'resource_needs'],
+    resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
+    resourceNeeds: function() {
+      return ovivo.desktop.resources.resourceNeeds.map(function(model) {
+        return model;
+      });
+    },
+    resourceNeedsProcessor: function(value) {
+      return _.map(value, function(resourceNeed) {
+        return parseInt(resourceNeed);
+      });
+    },
+    types: function() {
+      return {
+        'name': String,
+        'repeat': Number,
+        'resource_needs': this.resourceNeedsProcessor
+      };
+    },
+    createNew: function() {
+      this.setModel(new this.collection.model({
+        name: '',
+        repeat: 1,
+        resource_needs: []
+      }));
+      return this.initCreateMode();
+    },
+    processResourceNeeds: function() {
+      var _select;
+
+      _select = this.$('.property-value-resource_needs');
+      _select.children().remove();
+      return _select.append($(this.resourceNeedsTemplate(this)).children());
+    },
+    initialize: function() {
+      var _resourceNeedsProcessor,
+        _this = this;
+
+      this.types = this.types();
+      this.collection = ovivo.desktop.resources.templates;
+      this._initialize();
+      _resourceNeedsProcessor = _.bind(this.processResourceNeeds, this);
+      ovivo.desktop.resources.resourceNeeds.def.done(_resourceNeedsProcessor);
+      ovivo.desktop.resources.resourceNeeds.def.done(function() {
+        ovivo.desktop.resources.resourceNeeds.on('add', _resourceNeedsProcessor);
+        ovivo.desktop.resources.resourceNeeds.on('change', _resourceNeedsProcessor);
+        return ovivo.desktop.resources.resourceNeeds.on('remove', _resourceNeedsProcessor);
+      });
       return true;
     }
   });
@@ -17842,7 +17978,7 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
     processChange: function() {
       var _localStorage;
 
-      if ((_localStorage = window.localStorage) != null) {
+      if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null)) {
         _localStorage[this.id] = JSON.stringify(this.toJSON());
       }
       return true;
@@ -17850,7 +17986,7 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
     _getFromLocalStorage: function() {
       var _localStorage, _objStr;
 
-      if (((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
+      if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
         this.set(JSON.parse(_objStr));
       }
       return true;
@@ -17897,7 +18033,16 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
     },
     events: {
       'click .no-selection': 'clearSelection',
-      'click .button-close': 'close'
+      'click .button-close': 'close',
+      'click .button-close-subview': 'closeSubview',
+      'click .button-add': 'addButton',
+      'click .button-delete': 'deleteButton'
+    },
+    addButton: function() {
+      return this.subViews[this.subView()].trigger('action:add');
+    },
+    deleteButton: function() {
+      return this.subViews[this.subView()].trigger('action:delete');
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -17913,6 +18058,9 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
     },
     close: function() {
       return this.hideEl();
+    },
+    closeSubview: function() {
+      return this.subViews[this.subView()].close();
     },
     showEl: function() {
       return this.$el.removeClass('hide');
@@ -17933,10 +18081,19 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       });
       this.processScroll.call(this.subViews[name].el);
       this.$("." + name + "-only").show();
-      return this.model.set('subView', name);
+      this.model.set('subView', name, {
+        silent: true
+      });
+      return this.model.trigger('change:subView', this.model, this.model.collection);
     },
     subView: function() {
       return this.model.get('subView');
+    },
+    hideElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).hide();
+    },
+    showElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).show();
     },
     processSubView: function(page) {
       var _subView, _subViewName;
@@ -17956,10 +18113,9 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       var _subViewName;
 
       if ((_subViewName = this.subView()) == null) {
-        this.model.set('subView', this.defaultSubView);
-      } else {
-        this.processSubView();
+        _subViewName = this.defaultSubView;
       }
+      this.showSubView(_subViewName);
       return true;
     },
     processContentScrollBind: function($el) {
@@ -17987,6 +18143,7 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
         var _subView;
 
         _subView = new SubView();
+        _subView.page = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);
       });
@@ -18949,22 +19106,27 @@ define('_features/Switcher',['ovivo'], function() {
     return $('.switcher-option.selected', this.container).removeClass('selected');
   };
   _Switcher.prototype._clickHandler = function(e) {
-    var _el;
+    var _el, _value;
 
     _el = $(e.target).closest('.switcher-option');
     if (_el.length > 0) {
       this.clear();
       _el.addClass('selected');
-      this.trigger('value', _el.data('value'));
+      _value = _el.data('value');
+      if (this.value !== _value) {
+        this.trigger('value', this.value = _value);
+      }
     }
     return true;
   };
   _Switcher.prototype.setValue = function(value) {
-    this.clear();
-    $('.switcher-option', this.container).filter(function(i, el) {
-      return $(el).data('value') === value;
-    }).addClass('selected');
-    return this.trigger('value', value);
+    if (this.value !== value) {
+      this.clear();
+      $('.switcher-option', this.container).filter(function(i, el) {
+        return $(el).data('value') === value;
+      }).addClass('selected');
+      return this.trigger('value', this.value = value);
+    }
   };
   return _Switcher;
 });
@@ -19033,6 +19195,213 @@ define('models/pages/Calendar',['models/pages/PageBase', 'views/pages/Calendar/P
 });
 
 // Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Templates',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+  return PageBase.extend({
+    el: '.page.page-resources .content-templates',
+    name: 'templates',
+    events: {
+      'click .button-add-template': 'createTemplate'
+    },
+    highlight: function() {
+      return this.$el.addClass('selected');
+    },
+    removeHighlight: function() {
+      this.$el.removeClass('selected');
+      return this.$('.selected').removeClass('selected');
+    },
+    createTemplate: function() {
+      this.highlight();
+      this.$('.button-add-template').addClass('selected');
+      ovivo.desktop.pages.resources.view.showSubView('template');
+      return ovivo.desktop.pages.resources.view.subViews.template.createNew();
+    },
+    addTemplate: function(model) {
+      return this.$('ul.templates').append(model.view.el);
+    },
+    initialize: function() {
+      ovivo.desktop.resources.templates.on('add', this.addTemplate, this);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('_features/PercentageIndicator',[], function() {
+  var _PercentageIndicator;
+
+  _PercentageIndicator = function(container, width, height, value) {
+    var _ref, _ref1, _ref2, _ref3;
+
+    this.container = $(container);
+    this.canvas = $('canvas', this.container);
+    this.valueSpan = $('.value', this.container);
+    this.value = value;
+    this.ctx = (_ref = this.canvas[0]) != null ? _ref.getContext('2d') : void 0;
+    _ref1 = [width, height], (_ref2 = this.canvas[0]) != null ? _ref2.width = _ref1[0] : void 0, (_ref3 = this.canvas[0]) != null ? _ref3.height = _ref1[1] : void 0;
+    this._render();
+    return this;
+  };
+  _PercentageIndicator.prototype._render = function() {
+    if (this.ctx != null) {
+      this.ctx.beginPath();
+      this.ctx.arc(50, 50, 40, 1.5 * Math.PI - 2 * Math.PI * (this.value / 100), 1.5 * Math.PI);
+      this.ctx.strokeStyle = "007550";
+      this.ctx.lineWidth = 7;
+      this.ctx.stroke();
+      this.valueSpan.html(this.value + '%');
+    }
+    return true;
+  };
+  return _PercentageIndicator;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/PercentageIndicator', 'ovivo'], function(PageBase, PercentageIndicator) {
+  return PageBase.extend({
+    el: '.page.page-resources .content-periods',
+    name: 'periods',
+    events: {},
+    initialize: function() {
+      this.$('li.period .percentage').each(function(i, el) {
+        return new PercentageIndicator(el, 100, 100, Math.floor(Math.random() * 50 + 50));
+      });
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Template',['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function(PageBase, ResourceEditCommon) {
+  var _resourceEditCommon;
+
+  _resourceEditCommon = ResourceEditCommon.get({});
+  return PageBase.extend(_.extend({}, _resourceEditCommon, {
+    el: '.page.page-resources .content-template',
+    name: 'template',
+    events: _.extend({}, _resourceEditCommon.events, {}),
+    fields: ['name', 'repeat', 'resource_needs', 'primary_department'],
+    primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
+    resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
+    primaryDepartments: function() {
+      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+        if (elem.groups.length > 0) {
+          return elem.pd;
+        } else {
+          return void 0;
+        }
+      }));
+    },
+    resourceNeeds: function() {
+      return ovivo.desktop.resources.resourceNeeds.map(function(model) {
+        return model;
+      });
+    },
+    resourceNeedsProcessor: function(value) {
+      return _.map(value, function(resourceNeed) {
+        return parseInt(resourceNeed);
+      });
+    },
+    types: function() {
+      return {
+        'name': String,
+        'repeat': Number,
+        'resource_needs': this.resourceNeedsProcessor,
+        'primary_department': Number
+      };
+    },
+    initCreateMode: function() {
+      _resourceEditCommon.initCreateMode.call(this);
+      this.page.showElements('template', '.create-mode');
+      return this.page.hideElements('template', '.edit-mode');
+    },
+    initEditMode: function() {
+      _resourceEditCommon.initEditMode.call(this);
+      this.page.showElements('template', '.edit-mode');
+      return this.page.hideElements('template', '.create-mode');
+    },
+    createNew: function() {
+      var _ref;
+
+      this.setModel(new this.collection.model({
+        name: '',
+        repeat: 1,
+        resource_needs: [],
+        primary_department: (_ref = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref.pk() : void 0
+      }));
+      return this.initCreateMode();
+    },
+    processResourceNeeds: function() {
+      var _select;
+
+      _select = this.$('.property-value-resource_needs');
+      _select.children().remove();
+      return _select.append($(this.resourceNeedsTemplate(this)).children());
+    },
+    processPD: function() {
+      return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
+    },
+    close: function() {
+      this.page.showSubView('periods');
+      return this.page.subViews.templates.removeHighlight();
+    },
+    initialize: function() {
+      var _resourceNeedsProcessor,
+        _this = this;
+
+      this.types = this.types();
+      this.collection = ovivo.desktop.resources.templates;
+      _resourceNeedsProcessor = _.bind(this.processResourceNeeds, this);
+      this.on('action:add', this.add, this);
+      this.on('action:delete', this["delete"], this);
+      ovivo.desktop.resources.resourceNeeds.def.done(_resourceNeedsProcessor);
+      ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
+      ovivo.desktop.resources.resourceNeeds.def.done(function() {
+        ovivo.desktop.resources.resourceNeeds.on('add', _resourceNeedsProcessor);
+        ovivo.desktop.resources.resourceNeeds.on('change', _resourceNeedsProcessor);
+        return ovivo.desktop.resources.resourceNeeds.on('remove', _resourceNeedsProcessor);
+      });
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Resources/Templates', 'views/pages/Resources/Periods', 'views/pages/Resources/Template', 'ovivo'], function(PageBase, TemplatesView, PeriodsView, TemplateView) {
+  return PageBase.extend({
+    el: '.page.page-resources',
+    events: function() {
+      return _.extend({}, PageBase.prototype.events, {});
+    },
+    transitionStart: function() {
+      this.proxyCall('transitionStart', arguments);
+      return true;
+    },
+    transitionComplete: function() {
+      this.proxyCall('transitionComplete', arguments);
+      return true;
+    },
+    initialize: function() {
+      this.SubViews = [TemplatesView, PeriodsView, TemplateView];
+      this.defaultSubView = 'periods';
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources/Page', 'ovivo'], function(PageBase, View) {
+  return PageBase.extend({
+    saveState: false,
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/General',['views/pages/PageBase', 'ovivo'], function(PageBase) {
   return PageBase.extend({
     el: '.page.page-settings .general-view',
@@ -19083,72 +19452,6 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', 'ovivo'], fu
     initialize: function() {
       this.resourceNeeds = this.$('.resource-needs');
       ovivo.desktop.resources.resourceNeeds.on('add', this.addResourceNeed, this);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('_features/PercentageIndicator',[], function() {
-  var _PercentageIndicator;
-
-  _PercentageIndicator = function(container, width, height, value) {
-    var _ref, _ref1, _ref2, _ref3;
-
-    this.container = $(container);
-    this.canvas = $('canvas', this.container);
-    this.valueSpan = $('.value', this.container);
-    this.value = value;
-    this.ctx = (_ref = this.canvas[0]) != null ? _ref.getContext('2d') : void 0;
-    _ref1 = [width, height], (_ref2 = this.canvas[0]) != null ? _ref2.width = _ref1[0] : void 0, (_ref3 = this.canvas[0]) != null ? _ref3.height = _ref1[1] : void 0;
-    this._render();
-    return this;
-  };
-  _PercentageIndicator.prototype._render = function() {
-    if (this.ctx != null) {
-      this.ctx.beginPath();
-      this.ctx.arc(50, 50, 40, 1.5 * Math.PI - 2 * Math.PI * (this.value / 100), 1.5 * Math.PI);
-      this.ctx.strokeStyle = "007550";
-      this.ctx.lineWidth = 7;
-      this.ctx.stroke();
-      this.valueSpan.html(this.value + '%');
-    }
-    return true;
-  };
-  return _PercentageIndicator;
-});
-
-// Generated by CoffeeScript 1.6.2
-define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Settings/ResourceNeed', '_features/PercentageIndicator', 'ovivo'], function(PageBase, GeneralView, ResourceNeedView, PercentageIndicator) {
-  return PageBase.extend({
-    el: '.page.page-resources',
-    events: function() {
-      return _.extend({}, PageBase.prototype.events, {});
-    },
-    transitionStart: function() {
-      this.proxyCall('transitionStart', arguments);
-      return true;
-    },
-    transitionComplete: function() {
-      this.proxyCall('transitionComplete', arguments);
-      return true;
-    },
-    initialize: function() {
-      this.proxyCall('initialize', arguments);
-      this.$('li.period .percentage').each(function(i, el) {
-        return new PercentageIndicator(el, 100, 100, Math.floor(Math.random() * 50 + 50));
-      });
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources/Page', 'ovivo'], function(PageBase, View) {
-  return PageBase.extend({
-    initialize: function(attrs, options) {
-      this.View = View;
-      this.proxyCall('initialize', arguments);
       return true;
     }
   });
@@ -19596,11 +19899,35 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/resources/Template',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'template',
+    template: Handlebars.templates['template'],
+    groupTemplate: Handlebars.templates['template_group'],
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      ovivo.desktop.pages.resources.view.showSubView('template');
+      return ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Template',['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     typeName: 'template',
-    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs'],
+    localStorageOnly: true,
+    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department'],
     initialize: function(attrs, options) {
+      this.View = View;
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -19625,7 +19952,8 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
 define('models/resources/Period',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'period',
-    _gettersNames: ['pk', 'start_date', 'end_date', 'templates'],
+    localStorageOnly: true,
+    _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department'],
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       return true;
@@ -20106,7 +20434,7 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
@@ -20129,7 +20457,7 @@ require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/p
       return true;
     });
     ovivo.desktop.popups = {};
-    _.each(['EditPopupResourceNeed', 'CreateNewPopup'], function(popupName) {
+    _.each(['EditPopupResourceNeed', 'EditPopupTemplate', 'CreateNewPopup'], function(popupName) {
       var _popupInstanceName;
 
       _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);

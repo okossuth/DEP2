@@ -9,7 +9,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     processChange: function() {
       var _localStorage;
 
-      if ((_localStorage = window.localStorage) != null) {
+      if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null)) {
         _localStorage[this.id] = JSON.stringify(this.toJSON());
       }
       return true;
@@ -17,7 +17,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     _getFromLocalStorage: function() {
       var _localStorage, _objStr;
 
-      if (((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
+      if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
         this.set(JSON.parse(_objStr));
       }
       return true;

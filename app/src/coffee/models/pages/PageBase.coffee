@@ -7,13 +7,13 @@ define [
     show: () -> @view.show.apply @view, Array.prototype.slice.call arguments, 0
 
     processChange: () ->
-      if (_localStorage = window.localStorage)?
+      if (@saveState isnt false) and (_localStorage = window.localStorage)?
         _localStorage[@id] = JSON.stringify @toJSON()
 
       true
 
     _getFromLocalStorage: () ->
-      if (_localStorage = window.localStorage)? and (_objStr = _localStorage[@id])?
+      if (@saveState isnt false) and (_localStorage = window.localStorage)? and (_objStr = _localStorage[@id])?
         @set JSON.parse _objStr
 
       true

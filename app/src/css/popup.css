@@ -52,27 +52,8 @@
   .popup .settings-items {
     margin: 20px 0; }
     .popup .settings-items > li.settings-item > div.item-content > input {
-      width: 268px;
-      height: 22px;
-      line-height: 22px; }
+      width: 268px; }
     .popup .settings-items > li.settings-item > div.item-content > select {
-      width: 287px;
-      height: 40px;
-      line-height: 19px; }
-      .popup .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
-        min-height: 150px;
-        text-align: left; }
-    .popup .settings-items > li.settings-item > div.item-content > input, .popup .settings-items > li.settings-item > div.item-content > select {
-      background: #ebe9e0;
-      color: #525044;
-      font-size: 15px;
-      text-align: center;
-      padding: 9px 9px;
-      vertical-align: middle; }
-    .popup .settings-items > li.settings-item > div.item-content > span {
-      font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      font-style: italic;
-      color: #807e73;
-      margin: 0 4px; }
+      width: 287px; }
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }

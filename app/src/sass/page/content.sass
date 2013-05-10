@@ -19,13 +19,40 @@
       left: -260px
       right: auto
 
-      width: 260px
+      width: 258px
 
       background: #007550
+
+      border-right: 2px solid #007550
+
+      overflow: visible
+
+      &.selected
+        border-right: 2px solid #469a7f
 
       > .button
         display: block
 
-        width: 180px
+        margin: 27px 30px 0 30px
 
-        margin: 29px auto 0 auto
+        position: relative
+
+        left: 2px
+
+        padding: 9px 0 9px 0
+
+        border: 2px solid transparent
+
+        > span
+          display: block
+
+          width: 198px
+
+        &.selected
+          margin: 29px 0 0 30px
+
+          background: white
+          color: #007550
+
+          border: 2px solid #469a7f
+          border-right: 0

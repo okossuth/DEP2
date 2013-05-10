@@ -1,13 +1,12 @@
 define [
   'views/pages/PageBase',
 
-  'views/pages/Settings/General',
-  'views/pages/Settings/ResourceNeed',
-
-  '_features/PercentageIndicator',
+  'views/pages/Resources/Templates',
+  'views/pages/Resources/Periods',
+  'views/pages/Resources/Template',
 
   'ovivo'
-], (PageBase, GeneralView, ResourceNeedView, PercentageIndicator) ->
+], (PageBase, TemplatesView, PeriodsView, TemplateView) ->
   PageBase.extend
     el: '.page.page-resources'
 
@@ -24,9 +23,9 @@ define [
       true
 
     initialize: () ->
-      @proxyCall 'initialize', arguments
+      @SubViews = [TemplatesView, PeriodsView, TemplateView]
+      @defaultSubView = 'periods'
 
-      @$('li.period .percentage').each (i, el) -> 
-        new PercentageIndicator el, 100, 100, Math.floor(Math.random() * 50 + 50)
+      @proxyCall 'initialize', arguments
 
       true
