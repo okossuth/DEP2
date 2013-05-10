@@ -1244,7 +1244,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       background: #f3f2ec;
       border: 2px solid #469a7f;
       border-right: 0;
-      color: #007550; }
+      color: #007550;
+      left: 2px;
+      margin: 0 0 0 18px; }
     .page.page-resources .content.content-templates > ul.templates > li.template > span {
       display: block;
       margin: 0 0 0 20px;
@@ -1252,7 +1254,6 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       position: relative;
       border: 2px solid #007550;
       border-right: 0;
-      left: 2px;
       z-index: 2; }
 
 .page.page-settings .content {
