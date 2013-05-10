@@ -28,6 +28,7 @@
         display: block;
         width: 198px; }
       .page > div.content.side > .button.selected {
+        margin: 27px 0 0 30px;
         background: white;
         color: #007550;
         border: 2px solid #469a7f;
