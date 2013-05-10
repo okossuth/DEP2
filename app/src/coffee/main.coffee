@@ -51,6 +51,8 @@ require [
   'views/SideBar',
 
   'collections/resources/ResourceNeeds',
+  'collections/resources/Templates',
+  'collections/resources/Periods',
   'collections/resources/Skills',
   'collections/resources/Municipalities',
   'collections/resources/PrimaryDepartments',
@@ -61,7 +63,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
+], (User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -75,6 +77,8 @@ require [
       $.when.apply($, _.map [
         'User'
         'ResourceNeeds'
+        'Templates'
+        'Periods'
         'Skills'
         'Municipalities'
         'PrimaryDepartments'

@@ -11,6 +11,8 @@ define [
   ResourceBase.extend
     typeName: 'resourceNeed'
 
+    localStorageOnly: true
+
     _gettersNames: [
       'weekdays'
       'start_time'
@@ -20,6 +22,7 @@ define [
       'num_employees'
       'employee_type'
       'skill'
+      'primary_department'
     ]
 
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined

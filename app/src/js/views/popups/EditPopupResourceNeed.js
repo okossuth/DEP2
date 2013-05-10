@@ -2,20 +2,16 @@
 define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees'],
+    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees', 'primary_department'],
     skillsTemplate: Handlebars.templates['skills'],
-    groupsTemplate: Handlebars.templates['groups'],
-    groupsProcessor: function(value) {
-      return _.map(value, function(group) {
-        return parseInt(group);
-      });
-    },
+    primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     types: function() {
       return {
         'start_time': String,
         'end_time': String,
         'employee_type': String,
         'skill': Number,
+        'primary_department': Number,
         'num_employees': Number
       };
     },
@@ -24,8 +20,17 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         return skill;
       });
     },
+    primaryDepartments: function() {
+      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+        if (elem.groups.length > 0) {
+          return elem.pd;
+        } else {
+          return void 0;
+        }
+      }));
+    },
     createNew: function() {
-      var _end, _now, _ref, _start;
+      var _end, _now, _ref, _ref1, _start;
 
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
@@ -38,18 +43,23 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         employee_type: 'fulltime',
         num_employees: 1,
         weekdays: '1,2,3,4,5,6,7',
-        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0
+        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
+        primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
       }));
       return this.initEditMode();
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
     },
+    processPD: function() {
+      return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
+    },
     initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.resourceNeeds;
       this._initialize();
       ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
+      ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
       return true;
     }
   });

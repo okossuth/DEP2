@@ -3,6 +3,7 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', 'ovivo']
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
+    localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {

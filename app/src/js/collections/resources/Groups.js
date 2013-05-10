@@ -39,7 +39,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
         this.tree = ovivo.desktop.resources.primaryDepartments.map((function(pd) {
           return _processPD.call(_this, pd);
         }));
-        return this.trigger('tree-ready');
+        return this.trigger('tree-ready', this.tree);
       };
     })(),
     setChildren: function() {

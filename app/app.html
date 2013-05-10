@@ -718,8 +718,18 @@
                 </ul>
             </div>
 
-            <!-- <ul class="settings-items">
+            <ul class="settings-items">
                 <li class="settings-item">
+                    <div class="header">
+                        <span>Primary department</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select class="property-value property-value-primary_department">
+                        </select>
+                    </div>
+                </li>
+                <!-- <li class="settings-item">
                     <div class="header">
                         <span>Groups</span><em>some explanation text</em>
                     </div>
@@ -729,11 +739,65 @@
 
                         </select>
                     </div>
-                </li>
-            </ul> -->
+                </li> -->
+            </ul>
 
             <div class="button capital button-add">
                 + Add time
+            </div>
+
+            <div class="button capital warning button-delete">
+                Delete
+            </div>
+        </div>
+
+        <div class="popup popup-template" style="display: none;">
+            <h1 class="create-mode">Add new template</h1>
+            <h1 class="edit-mode">Edit template</h1>
+
+            <div class="close">X</div>
+
+            <ul class="settings-items">
+                <li class="settings-item">
+                    <div class="header">
+                        <span>Name</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <input type="text" class="property-value property-value-name" />
+                    </div>
+                </li>
+
+                <li class="settings-item">
+                    <div class="header">
+                        <span>Repeat</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select class="property-value property-value-repeat">
+                            <option value="1">Every other week</option>
+                            <option value="2">Every second week</option>
+                            <option value="3">Every third week</option>
+                            <option value="4">Every fourth week</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="settings-item">
+                    <div class="header">
+                        <span>Resource needs</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select multiple="multiple" class="property-value property-value-resource_needs">
+
+                        </select>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="button capital button-add">
+                + Add template
             </div>
 
             <div class="button capital warning button-delete">

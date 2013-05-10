@@ -1,5 +1,5 @@
 define [
-  'models/resources/ResourceNeed',
+  'models/resources/Period',
 
   '_common/ResourceManagerBase',
 
@@ -12,10 +12,8 @@ define [
 
     localStorageOnly: true
 
-    url: "#{ovivo.config.API_URL_PREFIX}resource-needs/"
+    url: "#{ovivo.config.API_URL_PREFIX}resource-needs/periods/"
 
-    processRange: (start, end) -> @reduce ((arr, workingHour) -> arr.concat workingHour.processRange start, end), []
-    
     initialize: () ->
       @initResource()
 

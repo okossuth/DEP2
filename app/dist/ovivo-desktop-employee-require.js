@@ -16589,6 +16589,32 @@ templates['notificationMessage'] = template(function (Handlebars,depth0,helpers,
   else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "</span>\r\n</div>";
   return buffer;});
+templates['primaryDepartments'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <option value=\"";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\r\n";
+  return buffer;}
+
+  buffer += "<select>\r\n";
+  foundHelper = helpers.primaryDepartments;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.primaryDepartments; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.primaryDepartments) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</select>";
+  return buffer;});
 templates['resourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -17150,10 +17176,12 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       }
     };
     return Backbone.sync = function(method, model, options) {
-      var _args, _call, _flag,
+      var _args, _call, _flag, _resp,
         _this = this;
 
-      _callsCounter += 1;
+      if (model.localStorageOnly !== true) {
+        _callsCounter += 1;
+      }
       _args = Array.prototype.slice.call(arguments, 0);
       options._url = ((function() {
         if (typeof model.url === 'function') {
@@ -17162,7 +17190,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           return model.url;
         }
       })()) + ((options.data != null) && (options.data !== '') ? "?" + options.data : '');
-      _flag = method === 'read' ? _processLocalStorageCache(model, options) : true;
+      _flag = method === 'read' ? _processLocalStorageCache(model, options) : model.localStorageOnly === true ? (_resp = model.toJSON(), method === 'create' ? _resp.pk = Date.now().valueOf() : void 0, options.success(model, _resp, options), model.trigger('sync', model, _resp, options), false) : true;
       _call = function() {
         var _stamp;
 
@@ -17187,7 +17215,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       };
       if (_flag === true) {
         return _call.call(this);
-      } else {
+      } else if (model.localStorageOnly !== true) {
         return setTimeout((function() {
           return _call.call(_this);
         }), 300);
@@ -17592,20 +17620,16 @@ define('_features/trailZero',[], function() {
 define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees'],
+    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees', 'primary_department'],
     skillsTemplate: Handlebars.templates['skills'],
-    groupsTemplate: Handlebars.templates['groups'],
-    groupsProcessor: function(value) {
-      return _.map(value, function(group) {
-        return parseInt(group);
-      });
-    },
+    primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     types: function() {
       return {
         'start_time': String,
         'end_time': String,
         'employee_type': String,
         'skill': Number,
+        'primary_department': Number,
         'num_employees': Number
       };
     },
@@ -17614,8 +17638,17 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         return skill;
       });
     },
+    primaryDepartments: function() {
+      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+        if (elem.groups.length > 0) {
+          return elem.pd;
+        } else {
+          return void 0;
+        }
+      }));
+    },
     createNew: function() {
-      var _end, _now, _ref, _start;
+      var _end, _now, _ref, _ref1, _start;
 
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
@@ -17628,18 +17661,23 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         employee_type: 'fulltime',
         num_employees: 1,
         weekdays: '1,2,3,4,5,6,7',
-        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0
+        skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
+        primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
       }));
       return this.initEditMode();
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
     },
+    processPD: function() {
+      return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
+    },
     initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.resourceNeeds;
       this._initialize();
       ovivo.desktop.resources.skills.def.then(_.bind(this.processSkills, this));
+      ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
       return true;
     }
   });
@@ -19376,7 +19414,8 @@ define('_features/validators',[], function() {
 define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill'],
+    localStorageOnly: true,
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -19542,6 +19581,7 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
+    localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {
@@ -19556,7 +19596,59 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/resources/Skill',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase, View, EditView, validators) {
+define('models/resources/Template',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    typeName: 'template',
+    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs'],
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/Templates',['models/resources/Template', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    localStorageOnly: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
+    initialize: function() {
+      this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Period',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    typeName: 'period',
+    _gettersNames: ['pk', 'start_date', 'end_date', 'templates'],
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/Periods',['models/resources/Period', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    localStorageOnly: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
+    initialize: function() {
+      this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Skill',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'skill',
     _gettersNames: ['pk', 'name', 'primary_department', 'type'],
@@ -19691,7 +19783,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
         this.tree = ovivo.desktop.resources.primaryDepartments.map((function(pd) {
           return _processPD.call(_this, pd);
         }));
-        return this.trigger('tree-ready');
+        return this.trigger('tree-ready', this.tree);
       };
     })(),
     setChildren: function() {
@@ -20014,12 +20106,12 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Availabilities', 'Users'], function(resourceName) {
+    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Templates', 'Periods', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Availabilities', 'Users'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);

@@ -40,6 +40,14 @@ app.set('views', __dirname + '/app');
 //     res.send('[]');
 // });
 
+var _emptyCollection = function (req, res) {
+    res.send('[]');
+};
+
+app.get('/api/1.0/resource-needs/', _emptyCollection);
+app.get('/api/1.0/resource-needs/templates/', _emptyCollection);
+app.get('/api/1.0/resource-needs/periods/', _emptyCollection);
+
 app.all('/api/*', proxyFunc);
 
 app.all('/', renderApp);

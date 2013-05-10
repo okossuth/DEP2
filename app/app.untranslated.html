@@ -718,8 +718,18 @@
                 </ul>
             </div>
 
-            <!-- <ul class="settings-items">
+            <ul class="settings-items">
                 <li class="settings-item">
+                    <div class="header">
+                        <span>{{#i18n}}Primary department{{/i18n}}</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select class="property-value property-value-primary_department">
+                        </select>
+                    </div>
+                </li>
+                <!-- <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Groups{{/i18n}}</span><em>some explanation text</em>
                     </div>
@@ -729,11 +739,65 @@
 
                         </select>
                     </div>
-                </li>
-            </ul> -->
+                </li> -->
+            </ul>
 
             <div class="button capital button-add">
                 + {{#i18n}}Add time{{/i18n}}
+            </div>
+
+            <div class="button capital warning button-delete">
+                {{#i18n}}Delete{{/i18n}}
+            </div>
+        </div>
+
+        <div class="popup popup-template" style="display: none;">
+            <h1 class="create-mode">{{#i18n}}Add new template{{/i18n}}</h1>
+            <h1 class="edit-mode">{{#i18n}}Edit template{{/i18n}}</h1>
+
+            <div class="close">X</div>
+
+            <ul class="settings-items">
+                <li class="settings-item">
+                    <div class="header">
+                        <span>{{#i18n}}Name{{/i18n}}</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <input type="text" class="property-value property-value-name" />
+                    </div>
+                </li>
+
+                <li class="settings-item">
+                    <div class="header">
+                        <span>{{#i18n}}Repeat{{/i18n}}</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select class="property-value property-value-repeat">
+                            <option value="1">{{#i18n}}Every other week{{/i18n}}</option>
+                            <option value="2">{{#i18n}}Every second week{{/i18n}}</option>
+                            <option value="3">{{#i18n}}Every third week{{/i18n}}</option>
+                            <option value="4">{{#i18n}}Every fourth week{{/i18n}}</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="settings-item">
+                    <div class="header">
+                        <span>{{#i18n}}Resource needs{{/i18n}}</span><em>some explanation text</em>
+                    </div>
+
+                    <div class="item-content">
+                        <select multiple="multiple" class="property-value property-value-resource_needs">
+
+                        </select>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="button capital button-add">
+                + {{#i18n}}Add template{{/i18n}}
             </div>
 
             <div class="button capital warning button-delete">

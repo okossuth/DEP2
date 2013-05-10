@@ -4,13 +4,13 @@ define [
   'ovivo'
 ], (ResourceBase) ->
   ResourceBase.extend
-    typeName: 'skill'
+    typeName: 'period'
 
     _gettersNames: [
       'pk'
-      'name'
-      'primary_department'
-      'type'
+      'start_date'
+      'end_date'
+      'templates'
     ]
 
     initialize: (attrs, options) ->

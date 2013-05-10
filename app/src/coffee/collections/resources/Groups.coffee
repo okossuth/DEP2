@@ -31,7 +31,7 @@ define [
       () ->
         @tree = ovivo.desktop.resources.primaryDepartments.map ((pd) => _processPD.call @, pd)
 
-        @.trigger 'tree-ready'
+        @trigger 'tree-ready', @tree
 
     setChildren: () ->
       @each (group) => if (_parent = group.parent())? then @get(group.parent()).children.push group

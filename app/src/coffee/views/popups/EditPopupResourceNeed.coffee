@@ -8,22 +8,21 @@ define [
   EditPopup.extend
     el: '.popup-resource-need'
 
-    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees']
+    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees', 'primary_department']
 
     skillsTemplate: Handlebars.templates['skills']
-    groupsTemplate: Handlebars.templates['groups']
-
-    groupsProcessor: (value) ->
-      _.map value, (group) -> parseInt group
+    primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments']
 
     types: () ->
       'start_time': String
       'end_time': String
       'employee_type': String
       'skill': Number
+      'primary_department': Number
       'num_employees': Number
 
     skills: () -> ovivo.desktop.resources.skills.map (skill) -> skill
+    primaryDepartments: () -> _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
 
     createNew: () ->
       _now = Date.today()
@@ -41,11 +40,15 @@ define [
         num_employees: 1
         weekdays: '1,2,3,4,5,6,7'
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
+        primary_department: ovivo.desktop.resources.primaryDepartments.at(0)?.pk()
 
       @initEditMode()
 
     processSkills: () ->
       @$('.property-value-skill').append $(@skillsTemplate @).children()
+
+    processPD: () ->
+      @$('.property-value-primary_department').append $(@primaryDepartmentsTemplate @).children()
 
     initialize: () ->
       @types = @types()
@@ -59,7 +62,6 @@ define [
       @_initialize()
 
       ovivo.desktop.resources.skills.def.then _.bind @processSkills, @
-
-      # ovivo.desktop.resources.groups.on 'tree-ready', @processGroups, @
+      ovivo.desktop.resources.groups.on 'tree-ready', @processPD, @
 
       true

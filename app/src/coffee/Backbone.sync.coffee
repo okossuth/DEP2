@@ -92,7 +92,8 @@ requirejs [
         true
 
     Backbone.sync = (method, model, options) ->
-      _callsCounter += 1
+      if model.localStorageOnly isnt true then _callsCounter += 1
+
       _args = Array.prototype.slice.call arguments, 0
 
       options._url = (do () => if typeof model.url is 'function' then model.url() else model.url) + (if options.data? and (options.data isnt '') then "?#{options.data}" else '')
@@ -100,7 +101,18 @@ requirejs [
       _flag = if method is 'read' 
           _processLocalStorageCache model, options
 
-        else 
+        else if model.localStorageOnly is true
+          _resp = model.toJSON()
+
+          if method is 'create'
+            _resp.pk = Date.now().valueOf()
+
+          options.success model, _resp, options
+          model.trigger 'sync', model, _resp, options
+
+          false
+
+        else
           true
 
       _call = () ->
@@ -126,5 +138,5 @@ requirejs [
       if _flag is true
         _call.call @
 
-      else
+      else if model.localStorageOnly isnt true
         setTimeout (() => _call.call @), 300

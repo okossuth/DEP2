@@ -189,10 +189,12 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       }
     };
     return Backbone.sync = function(method, model, options) {
-      var _args, _call, _flag,
+      var _args, _call, _flag, _resp,
         _this = this;
 
-      _callsCounter += 1;
+      if (model.localStorageOnly !== true) {
+        _callsCounter += 1;
+      }
       _args = Array.prototype.slice.call(arguments, 0);
       options._url = ((function() {
         if (typeof model.url === 'function') {
@@ -201,7 +203,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           return model.url;
         }
       })()) + ((options.data != null) && (options.data !== '') ? "?" + options.data : '');
-      _flag = method === 'read' ? _processLocalStorageCache(model, options) : true;
+      _flag = method === 'read' ? _processLocalStorageCache(model, options) : model.localStorageOnly === true ? (_resp = model.toJSON(), method === 'create' ? _resp.pk = Date.now().valueOf() : void 0, options.success(model, _resp, options), model.trigger('sync', model, _resp, options), false) : true;
       _call = function() {
         var _stamp;
 
@@ -226,7 +228,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       };
       if (_flag === true) {
         return _call.call(this);
-      } else {
+      } else if (model.localStorageOnly !== true) {
         return setTimeout((function() {
           return _call.call(_this);
         }), 300);
