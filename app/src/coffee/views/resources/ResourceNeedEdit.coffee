@@ -35,6 +35,9 @@ define [
     renderSkill: () ->
       @$('.skill-value').html ovivo.desktop.resources.skills.get(@model.skill())?.name()
 
+    renderPD: () ->
+      @$('.pd-value').html ovivo.desktop.resources.primaryDepartments.get(@model.primary_department())?.name()
+
     postRender: () ->
       @$('.columns.weekdays > li').each (i, elem) =>
         if @model.weekdaysHash[i] is true
@@ -44,6 +47,7 @@ define [
           $(elem).removeClass 'checked'
 
       ovivo.desktop.resources.skills.def.done _.bind @renderSkill, @
+      ovivo.desktop.resources.primaryDepartments.def.done _.bind @renderPD, @
 
     initialize: () ->
       @proxyCall 'initialize', arguments

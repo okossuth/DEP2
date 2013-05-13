@@ -570,14 +570,11 @@ section.page .notification-message {
       width: 110px; }
 
 .popup.popup-create-new {
-  height: 124px;
-  margin-top: -62px; }
-.popup.popup-working-hour {
-  height: 445px;
-  margin-top: -222.5px; }
-.popup.popup-timeoff {
-  height: 260px;
-  margin-top: -130px; }
+  height: 76px;
+  margin-top: -88px; }
+.popup.popup-resource-need {
+  height: 361px;
+  margin-top: -230.5px; }
 
 .page > div.content {
   overflow: auto;
@@ -1256,7 +1253,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       background: #f3f2ec;
       border: 2px solid #469a7f;
       border-right: 0;
-      color: #007550;
+      color: #525044;
       left: 2px;
       margin: 0 0 0 18px; }
     .page.page-resources .content.content-templates > ul.templates > li.template > span {

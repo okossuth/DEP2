@@ -34,6 +34,11 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
 
       return this.$('.skill-value').html((_ref = ovivo.desktop.resources.skills.get(this.model.skill())) != null ? _ref.name() : void 0);
     },
+    renderPD: function() {
+      var _ref;
+
+      return this.$('.pd-value').html((_ref = ovivo.desktop.resources.primaryDepartments.get(this.model.primary_department())) != null ? _ref.name() : void 0);
+    },
     postRender: function() {
       var _this = this;
 
@@ -44,7 +49,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
           return $(elem).removeClass('checked');
         }
       });
-      return ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
+      ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
+      return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
