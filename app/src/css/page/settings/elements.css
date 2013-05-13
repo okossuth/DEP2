@@ -15,7 +15,8 @@
     width: 158px; }
 
 .elements {
-  margin: 210px 0 0 0; }
+  margin: 210px 0 0 0;
+  overflow: visible; }
   .elements .attributes > li {
     font-size: 13px; }
     .elements .attributes > li > strong {
@@ -31,6 +32,19 @@
     box-shadow: 0 1px 0 #d9d6c6;
     overflow: hidden;
     margin: 10px 0 0 0; }
+    .elements > li.element > input[type="checkbox"] {
+      display: none;
+      position: absolute;
+      top: 50%;
+      margin: -6px 0 0 0;
+      left: -25px;
+      cursor: pointer; }
+    .elements > li.element.show-checkbox {
+      overflow: visible;
+      margin-left: 25px;
+      position: relative; }
+      .elements > li.element.show-checkbox > input[type="checkbox"] {
+        display: block; }
     .elements > li.element:first-child {
       margin-top: 0; }
     .elements > li.element > .wireframe .side-container {

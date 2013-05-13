@@ -20,7 +20,7 @@ define [
       true
 
     addResourceNeed: (model) ->
-      _view = model.getEditView()
+      _view = model.getEditView 'settingsView'
 
       @resourceNeeds.append _view.el
 

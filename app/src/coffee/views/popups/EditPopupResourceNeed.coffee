@@ -22,7 +22,8 @@ define [
       'num_employees': Number
 
     skills: () -> ovivo.desktop.resources.skills.map (skill) -> skill
-    primaryDepartments: () -> _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
+    primaryDepartments: () -> 
+      @primary_departments = _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
 
     createNew: () ->
       _now = Date.today()
@@ -40,7 +41,7 @@ define [
         num_employees: 1
         weekdays: '1,2,3,4,5,6,7'
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
-        primary_department: ovivo.desktop.resources.primaryDepartments.at(0)?.pk()
+        primary_department: @primary_departments[0]?.pk()
 
       @initCreateMode()
 

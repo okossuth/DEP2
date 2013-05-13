@@ -70,6 +70,9 @@ define [
 
       true
 
+    show: () -> @$el.show()
+    hide: () -> @$el.hide()
+
   _Base.prototype._base = _Base
 
   _Base

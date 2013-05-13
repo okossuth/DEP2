@@ -4,8 +4,12 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
     typeName: 'template',
     localStorageOnly: true,
     _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department'],
+    changePD: function() {
+      return this.set('resource_needs', []);
+    },
     initialize: function(attrs, options) {
       this.View = View;
+      this.on('change:primary_department', this.changePD, this);
       this.proxyCall('initialize', arguments);
       return true;
     }

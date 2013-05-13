@@ -18,8 +18,13 @@ define [
       'primary_department'
     ]
 
+    changePD: () ->
+      @set 'resource_needs', []
+
     initialize: (attrs, options) ->
       @View = View
+
+      @on 'change:primary_department', @changePD, @
 
       @proxyCall 'initialize', arguments
 

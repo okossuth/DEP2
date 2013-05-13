@@ -21,7 +21,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       });
     },
     primaryDepartments: function() {
-      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+      return this.primary_departments = _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
         if (elem.groups.length > 0) {
           return elem.pd;
         } else {
@@ -44,7 +44,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         num_employees: 1,
         weekdays: '1,2,3,4,5,6,7',
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
-        primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
+        primary_department: (_ref1 = this.primary_departments[0]) != null ? _ref1.pk() : void 0
       }));
       return this.initCreateMode();
     },

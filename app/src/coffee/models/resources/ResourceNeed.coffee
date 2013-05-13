@@ -142,8 +142,9 @@ define [
 
       _hours * 60 + _minutes
 
-    getEditView: () -> new EditView
-      model: @
+    getEditView: (name) -> 
+      @[name] = new EditView
+        model: @
 
     initialize: (attrs, options) ->
       @View = View

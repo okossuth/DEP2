@@ -2,10 +2,11 @@ define [
   'models/resources/ResourceNeed',
 
   '_common/ResourceManagerBase',
+  '_common/CachableCollection',
 
   'ovivo'
-], (Model, ResourceManagerBase) ->
-  Backbone.Collection.extend _.extend {}, ResourceManagerBase,
+], (Model, ResourceManagerBase, CachableCollection) ->
+  Backbone.Collection.extend _.extend {}, ResourceManagerBase, CachableCollection.get(['primary_department']),
     model: Model
 
     fullResponse: true
@@ -18,5 +19,7 @@ define [
     
     initialize: () ->
       @initResource()
+
+      @initCacheProcessors()
 
       true

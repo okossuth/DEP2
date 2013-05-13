@@ -14,7 +14,7 @@ define(['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(
     addResourceNeed: function(model) {
       var _view;
 
-      _view = model.getEditView();
+      _view = model.getEditView('settingsView');
       return this.resourceNeeds.append(_view.el);
     },
     initialize: function() {

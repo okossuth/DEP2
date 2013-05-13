@@ -85,6 +85,12 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       this.model.on('change', this.render, this);
       this.model.on('remove', this._processRemove, this);
       return true;
+    },
+    show: function() {
+      return this.$el.show();
+    },
+    hide: function() {
+      return this.$el.hide();
     }
   }));
   _Base.prototype._base = _Base;

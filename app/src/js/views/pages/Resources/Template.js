@@ -6,12 +6,15 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
   return PageBase.extend(_.extend({}, _resourceEditCommon, {
     el: '.page.page-resources .content-template',
     name: 'template',
-    events: _.extend({}, _resourceEditCommon.events, {}),
+    events: _.extend({}, _resourceEditCommon.events, {
+      'click .button-add-new': 'addNew',
+      'click .resource-need-check': 'clickCheckbox'
+    }),
     fields: ['name', 'repeat', 'resource_needs', 'primary_department'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     primaryDepartments: function() {
-      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+      return this.primary_departments = _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
         if (elem.groups.length > 0) {
           return elem.pd;
         } else {
@@ -37,6 +40,45 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         'primary_department': Number
       };
     },
+    addNew: function() {
+      ovivo.desktop.popups.editPopupResourceNeed.show();
+      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      return true;
+    },
+    resourceNeedRegExp: /resource-need-template-(.+)/,
+    clickCheckbox: function(e) {
+      var _arr, _el, _i, _id;
+
+      _el = $(e.target).closest('.resource-need')[0];
+      if (_el == null) {
+        return true;
+      }
+      _id = parseInt(this.resourceNeedRegExp.exec(_el.id)[1]);
+      _arr = this.model.resource_needs();
+      if (e.target.checked === true) {
+        _arr.push(_id);
+      } else {
+        _i = _arr.indexOf(_id);
+        if (_i !== -1) {
+          _arr.splice(_i, 1);
+        } else {
+          return true;
+        }
+      }
+      this.model.trigger('change', this.model, {});
+      return this.model.trigger('change:resource_needs', this.model, {});
+    },
+    setResourceNeedsCheckboxes: function(model) {
+      this.$('.resource-need-check').each(function(i, el) {
+        el.checked = false;
+        return true;
+      });
+      return _.each(model.resource_needs(), function(need) {
+        var _ref;
+
+        return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
+      });
+    },
     initCreateMode: function() {
       _resourceEditCommon.initCreateMode.call(this);
       this.page.showElements('template', '.create-mode');
@@ -55,7 +97,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         name: '',
         repeat: 1,
         resource_needs: [],
-        primary_department: (_ref = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref.pk() : void 0
+        primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
       }));
       return this.initCreateMode();
     },
@@ -69,12 +111,59 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
     addResourceNeed: function(model) {
       var _view;
 
-      _view = model.getEditView();
+      _view = model.getEditView('templateView');
+      _view.$el.addClass('show-checkbox');
+      _view.el.id = "resource-need-template-" + _view.model.id;
+      this.processPrimaryDepartmentChange(this.model);
       return this.resourceNeeds.append(_view.el);
     },
-    processModelChange: function(model) {
-      return console.log(model);
+    removeResourceNeed: function() {
+      return this.processPrimaryDepartmentChange(this.model);
     },
+    changeResourceNeed: function(model) {
+      return this.processPrimaryDepartmentChange(this.model);
+    },
+    processPrimaryDepartmentChange: function(model) {
+      var _hide, _needs, _show;
+
+      if (model == null) {
+        return;
+      }
+      _needs = ovivo.desktop.resources.resourceNeeds.getBy('primary_department', model.primary_department());
+      _show = _.pluck(_needs, 'templateView');
+      _hide = _.without.apply(_, [_.pluck(ovivo.desktop.resources.resourceNeeds.models, 'templateView')].concat(_show));
+      _.each(_show, function(view) {
+        return view.show();
+      });
+      _.each(_hide, function(view) {
+        return view.hide();
+      });
+      if (_show.length === 0) {
+        return this.empty.show();
+      } else {
+        return this.empty.hide();
+      }
+    },
+    processModelChange: (function() {
+      var _attachHanlders, _detachHanlders;
+
+      _attachHanlders = function(model) {
+        model.on('change:primary_department', this.processPrimaryDepartmentChange, this);
+        return model.on('change:resource_needs', this.setResourceNeedsCheckboxes, this);
+      };
+      _detachHanlders = function(model) {
+        return model.off('change:primary_department', this.processPrimaryDepartmentChange);
+      };
+      return function(model) {
+        if (this.prevModel != null) {
+          _detachHanlders.call(this, this.prevModel);
+        }
+        _attachHanlders.call(this, this.model);
+        this.prevModel = this.model;
+        this.processPrimaryDepartmentChange(this.model);
+        return this.setResourceNeedsCheckboxes(this.model);
+      };
+    })(),
     initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
@@ -82,8 +171,11 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       this.on('action:delete', this["delete"], this);
       this.on('change:model', this.processModelChange, this);
       this.resourceNeeds = this.$('ul.resource-needs');
+      this.empty = this.$('ul.resource-needs li.empty');
       ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
       ovivo.desktop.resources.resourceNeeds.on('add', this.addResourceNeed, this);
+      ovivo.desktop.resources.resourceNeeds.on('remove', this.removeResourceNeed, this);
+      ovivo.desktop.resources.resourceNeeds.on('change:primary_department', this.changeResourceNeed, this);
       return true;
     }
   }));

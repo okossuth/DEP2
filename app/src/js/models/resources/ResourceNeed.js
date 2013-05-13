@@ -145,8 +145,8 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
-    getEditView: function() {
-      return new EditView({
+    getEditView: function(name) {
+      return this[name] = new EditView({
         model: this
       });
     },

@@ -16687,7 +16687,7 @@ function program15(depth0,data) {
   
   return "Remove";}
 
-  buffer += "<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>";
+  buffer += "<input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -16768,7 +16768,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"wireframe\">\r\n        <div class=\"side-container\">\r\n            <ul class=\"attributes\">\r\n                <li>\r\n                    <strong>";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n    <div class=\"wireframe\">\r\n        <div class=\"side-container\">\r\n            <ul class=\"attributes\">\r\n                <li>\r\n                    <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -17780,7 +17780,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       });
     },
     primaryDepartments: function() {
-      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+      return this.primary_departments = _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
         if (elem.groups.length > 0) {
           return elem.pd;
         } else {
@@ -17803,7 +17803,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         num_employees: 1,
         weekdays: '1,2,3,4,5,6,7',
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
-        primary_department: (_ref1 = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref1.pk() : void 0
+        primary_department: (_ref1 = this.primary_departments[0]) != null ? _ref1.pk() : void 0
       }));
       return this.initCreateMode();
     },
@@ -18701,6 +18701,12 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       this.model.on('change', this.render, this);
       this.model.on('remove', this._processRemove, this);
       return true;
+    },
+    show: function() {
+      return this.$el.show();
+    },
+    hide: function() {
+      return this.$el.hide();
     }
   }));
   _Base.prototype._base = _Base;
@@ -19372,12 +19378,15 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
   return PageBase.extend(_.extend({}, _resourceEditCommon, {
     el: '.page.page-resources .content-template',
     name: 'template',
-    events: _.extend({}, _resourceEditCommon.events, {}),
+    events: _.extend({}, _resourceEditCommon.events, {
+      'click .button-add-new': 'addNew',
+      'click .resource-need-check': 'clickCheckbox'
+    }),
     fields: ['name', 'repeat', 'resource_needs', 'primary_department'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     primaryDepartments: function() {
-      return _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
+      return this.primary_departments = _.compact(_.map(ovivo.desktop.resources.groups.tree, function(elem) {
         if (elem.groups.length > 0) {
           return elem.pd;
         } else {
@@ -19403,6 +19412,45 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         'primary_department': Number
       };
     },
+    addNew: function() {
+      ovivo.desktop.popups.editPopupResourceNeed.show();
+      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      return true;
+    },
+    resourceNeedRegExp: /resource-need-template-(.+)/,
+    clickCheckbox: function(e) {
+      var _arr, _el, _i, _id;
+
+      _el = $(e.target).closest('.resource-need')[0];
+      if (_el == null) {
+        return true;
+      }
+      _id = parseInt(this.resourceNeedRegExp.exec(_el.id)[1]);
+      _arr = this.model.resource_needs();
+      if (e.target.checked === true) {
+        _arr.push(_id);
+      } else {
+        _i = _arr.indexOf(_id);
+        if (_i !== -1) {
+          _arr.splice(_i, 1);
+        } else {
+          return true;
+        }
+      }
+      this.model.trigger('change', this.model, {});
+      return this.model.trigger('change:resource_needs', this.model, {});
+    },
+    setResourceNeedsCheckboxes: function(model) {
+      this.$('.resource-need-check').each(function(i, el) {
+        el.checked = false;
+        return true;
+      });
+      return _.each(model.resource_needs(), function(need) {
+        var _ref;
+
+        return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
+      });
+    },
     initCreateMode: function() {
       _resourceEditCommon.initCreateMode.call(this);
       this.page.showElements('template', '.create-mode');
@@ -19421,7 +19469,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         name: '',
         repeat: 1,
         resource_needs: [],
-        primary_department: (_ref = ovivo.desktop.resources.primaryDepartments.at(0)) != null ? _ref.pk() : void 0
+        primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
       }));
       return this.initCreateMode();
     },
@@ -19435,12 +19483,59 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     addResourceNeed: function(model) {
       var _view;
 
-      _view = model.getEditView();
+      _view = model.getEditView('templateView');
+      _view.$el.addClass('show-checkbox');
+      _view.el.id = "resource-need-template-" + _view.model.id;
+      this.processPrimaryDepartmentChange(this.model);
       return this.resourceNeeds.append(_view.el);
     },
-    processModelChange: function(model) {
-      return console.log(model);
+    removeResourceNeed: function() {
+      return this.processPrimaryDepartmentChange(this.model);
     },
+    changeResourceNeed: function(model) {
+      return this.processPrimaryDepartmentChange(this.model);
+    },
+    processPrimaryDepartmentChange: function(model) {
+      var _hide, _needs, _show;
+
+      if (model == null) {
+        return;
+      }
+      _needs = ovivo.desktop.resources.resourceNeeds.getBy('primary_department', model.primary_department());
+      _show = _.pluck(_needs, 'templateView');
+      _hide = _.without.apply(_, [_.pluck(ovivo.desktop.resources.resourceNeeds.models, 'templateView')].concat(_show));
+      _.each(_show, function(view) {
+        return view.show();
+      });
+      _.each(_hide, function(view) {
+        return view.hide();
+      });
+      if (_show.length === 0) {
+        return this.empty.show();
+      } else {
+        return this.empty.hide();
+      }
+    },
+    processModelChange: (function() {
+      var _attachHanlders, _detachHanlders;
+
+      _attachHanlders = function(model) {
+        model.on('change:primary_department', this.processPrimaryDepartmentChange, this);
+        return model.on('change:resource_needs', this.setResourceNeedsCheckboxes, this);
+      };
+      _detachHanlders = function(model) {
+        return model.off('change:primary_department', this.processPrimaryDepartmentChange);
+      };
+      return function(model) {
+        if (this.prevModel != null) {
+          _detachHanlders.call(this, this.prevModel);
+        }
+        _attachHanlders.call(this, this.model);
+        this.prevModel = this.model;
+        this.processPrimaryDepartmentChange(this.model);
+        return this.setResourceNeedsCheckboxes(this.model);
+      };
+    })(),
     initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
@@ -19448,8 +19543,11 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       this.on('action:delete', this["delete"], this);
       this.on('change:model', this.processModelChange, this);
       this.resourceNeeds = this.$('ul.resource-needs');
+      this.empty = this.$('ul.resource-needs li.empty');
       ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
       ovivo.desktop.resources.resourceNeeds.on('add', this.addResourceNeed, this);
+      ovivo.desktop.resources.resourceNeeds.on('remove', this.removeResourceNeed, this);
+      ovivo.desktop.resources.resourceNeeds.on('change:primary_department', this.changeResourceNeed, this);
       return true;
     }
   }));
@@ -19539,7 +19637,7 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/Emp
     addResourceNeed: function(model) {
       var _view;
 
-      _view = model.getEditView();
+      _view = model.getEditView('settingsView');
       return this.resourceNeeds.append(_view.el);
     },
     initialize: function() {
@@ -20153,8 +20251,8 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
-    getEditView: function() {
-      return new EditView({
+    getEditView: function(name) {
+      return this[name] = new EditView({
         model: this
       });
     },
@@ -20175,8 +20273,76 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
 });
 
 // Generated by CoffeeScript 1.6.2
-define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
-  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+define('_common/CachableCollection',['ovivo'], function() {
+  return {
+    get: function(fields) {
+      var _cache;
+
+      _cache = {};
+      _.each(fields, function(field) {
+        return _cache[field] = {};
+      });
+      return {
+        _cacheAddProcessorField: function(model, field, _value) {
+          var _obj;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          if ((_obj = _cache[field][_value]) == null) {
+            _obj = _cache[field][_value] = {};
+          }
+          return _obj[model.id] = model;
+        },
+        _cacheRemoveProcessorField: function(model, field, _value) {
+          var _obj;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          _obj = _cache[field][_value];
+          if (_obj != null) {
+            return delete _obj[model.id];
+          }
+        },
+        _cacheAddProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheAddProcessorField(model, field);
+          });
+        },
+        _cacheRemoveProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheRemoveProcessorField(model, field);
+          });
+        },
+        _cacheChangeProcessor: function(field, model) {
+          this._cacheRemoveProcessorField(model, field, model.previous(field));
+          return this._cacheAddProcessorField(model, field);
+        },
+        initCacheProcessors: function() {
+          var _this = this;
+
+          this.on('add', this._cacheAddProcessor, this);
+          this.on('remove', this._cacheRemoveProcessor, this);
+          return _.each(fields, function(field) {
+            return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
+          });
+        },
+        getBy: function(field, value) {
+          return _.values(_cache[field][value]);
+        }
+      };
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common/CachableCollection', 'ovivo'], function(Model, ResourceManagerBase, CachableCollection) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['primary_department']), {
     model: Model,
     fullResponse: true,
     localStorageOnly: true,
@@ -20188,6 +20354,7 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     },
     initialize: function() {
       this.initResource();
+      this.initCacheProcessors();
       return true;
     }
   }));
@@ -20222,8 +20389,12 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     typeName: 'template',
     localStorageOnly: true,
     _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department'],
+    changePD: function() {
+      return this.set('resource_needs', []);
+    },
     initialize: function(attrs, options) {
       this.View = View;
+      this.on('change:primary_department', this.changePD, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
