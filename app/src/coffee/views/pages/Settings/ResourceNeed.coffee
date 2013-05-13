@@ -1,9 +1,11 @@
 define [
   'views/pages/PageBase',
 
+  '_common/EmptyListDetector',
+
   'ovivo'
-], (PageBase) ->
-  PageBase.extend
+], (PageBase, EmptyListDetector) ->
+  PageBase.extend _.extend {}, EmptyListDetector,
     el: '.page.page-settings .resource-need-view'
 
     name: 'resourceNeed'
@@ -22,6 +24,8 @@ define [
 
     initialize: () ->
       @resourceNeeds = @$('.resource-needs')
+
+      @initEmptyListDetector ovivo.desktop.resources.resourceNeeds
 
       ovivo.desktop.resources.resourceNeeds.on 'add', @addResourceNeed, @
 

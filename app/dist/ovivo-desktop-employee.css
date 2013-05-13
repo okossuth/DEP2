@@ -1243,20 +1243,20 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   margin: 28px 0 0 30px; }
 .page.page-resources .content.content-templates > ul.templates {
   margin: 7px 0 0 0; }
-  .page.page-resources .content.content-templates > ul.templates > li.template {
+  .page.page-resources .content.content-templates > ul.templates > li.template, .page.page-resources .content.content-templates > ul.templates > li.empty {
     font-size: 12px;
     color: white;
     cursor: pointer;
     position: relative;
     z-index: 1; }
-    .page.page-resources .content.content-templates > ul.templates > li.template.selected > span {
+    .page.page-resources .content.content-templates > ul.templates > li.template.selected > span, .page.page-resources .content.content-templates > ul.templates > li.empty.selected > span {
       background: #f3f2ec;
       border: 2px solid #469a7f;
       border-right: 0;
       color: #525044;
       left: 2px;
       margin: 0 0 0 18px; }
-    .page.page-resources .content.content-templates > ul.templates > li.template > span {
+    .page.page-resources .content.content-templates > ul.templates > li.template > span, .page.page-resources .content.content-templates > ul.templates > li.empty > span {
       display: block;
       margin: 0 0 0 20px;
       padding: 5px 10px;
@@ -1264,6 +1264,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       border: 2px solid #007550;
       border-right: 0;
       z-index: 2; }
+  .page.page-resources .content.content-templates > ul.templates > li.empty {
+    cursor: auto;
+    font-style: italic; }
 
 .page.page-settings .connections-view .connections-container {
   text-align: center;
@@ -1353,6 +1356,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     font-weight: normal; }
 .page.page-settings .elements {
   margin: 210px 0 0 0; }
+  .page.page-settings .elements > li.empty {
+    font-style: italic; }
   .page.page-settings .elements > li.element {
     background: white;
     border-radius: 2px;

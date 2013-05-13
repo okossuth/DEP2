@@ -21,6 +21,8 @@
     font-weight: normal; }
 .page.page-settings .elements {
   margin: 210px 0 0 0; }
+  .page.page-settings .elements > li.empty {
+    font-style: italic; }
   .page.page-settings .elements > li.element {
     background: white;
     border-radius: 2px;

@@ -1,9 +1,11 @@
 define [
   'views/pages/PageBase',
 
+  '_common/EmptyListDetector',
+
   'ovivo'
-], (PageBase) ->
-  PageBase.extend
+], (PageBase, EmptyListDetector) ->
+  PageBase.extend _.extend {}, EmptyListDetector,
     el: '.page.page-resources .content-templates'
 
     name: 'templates'
@@ -35,6 +37,8 @@ define [
       @$('ul.templates').append model.view.el
     
     initialize: () ->
+      @initEmptyListDetector ovivo.desktop.resources.templates
+      
       ovivo.desktop.resources.templates.on 'add', @addTemplate, @
 
       true
