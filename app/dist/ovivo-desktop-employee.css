@@ -1229,12 +1229,17 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-bottom, .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top {
           padding-right: 22px; }
 
-.page.page-resources .content.content-template ul.settings-items {
-  text-align: center;
-  margin-top: 0; }
-  .page.page-resources .content.content-template ul.settings-items > li.settings-item {
-    display: inline-block;
-    margin: 22px 15px 0 15px; }
+.page.page-resources .content.content-template {
+  margin-left: 40px;
+  margin-right: 40px; }
+  .page.page-resources .content.content-template ul.settings-items {
+    text-align: center;
+    margin-top: 0; }
+    .page.page-resources .content.content-template ul.settings-items > li.settings-item {
+      display: inline-block;
+      margin: 22px 15px 0 15px; }
+  .page.page-resources .content.content-template .elements {
+    margin: 20px 0 0 0; }
 
 .page.page-resources .content.content-templates > h2 {
   font-size: 14px;
@@ -1333,42 +1338,44 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       display: inline-block;
       margin: 8px 0; }
 
-.page.page-settings .wireframe {
+.wireframe {
   margin: 0 0 0 250px;
   position: relative; }
-  .page.page-settings .wireframe .side-container {
+  .wireframe .side-container {
     position: absolute;
     top: 0;
     left: -250px;
     width: 250px;
     height: 100%; }
-.page.page-settings .wireframe.elements-header {
+
+.wireframe.elements-header {
   height: 60px;
   margin-top: 23px; }
-  .page.page-settings .wireframe.elements-header .button {
+  .wireframe.elements-header .button {
     width: 158px; }
-.page.page-settings .attributes > li {
-  font-size: 13px; }
-  .page.page-settings .attributes > li > strong {
-    width: 70px;
-    display: inline-block;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-    font-weight: normal; }
-.page.page-settings .elements {
+
+.elements {
   margin: 210px 0 0 0; }
-  .page.page-settings .elements > li.empty {
+  .elements .attributes > li {
+    font-size: 13px; }
+    .elements .attributes > li > strong {
+      width: 70px;
+      display: inline-block;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-weight: normal; }
+  .elements > li.empty {
     font-style: italic; }
-  .page.page-settings .elements > li.element {
+  .elements > li.element {
     background: white;
     border-radius: 2px;
     box-shadow: 0 1px 0 #d9d6c6;
     overflow: hidden;
     margin: 10px 0 0 0; }
-    .page.page-settings .elements > li.element:first-child {
+    .elements > li.element:first-child {
       margin-top: 0; }
-    .page.page-settings .elements > li.element > .wireframe .side-container {
+    .elements > li.element > .wireframe .side-container {
       border-right: 1px solid #e4e2d6; }
-    .page.page-settings .elements > li.element > .wireframe .edit-button, .page.page-settings .elements > li.element > .wireframe .remove-button {
+    .elements > li.element > .wireframe .edit-button, .elements > li.element > .wireframe .remove-button {
       position: absolute;
       background: #e4e2d6;
       color: #807e73;
@@ -1379,41 +1386,41 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       width: 70px;
       cursor: pointer;
       text-align: center; }
-    .page.page-settings .elements > li.element > .wireframe .edit-button {
+    .elements > li.element > .wireframe .edit-button {
       right: 0; }
-    .page.page-settings .elements > li.element > .wireframe .remove-button {
+    .elements > li.element > .wireframe .remove-button {
       right: 73px; }
 
-.page.page-settings .resource-need-view .wireframe.elements-header {
+.resource-needs-container .wireframe.elements-header {
   height: 50px; }
-  .page.page-settings .resource-need-view .wireframe.elements-header .button {
+  .resource-needs-container .wireframe.elements-header .button {
     width: 198px; }
-.page.page-settings .resource-need-view .attributes {
+.resource-needs-container .attributes {
   display: block;
   width: 200px;
   margin: 13px auto 0 auto; }
-.page.page-settings .resource-need-view ul.columns {
+.resource-needs-container ul.columns {
   overflow: auto; }
-  .page.page-settings .resource-need-view ul.columns.weekdays {
+  .resource-needs-container ul.columns.weekdays {
     padding: 40px 0 0 0; }
-  .page.page-settings .resource-need-view ul.columns.weekdays-titles {
+  .resource-needs-container ul.columns.weekdays-titles {
     font-family: "Helvetica Neue Bold", HelveticaNeueBold;
     padding: 10px 0 0 0; }
-    .page.page-settings .resource-need-view ul.columns.weekdays-titles > li {
+    .resource-needs-container ul.columns.weekdays-titles > li {
       color: #807e73;
       font-size: 13px; }
-  .page.page-settings .resource-need-view ul.columns > li {
+  .resource-needs-container ul.columns > li {
     width: 14.28571%;
     text-align: center;
     float: left;
     cursor: pointer; }
-    .page.page-settings .resource-need-view ul.columns > li > i.checked {
+    .resource-needs-container ul.columns > li > i.checked {
       display: none; }
-    .page.page-settings .resource-need-view ul.columns > li.checked > i.unchecked {
+    .resource-needs-container ul.columns > li.checked > i.unchecked {
       display: none; }
-    .page.page-settings .resource-need-view ul.columns > li.checked > i.checked {
+    .resource-needs-container ul.columns > li.checked > i.checked {
       display: inline-block; }
-.page.page-settings .resource-need-view .elements > li.element > .wireframe {
+.resource-needs-container .elements > li.element > .wireframe {
   height: 105px; }
 
 

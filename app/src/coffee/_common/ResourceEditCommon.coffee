@@ -50,6 +50,8 @@ define [
     setModel: (model) ->
       @model = model
 
+      @trigger 'change:model', @model
+
       @initEditMode()
 
       _.each @fields, (field) =>

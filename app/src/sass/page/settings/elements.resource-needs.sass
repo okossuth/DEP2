@@ -1,65 +1,62 @@
-.page.page-settings
-  .resource-need-view
-    .wireframe
-      .side-container
+.resource-needs-container
+  .wireframe
+    .side-container
 
-    .wireframe.elements-header
-      height: 50px
+  .wireframe.elements-header
+    height: 50px
 
-      .button
-        width: 198px
+    .button
+      width: 198px
 
-    .attributes
-      display: block
+  .attributes
+    display: block
 
-      width: 200px
+    width: 200px
 
-      margin: 13px auto 0 auto
+    margin: 13px auto 0 auto
 
-      > li
+    > li
 
-        > strong
+      > strong
 
-    ul.columns
-      overflow: auto
+  ul.columns
+    overflow: auto
 
-      &.weekdays
-        padding: 40px 0 0 0
+    &.weekdays
+      padding: 40px 0 0 0
 
-      &.weekdays-titles
-        font-family: 'Helvetica Neue Bold', HelveticaNeueBold
+    &.weekdays-titles
+      font-family: 'Helvetica Neue Bold', HelveticaNeueBold
 
-        padding: 10px 0 0 0
-
-        > li
-          color: #807e73
-
-          font-size: 13px
+      padding: 10px 0 0 0
 
       > li
-        width: 14.28571428571429%
+        color: #807e73
 
-        text-align: center
+        font-size: 13px
 
-        float: left
+    > li
+      width: 14.28571428571429%
 
-        cursor: pointer
+      text-align: center
 
-        > i.checked
+      float: left
+
+      cursor: pointer
+
+      > i.checked
+        display: none
+
+      &.checked
+        > i.unchecked
           display: none
 
-        &.checked
-          > i.unchecked
-            display: none
+        > i.checked
+          display: inline-block
 
-          > i.checked
-            display: inline-block
+  .elements
+    > li.element
+      > .wireframe
+        height: 105px
 
-    .elements
-      > li.element
-        > .wireframe
-          height: 105px
-
-          .side-container
-
-        
+        .side-container

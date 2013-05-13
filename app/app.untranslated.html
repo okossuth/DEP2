@@ -229,7 +229,7 @@
                 </ul>
             </div>
 
-            <div class="content resource-need-view hide">
+            <div class="content resource-need-view resource-needs-container hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
 
@@ -642,7 +642,7 @@
                 </ul>
             </div>
 
-            <div class="content content-template hide">
+            <div class="content content-template resource-needs-container hide">
                 <ul class="settings-items">
                     <li class="settings-item">
                         <div class="header">
@@ -678,6 +678,30 @@
                             <select class="property-value property-value-primary_department">
                             </select>
                         </div>
+                    </li>
+                </ul>
+
+                <div class="wireframe elements-header">
+                    <div class="side-container">
+                        <div class="button button-add-new">
+                            <span>+ {{#i18n}}Add new resource need{{/i18n}}</span>
+                        </div>
+                    </div>
+
+                    <ul class="columns weekdays-titles">
+                        <li>{{#i18n}}Monday{{/i18n}}</li>
+                        <li>{{#i18n}}Tuesday{{/i18n}}</li>
+                        <li>{{#i18n}}Wednesday{{/i18n}}</li>
+                        <li>{{#i18n}}Thursday{{/i18n}}</li>
+                        <li>{{#i18n}}Friday{{/i18n}}</li>
+                        <li>{{#i18n}}Saturday{{/i18n}}</li>
+                        <li>{{#i18n}}Sunday{{/i18n}}</li>
+                    </ul>
+                </div>
+
+                <ul class="scroll-container elements resource-needs">
+                    <li class="empty">
+                        {{#i18n}}A list of resource needs is empty{{/i18n}}
                     </li>
                 </ul>
             </div>

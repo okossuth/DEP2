@@ -17726,6 +17726,7 @@ define('_common/ResourceEditCommon',[], function() {
           var _this = this;
 
           this.model = model;
+          this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
             var _date, _input;
@@ -19424,13 +19425,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       }));
       return this.initCreateMode();
     },
-    processResourceNeeds: function() {
-      var _select;
-
-      _select = this.$('.property-value-resource_needs');
-      _select.children().remove();
-      return _select.append($(this.resourceNeedsTemplate(this)).children());
-    },
     processPD: function() {
       return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
     },
@@ -19438,22 +19432,24 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       this.page.showSubView('periods');
       return this.page.subViews.templates.removeHighlight();
     },
-    initialize: function() {
-      var _resourceNeedsProcessor,
-        _this = this;
+    addResourceNeed: function(model) {
+      var _view;
 
+      _view = model.getEditView();
+      return this.resourceNeeds.append(_view.el);
+    },
+    processModelChange: function(model) {
+      return console.log(model);
+    },
+    initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
-      _resourceNeedsProcessor = _.bind(this.processResourceNeeds, this);
       this.on('action:add', this.add, this);
       this.on('action:delete', this["delete"], this);
-      ovivo.desktop.resources.resourceNeeds.def.done(_resourceNeedsProcessor);
+      this.on('change:model', this.processModelChange, this);
+      this.resourceNeeds = this.$('ul.resource-needs');
       ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
-      ovivo.desktop.resources.resourceNeeds.def.done(function() {
-        ovivo.desktop.resources.resourceNeeds.on('add', _resourceNeedsProcessor);
-        ovivo.desktop.resources.resourceNeeds.on('change', _resourceNeedsProcessor);
-        return ovivo.desktop.resources.resourceNeeds.on('remove', _resourceNeedsProcessor);
-      });
+      ovivo.desktop.resources.resourceNeeds.on('add', this.addResourceNeed, this);
       return true;
     }
   }));
@@ -19540,8 +19536,11 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/Emp
       ovivo.desktop.popups.editPopupResourceNeed.createNew();
       return true;
     },
-    addResourceNeed: function(resourceNeed) {
-      return this.resourceNeeds.append(resourceNeed.editView.el);
+    addResourceNeed: function(model) {
+      var _view;
+
+      _view = model.getEditView();
+      return this.resourceNeeds.append(_view.el);
     },
     initialize: function() {
       this.resourceNeeds = this.$('.resource-needs');
@@ -20154,6 +20153,11 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
+    getEditView: function() {
+      return new EditView({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -20165,9 +20169,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       if (this.endValue < this.startValue) {
         this.endValue += 24 * 60;
       }
-      this.editView = new EditView({
-        model: this
-      });
       return true;
     }
   });

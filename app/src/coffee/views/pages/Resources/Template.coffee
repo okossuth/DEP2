@@ -54,13 +54,6 @@ define [
 
       @initCreateMode()
 
-    processResourceNeeds: () ->
-      _select = @$('.property-value-resource_needs')
-
-      _select.children().remove()
-
-      _select.append $(@resourceNeedsTemplate @).children()
-
     processPD: () ->
       @$('.property-value-primary_department').append $(@primaryDepartmentsTemplate @).children()
 
@@ -69,21 +62,27 @@ define [
 
       @page.subViews.templates.removeHighlight()
 
+    addResourceNeed: (model) ->
+      _view = model.getEditView()
+      
+      @resourceNeeds.append _view.el
+
+    processModelChange: (model) ->
+      console.log model
+
     initialize: () ->
       @types = @types()
       @collection = ovivo.desktop.resources.templates
 
-      _resourceNeedsProcessor = _.bind @processResourceNeeds, @
-
       @on 'action:add', @add, @
       @on 'action:delete', @delete, @
 
-      ovivo.desktop.resources.resourceNeeds.def.done _resourceNeedsProcessor
+      @on 'change:model', @processModelChange, @
+
+      @resourceNeeds = @$('ul.resource-needs')
+
       ovivo.desktop.resources.groups.on 'tree-ready', @processPD, @
 
-      ovivo.desktop.resources.resourceNeeds.def.done () =>
-        ovivo.desktop.resources.resourceNeeds.on 'add', _resourceNeedsProcessor
-        ovivo.desktop.resources.resourceNeeds.on 'change', _resourceNeedsProcessor
-        ovivo.desktop.resources.resourceNeeds.on 'remove', _resourceNeedsProcessor
+      ovivo.desktop.resources.resourceNeeds.on 'add', @addResourceNeed, @
 
       true

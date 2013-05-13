@@ -1,39 +1,41 @@
-.page.page-settings .wireframe {
+.wireframe {
   margin: 0 0 0 250px;
   position: relative; }
-  .page.page-settings .wireframe .side-container {
+  .wireframe .side-container {
     position: absolute;
     top: 0;
     left: -250px;
     width: 250px;
     height: 100%; }
-.page.page-settings .wireframe.elements-header {
+
+.wireframe.elements-header {
   height: 60px;
   margin-top: 23px; }
-  .page.page-settings .wireframe.elements-header .button {
+  .wireframe.elements-header .button {
     width: 158px; }
-.page.page-settings .attributes > li {
-  font-size: 13px; }
-  .page.page-settings .attributes > li > strong {
-    width: 70px;
-    display: inline-block;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-    font-weight: normal; }
-.page.page-settings .elements {
+
+.elements {
   margin: 210px 0 0 0; }
-  .page.page-settings .elements > li.empty {
+  .elements .attributes > li {
+    font-size: 13px; }
+    .elements .attributes > li > strong {
+      width: 70px;
+      display: inline-block;
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-weight: normal; }
+  .elements > li.empty {
     font-style: italic; }
-  .page.page-settings .elements > li.element {
+  .elements > li.element {
     background: white;
     border-radius: 2px;
     box-shadow: 0 1px 0 #d9d6c6;
     overflow: hidden;
     margin: 10px 0 0 0; }
-    .page.page-settings .elements > li.element:first-child {
+    .elements > li.element:first-child {
       margin-top: 0; }
-    .page.page-settings .elements > li.element > .wireframe .side-container {
+    .elements > li.element > .wireframe .side-container {
       border-right: 1px solid #e4e2d6; }
-    .page.page-settings .elements > li.element > .wireframe .edit-button, .page.page-settings .elements > li.element > .wireframe .remove-button {
+    .elements > li.element > .wireframe .edit-button, .elements > li.element > .wireframe .remove-button {
       position: absolute;
       background: #e4e2d6;
       color: #807e73;
@@ -44,7 +46,7 @@
       width: 70px;
       cursor: pointer;
       text-align: center; }
-    .page.page-settings .elements > li.element > .wireframe .edit-button {
+    .elements > li.element > .wireframe .edit-button {
       right: 0; }
-    .page.page-settings .elements > li.element > .wireframe .remove-button {
+    .elements > li.element > .wireframe .remove-button {
       right: 73px; }

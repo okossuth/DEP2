@@ -11,8 +11,11 @@ define(['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(
       ovivo.desktop.popups.editPopupResourceNeed.createNew();
       return true;
     },
-    addResourceNeed: function(resourceNeed) {
-      return this.resourceNeeds.append(resourceNeed.editView.el);
+    addResourceNeed: function(model) {
+      var _view;
+
+      _view = model.getEditView();
+      return this.resourceNeeds.append(_view.el);
     },
     initialize: function() {
       this.resourceNeeds = this.$('.resource-needs');

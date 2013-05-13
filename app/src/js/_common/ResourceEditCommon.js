@@ -50,6 +50,7 @@ define([], function() {
           var _this = this;
 
           this.model = model;
+          this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
             var _date, _input;

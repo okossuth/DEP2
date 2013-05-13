@@ -145,6 +145,11 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
+    getEditView: function() {
+      return new EditView({
+        model: this
+      });
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -156,9 +161,6 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       if (this.endValue < this.startValue) {
         this.endValue += 24 * 60;
       }
-      this.editView = new EditView({
-        model: this
-      });
       return true;
     }
   });

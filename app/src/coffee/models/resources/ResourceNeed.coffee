@@ -142,6 +142,9 @@ define [
 
       _hours * 60 + _minutes
 
+    getEditView: () -> new EditView
+      model: @
+
     initialize: (attrs, options) ->
       @View = View
 
@@ -156,8 +159,5 @@ define [
       @endValue = @_getTimeValue @end_time()
 
       if @endValue < @startValue then @endValue += 24 * 60
-
-      @editView = new EditView
-        model: @
 
       true

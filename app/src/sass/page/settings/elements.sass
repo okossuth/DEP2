@@ -1,25 +1,27 @@
-.page.page-settings
-  .wireframe
-    margin: 0 0 0 250px
+.wireframe
+  margin: 0 0 0 250px
 
-    position: relative
+  position: relative
 
-    .side-container
-      position: absolute
+  .side-container
+    position: absolute
 
-      top: 0
-      left: -250px
+    top: 0
+    left: -250px
 
-      width: 250px
-      height: 100%
+    width: 250px
+    height: 100%
 
-  .wireframe.elements-header
-    height: 60px
+.wireframe.elements-header
+  height: 60px
 
-    margin-top: 23px
+  margin-top: 23px
 
-    .button
-      width: 158px
+  .button
+    width: 158px
+
+.elements
+  margin: 210px 0 0 0
 
   .attributes
     > li
@@ -33,52 +35,49 @@
         font-family: 'Helvetica Neue Bold', HelveticaNeueBold, Helvetica, Arial, sans-serif
         font-weight: normal
 
-  .elements
-    margin: 210px 0 0 0
+  > li.empty
+    font-style: italic
+  
+  > li.element
+    background: white
 
-    > li.empty
-      font-style: italic
-    
-    > li.element
-      background: white
+    border-radius: 2px
 
-      border-radius: 2px
+    box-shadow: 0 1px 0 #d9d6c6
 
-      box-shadow: 0 1px 0 #d9d6c6
+    overflow: hidden
 
-      overflow: hidden
+    margin: 10px 0 0 0
 
-      margin: 10px 0 0 0
+    &:first-child
+      margin-top: 0
 
-      &:first-child
-        margin-top: 0
+    > .wireframe
+      .side-container
+        border-right: 1px solid #e4e2d6
 
-      > .wireframe
-        .side-container
-          border-right: 1px solid #e4e2d6
+      .edit-button, .remove-button
+        position: absolute
 
-        .edit-button, .remove-button
-          position: absolute
+        background: #e4e2d6
 
-          background: #e4e2d6
+        color: #807e73
 
-          color: #807e73
+        font-size: 13px
 
-          font-size: 13px
+        right: 0
+        top: 0
 
-          right: 0
-          top: 0
+        padding: 4px 0
 
-          padding: 4px 0
+        width: 70px
 
-          width: 70px
+        cursor: pointer
 
-          cursor: pointer
+        text-align: center
 
-          text-align: center
+      .edit-button
+        right: 0
 
-        .edit-button
-          right: 0
-
-        .remove-button
-          right: 73px
+      .remove-button
+        right: 73px

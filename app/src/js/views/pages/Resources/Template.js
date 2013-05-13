@@ -59,13 +59,6 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       }));
       return this.initCreateMode();
     },
-    processResourceNeeds: function() {
-      var _select;
-
-      _select = this.$('.property-value-resource_needs');
-      _select.children().remove();
-      return _select.append($(this.resourceNeedsTemplate(this)).children());
-    },
     processPD: function() {
       return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
     },
@@ -73,22 +66,24 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       this.page.showSubView('periods');
       return this.page.subViews.templates.removeHighlight();
     },
-    initialize: function() {
-      var _resourceNeedsProcessor,
-        _this = this;
+    addResourceNeed: function(model) {
+      var _view;
 
+      _view = model.getEditView();
+      return this.resourceNeeds.append(_view.el);
+    },
+    processModelChange: function(model) {
+      return console.log(model);
+    },
+    initialize: function() {
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
-      _resourceNeedsProcessor = _.bind(this.processResourceNeeds, this);
       this.on('action:add', this.add, this);
       this.on('action:delete', this["delete"], this);
-      ovivo.desktop.resources.resourceNeeds.def.done(_resourceNeedsProcessor);
+      this.on('change:model', this.processModelChange, this);
+      this.resourceNeeds = this.$('ul.resource-needs');
       ovivo.desktop.resources.groups.on('tree-ready', this.processPD, this);
-      ovivo.desktop.resources.resourceNeeds.def.done(function() {
-        ovivo.desktop.resources.resourceNeeds.on('add', _resourceNeedsProcessor);
-        ovivo.desktop.resources.resourceNeeds.on('change', _resourceNeedsProcessor);
-        return ovivo.desktop.resources.resourceNeeds.on('remove', _resourceNeedsProcessor);
-      });
+      ovivo.desktop.resources.resourceNeeds.on('add', this.addResourceNeed, this);
       return true;
     }
   }));

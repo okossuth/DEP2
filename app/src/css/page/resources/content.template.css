@@ -1,6 +1,11 @@
-.page.page-resources .content.content-template ul.settings-items {
-  text-align: center;
-  margin-top: 0; }
-  .page.page-resources .content.content-template ul.settings-items > li.settings-item {
-    display: inline-block;
-    margin: 22px 15px 0 15px; }
+.page.page-resources .content.content-template {
+  margin-left: 40px;
+  margin-right: 40px; }
+  .page.page-resources .content.content-template ul.settings-items {
+    text-align: center;
+    margin-top: 0; }
+    .page.page-resources .content.content-template ul.settings-items > li.settings-item {
+      display: inline-block;
+      margin: 22px 15px 0 15px; }
+  .page.page-resources .content.content-template .elements {
+    margin: 20px 0 0 0; }

@@ -19,8 +19,10 @@ define [
       
       true
 
-    addResourceNeed: (resourceNeed) ->
-      @resourceNeeds.append resourceNeed.editView.el
+    addResourceNeed: (model) ->
+      _view = model.getEditView()
+
+      @resourceNeeds.append _view.el
 
     initialize: () ->
       @resourceNeeds = @$('.resource-needs')
