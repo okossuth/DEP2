@@ -96,7 +96,7 @@ i.logo {
   width: 100px;
   height: 40px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.logo.inline {
     display: inline-block; }
   i.logo.title {
@@ -107,7 +107,7 @@ i.icon {
   width: 29px;
   height: 29px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon.inline {
     display: inline-block; }
   i.icon.left {
@@ -130,11 +130,13 @@ i.icon-huge {
   width: 125px;
   height: 125px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 254px 203px; }
+  background-size: 254px 250px; }
   i.icon-huge.inline {
     display: inline-block; }
   i.icon-huge.ok {
     background-position: -129px 0px; }
+  i.icon-huge.facebook {
+    background-position: -129px -125px; }
 
 div.loader {
   position: absolute;
@@ -523,7 +525,7 @@ section.page .notification-message {
   background: white;
   position: absolute;
   left: 50%;
-  top: 100px;
+  top: 50%;
   z-index: 100000;
   margin: 0 0 0 -166px;
   padding: 16px; }
@@ -566,6 +568,16 @@ section.page .notification-message {
       width: 287px; }
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }
+
+.popup.popup-create-new {
+  height: 124px;
+  margin-top: -62px; }
+.popup.popup-working-hour {
+  height: 445px;
+  margin-top: -222.5px; }
+.popup.popup-timeoff {
+  height: 260px;
+  margin-top: -130px; }
 
 .page > div.content {
   overflow: auto;
@@ -1256,6 +1268,22 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       border-right: 0;
       z-index: 2; }
 
+.page.page-settings .connections-view .connections-container {
+  text-align: center;
+  margin: 20px 0 0 0; }
+  .page.page-settings .connections-view .connections-container > li {
+    display: inline-block;
+    width: 300px;
+    text-align: center; }
+    .page.page-settings .connections-view .connections-container > li > i, .page.page-settings .connections-view .connections-container > li > .options-group {
+      display: inline-block; }
+.page.page-settings .connections-view ul.options-group > li.option {
+  margin: 0 0 0 20px;
+  padding: 8px 10px;
+  width: 100px; }
+  .page.page-settings .connections-view ul.options-group > li.option:first-child {
+    margin-left: 0; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
   .page.page-settings .content > .line {
@@ -1422,24 +1450,6 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
           font-size: 15px;
           color: #525044;
           width: 100%; }
-      .settings-items > li.settings-item > div.item-content > ul.options-group {
-        overflow: auto; }
-        .settings-items > li.settings-item > div.item-content > ul.options-group > li.option {
-          display: block;
-          float: left;
-          margin: 0 0 0 30px;
-          padding: 8px 10px;
-          border: 1px solid #807e73;
-          border-radius: 2px;
-          font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-          color: #807e73;
-          width: 80px; }
-          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option.selected {
-            color: white;
-            border-color: #007550;
-            background: #007550; }
-          .settings-items > li.settings-item > div.item-content > ul.options-group > li.option:first-child {
-            margin-left: 0; }
       .settings-items > li.settings-item > div.item-content > input {
         width: 268px;
         height: 22px;
@@ -1465,3 +1475,22 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         margin: 0 4px; }
       .settings-items > li.settings-item > div.item-content.two > input {
         width: 110px; }
+
+ul.options-group {
+  overflow: auto; }
+  ul.options-group > li.option {
+    display: block;
+    float: left;
+    margin: 0 0 0 30px;
+    padding: 8px 10px;
+    border: 1px solid #807e73;
+    border-radius: 2px;
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+    color: #807e73;
+    width: 80px; }
+    ul.options-group > li.option.selected {
+      color: white;
+      border-color: #007550;
+      background: #007550; }
+    ul.options-group > li.option:first-child {
+      margin-left: 0; }
