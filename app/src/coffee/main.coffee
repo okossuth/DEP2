@@ -65,7 +65,6 @@ require [
   '_features/socket.io',
 
   'ovivo'
-
 ], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   $ () ->
       socketIO.init()
