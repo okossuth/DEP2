@@ -37,6 +37,7 @@ requirejs.config
       deps: []
 
 require [
+  'routers/main',
   'models/resources/User',
 
   'views/popups/EditPopupResourceNeed',
@@ -64,13 +65,13 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
-  
+
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   $ () ->
       socketIO.init()
 
-      # ovivo.mobile.routers = {}
-      # ovivo.mobile.routers.main = routerMain
+      ovivo.desktop.routers = {}
+      ovivo.desktop.routers.main = routerMain
 
       ovivo.desktop.pages = new Pages()
       ovivo.desktop.resources = {}
@@ -94,7 +95,7 @@ require [
 
         ovivo.desktop.pages.calendar.show()
 
-        # Backbone.history.start { pushState: true }
+        Backbone.history.start { pushState: true }
 
       ovivo.desktop.sideBar = new SideBar()
 

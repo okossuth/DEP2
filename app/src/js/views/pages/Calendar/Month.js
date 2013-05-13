@@ -44,7 +44,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     moveToday: function() {
       var _currentTop;
 
-      _currentTop = this.$('.cell.current').offset().top;
+      _currentTop = this.$('.cell.current').position().top;
       return this.$el.animate({
         scrollTop: _currentTop
       });

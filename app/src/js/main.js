@@ -40,9 +40,11 @@ requirejs.config({
   }
 });
 
-require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
   $(function() {
     socketIO.init();
+    ovivo.desktop.routers = {};
+    ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
     $.when.apply($, _.map(['User', 'ResourceNeeds', 'Templates', 'Periods', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Availabilities', 'Users'], function(resourceName) {
@@ -52,7 +54,10 @@ require(['models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/p
       ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))();
       return ovivo.desktop.resources[_resourceInstanceName].def;
     })).then(function() {
-      return ovivo.desktop.pages.calendar.show();
+      ovivo.desktop.pages.calendar.show();
+      return Backbone.history.start({
+        pushState: true
+      });
     });
     ovivo.desktop.sideBar = new SideBar();
     _.each(['Calendar', 'Resources', 'Settings'], function(pageVarName) {

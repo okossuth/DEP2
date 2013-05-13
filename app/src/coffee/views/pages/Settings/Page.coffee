@@ -3,9 +3,10 @@ define [
 
   'views/pages/Settings/General',
   'views/pages/Settings/ResourceNeed',
+  'views/pages/Settings/Connections',
 
   'ovivo'
-], (PageBase, GeneralView, ResourceNeedView) ->
+], (PageBase, GeneralView, ResourceNeedView, ConnectionsView) ->
   PageBase.extend
     el: '.page.page-settings'
 
@@ -33,7 +34,7 @@ define [
       @$('header span.title').html ovivo.desktop.resources.user.first_name() + ' ' + ovivo.desktop.resources.user.last_name()
 
     initialize: () ->
-      @SubViews = [GeneralView, ResourceNeedView]
+      @SubViews = [GeneralView, ResourceNeedView, ConnectionsView]
       @defaultSubView = 'general'
 
       @proxyCall 'initialize', arguments

@@ -1,0 +1,11 @@
+$names: ('create-new', 'working-hour', 'timeoff')
+$values: (124px, 445px, 260px)
+
+.popup
+  @for $i from 1 through length($names)
+    &.popup-#{nth($names, $i)}
+      $height: nth($values, $i)
+
+      height: $height
+
+      margin-top: -$height / 2

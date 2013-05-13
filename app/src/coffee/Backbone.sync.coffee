@@ -81,7 +81,7 @@ requirejs [
     _processLocalStorageCache = (model, options) ->
       if localStorageCache.allowed() is true
         if localStorageCache.reset(model, options._url, options) is true
-          model.def.resolve options.resp
+          model.def?.resolve options.resp
 
           false
 

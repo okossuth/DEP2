@@ -171,13 +171,17 @@
                         <li class="sections-menu-item sections-menu-item-resourceNeed">
                             <span>Resource needs</span>
                         </li>
+
+                        <li class="sections-menu-item sections-menu-item-connections">
+                            <span>Connections</span>
+                        </li>
                     </ul>
                 </div>
 
                 <ul class="scroll-container settings-items">
                     <li class="settings-item">
                         <div class="header">
-                            <span>Fornavn</span><em>some explanation text</em>
+                            <span>Fornavn</span><em><span style="color: red; background: black;">Explanation 1</span></em>
                         </div>
 
                         <div class="item-content">
@@ -189,7 +193,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Efternavn</span><em>some explanation text</em>
+                            <span>Efternavn</span><em><span style="color: red; background: black;">Explanation 2</span></em>
                         </div>
 
                         <div class="item-content">
@@ -201,7 +205,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Mobilnummer</span><em>some explanation text</em>
+                            <span>Mobilnummer</span><em><span style="color: red; background: black;">Explanation 3</span></em>
                         </div>
 
                         <div class="item-content">
@@ -213,7 +217,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>E-mail address</span><em>some explanation text</em>
+                            <span>E-mail address</span><em><span style="color: red; background: black;">Explanation 4</span></em>
                         </div>
 
                         <div class="item-content">
@@ -237,12 +241,16 @@
                         <li class="selected sections-menu-item sections-menu-item-resourceNeed">
                             <span>Resource needs</span>
                         </li>
+
+                        <li class="sections-menu-item sections-menu-item-connections">
+                            <span>Connections</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="info">
-                    <h2>This headline should explain how this works</h2>
-                    <h3>Some more explanation text and here we have a link where the user can add specific time periodes to the overview below</h3>
+                    <h2><span style="color: red; background: black;">Explanation 11</span></h2>
+                    <h3><span style="color: red; background: black;">Explanation 12</span></h3>
                 </div>
 
                 <div class="wireframe elements-header">
@@ -265,6 +273,47 @@
 
                 <ul class="scroll-container elements resource-needs">
 
+                </ul>
+            </div>
+
+            <div class="content connections-view hide">
+                <div class="line">
+                    <h2 class="title">Indstillinger</h2>
+
+                    <ul class="sections-menu">
+                        <li class="sections-menu-item sections-menu-item-general">
+                            <span>General</span>
+                        </li>
+
+                        <li class="sections-menu-item sections-menu-item-resourceNeed">
+                            <span>Resource needs</span>
+                        </li>
+
+                        <li class="selected sections-menu-item sections-menu-item-connections">
+                            <span>Connections</span>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="info">
+                    <h2>Explanation 21</h2>
+                    <h3>Explanation 22</h3>
+                </div>
+
+                <ul class="connections-container">
+                    <li>
+                        <i class="icon-huge facebook"></i>
+                        <ul class="options-group options-facebook">
+                            <li class="option option-connect selected">
+                                <span>Connect</span>
+                            </li>
+
+                            <li class="option option-disconnect">
+                                <span>Disconnect</span>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -697,7 +746,7 @@
                 <ul class="settings-items">
                     <li class="settings-item">
                         <div class="header">
-                            <span>Tid</span><em>some explanation text</em>
+                            <span>Tid</span><em><span style="color: red; background: black;">Explanation 15</span></em>
                         </div>
 
                         <div class="item-content two">
@@ -868,7 +917,7 @@
                 window.ovivo = {};
             }
 
-            window.ovivo.dict = {"Loading content":"Henter indhold","Today":"I dag","Week":"Uge","Month":"Måned","Feedback":"Feedback","Error":"Fejl","Comment":"Kommentar","Suggestion":"Forslag","Send":"Send","Leave your feedback here":"Skriv din feedback her","Settings":"Indstillinger","General":"General","Notifications":"Notifikationer","Availability":"Tilgængelighed","Time off":"Fravær","First name":"Fornavn","Last name":"Efternavn","Mobile number":"Mobilnummer","Yes":"Ja","No":"Nej","d":"d","Monday":"Mandag","Tuesday":"Tirsdag","Wednesday":"Onsdag","Thursday":"Torsdag","Friday":"Fredag","Saturday":"Lørdag","Sunday":"Søndag","monday":"mandag","tuesday":"tirsdag","wednesday":"onsdag","thursday":"torsdag","friday":"fredag","saturday":"lørdag","sunday":"søndag","Help":"Hjælp","Write a comment here...":"Skriv en kommentar her...","Post":"Post","Load more":"Hent mere","Calendar":"Kalender","Logout":"Log ud","Time":"Tid","to":"til","Available":"Tilgængelig","Unavailable":"Utilgængelig","Date":"Dato","Repeat":"Gentag","Every other week":"Hver anden uge","Every third week":"Hver tredje uge","Add time":"Tilføj tid","Delete":"Slet","Reason":"Årsag","Status":"Status","hour":"time","hours":"timer","Created by":"Oprettet af","Assigned":"Tildelt","Awaiting reply":"Afventer svar","Make a bid":"Byd","Bidding closed":"Udbud lukket","Edit":"Ret","just now":"lige nu","a second ago":"et sekund siden","a minute ago":"et minut siden","few minutes ago":"få minutter siden","an hour ago":"en time siden","few hours ago":"få timer siden","Your bid has now been received":"Dit bud er modtaget","Your bid has been removed":"Dit bud er blevet fjernet","Params are missing":"Parametre mangler","Approved":"Godkendt","Not approved":"Ikke godkendt","Pending":"Afventer","January":"Januar","February":"Februar","March":"Marts","April":"April","May":"Maj","June":"Juni","July":"Juli","August":"August","September":"September","October":"Oktober","November":"November","December":"December","Create new":"Create new","E-mail address":"E-mail address","Send me notifications via e-mail":"Send me notifications via e-mail","Send me notifications via SMS":"Send me notifications via SMS","Activity report":"Activity report","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email","Add new time":"Add new time","Add time off":"Add time off","Choose an option":"Choose an option","Create time":"Create time","Create timeoff":"Create timeoff","Edit time":"Edit time","Every second week":"Every second week","Every fourth week":"Every fourth week","Add new time off":"Add new time off","Edit time off":"Edit time off","Remove":"Remove","Note":"Note","Thanks for your feedback":"Thanks for your feedback"};
+            window.ovivo.dict = {"Loading content":"Henter indhold","Today":"I dag","Week":"Uge","Month":"Måned","Feedback":"Feedback","Error":"Fejl","Comment":"Kommentar","Suggestion":"Forslag","Send":"Send","Leave your feedback here":"Skriv din feedback her","Settings":"Indstillinger","General":"General","Notifications":"Notifikationer","Availability":"Tilgængelighed","Time off":"Fravær","First name":"Fornavn","Last name":"Efternavn","Mobile number":"Mobilnummer","Yes":"Ja","No":"Nej","d":"d","Monday":"Mandag","Tuesday":"Tirsdag","Wednesday":"Onsdag","Thursday":"Torsdag","Friday":"Fredag","Saturday":"Lørdag","Sunday":"Søndag","monday":"mandag","tuesday":"tirsdag","wednesday":"onsdag","thursday":"torsdag","friday":"fredag","saturday":"lørdag","sunday":"søndag","Help":"Hjælp","Write a comment here...":"Skriv en kommentar her...","Post":"Post","Load more":"Hent mere","Calendar":"Kalender","Logout":"Log ud","Time":"Tid","to":"til","Available":"Tilgængelig","Unavailable":"Utilgængelig","Date":"Dato","Repeat":"Gentag","Every other week":"Hver anden uge","Every third week":"Hver tredje uge","Add time":"Tilføj tid","Delete":"Slet","Reason":"Årsag","Status":"Status","hour":"time","hours":"timer","Created by":"Oprettet af","Assigned":"Tildelt","Awaiting reply":"Afventer svar","Make a bid":"Byd","Bidding closed":"Udbud lukket","Edit":"Ret","just now":"lige nu","a second ago":"et sekund siden","a minute ago":"et minut siden","few minutes ago":"få minutter siden","an hour ago":"en time siden","few hours ago":"få timer siden","Your bid has now been received":"Dit bud er modtaget","Your bid has been removed":"Dit bud er blevet fjernet","Params are missing":"Parametre mangler","Approved":"Godkendt","Not approved":"Ikke godkendt","Pending":"Afventer","January":"Januar","February":"Februar","March":"Marts","April":"April","May":"Maj","June":"Juni","July":"Juli","August":"August","September":"September","October":"Oktober","November":"November","December":"December","Create new":"Create new","E-mail address":"E-mail address","Send me notifications via e-mail":"Send me notifications via e-mail","Send me notifications via SMS":"Send me notifications via SMS","Activity report":"Activity report","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email","Add new time":"Add new time","Add time off":"Add time off","Choose an option":"Choose an option","Create time":"Create time","Create timeoff":"Create timeoff","Edit time":"Edit time","Every second week":"Every second week","Every fourth week":"Every fourth week","Add new time off":"Add new time off","Edit time off":"Edit time off","Remove":"Remove","Note":"Note","Thanks for your feedback":"Thanks for your feedback","Connections":"Connections","Explanation 1":"<span style=\"color: red; background: black;\">Explanation 1</span>","Explanation 2":"<span style=\"color: red; background: black;\">Explanation 2</span>","Explanation 3":"<span style=\"color: red; background: black;\">Explanation 3</span>","Explanation 4":"<span style=\"color: red; background: black;\">Explanation 4</span>","Explanation 5":"<span style=\"color: red; background: black;\">Explanation 5</span>","Explanation 6":"<span style=\"color: red; background: black;\">Explanation 6</span>","Explanation 7":"<span style=\"color: red; background: black;\">Explanation 7</span>","Explanation 8":"<span style=\"color: red; background: black;\">Explanation 8</span>","Explanation 9":"<span style=\"color: red; background: black;\">Explanation 9</span>","Explanation 10":"<span style=\"color: red; background: black;\">Explanation 10</span>","Explanation 11":"<span style=\"color: red; background: black;\">Explanation 11</span>","Explanation 12":"<span style=\"color: red; background: black;\">Explanation 12</span>","Explanation 13":"<span style=\"color: red; background: black;\">Explanation 13</span>","Explanation 14":"<span style=\"color: red; background: black;\">Explanation 14</span>","Explanation 15":"<span style=\"color: red; background: black;\">Explanation 15</span>","Explanation 16":"<span style=\"color: red; background: black;\">Explanation 16</span>","Explanation 17":"<span style=\"color: red; background: black;\">Explanation 17</span>","Explanation 18":"<span style=\"color: red; background: black;\">Explanation 18</span>","Explanation 19":"<span style=\"color: red; background: black;\">Explanation 19</span>","Explanation 20":"<span style=\"color: red; background: black;\">Explanation 20</span>"};
         </script>
 
         <script>
