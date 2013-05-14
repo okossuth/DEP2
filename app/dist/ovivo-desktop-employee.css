@@ -569,12 +569,18 @@ section.page .notification-message {
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }
 
+.popup.popup-period .settings-items > li.settings-item > div.item-content > select.property-value-groups {
+  min-height: 336px; }
+
 .popup.popup-create-new {
   height: 76px;
   margin-top: -88px; }
 .popup.popup-resource-need {
   height: 361px;
   margin-top: -230.5px; }
+.popup.popup-period {
+  height: 473px;
+  margin-top: -286.5px; }
 
 .page > div.content {
   overflow: auto;

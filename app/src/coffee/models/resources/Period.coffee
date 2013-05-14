@@ -1,8 +1,10 @@
 define [
   'models/resources/ResourceBase',
 
+  'views/resources/Period',
+
   'ovivo'
-], (ResourceBase) ->
+], (ResourceBase, View) ->
   ResourceBase.extend
     typeName: 'period'
 
@@ -14,9 +16,12 @@ define [
       'end_date'
       'templates'
       'primary_department'
+      'groups'
     ]
 
     initialize: (attrs, options) ->
+      @View = View
+      
       @proxyCall 'initialize', arguments
 
       true

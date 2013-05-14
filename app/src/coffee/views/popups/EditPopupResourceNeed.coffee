@@ -22,7 +22,7 @@ define [
       'num_employees': Number
 
     skills: () -> ovivo.desktop.resources.skills.map (skill) -> skill
-    primaryDepartments: () -> 
+    primaryDepartments: () ->
       @primary_departments = _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
 
     createNew: () ->

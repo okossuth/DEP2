@@ -1,6 +1,6 @@
 <select>
 {{#tree}}
-    {{#pd}}<optgroup label="{{name}}">{{/pd}}
+    {{#pd}}<optgroup label="{{name}}" class="options-pd options-pd-{{pk}}">{{/pd}}
     {{#groups}}
         {{#group}}<option value="{{pk}}">{{treeName}}</option>{{/group}}
     {{/groups}}

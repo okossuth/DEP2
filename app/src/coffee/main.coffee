@@ -42,6 +42,7 @@ require [
 
   'views/popups/EditPopupResourceNeed',
   'views/popups/EditPopupTemplate',
+  'views/popups/EditPopupPeriod',
   'views/popups/CreateNewPopup',
 
   'collections/Pages',
@@ -65,7 +66,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -113,6 +114,7 @@ require [
       _.each [
         'EditPopupResourceNeed'
         'EditPopupTemplate'
+        'EditPopupPeriod'
         'CreateNewPopup'
       ], (popupName) ->
         _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
