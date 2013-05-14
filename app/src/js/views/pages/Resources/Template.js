@@ -47,16 +47,18 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
     },
     resourceNeedRegExp: /resource-need-template-(.+)/,
     clickCheckbox: function(e) {
-      var _arr, _el, _i, _id;
+      var _arr, _el, _i, _id, _model;
 
       _el = $(e.target).closest('.resource-need')[0];
       if (_el == null) {
         return true;
       }
       _id = parseInt(this.resourceNeedRegExp.exec(_el.id)[1]);
+      _model = ovivo.desktop.resources.resourceNeeds.get(_id);
       _arr = this.model.resource_needs();
       if (e.target.checked === true) {
         _arr.push(_id);
+        _model.set('checked', true);
       } else {
         _i = _arr.indexOf(_id);
         if (_i !== -1) {
@@ -64,6 +66,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         } else {
           return true;
         }
+        _model.set('checked', false);
       }
       this.model.trigger('change', this.model, {});
       return this.model.trigger('change:resource_needs', this.model, {});
@@ -73,9 +76,13 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         el.checked = false;
         return true;
       });
+      ovivo.desktop.resources.resourceNeeds.each(function(model) {
+        return model.set('checked', false);
+      });
       return _.each(model.resource_needs(), function(need) {
         var _ref;
 
+        ovivo.desktop.resources.resourceNeeds.get(need).set('checked', true);
         return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
       });
     },

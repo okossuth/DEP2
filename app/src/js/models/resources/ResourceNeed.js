@@ -3,7 +3,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -71,6 +71,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         _json.groups = null;
       }
       delete _json.deltaHours;
+      delete _json.checked;
       return _json;
     },
     processRange: function(start, end) {

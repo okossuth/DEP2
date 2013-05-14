@@ -23,6 +23,7 @@ define [
       'employee_type'
       'skill'
       'primary_department'
+      'checked'
     ]
 
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined
@@ -77,6 +78,7 @@ define [
         _json.groups = null
 
       delete _json.deltaHours
+      delete _json.checked
 
       _json
 

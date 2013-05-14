@@ -49,6 +49,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
           return $(elem).removeClass('checked');
         }
       });
+      this.$('.resource-need-check')[0].checked = this.checked();
       ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
       return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },

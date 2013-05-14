@@ -46,6 +46,8 @@ define [
         else
           $(elem).removeClass 'checked'
 
+      @$('.resource-need-check')[0].checked = @checked()
+
       ovivo.desktop.resources.skills.def.done _.bind @renderSkill, @
       ovivo.desktop.resources.primaryDepartments.def.done _.bind @renderPD, @
 

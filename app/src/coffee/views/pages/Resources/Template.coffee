@@ -49,14 +49,19 @@ define [
       if not _el? then return true
 
       _id = parseInt @resourceNeedRegExp.exec(_el.id)[1]
+      _model = ovivo.desktop.resources.resourceNeeds.get _id
       _arr = @model.resource_needs()
 
       if e.target.checked is true
         _arr.push _id
 
+        _model.set 'checked', true
+
       else
         _i = _arr.indexOf _id
         if _i isnt -1 then _arr.splice(_i, 1) else return true
+
+        _model.set 'checked', false
 
       @model.trigger 'change', @model, {}
       @model.trigger 'change:resource_needs', @model, {}
@@ -64,7 +69,11 @@ define [
     setResourceNeedsCheckboxes: (model) ->
       @$('.resource-need-check').each (i, el) -> el.checked = false; true
 
+      ovivo.desktop.resources.resourceNeeds.each (model) -> model.set 'checked', false
+
       _.each model.resource_needs(), (need) ->
+        ovivo.desktop.resources.resourceNeeds.get(need).set 'checked', true
+
         $("#resource-need-template-#{need} .resource-need-check")[0]?.checked = true
 
     initCreateMode: () ->
