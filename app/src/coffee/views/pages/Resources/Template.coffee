@@ -52,19 +52,21 @@ define [
       _model = ovivo.desktop.resources.resourceNeeds.get _id
       _arr = @model.resource_needs()
 
+      _val = []
+      _.each _arr, (el) -> _val.push el
+
       if e.target.checked is true
-        _arr.push _id
+        _val.push _id
 
         _model.set 'checked', true
 
       else
-        _i = _arr.indexOf _id
-        if _i isnt -1 then _arr.splice(_i, 1) else return true
+        _i = _val.indexOf _id
+        if _i isnt -1 then _val.splice(_i, 1) else return true
 
         _model.set 'checked', false
 
-      @model.trigger 'change', @model, {}
-      @model.trigger 'change:resource_needs', @model, {}
+      @model.set 'resource_needs', _val
 
     setResourceNeedsCheckboxes: (model) ->
       @$('.resource-need-check').each (i, el) -> el.checked = false; true

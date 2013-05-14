@@ -47,7 +47,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
     },
     resourceNeedRegExp: /resource-need-template-(.+)/,
     clickCheckbox: function(e) {
-      var _arr, _el, _i, _id, _model;
+      var _arr, _el, _i, _id, _model, _val;
 
       _el = $(e.target).closest('.resource-need')[0];
       if (_el == null) {
@@ -56,20 +56,23 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       _id = parseInt(this.resourceNeedRegExp.exec(_el.id)[1]);
       _model = ovivo.desktop.resources.resourceNeeds.get(_id);
       _arr = this.model.resource_needs();
+      _val = [];
+      _.each(_arr, function(el) {
+        return _val.push(el);
+      });
       if (e.target.checked === true) {
-        _arr.push(_id);
+        _val.push(_id);
         _model.set('checked', true);
       } else {
-        _i = _arr.indexOf(_id);
+        _i = _val.indexOf(_id);
         if (_i !== -1) {
-          _arr.splice(_i, 1);
+          _val.splice(_i, 1);
         } else {
           return true;
         }
         _model.set('checked', false);
       }
-      this.model.trigger('change', this.model, {});
-      return this.model.trigger('change:resource_needs', this.model, {});
+      return this.model.set('resource_needs', _val);
     },
     setResourceNeedsCheckboxes: function(model) {
       this.$('.resource-need-check').each(function(i, el) {

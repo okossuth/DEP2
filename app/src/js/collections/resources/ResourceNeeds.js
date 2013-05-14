@@ -10,6 +10,7 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common
         return arr.concat(workingHour.processRange(start, end));
       }), []);
     },
+    _ignoreChange: ['checked', 'deltaHours', 'templates'],
     initialize: function() {
       this.initResource();
       this.initCacheProcessors();

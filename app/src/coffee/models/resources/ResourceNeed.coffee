@@ -24,6 +24,7 @@ define [
       'skill'
       'primary_department'
       'checked'
+      'templates'
     ]
 
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined
@@ -66,7 +67,7 @@ define [
         ), undefined
 
     processChange: (model, obj) ->
-      if (not model.changed.pk?) and @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
+      # if (not model.changed.pk?) and @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
 
     processModelChange: () ->
 
@@ -79,6 +80,7 @@ define [
 
       delete _json.deltaHours
       delete _json.checked
+      delete _json.templates
 
       _json
 
@@ -115,6 +117,13 @@ define [
 
       _arr
 
+    changePrimaryDepartment: (model) ->
+      _templates = @templates()
+
+      if typeof _templates is 'object'
+        _.each _.keys(_templates), (id) ->
+          ovivo.desktop.resources.templates.get(id).removeResourceNeed model.id
+
     setDeltaHours: do () ->
       _getMinutes = (str) ->
         [hours, minutes] = _.compact(ovivo.config.VALIDATION_REGEXP_TIME.exec(str)).slice -2
@@ -148,6 +157,20 @@ define [
       @[name] = new EditView
         model: @
 
+    addTemplate: (id) ->
+      _obj = _.extend {}, @templates()
+
+      _obj[id] = true
+
+      @set 'templates', _obj
+
+    removeTemplate: (id) -> 
+      _obj = _.extend {}, @templates()
+
+      delete _obj[id]
+
+      @set 'templates', _obj
+
     initialize: (attrs, options) ->
       @View = View
 
@@ -155,6 +178,8 @@ define [
 
       @on 'change', @processChange, @
       @on 'change:weekdays', @updateWeekdaysHash, @
+
+      @on 'change:primary_department', @changePrimaryDepartment, @
 
       @updateWeekdaysHash()
 

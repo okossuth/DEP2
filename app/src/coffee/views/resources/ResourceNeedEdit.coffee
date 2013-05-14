@@ -27,6 +27,15 @@ define [
       ovivo.desktop.popups.editPopupResourceNeed.show()
       ovivo.desktop.popups.editPopupResourceNeed.setModel @model
 
+    templates: () ->
+      _templates = @model.templates()
+
+      if typeof _templates is 'object'
+        _.map _.keys(_templates), (id) -> ovivo.desktop.resources.templates.get(id)
+
+      else
+        null
+
     _getDateStr: (_date) ->
       if _date?
         "#{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3)}"
@@ -37,6 +46,15 @@ define [
 
     renderPD: () ->
       @$('.pd-value').html ovivo.desktop.resources.primaryDepartments.get(@model.primary_department())?.name()
+
+    renderTemplates: () ->
+      _templates = @templates()
+
+      if (_templates isnt null) and (_templates.length > 0)
+        @$('.templates-names span').html _.map(@templates(), (template) -> template.name()).join ', '
+
+      else
+        @$('.templates-names').addClass 'empty'
 
     postRender: () ->
       @$('.columns.weekdays > li').each (i, elem) =>
@@ -51,8 +69,12 @@ define [
       ovivo.desktop.resources.skills.def.done _.bind @renderSkill, @
       ovivo.desktop.resources.primaryDepartments.def.done _.bind @renderPD, @
 
+      ovivo.desktop.resources.templates.def.done _.bind @renderTemplates, @
+
     initialize: () ->
       @proxyCall 'initialize', arguments
+
+      @model.on 'change:templates', () => @render()
 
       @weekDays = @$('ul.weekdays')
 

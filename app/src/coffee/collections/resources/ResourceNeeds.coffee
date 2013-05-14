@@ -16,6 +16,8 @@ define [
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/"
 
     processRange: (start, end) -> @reduce ((arr, workingHour) -> arr.concat workingHour.processRange start, end), []
+
+    _ignoreChange: ['checked', 'deltaHours', 'templates']
     
     initialize: () ->
       @initResource()

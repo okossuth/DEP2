@@ -16687,6 +16687,16 @@ function program15(depth0,data) {
   
   return "Remove";}
 
+function program17(depth0,data) {
+  
+  
+  return "Templates";}
+
+function program19(depth0,data) {
+  
+  
+  return "No templates attached";}
+
   buffer += "<input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
@@ -16751,7 +16761,19 @@ function program15(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n</div>";
+  buffer += "\r\n    </div>\r\n\r\n    <div class=\"templates-names\">\r\n        <strong>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ":</strong>\r\n        <span></span>\r\n        <i>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</i>\r\n    </div>\r\n</div>";
   return buffer;});
 templates['resourceNeedEdit_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -16832,7 +16854,19 @@ function program1(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += "\r\n        </div>\r\n\r\n        <div class=\"templates-names\">\r\n            <strong>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ":</strong>\r\n            <span></span>\r\n            <i>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</i>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -16873,6 +16907,16 @@ function program16(depth0,data) {
   
   
   return "Remove";}
+
+function program18(depth0,data) {
+  
+  
+  return "Templates";}
+
+function program20(depth0,data) {
+  
+  
+  return "No templates attached";}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;
@@ -17591,20 +17635,46 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
       }
       return true;
     },
-    processModelChange: function() {
-      return this.save();
+    processModelChange: function(model, obj) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      if ((model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+        return model.save();
+      }
+    },
+    _checkIfIgnore: function(model) {
+      var _i;
+
+      if (this._ignoreChange instanceof Array) {
+        _i = 0;
+        while (_i < this._ignoreChange.length) {
+          if (typeof model.changed[this._ignoreChange[_i]] !== 'undefined') {
+            return true;
+          }
+          _i += 1;
+        }
+      }
+      return false;
     },
     cache: function() {
       return localStorageCache.cache(this, this._url);
     },
+    changeCacheHandler: function(model) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      return localStorageCache.cache(this, this._url);
+    },
     attachProcessors: function() {
       if (this instanceof Backbone.Model) {
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
         this.on('change', this.processModelChange, this);
       } else if (this instanceof Backbone.Collection) {
         this.on('add', this.cache, this);
         this.on('remove', this.cache, this);
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
+        this.on('change', this.processModelChange, this);
       }
       return true;
     },
@@ -19419,7 +19489,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     resourceNeedRegExp: /resource-need-template-(.+)/,
     clickCheckbox: function(e) {
-      var _arr, _el, _i, _id, _model;
+      var _arr, _el, _i, _id, _model, _val;
 
       _el = $(e.target).closest('.resource-need')[0];
       if (_el == null) {
@@ -19428,20 +19498,23 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       _id = parseInt(this.resourceNeedRegExp.exec(_el.id)[1]);
       _model = ovivo.desktop.resources.resourceNeeds.get(_id);
       _arr = this.model.resource_needs();
+      _val = [];
+      _.each(_arr, function(el) {
+        return _val.push(el);
+      });
       if (e.target.checked === true) {
-        _arr.push(_id);
+        _val.push(_id);
         _model.set('checked', true);
       } else {
-        _i = _arr.indexOf(_id);
+        _i = _val.indexOf(_id);
         if (_i !== -1) {
-          _arr.splice(_i, 1);
+          _val.splice(_i, 1);
         } else {
           return true;
         }
         _model.set('checked', false);
       }
-      this.model.trigger('change', this.model, {});
-      return this.model.trigger('change:resource_needs', this.model, {});
+      return this.model.set('resource_needs', _val);
     },
     setResourceNeedsCheckboxes: function(model) {
       this.$('.resource-need-check').each(function(i, el) {
@@ -20039,6 +20112,18 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
     },
+    templates: function() {
+      var _templates;
+
+      _templates = this.model.templates();
+      if (typeof _templates === 'object') {
+        return _.map(_.keys(_templates), function(id) {
+          return ovivo.desktop.resources.templates.get(id);
+        });
+      } else {
+        return null;
+      }
+    },
     _getDateStr: function(_date) {
       if (_date != null) {
         return "" + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3));
@@ -20056,6 +20141,18 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
 
       return this.$('.pd-value').html((_ref = ovivo.desktop.resources.primaryDepartments.get(this.model.primary_department())) != null ? _ref.name() : void 0);
     },
+    renderTemplates: function() {
+      var _templates;
+
+      _templates = this.templates();
+      if ((_templates !== null) && (_templates.length > 0)) {
+        return this.$('.templates-names span').html(_.map(this.templates(), function(template) {
+          return template.name();
+        }).join(', '));
+      } else {
+        return this.$('.templates-names').addClass('empty');
+      }
+    },
     postRender: function() {
       var _this = this;
 
@@ -20068,10 +20165,16 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
       });
       this.$('.resource-need-check')[0].checked = this.checked();
       ovivo.desktop.resources.skills.def.done(_.bind(this.renderSkill, this));
-      return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
+      ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
+      return ovivo.desktop.resources.templates.def.done(_.bind(this.renderTemplates, this));
     },
     initialize: function() {
+      var _this = this;
+
       this.proxyCall('initialize', arguments);
+      this.model.on('change:templates', function() {
+        return _this.render();
+      });
       this.weekDays = this.$('ul.weekdays');
       return true;
     }
@@ -20117,7 +20220,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -20168,11 +20271,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         }
       }), void 0);
     },
-    processChange: function(model, obj) {
-      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return this.save();
-      }
-    },
+    processChange: function(model, obj) {},
     processModelChange: function() {},
     toJSON: function() {
       var _json;
@@ -20186,6 +20285,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       }
       delete _json.deltaHours;
       delete _json.checked;
+      delete _json.templates;
       return _json;
     },
     processRange: function(start, end) {
@@ -20221,6 +20321,16 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         _i.setDate(_i.getDate() + 1);
       }
       return _arr;
+    },
+    changePrimaryDepartment: function(model) {
+      var _templates;
+
+      _templates = this.templates();
+      if (typeof _templates === 'object') {
+        return _.each(_.keys(_templates), function(id) {
+          return ovivo.desktop.resources.templates.get(id).removeResourceNeed(model.id);
+        });
+      }
     },
     setDeltaHours: (function() {
       var _getMinutes;
@@ -20265,11 +20375,26 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
         model: this
       });
     },
+    addTemplate: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.templates());
+      _obj[id] = true;
+      return this.set('templates', _obj);
+    },
+    removeTemplate: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.templates());
+      delete _obj[id];
+      return this.set('templates', _obj);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
       this.on('change', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
+      this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.updateWeekdaysHash();
       this.startValue = this._getTimeValue(this.start_time());
       this.endValue = this._getTimeValue(this.end_time());
@@ -20361,6 +20486,7 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
         return arr.concat(workingHour.processRange(start, end));
       }), []);
     },
+    _ignoreChange: ['checked', 'deltaHours', 'templates'],
     initialize: function() {
       this.initResource();
       this.initCacheProcessors();
@@ -20401,9 +20527,42 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     changePD: function() {
       return this.set('resource_needs', []);
     },
+    resourceNeedsChange: function() {
+      var _cur, _new, _prev, _removed,
+        _this = this;
+
+      if (this.id == null) {
+        return true;
+      }
+      _cur = this.resource_needs();
+      _prev = this.previous('resource_needs');
+      _removed = _.without.apply(_, [_prev].concat(_cur));
+      _new = _.without.apply(_, [_cur].concat(_prev));
+      _.each(_removed, function(id) {
+        return ovivo.desktop.resources.resourceNeeds.get(id).removeTemplate(_this.id);
+      });
+      return _.each(_new, function(id) {
+        return ovivo.desktop.resources.resourceNeeds.get(id).addTemplate(_this.id);
+      });
+    },
+    removeResourceNeed: function(id) {
+      var _arr, _i, _val;
+
+      _val = [];
+      _arr = this.resource_needs();
+      _.each(_arr, function(el) {
+        return _val.push(el);
+      });
+      _i = _val.indexOf(id);
+      if (_i !== -1) {
+        _val.splice(_i, 1);
+      }
+      return this.set('resource_needs', _val);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.on('change:primary_department', this.changePD, this);
+      this.on('change:resource_needs', this.resourceNeedsChange, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -20417,8 +20576,42 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
+    _processTemplateAdd: function(model) {
+      var _id,
+        _this = this;
+
+      _id = model.id;
+      return _.each(model.resource_needs(), function(id) {
+        return ovivo.desktop.resources.resourceNeeds.get(id).addTemplate(_id);
+      });
+    },
+    _processTemplateRemove: function(model) {
+      var _id,
+        _this = this;
+
+      _id = model.id;
+      return _.each(model.resource_needs(), function(id) {
+        return ovivo.desktop.resources.resourceNeeds.get(id).removeTemplate(_id);
+      });
+    },
+    processTemplateAdd: function(model) {
+      var _this = this;
+
+      return ovivo.desktop.resources.resourceNeeds.def.done(function() {
+        return _this._processTemplateAdd(model);
+      });
+    },
+    processTemplateRemove: function(model) {
+      var _this = this;
+
+      return ovivo.desktop.resources.resourceNeeds.def.done(function() {
+        return _this._processTemplateRemove(model);
+      });
+    },
     initialize: function() {
       this.initResource();
+      this.on('add', this.processTemplateAdd, this);
+      this.on('remove', this.processTemplateRemove, this);
       return true;
     }
   }));
@@ -20601,6 +20794,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
         }
       });
     },
+    _ignoreChange: ['level', 'treeName'],
     initialize: function() {
       this.tree = [];
       this.initResource();

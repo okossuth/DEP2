@@ -14,7 +14,28 @@ define [
 
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/templates/"
 
+    _processTemplateAdd: (model) ->
+      _id = model.id
+
+      _.each model.resource_needs(), (id) =>
+        ovivo.desktop.resources.resourceNeeds.get(id).addTemplate _id
+
+    _processTemplateRemove: (model) ->
+      _id = model.id
+
+      _.each model.resource_needs(), (id) =>
+        ovivo.desktop.resources.resourceNeeds.get(id).removeTemplate _id
+
+    processTemplateAdd: (model) ->
+      ovivo.desktop.resources.resourceNeeds.def.done () => @_processTemplateAdd model
+
+    processTemplateRemove: (model) ->
+      ovivo.desktop.resources.resourceNeeds.def.done () => @_processTemplateRemove model
+
     initialize: () ->
       @initResource()
+
+      @on 'add', @processTemplateAdd, @
+      @on 'remove', @processTemplateRemove, @
 
       true

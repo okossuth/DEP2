@@ -484,6 +484,16 @@ function program15(depth0,data) {
   
   return "Remove";}
 
+function program17(depth0,data) {
+  
+  
+  return "Templates";}
+
+function program19(depth0,data) {
+  
+  
+  return "No templates attached";}
+
   buffer += "<input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
@@ -548,7 +558,19 @@ function program15(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n</div>";
+  buffer += "\r\n    </div>\r\n\r\n    <div class=\"templates-names\">\r\n        <strong>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ":</strong>\r\n        <span></span>\r\n        <i>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</i>\r\n    </div>\r\n</div>";
   return buffer;});
 templates['resourceNeedEdit_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -629,7 +651,19 @@ function program1(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += "\r\n        </div>\r\n\r\n        <div class=\"templates-names\">\r\n            <strong>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ":</strong>\r\n            <span></span>\r\n            <i>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</i>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
@@ -670,6 +704,16 @@ function program16(depth0,data) {
   
   
   return "Remove";}
+
+function program18(depth0,data) {
+  
+  
+  return "Templates";}
+
+function program20(depth0,data) {
+  
+  
+  return "No templates attached";}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;

@@ -3,7 +3,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -54,11 +54,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         }
       }), void 0);
     },
-    processChange: function(model, obj) {
-      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return this.save();
-      }
-    },
+    processChange: function(model, obj) {},
     processModelChange: function() {},
     toJSON: function() {
       var _json;
@@ -72,6 +68,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       }
       delete _json.deltaHours;
       delete _json.checked;
+      delete _json.templates;
       return _json;
     },
     processRange: function(start, end) {
@@ -107,6 +104,16 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         _i.setDate(_i.getDate() + 1);
       }
       return _arr;
+    },
+    changePrimaryDepartment: function(model) {
+      var _templates;
+
+      _templates = this.templates();
+      if (typeof _templates === 'object') {
+        return _.each(_.keys(_templates), function(id) {
+          return ovivo.desktop.resources.templates.get(id).removeResourceNeed(model.id);
+        });
+      }
     },
     setDeltaHours: (function() {
       var _getMinutes;
@@ -151,11 +158,26 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
         model: this
       });
     },
+    addTemplate: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.templates());
+      _obj[id] = true;
+      return this.set('templates', _obj);
+    },
+    removeTemplate: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.templates());
+      delete _obj[id];
+      return this.set('templates', _obj);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
       this.on('change', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
+      this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.updateWeekdaysHash();
       this.startValue = this._getTimeValue(this.start_time());
       this.endValue = this._getTimeValue(this.end_time());

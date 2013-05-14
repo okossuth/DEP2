@@ -36,6 +36,8 @@ define [
     setChildren: () ->
       @each (group) => if (_parent = group.parent())? then @get(group.parent()).children.push group
 
+    _ignoreChange: ['level', 'treeName']
+
     initialize: () ->
       @tree = []
 

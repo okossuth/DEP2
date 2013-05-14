@@ -1209,7 +1209,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 .page.page-resources .content.content-template {
   padding-left: 40px;
   padding-right: 40px;
-  margin-bottom: 100px; }
+  margin-bottom: 95px; }
+  .page.page-resources .content.content-template.resource-needs-container ul.columns.weekdays-titles {
+    padding-left: 25px; }
   .page.page-resources .content.content-template ul.settings-items {
     text-align: center;
     margin-top: 0; }
@@ -1341,7 +1343,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       width: 70px;
       display: inline-block;
       font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      font-weight: normal; }
+      font-weight: normal;
+      text-align: right;
+      margin: 0 3px 0 0; }
   .elements > li.empty {
     font-style: italic; }
   .elements > li.element {
@@ -1382,6 +1386,17 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       right: 0; }
     .elements > li.element > .wireframe .remove-button {
       right: 73px; }
+    .elements > li.element > .wireframe .templates-names {
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      font-size: 13px; }
+      .elements > li.element > .wireframe .templates-names.empty > i {
+        display: inline; }
+      .elements > li.element > .wireframe .templates-names.empty > strong, .elements > li.element > .wireframe .templates-names.empty > span {
+        display: none; }
+      .elements > li.element > .wireframe .templates-names > i {
+        display: none; }
 
 .resource-needs-container .wireframe.elements-header {
   height: 50px; }

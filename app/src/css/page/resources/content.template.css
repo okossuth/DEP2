@@ -1,7 +1,9 @@
 .page.page-resources .content.content-template {
   padding-left: 40px;
   padding-right: 40px;
-  margin-bottom: 100px; }
+  margin-bottom: 95px; }
+  .page.page-resources .content.content-template.resource-needs-container ul.columns.weekdays-titles {
+    padding-left: 25px; }
   .page.page-resources .content.content-template ul.settings-items {
     text-align: center;
     margin-top: 0; }
