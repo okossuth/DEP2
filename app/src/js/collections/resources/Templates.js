@@ -5,6 +5,7 @@ define(['models/resources/Template', '_common/ResourceManagerBase', 'ovivo'], fu
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
+    _ignoreChange: ['periods'],
     _processTemplateAdd: function(model) {
       var _id,
         _this = this;

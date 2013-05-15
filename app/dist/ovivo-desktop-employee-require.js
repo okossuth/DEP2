@@ -16620,6 +16620,11 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   
+  return "PD";}
+
+function program11(depth0,data) {
+  
+  
   return "Options";}
 
   buffer += "<div class=\"container-top\">\r\n    <dl>\r\n        <dt>";
@@ -16654,11 +16659,17 @@ function program9(depth0,data) {
   foundHelper = helpers.end_date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n    </dl>\r\n\r\n    <div class=\"percentage\">\r\n        <canvas></canvas>\r\n        <span class=\"value\"></span>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"container-bottom\">\r\n    <ul class=\"operations\">\r\n        <li class=\"operation\">\r\n            <span>";
+  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n        <dt>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</dt>\r\n        <dd class=\"primary_department-value\"></dd>\r\n    </dl>\r\n\r\n    <div class=\"percentage\">\r\n        <canvas></canvas>\r\n        <span class=\"value\"></span>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"container-bottom\">\r\n    <ul class=\"operations\">\r\n        <li class=\"operation\">\r\n            <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</span>\r\n        </li>\r\n    </ul>\r\n</div>";
   return buffer;});
@@ -16720,11 +16731,17 @@ function program1(depth0,data) {
   foundHelper = helpers.end_date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n        </dl>\r\n\r\n        <div class=\"percentage\">\r\n            <canvas></canvas>\r\n            <span class=\"value\"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container-bottom\">\r\n        <ul class=\"operations\">\r\n            <li class=\"operation\">\r\n                <span>";
+  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n            <dt>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</dt>\r\n            <dd class=\"primary_department-value\"></dd>\r\n        </dl>\r\n\r\n        <div class=\"percentage\">\r\n            <canvas></canvas>\r\n            <span class=\"value\"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container-bottom\">\r\n        <ul class=\"operations\">\r\n            <li class=\"operation\">\r\n                <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
@@ -16749,6 +16766,11 @@ function program8(depth0,data) {
   return "End date";}
 
 function program10(depth0,data) {
+  
+  
+  return "PD";}
+
+function program12(depth0,data) {
   
   
   return "Options";}
@@ -18001,14 +18023,18 @@ define('_common/ResourceEditCommon',[], function() {
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _input;
+            var _date, _value;
 
-            _input = _this.$('.property-value-' + field);
-            if (_input.hasClass('datepicker')) {
+            _value = _this.$('.property-value-' + field);
+            if (_value.hasClass('datepicker')) {
               _date = new Date(Date.parse(model[field]()));
-              return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              return _value.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+            } else if (_value.hasClass('plain-value')) {
+              return $.when(model.view[field]()).done(function(_str) {
+                return _value.html(_str);
+              });
             } else {
-              return _this.$('.property-value-' + field).val(model[field]());
+              return _value.val(model[field]());
             }
           });
         }
@@ -18230,11 +18256,13 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
       this.processGroups();
       this.processTemplates();
       _pd = model.primary_department();
-      return ovivo.desktop.resources.primaryDepartments.each(function(pd) {
+      ovivo.desktop.resources.primaryDepartments.each(function(pd) {
         if (pd.id !== _pd) {
           return this.$(".options-pd-" + pd.id).remove();
         }
       });
+      this.$('.property-value-templates').val(model.templates());
+      return this.$('.property-value-groups').val(model.groups());
     },
     processModelChange: (function() {
       var _attachHanlders, _detachHanlders;
@@ -19886,7 +19914,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       'click .button-add-new': 'addNew',
       'click .resource-need-check': 'clickCheckbox'
     }),
-    fields: ['name', 'repeat', 'resource_needs', 'primary_department'],
+    fields: ['name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     primaryDepartments: function() {
@@ -20558,13 +20586,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
         return null;
       }
     },
-    _getDateStr: function(_date) {
-      if (_date != null) {
-        return "" + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3));
-      } else {
-        return '';
-      }
-    },
     renderSkill: function() {
       var _ref;
 
@@ -20945,6 +20966,30 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
       ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
       return ovivo.desktop.pages.resources.view.subViews.templates.highlight(this.$el);
     },
+    _periods: function(def) {
+      var _keys, _periods, _str;
+
+      _periods = this.model.periods();
+      _str = '';
+      if ((typeof _periods !== 'object') || ((_keys = _.keys(_periods)).length === 0)) {
+        _str = gettext('No periods attached');
+      } else {
+        _str = _.map(_.keys(_periods), function(id) {
+          var _period;
+
+          _period = ovivo.desktop.resources.periods.get(id);
+          return _period.view.start_date() + ' – ' + _period.view.end_date();
+        }).join(', ');
+      }
+      return def.resolve(_str);
+    },
+    periods: function() {
+      var _def;
+
+      _def = new $.Deferred();
+      ovivo.desktop.resources.periods.def.done(_.bind(_.wrap(_def, this._periods), this));
+      return _def;
+    },
     initialize: function() {
       this.proxyCall('initialize', arguments);
       return true;
@@ -20957,9 +21002,16 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
   return ResourceBase.extend({
     typeName: 'template',
     localStorageOnly: true,
-    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department'],
+    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
+    },
+    toJSON: function() {
+      var _json;
+
+      _json = Backbone.Model.prototype.toJSON.call(this);
+      delete _json.periods;
+      return _json;
     },
     resourceNeedsChange: function() {
       var _cur, _new, _prev, _removed,
@@ -20993,10 +21045,35 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
       }
       return this.set('resource_needs', _val);
     },
+    addPeriod: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.periods());
+      _obj[id] = true;
+      return this.set('periods', _obj);
+    },
+    removePeriod: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.periods());
+      delete _obj[id];
+      return this.set('periods', _obj);
+    },
+    changePrimaryDepartment: function(model) {
+      var _periods;
+
+      _periods = this.periods();
+      if (typeof _periods === 'object') {
+        return _.each(_.keys(_periods), function(id) {
+          return ovivo.desktop.resources.periods.get(id).removeTemplate(model.id);
+        });
+      }
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.on('change:primary_department', this.changePD, this);
       this.on('change:resource_needs', this.resourceNeedsChange, this);
+      this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -21010,6 +21087,7 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
+    _ignoreChange: ['periods'],
     _processTemplateAdd: function(model) {
       var _id,
         _this = this;
@@ -21075,19 +21153,35 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
     end_date: function() {
       return this._getDateStr(new Date(Date.parse(this.model.end_date())));
     },
+    _renderValues: function(field, emptyStr, selector) {
+      var _items, _list, _str;
+
+      _items = this[field]();
+      _str = '';
+      _list = this.$(selector);
+      if (_items.length > 0) {
+        _str = _.map(_items, function(id) {
+          return ovivo.desktop.resources[field].get(id).name();
+        }).join(', ');
+      } else {
+        _str = gettext(emptyStr);
+        _list.addClass('empty');
+      }
+      return _list.html(_str);
+    },
     renderTemplates: function() {
-      return this.$('.templates-list').html(_.map(this.templates(), function(id) {
-        return ovivo.desktop.resources.templates.get(id).name();
-      }).join(', '));
+      return this._renderValues('templates', 'No templates attached', '.templates-list');
     },
     renderGroups: function() {
-      return this.$('.groups-list').html(_.map(this.groups(), function(id) {
-        return ovivo.desktop.resources.groups.get(id).name();
-      }).join(', '));
+      return this._renderValues('groups', 'No groups attached', '.groups-list');
+    },
+    renderPD: function() {
+      return this.$('.primary_department-value').html(ovivo.desktop.resources.primaryDepartments.get(this.primary_department()).name());
     },
     postRender: function() {
       ovivo.desktop.resources.templates.def.done(_.bind(this.renderTemplates, this));
-      return ovivo.desktop.resources.groups.def.done(_.bind(this.renderGroups, this));
+      ovivo.desktop.resources.groups.def.done(_.bind(this.renderGroups, this));
+      return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupPeriod.show();
@@ -21106,8 +21200,46 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
     typeName: 'period',
     localStorageOnly: true,
     _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department', 'groups'],
+    changePD: function() {
+      this.set('templates', []);
+      return this.set('groups', []);
+    },
+    changeTemplates: function() {
+      var _cur, _new, _prev, _removed,
+        _this = this;
+
+      if (this.id == null) {
+        return true;
+      }
+      _cur = this.templates();
+      _prev = this.previous('templates');
+      _removed = _.without.apply(_, [_prev].concat(_cur));
+      _new = _.without.apply(_, [_cur].concat(_prev));
+      _.each(_removed, function(id) {
+        return ovivo.desktop.resources.templates.get(id).removePeriod(_this.id);
+      });
+      return _.each(_new, function(id) {
+        return ovivo.desktop.resources.templates.get(id).addPeriod(_this.id);
+      });
+    },
+    removeTemplate: function(id) {
+      var _arr, _i, _val;
+
+      _val = [];
+      _arr = this.templates();
+      _.each(_arr, function(el) {
+        return _val.push(el);
+      });
+      _i = _val.indexOf(id);
+      if (_i !== -1) {
+        _val.splice(_i, 1);
+      }
+      return this.set('templates', _val);
+    },
     initialize: function(attrs, options) {
       this.View = View;
+      this.on('change:templates', this.changeTemplates, this);
+      this.on('change:primary_department', this.changePD, this);
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -21121,8 +21253,42 @@ define('collections/resources/Periods',['models/resources/Period', '_common/Reso
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
+    _processPeriodAdd: function(model) {
+      var _id,
+        _this = this;
+
+      _id = model.id;
+      return _.each(model.templates(), function(id) {
+        return ovivo.desktop.resources.templates.get(id).addPeriod(_id);
+      });
+    },
+    _processPeriodRemove: function(model) {
+      var _id,
+        _this = this;
+
+      _id = model.id;
+      return _.each(model.templates(), function(id) {
+        return ovivo.desktop.resources.templates.get(id).removePeriod(_id);
+      });
+    },
+    processPeriodAdd: function(model) {
+      var _this = this;
+
+      return ovivo.desktop.resources.templates.def.done(function() {
+        return _this._processPeriodAdd(model);
+      });
+    },
+    processPeriodRemove: function(model) {
+      var _this = this;
+
+      return ovivo.desktop.resources.templates.def.done(function() {
+        return _this._processPeriodRemove(model);
+      });
+    },
     initialize: function() {
       this.initResource();
+      this.on('add', this.processPeriodAdd, this);
+      this.on('remove', this.processPeriodRemove, this);
       return true;
     }
   }));

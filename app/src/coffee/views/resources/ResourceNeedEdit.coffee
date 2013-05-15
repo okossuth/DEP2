@@ -36,11 +36,6 @@ define [
       else
         null
 
-    _getDateStr: (_date) ->
-      if _date?
-        "#{_date.getDate()}. #{ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3)}"
-      else ''
-
     renderSkill: () ->
       @$('.skill-value').html ovivo.desktop.resources.skills.get(@model.skill())?.name()
 

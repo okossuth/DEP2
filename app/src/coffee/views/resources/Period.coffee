@@ -23,15 +23,34 @@ define [
     start_date: () -> @_getDateStr new Date Date.parse @model.start_date()
     end_date: () -> @_getDateStr new Date Date.parse @model.end_date()
 
+    _renderValues: (field, emptyStr, selector) ->
+      _items = @[field]()
+      _str = ''
+      _list = @$(selector)
+
+      if _items.length > 0
+        _str = _.map(_items, (id) -> ovivo.desktop.resources[field].get(id).name()).join ', '
+
+      else
+        _str = gettext emptyStr
+
+        _list.addClass 'empty'
+
+      _list.html _str
+
     renderTemplates: () ->
-      @$('.templates-list').html _.map(@templates(), (id) -> ovivo.desktop.resources.templates.get(id).name()).join ', '
+      @_renderValues 'templates', 'No templates attached', '.templates-list'
 
     renderGroups: () ->
-      @$('.groups-list').html _.map(@groups(), (id) -> ovivo.desktop.resources.groups.get(id).name()).join ', '
+      @_renderValues 'groups', 'No groups attached', '.groups-list'
+
+    renderPD: () ->
+      @$('.primary_department-value').html ovivo.desktop.resources.primaryDepartments.get(@primary_department()).name()
 
     postRender: () ->
       ovivo.desktop.resources.templates.def.done _.bind @renderTemplates, @
       ovivo.desktop.resources.groups.def.done _.bind @renderGroups, @
+      ovivo.desktop.resources.primaryDepartments.def.done _.bind @renderPD, @
 
     processClick: () ->
       ovivo.desktop.popups.editPopupPeriod.show()

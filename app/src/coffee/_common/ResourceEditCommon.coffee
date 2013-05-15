@@ -55,12 +55,15 @@ define [
       @initEditMode()
 
       _.each @fields, (field) =>
-        _input = @$('.property-value-' + field)
+        _value = @$('.property-value-' + field)
 
-        if _input.hasClass 'datepicker'
+        if _value.hasClass 'datepicker'
           _date = new Date Date.parse model[field]()
 
-          _input.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _value.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+
+        else if _value.hasClass 'plain-value'
+          $.when(model.view[field]()).done (_str) -> _value.html _str
 
         else
-          @$('.property-value-' + field).val model[field]()
+          _value.val model[field]()

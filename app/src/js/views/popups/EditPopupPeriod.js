@@ -75,11 +75,13 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       this.processGroups();
       this.processTemplates();
       _pd = model.primary_department();
-      return ovivo.desktop.resources.primaryDepartments.each(function(pd) {
+      ovivo.desktop.resources.primaryDepartments.each(function(pd) {
         if (pd.id !== _pd) {
           return this.$(".options-pd-" + pd.id).remove();
         }
       });
+      this.$('.property-value-templates').val(model.templates());
+      return this.$('.property-value-groups').val(model.groups());
     },
     processModelChange: (function() {
       var _attachHanlders, _detachHanlders;

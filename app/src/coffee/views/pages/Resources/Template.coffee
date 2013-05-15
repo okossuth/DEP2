@@ -16,7 +16,7 @@ define [
       'click .button-add-new': 'addNew'
       'click .resource-need-check': 'clickCheckbox'
 
-    fields: ['name', 'repeat', 'resource_needs', 'primary_department']
+    fields: ['name', 'repeat', 'resource_needs', 'primary_department', 'periods']
 
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments']
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds']

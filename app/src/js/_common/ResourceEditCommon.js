@@ -53,14 +53,18 @@ define([], function() {
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _input;
+            var _date, _value;
 
-            _input = _this.$('.property-value-' + field);
-            if (_input.hasClass('datepicker')) {
+            _value = _this.$('.property-value-' + field);
+            if (_value.hasClass('datepicker')) {
               _date = new Date(Date.parse(model[field]()));
-              return _input.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              return _value.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+            } else if (_value.hasClass('plain-value')) {
+              return $.when(model.view[field]()).done(function(_str) {
+                return _value.html(_str);
+              });
             } else {
-              return _this.$('.property-value-' + field).val(model[field]());
+              return _value.val(model[field]());
             }
           });
         }

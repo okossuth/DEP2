@@ -34,13 +34,6 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         return null;
       }
     },
-    _getDateStr: function(_date) {
-      if (_date != null) {
-        return "" + (_date.getDate()) + ". " + (ovivo.config.MONTHS[_date.getMonth()].toLowerCase().slice(0, 3));
-      } else {
-        return '';
-      }
-    },
     renderSkill: function() {
       var _ref;
 

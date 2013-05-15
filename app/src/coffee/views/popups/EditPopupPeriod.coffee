@@ -72,6 +72,9 @@ define [
       ovivo.desktop.resources.primaryDepartments.each (pd) ->
         if pd.id isnt _pd then @$(".options-pd-#{pd.id}").remove()
 
+      @$('.property-value-templates').val model.templates()
+      @$('.property-value-groups').val model.groups()
+
     processModelChange: do ->
       _attachHanlders = (model) ->
         model.on 'change:primary_department', @processPrimaryDepartmentChange, @

@@ -4,8 +4,46 @@ define(['models/resources/ResourceBase', 'views/resources/Period', 'ovivo'], fun
     typeName: 'period',
     localStorageOnly: true,
     _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department', 'groups'],
+    changePD: function() {
+      this.set('templates', []);
+      return this.set('groups', []);
+    },
+    changeTemplates: function() {
+      var _cur, _new, _prev, _removed,
+        _this = this;
+
+      if (this.id == null) {
+        return true;
+      }
+      _cur = this.templates();
+      _prev = this.previous('templates');
+      _removed = _.without.apply(_, [_prev].concat(_cur));
+      _new = _.without.apply(_, [_cur].concat(_prev));
+      _.each(_removed, function(id) {
+        return ovivo.desktop.resources.templates.get(id).removePeriod(_this.id);
+      });
+      return _.each(_new, function(id) {
+        return ovivo.desktop.resources.templates.get(id).addPeriod(_this.id);
+      });
+    },
+    removeTemplate: function(id) {
+      var _arr, _i, _val;
+
+      _val = [];
+      _arr = this.templates();
+      _.each(_arr, function(el) {
+        return _val.push(el);
+      });
+      _i = _val.indexOf(id);
+      if (_i !== -1) {
+        _val.splice(_i, 1);
+      }
+      return this.set('templates', _val);
+    },
     initialize: function(attrs, options) {
       this.View = View;
+      this.on('change:templates', this.changeTemplates, this);
+      this.on('change:primary_department', this.changePD, this);
       this.proxyCall('initialize', arguments);
       return true;
     }

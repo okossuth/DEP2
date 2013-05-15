@@ -29,11 +29,18 @@
         .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top {
           padding: 8px 0;
           border-bottom: 1px solid #d1d1c0;
-          overflow: auto; }
+          overflow: auto;
+          position: relative; }
           .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl {
             font-size: 14px;
             line-height: 16px;
-            float: left; }
+            height: 80px;
+            margin: -40px 0 0 0;
+            position: absolute;
+            top: 50%;
+            left: 0; }
+            .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dt, .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dd {
+              height: 16px; }
             .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dt {
               text-align: right;
               width: 100px;
@@ -41,6 +48,8 @@
               color: #7c7a6c; }
             .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dd {
               margin-left: 110px; }
+              .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top dl > dd.empty {
+                font-style: italic; }
           .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top .percentage {
             position: relative;
             width: 100px;

@@ -16,10 +16,18 @@ define [
       'repeat'
       'resource_needs'
       'primary_department'
+      'periods'
     ]
 
     changePD: () ->
       @set 'resource_needs', []
+
+    toJSON: () ->
+      _json = Backbone.Model.prototype.toJSON.call @
+
+      delete _json.periods
+
+      _json
 
     resourceNeedsChange: () ->
       if not @id? then return true
@@ -49,11 +57,34 @@ define [
 
       @set 'resource_needs', _val
 
+    addPeriod: (id) ->
+      _obj = _.extend {}, @periods()
+
+      _obj[id] = true
+
+      @set 'periods', _obj
+
+    removePeriod: (id) -> 
+      _obj = _.extend {}, @periods()
+
+      delete _obj[id]
+
+      @set 'periods', _obj
+
+    changePrimaryDepartment: (model) ->
+      _periods = @periods()
+
+      if typeof _periods is 'object'
+        _.each _.keys(_periods), (id) ->
+          ovivo.desktop.resources.periods.get(id).removeTemplate model.id
+
     initialize: (attrs, options) ->
       @View = View
 
       @on 'change:primary_department', @changePD, @
       @on 'change:resource_needs', @resourceNeedsChange, @
+
+      @on 'change:primary_department', @changePrimaryDepartment, @
 
       @proxyCall 'initialize', arguments
 

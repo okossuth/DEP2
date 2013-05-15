@@ -3,9 +3,16 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
   return ResourceBase.extend({
     typeName: 'template',
     localStorageOnly: true,
-    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department'],
+    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
+    },
+    toJSON: function() {
+      var _json;
+
+      _json = Backbone.Model.prototype.toJSON.call(this);
+      delete _json.periods;
+      return _json;
     },
     resourceNeedsChange: function() {
       var _cur, _new, _prev, _removed,
@@ -39,10 +46,35 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
       }
       return this.set('resource_needs', _val);
     },
+    addPeriod: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.periods());
+      _obj[id] = true;
+      return this.set('periods', _obj);
+    },
+    removePeriod: function(id) {
+      var _obj;
+
+      _obj = _.extend({}, this.periods());
+      delete _obj[id];
+      return this.set('periods', _obj);
+    },
+    changePrimaryDepartment: function(model) {
+      var _periods;
+
+      _periods = this.periods();
+      if (typeof _periods === 'object') {
+        return _.each(_.keys(_periods), function(id) {
+          return ovivo.desktop.resources.periods.get(id).removeTemplate(model.id);
+        });
+      }
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.on('change:primary_department', this.changePD, this);
       this.on('change:resource_needs', this.resourceNeedsChange, this);
+      this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.proxyCall('initialize', arguments);
       return true;
     }

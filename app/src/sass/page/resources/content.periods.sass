@@ -55,12 +55,24 @@
 
               overflow: auto
 
+              position: relative
+
               dl
                 font-size: 14px
 
                 line-height: 16px
 
-                float: left
+                height: 80px
+
+                margin: -40px 0 0 0
+
+                position: absolute
+
+                top: 50%
+                left: 0
+
+                > dt, > dd
+                  height: 16px
 
                 > dt
                   text-align: right
@@ -72,6 +84,9 @@
 
                 > dd
                   margin-left: 110px
+
+                  &.empty
+                    font-style: italic
 
               .percentage
                 position: relative
