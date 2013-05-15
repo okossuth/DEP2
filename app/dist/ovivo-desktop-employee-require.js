@@ -16809,6 +16809,47 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</select>";
   return buffer;});
+templates['resourceBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"inner\">\r\n    <div class=\"info\">\r\n        <span>0</span>/<span>";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n    </div>\r\n</div>";
+  return buffer;});
+templates['resourceBlock_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"inner\">\r\n        <div class=\"info\">\r\n            <span>0</span>/<span>";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
 templates['resourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -17197,6 +17238,64 @@ function program2(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['scale'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"date\">";
+  foundHelper = helpers.date;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> <span class=\"time\">00:00</span>\r\n        </span>\r\n    </li>\r\n\r\n    ";
+  foundHelper = helpers.last;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(2, program2, data),fn:self.noop}); }
+  else { stack1 = depth0.last; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.last) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(2, program2, data),fn:self.noop}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n    ";
+  return buffer;}
+function program2(depth0,data) {
+  
+  
+  return "\r\n    \r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">06:00</span>\r\n        </span>\r\n    </li>\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">12:00</span>\r\n        </span>\r\n    </li>\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">18:00</span>\r\n        </span>\r\n    </li>\r\n\r\n    ";}
+
+  buffer += "<ul>\r\n    ";
+  foundHelper = helpers.scale;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.scale; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.scale) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
+templates['skillColumns'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n    <li class=\"skill-column-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" style=\"width: ";
+  foundHelper = helpers.width;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + ";\">\r\n        <ul class=\"blocks\">\r\n        </ul>\r\n    </li>\r\n\r\n    ";
+  return buffer;}
+
+  buffer += "<ul>\r\n    ";
+  foundHelper = helpers.skills;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;});
 templates['skills'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -17293,6 +17392,32 @@ function program1(depth0,data) {
   if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
+  return buffer;});
+templates['timelineSkills'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n    <li style=\"width: ";
+  foundHelper = helpers.width;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + ";\">\r\n        ";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\r\n    </li>\r\n\r\n    ";
+  return buffer;}
+
+  buffer += "<ul>\r\n    ";
+  foundHelper = helpers.skills;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
   return buffer;});
 })();
 define("templates", ["handlebars"], function(){});
@@ -20096,15 +20221,270 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/Resources/Timeline',['views/pages/PageBase', 'ovivo'], function(PageBase) {
+define('views/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'resource-block',
+    template: Handlebars.templates['resourceBlock'],
+    groupTemplate: Handlebars.templates['resourceBlock_group'],
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      return true;
+    },
+    _getTimeObj: function(field) {
+      var _hours, _minutes, _obj, _ref, _ref1;
+
+      _obj = new Date(Date.parse(this.date()));
+      _ref = this[field]().split(':'), _hours = _ref[0], _minutes = _ref[1];
+      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
+      _obj.setHours(_hours);
+      return _obj.setMinutes(_minutes);
+    },
+    adjustPosition: function(start, range, height) {
+      var _end, _scale, _start;
+
+      _start = this._getTimeObj('start_time');
+      _end = this._getTimeObj('end_time');
+      _scale = height / range;
+      if (_end < _start) {
+        _end.setDate(_end.getDate() + 1);
+      }
+      return this.$el.css({
+        'height': "" + (Math.floor((_end - _start) * _scale)) + "px",
+        'top': "" + (Math.floor((_start - start) * _scale)) + "px"
+      });
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/PeriodBlock',['views/PeriodBlock', 'models/resources/ResourceBase', 'ovivo'], function(View, ResourceBase) {
+  return ResourceBase.extend({
+    idAttribute: 'cid',
+    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'pk'],
+    initialize: function() {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('_common/CachableCollection',['ovivo'], function() {
+  return {
+    get: function(fields) {
+      return {
+        _cacheAddProcessorField: function(model, field, _value) {
+          var _obj;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          if ((_obj = this._cache[field][_value]) == null) {
+            _obj = this._cache[field][_value] = {};
+          }
+          return _obj[model.id] = model;
+        },
+        _cacheRemoveProcessorField: function(model, field, _value) {
+          var _obj;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          _obj = this._cache[field][_value];
+          if (_obj != null) {
+            return delete _obj[model.id];
+          }
+        },
+        _cacheAddProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheAddProcessorField(model, field);
+          });
+        },
+        _cacheRemoveProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheRemoveProcessorField(model, field);
+          });
+        },
+        _cacheChangeProcessor: function(field, model) {
+          this._cacheRemoveProcessorField(model, field, model.previous(field));
+          return this._cacheAddProcessorField(model, field);
+        },
+        initCacheProcessors: function() {
+          var _this = this;
+
+          this._cache = {};
+          _.each(fields, function(field) {
+            return _this._cache[field] = {};
+          });
+          this.on('add', this._cacheAddProcessor, this);
+          this.on('remove', this._cacheRemoveProcessor, this);
+          return _.each(fields, function(field) {
+            return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
+          });
+        },
+        getBy: function(field, value) {
+          return _.values(this._cache[field][value]);
+        },
+        getKeys: function(field) {
+          return _.keys(this._cache[field]);
+        }
+      };
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/PeriodBlocks',['models/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Model, CachableCollection) {
+  var _PeriodBlocks;
+
+  _PeriodBlocks = Backbone.Collection.extend(_.extend({}, CachableCollection.get(['skill']), {
+    model: Model,
+    initialize: function() {
+      this.initCacheProcessors();
+      return true;
+    }
+  }));
+  _PeriodBlocks.create = function(data) {
+    var _blocks, _models;
+
+    _models = _.map(data, function(obj) {
+      return _.extend(obj, {
+        start_time: obj.model.start_time(),
+        end_time: obj.model.end_time(),
+        skill: obj.model.skill(),
+        employee_type: obj.model.skill(),
+        num_employees: obj.model.num_employees(),
+        pk: obj.model.pk()
+      });
+    });
+    _blocks = new _PeriodBlocks();
+    _blocks.add(_models);
+    return _blocks;
+  };
+  return _PeriodBlocks;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trailZero', 'collections/PeriodBlocks', 'ovivo'], function(PageBase, trailZero, PeriodBlocks) {
   return PageBase.extend({
     el: '.page.page-resources .content-timeline',
     name: 'timeline',
     events: {},
+    scaleTemplate: Handlebars.templates['scale'],
+    skillsTemplate: Handlebars.templates['timelineSkills'],
+    skillColumnsTemplate: Handlebars.templates['skillColumns'],
     close: function() {
       return this.page.showSubView('periods');
     },
+    scale: function() {
+      var _arr, _end, _i, _obj;
+
+      _arr = [];
+      _i = new Date(Date.parse(this.model.start_date()));
+      _end = new Date(Date.parse(this.model.end_date()));
+      _end = _end.setDate(_end.getDate() + 1);
+      while (_i <= _end) {
+        _obj = {
+          date: "" + (trailZero(_i.getDate())) + "." + (trailZero(_i.getMonth() + 1)) + "." + (_i.getFullYear())
+        };
+        if ((_i - _end) === 0) {
+          _obj.last = true;
+        }
+        _arr.push(_obj);
+        _i.setDate(_i.getDate() + 1);
+      }
+      return _arr;
+    },
+    skills: function() {
+      var _keys, _percentage;
+
+      _keys = this.blocks.getKeys('skill');
+      _percentage = 100 / _keys.length;
+      return _.map(_.map(this.blocks.getKeys('skill'), function(id) {
+        return ovivo.desktop.resources.skills.get(id);
+      }), function(skill) {
+        return {
+          pk: skill.pk(),
+          name: skill.name(),
+          width: _percentage + '%'
+        };
+      });
+    },
+    _renderTimeline: function() {
+      this.scaleContainer.css('height', 'auto');
+      this.columns.css('height', 'auto');
+      this.scaleContainer.children().remove();
+      this.scaleContainer.append($(this.scaleTemplate(this)).children());
+      this.skillsContainer.children().remove();
+      this.skillsContainer.append($(this.skillsTemplate(this)).children());
+      this.columns.children().remove();
+      return this.columns.append($(this.skillColumnsTemplate(this)).children());
+    },
+    _initScale: function() {
+      var _end, _start;
+
+      _start = new Date(Date.parse(this.model.start_date()));
+      _end = new Date(Date.parse(this.model.end_date()));
+      _end = _end.setDate(_end.getDate() + 1);
+      return console.log(this.timeRange = _end - _start);
+    },
+    _renderBlocks: function() {
+      var _start,
+        _this = this;
+
+      _start = new Date(Date.parse(this.model.start_date()));
+      return this.blocks.each(function(block) {
+        block.view.adjustPosition(_start, _this.timeRange, _this.height);
+        return _this.skillColumns[block.skill()].append(block.view.el);
+      });
+    },
+    initPeriod: function() {
+      var _this = this;
+
+      this.blocks = PeriodBlocks.create(this.model.compile());
+      this._renderTimeline();
+      this.height = this.scaleContainer.height();
+      this.scaleContainer.height(this.height);
+      this.columns.height(this.height);
+      this.skillColumns = {};
+      _.each(this.blocks.getKeys('skill'), function(id) {
+        return _this.skillColumns[id] = _this.$(".skill-column-" + id + " ul.blocks");
+      });
+      this._initScale();
+      return this._renderBlocks();
+    },
+    setPeriod: (function() {
+      var _attachHanlders, _detachHanlders;
+
+      _attachHanlders = function(model) {};
+      _detachHanlders = function(model) {};
+      return function(model) {
+        this.model = model;
+        if (this.prevModel != null) {
+          _detachHanlders.call(this, this.prevModel);
+        }
+        _attachHanlders.call(this, this.model);
+        this.prevModel = this.model;
+        return this.initPeriod();
+      };
+    })(),
     initialize: function() {
+      this.scaleContainer = this.$('ul.scale');
+      this.skillsContainer = this.$('ul.skills');
+      this.columns = this.$('ul.skill-columns');
       return true;
     }
   });
@@ -20843,74 +21223,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
 });
 
 // Generated by CoffeeScript 1.6.2
-define('_common/CachableCollection',['ovivo'], function() {
-  return {
-    get: function(fields) {
-      var _cache;
-
-      _cache = {};
-      _.each(fields, function(field) {
-        return _cache[field] = {};
-      });
-      return {
-        _cacheAddProcessorField: function(model, field, _value) {
-          var _obj;
-
-          if (_value == null) {
-            _value = model[field]();
-          }
-          if ((_obj = _cache[field][_value]) == null) {
-            _obj = _cache[field][_value] = {};
-          }
-          return _obj[model.id] = model;
-        },
-        _cacheRemoveProcessorField: function(model, field, _value) {
-          var _obj;
-
-          if (_value == null) {
-            _value = model[field]();
-          }
-          _obj = _cache[field][_value];
-          if (_obj != null) {
-            return delete _obj[model.id];
-          }
-        },
-        _cacheAddProcessor: function(model) {
-          var _this = this;
-
-          return _.each(fields, function(field) {
-            return _this._cacheAddProcessorField(model, field);
-          });
-        },
-        _cacheRemoveProcessor: function(model) {
-          var _this = this;
-
-          return _.each(fields, function(field) {
-            return _this._cacheRemoveProcessorField(model, field);
-          });
-        },
-        _cacheChangeProcessor: function(field, model) {
-          this._cacheRemoveProcessorField(model, field, model.previous(field));
-          return this._cacheAddProcessorField(model, field);
-        },
-        initCacheProcessors: function() {
-          var _this = this;
-
-          this.on('add', this._cacheAddProcessor, this);
-          this.on('remove', this._cacheRemoveProcessor, this);
-          return _.each(fields, function(field) {
-            return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
-          });
-        },
-        getBy: function(field, value) {
-          return _.values(_cache[field][value]);
-        }
-      };
-    }
-  };
-});
-
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common/CachableCollection', 'ovivo'], function(Model, ResourceManagerBase, CachableCollection) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['primary_department']), {
     model: Model,
@@ -21166,10 +21478,10 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
       return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },
     processClick: function() {
-      return ovivo.desktop.pages.resources.view.showSubView('timeline');
+      ovivo.desktop.pages.resources.view.showSubView('timeline');
+      return ovivo.desktop.pages.resources.view.subViews.timeline.setPeriod(this.model);
     },
     editClick: function(e) {
-      console.log(this.model.compile());
       ovivo.desktop.popups.editPopupPeriod.show();
       ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
       e.stopPropagation();

@@ -1271,6 +1271,83 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     cursor: auto;
     font-style: italic; }
 
+.page.page-resources .content-timeline .timeline {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll; }
+.page.page-resources .content-timeline ul.skill-columns {
+  padding: 25px 0 25px 151px; }
+  .page.page-resources .content-timeline ul.skill-columns > li {
+    display: block;
+    float: left;
+    height: 100%; }
+.page.page-resources .content-timeline ul.blocks {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  .page.page-resources .content-timeline ul.blocks > li.resource-block {
+    position: absolute;
+    width: 100%; }
+    .page.page-resources .content-timeline ul.blocks > li.resource-block > div.inner {
+      height: 100%;
+      margin: 0 10px;
+      background: white;
+      border-radius: 2px;
+      box-shadow: 0 1px 0 #d9d6c6;
+      position: relative; }
+      .page.page-resources .content-timeline ul.blocks > li.resource-block > div.inner > div.info {
+        text-align: center;
+        height: 20px;
+        width: 100%;
+        position: absolute;
+        margin: -10px 0 0 0;
+        top: 50%;
+        left: 0; }
+.page.page-resources .content-timeline ul.scale {
+  border-right: 1px solid #c3c0ae;
+  width: 150px;
+  padding: 25px 0;
+  position: absolute;
+  top: 0;
+  left: 0; }
+  .page.page-resources .content-timeline ul.scale > li {
+    display: block;
+    text-align: right;
+    height: 50px;
+    font-size: 12px;
+    position: relative; }
+    .page.page-resources .content-timeline ul.scale > li:last-child {
+      height: 0; }
+    .page.page-resources .content-timeline ul.scale > li > span {
+      border-bottom: 1px solid #c3c0ae;
+      position: absolute;
+      top: -15px;
+      right: 0;
+      padding: 0 10px;
+      height: 15px;
+      display: inline-block; }
+      .page.page-resources .content-timeline ul.scale > li > span > span {
+        display: inline-block; }
+        .page.page-resources .content-timeline ul.scale > li > span > span.date {
+          font-style: italic;
+          margin: 0 10px 0 0; }
+        .page.page-resources .content-timeline ul.scale > li > span > span.time {
+          font-weight: bold; }
+.page.page-resources .content-timeline .skills-container {
+  padding: 0 20px 0 151px;
+  border-bottom: 1px solid #c3c0ae; }
+  .page.page-resources .content-timeline .skills-container ul.skills {
+    overflow: auto;
+    width: 100%;
+    padding: 10px 0 10px; }
+    .page.page-resources .content-timeline .skills-container ul.skills > li {
+      display: block;
+      float: left;
+      text-align: center; }
+
 .page.page-settings .connections-view .connections-container {
   text-align: center;
   margin: 20px 0 0 0; }

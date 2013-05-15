@@ -55,10 +55,9 @@ define [
 
     processClick: () ->
       ovivo.desktop.pages.resources.view.showSubView('timeline')
+      ovivo.desktop.pages.resources.view.subViews.timeline.setPeriod @model
 
     editClick: (e) ->
-      console.log @model.compile()
-
       ovivo.desktop.popups.editPopupPeriod.show()
       ovivo.desktop.popups.editPopupPeriod.setModel @model
 

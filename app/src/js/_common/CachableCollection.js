@@ -2,12 +2,6 @@
 define(['ovivo'], function() {
   return {
     get: function(fields) {
-      var _cache;
-
-      _cache = {};
-      _.each(fields, function(field) {
-        return _cache[field] = {};
-      });
       return {
         _cacheAddProcessorField: function(model, field, _value) {
           var _obj;
@@ -15,8 +9,8 @@ define(['ovivo'], function() {
           if (_value == null) {
             _value = model[field]();
           }
-          if ((_obj = _cache[field][_value]) == null) {
-            _obj = _cache[field][_value] = {};
+          if ((_obj = this._cache[field][_value]) == null) {
+            _obj = this._cache[field][_value] = {};
           }
           return _obj[model.id] = model;
         },
@@ -26,7 +20,7 @@ define(['ovivo'], function() {
           if (_value == null) {
             _value = model[field]();
           }
-          _obj = _cache[field][_value];
+          _obj = this._cache[field][_value];
           if (_obj != null) {
             return delete _obj[model.id];
           }
@@ -52,6 +46,10 @@ define(['ovivo'], function() {
         initCacheProcessors: function() {
           var _this = this;
 
+          this._cache = {};
+          _.each(fields, function(field) {
+            return _this._cache[field] = {};
+          });
           this.on('add', this._cacheAddProcessor, this);
           this.on('remove', this._cacheRemoveProcessor, this);
           return _.each(fields, function(field) {
@@ -59,7 +57,10 @@ define(['ovivo'], function() {
           });
         },
         getBy: function(field, value) {
-          return _.values(_cache[field][value]);
+          return _.values(this._cache[field][value]);
+        },
+        getKeys: function(field) {
+          return _.keys(this._cache[field]);
         }
       };
     }

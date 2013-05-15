@@ -2,21 +2,17 @@ define [
   'ovivo'
 ], () ->
   get: (fields) ->
-    _cache = {}
-
-    _.each fields, (field) -> _cache[field] = {}
-
     _cacheAddProcessorField: (model, field, _value) ->
       if not _value? then _value = model[field]()
 
-      if not (_obj = _cache[field][_value])? then _obj = _cache[field][_value] = {}
+      if not (_obj = @_cache[field][_value])? then _obj = @_cache[field][_value] = {}
 
       _obj[model.id] = model
 
     _cacheRemoveProcessorField: (model, field, _value) ->
       if not _value? then _value = model[field]()
 
-      _obj = _cache[field][_value]
+      _obj = @_cache[field][_value]
 
       if _obj? then delete _obj[model.id]
 
@@ -32,6 +28,10 @@ define [
       @_cacheAddProcessorField model, field
 
     initCacheProcessors: () ->
+      @_cache = {}
+
+      _.each fields, (field) => @_cache[field] = {}
+
       @on 'add', @_cacheAddProcessor, @
 
       @on 'remove', @_cacheRemoveProcessor, @
@@ -39,4 +39,5 @@ define [
       _.each fields, (field) =>
         @on "change:#{field}", _.wrap(field, @_cacheChangeProcessor), @
 
-    getBy: (field, value) -> _.values _cache[field][value]
+    getBy: (field, value) -> _.values @_cache[field][value]
+    getKeys: (field) -> _.keys @_cache[field]

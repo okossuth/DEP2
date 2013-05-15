@@ -54,10 +54,10 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },
     processClick: function() {
-      return ovivo.desktop.pages.resources.view.showSubView('timeline');
+      ovivo.desktop.pages.resources.view.showSubView('timeline');
+      return ovivo.desktop.pages.resources.view.subViews.timeline.setPeriod(this.model);
     },
     editClick: function(e) {
-      console.log(this.model.compile());
       ovivo.desktop.popups.editPopupPeriod.show();
       ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
       e.stopPropagation();

@@ -1,0 +1,32 @@
+<ul>
+    {{#scale}}
+
+    <li class="date">
+        <span>
+            <span class="date">{{date}}</span> <span class="time">00:00</span>
+        </span>
+    </li>
+
+    {{^last}}
+    
+    <li class="date">
+        <span>
+            <span class="time">06:00</span>
+        </span>
+    </li>
+    <li class="date">
+        <span>
+            <span class="time">12:00</span>
+        </span>
+    </li>
+    <li class="date">
+        <span>
+            <span class="time">18:00</span>
+        </span>
+    </li>
+
+    {{/last}}
+
+    {{/scale}}
+
+</ul>
