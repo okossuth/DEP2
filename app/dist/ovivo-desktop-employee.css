@@ -1164,7 +1164,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         background: white;
         border-radius: 2px;
         box-shadow: 0 1px 0 #d1d1c0;
-        margin-top: 20px; }
+        margin-top: 20px;
+        cursor: pointer; }
         .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period:first-child {
           margin-top: 0; }
         .page.page-resources .content.content-periods > ul.month-sections > li.month-section > ul.periods > li.period > .container-top {

@@ -71,40 +71,6 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       delete _json.templates;
       return _json;
     },
-    processRange: function(start, end) {
-      var _arr, _day, _end, _i, _repeat, _start, _startMonday, _startWeek;
-
-      _arr = [];
-      _start = this.start_date_obj();
-      _startWeek = _start.getWeek();
-      _startMonday = new Date(_start);
-      if (_startMonday.getDay() !== 1) {
-        _startMonday.moveToDayOfWeek(1, -1);
-      }
-      _end = this.end_date_obj();
-      _repeat = this.repeat();
-      if (_start > start) {
-        start = _start;
-      }
-      if ((_end != null) && (_end < end)) {
-        end = _end;
-      }
-      _i = new Date(start);
-      while (_i <= end) {
-        _day = _i.getDay() - 1;
-        if (_day < 0) {
-          _day = 7 + _day;
-        }
-        if ((this.weekdaysHash[_day] === true) && ((_repeat === 1) || (((Math.floor((_i - _startMonday) / 86400000 / 7)) % _repeat) === 0))) {
-          _arr.push({
-            date: new Date(_i),
-            model: this
-          });
-        }
-        _i.setDate(_i.getDate() + 1);
-      }
-      return _arr;
-    },
     changePrimaryDepartment: function(model) {
       var _templates;
 

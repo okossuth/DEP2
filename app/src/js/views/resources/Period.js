@@ -7,7 +7,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     template: Handlebars.templates['period'],
     groupTemplate: Handlebars.templates['period_group'],
     events: {
-      'click': 'processClick'
+      'click': 'processClick',
+      'click .edit-button': 'editClick'
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -53,8 +54,14 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       return ovivo.desktop.resources.primaryDepartments.def.done(_.bind(this.renderPD, this));
     },
     processClick: function() {
+      return ovivo.desktop.pages.resources.view.showSubView('timeline');
+    },
+    editClick: function(e) {
+      console.log(this.model.compile());
       ovivo.desktop.popups.editPopupPeriod.show();
-      return ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
+      ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
+      e.stopPropagation();
+      return false;
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);

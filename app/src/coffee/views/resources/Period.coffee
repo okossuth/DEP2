@@ -14,6 +14,7 @@ define [
 
     events:
       'click': 'processClick'
+      'click .edit-button': 'editClick'
 
     _getDateStr: (_date) ->
       if _date?
@@ -53,8 +54,17 @@ define [
       ovivo.desktop.resources.primaryDepartments.def.done _.bind @renderPD, @
 
     processClick: () ->
+      ovivo.desktop.pages.resources.view.showSubView('timeline')
+
+    editClick: (e) ->
+      console.log @model.compile()
+
       ovivo.desktop.popups.editPopupPeriod.show()
       ovivo.desktop.popups.editPopupPeriod.setModel @model
+
+      e.stopPropagation()
+
+      false
 
     initialize: () ->
       @proxyCall 'initialize', arguments

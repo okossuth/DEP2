@@ -3,8 +3,10 @@ define [
 
   'views/resources/Period',
 
+  '_features/RuleCompiler',
+
   'ovivo'
-], (ResourceBase, View) ->
+], (ResourceBase, View, RuleCompiler) ->
   ResourceBase.extend
     typeName: 'period'
 
@@ -50,6 +52,18 @@ define [
         _val.splice _i, 1
 
       @set 'templates', _val
+
+    compile: (start, end) ->
+      if not start? then start = new Date Date.parse @start_date()
+      if not end? then end = new Date Date.parse @end_date()
+
+      _arr = []
+
+      _.each _.map(@templates(), (tId) -> ovivo.desktop.resources.templates.get tId), (t) =>
+        _.each _.map(t.resource_needs(), (rnId) -> ovivo.desktop.resources.resourceNeeds.get rnId), (rn) =>
+          _arr = _arr.concat RuleCompiler.compile rn, start, end, @start_date(), @end_date(), t.repeat(), rn.weekdaysHash
+
+      _arr
 
     initialize: (attrs, options) ->
       @View = View

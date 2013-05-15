@@ -422,7 +422,7 @@ function program9(depth0,data) {
 function program11(depth0,data) {
   
   
-  return "Options";}
+  return "Edit";}
 
   buffer += "<div class=\"container-top\">\r\n    <dl>\r\n        <dt>";
   foundHelper = helpers.i18n;
@@ -462,7 +462,7 @@ function program11(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd class=\"primary_department-value\"></dd>\r\n    </dl>\r\n\r\n    <div class=\"percentage\">\r\n        <canvas></canvas>\r\n        <span class=\"value\"></span>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"container-bottom\">\r\n    <ul class=\"operations\">\r\n        <li class=\"operation\">\r\n            <span>";
+  buffer += "</dt>\r\n        <dd class=\"primary_department-value\"></dd>\r\n    </dl>\r\n\r\n    <div class=\"percentage\">\r\n        <canvas></canvas>\r\n        <span class=\"value\"></span>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"container-bottom\">\r\n    <ul class=\"operations\">\r\n        <li class=\"operation\">\r\n            <span class=\"edit-button\">";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -534,7 +534,7 @@ function program1(depth0,data) {
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd class=\"primary_department-value\"></dd>\r\n        </dl>\r\n\r\n        <div class=\"percentage\">\r\n            <canvas></canvas>\r\n            <span class=\"value\"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container-bottom\">\r\n        <ul class=\"operations\">\r\n            <li class=\"operation\">\r\n                <span>";
+  buffer += "</dt>\r\n            <dd class=\"primary_department-value\"></dd>\r\n        </dl>\r\n\r\n        <div class=\"percentage\">\r\n            <canvas></canvas>\r\n            <span class=\"value\"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container-bottom\">\r\n        <ul class=\"operations\">\r\n            <li class=\"operation\">\r\n                <span class=\"edit-button\">";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -570,7 +570,7 @@ function program10(depth0,data) {
 function program12(depth0,data) {
   
   
-  return "Options";}
+  return "Edit";}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;

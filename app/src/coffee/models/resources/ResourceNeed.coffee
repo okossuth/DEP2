@@ -84,39 +84,6 @@ define [
 
       _json
 
-    processRange: (start, end) ->
-      _arr = []
-
-      _start = @start_date_obj()
-      _startWeek = _start.getWeek()
-
-      _startMonday = new Date(_start)
-
-      if _startMonday.getDay() isnt 1
-        _startMonday.moveToDayOfWeek(1, -1)
-
-      _end = @end_date_obj()
-
-      _repeat = @repeat()
-
-      if _start > start then start = _start
-      if (_end)? and (_end < end) then end = _end
-
-      _i = new Date start
-
-      while _i <= end
-        _day = _i.getDay() - 1
-        if _day < 0 then _day = 7 + _day
-
-        if (@weekdaysHash[_day] is true) and ((_repeat is 1) or (((Math.floor((_i - _startMonday) / 86400000 / 7)) % _repeat) is 0))
-          _arr.push
-            date: new Date _i
-            model: @
-
-        _i.setDate _i.getDate() + 1
-
-      _arr
-
     changePrimaryDepartment: (model) ->
       _templates = @templates()
 
