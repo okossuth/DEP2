@@ -44,6 +44,7 @@ require [
   'views/popups/EditPopupTemplate',
   'views/popups/EditPopupPeriod',
   'views/popups/CreateNewPopup',
+  'views/popups/PeriodBlockPopup',
 
   'collections/Pages',
 
@@ -60,13 +61,13 @@ require [
   'collections/resources/Municipalities',
   'collections/resources/PrimaryDepartments',
   'collections/resources/Groups',
-  'collections/resources/Availabilities',
   'collections/resources/Users',
+  'collections/resources/WorkingHours',
 
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -85,8 +86,8 @@ require [
         'Municipalities'
         'PrimaryDepartments'
         'Groups'
-        'Availabilities'
         'Users'
+        'WorkingHours'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
 
@@ -116,6 +117,7 @@ require [
         'EditPopupTemplate'
         'EditPopupPeriod'
         'CreateNewPopup'
+        'PeriodBlockPopup'
       ], (popupName) ->
         _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
 

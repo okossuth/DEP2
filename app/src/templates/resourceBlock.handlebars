@@ -1,5 +1,9 @@
 <div class="inner">
-    <div class="info">
-        <span>0</span>/<span>{{num_employees}}</span>
-    </div>
+    <ul class="info">
+        {{#groups}}
+            <li class="group-{{pk}}">
+                <span class="available">{{available}}</span>/<span class="required">{{num_employees}}</span>
+            </li>
+        {{/groups}}
+    </ul>
 </div>

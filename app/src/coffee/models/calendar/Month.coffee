@@ -29,6 +29,4 @@ define [
 
       @proxyCall 'initialize', arguments
 
-      ovivo.desktop.resources.availabilities.fetchMonth attrs.month, attrs.year
-
       true

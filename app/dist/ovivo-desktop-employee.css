@@ -569,6 +569,28 @@ section.page .notification-message {
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }
 
+.popup.popup-period-block {
+  text-align: center;
+  width: 500px;
+  margin: 0 0 0 -260px; }
+  .popup.popup-period-block .block-info {
+    text-align: left;
+    margin: 0 0 20px 0; }
+    .popup.popup-period-block .block-info > span {
+      font-weight: bold; }
+  .popup.popup-period-block ul.groups {
+    display: inline-block;
+    text-align: left;
+    height: 400px;
+    overflow: auto; }
+    .popup.popup-period-block ul.groups > li > span {
+      font-weight: bold; }
+  .popup.popup-period-block ul.hours {
+    margin: 10px 0 20px 10px; }
+    .popup.popup-period-block ul.hours > li > em {
+      display: inline-block;
+      margin: 0 20px 0 0; }
+
 .popup.popup-period .settings-items > li.settings-item > div.item-content > select.property-value-groups {
   min-height: 336px; }
 
@@ -581,6 +603,9 @@ section.page .notification-message {
 .popup.popup-period {
   height: 473px;
   margin-top: -286.5px; }
+.popup.popup-period-block {
+  height: 400px;
+  margin-top: -250px; }
 
 .page > div.content {
   overflow: auto;
@@ -1297,15 +1322,14 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       background: white;
       border-radius: 2px;
       box-shadow: 0 1px 0 #d9d6c6;
-      position: relative; }
-      .page.page-resources .content-timeline ul.blocks > li.resource-block > div.inner > div.info {
+      position: relative;
+      cursor: pointer; }
+      .page.page-resources .content-timeline ul.blocks > li.resource-block > div.inner > ul.info {
         text-align: center;
-        height: 20px;
-        width: 100%;
-        position: absolute;
-        margin: -10px 0 0 0;
-        top: 50%;
-        left: 0; }
+        display: inline-block;
+        line-height: 16px;
+        vertical-align: middle;
+        width: 100%; }
 .page.page-resources .content-timeline ul.scale {
   border-right: 1px solid #c3c0ae;
   width: 150px;

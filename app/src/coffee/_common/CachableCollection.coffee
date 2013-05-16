@@ -5,16 +5,26 @@ define [
     _cacheAddProcessorField: (model, field, _value) ->
       if not _value? then _value = model[field]()
 
-      if not (_obj = @_cache[field][_value])? then _obj = @_cache[field][_value] = {}
+      if typeof _value is undefined then return
 
-      _obj[model.id] = model
+      if (_value instanceof Array) isnt true then _value = [_value]
+
+      _.each _value, (value) =>
+        if not (_obj = @_cache[field][value.valueOf()])? then _obj = @_cache[field][value.valueOf()] = {}
+
+        _obj[model.cid] = model
 
     _cacheRemoveProcessorField: (model, field, _value) ->
       if not _value? then _value = model[field]()
 
-      _obj = @_cache[field][_value]
+      if typeof _value is undefined then return
 
-      if _obj? then delete _obj[model.id]
+      if (_value instanceof Array) isnt true then _value = [_value]
+
+      _.each _value, (value) =>
+        _obj = @_cache[field][value.valueOf()]
+
+        if _obj? then delete _obj[model.cid]
 
     _cacheAddProcessor: (model) -> 
       _.each fields, (field) => @_cacheAddProcessorField model, field
@@ -26,6 +36,12 @@ define [
       @_cacheRemoveProcessorField model, field, model.previous field
 
       @_cacheAddProcessorField model, field
+
+    recalculateCache: (fields) ->
+      _.each fields, (field) =>
+        @_cache[field] = {}
+
+        @each (model) => @_cacheAddProcessorField model, field
 
     initCacheProcessors: () ->
       @_cache = {}
@@ -39,5 +55,9 @@ define [
       _.each fields, (field) =>
         @on "change:#{field}", _.wrap(field, @_cacheChangeProcessor), @
 
-    getBy: (field, value) -> _.values @_cache[field][value]
+    getBy: (field, values) -> 
+      if (values instanceof Array) isnt true then values = [values]
+
+      _.reduce values, ((memo, value) => memo.concat _.values @_cache[field][value.valueOf()]), []
+
     getKeys: (field) -> _.keys @_cache[field]

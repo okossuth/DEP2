@@ -10,7 +10,6 @@ define(['_common/CalendarBase', 'models/resources/ResourceBase', 'models/calenda
       this.weeks = this.getWeeksArr(this.year(), this.month());
       this.days = this.getDaysArr(this.weeks);
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.availabilities.fetchMonth(attrs.month, attrs.year);
       return true;
     }
   }));

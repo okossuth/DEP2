@@ -19,6 +19,8 @@ define [
       ovivo.desktop.popups.editPopupPeriod.createNew()
 
     periodAdd: (model) ->
+      @empty.hide()
+      
       _date = new Date Date.parse(model.start_date())
 
       _key = "#{_date.getFullYear()}-#{_date.getMonth()}"
@@ -44,6 +46,7 @@ define [
       @on 'action:add', @createNew, @
 
       @monthsContainer = @$('ul.month-sections')
+      @empty = @$('ul.month-sections li.empty')
 
       @periodMonths = new PeriodMonths()
 

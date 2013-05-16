@@ -11,6 +11,7 @@ define(['views/pages/PageBase', '_features/PercentageIndicator', 'collections/Pe
     periodAdd: function(model) {
       var _date, _key, _period;
 
+      this.empty.hide();
       _date = new Date(Date.parse(model.start_date()));
       _key = "" + (_date.getFullYear()) + "-" + (_date.getMonth());
       if ((_period = this.periodMonths.get(_key)) == null) {
@@ -35,6 +36,7 @@ define(['views/pages/PageBase', '_features/PercentageIndicator', 'collections/Pe
     initialize: function() {
       this.on('action:add', this.createNew, this);
       this.monthsContainer = this.$('ul.month-sections');
+      this.empty = this.$('ul.month-sections li.empty');
       this.periodMonths = new PeriodMonths();
       this.periodMonths.on('add', this.monthAdd, this);
       ovivo.desktop.resources.periods.on('add', this.periodAdd, this);

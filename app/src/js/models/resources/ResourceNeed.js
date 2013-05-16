@@ -3,7 +3,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -138,6 +138,15 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       delete _obj[id];
       return this.set('templates', _obj);
     },
+    updateTimeValues: function() {
+      this._startValue = this._getTimeValue(this.start_time());
+      this._endValue = this._getTimeValue(this.end_time());
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
+      this.set('startValue', this._startValue);
+      return this.set('endValue', this._endValue);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -145,11 +154,9 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.updateWeekdaysHash();
-      this.startValue = this._getTimeValue(this.start_time());
-      this.endValue = this._getTimeValue(this.end_time());
-      if (this.endValue < this.startValue) {
-        this.endValue += 24 * 60;
-      }
+      this.on('change:start_time', this.updateTimeValues, this);
+      this.on('change:end_time', this.updateTimeValues, this);
+      this.updateTimeValues();
       return true;
     }
   });

@@ -3,10 +3,8 @@ define [
 
   '_features/trailZero',
 
-  'collections/PeriodBlocks', 
-
   'ovivo'
-], (PageBase, trailZero, PeriodBlocks) ->
+], (PageBase, trailZero) ->
   PageBase.extend
     el: '.page.page-resources .content-timeline'
 
@@ -69,6 +67,8 @@ define [
 
       _end = _end.setDate _end.getDate() + 1
 
+      @timeRange = _end - _start
+
     _renderBlocks: () ->
       _start = new Date Date.parse @model.start_date()
 
@@ -78,7 +78,7 @@ define [
         @skillColumns[block.skill()].append block.view.el
 
     initPeriod: () ->
-      @blocks = PeriodBlocks.create @model.compile()
+      @blocks = @model.getBlocks()
 
       @_renderTimeline()
 

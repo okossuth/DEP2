@@ -16673,6 +16673,81 @@ function program11(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</span>\r\n        </li>\r\n    </ul>\r\n</div>";
   return buffer;});
+templates['periodBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n    <span>";
+  foundHelper = helpers.i18n;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ":</span> <em>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</em>\r\n\r\n    ";
+  return buffer;}
+function program2(depth0,data) {
+  
+  
+  return "Time range";}
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n    <li>\r\n        <span>";
+  foundHelper = helpers.groupName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.groupName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n\r\n        <ul class=\"hours\">\r\n            ";
+  foundHelper = helpers.hours;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  else { stack1 = depth0.hours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.hours) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </ul>\r\n    </li>\r\n    ";
+  return buffer;}
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n            <li>\r\n                <em>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</em> <span>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n\r\n            ";
+  return buffer;}
+
+  buffer += "<div class=\"block-info\">\r\n    ";
+  foundHelper = helpers.block;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.block; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.block) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</div>\r\n\r\n<ul class=\"groups\">\r\n    ";
+  foundHelper = helpers.groups;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;});
 templates['periodMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -16811,14 +16886,33 @@ function program1(depth0,data) {
   return buffer;});
 templates['resourceBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
-
-  buffer += "<div class=\"inner\">\r\n    <div class=\"info\">\r\n        <span>0</span>/<span>";
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n            <li class=\"group-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n                <span class=\"available\">";
+  foundHelper = helpers.available;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>/<span class=\"required\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    </div>\r\n</div>";
+  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        ";
+  return buffer;}
+
+  buffer += "<div class=\"inner\">\r\n    <ul class=\"info\">\r\n        ";
+  foundHelper = helpers.groups;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n    </ul>\r\n</div>";
   return buffer;});
 templates['resourceBlock_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -16835,11 +16929,30 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"inner\">\r\n        <div class=\"info\">\r\n            <span>0</span>/<span>";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"inner\">\r\n        <ul class=\"info\">\r\n            ";
+  foundHelper = helpers.groups;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n                <li class=\"group-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n                    <span class=\"available\">";
+  foundHelper = helpers.available;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>/<span class=\"required\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "</span>\r\n                </li>\r\n            ";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -18455,6 +18568,22 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
 });
 
 // Generated by CoffeeScript 1.6.2
+define('views/popups/PeriodBlockPopup',['views/popups/Popup', 'ovivo'], function(Popup) {
+  return Popup.extend({
+    el: '.popup-period-block',
+    events: _.extend({}, Popup.prototype.events, {}),
+    template: Handlebars.templates['periodBlock'],
+    render: function(obj) {
+      return this.$('.groups').html(this.template(obj));
+    },
+    initialize: function() {
+      this._initialize();
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
 define('_features/transition',[], function() {
   var _animationEndGen;
 
@@ -19305,7 +19434,6 @@ define('models/calendar/Month',['_common/CalendarBase', 'models/resources/Resour
       this.weeks = this.getWeeksArr(this.year(), this.month());
       this.days = this.getDaysArr(this.weeks);
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.availabilities.fetchMonth(attrs.month, attrs.year);
       return true;
     }
   }));
@@ -19995,6 +20123,7 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
     periodAdd: function(model) {
       var _date, _key, _period;
 
+      this.empty.hide();
       _date = new Date(Date.parse(model.start_date()));
       _key = "" + (_date.getFullYear()) + "-" + (_date.getMonth());
       if ((_period = this.periodMonths.get(_key)) == null) {
@@ -20019,6 +20148,7 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
     initialize: function() {
       this.on('action:add', this.createNew, this);
       this.monthsContainer = this.$('ul.month-sections');
+      this.empty = this.$('ul.month-sections li.empty');
       this.periodMonths = new PeriodMonths();
       this.periodMonths.on('add', this.monthAdd, this);
       ovivo.desktop.resources.periods.on('add', this.periodAdd, this);
@@ -20221,164 +20351,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
-  return ResourceBase.extend({
-    common: {},
-    tagName: 'li',
-    className: 'resource-block',
-    template: Handlebars.templates['resourceBlock'],
-    groupTemplate: Handlebars.templates['resourceBlock_group'],
-    events: {
-      'click': 'processClick'
-    },
-    processClick: function() {
-      return true;
-    },
-    _getTimeObj: function(field) {
-      var _hours, _minutes, _obj, _ref, _ref1;
-
-      _obj = new Date(Date.parse(this.date()));
-      _ref = this[field]().split(':'), _hours = _ref[0], _minutes = _ref[1];
-      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
-      _obj.setHours(_hours);
-      return _obj.setMinutes(_minutes);
-    },
-    adjustPosition: function(start, range, height) {
-      var _end, _scale, _start;
-
-      _start = this._getTimeObj('start_time');
-      _end = this._getTimeObj('end_time');
-      _scale = height / range;
-      if (_end < _start) {
-        _end.setDate(_end.getDate() + 1);
-      }
-      return this.$el.css({
-        'height': "" + (Math.floor((_end - _start) * _scale)) + "px",
-        'top': "" + (Math.floor((_start - start) * _scale)) + "px"
-      });
-    },
-    initialize: function() {
-      this.proxyCall('initialize', arguments);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('models/PeriodBlock',['views/PeriodBlock', 'models/resources/ResourceBase', 'ovivo'], function(View, ResourceBase) {
-  return ResourceBase.extend({
-    idAttribute: 'cid',
-    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'groups', 'pk'],
-    initialize: function() {
-      this.View = View;
-      this.proxyCall('initialize', arguments);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('_common/CachableCollection',['ovivo'], function() {
-  return {
-    get: function(fields) {
-      return {
-        _cacheAddProcessorField: function(model, field, _value) {
-          var _obj;
-
-          if (_value == null) {
-            _value = model[field]();
-          }
-          if ((_obj = this._cache[field][_value]) == null) {
-            _obj = this._cache[field][_value] = {};
-          }
-          return _obj[model.id] = model;
-        },
-        _cacheRemoveProcessorField: function(model, field, _value) {
-          var _obj;
-
-          if (_value == null) {
-            _value = model[field]();
-          }
-          _obj = this._cache[field][_value];
-          if (_obj != null) {
-            return delete _obj[model.id];
-          }
-        },
-        _cacheAddProcessor: function(model) {
-          var _this = this;
-
-          return _.each(fields, function(field) {
-            return _this._cacheAddProcessorField(model, field);
-          });
-        },
-        _cacheRemoveProcessor: function(model) {
-          var _this = this;
-
-          return _.each(fields, function(field) {
-            return _this._cacheRemoveProcessorField(model, field);
-          });
-        },
-        _cacheChangeProcessor: function(field, model) {
-          this._cacheRemoveProcessorField(model, field, model.previous(field));
-          return this._cacheAddProcessorField(model, field);
-        },
-        initCacheProcessors: function() {
-          var _this = this;
-
-          this._cache = {};
-          _.each(fields, function(field) {
-            return _this._cache[field] = {};
-          });
-          this.on('add', this._cacheAddProcessor, this);
-          this.on('remove', this._cacheRemoveProcessor, this);
-          return _.each(fields, function(field) {
-            return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
-          });
-        },
-        getBy: function(field, value) {
-          return _.values(this._cache[field][value]);
-        },
-        getKeys: function(field) {
-          return _.keys(this._cache[field]);
-        }
-      };
-    }
-  };
-});
-
-// Generated by CoffeeScript 1.6.2
-define('collections/PeriodBlocks',['models/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Model, CachableCollection) {
-  var _PeriodBlocks;
-
-  _PeriodBlocks = Backbone.Collection.extend(_.extend({}, CachableCollection.get(['skill']), {
-    model: Model,
-    initialize: function() {
-      this.initCacheProcessors();
-      return true;
-    }
-  }));
-  _PeriodBlocks.create = function(data) {
-    var _blocks, _models;
-
-    _models = _.map(data, function(obj) {
-      return _.extend(obj, {
-        start_time: obj.model.start_time(),
-        end_time: obj.model.end_time(),
-        skill: obj.model.skill(),
-        employee_type: obj.model.skill(),
-        num_employees: obj.model.num_employees(),
-        pk: obj.model.pk()
-      });
-    });
-    _blocks = new _PeriodBlocks();
-    _blocks.add(_models);
-    return _blocks;
-  };
-  return _PeriodBlocks;
-});
-
-// Generated by CoffeeScript 1.6.2
-define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trailZero', 'collections/PeriodBlocks', 'ovivo'], function(PageBase, trailZero, PeriodBlocks) {
+define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trailZero', 'ovivo'], function(PageBase, trailZero) {
   return PageBase.extend({
     el: '.page.page-resources .content-timeline',
     name: 'timeline',
@@ -20438,7 +20411,8 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
 
       _start = new Date(Date.parse(this.model.start_date()));
       _end = new Date(Date.parse(this.model.end_date()));
-      return _end = _end.setDate(_end.getDate() + 1);
+      _end = _end.setDate(_end.getDate() + 1);
+      return this.timeRange = _end - _start;
     },
     _renderBlocks: function() {
       var _start,
@@ -20453,7 +20427,7 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     initPeriod: function() {
       var _this = this;
 
-      this.blocks = PeriodBlocks.create(this.model.compile());
+      this.blocks = this.model.getBlocks();
       this._renderTimeline();
       this.height = this.scaleContainer.height();
       this.scaleContainer.height(this.height);
@@ -21069,7 +21043,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates'],
+    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -21204,6 +21178,15 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       delete _obj[id];
       return this.set('templates', _obj);
     },
+    updateTimeValues: function() {
+      this._startValue = this._getTimeValue(this.start_time());
+      this._endValue = this._getTimeValue(this.end_time());
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
+      this.set('startValue', this._startValue);
+      return this.set('endValue', this._endValue);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -21211,14 +21194,118 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.updateWeekdaysHash();
-      this.startValue = this._getTimeValue(this.start_time());
-      this.endValue = this._getTimeValue(this.end_time());
-      if (this.endValue < this.startValue) {
-        this.endValue += 24 * 60;
-      }
+      this.on('change:start_time', this.updateTimeValues, this);
+      this.on('change:end_time', this.updateTimeValues, this);
+      this.updateTimeValues();
       return true;
     }
   });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('_common/CachableCollection',['ovivo'], function() {
+  return {
+    get: function(fields) {
+      return {
+        _cacheAddProcessorField: function(model, field, _value) {
+          var _this = this;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          if (typeof _value === void 0) {
+            return;
+          }
+          if ((_value instanceof Array) !== true) {
+            _value = [_value];
+          }
+          return _.each(_value, function(value) {
+            var _obj;
+
+            if ((_obj = _this._cache[field][value.valueOf()]) == null) {
+              _obj = _this._cache[field][value.valueOf()] = {};
+            }
+            return _obj[model.cid] = model;
+          });
+        },
+        _cacheRemoveProcessorField: function(model, field, _value) {
+          var _this = this;
+
+          if (_value == null) {
+            _value = model[field]();
+          }
+          if (typeof _value === void 0) {
+            return;
+          }
+          if ((_value instanceof Array) !== true) {
+            _value = [_value];
+          }
+          return _.each(_value, function(value) {
+            var _obj;
+
+            _obj = _this._cache[field][value.valueOf()];
+            if (_obj != null) {
+              return delete _obj[model.cid];
+            }
+          });
+        },
+        _cacheAddProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheAddProcessorField(model, field);
+          });
+        },
+        _cacheRemoveProcessor: function(model) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            return _this._cacheRemoveProcessorField(model, field);
+          });
+        },
+        _cacheChangeProcessor: function(field, model) {
+          this._cacheRemoveProcessorField(model, field, model.previous(field));
+          return this._cacheAddProcessorField(model, field);
+        },
+        recalculateCache: function(fields) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            _this._cache[field] = {};
+            return _this.each(function(model) {
+              return _this._cacheAddProcessorField(model, field);
+            });
+          });
+        },
+        initCacheProcessors: function() {
+          var _this = this;
+
+          this._cache = {};
+          _.each(fields, function(field) {
+            return _this._cache[field] = {};
+          });
+          this.on('add', this._cacheAddProcessor, this);
+          this.on('remove', this._cacheRemoveProcessor, this);
+          return _.each(fields, function(field) {
+            return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
+          });
+        },
+        getBy: function(field, values) {
+          var _this = this;
+
+          if ((values instanceof Array) !== true) {
+            values = [values];
+          }
+          return _.reduce(values, (function(memo, value) {
+            return memo.concat(_.values(_this._cache[field][value.valueOf()]));
+          }), []);
+        },
+        getKeys: function(field) {
+          return _.keys(this._cache[field]);
+        }
+      };
+    }
+  };
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -21496,7 +21583,7 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
 // Generated by CoffeeScript 1.6.2
 define('_features/RuleCompiler',['ovivo'], function() {
   return {
-    compile: function(model, start, end, start_date, end_date, repeat, weekdaysHash) {
+    compile: function(start, end, start_date, end_date, repeat, weekdaysHash, models) {
       var _arr, _day, _end, _i, _start, _startMonday, _startWeek;
 
       _arr = [];
@@ -21506,7 +21593,7 @@ define('_features/RuleCompiler',['ovivo'], function() {
       if (_startMonday.getDay() !== 1) {
         _startMonday.moveToDayOfWeek(1, -1);
       }
-      _end = new Date(Date.parse(end_date));
+      _end = end_date != null ? new Date(Date.parse(end_date)) : null;
       if (_start > start) {
         start = _start;
       }
@@ -21520,10 +21607,9 @@ define('_features/RuleCompiler',['ovivo'], function() {
           _day = 7 + _day;
         }
         if ((weekdaysHash[_day] === true) && ((repeat === 1) || (((Math.floor((_i - _startMonday) / 86400000 / 7)) % repeat) === 0))) {
-          _arr.push({
-            date: new Date(_i),
-            model: model
-          });
+          _arr.push(_.extend({}, models, {
+            date: new Date(_i)
+          }));
         }
         _i.setDate(_i.getDate() + 1);
       }
@@ -21533,7 +21619,209 @@ define('_features/RuleCompiler',['ovivo'], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/resources/Period',['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'ovivo'], function(ResourceBase, View, RuleCompiler) {
+define('collections/period/Blocks',['ovivo'], function() {
+  return Backbone.Collection.extend({
+    _initialize: function() {
+      this.initCacheProcessors();
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/period/PeriodBlock',['views/resources/ResourceBase', '_common/ToolsBase', 'ovivo'], function(ResourceBase, ToolsBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'resource-block',
+    template: Handlebars.templates['resourceBlock'],
+    groupTemplate: Handlebars.templates['resourceBlock_group'],
+    events: {
+      'click': 'processClick'
+    },
+    processClick: function() {
+      ovivo.desktop.popups.periodBlockPopup.render({
+        groups: _.map(this.model.groupsHash, function(arr, pk) {
+          return {
+            groupName: ovivo.desktop.resources.groups.get(pk).chainName(),
+            hours: _.map(arr, function(hour) {
+              return {
+                name: ovivo.desktop.resources.users.get(hour.user()).name(),
+                start_time: hour.start_time(),
+                end_time: hour.end_time()
+              };
+            })
+          };
+        }),
+        block: this
+      });
+      ovivo.desktop.popups.periodBlockPopup.show();
+      return true;
+    },
+    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
+      var _this = this;
+
+      return _.each(this.model._gettersNames, function(name) {
+        if (name instanceof Array) {
+          name = name[0];
+        }
+        if (_this.constructor.prototype[name] == null) {
+          return _this.constructor.prototype[name] = function() {
+            return this.model[name]();
+          };
+        }
+      });
+    }),
+    _getTimeObj: function(field) {
+      var _hours, _minutes, _obj, _ref, _ref1;
+
+      _obj = new Date(Date.parse(this.date()));
+      _ref = this[field]().split(':'), _hours = _ref[0], _minutes = _ref[1];
+      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
+      _obj.setHours(_hours);
+      return _obj.setMinutes(_minutes);
+    },
+    updateGroup: function(group) {
+      return this.$(".group-" + group + " .available").html(this.model.groupsHash[group].length);
+    },
+    postRender: function() {
+      return this.$('.required').html(this.num_employees());
+    },
+    groups: function() {
+      var _this = this;
+
+      return _.map(this.model.groups(), function(pk) {
+        var _ref;
+
+        return {
+          pk: pk,
+          num_employees: _this.num_employees(),
+          available: (_ref = _this.model.groupsHash[pk]) != null ? _ref.length : void 0
+        };
+      });
+    },
+    adjustPosition: function(start, range, height) {
+      var _end, _scale, _start;
+
+      _start = this._getTimeObj('start_time');
+      _end = this._getTimeObj('end_time');
+      _scale = height / range;
+      if (_end < _start) {
+        _end.setDate(_end.getDate() + 1);
+      }
+      return this.$el.css({
+        'height': "" + (Math.floor((_end - _start) * _scale)) + "px",
+        'line-height': "" + (Math.floor((_end - _start) * _scale) - 4) + "px",
+        'top': "" + (Math.floor((_start - start) * _scale)) + "px"
+      });
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
+  var _Base;
+
+  _Base = Backbone.Model.extend(_.extend({}, ToolsBase, {
+    createGetters: (function() {
+      var _foreignGetter, _nativeGetter;
+
+      _nativeGetter = function(_name) {
+        return function() {
+          return this.get(_name);
+        };
+      };
+      _foreignGetter = function(_arr) {
+        return function() {
+          return this.get(_arr[1])[_arr[0]]();
+        };
+      };
+      return ToolsBase.once('createGetters', function() {
+        var _this = this;
+
+        return _.each(this._gettersNames, function(arr) {
+          var _getter, _name;
+
+          _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
+          _name = typeof arr === 'string' ? arr : arr[0];
+          if (_this.constructor.prototype[_name] == null) {
+            return _this.constructor.prototype[_name] = _getter;
+          }
+        });
+      });
+    })(),
+    initialize: function() {
+      this.createGetters();
+      if (this.View != null) {
+        this.view = new this.View({
+          model: this
+        });
+      }
+      return true;
+    }
+  }));
+  _Base.prototype._base = _Base;
+  return _Base;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(View, Block) {
+  return Block.extend({
+    idAttribute: 'cid',
+    _gettersNames: ['date', 'hours', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    addHour: function(hour, groups) {
+      var _this = this;
+
+      return _.each(groups, function(group) {
+        _this.groupsHash[group].push(hour);
+        return _this.view.updateGroup(group);
+      });
+    },
+    tryHour: function(hour, groups) {
+      var _e, _e1, _s, _s1;
+
+      _s = hour.startValue();
+      _e = hour.endValue();
+      _s1 = this.startValue();
+      _e1 = this.endValue();
+      if ((_s <= _s1) && (_e >= _e1)) {
+        return this.addHour(hour, groups);
+      }
+    },
+    initGroups: function() {
+      var _this = this;
+
+      this.groupsHash = {};
+      return _.each(this.get('period').groups(), function(group) {
+        return _this.groupsHash[group] = [];
+      });
+    },
+    initialize: function() {
+      this.View = View;
+      this.initGroups();
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/period/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
+  return Blocks.extend(_.extend({}, CachableCollection.get(['skill', 'groups', 'date']), {
+    model: Model,
+    initialize: function() {
+      this._initialize();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/Period',['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, View, RuleCompiler, PeriodBlocks) {
   return ResourceBase.extend({
     typeName: 'period',
     localStorageOnly: true,
@@ -21591,10 +21879,43 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
         return _.each(_.map(t.resource_needs(), function(rnId) {
           return ovivo.desktop.resources.resourceNeeds.get(rnId);
         }), function(rn) {
-          return _arr = _arr.concat(RuleCompiler.compile(rn, start, end, _this.start_date(), _this.end_date(), t.repeat(), rn.weekdaysHash));
+          return _arr = _arr.concat(RuleCompiler.compile(start, end, _this.start_date(), _this.end_date(), t.repeat(), rn.weekdaysHash, {
+            resourceNeed: rn,
+            template: t,
+            period: _this
+          }));
         });
       });
       return _arr;
+    },
+    getBlocks: function() {
+      var _this = this;
+
+      this.blocks = new PeriodBlocks();
+      this.blocks.add(this.compile());
+      this.hoursBlocks = ovivo.desktop.resources.workingHours.getBlocks(this.blocks.getKeys('skill'), this.groups(), this.start_date(), this.end_date());
+      this.blocks.each(function(block) {
+        var _hours, _skill;
+
+        _skill = block.skill();
+        _hours = _this.hoursBlocks.getBy('date', block.date());
+        return _hours = _.filter(_hours, function(hour) {
+          var _flag, _groups;
+
+          _flag = false;
+          _groups = [];
+          _.each(block.groups(), function(group) {
+            if (hour.groupsHash[group] === true) {
+              _groups.push(group);
+              return _flag = true;
+            }
+          });
+          if (_flag && (hour.skillsHash[_skill] ? true : false)) {
+            return block.tryHour(hour, _groups);
+          }
+        });
+      });
+      return this.blocks;
     },
     initialize: function(attrs, options) {
       this.View = View;
@@ -21733,7 +22054,7 @@ define('collections/resources/PrimaryDepartments',['models/resources/PrimaryDepa
 define('models/resources/Group',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'group',
-    _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName'],
+    _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName', 'chainName'],
     levelChange: function() {
       var _level;
 
@@ -21758,18 +22079,20 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
     createTree: (function() {
       var _processGroup, _processPD;
 
-      _processGroup = function(group, level) {
-        var _arr,
+      _processGroup = function(group, name, level) {
+        var _arr, _name,
           _this = this;
 
         _arr = [];
+        _name = name + ' → ' + group.name();
         group.set('level', level);
+        group.set('chainName', _name);
         _arr.push({
           group: group,
           level: level
         });
         return _.reduce(group.children, (function(memo, pk) {
-          return memo.concat(_processGroup.call(_this, _this.get(pk), level + 1));
+          return memo.concat(_processGroup.call(_this, _this.get(pk), _name, level + 1));
         }), _arr);
       };
       _processPD = function(pd) {
@@ -21780,7 +22103,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
           groups: _.reduce(this.filter(function(group) {
             return (group.primary_department() === pd.pk()) && (group.parent() === null);
           }), (function(memo, group) {
-            return memo.concat(_processGroup.call(_this, group, 0));
+            return memo.concat(_processGroup.call(_this, group, pd.name(), 0));
           }), [])
         };
       };
@@ -21816,143 +22139,6 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/resources/Availability',['views/resources/ResourceBase', '_features/trailZero', 'ovivo'], function(ResourceBase, trailZero) {
-  return ResourceBase.extend({
-    common: {},
-    tagName: 'li',
-    className: 'availability',
-    template: Handlebars.templates['availability'],
-    groupTemplate: Handlebars.templates['availability_group'],
-    start: function() {
-      var _date;
-
-      _date = new Date(Date.parse(this.model.start()));
-      return "" + (trailZero(_date.getHours())) + ":" + (trailZero(_date.getMinutes()));
-    },
-    end: function() {
-      var _date;
-
-      _date = new Date(Date.parse(this.model.end()));
-      return "" + (trailZero(_date.getHours())) + ":" + (trailZero(_date.getMinutes()));
-    },
-    events: {},
-    renderUser: function() {
-      return this.$('span.user').html(ovivo.desktop.resources.users.get(this.model.user()).name());
-    },
-    postRender: function() {
-      return ovivo.desktop.resources.users.def.then(_.bind(this.renderUser, this));
-    },
-    initialize: function() {
-      this.proxyCall('initialize', arguments);
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('models/resources/Availability',['models/resources/ResourceBase', 'views/resources/Availability', 'ovivo'], function(ResourceBase, View) {
-  return ResourceBase.extend({
-    typeName: 'availability',
-    _gettersNames: ['pk', 'start', 'end', 'available', 'time_span', 'group', 'user'],
-    _getTimeValue: function(str) {
-      var _obj;
-
-      _obj = new Date(Date.parse(str));
-      return _obj.getHours() * 60 + _obj.getMinutes();
-    },
-    getView: function() {
-      return new View({
-        model: this
-      });
-    },
-    initialize: function(attrs, options) {
-      this.proxyCall('initialize', arguments);
-      this.set('pk', this.cid);
-      this.startValue = this._getTimeValue(this.start());
-      this.endValue = this._getTimeValue(this.end());
-      if (this.endValue < this.startValue) {
-        this.endValue += 24 * 60;
-      }
-      return true;
-    }
-  });
-});
-
-// Generated by CoffeeScript 1.6.2
-define('collections/resources/Availabilities',['models/resources/Availability', '_common/ResourceManagerBase', '_features/trailZero', 'ovivo'], function(Model, ResourceManagerBase, trailZero) {
-  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
-    model: Model,
-    fullResponse: true,
-    _url: function() {
-      return "" + ovivo.config.API_URL_PREFIX + "availability/" + this._start + "/" + this._end + "/?group=" + this._group;
-    },
-    processResponse: (function() {
-      var _processUser;
-
-      _processUser = function(group, arr, user) {
-        var _this = this;
-
-        return _.each(arr, function(obj) {
-          obj.user = user;
-          obj.group = group;
-          return _this.add(obj);
-        });
-      };
-      return function(group, data) {
-        return _.each(data, _.bind(_.wrap(group, _processUser), this));
-      };
-    })(),
-    _fetchGroup: function(start, end, group) {
-      var _request,
-        _this = this;
-
-      this._start = "" + (start.getFullYear()) + "-" + (trailZero(start.getMonth() + 1)) + "-" + (trailZero(start.getDate()));
-      this._end = "" + (end.getFullYear()) + "-" + (trailZero(end.getMonth() + 1)) + "-" + (trailZero(end.getDate()));
-      this._group = group;
-      _request = $.ajax({
-        dataType: 'json',
-        type: 'GET',
-        url: this._url()
-      });
-      return _request.done(function(data) {
-        return _this.processResponse(group, data);
-      });
-    },
-    _fetch: function(start, end) {},
-    fetchMonth: function(month, year) {
-      var _end, _key, _start;
-
-      _key = "" + year + "-" + month;
-      if (this._monthsCache[_key] == null) {
-        this._monthsCache[_key] = true;
-        _start = new Date(year, month, 1);
-        _end = new Date(_start);
-        _end.moveToLastDayOfMonth();
-        return this._fetch(_start, _end);
-      }
-    },
-    fetchWeek: function(number, year) {
-      var _date;
-
-      _date = new Date(year, 0, 1);
-      _date.setWeek(number);
-      return this.fetchMonth(_date.getMonth(), year);
-    },
-    initFetch: function() {
-      var _def;
-
-      _def = new $.Deferred();
-      _def.resolve();
-      return _def;
-    },
-    initialize: function() {
-      this._monthsCache = {};
-      return true;
-    }
-  }));
-});
-
-// Generated by CoffeeScript 1.6.2
 define('models/resources/UserModel',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     _gettersNames: ['first_name', 'last_name', 'groups', 'skills', 'email', 'email_confirmed', 'mobile_phone_prefix', 'mobile_phone'],
@@ -21974,6 +22160,167 @@ define('collections/resources/Users',['models/resources/UserModel', '_common/Res
     url: "" + ovivo.config.API_URL_PREFIX + "users/?type=employees",
     initialize: function() {
       this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/resources/WorkingHour',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    typeName: 'workingHour',
+    _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'user', 'skills', 'pk', 'startValue', 'endValue'],
+    groups: function() {
+      var _groups;
+
+      if ((_groups = this.get('groups')) != null) {
+        return _groups;
+      } else {
+        return [];
+      }
+    },
+    skills: function() {
+      var _ref;
+
+      return (_ref = ovivo.desktop.resources.users.get(this.user())) != null ? _ref.skills() : void 0;
+    },
+    updateWeekdaysHash: function() {
+      var _ref;
+
+      return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
+        memo[parseInt(elem) - 1] = true;
+        return memo;
+      }), {});
+    },
+    updateGroupsHash: function() {
+      return this.groupsHash = _.reduce(this.groups(), (function(memo, elem) {
+        memo[parseInt(elem)] = true;
+        return memo;
+      }), {});
+    },
+    updateSkillsHash: function() {
+      return this.skillsHash = _.reduce(this.skills(), (function(memo, elem) {
+        memo[parseInt(elem)] = true;
+        return memo;
+      }), {});
+    },
+    _getTimeValue: function(str) {
+      var _hours, _minutes, _ref, _ref1;
+
+      _ref = str.split(':'), _hours = _ref[0], _minutes = _ref[1];
+      _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
+      return _hours * 60 + _minutes;
+    },
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      this.on('change:weekdays', this.updateWeekdaysHash, this);
+      this.updateWeekdaysHash();
+      this.updateGroupsHash();
+      ovivo.desktop.resources.users.def.done(_.bind(this.updateSkillsHash, this));
+      this._startValue = this._getTimeValue(this.start_time());
+      this._endValue = this._getTimeValue(this.end_time());
+      if (this.endValue < this.startValue) {
+        this.endValue += 24 * 60;
+      }
+      this.set('startValue', this._startValue);
+      this.set('endValue', this._endValue);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/period/HoursBlock',['models/period/Block', 'ovivo'], function(Block) {
+  return Block.extend({
+    idAttribute: 'cid',
+    _gettersNames: ['date', 'workingHour', ['start_time', 'workingHour'], ['end_time', 'workingHour'], ['skills', 'workingHour'], ['groups', 'workingHour'], ['pk', 'workingHour'], ['startValue', 'workingHour'], ['endValue', 'workingHour'], ['user', 'workingHour']],
+    initialize: function() {
+      var _this = this;
+
+      this.proxyCall('initialize', arguments);
+      this.groupsHash = this.workingHour().groupsHash;
+      ovivo.desktop.resources.users.def.done(function() {
+        return _this.skillsHash = _this.workingHour().skillsHash;
+      });
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/period/HoursBlocks',['collections/period/Blocks', 'models/period/HoursBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
+  return Blocks.extend(_.extend({}, CachableCollection.get(['skills', 'groups', 'date']), {
+    model: Model,
+    initialize: function() {
+      this._initialize();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_common/ResourceManagerBase', '_common/CachableCollection', '_features/RuleCompiler', 'collections/period/HoursBlocks', 'ovivo'], function(Model, ResourceManagerBase, CachableCollection, RuleCompiler, HoursBlocks) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['groups', 'user', 'skills']), {
+    model: Model,
+    fullResponse: true,
+    url: "" + ovivo.config.API_URL_PREFIX + "working-hours/",
+    comparator: function(workingHour) {
+      return Date.parse(workingHour.start_date()).valueOf();
+    },
+    processResponse: (function() {
+      var _processUser;
+
+      _processUser = function(arr, user) {
+        var _this = this;
+
+        return _.each(arr, function(obj) {
+          obj.user = user;
+          return _this.add(obj);
+        });
+      };
+      return function(data) {
+        return _.each(data, _.bind(_processUser, this));
+      };
+    })(),
+    _fetch: function() {
+      var _request,
+        _this = this;
+
+      _request = $.ajax({
+        dataType: 'json',
+        type: 'GET',
+        url: this.url
+      });
+      return _request.done(function(data) {
+        _this.processResponse(data);
+        return _this.def.resolve();
+      });
+    },
+    initFetch: function() {
+      return this._fetch();
+    },
+    _recalcSkillsCache: function() {
+      return this.recalculateCache(['skills']);
+    },
+    getBlocks: function(skills, groups, start, end) {
+      var _arr, _blocks, _match;
+
+      start = new Date(Date.parse(start));
+      end = new Date(Date.parse(end));
+      _arr = [];
+      _match = _.intersection(this.getBy('skills', skills), this.getBy('groups', groups));
+      _.map(_match, function(wh) {
+        return _arr = _arr.concat(RuleCompiler.compile(start, end, wh.start_date(), wh.end_date(), wh.repeat(), wh.weekdaysHash, {
+          workingHour: wh
+        }));
+      });
+      _blocks = new HoursBlocks;
+      return _blocks.add(_arr);
+    },
+    initialize: function() {
+      this.initResource();
+      this.initCacheProcessors();
+      $.when(this.def, ovivo.desktop.resources.users.def).done(_.bind(this._recalcSkillsCache, this));
       return true;
     }
   }));
@@ -22114,14 +22461,14 @@ requirejs.config({
   }
 });
 
-require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Availabilities', 'collections/resources/Users', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Availabilities, Users, socketIO) {
+require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Templates', 'Periods', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Availabilities', 'Users'], function(resourceName) {
+    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Templates', 'Periods', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Users', 'WorkingHours'], function(resourceName) {
       var _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
@@ -22142,7 +22489,7 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return true;
     });
     ovivo.desktop.popups = {};
-    _.each(['EditPopupResourceNeed', 'EditPopupTemplate', 'EditPopupPeriod', 'CreateNewPopup'], function(popupName) {
+    _.each(['EditPopupResourceNeed', 'EditPopupTemplate', 'EditPopupPeriod', 'CreateNewPopup', 'PeriodBlockPopup'], function(popupName) {
       var _popupInstanceName;
 
       _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);

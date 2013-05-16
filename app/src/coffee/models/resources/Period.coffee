@@ -5,8 +5,10 @@ define [
 
   '_features/RuleCompiler',
 
+  'collections/period/PeriodBlocks',
+
   'ovivo'
-], (ResourceBase, View, RuleCompiler) ->
+], (ResourceBase, View, RuleCompiler, PeriodBlocks) ->
   ResourceBase.extend
     typeName: 'period'
 
@@ -61,9 +63,37 @@ define [
 
       _.each _.map(@templates(), (tId) -> ovivo.desktop.resources.templates.get tId), (t) =>
         _.each _.map(t.resource_needs(), (rnId) -> ovivo.desktop.resources.resourceNeeds.get rnId), (rn) =>
-          _arr = _arr.concat RuleCompiler.compile rn, start, end, @start_date(), @end_date(), t.repeat(), rn.weekdaysHash
+          _arr = _arr.concat RuleCompiler.compile start, end, @start_date(), @end_date(), t.repeat(), rn.weekdaysHash,
+            resourceNeed: rn
+            template: t
+            period: @
 
       _arr
+
+    getBlocks: () ->
+      @blocks = new PeriodBlocks()
+
+      @blocks.add @compile()
+
+      @hoursBlocks = ovivo.desktop.resources.workingHours.getBlocks @blocks.getKeys('skill'), @groups(), @start_date(), @end_date()
+
+      @blocks.each (block) =>
+        _skill = block.skill()
+        _hours = @hoursBlocks.getBy 'date', block.date()
+
+        _hours = _.filter _hours, (hour) -> 
+          _flag = false
+          _groups = []
+
+          _.each block.groups(), (group) ->
+            if hour.groupsHash[group] is true
+              _groups.push group
+              _flag = true
+
+          if (_flag and (if hour.skillsHash[_skill] then true else false))
+            block.tryHour hour, _groups
+
+      @blocks
 
     initialize: (attrs, options) ->
       @View = View

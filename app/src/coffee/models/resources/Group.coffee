@@ -13,6 +13,7 @@ define [
       'parent'
       'level'
       'treeName'
+      'chainName'
     ]
 
     levelChange: () ->

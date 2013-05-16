@@ -48,6 +48,58 @@ app.get('/api/1.0/resource-needs/', _emptyCollection);
 app.get('/api/1.0/resource-needs/templates/', _emptyCollection);
 app.get('/api/1.0/resource-needs/periods/', _emptyCollection);
 
+var _workingHours = {
+    "5296": [{
+        "available": true,
+        "end_time": "17:00",
+        "repeat": 1, 
+        "end_date": "2013-05-31",
+        "start_date": "2013-05-01", 
+        "groups": [2676, 2679], 
+        "pk": 1,
+        "start_time": "09:00", 
+        "weekdays": "1,2,3,4,5", 
+        "exclusions": []
+    }, {
+        "available": true, 
+        "end_time": "20:00", 
+        "repeat": 1, 
+        "start_date": "2013-05-01", 
+        "groups": [2676, 2679], 
+        "pk": 2,
+        "start_time": "18:00", 
+        "weekdays": "6,7", 
+        "exclusions": []
+    }],
+
+    "6177": [{
+        "available": true, 
+        "end_time": "17:00", 
+        "repeat": 1, 
+        "end_date": "2013-05-31", 
+        "start_date": "2013-05-01", 
+        "groups": [2676, 2679], 
+        "pk": 3,
+        "start_time": "09:00", 
+        "weekdays": "1,2,3,4,5", 
+        "exclusions": []
+    }, {
+        "available": true, 
+        "end_time": "20:00", 
+        "repeat": 1, 
+        "start_date": "2013-05-01", 
+        "groups": [2676, 2679], 
+        "pk": 4,
+        "start_time": "18:00", 
+        "weekdays": "6,7", 
+        "exclusions": []
+    }]
+};
+
+app.get('/api/1.0/working-hours/', function (req, res) {
+    res.end(JSON.stringify(_workingHours));
+});
+
 app.all('/api/*', proxyFunc);
 
 app.all('/', renderApp);

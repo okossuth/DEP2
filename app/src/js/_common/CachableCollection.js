@@ -4,26 +4,46 @@ define(['ovivo'], function() {
     get: function(fields) {
       return {
         _cacheAddProcessorField: function(model, field, _value) {
-          var _obj;
+          var _this = this;
 
           if (_value == null) {
             _value = model[field]();
           }
-          if ((_obj = this._cache[field][_value]) == null) {
-            _obj = this._cache[field][_value] = {};
+          if (typeof _value === void 0) {
+            return;
           }
-          return _obj[model.id] = model;
+          if ((_value instanceof Array) !== true) {
+            _value = [_value];
+          }
+          return _.each(_value, function(value) {
+            var _obj;
+
+            if ((_obj = _this._cache[field][value.valueOf()]) == null) {
+              _obj = _this._cache[field][value.valueOf()] = {};
+            }
+            return _obj[model.cid] = model;
+          });
         },
         _cacheRemoveProcessorField: function(model, field, _value) {
-          var _obj;
+          var _this = this;
 
           if (_value == null) {
             _value = model[field]();
           }
-          _obj = this._cache[field][_value];
-          if (_obj != null) {
-            return delete _obj[model.id];
+          if (typeof _value === void 0) {
+            return;
           }
+          if ((_value instanceof Array) !== true) {
+            _value = [_value];
+          }
+          return _.each(_value, function(value) {
+            var _obj;
+
+            _obj = _this._cache[field][value.valueOf()];
+            if (_obj != null) {
+              return delete _obj[model.cid];
+            }
+          });
         },
         _cacheAddProcessor: function(model) {
           var _this = this;
@@ -43,6 +63,16 @@ define(['ovivo'], function() {
           this._cacheRemoveProcessorField(model, field, model.previous(field));
           return this._cacheAddProcessorField(model, field);
         },
+        recalculateCache: function(fields) {
+          var _this = this;
+
+          return _.each(fields, function(field) {
+            _this._cache[field] = {};
+            return _this.each(function(model) {
+              return _this._cacheAddProcessorField(model, field);
+            });
+          });
+        },
         initCacheProcessors: function() {
           var _this = this;
 
@@ -56,8 +86,15 @@ define(['ovivo'], function() {
             return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
           });
         },
-        getBy: function(field, value) {
-          return _.values(this._cache[field][value]);
+        getBy: function(field, values) {
+          var _this = this;
+
+          if ((values instanceof Array) !== true) {
+            values = [values];
+          }
+          return _.reduce(values, (function(memo, value) {
+            return memo.concat(_.values(_this._cache[field][value.valueOf()]));
+          }), []);
         },
         getKeys: function(field) {
           return _.keys(this._cache[field]);

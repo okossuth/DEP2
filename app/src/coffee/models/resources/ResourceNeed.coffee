@@ -25,6 +25,8 @@ define [
       'primary_department'
       'checked'
       'templates'
+      'startValue'
+      'endValue'
     ]
 
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined
@@ -138,6 +140,15 @@ define [
 
       @set 'templates', _obj
 
+    updateTimeValues: () ->
+      @_startValue = @_getTimeValue @start_time()
+      @_endValue = @_getTimeValue @end_time()
+
+      if @endValue < @startValue then @endValue += 24 * 60
+
+      @set 'startValue', @_startValue
+      @set 'endValue', @_endValue
+
     initialize: (attrs, options) ->
       @View = View
 
@@ -150,9 +161,9 @@ define [
 
       @updateWeekdaysHash()
 
-      @startValue = @_getTimeValue @start_time()
-      @endValue = @_getTimeValue @end_time()
+      @on 'change:start_time', @updateTimeValues, @
+      @on 'change:end_time', @updateTimeValues, @
 
-      if @endValue < @startValue then @endValue += 24 * 60
+      @updateTimeValues()
 
       true

@@ -1,0 +1,26 @@
+<div class="block-info">
+    {{#block}}
+
+    <span>{{#i18n}}Time range{{/i18n}}:</span> <em>{{start_time}} – {{end_time}}</em>
+
+    {{/block}}
+</div>
+
+<ul class="groups">
+    {{#groups}}
+
+    <li>
+        <span>{{groupName}}</span>
+
+        <ul class="hours">
+            {{#hours}}
+
+            <li>
+                <em>{{start_time}} – {{end_time}}</em> <span>{{name}}</span>
+            </li>
+
+            {{/hours}}
+        </ul>
+    </li>
+    {{/groups}}
+</ul>

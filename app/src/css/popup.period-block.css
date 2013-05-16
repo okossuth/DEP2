@@ -1,0 +1,21 @@
+.popup.popup-period-block {
+  text-align: center;
+  width: 500px;
+  margin: 0 0 0 -260px; }
+  .popup.popup-period-block .block-info {
+    text-align: left;
+    margin: 0 0 20px 0; }
+    .popup.popup-period-block .block-info > span {
+      font-weight: bold; }
+  .popup.popup-period-block ul.groups {
+    display: inline-block;
+    text-align: left;
+    height: 400px;
+    overflow: auto; }
+    .popup.popup-period-block ul.groups > li > span {
+      font-weight: bold; }
+  .popup.popup-period-block ul.hours {
+    margin: 10px 0 20px 10px; }
+    .popup.popup-period-block ul.hours > li > em {
+      display: inline-block;
+      margin: 0 20px 0 0; }
