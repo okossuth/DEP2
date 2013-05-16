@@ -2,7 +2,7 @@
 define(['views/PeriodBlock', 'models/resources/ResourceBase', 'ovivo'], function(View, ResourceBase) {
   return ResourceBase.extend({
     idAttribute: 'cid',
-    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'pk'],
+    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'groups', 'pk'],
     initialize: function() {
       this.View = View;
       this.proxyCall('initialize', arguments);

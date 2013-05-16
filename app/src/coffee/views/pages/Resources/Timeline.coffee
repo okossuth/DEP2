@@ -69,8 +69,6 @@ define [
 
       _end = _end.setDate _end.getDate() + 1
 
-      console.log @timeRange = _end - _start
-
     _renderBlocks: () ->
       _start = new Date Date.parse @model.start_date()
 

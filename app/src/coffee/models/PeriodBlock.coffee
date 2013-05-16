@@ -16,6 +16,7 @@ define [
       'num_employees'
       'date'
       'model'
+      'groups'
       'pk'
     ]
 

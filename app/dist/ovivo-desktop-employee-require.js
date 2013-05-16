@@ -20268,7 +20268,7 @@ define('views/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], function(R
 define('models/PeriodBlock',['views/PeriodBlock', 'models/resources/ResourceBase', 'ovivo'], function(View, ResourceBase) {
   return ResourceBase.extend({
     idAttribute: 'cid',
-    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'pk'],
+    _gettersNames: ['start_time', 'end_time', 'skill', 'employee_type', 'num_employees', 'date', 'model', 'groups', 'pk'],
     initialize: function() {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -20438,8 +20438,7 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
 
       _start = new Date(Date.parse(this.model.start_date()));
       _end = new Date(Date.parse(this.model.end_date()));
-      _end = _end.setDate(_end.getDate() + 1);
-      return console.log(this.timeRange = _end - _start);
+      return _end = _end.setDate(_end.getDate() + 1);
     },
     _renderBlocks: function() {
       var _start,

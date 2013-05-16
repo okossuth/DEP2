@@ -59,8 +59,7 @@ define(['views/pages/PageBase', '_features/trailZero', 'collections/PeriodBlocks
 
       _start = new Date(Date.parse(this.model.start_date()));
       _end = new Date(Date.parse(this.model.end_date()));
-      _end = _end.setDate(_end.getDate() + 1);
-      return console.log(this.timeRange = _end - _start);
+      return _end = _end.setDate(_end.getDate() + 1);
     },
     _renderBlocks: function() {
       var _start,
