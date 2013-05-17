@@ -46,7 +46,7 @@ define [
       (_now.getFullYear() is year) and (_now.getWeek() is number)
 
     processCollectorShow: (collector) ->
-      @title.html gettext('Week') + '' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
+      @title.html gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
 
     processCollectorHide: (month) ->
 

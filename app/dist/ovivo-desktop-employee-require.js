@@ -19818,7 +19818,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       return (_now.getFullYear() === year) && (_now.getWeek() === number);
     },
     processCollectorShow: function(collector) {
-      return this.title.html(gettext('Week') + '' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
+      return this.title.html(gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
     },
     processCollectorHide: function(month) {},
     initialize: function() {
