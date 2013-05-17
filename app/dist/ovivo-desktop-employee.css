@@ -1272,7 +1272,8 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 
 .page.page-settings .content ul.sections-menu {
   overflow: auto;
-  display: inline-block; }
+  display: inline-block;
+  margin: 20px 0 0 0; }
   .page.page-settings .content ul.sections-menu > li {
     float: left;
     border: 1px solid #807e73;
@@ -1315,7 +1316,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
     font-weight: normal; }
 .page.page-settings .elements {
-  margin: 200px 0 0 0; }
+  margin: 220px 0 0 0; }
   .page.page-settings .elements > li.element {
     background: white;
     border-radius: 2px;
@@ -1399,7 +1400,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   overflow: auto; }
 
 .settings-items {
-  margin: 50px 0 0 0; }
+  margin: 90px 0 0 0; }
   .settings-items > li.settings-item {
     font-size: 15px;
     margin: 22px 0 0 0; }
