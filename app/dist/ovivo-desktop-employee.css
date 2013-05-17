@@ -1416,7 +1416,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 
 .page.page-settings .content ul.sections-menu {
   overflow: auto;
-  display: inline-block; }
+  display: inline-block;
+  margin: 20px 0 0 0; }
   .page.page-settings .content ul.sections-menu > li {
     float: left;
     border: 1px solid #807e73;
@@ -1559,7 +1560,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   overflow: auto; }
 
 .settings-items {
-  margin: 50px 0 0 0; }
+  margin: 90px 0 0 0; }
   .settings-items > li.settings-item {
     font-size: 15px;
     margin: 22px 0 0 0; }
