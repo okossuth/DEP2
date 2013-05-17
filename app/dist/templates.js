@@ -194,19 +194,29 @@ function program6(depth0,data) {
   return buffer;});
 templates['calendarWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <span class=\"date-value\">";
-  foundHelper = helpers.date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                            <em class=\"events-counter\"></em>\r\n\r\n                            <ul class=\"calendar-items\"></ul>\r\n                        </div>\r\n                    </td>\r\n                ";
-  return buffer;}
+  
+  return "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <div class=\"header\">07.00 – 14:00</div>\r\n\r\n                            <ul class=\"skills\">\r\n                                <li class=\"complete\">\r\n                                    <span>SOSU</span>\r\n                                    <span class=\"match\">\r\n                                        <span class=\"available\">4</span>/<span class=\"required\">4</span>\r\n                                    </span>\r\n\r\n                                    <ul class=\"users\">\r\n                                        <li>Anders Friis</li>\r\n                                        <li>Ole Hansen</li>\r\n                                        <li>Pia Olsen</li>\r\n                                        <li>Ole Andersen</li>\r\n                                    </ul>\r\n                                </li>\r\n\r\n                                <li>\r\n                                    <span>SSA</span>\r\n                                    <span class=\"match\">\r\n                                        <span class=\"available\">0</span>/<span class=\"required\">4</span>\r\n                                    </span>\r\n\r\n                                    <em class=\"find-match\">Find medarbejder</em>\r\n                                    \r\n                                    <ul class=\"users\">\r\n                                        <li>Anders Friis</li>\r\n                                        <li>Ole Hansen</li>\r\n                                        <li>Pia Olsen</li>\r\n                                        <li>Ole Andersen</li>\r\n                                    </ul>\r\n                                </li>\r\n                            </ul>                  \r\n                        </div>\r\n                    </td>\r\n                ";}
 
 function program3(depth0,data) {
+  
+  
+  return "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <div class=\"header\">14.00 – 23:00</div>\r\n\r\n                            <ul class=\"skills\">\r\n                                <li class=\"complete\">\r\n                                    <span>SOSU</span>\r\n                                    <span class=\"match\">\r\n                                        <span class=\"available\">4</span>/<span class=\"required\">4</span>\r\n                                    </span>\r\n\r\n                                    <ul class=\"users\">\r\n                                        <li>Anders Friis</li>\r\n                                        <li>Ole Hansen</li>\r\n                                        <li>Pia Olsen</li>\r\n                                        <li>Ole Andersen</li>\r\n                                    </ul>\r\n                                </li>\r\n                            </ul>                  \r\n                        </div>\r\n                    </td>\r\n                ";}
+
+function program5(depth0,data) {
+  
+  
+  return "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <div class=\"header\">Inactive</div>\r\n\r\n                            <ul class=\"skills\">\r\n                                <li>\r\n                                    <ul class=\"users\">\r\n                                        <li>Anders Friis</li>\r\n                                        <li>Ole Hansen</li>\r\n                                        <li>Pia Olsen</li>\r\n                                        <li>Ole Andersen</li>\r\n                                    </ul>\r\n                                </li>\r\n                            </ul>                  \r\n                        </div>\r\n                    </td>\r\n                ";}
+
+function program7(depth0,data) {
+  
+  
+  return "\r\n                    <td class=\"cell\">\r\n                        <div>\r\n                            <div class=\"header\">Not working</div>\r\n\r\n                            <ul class=\"skills\">\r\n                                <li>\r\n                                    <ul class=\"users\">\r\n                                        <li>Anders Friis</li>\r\n                                        <li>Ole Hansen</li>\r\n                                        <li>Pia Olsen</li>\r\n                                        <li>Ole Andersen</li>\r\n                                    </ul>\r\n                                </li>\r\n                            </ul>                  \r\n                        </div>\r\n                    </td>\r\n                ";}
+
+function program9(depth0,data) {
   
   
   return "Loading content";}
@@ -217,11 +227,29 @@ function program3(depth0,data) {
   else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </tr>\r\n\r\n            <tr class=\"row week-row\">\r\n                ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </tr>\r\n\r\n            <tr class=\"row week-row\">\r\n                ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n            </tr>\r\n\r\n            <tr class=\"row week-row\">\r\n                ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
   foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</span><br />\r\n            <img src=\"";
   foundHelper = helpers.loaderUrl;
@@ -250,29 +278,57 @@ function program1(depth0,data) {
   else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                </tr>\r\n\r\n                <tr class=\"row week-row\">\r\n                    ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                </tr>\r\n\r\n                <tr class=\"row week-row\">\r\n                    ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n                </tr>\r\n\r\n                <tr class=\"row week-row\">\r\n                    ";
+  foundHelper = helpers.days;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  else { stack1 = depth0.days; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.days) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <div class=\"overlay\">\r\n            <em>\r\n                <span>";
   foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</span><br />\r\n                <img src=\"";
   foundHelper = helpers.loaderUrl;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n            </em>\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" />\r\n            </em>\r\n\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
   return buffer;}
 function program2(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <span class=\"date-value\">";
-  foundHelper = helpers.date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                                <em class=\"events-counter\"></em>\r\n\r\n                                <ul class=\"calendar-items\"></ul>\r\n                            </div>\r\n                        </td>\r\n                    ";
-  return buffer;}
+  
+  return "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <div class=\"header\">07.00 – 14:00</div>\r\n\r\n                                <ul class=\"skills\">\r\n                                    <li class=\"complete\">\r\n                                        <span>SOSU</span>\r\n                                        <span class=\"match\">\r\n                                            <span class=\"available\">4</span>/<span class=\"required\">4</span>\r\n                                        </span>\r\n\r\n                                        <ul class=\"users\">\r\n                                            <li>Anders Friis</li>\r\n                                            <li>Ole Hansen</li>\r\n                                            <li>Pia Olsen</li>\r\n                                            <li>Ole Andersen</li>\r\n                                        </ul>\r\n                                    </li>\r\n\r\n                                    <li>\r\n                                        <span>SSA</span>\r\n                                        <span class=\"match\">\r\n                                            <span class=\"available\">0</span>/<span class=\"required\">4</span>\r\n                                        </span>\r\n\r\n                                        <em class=\"find-match\">Find medarbejder</em>\r\n                                        \r\n                                        <ul class=\"users\">\r\n                                            <li>Anders Friis</li>\r\n                                            <li>Ole Hansen</li>\r\n                                            <li>Pia Olsen</li>\r\n                                            <li>Ole Andersen</li>\r\n                                        </ul>\r\n                                    </li>\r\n                                </ul>                  \r\n                            </div>\r\n                        </td>\r\n                    ";}
 
 function program4(depth0,data) {
+  
+  
+  return "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <div class=\"header\">14.00 – 23:00</div>\r\n\r\n                                <ul class=\"skills\">\r\n                                    <li class=\"complete\">\r\n                                        <span>SOSU</span>\r\n                                        <span class=\"match\">\r\n                                            <span class=\"available\">4</span>/<span class=\"required\">4</span>\r\n                                        </span>\r\n\r\n                                        <ul class=\"users\">\r\n                                            <li>Anders Friis</li>\r\n                                            <li>Ole Hansen</li>\r\n                                            <li>Pia Olsen</li>\r\n                                            <li>Ole Andersen</li>\r\n                                        </ul>\r\n                                    </li>\r\n                                </ul>                  \r\n                            </div>\r\n                        </td>\r\n                    ";}
+
+function program6(depth0,data) {
+  
+  
+  return "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <div class=\"header\">Inactive</div>\r\n\r\n                                <ul class=\"skills\">\r\n                                    <li>\r\n                                        <ul class=\"users\">\r\n                                            <li>Anders Friis</li>\r\n                                            <li>Ole Hansen</li>\r\n                                            <li>Pia Olsen</li>\r\n                                            <li>Ole Andersen</li>\r\n                                        </ul>\r\n                                    </li>\r\n                                </ul>                  \r\n                            </div>\r\n                        </td>\r\n                    ";}
+
+function program8(depth0,data) {
+  
+  
+  return "\r\n                        <td class=\"cell\">\r\n                            <div>\r\n                                <div class=\"header\">Not working</div>\r\n\r\n                                <ul class=\"skills\">\r\n                                    <li>\r\n                                        <ul class=\"users\">\r\n                                            <li>Anders Friis</li>\r\n                                            <li>Ole Hansen</li>\r\n                                            <li>Pia Olsen</li>\r\n                                            <li>Ole Andersen</li>\r\n                                        </ul>\r\n                                    </li>\r\n                                </ul>                  \r\n                            </div>\r\n                        </td>\r\n                    ";}
+
+function program10(depth0,data) {
   
   
   return "Loading content";}

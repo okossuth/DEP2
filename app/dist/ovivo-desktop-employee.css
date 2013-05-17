@@ -813,7 +813,8 @@ body.loading .side-bar > h1.title > img {
       text-align: center; }
 
 .page.page-calendar > div.content {
-  margin-top: 134px; }
+  margin-top: 134px;
+  background: white; }
 
 ul.months-list .element.highlight > div.element-container, ul.weeks-list .element.highlight > div.element-container, .page-event-details .element.highlight > div.element-container {
   background: #dddddd; }
@@ -1037,11 +1038,9 @@ ul.months-list > li section.tablet-calendar, ul.weeks-list > li section.tablet-c
         margin: 5px 0 0 0; }
 ul.months-list > li table.days-container, ul.weeks-list > li table.days-container {
   margin: 15px 0 0 0;
-  border: 1px solid #c9c7b6;
+  border: 0;
   background: white;
-  width: 100%;
-  border: 1px solid #c9c7b6;
-  border-spacing: 0; }
+  width: 100%; }
   ul.months-list > li table.days-container .week-row:last-child, ul.weeks-list > li table.days-container .week-row:last-child {
     border-bottom: none; }
   ul.months-list > li table.days-container .week-row > .cell.expanded, ul.weeks-list > li table.days-container .week-row > .cell.expanded {
@@ -1068,7 +1067,6 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
   ul.months-list > li table.days-container .week-row > .cell, ul.weeks-list > li table.days-container .week-row > .cell {
     position: relative;
     z-index: 0;
-    border: 1px solid #c9c7b6;
     padding: 0;
     vertical-align: top;
     min-height: 100px;
@@ -1088,14 +1086,43 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     ul.months-list > li table.days-container .week-row > .cell.disabled > div > span, ul.months-list > li table.days-container .week-row > .cell.disabled > div > em, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > span, ul.weeks-list > li table.days-container .week-row > .cell.disabled > div > em {
       color: #a19f92; }
     ul.months-list > li table.days-container .week-row > .cell.current, ul.weeks-list > li table.days-container .week-row > .cell.current {
-      background: #f3f2ec;
       z-index: 0; }
     ul.months-list > li table.days-container .week-row > .cell > div, ul.weeks-list > li table.days-container .week-row > .cell > div {
-      padding: 0 9px 10px 9px;
+      border: 1px solid #a8bac6;
       position: relative;
       overflow: visible;
       z-index: 1;
       min-height: 100px; }
+      ul.months-list > li table.days-container .week-row > .cell > div ul.skills, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills {
+        margin: 0 0 0 0; }
+        ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li {
+          border-top: 1px solid #a8bac6; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li:first-child, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li:first-child {
+            border-top: 0; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li.complete > span.match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li.complete > span.match {
+            color: #17bd60; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > em.find-match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > em.find-match {
+            float: right;
+            padding: 6px 5px 0 5px;
+            cursor: pointer; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > span, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > span {
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            padding: 5px 5px 0 5px; }
+            ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > span.match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > span.match {
+              font-weight: normal;
+              color: #e78b23; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li.complete em.find-match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li.complete em.find-match {
+            display: none; }
+          ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li ul.users, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li ul.users {
+            line-height: 18px;
+            padding: 5px; }
+      ul.months-list > li table.days-container .week-row > .cell > div > div.header, ul.weeks-list > li table.days-container .week-row > .cell > div > div.header {
+        font-weight: bold;
+        font-size: 14px;
+        border-bottom: 1px solid #a8bac6;
+        padding: 3px; }
       ul.months-list > li table.days-container .week-row > .cell > div > em, ul.months-list > li table.days-container .week-row > .cell > div > span, ul.weeks-list > li table.days-container .week-row > .cell > div > em, ul.weeks-list > li table.days-container .week-row > .cell > div > span {
         margin: 10px 0 0 0;
         display: inline-block; }

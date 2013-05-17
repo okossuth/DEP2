@@ -10,10 +10,107 @@
                     {{#days}}
                         <td class="cell">
                             <div>
-                                <span class="date-value">{{date}}</span>
-                                <em class="events-counter"></em>
+                                <div class="header">07.00 – 14:00</div>
 
-                                <ul class="calendar-items"></ul>
+                                <ul class="skills">
+                                    <li class="complete">
+                                        <span>SOSU</span>
+                                        <span class="match">
+                                            <span class="available">4</span>/<span class="required">4</span>
+                                        </span>
+
+                                        <ul class="users">
+                                            <li>Anders Friis</li>
+                                            <li>Ole Hansen</li>
+                                            <li>Pia Olsen</li>
+                                            <li>Ole Andersen</li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <span>SSA</span>
+                                        <span class="match">
+                                            <span class="available">0</span>/<span class="required">4</span>
+                                        </span>
+
+                                        <em class="find-match">Find medarbejder</em>
+                                        
+                                        <ul class="users">
+                                            <li>Anders Friis</li>
+                                            <li>Ole Hansen</li>
+                                            <li>Pia Olsen</li>
+                                            <li>Ole Andersen</li>
+                                        </ul>
+                                    </li>
+                                </ul>                  
+                            </div>
+                        </td>
+                    {{/days}}
+                </tr>
+
+                <tr class="row week-row">
+                    {{#days}}
+                        <td class="cell">
+                            <div>
+                                <div class="header">14.00 – 23:00</div>
+
+                                <ul class="skills">
+                                    <li class="complete">
+                                        <span>SOSU</span>
+                                        <span class="match">
+                                            <span class="available">4</span>/<span class="required">4</span>
+                                        </span>
+
+                                        <ul class="users">
+                                            <li>Anders Friis</li>
+                                            <li>Ole Hansen</li>
+                                            <li>Pia Olsen</li>
+                                            <li>Ole Andersen</li>
+                                        </ul>
+                                    </li>
+                                </ul>                  
+                            </div>
+                        </td>
+                    {{/days}}
+                </tr>
+
+                <tr class="row week-row">
+                    {{#days}}
+                        <td class="cell">
+                            <div>
+                                <div class="header">Inactive</div>
+
+                                <ul class="skills">
+                                    <li>
+                                        <ul class="users">
+                                            <li>Anders Friis</li>
+                                            <li>Ole Hansen</li>
+                                            <li>Pia Olsen</li>
+                                            <li>Ole Andersen</li>
+                                        </ul>
+                                    </li>
+                                </ul>                  
+                            </div>
+                        </td>
+                    {{/days}}
+                </tr>
+
+                <tr class="row week-row">
+                    {{#days}}
+                        <td class="cell">
+                            <div>
+                                <div class="header">Not working</div>
+
+                                <ul class="skills">
+                                    <li>
+                                        <ul class="users">
+                                            <li>Anders Friis</li>
+                                            <li>Ole Hansen</li>
+                                            <li>Pia Olsen</li>
+                                            <li>Ole Andersen</li>
+                                        </ul>
+                                    </li>
+                                </ul>                  
                             </div>
                         </td>
                     {{/days}}
@@ -26,6 +123,7 @@
                 <span>{{#i18n}}Loading content{{/i18n}}</span><br />
                 <img src="{{loaderUrl}}" />
             </em>
+
         </div>
     </section>
 </li>
