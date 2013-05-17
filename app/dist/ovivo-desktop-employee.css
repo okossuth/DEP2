@@ -11,8 +11,10 @@
   .button.bordered {
     background: transparent;
     padding: 9px 0 9px 0;
-    border: 2px solid #007550;
-    color: #007550; }
+    border: 0;
+    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: black; }
   .button.warning {
     background: #b23333; }
   .button.disabled {
@@ -715,7 +717,10 @@ section.page .notification-message {
           display: inline-block;
           padding: 6px; }
         .page > header > div.line > ul.switcher > li.selected, .page > footer > div.line > ul.switcher > li.selected {
-          border: 2px solid #007550; }
+          font-weight: bold; }
+    .page > header > div.line .navigation, .page > footer > div.line .navigation {
+      padding: 10px;
+      cursor: pointer; }
 
 .page > footer {
   top: auto;
@@ -806,6 +811,9 @@ body.loading .side-bar > h1.title > img {
       font: normal 11px KontrapunktBobBold, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
       color: #007550;
       text-align: center; }
+
+.page.page-calendar > div.content {
+  margin-top: 134px; }
 
 ul.months-list .element.highlight > div.element-container, ul.weeks-list .element.highlight > div.element-container, .page-event-details .element.highlight > div.element-container {
   background: #dddddd; }
@@ -903,8 +911,26 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       ul.months-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, ul.weeks-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, .page-event-details .element > div.element-container > div.buttons > div.button-element.right > div.button-background {
         box-shadow: inset 1px 0 0 #f6f5f4; }
 
-.page.page-calendar > header > div.line > span.title {
-  margin-left: 20px; }
+.page.page-calendar > header > div.line {
+  text-align: center;
+  margin-right: 30px; }
+  .page.page-calendar > header > div.line > span.title {
+    margin-left: 20px;
+    font-size: 18px;
+    color: black; }
+  .page.page-calendar > header > div.line > .button.today {
+    float: left; }
+.page.page-calendar > header > div.status.line > span {
+  font-style: italic;
+  display: none; }
+  .page.page-calendar > header > div.status.line > span.in-progress {
+    color: #e78b23; }
+  .page.page-calendar > header > div.status.line > span.closed {
+    color: #06bd5b; }
+.page.page-calendar > header > div.status.line.in-progress > span.in-progress {
+  display: inline; }
+.page.page-calendar > header > div.status.line.closed > span.closed {
+  display: inline; }
 .page.page-calendar > header .weekdays {
   position: absolute;
   left: 0;
@@ -916,8 +942,10 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     overflow: auto; }
     .page.page-calendar > header .weekdays ul.row > li {
       width: 14.28571%;
-      float: left; }
+      float: left;
+      text-align: center; }
       .page.page-calendar > header .weekdays ul.row > li > span {
+        display: block;
         margin: 0 0 0 7px; }
 
 ul.months-list .row > td:first-child li.inactivity > span, ul.weeks-list .row > td:first-child li.inactivity > span {

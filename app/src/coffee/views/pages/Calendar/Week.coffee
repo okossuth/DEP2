@@ -48,6 +48,9 @@ define [
     processCollectorShow: (collector) ->
       @title.html gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
 
+      _.each collector.days, (obj, i) =>
+        @dates[i].innerHTML = "#{obj.date}. #{ovivo.config.MONTHS[obj.month]}, #{obj.year}"
+
     processCollectorHide: (month) ->
 
     initialize: () ->
@@ -59,6 +62,7 @@ define [
       @_initialize()
 
       @title = $('.page.page-calendar header span.title.week-title')
+      @dates = $('.page.page-calendar header .weekdays-row span.date')
       @collectorsList = @$ '.weeks-list'
 
       @todayButton = $('.page.page-calendar header .week-today')

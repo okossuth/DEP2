@@ -19818,7 +19818,12 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       return (_now.getFullYear() === year) && (_now.getWeek() === number);
     },
     processCollectorShow: function(collector) {
-      return this.title.html(gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
+      var _this = this;
+
+      this.title.html(gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
+      return _.each(collector.days, function(obj, i) {
+        return _this.dates[i].innerHTML = "" + obj.date + ". " + ovivo.config.MONTHS[obj.month] + ", " + obj.year;
+      });
     },
     processCollectorHide: function(month) {},
     initialize: function() {
@@ -19829,6 +19834,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       _now.moveToDayOfWeek(4);
       this._initialize();
       this.title = $('.page.page-calendar header span.title.week-title');
+      this.dates = $('.page.page-calendar header .weekdays-row span.date');
       this.collectorsList = this.$('.weeks-list');
       this.todayButton = $('.page.page-calendar header .week-today');
       this.navigate(_now.getFullYear(), _now.getWeek());

@@ -70,7 +70,10 @@
           display: inline-block;
           padding: 6px; }
         .page > header > div.line > ul.switcher > li.selected, .page > footer > div.line > ul.switcher > li.selected {
-          border: 2px solid #007550; }
+          font-weight: bold; }
+    .page > header > div.line .navigation, .page > footer > div.line .navigation {
+      padding: 10px;
+      cursor: pointer; }
 
 .page > footer {
   top: auto;

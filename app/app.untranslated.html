@@ -36,28 +36,24 @@
                 <div class="line">
                     <div class="placeholder"></div>
 
-                    <div class="button bordered today month-today month-only capital">
-                        <span>{{#i18n}}Today{{/i18n}}</span>
+                    <div class="button bordered today month-today month-only">
+                        <span>{{#i18n}}Go to today{{/i18n}}</span>
                     </div>
 
-                    <div class="button bordered today week-today week-only capital">
-                        <span>{{#i18n}}Today{{/i18n}}</span>
+                    <div class="button bordered today week-today week-only">
+                        <span>{{#i18n}}Go to today{{/i18n}}</span>
                     </div>
 
                     <button class="navigation navigate-left">
-                        <i class="icon left inline no-selection"></i>
-                    </button>
-
-                    <button class="navigation navigate-right">
-                        <i class="icon right inline no-selection"></i>
+                        &lt;
                     </button>
 
                     <span class="title week-title week-only"></span>
                     <span class="title month-title month-only"></span>
 
-                    <div class="button right capital button-create-new">
-                        <span>{{#i18n}}Create new{{/i18n}}</span>
-                    </div>
+                    <button class="navigation navigate-right">
+                        &gt;
+                    </button>
 
                     <ul class="switcher switcher-view">
                         <li>
@@ -70,36 +66,48 @@
                     </ul>
                 </div>
 
+                <div class="status line in-progress">
+                    <span class="closed">{{#i18n}}Closed{{/i18n}}</span>
+                    <span class="in-progress">{{#i18n}}In progress{{/i18n}}</span>
+                </div>
+
                 <div class="shadow"></div>
 
                 <div class="weekdays">
                     <ul class="row weekdays-row">
                         <li>
-                            <span>{{#i18n}}monday{{/i18n}}</span>
+                            <span>{{#i18n}}Monday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}tuesday{{/i18n}}</span>
+                            <span>{{#i18n}}Tuesday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}wednesday{{/i18n}}</span>
+                            <span>{{#i18n}}Wednesday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}thursday{{/i18n}}</span>
+                            <span>{{#i18n}}Thursday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}friday{{/i18n}}</span>
+                            <span>{{#i18n}}Friday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}saturday{{/i18n}}</span>
+                            <span>{{#i18n}}Saturday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
 
                         <li>
-                            <span>{{#i18n}}sunday{{/i18n}}</span>
+                            <span>{{#i18n}}Sunday{{/i18n}}</span>
+                            <span class="date week-only"></span>
                         </li>
                     </ul>
                 </div>

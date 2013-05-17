@@ -11,8 +11,10 @@
   .button.bordered {
     background: transparent;
     padding: 9px 0 9px 0;
-    border: 2px solid #007550;
-    color: #007550; }
+    border: 0;
+    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: black; }
   .button.warning {
     background: #b23333; }
   .button.disabled {

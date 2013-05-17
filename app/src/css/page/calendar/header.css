@@ -1,5 +1,23 @@
-.page.page-calendar > header > div.line > span.title {
-  margin-left: 20px; }
+.page.page-calendar > header > div.line {
+  text-align: center;
+  margin-right: 30px; }
+  .page.page-calendar > header > div.line > span.title {
+    margin-left: 20px;
+    font-size: 18px;
+    color: black; }
+  .page.page-calendar > header > div.line > .button.today {
+    float: left; }
+.page.page-calendar > header > div.status.line > span {
+  font-style: italic;
+  display: none; }
+  .page.page-calendar > header > div.status.line > span.in-progress {
+    color: #e78b23; }
+  .page.page-calendar > header > div.status.line > span.closed {
+    color: #06bd5b; }
+.page.page-calendar > header > div.status.line.in-progress > span.in-progress {
+  display: inline; }
+.page.page-calendar > header > div.status.line.closed > span.closed {
+  display: inline; }
 .page.page-calendar > header .weekdays {
   position: absolute;
   left: 0;
@@ -11,6 +29,8 @@
     overflow: auto; }
     .page.page-calendar > header .weekdays ul.row > li {
       width: 14.28571%;
-      float: left; }
+      float: left;
+      text-align: center; }
       .page.page-calendar > header .weekdays ul.row > li > span {
+        display: block;
         margin: 0 0 0 7px; }

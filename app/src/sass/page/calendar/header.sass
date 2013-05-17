@@ -1,7 +1,39 @@
 .page.page-calendar > header
   > div.line
+    text-align: center
+    margin-right: 30px
+
     > span.title
       margin-left: 20px
+
+      font-size: 18px
+
+      color: black
+
+    > .button.today
+      float: left
+
+  > div.status.line
+    > span
+      font-style: italic
+
+      display: none
+
+      &.in-progress
+        color: #e78b23
+
+      &.closed
+        color: #06bd5b
+
+    &.in-progress
+      > span
+        &.in-progress
+          display: inline
+
+    &.closed
+      > span
+        &.closed
+          display: inline
 
   .weekdays
     position: absolute
@@ -23,5 +55,9 @@
 
         float: left
 
+        text-align: center
+
         > span
+          display: block
+
           margin: 0 0 0 7px
