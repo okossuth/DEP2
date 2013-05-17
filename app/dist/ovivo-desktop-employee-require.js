@@ -21222,6 +21222,9 @@ define('_common/CachableCollection',['ovivo'], function() {
           return _.each(_value, function(value) {
             var _obj;
 
+            if (value == null) {
+              return;
+            }
             if ((_obj = _this._cache[field][value.valueOf()]) == null) {
               _obj = _this._cache[field][value.valueOf()] = {};
             }

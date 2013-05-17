@@ -10,6 +10,8 @@ define [
       if (_value instanceof Array) isnt true then _value = [_value]
 
       _.each _value, (value) =>
+        if not value? then return
+
         if not (_obj = @_cache[field][value.valueOf()])? then _obj = @_cache[field][value.valueOf()] = {}
 
         _obj[model.cid] = model
