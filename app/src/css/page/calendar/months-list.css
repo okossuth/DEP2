@@ -122,26 +122,26 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
             color: #17bd60; }
           ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > em.find-match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > em.find-match {
             float: right;
-            padding: 6px 5px 0 5px;
+            padding: 3px 5px 0 5px;
             cursor: pointer; }
           ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > span, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > span {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             display: inline-block;
-            padding: 5px 5px 0 5px; }
+            padding: 3px 0 0 5px; }
             ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li > span.match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li > span.match {
               font-weight: normal;
               color: #e78b23; }
           ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li.complete em.find-match, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li.complete em.find-match {
             display: none; }
           ul.months-list > li table.days-container .week-row > .cell > div ul.skills > li ul.users, ul.weeks-list > li table.days-container .week-row > .cell > div ul.skills > li ul.users {
-            line-height: 18px;
+            line-height: 17px;
             padding: 5px; }
       ul.months-list > li table.days-container .week-row > .cell > div > div.header, ul.weeks-list > li table.days-container .week-row > .cell > div > div.header {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 12px;
         border-bottom: 1px solid #a8bac6;
-        padding: 3px; }
+        padding: 3px 5px; }
       ul.months-list > li table.days-container .week-row > .cell > div > em, ul.months-list > li table.days-container .week-row > .cell > div > span, ul.weeks-list > li table.days-container .week-row > .cell > div > em, ul.weeks-list > li table.days-container .week-row > .cell > div > span {
         margin: 10px 0 0 0;
         display: inline-block; }
