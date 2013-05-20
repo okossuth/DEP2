@@ -88,3 +88,7 @@ ovivo.Y = function(f) {
     };
   });
 };
+
+window.onerror = function() {
+  return window.localStorage.clear();
+};
