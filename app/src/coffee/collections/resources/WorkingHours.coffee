@@ -2,7 +2,6 @@ define [
   'models/resources/WorkingHour',
 
   '_common/ResourceManagerBase',
-
   '_common/CachableCollection',
 
   '_features/RuleCompiler',

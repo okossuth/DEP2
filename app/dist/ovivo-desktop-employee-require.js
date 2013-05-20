@@ -22188,7 +22188,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
         }
       });
     },
-    _ignoreChange: ['level', 'treeName'],
+    _ignoreChange: ['level', 'chainName', 'treeName'],
     initialize: function() {
       this.tree = [];
       this.initResource();

@@ -55,7 +55,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
         }
       });
     },
-    _ignoreChange: ['level', 'treeName'],
+    _ignoreChange: ['level', 'chainName', 'treeName'],
     initialize: function() {
       this.tree = [];
       this.initResource();
