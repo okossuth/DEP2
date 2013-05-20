@@ -645,7 +645,7 @@ section.page .notification-message {
         border: 2px solid #469a7f;
         border-right: 0; }
 
-.page.scrolled > header div.shadow {
+.page.scrolled-top > header div.shadow {
   display: block; }
 
 .page > header, .page > footer {
@@ -658,16 +658,8 @@ section.page .notification-message {
   padding: 28px 0 28px 0; }
   .page > header i, .page > footer i {
     cursor: pointer; }
-  .page > header div.shadow, .page > footer div.shadow {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background: black;
-    opacity: 0.05;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
-    display: none; }
+  .page > header .shadow, .page > footer .shadow {
+    bottom: -2px; }
   .page > header > div.line, .page > footer > div.line {
     height: 39px;
     line-height: 16px;
@@ -738,9 +730,21 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   right: 0;
-  margin: 45px 0 0 0; }
+  margin: 45px 0 0 0;
+  min-height: 600px; }
   .page.side-enabled {
     margin-left: 260px; }
+
+.shadow {
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 1;
+  background: #807e73;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  display: none; }
 
 .side-bar ul.menu {
   margin: 0 0 0 185px;
@@ -1443,12 +1447,28 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   .page.page-settings .connections-view ul.options-group > li.option:first-child {
     margin-left: 0; }
 
+.page.page-settings.scrolled-bottom .shadow.bottom {
+  display: block; }
+
+.page.page-settings.scrolled-top .shadow.top {
+  display: block; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
+  .page.page-settings .content > .shadow.bottom {
+    bottom: 0; }
+  .page.page-settings .content > .shadow.top {
+    top: 90px; }
   .page.page-settings .content > .line {
-    overflow: auto; }
+    overflow: visible;
+    height: 40px; }
     .page.page-settings .content > .line > * {
       vertical-align: middle; }
+    .page.page-settings .content > .line > div.placeholder {
+      height: 40px;
+      width: 1px;
+      display: inline-block;
+      margin: 0 0 0 0; }
   .page.page-settings .content h2.title {
     color: #807e73;
     font-weight: normal;
@@ -1471,8 +1491,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 
 .page.page-settings .content ul.sections-menu {
   overflow: auto;
-  display: inline-block;
-  margin: 20px 0 0 0; }
+  display: inline-block; }
   .page.page-settings .content ul.sections-menu > li {
     float: left;
     border: 1px solid #807e73;
@@ -1510,7 +1529,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     width: 158px; }
 
 .elements {
-  margin: 210px 0 0 0;
+  margin: 220px 0 0 0;
   overflow: visible; }
   .elements .attributes > li {
     font-size: 13px; }
@@ -1573,6 +1592,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       .elements > li.element > .wireframe .templates-names > i {
         display: none; }
 
+.page.page-settings .resource-need-view.content > .shadow.top {
+  top: 220px; }
+
 .resource-needs-container .wireframe.elements-header {
   height: 50px; }
   .resource-needs-container .wireframe.elements-header .button {
@@ -1605,10 +1627,61 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 .resource-needs-container .elements > li.element > .wireframe {
   height: 105px; }
 
+.page.page-settings .timeoff-view.content > .shadow.top {
+  top: 220px; }
+.page.page-settings .timeoff-view.content .attributes {
+  padding: 22px 0 0 30px; }
+.page.page-settings .timeoff-view.content .elements > li.element .side-container i {
+  display: none; }
+.page.page-settings .timeoff-view.content .elements > li.element.pending .side-container i.pending {
+  display: inline-block; }
+.page.page-settings .timeoff-view.content .elements > li.element.approved .side-container i.approved {
+  display: inline-block; }
+.page.page-settings .timeoff-view.content .elements > li.element.not-approved .side-container i.not-approved {
+  display: inline-block; }
+.page.page-settings .timeoff-view.content .elements > li.element > .wireframe {
+  height: 94px; }
+  .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container {
+    text-align: center; }
+    .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container i {
+      margin: 32px 0 0 0; }
+
+.page.page-settings .availability-view.content > .shadow.top {
+  top: 220px; }
+.page.page-settings .availability-view.content .wireframe.elements-header {
+  height: 50px; }
+.page.page-settings .availability-view.content .attributes {
+  display: block;
+  width: 180px;
+  margin: 13px auto 0 auto; }
+.page.page-settings .availability-view.content ul.columns {
+  overflow: auto; }
+  .page.page-settings .availability-view.content ul.columns.weekdays {
+    padding: 34px 0 0 0; }
+  .page.page-settings .availability-view.content ul.columns.weekdays-titles {
+    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    padding: 10px 0 0 0; }
+    .page.page-settings .availability-view.content ul.columns.weekdays-titles > li {
+      color: #807e73;
+      font-size: 13px; }
+  .page.page-settings .availability-view.content ul.columns > li {
+    width: 14.28571%;
+    text-align: center;
+    float: left;
+    cursor: pointer; }
+    .page.page-settings .availability-view.content ul.columns > li > i.checked {
+      display: none; }
+    .page.page-settings .availability-view.content ul.columns > li.checked > i.unchecked {
+      display: none; }
+    .page.page-settings .availability-view.content ul.columns > li.checked > i.checked {
+      display: inline-block; }
+.page.page-settings .availability-view.content .elements > li.element > .wireframe {
+  height: 94px; }
+
 
 .page.page-settings .scroll-container {
   position: absolute;
-  top: 10px;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;

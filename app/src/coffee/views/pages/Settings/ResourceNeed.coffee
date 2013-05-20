@@ -22,7 +22,7 @@ define [
     addResourceNeed: (model) ->
       _view = model.getEditView 'settingsView'
 
-      @resourceNeeds.append _view.el
+      @resourceNeeds.prepend _view.el
 
     initialize: () ->
       @resourceNeeds = @$('.resource-needs')

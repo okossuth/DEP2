@@ -2,6 +2,7 @@
 define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
+    localStorageOnly: true,
     _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {

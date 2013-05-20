@@ -1,9 +1,25 @@
+.page.page-settings.scrolled-bottom .shadow.bottom {
+  display: block; }
+
+.page.page-settings.scrolled-top .shadow.top {
+  display: block; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
+  .page.page-settings .content > .shadow.bottom {
+    bottom: 0; }
+  .page.page-settings .content > .shadow.top {
+    top: 90px; }
   .page.page-settings .content > .line {
-    overflow: auto; }
+    overflow: visible;
+    height: 40px; }
     .page.page-settings .content > .line > * {
       vertical-align: middle; }
+    .page.page-settings .content > .line > div.placeholder {
+      height: 40px;
+      width: 1px;
+      display: inline-block;
+      margin: 0 0 0 0; }
   .page.page-settings .content h2.title {
     color: #807e73;
     font-weight: normal;

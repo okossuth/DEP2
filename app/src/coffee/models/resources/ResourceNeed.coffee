@@ -11,7 +11,7 @@ define [
   ResourceBase.extend
     typeName: 'resourceNeed'
 
-    # localStorageOnly: true
+    localStorageOnly: true
 
     _gettersNames: [
       'weekdays'
