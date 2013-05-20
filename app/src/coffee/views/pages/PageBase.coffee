@@ -40,7 +40,9 @@ define [
 
       true
 
-    showSubView: (name) -> 
+    showSubView: (name) ->
+      if not name? then return
+
       _.each _.without(@subViews, @subViews[name]), (subView) ->
         @$(".#{subView.name}-only").hide()
 
@@ -80,7 +82,8 @@ define [
         _scrollTop = @el.scrollTop
 
         if (_scrollTop isnt 0)
-          @$el.addClass 'scrolled scrolled-top'
+          if not (@$el.hasClass 'scrolled-top')
+            @$el.addClass 'scrolled scrolled-top'
 
         else
           @$el.removeClass 'scrolled-top'
@@ -94,7 +97,8 @@ define [
         _scrollTop = @el.scrollTop
 
         if ((@offsetHeight + _scrollTop) isnt @scrollHeight)
-          @$el.addClass 'scrolled scrolled-bottom'
+          if not (@$el.hasClass 'scrolled-bottom')
+            @$el.addClass 'scrolled scrolled-bottom'
 
         else
           @$el.removeClass 'scrolled-bottom'
@@ -129,10 +133,15 @@ define [
 
         _cache.push _ctx
 
-        () ->
+        _handler = () ->
           _ctx.handler()
 
           true
+
+        _handler.update = () ->
+          _ctx.handler = _initialHandler
+
+        _handler
 
       _func.process = (el) ->
         if not $(el).hasClass('scrollable')
@@ -148,18 +157,29 @@ define [
 
       _func
 
+    updateScrollProcessors: () ->
+      _.each @scrollProcessors, (processor) -> processor.update()
+
+      @showSubView @subView()
+
     initialize: () ->
       @model.on 'change:subView', @processSubView, @
 
       @content = @$('div.content')
 
-      @$('.scrollable').each (i, el) => 
-        $(el).on 'scroll', @processContentScrollBind @$el, el
+      @scrollProcessors = @$('.scrollable').map (i, el) =>
+        _processor = @processContentScrollBind @$el, el
+
+        $(el).on 'scroll', _processor
+
+        _processor
 
       @subViews = []
 
       _.each @SubViews, (SubView) => 
         _subView = new SubView()
+
+        _subView.baseView = @
 
         @subViews[_subView.name] = _subView
         @subViews.push _subView

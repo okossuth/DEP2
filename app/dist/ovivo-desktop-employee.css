@@ -651,7 +651,8 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   right: 0;
-  margin: 0 0 0 261px; }
+  margin: 0 0 0 261px;
+  min-height: 600px; }
 
 .shadow {
   position: absolute;
@@ -686,7 +687,8 @@ section.page .notification-message {
   left: 0;
   bottom: 0;
   width: 261px;
-  background: #007550; }
+  background: #007550;
+  min-height: 600px; }
 
 body.loading .side-bar > h1.title > img {
   display: block; }

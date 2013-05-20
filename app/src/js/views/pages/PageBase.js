@@ -43,6 +43,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       return true;
     },
     showSubView: function(name) {
+      if (name == null) {
+        return;
+      }
       _.each(_.without(this.subViews, this.subViews[name]), function(subView) {
         return this.$("." + subView.name + "-only").hide();
       });
@@ -85,7 +88,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
 
         _scrollTop = this.el.scrollTop;
         if (_scrollTop !== 0) {
-          this.$el.addClass('scrolled scrolled-top');
+          if (!(this.$el.hasClass('scrolled-top'))) {
+            this.$el.addClass('scrolled scrolled-top');
+          }
         } else {
           this.$el.removeClass('scrolled-top');
           if (!this.$el.hasClass('scrolled-bottom')) {
@@ -99,7 +104,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
 
         _scrollTop = this.el.scrollTop;
         if ((this.offsetHeight + _scrollTop) !== this.scrollHeight) {
-          this.$el.addClass('scrolled scrolled-bottom');
+          if (!(this.$el.hasClass('scrolled-bottom'))) {
+            this.$el.addClass('scrolled scrolled-bottom');
+          }
         } else {
           this.$el.removeClass('scrolled-bottom');
           if (!this.$el.hasClass('scrolled-top')) {
@@ -123,7 +130,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       };
       _cache = [];
       _func = function($el, el) {
-        var _ctx;
+        var _ctx, _handler;
 
         _ctx = {
           handler: _initialHandler,
@@ -131,10 +138,14 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
           $el: $el
         };
         _cache.push(_ctx);
-        return function() {
+        _handler = function() {
           _ctx.handler();
           return true;
         };
+        _handler.update = function() {
+          return _ctx.handler = _initialHandler;
+        };
+        return _handler;
       };
       _func.process = function(el) {
         var _ctx;
@@ -155,19 +166,30 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       };
       return _func;
     })(),
+    updateScrollProcessors: function() {
+      _.each(this.scrollProcessors, function(processor) {
+        return processor.update();
+      });
+      return this.showSubView(this.subView());
+    },
     initialize: function() {
       var _this = this;
 
       this.model.on('change:subView', this.processSubView, this);
       this.content = this.$('div.content');
-      this.$('.scrollable').each(function(i, el) {
-        return $(el).on('scroll', _this.processContentScrollBind(_this.$el, el));
+      this.scrollProcessors = this.$('.scrollable').map(function(i, el) {
+        var _processor;
+
+        _processor = _this.processContentScrollBind(_this.$el, el);
+        $(el).on('scroll', _processor);
+        return _processor;
       });
       this.subViews = [];
       _.each(this.SubViews, function(SubView) {
         var _subView;
 
         _subView = new SubView();
+        _subView.baseView = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);
       });
