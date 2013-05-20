@@ -36,19 +36,22 @@ define [
     transitionComplete: (type) -> 
       if type is 'exit' then @hideEl()
 
+      if type is 'enter' then @showSubView @subView()
+
       true
 
     showSubView: (name) -> 
       _.each _.without(@subViews, @subViews[name]), (subView) ->
         @$(".#{subView.name}-only").hide()
 
-      @processScroll.call @subViews[name].el
-
       @$(".#{name}-only").show()
 
       @model.set 'subView', name
 
+      @processContentScrollBind.process @subViews[name].el
+
     subView: () -> @model.get 'subView'
+
 
     processSubView: (page) ->
       _subViewName = @subView()
@@ -73,28 +76,86 @@ define [
 
       true
 
-    processContentScrollBind: ($el) ->
-      () ->
-        if (this.scrollTop isnt 0) and (@scrolled isnt true)
-          $el.addClass('scrolled')
+    processContentScrollBind: do ->
+      _checkScrollTop = () ->
+        _scrollTop = @el.scrollTop
 
-          @scrolled = true
+        if (_scrollTop isnt 0)
+          @$el.addClass 'scrolled scrolled-top'
 
-        if this.scrollTop is 0
-          $el.removeClass('scrolled')
+        else
+          @$el.removeClass 'scrolled-top'
 
-          @scrolled = false
+          if not @$el.hasClass 'scrolled-bottom'
+            @$el.removeClass 'scrolled'
 
         true
+
+      _checkScrollBottom = () ->
+        _scrollTop = @el.scrollTop
+
+        if ((@offsetHeight + _scrollTop) isnt @scrollHeight)
+          @$el.addClass 'scrolled scrolled-bottom'
+
+        else
+          @$el.removeClass 'scrolled-bottom'
+
+          if not @$el.hasClass 'scrolled-top'
+            @$el.removeClass 'scrolled'
+
+        true
+
+      _usualHandler = () ->
+        _checkScrollTop.call @
+        _checkScrollBottom.call @
+
+        true
+
+      _initialHandler = (manualFlag) ->
+        @offsetHeight = @el.offsetHeight
+        @scrollHeight = @el.scrollHeight
+
+        if manualFlag isnt true
+          @handler = _usualHandler
+
+        _usualHandler.call @
+
+      _cache = []
+
+      _func = ($el, el) ->
+        _ctx =
+          handler: _initialHandler
+          el: el
+          $el: $el
+
+        _cache.push _ctx
+
+        () ->
+          _ctx.handler()
+
+          true
+
+      _func.process = (el) ->
+        if not $(el).hasClass('scrollable')
+          el = $('.scrollable', el)[0]
+
+        if not el? then return true
+
+        _ctx = _.find _cache, (ctx) -> ctx.el is el
+
+        if _ctx? then _ctx.handler true
+
+        true
+
+      _func
 
     initialize: () ->
       @model.on 'change:subView', @processSubView, @
 
       @content = @$('div.content')
 
-      @processScroll = @processContentScrollBind @$el
-
-      @content.on 'scroll', @processScroll
+      @$('.scrollable').each (i, el) => 
+        $(el).on 'scroll', @processContentScrollBind @$el, el
 
       @subViews = []
 
