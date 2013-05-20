@@ -11,7 +11,7 @@ define [
 
     fullResponse: true
 
-    localStorageOnly: true
+    # localStorageOnly: true
 
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/"
 

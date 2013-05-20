@@ -11,7 +11,7 @@ define [
   ResourceBase.extend
     typeName: 'resourceNeed'
 
-    localStorageOnly: true
+    # localStorageOnly: true
 
     _gettersNames: [
       'weekdays'
@@ -83,6 +83,8 @@ define [
       delete _json.deltaHours
       delete _json.checked
       delete _json.templates
+      delete _json.startValue
+      delete _json.endValue
 
       _json
 

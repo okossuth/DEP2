@@ -3,7 +3,6 @@ define(['models/resources/Period', '_common/ResourceManagerBase', 'ovivo'], func
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
-    localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
     _processPeriodAdd: function(model) {
       var _id,

@@ -96,9 +96,9 @@ var _workingHours = {
     }]
 };
 
-app.get('/api/1.0/working-hours/', function (req, res) {
-    res.end(JSON.stringify(_workingHours));
-});
+// app.get('/api/1.0/working-hours/', function (req, res) {
+//     res.end(JSON.stringify(_workingHours));
+// });
 
 app.all('/api/*', proxyFunc);
 
