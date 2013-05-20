@@ -20,9 +20,16 @@ define [
     addInactivity: (inactivity) ->
       @inactivities.append inactivity.editView.el
 
+    updateScrollers: () ->
+      @baseView.updateScrollProcessors()
+
     initialize: () ->
       @inactivities = @$('.inactivities')
 
       ovivo.desktop.resources.inactivities.on 'add', @addInactivity, @
+
+      ovivo.desktop.resources.inactivities.def.done () =>
+        ovivo.desktop.resources.inactivities.on 'add', @updateScrollers, @
+        ovivo.desktop.resources.inactivities.on 'remove', @updateScrollers, @
 
       true
