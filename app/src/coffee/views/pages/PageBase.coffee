@@ -52,7 +52,6 @@ define [
 
     subView: () -> @model.get 'subView'
 
-
     processSubView: (page) ->
       _subViewName = @subView()
 

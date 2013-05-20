@@ -1,16 +1,18 @@
-.page.page-settings .timeoff-view .attributes {
+.page.page-settings .timeoff-view.content > .shadow.top {
+  top: 220px; }
+.page.page-settings .timeoff-view.content .attributes {
   padding: 22px 0 0 30px; }
-.page.page-settings .timeoff-view .elements > li.element .side-container i {
+.page.page-settings .timeoff-view.content .elements > li.element .side-container i {
   display: none; }
-.page.page-settings .timeoff-view .elements > li.element.pending .side-container i.pending {
+.page.page-settings .timeoff-view.content .elements > li.element.pending .side-container i.pending {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element.approved .side-container i.approved {
+.page.page-settings .timeoff-view.content .elements > li.element.approved .side-container i.approved {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element.not-approved .side-container i.not-approved {
+.page.page-settings .timeoff-view.content .elements > li.element.not-approved .side-container i.not-approved {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element > .wireframe {
+.page.page-settings .timeoff-view.content .elements > li.element > .wireframe {
   height: 94px; }
-  .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container {
+  .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container {
     text-align: center; }
-    .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container i {
+    .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container i {
       margin: 32px 0 0 0; }
