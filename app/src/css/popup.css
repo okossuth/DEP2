@@ -50,7 +50,12 @@
         font-size: 15px;
         text-align: center;
         padding: 9px 9px;
-        width: 287px; }
+        width: 287px;
+        -webkit-appearance: none; }
+      .popup > .settings-items > li.settings-item > div.item-content > input {
+        height: 17px; }
+      .popup > .settings-items > li.settings-item > div.item-content > select {
+        -webkit-appearance: menulist-button; }
       .popup > .settings-items > li.settings-item > div.item-content > span {
         font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-style: italic;
