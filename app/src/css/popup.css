@@ -67,5 +67,7 @@
       height: 17px; }
     .popup .settings-items > li.settings-item > div.item-content > select {
       -webkit-appearance: menulist-button; }
+    .popup .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
+      -webkit-appearance: initial; }
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }
