@@ -14,15 +14,17 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
       delete _json.periods;
       return _json;
     },
-    resourceNeedsChange: function() {
-      var _cur, _new, _prev, _removed,
+    postEditSync: function(collection, model, originalModel) {
+      return this.resourceNeedsChange(originalModel.resource_needs());
+    },
+    resourceNeedsChange: function(_prev) {
+      var _cur, _new, _removed,
         _this = this;
 
       if (this.id == null) {
         return true;
       }
       _cur = this.resource_needs();
-      _prev = this.previous('resource_needs');
       _removed = _.without.apply(_, [_prev].concat(_cur));
       _new = _.without.apply(_, [_cur].concat(_prev));
       _.each(_removed, function(id) {
@@ -70,10 +72,13 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
         });
       }
     },
+    updatePreviousResourceNeeds: function() {
+      return this.prevResourceNeeds = this.previous('resource_needs');
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.on('change:primary_department', this.changePD, this);
-      this.on('change:resource_needs', this.resourceNeedsChange, this);
+      this.on('change:resource_needs', this.updatePreviousResourceNeeds, this);
       this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.proxyCall('initialize', arguments);
       return true;

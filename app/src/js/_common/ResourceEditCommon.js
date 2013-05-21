@@ -19,11 +19,14 @@ define([], function() {
             validate: true
           });
         },
-        _getAddSyncHandler: function(collection, model) {
+        _getAddSyncHandler: function(collection, model, originalModel) {
           var _handler;
 
           _handler = function() {
             collection.add(model);
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             model.off('sync', _handler);
             return delete model.url;
           };
@@ -33,6 +36,9 @@ define([], function() {
           var _handler;
 
           _handler = function() {
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             originalModel.set(model.toJSON());
             return model.off('sync', _handler);
           };

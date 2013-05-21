@@ -68,6 +68,8 @@ define [
 
       @model.set 'resource_needs', _val
 
+      console.log @model, @model.resource_needs(), @model.previous 'resource_needs'
+
     setResourceNeedsCheckboxes: (model) ->
       @$('.resource-need-check').each (i, el) -> el.checked = false; true
 

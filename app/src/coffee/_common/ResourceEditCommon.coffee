@@ -16,9 +16,11 @@ define [
       @model.set _name, @types[_name](_input.val()),
         validate: true
 
-    _getAddSyncHandler: (collection, model) ->
+    _getAddSyncHandler: (collection, model, originalModel) ->
       _handler = () -> 
         collection.add model
+
+        if model.postEditSync? then model.postEditSync collection, model, originalModel
 
         model.off 'sync', _handler
         
@@ -28,6 +30,8 @@ define [
 
     _getSaveSyncHandler: (collection, model, originalModel) ->
       _handler = () -> 
+        if model.postEditSync? then model.postEditSync collection, model, originalModel
+        
         originalModel.set model.toJSON()
 
         model.off 'sync', _handler

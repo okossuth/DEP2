@@ -29,11 +29,12 @@ define [
 
       _json
 
-    resourceNeedsChange: () ->
+    postEditSync: (collection, model, originalModel) -> @resourceNeedsChange originalModel.resource_needs()
+
+    resourceNeedsChange: (_prev) ->
       if not @id? then return true
 
       _cur = @resource_needs()
-      _prev = @previous 'resource_needs'
 
       _removed = _.without.apply _, [_prev].concat _cur
       _new = _.without.apply _, [_cur].concat _prev
@@ -78,11 +79,14 @@ define [
         _.each _.keys(_periods), (id) ->
           ovivo.desktop.resources.periods.get(id).removeTemplate model.id
 
+    updatePreviousResourceNeeds: () ->
+      @prevResourceNeeds = @previous 'resource_needs'
+
     initialize: (attrs, options) ->
       @View = View
 
       @on 'change:primary_department', @changePD, @
-      @on 'change:resource_needs', @resourceNeedsChange, @
+      @on 'change:resource_needs', @updatePreviousResourceNeeds, @
 
       @on 'change:primary_department', @changePrimaryDepartment, @
 

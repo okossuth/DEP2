@@ -18287,11 +18287,14 @@ define('_common/ResourceEditCommon',[], function() {
             validate: true
           });
         },
-        _getAddSyncHandler: function(collection, model) {
+        _getAddSyncHandler: function(collection, model, originalModel) {
           var _handler;
 
           _handler = function() {
             collection.add(model);
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             model.off('sync', _handler);
             return delete model.url;
           };
@@ -18301,6 +18304,9 @@ define('_common/ResourceEditCommon',[], function() {
           var _handler;
 
           _handler = function() {
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             originalModel.set(model.toJSON());
             return model.off('sync', _handler);
           };
@@ -20425,7 +20431,8 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         }
         _model.set('checked', false);
       }
-      return this.model.set('resource_needs', _val);
+      this.model.set('resource_needs', _val);
+      return console.log(this.model, this.model.resource_needs(), this.model.previous('resource_needs'));
     },
     setResourceNeedsCheckboxes: function(model) {
       this.$('.resource-need-check').each(function(i, el) {
@@ -21592,15 +21599,17 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
       delete _json.periods;
       return _json;
     },
-    resourceNeedsChange: function() {
-      var _cur, _new, _prev, _removed,
+    postEditSync: function(collection, model, originalModel) {
+      return this.resourceNeedsChange(originalModel.resource_needs());
+    },
+    resourceNeedsChange: function(_prev) {
+      var _cur, _new, _removed,
         _this = this;
 
       if (this.id == null) {
         return true;
       }
       _cur = this.resource_needs();
-      _prev = this.previous('resource_needs');
       _removed = _.without.apply(_, [_prev].concat(_cur));
       _new = _.without.apply(_, [_cur].concat(_prev));
       _.each(_removed, function(id) {
@@ -21648,10 +21657,13 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
         });
       }
     },
+    updatePreviousResourceNeeds: function() {
+      return this.prevResourceNeeds = this.previous('resource_needs');
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.on('change:primary_department', this.changePD, this);
-      this.on('change:resource_needs', this.resourceNeedsChange, this);
+      this.on('change:resource_needs', this.updatePreviousResourceNeeds, this);
       this.on('change:primary_department', this.changePrimaryDepartment, this);
       this.proxyCall('initialize', arguments);
       return true;
@@ -21666,7 +21678,7 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
-    _ignoreChange: ['periods'],
+    _ignoreChange: ['periods', 'resource_needs'],
     _processTemplateAdd: function(model) {
       var _id,
         _this = this;
