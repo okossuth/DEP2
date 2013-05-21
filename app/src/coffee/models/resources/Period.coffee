@@ -27,11 +27,12 @@ define [
       @set 'templates', []
       @set 'groups', []
 
-    changeTemplates: () ->
+    postEditSync: (collection, model, originalModel) -> @changeTemplates originalModel.templates()
+
+    changeTemplates: (_prev) ->
       if not @id? then return true
 
       _cur = @templates()
-      _prev = @previous 'templates'
 
       _removed = _.without.apply _, [_prev].concat _cur
       _new = _.without.apply _, [_cur].concat _prev
@@ -98,7 +99,6 @@ define [
     initialize: (attrs, options) ->
       @View = View
       
-      @on 'change:templates', @changeTemplates, @
       @on 'change:primary_department', @changePD, @
 
       @proxyCall 'initialize', arguments

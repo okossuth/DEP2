@@ -8,15 +8,17 @@ define(['models/resources/ResourceBase', 'views/resources/Period', '_features/Ru
       this.set('templates', []);
       return this.set('groups', []);
     },
-    changeTemplates: function() {
-      var _cur, _new, _prev, _removed,
+    postEditSync: function(collection, model, originalModel) {
+      return this.changeTemplates(originalModel.templates());
+    },
+    changeTemplates: function(_prev) {
+      var _cur, _new, _removed,
         _this = this;
 
       if (this.id == null) {
         return true;
       }
       _cur = this.templates();
-      _prev = this.previous('templates');
       _removed = _.without.apply(_, [_prev].concat(_cur));
       _new = _.without.apply(_, [_cur].concat(_prev));
       _.each(_removed, function(id) {
@@ -97,7 +99,6 @@ define(['models/resources/ResourceBase', 'views/resources/Period', '_features/Ru
     },
     initialize: function(attrs, options) {
       this.View = View;
-      this.on('change:templates', this.changeTemplates, this);
       this.on('change:primary_department', this.changePD, this);
       this.proxyCall('initialize', arguments);
       return true;
