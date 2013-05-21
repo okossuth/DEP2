@@ -44,7 +44,7 @@ define [
   processModelChange: (model, obj) ->
     if @_checkIfIgnore(model) is true then return true
 
-    if (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then model.save()
+    if (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then model.save()
 
   _checkIfIgnore: (model) ->
     if @_ignoreChange instanceof Array

@@ -43,7 +43,14 @@
     right: 10px;
     cursor: pointer; }
   .popup > div.button {
-    width: 196px;
+    width: 196px; }
+  .popup > div.buttons-container {
+    text-align: center; }
+    .popup > div.buttons-container > div.button {
+      margin: 0 9px;
+      width: 130px;
+      display: inline-block; }
+  .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
   .popup .columns-container {
@@ -54,6 +61,11 @@
     .popup .settings-items > li.settings-item > div.item-content > input {
       width: 268px; }
     .popup .settings-items > li.settings-item > div.item-content > select {
-      width: 287px; }
+      width: 287px;
+      -webkit-appearance: none; }
+    .popup .settings-items > li.settings-item > div.item-content > input {
+      height: 17px; }
+    .popup .settings-items > li.settings-item > div.item-content > select {
+      -webkit-appearance: menulist-button; }
     .popup .settings-items > li.settings-item > div.item-content.two > input {
       width: 110px; }

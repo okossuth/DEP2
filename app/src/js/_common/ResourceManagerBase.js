@@ -47,7 +47,7 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
       if (this._checkIfIgnore(model) === true) {
         return true;
       }
-      if ((model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
         return model.save();
       }
     },
