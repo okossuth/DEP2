@@ -1,6 +1,9 @@
 .page.scrolled-top > header div.shadow {
   display: block; }
 
+.page.scrolled-bottom > footer div.shadow {
+  display: block; }
+
 .page > header, .page > footer {
   position: absolute;
   top: 0;
@@ -12,7 +15,8 @@
   .page > header i, .page > footer i {
     cursor: pointer; }
   .page > header .shadow, .page > footer .shadow {
-    bottom: -2px; }
+    bottom: -2px;
+    display: none; }
   .page > header > div.line, .page > footer > div.line {
     height: 39px;
     line-height: 16px;
@@ -74,5 +78,4 @@
   .page > footer div.shadow {
     position: absolute;
     bottom: auto;
-    top: -2px;
-    display: block; }
+    top: -2px; }
