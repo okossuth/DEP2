@@ -41,20 +41,41 @@ define [
 
     true
 
-  processModelChange: () ->
-    @save()
+  processModelChange: (model, obj) ->
+    if @_checkIfIgnore(model) is true then return true
 
-  cache: () -> localStorageCache.cache @, @_url
+    if (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then model.save()
+
+  _checkIfIgnore: (model) ->
+    if @_ignoreChange instanceof Array
+      _i = 0
+
+      while _i < @_ignoreChange.length
+        if typeof model.changed[@_ignoreChange[_i]] isnt 'undefined'
+          return true
+
+        _i += 1
+
+    return false
+
+  cache: () ->
+    localStorageCache.cache @, @_url
+
+  changeCacheHandler: (model) ->
+    if @_checkIfIgnore(model) is true then return true
+
+    localStorageCache.cache @, @_url
 
   attachProcessors: () ->
     if @ instanceof Backbone.Model
-      @on 'change', @cache, @
+      @on 'change', @changeCacheHandler, @
       @on 'change', @processModelChange, @
 
     else if @ instanceof Backbone.Collection
       @on 'add', @cache, @
       @on 'remove', @cache, @
-      @on 'change', @cache, @
+      @on 'change', @changeCacheHandler, @
+      @on 'change', @processModelChange, @
 
     true
 

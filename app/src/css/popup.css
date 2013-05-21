@@ -31,7 +31,14 @@
     width: 50px;
     cursor: pointer; }
   .popup > div.button {
-    width: 156px;
+    width: 156px; }
+  .popup > div.buttons-container {
+    text-align: center; }
+    .popup > div.buttons-container > div.button {
+      margin: 0 9px;
+      width: 130px;
+      display: inline-block; }
+  .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
   .popup > .settings-items {
@@ -44,7 +51,12 @@
         font-size: 15px;
         text-align: center;
         padding: 9px 9px;
-        width: 287px; }
+        width: 287px;
+        -webkit-appearance: none; }
+      .popup > .settings-items > li.settings-item > div.item-content > input {
+        height: 17px; }
+      .popup > .settings-items > li.settings-item > div.item-content > select {
+        -webkit-appearance: menulist-button; }
       .popup > .settings-items > li.settings-item > div.item-content > span {
         font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-style: italic;

@@ -15,6 +15,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
         return group.setChainName();
       });
     },
+    _ignoreChange: ['chainName', 'children', 'allowed'],
     initialize: function() {
       this.initResource();
       this.def.then(_.bind(this.postProcess, this));

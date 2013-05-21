@@ -12,6 +12,7 @@ define(['models/resources/WorkingHour', '_common/ResourceManagerBase', 'ovivo'],
         return arr.concat(workingHour.processRange(start, end));
       }), []);
     },
+    _ignoreChange: ['start_date_obj', 'end_date_obj', 'deltaHours'],
     initialize: function() {
       this.initResource();
       return true;

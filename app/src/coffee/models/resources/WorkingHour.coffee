@@ -73,9 +73,6 @@ define [
           validators.time obj.name, obj.value
         ), undefined
 
-    processChange: (model, obj) ->
-      if (not model.changed.pk?) and @id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then @save()
-
     toJSON: () ->
       _json = Backbone.Model.prototype.toJSON.call @
 
@@ -163,8 +160,6 @@ define [
       @updateStartDate()
       @updateEndDate()
 
-      @on 'change', @processChange, @
-      @on 'change:group', @processChange, @
       @on 'change:weekdays', @updateWeekdaysHash, @
 
       @on 'change:start_date', @updateStartDate, @

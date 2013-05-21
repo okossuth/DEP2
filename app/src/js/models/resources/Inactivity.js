@@ -10,11 +10,6 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
         return gettext('Params are missing');
       }
     },
-    processChange: function() {
-      if ((this.changed.pk == null) && (this.id != null)) {
-        return this.save();
-      }
-    },
     processRange: function(start, end) {
       var _arr, _end, _i, _start, _type;
 
@@ -47,7 +42,6 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
     },
     initialize: function(attrs, options) {
       this.View = View;
-      this.on('change', this.processChange, this);
       this.proxyCall('initialize', arguments);
       this.editView = new EditView({
         model: this
