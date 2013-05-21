@@ -4,6 +4,7 @@ define [
     events: _.extend {}, parentEvents,
       'change .property-value': 'changeProperty'
       'click .button-add': 'add'
+      'click .button-save': 'save'
       'click .button-delete': 'delete'
 
     propertyRegExp: /\bproperty-value-(\w+)\b/
@@ -15,7 +16,7 @@ define [
       @model.set _name, @types[_name](_input.val()),
         validate: true
 
-    _getSyncHandler: (collection, model) ->
+    _getAddSyncHandler: (collection, model, originalModel) ->
       _handler = () -> 
         collection.add model
 
@@ -25,17 +26,31 @@ define [
 
       _handler
 
-    add: () ->
-      @model.on 'sync', @_getSyncHandler @collection, @model
+    _getSaveSyncHandler: (collection, model, originalModel) ->
+      _handler = () -> 
+        originalModel.set model.toJSON()
+
+        model.off 'sync', _handler
+
+      _handler
+
+    _syncProcessor: (handlerGetter) ->
+      @model.on 'sync', handlerGetter.call @, @collection, @model, @original
 
       @model.url = @collection.url
+
+      if @model.id? then @model.url += @model.id + '/'
 
       @model.save()
 
       @close()
 
+    save: () -> @_syncProcessor @_getSaveSyncHandler
+
+    add: () -> @_syncProcessor @_getAddSyncHandler
+
     delete: () ->
-      @model.destroy()
+      @original.destroy()
 
       @close()
 
@@ -47,8 +62,12 @@ define [
       @$('.create-mode').hide()
       @$('.edit-mode').show()
 
+    _createEditCopy: (model) -> new model.constructor model.toJSON()
+
     setModel: (model) ->
-      @model = model
+      @original = model
+
+      @model = @_createEditCopy model
 
       @trigger 'change:model', @model
 
@@ -58,12 +77,12 @@ define [
         _value = @$('.property-value-' + field)
 
         if _value.hasClass 'datepicker'
-          _date = new Date Date.parse model[field]()
+          _date = new Date Date.parse @model[field]()
 
           _value.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
 
         else if _value.hasClass 'plain-value'
-          $.when(model.view[field]()).done (_str) -> _value.html _str
+          $.when(@model.view[field]()).done (_str) -> _value.html _str
 
         else
-          _value.val model[field]()
+          _value.val @model[field]()?.toString()

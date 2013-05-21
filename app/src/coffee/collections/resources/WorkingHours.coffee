@@ -15,6 +15,8 @@ define [
     comparator: (workingHour) -> Date.parse(workingHour.start_date()).valueOf()
 
     processRange: (start, end) -> @reduce ((arr, workingHour) -> arr.concat workingHour.processRange start, end), []
+
+    _ignoreChange: ['start_date_obj', 'end_date_obj', 'deltaHours']
     
     initialize: () ->
       @initResource()

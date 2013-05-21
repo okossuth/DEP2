@@ -18363,20 +18363,46 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
       }
       return true;
     },
-    processModelChange: function() {
-      return this.save();
+    processModelChange: function(model, obj) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+        return model.save();
+      }
+    },
+    _checkIfIgnore: function(model) {
+      var _i;
+
+      if (this._ignoreChange instanceof Array) {
+        _i = 0;
+        while (_i < this._ignoreChange.length) {
+          if (typeof model.changed[this._ignoreChange[_i]] !== 'undefined') {
+            return true;
+          }
+          _i += 1;
+        }
+      }
+      return false;
     },
     cache: function() {
       return localStorageCache.cache(this, this._url);
     },
+    changeCacheHandler: function(model) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      return localStorageCache.cache(this, this._url);
+    },
     attachProcessors: function() {
       if (this instanceof Backbone.Model) {
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
         this.on('change', this.processModelChange, this);
       } else if (this instanceof Backbone.Collection) {
         this.on('add', this.cache, this);
         this.on('remove', this.cache, this);
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
+        this.on('change', this.processModelChange, this);
       }
       return true;
     },
@@ -18798,6 +18824,7 @@ define('_common/ResourceEditCommon',[], function() {
         events: _.extend({}, parentEvents, {
           'change .property-value': 'changeProperty',
           'click .button-add': 'add',
+          'click .button-save': 'save',
           'click .button-delete': 'delete'
         }),
         propertyRegExp: /\bproperty-value-(\w+)\b/,
@@ -18810,7 +18837,7 @@ define('_common/ResourceEditCommon',[], function() {
             validate: true
           });
         },
-        _getSyncHandler: function(collection, model) {
+        _getAddSyncHandler: function(collection, model, originalModel) {
           var _handler;
 
           _handler = function() {
@@ -18820,14 +18847,32 @@ define('_common/ResourceEditCommon',[], function() {
           };
           return _handler;
         },
-        add: function() {
-          this.model.on('sync', this._getSyncHandler(this.collection, this.model));
+        _getSaveSyncHandler: function(collection, model, originalModel) {
+          var _handler;
+
+          _handler = function() {
+            originalModel.set(model.toJSON());
+            return model.off('sync', _handler);
+          };
+          return _handler;
+        },
+        _syncProcessor: function(handlerGetter) {
+          this.model.on('sync', handlerGetter.call(this, this.collection, this.model, this.original));
           this.model.url = this.collection.url;
+          if (this.model.id != null) {
+            this.model.url += this.model.id + '/';
+          }
           this.model.save();
           return this.close();
         },
+        save: function() {
+          return this._syncProcessor(this._getSaveSyncHandler);
+        },
+        add: function() {
+          return this._syncProcessor(this._getAddSyncHandler);
+        },
         "delete": function() {
-          this.model.destroy();
+          this.original.destroy();
           return this.close();
         },
         initCreateMode: function() {
@@ -18838,25 +18883,29 @@ define('_common/ResourceEditCommon',[], function() {
           this.$('.create-mode').hide();
           return this.$('.edit-mode').show();
         },
+        _createEditCopy: function(model) {
+          return new model.constructor(model.toJSON());
+        },
         setModel: function(model) {
           var _this = this;
 
-          this.model = model;
+          this.original = model;
+          this.model = this._createEditCopy(model);
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _value;
+            var _date, _ref, _value;
 
             _value = _this.$('.property-value-' + field);
             if (_value.hasClass('datepicker')) {
-              _date = new Date(Date.parse(model[field]()));
+              _date = new Date(Date.parse(_this.model[field]()));
               return _value.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
             } else if (_value.hasClass('plain-value')) {
-              return $.when(model.view[field]()).done(function(_str) {
+              return $.when(_this.model.view[field]()).done(function(_str) {
                 return _value.html(_str);
               });
             } else {
-              return _value.val(model[field]());
+              return _value.val((_ref = _this.model[field]()) != null ? _ref.toString() : void 0);
             }
           });
         }
@@ -18900,7 +18949,7 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
       }));
-      return this.initEditMode();
+      return this.initCreateMode();
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;
@@ -18940,7 +18989,7 @@ define('views/popups/EditPopupTimeoff',['views/popups/EditPopup', '_features/tra
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
       }));
-      return this.initEditMode();
+      return this.initCreateMode();
     },
     initialize: function() {
       var _min;
@@ -21579,6 +21628,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
         return group.setChainName();
       });
     },
+    _ignoreChange: ['chainName', 'children', 'allowed'],
     initialize: function() {
       this.initResource();
       this.def.then(_.bind(this.postProcess, this));
@@ -21874,11 +21924,6 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
         }
       }), void 0);
     },
-    processChange: function(model, obj) {
-      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return this.save();
-      }
-    },
     toJSON: function() {
       var _json;
 
@@ -21977,8 +22022,6 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
       this.proxyCall('initialize', arguments);
       this.updateStartDate();
       this.updateEndDate();
-      this.on('change', this.processChange, this);
-      this.on('change:group', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:start_date', this.updateStartDate, this);
       this.on('change:end_date', this.updateEndDate, this);
@@ -22009,6 +22052,7 @@ define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_c
         return arr.concat(workingHour.processRange(start, end));
       }), []);
     },
+    _ignoreChange: ['start_date_obj', 'end_date_obj', 'deltaHours'],
     initialize: function() {
       this.initResource();
       return true;
@@ -22169,11 +22213,6 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
         return gettext('Params are missing');
       }
     },
-    processChange: function() {
-      if ((this.changed.pk == null) && (this.id != null)) {
-        return this.save();
-      }
-    },
     processRange: function(start, end) {
       var _arr, _end, _i, _start, _type;
 
@@ -22206,7 +22245,6 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
     },
     initialize: function(attrs, options) {
       this.View = View;
-      this.on('change', this.processChange, this);
       this.proxyCall('initialize', arguments);
       this.editView = new EditView({
         model: this
