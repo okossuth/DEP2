@@ -72,8 +72,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         }
         _model.set('checked', false);
       }
-      this.model.set('resource_needs', _val);
-      return console.log(this.model, this.model.resource_needs(), this.model.previous('resource_needs'));
+      return this.model.set('resource_needs', _val);
     },
     setResourceNeedsCheckboxes: function(model) {
       this.$('.resource-need-check').each(function(i, el) {
