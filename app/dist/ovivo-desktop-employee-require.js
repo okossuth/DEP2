@@ -21677,7 +21677,7 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     fullResponse: true,
     localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
-    _ignoreChange: ['periods', 'resource_needs'],
+    _ignoreChange: ['periods'],
     _processTemplateAdd: function(model) {
       var _id,
         _this = this;

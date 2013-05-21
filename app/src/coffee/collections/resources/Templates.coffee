@@ -14,7 +14,7 @@ define [
 
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/templates/"
 
-    _ignoreChange: ['periods', 'resource_needs']
+    _ignoreChange: ['periods']
 
     _processTemplateAdd: (model) ->
       _id = model.id
