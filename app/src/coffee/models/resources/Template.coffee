@@ -8,7 +8,7 @@ define [
   ResourceBase.extend
     typeName: 'template'
 
-    # localStorageOnly: true
+    localStorageOnly: true
 
     _gettersNames: [
       'pk'

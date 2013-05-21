@@ -12,7 +12,7 @@ define [
   ResourceBase.extend
     typeName: 'period'
 
-    # localStorageOnly: true
+    localStorageOnly: true
 
     _gettersNames: [
       'pk'

@@ -14,6 +14,7 @@ define [
       'click .button-close': 'close'
       'click .button-close-subview': 'closeSubview'
       'click .button-add': 'addButton'
+      'click .button-save': 'saveButton'
       'click .button-delete': 'deleteButton'
 
     addButton: () ->
@@ -21,6 +22,9 @@ define [
 
     deleteButton: () ->
       @subViews[@subView()].trigger 'action:delete'
+
+    saveButton: () ->
+      @subViews[@subView()].trigger 'action:save'
 
     clearSelection: () ->
       if window.getSelection?

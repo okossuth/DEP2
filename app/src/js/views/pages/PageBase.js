@@ -12,6 +12,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       'click .button-close': 'close',
       'click .button-close-subview': 'closeSubview',
       'click .button-add': 'addButton',
+      'click .button-save': 'saveButton',
       'click .button-delete': 'deleteButton'
     },
     addButton: function() {
@@ -19,6 +20,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     },
     deleteButton: function() {
       return this.subViews[this.subView()].trigger('action:delete');
+    },
+    saveButton: function() {
+      return this.subViews[this.subView()].trigger('action:save');
     },
     clearSelection: function() {
       if (window.getSelection != null) {

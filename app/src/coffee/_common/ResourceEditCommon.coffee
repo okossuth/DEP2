@@ -16,7 +16,7 @@ define [
       @model.set _name, @types[_name](_input.val()),
         validate: true
 
-    _getSyncHandler: (collection, model) ->
+    _getAddSyncHandler: (collection, model) ->
       _handler = () -> 
         collection.add model
 
@@ -62,7 +62,7 @@ define [
       @$('.create-mode').hide()
       @$('.edit-mode').show()
 
-    _createEditCopy: (model) -> new model.constructor model.toJSON()
+    _createEditCopy: (model) -> new model.constructor _.extend {}, model.attributes
 
     setModel: (model) ->
       @original = model
@@ -85,4 +85,8 @@ define [
           $.when(@model.view[field]()).done (_str) -> _value.html _str
 
         else
-          _value.val @model[field]()?.toString()
+          _v = @model[field]()
+
+          if not (_v instanceof Array) then _v = _v.toString()
+
+          _value.val _v

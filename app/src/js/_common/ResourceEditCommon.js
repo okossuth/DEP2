@@ -19,7 +19,7 @@ define([], function() {
             validate: true
           });
         },
-        _getSyncHandler: function(collection, model) {
+        _getAddSyncHandler: function(collection, model) {
           var _handler;
 
           _handler = function() {
@@ -66,7 +66,7 @@ define([], function() {
           return this.$('.edit-mode').show();
         },
         _createEditCopy: function(model) {
-          return new model.constructor(model.toJSON());
+          return new model.constructor(_.extend({}, model.attributes));
         },
         setModel: function(model) {
           var _this = this;
@@ -76,7 +76,7 @@ define([], function() {
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _ref, _value;
+            var _date, _v, _value;
 
             _value = _this.$('.property-value-' + field);
             if (_value.hasClass('datepicker')) {
@@ -87,7 +87,11 @@ define([], function() {
                 return _value.html(_str);
               });
             } else {
-              return _value.val((_ref = _this.model[field]()) != null ? _ref.toString() : void 0);
+              _v = _this.model[field]();
+              if (!(_v instanceof Array)) {
+                _v = _v.toString();
+              }
+              return _value.val(_v);
             }
           });
         }

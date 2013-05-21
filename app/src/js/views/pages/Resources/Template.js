@@ -178,6 +178,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
       this.on('action:add', this.add, this);
+      this.on('action:save', this.save, this);
       this.on('action:delete', this["delete"], this);
       this.on('change:model', this.processModelChange, this);
       this.resourceNeeds = this.$('ul.resource-needs');

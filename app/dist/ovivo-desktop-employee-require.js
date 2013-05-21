@@ -18287,7 +18287,7 @@ define('_common/ResourceEditCommon',[], function() {
             validate: true
           });
         },
-        _getSyncHandler: function(collection, model) {
+        _getAddSyncHandler: function(collection, model) {
           var _handler;
 
           _handler = function() {
@@ -18334,7 +18334,7 @@ define('_common/ResourceEditCommon',[], function() {
           return this.$('.edit-mode').show();
         },
         _createEditCopy: function(model) {
-          return new model.constructor(model.toJSON());
+          return new model.constructor(_.extend({}, model.attributes));
         },
         setModel: function(model) {
           var _this = this;
@@ -18344,7 +18344,7 @@ define('_common/ResourceEditCommon',[], function() {
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _ref, _value;
+            var _date, _v, _value;
 
             _value = _this.$('.property-value-' + field);
             if (_value.hasClass('datepicker')) {
@@ -18355,7 +18355,11 @@ define('_common/ResourceEditCommon',[], function() {
                 return _value.html(_str);
               });
             } else {
-              return _value.val((_ref = _this.model[field]()) != null ? _ref.toString() : void 0);
+              _v = _this.model[field]();
+              if (!(_v instanceof Array)) {
+                _v = _v.toString();
+              }
+              return _value.val(_v);
             }
           });
         }
@@ -18868,6 +18872,7 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
       'click .button-close': 'close',
       'click .button-close-subview': 'closeSubview',
       'click .button-add': 'addButton',
+      'click .button-save': 'saveButton',
       'click .button-delete': 'deleteButton'
     },
     addButton: function() {
@@ -18875,6 +18880,9 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
     },
     deleteButton: function() {
       return this.subViews[this.subView()].trigger('action:delete');
+    },
+    saveButton: function() {
+      return this.subViews[this.subView()].trigger('action:save');
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -20523,6 +20531,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
       this.on('action:add', this.add, this);
+      this.on('action:save', this.save, this);
       this.on('action:delete', this["delete"], this);
       this.on('change:model', this.processModelChange, this);
       this.resourceNeeds = this.$('ul.resource-needs');
@@ -21571,6 +21580,7 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
 define('models/resources/Template',['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     typeName: 'template',
+    localStorageOnly: true,
     _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
@@ -21654,6 +21664,7 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
+    localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
     _ignoreChange: ['periods'],
     _processTemplateAdd: function(model) {
@@ -22013,6 +22024,7 @@ define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/p
 define('models/resources/Period',['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, View, RuleCompiler, PeriodBlocks) {
   return ResourceBase.extend({
     typeName: 'period',
+    localStorageOnly: true,
     _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department', 'groups'],
     changePD: function() {
       this.set('templates', []);
@@ -22120,6 +22132,7 @@ define('collections/resources/Periods',['models/resources/Period', '_common/Reso
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
+    localStorageOnly: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
     _processPeriodAdd: function(model) {
       var _id,

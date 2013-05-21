@@ -159,6 +159,7 @@ define [
       @collection = ovivo.desktop.resources.templates
 
       @on 'action:add', @add, @
+      @on 'action:save', @save, @
       @on 'action:delete', @delete, @
 
       @on 'change:model', @processModelChange, @
