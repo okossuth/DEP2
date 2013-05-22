@@ -10,7 +10,8 @@ requirejs.config({
     'fastclick': '../../lib/fastclick',
     'airbrake': '../../lib/airbrake',
     'date': '../../lib/date',
-    'pickadate': '../../lib/pickadate.legacy'
+    'pickadate': '../../lib/pickadate.legacy',
+    'modernizr': '../../lib/modernizr'
   },
   shim: {
     'ovivo': {
@@ -35,6 +36,9 @@ requirejs.config({
       deps: ['date']
     },
     'date': {
+      deps: ['modernizr']
+    },
+    'modernizr': {
       deps: []
     }
   }

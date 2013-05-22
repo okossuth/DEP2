@@ -266,6 +266,18 @@ ovivo.config.HELP_URL = 'http://ovivo.desk.com';
 
 ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d)(\d\d)))$/;
 
+ovivo.config.ANIMATION_END = (function() {
+  var _animation;
+
+  if ((_animation = Modernizr.prefixed('animation')) === false) {
+    return false;
+  }
+  if (_animation === 'animation') {
+    return 'animationend';
+  }
+  return (_animation + "End").replace(/^ms/, "MS").replace(/^Webkit/, "webkit").replace(/^Moz.*/, "animationend");
+})();
+
 if (ovivo._config != null) {
   ovivo.config = _.extend(ovivo.config, ovivo._config);
 }
