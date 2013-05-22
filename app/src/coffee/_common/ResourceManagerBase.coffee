@@ -88,4 +88,6 @@ define [
 
     @on 'sync', @_syncHandler, @
 
+    if localStorageCache.allowed() is true then localStorageCache.init @, @_url
+
     true

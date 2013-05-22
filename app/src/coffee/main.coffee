@@ -68,11 +68,12 @@ require [
   'collections/resources/GroupRelations',
   'collections/resources/WorkingHours',
   'collections/resources/Inactivities',
+  'collections/ApiErrors',
 
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
+], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -93,7 +94,8 @@ require [
         'GroupRelations',
         'WorkingHours',
         'Inactivities',
-        'Events'
+        'Events',
+        'ApiErrors'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
 
