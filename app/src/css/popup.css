@@ -25,11 +25,11 @@
     -o-animation: popup-enter 200ms ease-out 0s;
     animation: popup-enter 200ms ease-out 0s; }
   .popup.exit {
-    -webkit-animation: popup-exit 200ms ease-in 0s;
-    -moz-animation: popup-exit 200ms ease-in 0s;
-    -ms-animation: popup-exit 200ms ease-in 0s;
-    -o-animation: popup-exit 200ms ease-in 0s;
-    animation: popup-exit 200ms ease-in 0s; }
+    -webkit-animation: popup-exit 190ms ease-in 0s;
+    -moz-animation: popup-exit 190ms ease-in 0s;
+    -ms-animation: popup-exit 190ms ease-in 0s;
+    -o-animation: popup-exit 190ms ease-in 0s;
+    animation: popup-exit 190ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }

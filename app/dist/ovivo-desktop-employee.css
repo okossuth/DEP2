@@ -534,11 +534,11 @@ section.page .notification-message {
     -o-animation: popup-enter 200ms ease-out 0s;
     animation: popup-enter 200ms ease-out 0s; }
   .popup.exit {
-    -webkit-animation: popup-exit 200ms ease-in 0s;
-    -moz-animation: popup-exit 200ms ease-in 0s;
-    -ms-animation: popup-exit 200ms ease-in 0s;
-    -o-animation: popup-exit 200ms ease-in 0s;
-    animation: popup-exit 200ms ease-in 0s; }
+    -webkit-animation: popup-exit 190ms ease-in 0s;
+    -moz-animation: popup-exit 190ms ease-in 0s;
+    -ms-animation: popup-exit 190ms ease-in 0s;
+    -o-animation: popup-exit 190ms ease-in 0s;
+    animation: popup-exit 190ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
@@ -679,7 +679,7 @@ section.page .notification-message {
 
 @-webkit-keyframes popup-enter {
   from {
-    -webkit-transform: translate(0, -100px);
+    -webkit-transform: translate(0, -1000px);
     opacity: 0; }
 
   to {
@@ -688,7 +688,7 @@ section.page .notification-message {
 
 @-moz-keyframes popup-enter {
   from {
-    -moz-transform: translate(0, -100px);
+    -moz-transform: translate(0, -1000px);
     opacity: 0; }
 
   to {
@@ -697,7 +697,7 @@ section.page .notification-message {
 
 @-ms-keyframes popup-enter {
   from {
-    -ms-transform: translate(0, -100px);
+    -ms-transform: translate(0, -1000px);
     opacity: 0; }
 
   to {
@@ -706,7 +706,7 @@ section.page .notification-message {
 
 @-o-keyframes popup-enter {
   from {
-    -o-transform: translate(0, -100px);
+    -o-transform: translate(0, -1000px);
     opacity: 0; }
 
   to {
@@ -715,7 +715,7 @@ section.page .notification-message {
 
 @keyframes popup-enter {
   from {
-    transform: translate(0, -100px);
+    transform: translate(0, -1000px);
     opacity: 0; }
 
   to {
@@ -728,7 +728,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -webkit-transform: translate(0, -100px);
+    -webkit-transform: translate(0, -1000px);
     opacity: 0; } }
 
 @-moz-keyframes popup-exit {
@@ -737,7 +737,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -moz-transform: translate(0, -100px);
+    -moz-transform: translate(0, -1000px);
     opacity: 0; } }
 
 @-ms-keyframes popup-exit {
@@ -746,7 +746,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -ms-transform: translate(0, -100px);
+    -ms-transform: translate(0, -1000px);
     opacity: 0; } }
 
 @-o-keyframes popup-exit {
@@ -755,7 +755,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -o-transform: translate(0, -100px);
+    -o-transform: translate(0, -1000px);
     opacity: 0; } }
 
 @keyframes popup-exit {
@@ -764,7 +764,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    transform: translate(0, -100px);
+    transform: translate(0, -1000px);
     opacity: 0; } }
 
 .page > div.content {
