@@ -36,9 +36,11 @@
 
 @keyframes page-enter {
   from {
+    transform: translate(20px);
     opacity: 0; }
 
   to {
+    transform: translate(0);
     opacity: 1; } }
 
 @-webkit-keyframes page-exit {

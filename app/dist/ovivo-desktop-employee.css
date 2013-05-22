@@ -640,9 +640,11 @@ section.page .notification-message {
 
 @keyframes page-enter {
   from {
+    transform: translate(20px);
     opacity: 0; }
 
   to {
+    transform: translate(0);
     opacity: 1; } }
 
 @-webkit-keyframes page-exit {
@@ -682,7 +684,7 @@ section.page .notification-message {
 
 @-webkit-keyframes popup-enter {
   from {
-    -webkit-transform: scale(2);
+    -webkit-transform: scale(1.05);
     opacity: 0; }
 
   to {
@@ -691,7 +693,7 @@ section.page .notification-message {
 
 @-moz-keyframes popup-enter {
   from {
-    -moz-transform: scale(2);
+    -moz-transform: scale(1.05);
     opacity: 0; }
 
   to {
@@ -700,7 +702,7 @@ section.page .notification-message {
 
 @-ms-keyframes popup-enter {
   from {
-    -ms-transform: scale(2);
+    -ms-transform: scale(1.05);
     opacity: 0; }
 
   to {
@@ -709,7 +711,7 @@ section.page .notification-message {
 
 @-o-keyframes popup-enter {
   from {
-    -o-transform: scale(2);
+    -o-transform: scale(1.05);
     opacity: 0; }
 
   to {
@@ -718,7 +720,7 @@ section.page .notification-message {
 
 @keyframes popup-enter {
   from {
-    transform: scale(2);
+    transform: scale(1.05);
     opacity: 0; }
 
   to {
@@ -731,7 +733,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -webkit-transform: scale(2);
+    -webkit-transform: scale(1.05);
     opacity: 0; } }
 
 @-moz-keyframes popup-exit {
@@ -740,7 +742,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -moz-transform: scale(2);
+    -moz-transform: scale(1.05);
     opacity: 0; } }
 
 @-ms-keyframes popup-exit {
@@ -749,7 +751,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -ms-transform: scale(2);
+    -ms-transform: scale(1.05);
     opacity: 0; } }
 
 @-o-keyframes popup-exit {
@@ -758,7 +760,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    -o-transform: scale(2);
+    -o-transform: scale(1.05);
     opacity: 0; } }
 
 @keyframes popup-exit {
@@ -767,7 +769,7 @@ section.page .notification-message {
     opacity: 1; }
 
   to {
-    transform: scale(2);
+    transform: scale(1.05);
     opacity: 0; } }
 
 .page > div.content {
