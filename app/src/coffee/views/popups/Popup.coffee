@@ -8,6 +8,7 @@ define [
     close: () -> @hide()
 
     show: () ->
+      console.log 'popup show'
       @$el.show()
 
       $('.popup-overlay').show()
