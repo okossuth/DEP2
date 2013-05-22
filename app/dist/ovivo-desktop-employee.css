@@ -507,96 +507,6 @@ section.page .notification-message {
     background: #0089ec;
     color: #fff;
 }
-@-webkit-keyframes enter {
-  from {
-    -webkit-transform: scale(2);
-    opacity: 0; }
-
-  to {
-    -webkit-transform: scale(1);
-    opacity: 1; } }
-
-@-moz-keyframes enter {
-  from {
-    -moz-transform: scale(2);
-    opacity: 0; }
-
-  to {
-    -moz-transform: scale(1);
-    opacity: 1; } }
-
-@-ms-keyframes enter {
-  from {
-    -ms-transform: scale(2);
-    opacity: 0; }
-
-  to {
-    -ms-transform: scale(1);
-    opacity: 1; } }
-
-@-o-keyframes enter {
-  from {
-    -o-transform: scale(2);
-    opacity: 0; }
-
-  to {
-    -o-transform: scale(1);
-    opacity: 1; } }
-
-@keyframes enter {
-  from {
-    transform: scale(2);
-    opacity: 0; }
-
-  to {
-    transform: scale(1);
-    opacity: 1; } }
-
-@-webkit-keyframes exit {
-  from {
-    -webkit-transform: scale(1);
-    opacity: 1; }
-
-  to {
-    -webkit-transform: scale(2);
-    opacity: 0; } }
-
-@-moz-keyframes exit {
-  from {
-    -moz-transform: scale(1);
-    opacity: 1; }
-
-  to {
-    -moz-transform: scale(2);
-    opacity: 0; } }
-
-@-ms-keyframes exit {
-  from {
-    -ms-transform: scale(1);
-    opacity: 1; }
-
-  to {
-    -ms-transform: scale(2);
-    opacity: 0; } }
-
-@-o-keyframes exit {
-  from {
-    -o-transform: scale(1);
-    opacity: 1; }
-
-  to {
-    -o-transform: scale(2);
-    opacity: 0; } }
-
-@keyframes exit {
-  from {
-    transform: scale(1);
-    opacity: 1; }
-
-  to {
-    transform: scale(2);
-    opacity: 0; } }
-
 .popup-overlay {
   position: absolute;
   top: 0;
@@ -618,22 +528,22 @@ section.page .notification-message {
   margin: 0 0 0 -158px;
   padding: 16px; }
   .popup.enter {
-    -webkit-animation: enter 200ms ease-out 0s;
-    -moz-animation: enter 200ms ease-out 0s;
-    -ms-animation: enter 200ms ease-out 0s;
-    -o-animation: enter 200ms ease-out 0s;
-    animation: enter 200ms ease-out 0s; }
+    -webkit-animation: popup-enter 200ms ease-out 0s;
+    -moz-animation: popup-enter 200ms ease-out 0s;
+    -ms-animation: popup-enter 200ms ease-out 0s;
+    -o-animation: popup-enter 200ms ease-out 0s;
+    animation: popup-enter 200ms ease-out 0s; }
   .popup.exit {
     -webkit-filter: blur(12px);
     -moz-filter: blur(12px);
     -ms-filter: blur(12px);
     -o-filter: blur(12px);
     filter: blur(12px);
-    -webkit-animation: exit 200ms ease-in 0s;
-    -moz-animation: exit 200ms ease-in 0s;
-    -ms-animation: exit 200ms ease-in 0s;
-    -o-animation: exit 200ms ease-in 0s;
-    animation: exit 200ms ease-in 0s; }
+    -webkit-animation: popup-exit 200ms ease-in 0s;
+    -moz-animation: popup-exit 200ms ease-in 0s;
+    -ms-animation: popup-exit 200ms ease-in 0s;
+    -o-animation: popup-exit 200ms ease-in 0s;
+    animation: popup-exit 200ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
@@ -691,6 +601,96 @@ section.page .notification-message {
 .popup.popup-timeoff {
   height: 260px;
   margin-top: -130px; }
+
+@-webkit-keyframes popup-enter {
+  from {
+    -webkit-transform: scale(2);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: scale(1);
+    opacity: 1; } }
+
+@-moz-keyframes popup-enter {
+  from {
+    -moz-transform: scale(2);
+    opacity: 0; }
+
+  to {
+    -moz-transform: scale(1);
+    opacity: 1; } }
+
+@-ms-keyframes popup-enter {
+  from {
+    -ms-transform: scale(2);
+    opacity: 0; }
+
+  to {
+    -ms-transform: scale(1);
+    opacity: 1; } }
+
+@-o-keyframes popup-enter {
+  from {
+    -o-transform: scale(2);
+    opacity: 0; }
+
+  to {
+    -o-transform: scale(1);
+    opacity: 1; } }
+
+@keyframes popup-enter {
+  from {
+    transform: scale(2);
+    opacity: 0; }
+
+  to {
+    transform: scale(1);
+    opacity: 1; } }
+
+@-webkit-keyframes popup-exit {
+  from {
+    -webkit-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -webkit-transform: scale(2);
+    opacity: 0; } }
+
+@-moz-keyframes popup-exit {
+  from {
+    -moz-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -moz-transform: scale(2);
+    opacity: 0; } }
+
+@-ms-keyframes popup-exit {
+  from {
+    -ms-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -ms-transform: scale(2);
+    opacity: 0; } }
+
+@-o-keyframes popup-exit {
+  from {
+    -o-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -o-transform: scale(2);
+    opacity: 0; } }
+
+@keyframes popup-exit {
+  from {
+    transform: scale(1);
+    opacity: 1; }
+
+  to {
+    transform: scale(2);
+    opacity: 0; } }
 
 .page > div.content {
   overflow: auto;
