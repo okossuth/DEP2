@@ -8,6 +8,18 @@
   background: #e4e2d6;
   opacity: 0.75;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; }
+  .popup-overlay.enter {
+    -webkit-animation: popup-overlay-enter 200ms ease-out 0s;
+    -moz-animation: popup-overlay-enter 200ms ease-out 0s;
+    -ms-animation: popup-overlay-enter 200ms ease-out 0s;
+    -o-animation: popup-overlay-enter 200ms ease-out 0s;
+    animation: popup-overlay-enter 200ms ease-out 0s; }
+  .popup-overlay.exit {
+    -webkit-animation: popup-overlay-exit 200ms ease-in 0s;
+    -moz-animation: popup-overlay-exit 200ms ease-in 0s;
+    -ms-animation: popup-overlay-exit 200ms ease-in 0s;
+    -o-animation: popup-overlay-exit 200ms ease-in 0s;
+    animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
   width: 300px;
@@ -38,11 +50,11 @@
     -o-animation: popup-enter 200ms ease-out 0s;
     animation: popup-enter 200ms ease-out 0s; }
   .popup.exit {
-    -webkit-animation: popup-exit 190ms ease-in 0s;
-    -moz-animation: popup-exit 190ms ease-in 0s;
-    -ms-animation: popup-exit 190ms ease-in 0s;
-    -o-animation: popup-exit 190ms ease-in 0s;
-    animation: popup-exit 190ms ease-in 0s; }
+    -webkit-animation: popup-exit 200ms ease-in 0s;
+    -moz-animation: popup-exit 200ms ease-in 0s;
+    -ms-animation: popup-exit 200ms ease-in 0s;
+    -o-animation: popup-exit 200ms ease-in 0s;
+    animation: popup-exit 200ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }

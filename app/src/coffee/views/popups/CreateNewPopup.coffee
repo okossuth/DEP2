@@ -14,8 +14,8 @@ define [
       ovivo.desktop.pages.settings.view.showSubView('resourceNeed')
       ovivo.desktop.popups.editPopupResourceNeed.createNew()
 
-      @close()
       ovivo.desktop.popups.editPopupResourceNeed.show()
+      @close()
 
     initialize: () ->
       @_initialize()

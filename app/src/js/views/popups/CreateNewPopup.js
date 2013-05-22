@@ -9,8 +9,8 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('resourceNeed');
       ovivo.desktop.popups.editPopupResourceNeed.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupResourceNeed.show();
+      ovivo.desktop.popups.editPopupResourceNeed.show();
+      return this.close();
     },
     initialize: function() {
       this._initialize();

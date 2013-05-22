@@ -48,20 +48,17 @@ define(['ovivo'], function() {
       };
     },
     _handlerEnterEnd: function(handler, $el, e) {
-      _counter -= 1;
       $el.removeClass('enter');
-      $('.popup-overlay').show();
       return $el.off(ovivo.config.ANIMATION_END, handler);
     },
     _handlerExitEnd: function(handler, $el, e) {
-      var _overlayFlag;
-
+      _counter -= 1;
       $el.removeClass('exit');
       $el.hide();
       if (_counter === 0) {
         $('.popup-overlay').hide();
+        $('.popup-overlay').removeClass('exit enter');
       }
-      _overlayFlag = true;
       return $el.off(ovivo.config.ANIMATION_END, handler);
     },
     _animationShow: function() {
@@ -69,11 +66,16 @@ define(['ovivo'], function() {
       this.$el.show();
       this._attachHandler(this._handlerEnterEnd);
       this.$el.addClass('enter');
-      return $('.popup-overlay').show();
+      $('.popup-overlay').show();
+      return $('.popup-overlay').removeClass('exit').addClass('enter');
     },
     _animationHide: function() {
       this._attachHandler(this._handlerExitEnd);
-      return this.$el.addClass('exit');
+      this.$el.addClass('exit');
+      if (_counter <= 1) {
+        $('.popup-overlay').addClass('exit');
+      }
+      return true;
     },
     _initialize: function() {
       return true;

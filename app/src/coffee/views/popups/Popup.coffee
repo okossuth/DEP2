@@ -42,22 +42,20 @@ define [
         handler.apply @, [_handler].concat(_argsOutter).concat _args
 
     _handlerEnterEnd: (handler, $el, e) ->
-      _counter -= 1
-
       $el.removeClass 'enter'
-
-      $('.popup-overlay').show()
 
       $el.off ovivo.config.ANIMATION_END, handler
 
     _handlerExitEnd: (handler, $el, e) ->
+      _counter -= 1
+
       $el.removeClass 'exit'
 
       $el.hide()
 
-      if _counter is 0 then $('.popup-overlay').hide()
-
-      _overlayFlag = true
+      if _counter is 0
+        $('.popup-overlay').hide()
+        $('.popup-overlay').removeClass 'exit enter'
 
       $el.off ovivo.config.ANIMATION_END, handler
 
@@ -71,11 +69,17 @@ define [
       @$el.addClass 'enter'
 
       $('.popup-overlay').show()
+      $('.popup-overlay').removeClass('exit').addClass('enter')
 
     _animationHide: () ->
       @_attachHandler @_handlerExitEnd
 
       @$el.addClass 'exit'
+
+      if _counter <= 1
+        $('.popup-overlay').addClass('exit')
+
+      true
 
     _initialize: () ->
       
