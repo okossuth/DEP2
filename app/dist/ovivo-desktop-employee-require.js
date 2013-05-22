@@ -18861,20 +18861,17 @@ define('views/popups/Popup',['ovivo'], function() {
       };
     },
     _handlerEnterEnd: function(handler, $el, e) {
-      _counter -= 1;
       $el.removeClass('enter');
-      $('.popup-overlay').show();
       return $el.off(ovivo.config.ANIMATION_END, handler);
     },
     _handlerExitEnd: function(handler, $el, e) {
-      var _overlayFlag;
-
+      _counter -= 1;
       $el.removeClass('exit');
       $el.hide();
       if (_counter === 0) {
         $('.popup-overlay').hide();
+        $('.popup-overlay').removeClass('exit enter');
       }
-      _overlayFlag = true;
       return $el.off(ovivo.config.ANIMATION_END, handler);
     },
     _animationShow: function() {
@@ -18882,11 +18879,16 @@ define('views/popups/Popup',['ovivo'], function() {
       this.$el.show();
       this._attachHandler(this._handlerEnterEnd);
       this.$el.addClass('enter');
-      return $('.popup-overlay').show();
+      $('.popup-overlay').show();
+      return $('.popup-overlay').removeClass('exit').addClass('enter');
     },
     _animationHide: function() {
       this._attachHandler(this._handlerExitEnd);
-      return this.$el.addClass('exit');
+      this.$el.addClass('exit');
+      if (_counter <= 1) {
+        $('.popup-overlay').addClass('exit');
+      }
+      return true;
     },
     _initialize: function() {
       return true;
@@ -19105,15 +19107,15 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('availability');
       ovivo.desktop.popups.editPopupWorkingHour.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupWorkingHour.show();
+      ovivo.desktop.popups.editPopupWorkingHour.show();
+      return this.close();
     },
     createTimeoff: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('timeoff');
       ovivo.desktop.popups.editPopupTimeoff.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupTimeoff.show();
+      ovivo.desktop.popups.editPopupTimeoff.show();
+      return this.close();
     },
     initialize: function() {
       this._initialize();

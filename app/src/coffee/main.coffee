@@ -121,7 +121,6 @@ require [
 
       ovivo.desktop.popups = {}
 
-
       _.each [
         'EditPopupWorkingHour',
         'EditPopupTimeoff',
