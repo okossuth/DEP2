@@ -14,9 +14,18 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
     addInactivity: function(inactivity) {
       return this.inactivities.append(inactivity.editView.el);
     },
+    updateScrollers: function() {
+      return this.baseView.updateScrollProcessors();
+    },
     initialize: function() {
+      var _this = this;
+
       this.inactivities = this.$('.inactivities');
       ovivo.desktop.resources.inactivities.on('add', this.addInactivity, this);
+      ovivo.desktop.resources.inactivities.def.done(function() {
+        ovivo.desktop.resources.inactivities.on('add', _this.updateScrollers, _this);
+        return ovivo.desktop.resources.inactivities.on('remove', _this.updateScrollers, _this);
+      });
       return true;
     }
   });

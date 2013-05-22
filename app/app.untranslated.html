@@ -105,12 +105,12 @@
                 </div>
             </header>
 
-            <div class="content month-view hide">
+            <div class="content month-view scrollable hide">
                 <ul class="months-list specific">
                 </ul>
             </div>
 
-            <div class="content week-view hide">
+            <div class="content week-view scrollable hide">
                 <ul class="weeks-list specific">
                 </ul>
             </div>
@@ -163,6 +163,8 @@
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
 
+                    <div class="placeholder"></div>
+
                     <ul class="sections-menu">
                         <li class="selected sections-menu-item sections-menu-item-general">
                             <span>{{#i18n}}General{{/i18n}}</span>
@@ -186,7 +188,7 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container settings-items">
+                <ul class="scroll-container scrollable settings-items">
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}First name{{/i18n}}</span><em>{{#i18n}}Explanation 1{{/i18n}}</em>
@@ -235,11 +237,16 @@
                         </div>
                     </li>
                 </ul>
+
+                <div class="shadow top"></div>
+                <div class="shadow bottom"></div>
             </div>
 
             <div class="content notifications-view hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
+
+                    <div class="placeholder"></div>
 
                     <ul class="sections-menu">
                         <li class="sections-menu-item sections-menu-item-general">
@@ -264,7 +271,7 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container settings-items">
+                <ul class="scroll-container scrollable settings-items">
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Send me notifications via e-mail{{/i18n}}</span><em>{{#i18n}}Explanation 5{{/i18n}}</em>
@@ -377,11 +384,16 @@
                         </div>
                     </li>
                 </ul>
+
+                <div class="shadow top"></div>
+                <div class="shadow bottom"></div>
             </div>
 
             <div class="content availability-view hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
+
+                    <div class="placeholder"></div>
 
                     <ul class="sections-menu">
                         <li class="sections-menu-item sections-menu-item-general">
@@ -429,14 +441,19 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container elements working-hours">
+                <ul class="scroll-container scrollable elements working-hours">
 
                 </ul>
+
+                <div class="shadow top"></div>
+                <div class="shadow bottom"></div>
             </div>
 
             <div class="content timeoff-view hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
+
+                    <div class="placeholder"></div>
 
                     <ul class="sections-menu">
                         <li class="sections-menu-item sections-menu-item-general">
@@ -475,14 +492,19 @@
                     </div>
                 </div>
 
-                <ul class="scroll-container elements inactivities">
+                <ul class="scroll-container scrollable elements inactivities">
 
                 </ul>
+
+                <div class="shadow top"></div>
+                <div class="shadow bottom"></div>
             </div>
 
             <div class="content connections-view hide">
                 <div class="line">
                     <h2 class="title">{{#i18n}}Settings{{/i18n}}</h2>
+
+                    <div class="placeholder"></div>
 
                     <ul class="sections-menu">
                         <li class="sections-menu-item sections-menu-item-general">
@@ -559,7 +581,7 @@
                 <div class="shadow"></div>
             </header>
 
-            <div class="content">
+            <div class="content scrollable">
                 <div class="event-container">
                 </div>
             </div>
@@ -591,7 +613,7 @@
                 <div class="shadow"></div>
             </header>
 
-            <div class="content">
+            <div class="content scrollable">
                 <ul class="notifications-list">
                 </ul>
 
@@ -711,12 +733,16 @@
                 </li>
             </ul>
 
-            <div class="button capital button-add">
+            <div class="button capital button-add create-mode">
                 + {{#i18n}}Add time{{/i18n}}
             </div>
 
-            <div class="button capital warning button-delete">
-                {{#i18n}}Delete{{/i18n}}
+            <div class="buttons-container">
+                <div class="button capital warning button-delete edit-mode">
+                    {{#i18n}}Delete{{/i18n}}
+                </div><div class="button capital button-save edit-mode">
+                    {{#i18n}}Save{{/i18n}}
+                </div>
             </div>
         </div>
 
@@ -750,12 +776,16 @@
                 </li>
             </ul>
 
-            <div class="button capital button-add">
+            <div class="button capital button-add create-mode">
                 + {{#i18n}}Add time off{{/i18n}}
             </div>
 
-            <div class="button capital warning button-delete">
-                {{#i18n}}Delete{{/i18n}}
+            <div class="buttons-container">
+                <div class="button capital warning button-delete edit-mode">
+                    {{#i18n}}Delete{{/i18n}}
+                </div><div class="button capital button-save edit-mode">
+                    {{#i18n}}Save{{/i18n}}
+                </div>
             </div>
         </div>
 

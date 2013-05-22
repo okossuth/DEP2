@@ -47,8 +47,14 @@ define(['_features/transition', 'models/Page', 'ovivo'], function(transition, Mo
       }
       return true;
     },
+    resizeHandler: function() {
+      return this.each(function(page) {
+        return page.page.view.updateScrollProcessors();
+      });
+    },
     initialize: function() {
       this.on('show', this.processShow, this);
+      $(window).on('resize', _.bind(this.resizeHandler, this));
       return true;
     }
   });

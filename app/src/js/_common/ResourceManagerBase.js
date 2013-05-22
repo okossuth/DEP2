@@ -43,20 +43,46 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
       }
       return true;
     },
-    processModelChange: function() {
-      return this.save();
+    processModelChange: function(model, obj) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
+        return model.save();
+      }
+    },
+    _checkIfIgnore: function(model) {
+      var _i;
+
+      if (this._ignoreChange instanceof Array) {
+        _i = 0;
+        while (_i < this._ignoreChange.length) {
+          if (typeof model.changed[this._ignoreChange[_i]] !== 'undefined') {
+            return true;
+          }
+          _i += 1;
+        }
+      }
+      return false;
     },
     cache: function() {
       return localStorageCache.cache(this, this._url);
     },
+    changeCacheHandler: function(model) {
+      if (this._checkIfIgnore(model) === true) {
+        return true;
+      }
+      return localStorageCache.cache(this, this._url);
+    },
     attachProcessors: function() {
       if (this instanceof Backbone.Model) {
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
         this.on('change', this.processModelChange, this);
       } else if (this instanceof Backbone.Collection) {
         this.on('add', this.cache, this);
         this.on('remove', this.cache, this);
-        this.on('change', this.cache, this);
+        this.on('change', this.changeCacheHandler, this);
+        this.on('change', this.processModelChange, this);
       }
       return true;
     },

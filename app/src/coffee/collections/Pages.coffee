@@ -54,7 +54,12 @@ define [
 
       true
 
+    resizeHandler: () ->
+      @each (page) -> page.page.view.updateScrollProcessors()
+
     initialize: () ->
       @on 'show', @processShow, @
+
+      $(window).on 'resize', _.bind @resizeHandler, @
 
       true

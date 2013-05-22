@@ -25,8 +25,6 @@ define [
 
       else gettext('Params are missing')
 
-    processChange: () -> if (not @changed.pk?) and @id? then @save()
-
     processRange: (start, end) ->
       _arr = []
 
@@ -62,8 +60,6 @@ define [
 
     initialize: (attrs, options) ->
       @View = View
-
-      @on 'change', @processChange, @
 
       @proxyCall 'initialize', arguments
 

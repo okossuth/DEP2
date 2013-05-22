@@ -48,6 +48,17 @@
   > div.button
     width: 156px
 
+  > div.buttons-container
+    text-align: center
+
+    > div.button
+      margin: 0 9px
+
+      width: 130px
+
+      display: inline-block
+
+  div.button
     margin: 10px auto 0 auto
 
     display: block
@@ -71,6 +82,17 @@
           padding: 9px 9px
 
           width: 287px
+
+          -webkit-appearance: none
+
+        > input
+          height: 17px
+
+        > select
+          -webkit-appearance: menulist-button
+
+        > select[multiple="multiple"]
+          -webkit-appearance: initial
 
         > span
           font: normal 17px 'Helvetica Neue Bold', HelveticaNeueBold, Helvetica, Arial, sans-serif
