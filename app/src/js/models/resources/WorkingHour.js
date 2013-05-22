@@ -67,11 +67,6 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
         }
       }), void 0);
     },
-    processChange: function(model, obj) {
-      if ((model.changed.pk == null) && (this.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return this.save();
-      }
-    },
     toJSON: function() {
       var _json;
 
@@ -170,8 +165,6 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
       this.proxyCall('initialize', arguments);
       this.updateStartDate();
       this.updateEndDate();
-      this.on('change', this.processChange, this);
-      this.on('change:group', this.processChange, this);
       this.on('change:weekdays', this.updateWeekdaysHash, this);
       this.on('change:start_date', this.updateStartDate, this);
       this.on('change:end_date', this.updateEndDate, this);

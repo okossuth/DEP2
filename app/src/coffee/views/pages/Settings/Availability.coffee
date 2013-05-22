@@ -20,9 +20,16 @@ define [
     addWorkingHour: (workingHour) ->
       @workingHours.append workingHour.editView.el
 
+    updateScrollers: () ->
+      @baseView.updateScrollProcessors()
+
     initialize: () ->
       @workingHours = @$('.working-hours')
 
       ovivo.desktop.resources.workingHours.on 'add', @addWorkingHour, @
+
+      ovivo.desktop.resources.workingHours.def.done () =>
+        ovivo.desktop.resources.workingHours.on 'add', @updateScrollers, @
+        ovivo.desktop.resources.workingHours.on 'remove', @updateScrollers, @
 
       true

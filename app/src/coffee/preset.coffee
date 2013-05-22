@@ -58,3 +58,6 @@ Handlebars.registerHelper 'i18n', (value, options) ->
   else gettext value.fn()
 
 ovivo.Y = (f) -> do (g = (g) -> (a, b) -> f(g(g))(a, b)) -> (a, b) -> f(g(g))(a, b)
+
+window.onerror = () ->
+  window.localStorage.clear()

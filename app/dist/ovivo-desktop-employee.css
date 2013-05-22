@@ -540,7 +540,14 @@ section.page .notification-message {
     width: 50px;
     cursor: pointer; }
   .popup > div.button {
-    width: 156px;
+    width: 156px; }
+  .popup > div.buttons-container {
+    text-align: center; }
+    .popup > div.buttons-container > div.button {
+      margin: 0 9px;
+      width: 130px;
+      display: inline-block; }
+  .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
   .popup > .settings-items {
@@ -553,7 +560,14 @@ section.page .notification-message {
         font-size: 15px;
         text-align: center;
         padding: 9px 9px;
-        width: 287px; }
+        width: 287px;
+        -webkit-appearance: none; }
+      .popup > .settings-items > li.settings-item > div.item-content > input {
+        height: 17px; }
+      .popup > .settings-items > li.settings-item > div.item-content > select {
+        -webkit-appearance: menulist-button; }
+      .popup > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
+        -webkit-appearance: initial; }
       .popup > .settings-items > li.settings-item > div.item-content > span {
         font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-style: italic;
@@ -583,7 +597,7 @@ section.page .notification-message {
   bottom: 0;
   background: #f3f2ec; }
 
-.page.scrolled > header div.shadow {
+.page.scrolled-top > header div.shadow {
   display: block; }
 
 .page > header {
@@ -596,16 +610,8 @@ section.page .notification-message {
   padding: 28px 0 28px 0; }
   .page > header i {
     cursor: pointer; }
-  .page > header div.shadow {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background: black;
-    opacity: 0.05;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
-    display: none; }
+  .page > header .shadow {
+    bottom: -2px; }
   .page > header > div.line {
     height: 39px;
     line-height: 16px;
@@ -665,6 +671,17 @@ section.page .notification-message {
   min-width: 1000px;
   min-height: 600px; }
 
+.shadow {
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 1;
+  background: #807e73;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  display: none; }
+
 .side-bar ul.menu {
   margin: 16px 0 0 0; }
   .side-bar ul.menu > li {
@@ -688,7 +705,8 @@ section.page .notification-message {
   bottom: 0;
   width: 261px;
   min-height: 600px;
-  background: #007550; }
+  background: #007550;
+  min-height: 600px; }
 
 body.loading .side-bar > h1.title > img {
   display: block; }
@@ -1251,12 +1269,28 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   .page.page-settings .connections-view ul.options-group > li.option:first-child {
     margin-left: 0; }
 
+.page.page-settings.scrolled-bottom .shadow.bottom {
+  display: block; }
+
+.page.page-settings.scrolled-top .shadow.top {
+  display: block; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px; }
+  .page.page-settings .content > .shadow.bottom {
+    bottom: 0; }
+  .page.page-settings .content > .shadow.top {
+    top: 90px; }
   .page.page-settings .content > .line {
-    overflow: auto; }
+    overflow: visible;
+    height: 40px; }
     .page.page-settings .content > .line > * {
       vertical-align: middle; }
+    .page.page-settings .content > .line > div.placeholder {
+      height: 40px;
+      width: 1px;
+      display: inline-block;
+      margin: 0 0 0 0; }
   .page.page-settings .content h2.title {
     color: #807e73;
     font-weight: normal;
@@ -1322,7 +1356,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
     font-weight: normal; }
 .page.page-settings .elements {
-  margin: 200px 0 0 0; }
+  margin: 220px 0 0 0; }
   .page.page-settings .elements > li.element {
     background: white;
     border-radius: 2px;
@@ -1349,57 +1383,61 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     .page.page-settings .elements > li.element > .wireframe .remove-button {
       right: 73px; }
 
-.page.page-settings .timeoff-view .attributes {
+.page.page-settings .timeoff-view.content > .shadow.top {
+  top: 220px; }
+.page.page-settings .timeoff-view.content .attributes {
   padding: 22px 0 0 30px; }
-.page.page-settings .timeoff-view .elements > li.element .side-container i {
+.page.page-settings .timeoff-view.content .elements > li.element .side-container i {
   display: none; }
-.page.page-settings .timeoff-view .elements > li.element.pending .side-container i.pending {
+.page.page-settings .timeoff-view.content .elements > li.element.pending .side-container i.pending {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element.approved .side-container i.approved {
+.page.page-settings .timeoff-view.content .elements > li.element.approved .side-container i.approved {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element.not-approved .side-container i.not-approved {
+.page.page-settings .timeoff-view.content .elements > li.element.not-approved .side-container i.not-approved {
   display: inline-block; }
-.page.page-settings .timeoff-view .elements > li.element > .wireframe {
+.page.page-settings .timeoff-view.content .elements > li.element > .wireframe {
   height: 94px; }
-  .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container {
+  .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container {
     text-align: center; }
-    .page.page-settings .timeoff-view .elements > li.element > .wireframe .side-container i {
+    .page.page-settings .timeoff-view.content .elements > li.element > .wireframe .side-container i {
       margin: 32px 0 0 0; }
 
-.page.page-settings .availability-view .wireframe.elements-header {
+.page.page-settings .availability-view.content > .shadow.top {
+  top: 220px; }
+.page.page-settings .availability-view.content .wireframe.elements-header {
   height: 50px; }
-.page.page-settings .availability-view .attributes {
+.page.page-settings .availability-view.content .attributes {
   display: block;
   width: 180px;
   margin: 13px auto 0 auto; }
-.page.page-settings .availability-view ul.columns {
+.page.page-settings .availability-view.content ul.columns {
   overflow: auto; }
-  .page.page-settings .availability-view ul.columns.weekdays {
+  .page.page-settings .availability-view.content ul.columns.weekdays {
     padding: 34px 0 0 0; }
-  .page.page-settings .availability-view ul.columns.weekdays-titles {
+  .page.page-settings .availability-view.content ul.columns.weekdays-titles {
     font-family: "Helvetica Neue Bold", HelveticaNeueBold;
     padding: 10px 0 0 0; }
-    .page.page-settings .availability-view ul.columns.weekdays-titles > li {
+    .page.page-settings .availability-view.content ul.columns.weekdays-titles > li {
       color: #807e73;
       font-size: 13px; }
-  .page.page-settings .availability-view ul.columns > li {
+  .page.page-settings .availability-view.content ul.columns > li {
     width: 14.28571%;
     text-align: center;
     float: left;
     cursor: pointer; }
-    .page.page-settings .availability-view ul.columns > li > i.checked {
+    .page.page-settings .availability-view.content ul.columns > li > i.checked {
       display: none; }
-    .page.page-settings .availability-view ul.columns > li.checked > i.unchecked {
+    .page.page-settings .availability-view.content ul.columns > li.checked > i.unchecked {
       display: none; }
-    .page.page-settings .availability-view ul.columns > li.checked > i.checked {
+    .page.page-settings .availability-view.content ul.columns > li.checked > i.checked {
       display: inline-block; }
-.page.page-settings .availability-view .elements > li.element > .wireframe {
+.page.page-settings .availability-view.content .elements > li.element > .wireframe {
   height: 94px; }
 
 
 .page.page-settings .scroll-container {
   position: absolute;
-  top: 10px;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1407,7 +1445,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   -webkit-overflow-scrolling: touch; }
 
 .settings-items {
-  margin: 50px 0 0 0; }
+  margin: 90px 0 0 0; }
   .settings-items > li.settings-item {
     font-size: 15px;
     margin: 22px 0 0 0; }

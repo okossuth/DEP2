@@ -14,6 +14,8 @@ define [
       @each (group) => 
         if (_parent = group.parent())? then @get(_parent).get('children').push group
         group.setChainName()
+
+    _ignoreChange: ['chainName', 'children', 'allowed']
     
     initialize: () ->
       @initResource()

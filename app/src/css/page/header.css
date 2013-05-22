@@ -1,4 +1,4 @@
-.page.scrolled > header div.shadow {
+.page.scrolled-top > header div.shadow {
   display: block; }
 
 .page > header {
@@ -11,16 +11,8 @@
   padding: 28px 0 28px 0; }
   .page > header i {
     cursor: pointer; }
-  .page > header div.shadow {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background: black;
-    opacity: 0.05;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
-    display: none; }
+  .page > header .shadow {
+    bottom: -2px; }
   .page > header > div.line {
     height: 39px;
     line-height: 16px;

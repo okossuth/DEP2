@@ -8,6 +8,7 @@ define(['ovivo'], function() {
       return this.hide();
     },
     show: function() {
+      console.log('popup show');
       this.$el.show();
       return $('.popup-overlay').show();
     },

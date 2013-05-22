@@ -62,7 +62,7 @@ module.exports = function(grunt) {
             da: {
                 dict: 'i18n/da.json',
                 src: 'app.untranslated.html',
-                dest: 'app_da.html'
+                dest: 'app_da-DK.html'
             }
         }
     });

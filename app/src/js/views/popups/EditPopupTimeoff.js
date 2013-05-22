@@ -23,7 +23,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
       }));
-      return this.initEditMode();
+      return this.initCreateMode();
     },
     initialize: function() {
       var _min;
