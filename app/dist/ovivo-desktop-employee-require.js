@@ -18778,9 +18778,9 @@ define('_features/transition',[], function() {
         $(next).css('z-index', 1);
         $(prev).css('z-index', 0);
       }
-      if (ovivo.config.PAGE_TRANSITION_ANIMATION === true) {
-        $(next).on('webkitAnimationEnd ', _animationEndGen(_defNext, enterClass, exitClass));
-        $(prev).on('webkitAnimationEnd ', _animationEndGen(_defPrev, enterClass, exitClass));
+      if ((ovivo.config.PAGE_TRANSITION_ANIMATION === true) && (ovivo.config.ANIMATION_END !== false)) {
+        $(next).on(ovivo.config.ANIMATION_END, _animationEndGen(_defNext, enterClass, exitClass));
+        $(prev).on(ovivo.config.ANIMATION_END, _animationEndGen(_defPrev, enterClass, exitClass));
         if (reverse === true) {
           $(next).addClass('back');
           $(prev).addClass('back');

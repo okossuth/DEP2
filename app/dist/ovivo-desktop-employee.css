@@ -640,6 +640,86 @@ section.page .notification-message {
   height: 400px;
   margin-top: -250px; }
 
+@-webkit-keyframes page-enter {
+  from {
+    -webkit-transform: scale(1.01);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: scale(1);
+    opacity: 1; } }
+
+@-moz-keyframes page-enter {
+  from {
+    -moz-transform: scale(1.01);
+    opacity: 0; }
+
+  to {
+    -moz-transform: scale(1);
+    opacity: 1; } }
+
+@-ms-keyframes page-enter {
+  from {
+    -ms-transform: scale(1.01);
+    opacity: 0; }
+
+  to {
+    -ms-transform: scale(1);
+    opacity: 1; } }
+
+@-o-keyframes page-enter {
+  from {
+    -o-transform: scale(1.01);
+    opacity: 0; }
+
+  to {
+    -o-transform: scale(1);
+    opacity: 1; } }
+
+@keyframes page-enter {
+  from {
+    transform: scale(1.01);
+    opacity: 0; }
+
+  to {
+    transform: scale(1);
+    opacity: 1; } }
+
+@-webkit-keyframes page-exit {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+@-moz-keyframes page-exit {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+@-ms-keyframes page-exit {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+@-o-keyframes page-exit {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
+@keyframes page-exit {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: 0; } }
+
 @-webkit-keyframes popup-enter {
   from {
     -webkit-transform: scale(2);
@@ -858,6 +938,18 @@ section.page .notification-message {
   min-height: 600px; }
   .page.side-enabled {
     margin-left: 260px; }
+  .page.enter {
+    -webkit-animation: page-enter 200ms ease-out 0s;
+    -moz-animation: page-enter 200ms ease-out 0s;
+    -ms-animation: page-enter 200ms ease-out 0s;
+    -o-animation: page-enter 200ms ease-out 0s;
+    animation: page-enter 200ms ease-out 0s; }
+  .page.exit {
+    -webkit-animation: page-exit 200ms ease-out 0s;
+    -moz-animation: page-exit 200ms ease-out 0s;
+    -ms-animation: page-exit 200ms ease-out 0s;
+    -o-animation: page-exit 200ms ease-out 0s;
+    animation: page-exit 200ms ease-out 0s; }
 
 .shadow {
   position: absolute;
