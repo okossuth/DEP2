@@ -1,6 +1,8 @@
 define [
   'ovivo'
 ], () ->
+  _counter = 0
+
   _Popup = Backbone.View.extend
     events:
       'click .close': 'close'
@@ -40,7 +42,11 @@ define [
         handler.apply @, [_handler].concat(_argsOutter).concat _args
 
     _handlerEnterEnd: (handler, $el, e) ->
+      _counter -= 1
+
       $el.removeClass 'enter'
+
+      $('.popup-overlay').show()
 
       $el.off ovivo.config.ANIMATION_END, handler
 
@@ -49,9 +55,15 @@ define [
 
       $el.hide()
 
+      if _counter is 0 then $('.popup-overlay').hide()
+
+      _overlayFlag = true
+
       $el.off ovivo.config.ANIMATION_END, handler
 
     _animationShow: () ->
+      _counter += 1
+
       @$el.show()
 
       @_attachHandler @_handlerEnterEnd
@@ -64,8 +76,6 @@ define [
       @_attachHandler @_handlerExitEnd
 
       @$el.addClass 'exit'
-
-      $('.popup-overlay').hide()
 
     _initialize: () ->
       
