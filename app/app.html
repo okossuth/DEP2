@@ -1,4 +1,4 @@
-{% load general_purpose_tags %}
+{% load general_purpose_tags compressed mixpanel %}
 <!DOCTYPE html>
 <!--<html lang="en" manifest="/app.appcache"> -->
 
@@ -10,14 +10,14 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        {% compressed_css "backbone-employee-desktop" %}
         
         <title>Ovivo</title>
 
         <!--[if lte IE 8]>
         <script src="{{ MEDIA_URL }}employee-desktop/lib/html5shiv.js"></script>
 
-        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
+        {% compressed_css "backbone-employee-desktop-ie" %}
         <![endif]-->
      </head>
 
@@ -834,13 +834,17 @@
                 FB_APP_ID: '{{ FACEBOOK_APP_ID }}',
                 TIMEZONE_OFFSET: {{ time_zone_offset }},
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}employee-desktop/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-desktop/assets/img/ajax-loader.gif',
+                CACHE_RESOURCES: {
+                    {% for url, resource in cache_resources.items %}
+                    '{{ url|safe }}': '{{ resource|safe }}',
+                    {% endfor %}
+                },
             };
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        <script src="{{ MEDIA_URL }}employee-desktop/lib/require.js"></script>
-        <script src="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-require.js"></script>
+        {% compressed_js "backbone-employee-desktop" %}
 
         <script>
             (function(d, s, id){
