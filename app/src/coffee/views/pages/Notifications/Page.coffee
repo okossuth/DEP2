@@ -1,9 +1,10 @@
 define [
   'views/pages/PageBase',
+  'views/pages/PageStandaloneAnimation',
 
   'ovivo'
-], (PageBase) ->
-  PageBase.extend
+], (PageBase, PageStandaloneAnimation) ->
+  PageBase.extend _.extend {}, PageStandaloneAnimation,
     el: '.page.page-notifications'
 
     events: () -> _.extend {}, PageBase.prototype.events,
@@ -16,16 +17,6 @@ define [
       @hideEl()
 
     loadMoreClick: () -> ovivo.desktop.resources.notifications.loadMore()
-
-    transitionStart: () ->
-      @proxyCall 'transitionStart', arguments
-
-      true
-
-    transitionComplete: () ->
-      @proxyCall 'transitionComplete', arguments
-
-      true
 
     appendItem: (item) -> @$('.notifications-list').append item
     prependItem: (item) -> @$('.notifications-list').prepend item
