@@ -39,4 +39,11 @@ ovivo.config.HELP_URL = 'http://ovivo.desk.com'
   
 ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d)(\d\d)))$/
 
+ovivo.config.ANIMATION_END = do ->
+    if (_animation = Modernizr.prefixed('animation')) is false then return false
+
+    if _animation is 'animation' then return 'animationend'
+
+    (_animation + "End").replace(/^ms/, "MS").replace(/^Webkit/, "webkit").replace(/^Moz.*/, "animationend")
+
 if ovivo._config? then ovivo.config = _.extend ovivo.config, ovivo._config

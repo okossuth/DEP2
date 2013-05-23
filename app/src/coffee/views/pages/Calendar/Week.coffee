@@ -36,6 +36,8 @@ define [
       _now.setWeek _now.getWeek()
       _now.moveToDayOfWeek(4)
 
+      @current = _now
+
       @navigate _now.getFullYear(), _now.getWeek()
 
     _isToday: (year, number) ->

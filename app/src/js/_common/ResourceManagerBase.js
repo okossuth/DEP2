@@ -101,6 +101,9 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
         return _this.attachProcessors();
       });
       this.on('sync', this._syncHandler, this);
+      if (localStorageCache.allowed() === true) {
+        localStorageCache.init(this, this._url);
+      }
       return true;
     }
   };
