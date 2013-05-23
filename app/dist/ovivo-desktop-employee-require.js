@@ -17718,11 +17718,13 @@ define('_features/localStorageCache',[], function() {
       return localStorage[url] = JSON.stringify(((model instanceof Backbone.Model) || (model instanceof Backbone.Collection) ? model.toJSON() : model));
     },
     init: function(model, url) {
-      if (typeof localStorage[url] === 'undefined') {
-        if (model instanceof Backbone.Model) {
-          localStorage[url] = "{}";
-        } else if (model instanceof Backbone.Collection) {
-          localStorage[url] = "[]";
+      if (model.initializeEmpty === true) {
+        if (typeof localStorage[url] === 'undefined') {
+          if (model instanceof Backbone.Model) {
+            localStorage[url] = "{}";
+          } else if (model instanceof Backbone.Collection) {
+            localStorage[url] = "[]";
+          }
         }
       }
       return true;
@@ -22448,6 +22450,7 @@ define('collections/ApiErrors',['models/ApiError', '_common/ResourceManagerBase'
     model: Model,
     fullResponse: true,
     localStorageOnly: true,
+    initializeEmpty: true,
     url: "/API-errors/",
     addError: function(url, model, resp, method, options) {
       if ((method === 'update') || (method === 'create')) {
