@@ -1,11 +1,12 @@
 define [
   'views/pages/PageBase',
+  'views/pages/PageStandaloneAnimation',
 
   'models/resources/Comment',
 
   'ovivo'
-], (PageBase, Comment) ->
-  PageBase.extend
+], (PageBase, PageStandaloneAnimation, Comment) ->
+  PageBase.extend _.extend {}, PageStandaloneAnimation,
     el: '.page.page-event-details'
 
     events: () -> _.extend {}, PageBase.prototype.events,

@@ -1,8 +1,10 @@
 define [
   '_common/ToolsBase',
+
+  '_features/transition',
   
   'ovivo'
-], (ToolsBase) ->
+], (ToolsBase, transition) ->
   _Base = Backbone.View.extend _.extend {}, ToolsBase,
     show: () ->
       @model.trigger.apply @model, ['show'].concat Array.prototype.slice.call arguments, 0
@@ -54,17 +56,34 @@ define [
 
     subView: () -> @model.get 'subView'
 
+    transition: (source, target) ->
+      _.each [source, target], (page) -> 
+        page.showEl()
+
+        true
+
+      transition.transit(source.el, target.el, 'enter', 'exit', false).done () =>
+        source.hideEl()
+
+        true
+
     processSubView: (page) ->
       _subViewName = @subView()
+      _subView = @subViews[_subViewName]
 
-      if @prevSubView? then @prevSubView.hideEl()
+      if _subView?
+        if @prevSubView?
+          @transition(@prevSubView, _subView).done () =>
+            @trigger 'subViewChange', _subViewName
 
-      if (_subView = @subViews[_subViewName])?
-        _subView.showEl()
+            @prevSubView = _subView
 
-        @trigger 'subViewChange', _subViewName
+        else
+          _subView.showEl()
 
-        @prevSubView = _subView
+          @trigger 'subViewChange', _subViewName
+
+          @prevSubView = _subView
 
       true
 
