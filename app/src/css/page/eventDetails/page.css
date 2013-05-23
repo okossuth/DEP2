@@ -4,5 +4,17 @@
   z-index: 9999;
   box-shadow: -2px 0 30px #888888;
   left: auto; }
+  .page.page-event-details.enter {
+    -webkit-animation: event-details-enter 200ms ease-out 0s;
+    -moz-animation: event-details-enter 200ms ease-out 0s;
+    -ms-animation: event-details-enter 200ms ease-out 0s;
+    -o-animation: event-details-enter 200ms ease-out 0s;
+    animation: event-details-enter 200ms ease-out 0s; }
+  .page.page-event-details.exit {
+    -webkit-animation: event-details-exit 200ms ease-out 0s;
+    -moz-animation: event-details-exit 200ms ease-out 0s;
+    -ms-animation: event-details-exit 200ms ease-out 0s;
+    -o-animation: event-details-exit 200ms ease-out 0s;
+    animation: event-details-exit 200ms ease-out 0s; }
   .page.page-event-details > header > div.line > div.button {
     width: 40px; }

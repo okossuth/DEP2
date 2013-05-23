@@ -1,4 +1,10 @@
 
+/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-cssanimations-prefixed-testprop-testallprops-domprefixes
+ */
+;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.6.2",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.cssanimations=function(){return C("animationName")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e.prefixed=function(a,b,c){return b?C(a,b,c):C(a,"pfx")},e}(this,this.document);
+define("modernizr", function(){});
+
 /**
  * @version: 1.0 Alpha-1
  * @author: Coolite Inc. http://www.coolite.com/
@@ -144,7 +150,7 @@ if(s instanceof Date){return s;}
 try{r=$D.Grammar.start.call({},s.replace(/^\s*(\S*(\s+\S+)*)\s*$/,"$1"));}catch(e){return null;}
 return((r[1].length===0)?r[0]:null);};$D.getParseFunction=function(fx){var fn=$D.Grammar.formats(fx);return function(s){var r=null;try{r=fn.call({},s);}catch(e){return null;}
 return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.getParseFunction(fx)(s);};}());
-define("date", function(){});
+define("date", ["modernizr"], function(){});
 
 /*!
  * jQuery JavaScript Library v1.9.1
@@ -17711,6 +17717,16 @@ define('_features/localStorageCache',[], function() {
     cache: function(model, url) {
       return localStorage[url] = JSON.stringify(((model instanceof Backbone.Model) || (model instanceof Backbone.Collection) ? model.toJSON() : model));
     },
+    init: function(model, url) {
+      if (typeof localStorage[url] === 'undefined') {
+        if (model instanceof Backbone.Model) {
+          localStorage[url] = "{}";
+        } else if (model instanceof Backbone.Collection) {
+          localStorage[url] = "[]";
+        }
+      }
+      return true;
+    },
     reset: function(model, url, options) {
       var _value;
 
@@ -17897,7 +17913,10 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
         return _processReadSuccess(url, model, resp, options);
       }
     }), indicator.success);
-    _errorCreator = _callbackCreatorCreator(indicator.errorAction, indicator.error);
+    _errorCreator = _callbackCreatorCreator((function(url, model, resp, method, options) {
+      ovivo.desktop.resources.apiErrors.addError(url, model, resp, method, options);
+      return indicator.errorAction();
+    }), indicator.error);
     _postProcess = function(method, model, options) {
       if (((method === 'update') || (method === 'delete')) && typeof model.url === 'function') {
         model.url = model.url() + '/';
@@ -17925,10 +17944,12 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       }
     };
     return Backbone.sync = function(method, model, options) {
-      var _args, _call, _flag,
+      var _args, _call, _flag, _resp,
         _this = this;
 
-      _callsCounter += 1;
+      if (model.localStorageOnly !== true) {
+        _callsCounter += 1;
+      }
       _args = Array.prototype.slice.call(arguments, 0);
       options._url = ((function() {
         if (typeof model.url === 'function') {
@@ -17937,7 +17958,7 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           return model.url;
         }
       })()) + ((options.data != null) && (options.data !== '') ? "?" + options.data : '');
-      _flag = method === 'read' ? _processLocalStorageCache(model, options) : true;
+      _flag = method === 'read' ? _processLocalStorageCache(model, options) : model.localStorageOnly === true ? (_resp = model.toJSON(), method === 'create' ? _resp.pk = Date.now().valueOf() : void 0, options.success(model, _resp, options), model.trigger('sync', model, _resp, options), false) : true;
       _call = function() {
         var _stamp;
 
@@ -17960,12 +17981,14 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           return true;
         }
       };
-      if (_flag === true) {
-        return _call.call(this);
-      } else {
-        return setTimeout((function() {
-          return _call.call(_this);
-        }), 300);
+      if (model.localStorageOnly !== true) {
+        if (_flag === true) {
+          return _call.call(this);
+        } else {
+          return setTimeout((function() {
+            return _call.call(_this);
+          }), 300);
+        }
       }
     };
   })();
@@ -17993,6 +18016,18 @@ ovivo.config.DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 ovivo.config.HELP_URL = 'http://ovivo.desk.com';
 
 ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d)(\d\d)))$/;
+
+ovivo.config.ANIMATION_END = (function() {
+  var _animation;
+
+  if ((_animation = Modernizr.prefixed('animation')) === false) {
+    return false;
+  }
+  if (_animation === 'animation') {
+    return 'animationend';
+  }
+  return (_animation + "End").replace(/^ms/, "MS").replace(/^Webkit/, "webkit").replace(/^Moz.*/, "animationend");
+})();
 
 if (ovivo._config != null) {
   ovivo.config = _.extend(ovivo.config, ovivo._config);
@@ -18421,6 +18456,9 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
         return _this.attachProcessors();
       });
       this.on('sync', this._syncHandler, this);
+      if (localStorageCache.allowed() === true) {
+        localStorageCache.init(this, this._url);
+      }
       return true;
     }
   };
@@ -18757,6 +18795,7 @@ define('routers/main',['models/resources/Event', 'ovivo'], function(Event) {
 // Generated by CoffeeScript 1.6.2
 define('models/resources/User',['models/resources/ResourceBase', '_common/ResourceManagerBase', 'ovivo'], function(ResourceBase, ResourceManagerBase) {
   return ResourceBase.extend(_.extend({}, ResourceManagerBase, {
+    name: 'user',
     url: function() {
       return "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/";
     },
@@ -18780,6 +18819,7 @@ define('models/resources/User',['models/resources/ResourceBase', '_common/Resour
 // Generated by CoffeeScript 1.6.2
 define('models/resources/Communication',['models/resources/ResourceBase', '_common/ResourceManagerBase', 'ovivo'], function(ResourceBase, ResourceManagerBase) {
   return ResourceBase.extend(_.extend({}, ResourceManagerBase, {
+    name: 'communication',
     url: function() {
       return "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/communication/";
     },
@@ -18794,8 +18834,46 @@ define('models/resources/Communication',['models/resources/ResourceBase', '_comm
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/popups/Popup',['ovivo'], function() {
-  return Backbone.View.extend({
+define('_common/AnimationControl',[], function() {
+  return {
+    _attachHandlers: (function() {
+      var _animationEnd;
+
+      _animationEnd = function($el) {
+        var _handler;
+
+        _handler = function() {
+          return $el.off(ovivo.config.ANIMATION_END, _handler);
+        };
+        return _handler;
+      };
+      return function($el) {
+        return $el.on(ovivo.config.ANIMATION_END, _animationEnd($el));
+      };
+    })(),
+    _attachHandler: function(handler) {
+      return this.$el.on(ovivo.config.ANIMATION_END, this._wrapHanlder(handler, this.$el));
+    },
+    _wrapHanlder: function(handler) {
+      var _argsOutter, _handler;
+
+      _argsOutter = Array.prototype.slice.call(arguments, 1);
+      return _handler = function() {
+        var _args;
+
+        _args = Array.prototype.slice.call(arguments, 0);
+        return handler.apply(this, [_handler].concat(_argsOutter).concat(_args));
+      };
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/popups/Popup',['_common/AnimationControl', 'ovivo'], function(AnimationControl) {
+  var _Popup, _counter;
+
+  _counter = 0;
+  _Popup = Backbone.View.extend(_.extend({}, AnimationControl, {
     events: {
       'click .close': 'close'
     },
@@ -18803,7 +18881,6 @@ define('views/popups/Popup',['ovivo'], function() {
       return this.hide();
     },
     show: function() {
-      console.log('popup show');
       this.$el.show();
       return $('.popup-overlay').show();
     },
@@ -18811,10 +18888,45 @@ define('views/popups/Popup',['ovivo'], function() {
       this.$el.hide();
       return $('.popup-overlay').hide();
     },
+    _handlerEnterEnd: function(handler, $el, e) {
+      $el.removeClass('enter');
+      return $el.off(ovivo.config.ANIMATION_END, handler);
+    },
+    _handlerExitEnd: function(handler, $el, e) {
+      _counter -= 1;
+      $el.removeClass('exit');
+      $el.hide();
+      if (_counter === 0) {
+        $('.popup-overlay').hide();
+        $('.popup-overlay').removeClass('exit enter');
+      }
+      return $el.off(ovivo.config.ANIMATION_END, handler);
+    },
+    _animationShow: function() {
+      _counter += 1;
+      this.$el.show();
+      this._attachHandler(this._handlerEnterEnd);
+      this.$el.addClass('enter');
+      $('.popup-overlay').show();
+      return $('.popup-overlay').removeClass('exit').addClass('enter');
+    },
+    _animationHide: function() {
+      this._attachHandler(this._handlerExitEnd);
+      this.$el.addClass('exit');
+      if (_counter <= 1) {
+        $('.popup-overlay').addClass('exit');
+      }
+      return true;
+    },
     _initialize: function() {
       return true;
     }
-  });
+  }));
+  if (Modernizr.cssanimations === true) {
+    _Popup.prototype.show = _Popup.prototype._animationShow;
+    _Popup.prototype.hide = _Popup.prototype._animationHide;
+  }
+  return _Popup;
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -19023,15 +19135,15 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('availability');
       ovivo.desktop.popups.editPopupWorkingHour.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupWorkingHour.show();
+      ovivo.desktop.popups.editPopupWorkingHour.show();
+      return this.close();
     },
     createTimeoff: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('timeoff');
       ovivo.desktop.popups.editPopupTimeoff.createNew();
-      this.close();
-      return ovivo.desktop.popups.editPopupTimeoff.show();
+      ovivo.desktop.popups.editPopupTimeoff.show();
+      return this.close();
     },
     initialize: function() {
       this._initialize();
@@ -19068,9 +19180,9 @@ define('_features/transition',[], function() {
         $(next).css('z-index', 1);
         $(prev).css('z-index', 0);
       }
-      if (ovivo.config.PAGE_TRANSITION_ANIMATION === true) {
-        $(next).on('webkitAnimationEnd ', _animationEndGen(_defNext, enterClass, exitClass));
-        $(prev).on('webkitAnimationEnd ', _animationEndGen(_defPrev, enterClass, exitClass));
+      if ((ovivo.config.PAGE_TRANSITION_ANIMATION === true) && (ovivo.config.ANIMATION_END !== false)) {
+        $(next).on(ovivo.config.ANIMATION_END, _animationEndGen(_defNext, enterClass, exitClass));
+        $(prev).on(ovivo.config.ANIMATION_END, _animationEndGen(_defPrev, enterClass, exitClass));
         if (reverse === true) {
           $(next).addClass('back');
           $(prev).addClass('back');
@@ -19229,7 +19341,7 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
+define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBase, transition) {
   var _Base;
 
   _Base = Backbone.View.extend(_.extend({}, ToolsBase, {
@@ -19286,17 +19398,35 @@ define('views/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase
     subView: function() {
       return this.model.get('subView');
     },
+    transition: function(source, target) {
+      var _this = this;
+
+      _.each([source, target], function(page) {
+        page.showEl();
+        return true;
+      });
+      return transition.transit(source.el, target.el, 'enter', 'exit', false).done(function() {
+        source.hideEl();
+        return true;
+      });
+    },
     processSubView: function(page) {
-      var _subView, _subViewName;
+      var _subView, _subViewName,
+        _this = this;
 
       _subViewName = this.subView();
-      if (this.prevSubView != null) {
-        this.prevSubView.hideEl();
-      }
-      if ((_subView = this.subViews[_subViewName]) != null) {
-        _subView.showEl();
-        this.trigger('subViewChange', _subViewName);
-        this.prevSubView = _subView;
+      _subView = this.subViews[_subViewName];
+      if (_subView != null) {
+        if (this.prevSubView != null) {
+          this.transition(this.prevSubView, _subView).done(function() {
+            _this.trigger('subViewChange', _subViewName);
+            return _this.prevSubView = _subView;
+          });
+        } else {
+          _subView.showEl();
+          this.trigger('subViewChange', _subViewName);
+          this.prevSubView = _subView;
+        }
       }
       return true;
     },
@@ -20319,6 +20449,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       _now = Date.today();
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
+      this.current = _now;
       return this.navigate(_now.getFullYear(), _now.getWeek());
     },
     _isToday: function(year, number) {
@@ -20968,8 +21099,39 @@ define('models/pages/Help',['models/pages/PageBase', 'views/pages/Help/Page', 'o
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/Notifications/Page',['views/pages/PageBase', 'ovivo'], function(PageBase) {
-  return PageBase.extend({
+define('views/pages/PageStandaloneAnimation',['_common/AnimationControl', 'ovivo'], function(AnimationControl) {
+  var _obj;
+
+  _obj = _.extend({}, AnimationControl, {
+    _handlerEnterEnd: function(handler, $el, e) {
+      $el.removeClass('enter');
+      return $el.off(ovivo.config.ANIMATION_END, handler);
+    },
+    _handlerExitEnd: function(handler, $el, e) {
+      $el.removeClass('exit');
+      $el.addClass('hide');
+      return $el.off(ovivo.config.ANIMATION_END, handler);
+    },
+    showEl: function() {
+      this.$el.removeClass('hide');
+      this._attachHandler(this._handlerEnterEnd);
+      return this.$el.addClass('enter');
+    },
+    hideEl: function() {
+      this._attachHandler(this._handlerExitEnd);
+      return this.$el.addClass('exit');
+    }
+  });
+  if (Modernizr.cssanimations === true) {
+    return _obj;
+  } else {
+    return {};
+  }
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/pages/Notifications/Page',['views/pages/PageBase', 'views/pages/PageStandaloneAnimation', 'ovivo'], function(PageBase, PageStandaloneAnimation) {
+  return PageBase.extend(_.extend({}, PageStandaloneAnimation, {
     el: '.page.page-notifications',
     events: function() {
       return _.extend({}, PageBase.prototype.events, {
@@ -20983,14 +21145,6 @@ define('views/pages/Notifications/Page',['views/pages/PageBase', 'ovivo'], funct
     },
     loadMoreClick: function() {
       return ovivo.desktop.resources.notifications.loadMore();
-    },
-    transitionStart: function() {
-      this.proxyCall('transitionStart', arguments);
-      return true;
-    },
-    transitionComplete: function() {
-      this.proxyCall('transitionComplete', arguments);
-      return true;
     },
     appendItem: function(item) {
       return this.$('.notifications-list').append(item);
@@ -21044,7 +21198,7 @@ define('views/pages/Notifications/Page',['views/pages/PageBase', 'ovivo'], funct
       ovivo.desktop.resources.notifications.on('change', this.changeHandler, this);
       return true;
     }
-  });
+  }));
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -21060,8 +21214,8 @@ define('models/pages/Notifications',['models/pages/PageBase', 'views/pages/Notif
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/pages/EventDetails/Page',['views/pages/PageBase', 'models/resources/Comment', 'ovivo'], function(PageBase, Comment) {
-  return PageBase.extend({
+define('views/pages/EventDetails/Page',['views/pages/PageBase', 'views/pages/PageStandaloneAnimation', 'models/resources/Comment', 'ovivo'], function(PageBase, PageStandaloneAnimation, Comment) {
+  return PageBase.extend(_.extend({}, PageStandaloneAnimation, {
     el: '.page.page-event-details',
     events: function() {
       return _.extend({}, PageBase.prototype.events, {
@@ -21150,7 +21304,7 @@ define('views/pages/EventDetails/Page',['views/pages/PageBase', 'models/resource
       this.model.on('change:event', this.changeEvent, this);
       return true;
     }
-  });
+  }));
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -22277,6 +22431,42 @@ define('collections/resources/Inactivities',['models/resources/Inactivity', '_co
 });
 
 // Generated by CoffeeScript 1.6.2
+define('models/ApiError',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    _gettersNames: ['resp', 'obj', 'method', 'url'],
+    localStorageOnly: true,
+    initialize: function(attrs, options) {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/ApiErrors',['models/ApiError', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
+  return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
+    model: Model,
+    fullResponse: true,
+    localStorageOnly: true,
+    url: "/API-errors/",
+    addError: function(url, model, resp, method, options) {
+      if ((method === 'update') || (method === 'create')) {
+        return this.add({
+          obj: model.toJSON(),
+          method: method,
+          resp: resp,
+          url: url
+        });
+      }
+    },
+    initialize: function() {
+      this.initResource();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
 define('_features/socket.io',['ovivo'], function() {
   var _getCookie, _handlers, _pathRegexp;
 
@@ -22381,7 +22571,8 @@ requirejs.config({
     'fastclick': '../../lib/fastclick',
     'airbrake': '../../lib/airbrake',
     'date': '../../lib/date',
-    'pickadate': '../../lib/pickadate.legacy'
+    'pickadate': '../../lib/pickadate.legacy',
+    'modernizr': '../../lib/modernizr'
   },
   shim: {
     'ovivo': {
@@ -22406,23 +22597,27 @@ requirejs.config({
       deps: ['date']
     },
     'date': {
+      deps: ['modernizr']
+    },
+    'modernizr': {
       deps: []
     }
   }
 });
 
-require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
+require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', 'collections/ApiErrors', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events'], function(resourceName) {
-      var _resourceInstanceName;
+    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events', 'ApiErrors'], function(resourceName) {
+      var _instance, _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
-      ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))();
+      _instance = new (eval(resourceName))();
+      ovivo.desktop.resources[_resourceInstanceName] = _instance;
       return ovivo.desktop.resources[_resourceInstanceName].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();

@@ -10,14 +10,14 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee.css" rel="stylesheet" />
         
         <title>Ovivo</title>
 
         <!--[if lte IE 8]>
-        <script src="/lib/html5shiv.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/lib/html5shiv.js"></script>
 
-        <link href="/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
         <![endif]-->
      </head>
 
@@ -25,7 +25,7 @@
         <!-- <div id="splash" style="background: #f3f2ec; position: absolute; top: 0; left: 0; z-index: 10000; width: 100%; height: 100%;">
             <div style="width: 160px; height: 30px; margin: 0 auto 0 auto; position: relative; top: 50%;">
                 <div style="position: relative; top: -15px; width: 100%; height: 100%; text-align:center;">
-                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}desktop/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">Henter indhold</div>
+                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}employee-tablet/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">Henter indhold</div>
                     <img src="{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif" />
                 </div>
             </div>
@@ -43,7 +43,7 @@
             }
         </style>
 
-        <div class="orientation-overlay" style="position: absolute; top: 0px; left: 0px; z-index: 10000; width: 100%; height: 100%; background: #f3f2ec;">
+        <div class="orientation-overlay" style="position: absolute; top: 0px; left: 0px; z-index: 10001; width: 100%; height: 100%; background: #f3f2ec;">
             <div style="position: absolute; top: 50%; left: 50%; height: 50px; width: 200px; margin: -25px 0 0 -100px; text-align: center;">
                 Please, use landscape device orientation.
             </div>
@@ -74,7 +74,7 @@
                     <span class="title month-title month-only"></span>
 
                     <div class="button right capital button-create-new">
-                        <span>Create new</span>
+                        <span>Opret ny</span>
                     </div>
 
                     <ul class="switcher switcher-view">
@@ -197,16 +197,16 @@
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>Fravær</span>
+                            <span>Tid væk fra arbejdspladsen</span>
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-connections">
-                            <span>Connections</span>
+                            <span>Integrationer</span>
                         </li>
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable settings-items">
+                <ul class="scroll-container scrollable settings-items apply-animation">
                     <li class="settings-item">
                         <div class="header">
                             <span>Fornavn</span><em>some explanation text</em>
@@ -245,19 +245,19 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>E-mail address</span><em>some explanation text</em>
+                            <span>E-mail adresse</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
                             <div class="input-wrapper">
-                                <input class="value value-email" type="text" placeholder="E-mail address" />
+                                <input class="value value-email" type="text" placeholder="E-mail adresse" />
                             </div>
                         </div>
                     </li>
                 </ul>
 
-                <div class="shadow top"></div>
-                <div class="shadow bottom"></div>
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
             </div>
 
             <div class="content notifications-view hide">
@@ -280,19 +280,19 @@
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>Fravær</span>
+                            <span>Tid væk fra arbejdspladsen</span>
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-connections">
-                            <span>Connections</span>
+                            <span>Integrationer</span>
                         </li>
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable settings-items">
+                <ul class="scroll-container scrollable settings-items apply-animation">
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications via e-mail</span><em>some explanation text</em>
+                            <span>Send mig en besked via e-mail</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -310,7 +310,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications via SMS</span><em>some explanation text</em>
+                            <span>Send mig en besked via SMS</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -328,7 +328,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Activity report</span><em>some explanation text</em>
+                            <span>Aktivitetsrapport</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -346,7 +346,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me confirmation when bidding through SMS</span><em>some explanation text</em>
+                            <span>Send mig en bekræftelse på at mit bud er modtaget, når jeg byder via SMS</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -364,7 +364,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications 24 hour before assigned events starts</span><em>some explanation text</em>
+                            <span>Send mig en påmindelse 24 timer før mine vagter begynder</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -382,7 +382,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>The number of days inside of which a user will be notified of a new event immediately by text and/or email</span><em>some explanation text</em>
+                            <span>Indenfor dette tidsinterval, vil man som bruger modtage besked om vagter via SMS og/eller E-mail, straks efter en vagt er blevet oprettet af en planlægger</span><em>some explanation text</em>
                         </div>
 
                         <div class="item-content">
@@ -403,8 +403,8 @@
                     </li>
                 </ul>
 
-                <div class="shadow top"></div>
-                <div class="shadow bottom"></div>
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
             </div>
 
             <div class="content availability-view hide">
@@ -427,24 +427,24 @@
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>Fravær</span>
+                            <span>Tid væk fra arbejdspladsen</span>
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-connections">
-                            <span>Connections</span>
+                            <span>Integrationer</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="info">
+                <div class="info apply-animation">
                     <h2>some explanation text</h2>
                     <h3>some explanation text</h3>
                 </div>
 
-                <div class="wireframe elements-header">
+                <div class="wireframe elements-header apply-animation">
                     <div class="side-container">
                         <div class="button button-add-new">
-                            <span>+ Add new time</span>
+                            <span>+ Tilføj ny tid</span>
                         </div>
                     </div>
 
@@ -459,7 +459,7 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable elements working-hours">
+                <ul class="scroll-container scrollable elements working-hours apply-animation">
 
                 </ul>
 
@@ -487,30 +487,30 @@
                         </li>
 
                         <li class="selected sections-menu-item sections-menu-item-timeoff">
-                            <span>Fravær</span>
+                            <span>Tid væk fra arbejdspladsen</span>
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-connections">
-                            <span>Connections</span>
+                            <span>Integrationer</span>
                         </li>
                     </ul>
 
                 </div>
 
-                <div class="info">
+                <div class="info apply-animation">
                     <h2>some explanation text</h2>
                     <h3>some explanation text</h3>
                 </div>
 
-                <div class="wireframe elements-header">
+                <div class="wireframe elements-header apply-animation">
                     <div class="side-container">
                         <div class="button button-add-new">
-                            <span>+ Add time off</span>
+                            <span>+ Tilføj tid væk fra arbejdspladsen</span>
                         </div>
                     </div>
                 </div>
 
-                <ul class="scroll-container scrollable elements inactivities">
+                <ul class="scroll-container scrollable elements inactivities apply-animation">
 
                 </ul>
 
@@ -538,22 +538,22 @@
                         </li>
 
                         <li class="sections-menu-item sections-menu-item-timeoff">
-                            <span>Fravær</span>
+                            <span>Tid væk fra arbejdspladsen</span>
                         </li>
 
                         <li class="selected sections-menu-item sections-menu-item-connections">
-                            <span>Connections</span>
+                            <span>Integrationer</span>
                         </li>
                     </ul>
 
                 </div>
 
-                <div class="info">
+                <div class="info apply-animation">
                     <h2>Explanation 21</h2>
                     <h3>Explanation 22</h3>
                 </div>
 
-                <ul class="connections-container">
+                <ul class="connections-container apply-animation">
                     <li>
                         <i class="icon-huge facebook"></i>
                         <ul class="options-group options-facebook">
@@ -643,7 +643,7 @@
 
         <section class="side-bar">
             <h1 class="title">
-                <img src="{{ MEDIA_URL }}desktop/assets/img/global-loader.gif" />
+                <img src="{{ MEDIA_URL }}employee-tablet/assets/img/global-loader.gif" />
                 <i class="logo title"></i>
 
                 <div class="notifications-indicator-container" style="display: none;">
@@ -679,24 +679,24 @@
         <div class="popup-overlay" style="display: none;"></div>
 
         <div class="popup popup-create-new" style="display: none;">
-            <h1 class="create-mode">Choose an option</h1>
+            <h1 class="create-mode">Vælg:</h1>
             
             <div class="button capital close">
                 <span>X</span>
             </div>
 
             <div class="button capital button-create-time">
-                Create time
+                Opret tidspræference
             </div>
 
             <div class="button capital button-create-timeoff">
-                Create timeoff
+                Opret ferieperiode
             </div>
         </div>
 
         <div class="popup popup-working-hour" style="display: none;">
-            <h1 class="create-mode">Add new time</h1>
-            <h1 class="edit-mode">Edit time</h1>
+            <h1 class="create-mode">Tilføj ny tid</h1>
+            <h1 class="edit-mode">Ret tid</h1>
 
             <div class="button capital close">
                 <span>X</span>
@@ -748,9 +748,9 @@
                     <div class="item-content two">
                         <select class="property-value property-value-repeat">
                             <option value="1">Hver anden uge</option>
-                            <option value="2">Every second week</option>
+                            <option value="2">Hver anden uge</option>
                             <option value="3">Hver tredje uge</option>
-                            <option value="4">Every fourth week</option>
+                            <option value="4">Hver fjerde uge</option>
                         </select>
                     </div>
                 </li>
@@ -770,8 +770,8 @@
         </div>
 
         <div class="popup popup-timeoff" style="display: none;">
-            <h1 class="create-mode">Add new time off</h1>
-            <h1 class="edit-mode">Edit time off</h1>
+            <h1 class="create-mode">Tilføj ny tid væk fra arbejdspladsen</h1>
+            <h1 class="edit-mode">Rediger tid væk fra arbejdspladsen</h1>
 
             <div class="button capital close">
                 <span>X</span>
@@ -802,7 +802,7 @@
             </ul>
 
             <div class="button capital button-add create-mode">
-                + Add time off
+                + Tilføj tid væk fra arbejdspladsen
             </div>
 
             <div class="buttons-container">
@@ -821,7 +821,7 @@
                 window.ovivo = {};
             }
 
-            window.ovivo.dict = {"Loading content":"Henter indhold","Today":"I dag","Week":"Uge","Month":"Måned","Feedback":"Feedback","Error":"Fejl","Comment":"Kommentar","Suggestion":"Forslag","Send":"Send","Leave your feedback here":"Skriv din feedback her","Settings":"Indstillinger","General":"General","Notifications":"Notifikationer","Availability":"Tilgængelighed","Time off":"Fravær","First name":"Fornavn","Last name":"Efternavn","Mobile number":"Mobilnummer","Yes":"Ja","No":"Nej","d":"d","Monday":"Mandag","Tuesday":"Tirsdag","Wednesday":"Onsdag","Thursday":"Torsdag","Friday":"Fredag","Saturday":"Lørdag","Sunday":"Søndag","monday":"mandag","tuesday":"tirsdag","wednesday":"onsdag","thursday":"torsdag","friday":"fredag","saturday":"lørdag","sunday":"søndag","Help":"Hjælp","Write a comment here...":"Skriv en kommentar her...","Post":"Post","Load more":"Hent mere","Calendar":"Kalender","Logout":"Log ud","Time":"Tid","to":"til","Available":"Tilgængelig","Unavailable":"Utilgængelig","Date":"Dato","Repeat":"Gentag","Every other week":"Hver anden uge","Every third week":"Hver tredje uge","Add time":"Tilføj tid","Delete":"Slet","Reason":"Årsag","Status":"Status","hour":"time","hours":"timer","Created by":"Oprettet af","Assigned":"Tildelt","Awaiting reply":"Afventer svar","Make a bid":"Byd","Bidding closed":"Udbud lukket","Edit":"Ret","just now":"lige nu","a second ago":"et sekund siden","a minute ago":"et minut siden","few minutes ago":"få minutter siden","an hour ago":"en time siden","few hours ago":"få timer siden","Your bid has now been received":"Dit bud er modtaget","Your bid has been removed":"Dit bud er blevet fjernet","Params are missing":"Parametre mangler","Approved":"Godkendt","Not approved":"Ikke godkendt","Pending":"Afventer","January":"Januar","February":"Februar","March":"Marts","April":"April","May":"Maj","June":"Juni","July":"Juli","August":"August","September":"September","October":"Oktober","November":"November","December":"December","Create new":"Create new","E-mail address":"E-mail address","Send me notifications via e-mail":"Send me notifications via e-mail","Send me notifications via SMS":"Send me notifications via SMS","Activity report":"Activity report","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email","Add new time":"Add new time","Add time off":"Add time off","Choose an option":"Choose an option","Create time":"Create time","Create timeoff":"Create timeoff","Edit time":"Edit time","Every second week":"Every second week","Every fourth week":"Every fourth week","Add new time off":"Add new time off","Edit time off":"Edit time off","Remove":"Remove","Note":"Note","Thanks for your feedback":"Thanks for your feedback","Connections":"Connections","Explanation 1":"some explanation text","Explanation 2":"some explanation text","Explanation 3":"some explanation text","Explanation 4":"some explanation text","Explanation 5":"some explanation text","Explanation 6":"some explanation text","Explanation 7":"some explanation text","Explanation 8":"some explanation text","Explanation 9":"some explanation text","Explanation 10":"some explanation text","Explanation 11":"some explanation text","Explanation 12":"some explanation text","Explanation 13":"some explanation text","Explanation 14":"some explanation text","Explanation 15":"some explanation text","Explanation 16":"some explanation text","Explanation 17":"some explanation text","Explanation 18":"some explanation text","Explanation 19":"some explanation text","Explanation 20":"some explanation text"};
+            window.ovivo.dict = {"Loading content":"Henter indhold","Today":"I dag","Week":"Uge","Month":"Måned","Feedback":"Feedback","Error":"Fejl","Comment":"Kommentar","Suggestion":"Forslag","Send":"Send","Leave your feedback here":"Skriv din feedback her","Settings":"Indstillinger","General":"General","Notifications":"Notifikationer","Availability":"Tilgængelighed","Time off":"Tid væk fra arbejdspladsen","First name":"Fornavn","Last name":"Efternavn","Mobile number":"Mobilnummer","Yes":"Ja","No":"Nej","d":"d","Monday":"Mandag","Tuesday":"Tirsdag","Wednesday":"Onsdag","Thursday":"Torsdag","Friday":"Fredag","Saturday":"Lørdag","Sunday":"Søndag","monday":"mandag","tuesday":"tirsdag","wednesday":"onsdag","thursday":"torsdag","friday":"fredag","saturday":"lørdag","sunday":"søndag","Help":"Hjælp","Write a comment here...":"Skriv en kommentar her...","Post":"Post","Load more":"Hent mere","Calendar":"Kalender","Logout":"Log ud","Time":"Tid","to":"til","Available":"Tilgængelig","Unavailable":"Utilgængelig","Date":"Dato","Repeat":"Gentag","Every other week":"Hver anden uge","Every third week":"Hver tredje uge","Add time":"Tilføj tid","Delete":"Slet","Reason":"Årsag","Status":"Status","hour":"time","hours":"timer","Created by":"Oprettet af","Assigned":"Tildelt","Awaiting reply":"Afventer svar","Make a bid":"Byd","Bidding closed":"Udbud lukket","Edit":"Ret","just now":"lige nu","a second ago":"et sekund siden","a minute ago":"et minut siden","few minutes ago":"få minutter siden","an hour ago":"en time siden","few hours ago":"få timer siden","Your bid has now been received":"Dit bud er modtaget","Your bid has been removed":"Dit bud er blevet fjernet","Params are missing":"Parametre mangler","Approved":"Godkendt","Not approved":"Ikke godkendt","Pending":"Afventer","January":"Januar","February":"Februar","March":"Marts","April":"April","May":"Maj","June":"Juni","July":"Juli","August":"August","September":"September","October":"Oktober","November":"November","December":"December","Create new":"Opret ny","E-mail address":"E-mail adresse","Send me notifications via e-mail":"Send mig en besked via e-mail","Send me notifications via SMS":"Send mig en besked via SMS","Activity report":"Aktivitetsrapport","Send me confirmation when bidding through SMS":"Send mig en bekræftelse på at mit bud er modtaget, når jeg byder via SMS","Send me notifications 24 hour before assigned events starts":"Send mig en påmindelse 24 timer før mine vagter begynder","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"Indenfor dette tidsinterval, vil man som bruger modtage besked om vagter via SMS og/eller E-mail, straks efter en vagt er blevet oprettet af en planlægger","Add new time":"Tilføj ny tid","Add time off":"Tilføj tid væk fra arbejdspladsen","Choose an option":"Vælg:","Create time":"Opret tidspræference","Create timeoff":"Opret ferieperiode","Edit time":"Ret tid","Every second week":"Hver anden uge","Every fourth week":"Hver fjerde uge","Add new time off":"Tilføj ny tid væk fra arbejdspladsen","Edit time off":"Rediger tid væk fra arbejdspladsen","Remove":"Fjern","Note":"Note","Thanks for your feedback":"Tak for din feedback","Connections":"Integrationer","Explanation 1":"some explanation text","Explanation 2":"some explanation text","Explanation 3":"some explanation text","Explanation 4":"some explanation text","Explanation 5":"some explanation text","Explanation 6":"some explanation text","Explanation 7":"some explanation text","Explanation 8":"some explanation text","Explanation 9":"some explanation text","Explanation 10":"some explanation text","Explanation 11":"some explanation text","Explanation 12":"some explanation text","Explanation 13":"some explanation text","Explanation 14":"some explanation text","Explanation 15":"some explanation text","Explanation 16":"some explanation text","Explanation 17":"some explanation text","Explanation 18":"some explanation text","Explanation 19":"some explanation text","Explanation 20":"some explanation text"};
         </script>
 
         <script>
@@ -854,26 +854,19 @@
             if (typeof ovivo === 'undefined') { ovivo = {}; }
 
             ovivo._config = {
-<<<<<<< HEAD:app/app_da.html
                 USER_ID: {{ request.user.pk }},
                 SOCKET_IO_CONNECT_URL: '{{ SOCKETIO_URL }}',
-                FB_APP_ID: '{{ FACEBOOK_APP_ID }}'
-                TIMEZONE_OFFSET: {{ time_zone_offset }}
-=======
-                USER_ID: 6167,
-                TEST_SESSIONID_COOKIE: 'f152382554bb5875f4a6e0292e9ca09f',
-                SOCKET_IO_CONNECT_URL: 'http://dev.ovivo.dk:8888/',
-                FB_APP_ID: 450545431639022,
-                TIMEZONE_OFFSET: 7200000,
->>>>>>> tablet:app/app_da-DK.html
+                FB_APP_ID: '{{ FACEBOOK_APP_ID }}',
+                TIMEZONE_OFFSET: {{ time_zone_offset }},
+
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif'
             };
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        <script src="{{ MEDIA_URL }}desktop/lib/require.js"></script>
-        <script src="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee-require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/lib/require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-require.js"></script>
 
         <script>
             (function(d, s, id){
