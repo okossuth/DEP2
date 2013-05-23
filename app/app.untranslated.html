@@ -860,7 +860,12 @@
                 TIMEZONE_OFFSET: {{ time_zone_offset }},
 
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif',
+                CACHE_RESOURCES: {
+                    {% for url, resource in cache_resources.items %}
+                    '{{ url|safe }}': '{{ resource|safe }}',
+                    {% endfor %}
+                },
             };
         </script>
 
