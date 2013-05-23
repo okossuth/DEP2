@@ -65,7 +65,10 @@ requirejs [
     _successCreator = _callbackCreatorCreator ((url, model, resp, method, options) -> 
       if method is 'read' then _processReadSuccess(url, model, resp, options)), indicator.success
 
-    _errorCreator = _callbackCreatorCreator indicator.errorAction, indicator.error
+    _errorCreator = _callbackCreatorCreator ((url, model, resp, method, options) ->
+      ovivo.desktop.resources.apiErrors.addError url, model, resp, method, options
+
+      indicator.errorAction()), indicator.error
 
     _postProcess = (method, model, options) ->
       if ((method is 'update') or (method is 'delete')) and typeof model.url is 'function'
@@ -92,13 +95,25 @@ requirejs [
         true
 
     Backbone.sync = (method, model, options) ->
-      _callsCounter += 1
+      if model.localStorageOnly isnt true then _callsCounter += 1
+
       _args = Array.prototype.slice.call arguments, 0
 
       options._url = (do () => if typeof model.url is 'function' then model.url() else model.url) + (if options.data? and (options.data isnt '') then "?#{options.data}" else '')
 
       _flag = if method is 'read' 
           _processLocalStorageCache model, options
+
+        else if model.localStorageOnly is true
+          _resp = model.toJSON()
+
+          if method is 'create'
+            _resp.pk = Date.now().valueOf()
+
+          options.success model, _resp, options
+          model.trigger 'sync', model, _resp, options
+
+          false
 
         else 
           true
@@ -123,8 +138,9 @@ requirejs [
 
         if (_queueRules[method] is true) and (_queue[method].length is 1) or (_queueRules[method] is false) then _sync method, model, options else true
 
-      if _flag is true
-        _call.call @
+      if model.localStorageOnly isnt true
+        if _flag is true
+          _call.call @
 
-      else
-        setTimeout (() => _call.call @), 300
+        else
+          setTimeout (() => _call.call @), 300
