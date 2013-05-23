@@ -10,6 +10,7 @@ requirejs.config
     'airbrake': '../../lib/airbrake'
     'date': '../../lib/date'
     'pickadate': '../../lib/pickadate.legacy'
+    'modernizr': '../../lib/modernizr'
 
   shim:
     'ovivo':
@@ -34,6 +35,9 @@ requirejs.config
       deps: ['date']
 
     'date':
+      deps: ['modernizr']
+
+    'modernizr':
       deps: []
 
 require [
@@ -64,11 +68,12 @@ require [
   'collections/resources/GroupRelations',
   'collections/resources/WorkingHours',
   'collections/resources/Inactivities',
+  'collections/ApiErrors',
 
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) ->
+], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -89,11 +94,13 @@ require [
         'GroupRelations',
         'WorkingHours',
         'Inactivities',
-        'Events'
+        'Events',
+        'ApiErrors'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
+        _instance = new (eval(resourceName))()
 
-        ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))()
+        ovivo.desktop.resources[_resourceInstanceName] = _instance
         ovivo.desktop.resources[_resourceInstanceName].def).then () ->
 
         ovivo.desktop.pages.calendar.show()
@@ -116,7 +123,6 @@ require [
         true
 
       ovivo.desktop.popups = {}
-
 
       _.each [
         'EditPopupWorkingHour',

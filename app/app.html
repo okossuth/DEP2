@@ -10,14 +10,14 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
         
         <title>Ovivo</title>
 
         <!--[if lte IE 8]>
-        <script src="/lib/html5shiv.js"></script>
+        <script src="{{ MEDIA_URL }}employee-desktop/lib/html5shiv.js"></script>
 
-        <link href="/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
         <![endif]-->
      </head>
 
@@ -25,7 +25,7 @@
         <!-- <div id="splash" style="background: #f3f2ec; position: absolute; top: 0; left: 0; z-index: 10000; width: 100%; height: 100%;">
             <div style="width: 160px; height: 30px; margin: 0 auto 0 auto; position: relative; top: 50%;">
                 <div style="position: relative; top: -15px; width: 100%; height: 100%; text-align:center;">
-                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}desktop/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">Loading content</div>
+                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}employee-desktop/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">Loading content</div>
                     <img src="{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif" />
                 </div>
             </div>
@@ -188,10 +188,10 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable settings-items">
+                <ul class="scroll-container scrollable settings-items apply-animation">
                     <li class="settings-item">
                         <div class="header">
-                            <span>First name</span><em>some explanation text</em>
+                            <span>First name</span><em><span style="color:red; background: black;">Explanation 1</span></em>
                         </div>
 
                         <div class="item-content">
@@ -203,7 +203,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Last name</span><em>some explanation text</em>
+                            <span>Last name</span><em><span style="color:red; background: black;">Explanation 2</span></em>
                         </div>
 
                         <div class="item-content">
@@ -215,7 +215,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Mobile number</span><em>some explanation text</em>
+                            <span>Mobile number</span><em><span style="color:red; background: black;">Explanation 3</span></em>
                         </div>
 
                         <div class="item-content">
@@ -227,7 +227,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>E-mail address</span><em>some explanation text</em>
+                            <span>E-mail address</span><em><span style="color:red; background: black;">Explanation 4</span></em>
                         </div>
 
                         <div class="item-content">
@@ -238,8 +238,8 @@
                     </li>
                 </ul>
 
-                <div class="shadow top"></div>
-                <div class="shadow bottom"></div>
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
             </div>
 
             <div class="content notifications-view hide">
@@ -271,10 +271,10 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable settings-items">
+                <ul class="scroll-container scrollable settings-items apply-animation">
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications via e-mail</span><em>some explanation text</em>
+                            <span>Send me notifications via e-mail</span><em><span style="color:red; background: black;">Explanation 5</span></em>
                         </div>
 
                         <div class="item-content">
@@ -292,7 +292,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications via SMS</span><em>some explanation text</em>
+                            <span>Send me notifications via SMS</span><em><span style="color:red; background: black;">Explanation 6</span></em>
                         </div>
 
                         <div class="item-content">
@@ -310,7 +310,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Activity report</span><em>some explanation text</em>
+                            <span>Activity report</span><em><span style="color:red; background: black;">Explanation 7</span></em>
                         </div>
 
                         <div class="item-content">
@@ -328,7 +328,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me confirmation when bidding through SMS</span><em>some explanation text</em>
+                            <span>Send me confirmation when bidding through SMS</span><em><span style="color:red; background: black;">Explanation 8</span></em>
                         </div>
 
                         <div class="item-content">
@@ -346,7 +346,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>Send me notifications 24 hour before assigned events starts</span><em>some explanation text</em>
+                            <span>Send me notifications 24 hour before assigned events starts</span><em><span style="color:red; background: black;">Explanation 9</span></em>
                         </div>
 
                         <div class="item-content">
@@ -364,7 +364,7 @@
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>The number of days inside of which a user will be notified of a new event immediately by text and/or email</span><em>some explanation text</em>
+                            <span>The number of days inside of which a user will be notified of a new event immediately by text and/or email</span><em><span style="color:red; background: black;">Explanation 10</span></em>
                         </div>
 
                         <div class="item-content">
@@ -385,8 +385,8 @@
                     </li>
                 </ul>
 
-                <div class="shadow top"></div>
-                <div class="shadow bottom"></div>
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
             </div>
 
             <div class="content availability-view hide">
@@ -418,12 +418,12 @@
                     </ul>
                 </div>
 
-                <div class="info">
-                    <h2>some explanation text</h2>
-                    <h3>some explanation text</h3>
+                <div class="info apply-animation">
+                    <h2><span style="color:red; background: black;">Explanation 11</span></h2>
+                    <h3><span style="color:red; background: black;">Explanation 12</span></h3>
                 </div>
 
-                <div class="wireframe elements-header">
+                <div class="wireframe elements-header apply-animation">
                     <div class="side-container">
                         <div class="button button-add-new">
                             <span>+ Add new time</span>
@@ -441,7 +441,7 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable elements working-hours">
+                <ul class="scroll-container scrollable elements working-hours apply-animation">
 
                 </ul>
 
@@ -479,12 +479,12 @@
 
                 </div>
 
-                <div class="info">
-                    <h2>some explanation text</h2>
-                    <h3>some explanation text</h3>
+                <div class="info apply-animation">
+                    <h2><span style="color:red; background: black;">Explanation 13</span></h2>
+                    <h3><span style="color:red; background: black;">Explanation 14</span></h3>
                 </div>
 
-                <div class="wireframe elements-header">
+                <div class="wireframe elements-header apply-animation">
                     <div class="side-container">
                         <div class="button button-add-new">
                             <span>+ Add time off</span>
@@ -492,7 +492,7 @@
                     </div>
                 </div>
 
-                <ul class="scroll-container scrollable elements inactivities">
+                <ul class="scroll-container scrollable elements inactivities apply-animation">
 
                 </ul>
 
@@ -530,12 +530,12 @@
 
                 </div>
 
-                <div class="info">
+                <div class="info apply-animation">
                     <h2>Explanation 21</h2>
                     <h3>Explanation 22</h3>
                 </div>
 
-                <ul class="connections-container">
+                <ul class="connections-container apply-animation">
                     <li>
                         <i class="icon-huge facebook"></i>
                         <ul class="options-group options-facebook">
@@ -625,7 +625,7 @@
 
         <section class="side-bar">
             <h1 class="title">
-                <img src="{{ MEDIA_URL }}desktop/assets/img/global-loader.gif" />
+                <img src="{{ MEDIA_URL }}employee-desktop/assets/img/global-loader.gif" />
                 <i class="logo title"></i>
 
                 <div class="notifications-indicator-container" style="display: none;">
@@ -682,7 +682,7 @@
             <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
-                        <span>Time</span><em>some explanation text</em>
+                        <span>Time</span><em><span style="color:red; background: black;">Explanation 15</span></em>
                     </div>
 
                     <div class="item-content two">
@@ -694,7 +694,7 @@
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>Date</span><em>some explanation text</em>
+                        <span>Date</span><em><span style="color:red; background: black;">Explanation 16</span></em>
                     </div>
 
                     <div class="item-content two">
@@ -706,7 +706,7 @@
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>Status</span><em>some explanation text</em>
+                        <span>Status</span><em><span style="color:red; background: black;">Explanation 17</span></em>
                     </div>
 
                     <div class="item-content two">
@@ -719,7 +719,7 @@
                 
                 <li class="settings-item">
                     <div class="header">
-                        <span>Repeat</span><em>some explanation text</em>
+                        <span>Repeat</span><em><span style="color:red; background: black;">Explanation 18</span></em>
                     </div>
 
                     <div class="item-content two">
@@ -755,7 +755,7 @@
             <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
-                        <span>Date</span><em>some explanation text</em>
+                        <span>Date</span><em><span style="color:red; background: black;">Explanation 19</span></em>
                     </div>
 
                     <div class="item-content two">
@@ -767,7 +767,7 @@
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>Reason</span><em>some explanation text</em>
+                        <span>Reason</span><em><span style="color:red; background: black;">Explanation 20</span></em>
                     </div>
 
                     <div class="item-content">
@@ -796,7 +796,7 @@
                 window.ovivo = {};
             }
 
-            window.ovivo.dict = {"Loading content":"Loading content","Today":"Today","Week":"Week","Month":"Month","Feedback":"Feedback","Error":"Error","Comment":"Comment","Suggestion":"Suggestion","Send":"Send","Leave your feedback here":"Leave your feedback here","Settings":"Settings","General":"General","Notifications":"Notifications","Availability":"Availability","Time off":"Time off","First name":"First name","Last name":"Last name","Mobile number":"Mobile number","Yes":"Yes","No":"No","d":"d","Monday":"Monday","Tuesday":"Tuesday","Wednesday":"Wednesday","Thursday":"Thursday","Friday":"Friday","Saturday":"Saturday","Sunday":"Sunday","monday":"monday","tuesday":"tuesday","wednesday":"wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","Help":"Help","Write a comment here...":"Write a comment here...","Post":"Post","Load more":"Load more","Calendar":"Calendar","Logout":"Logout","Time":"Time","to":"to","Available":"Available","Unavailable":"Unavailable","Date":"Date","Repeat":"Repeat","Every other week":"Every other week","Every third week":"Every third week","Add time":"Add time","Delete":"Delete","Reason":"Reason","Status":"Status","hour":"hour","hours":"hours","Created by":"Created by","Assigned":"Assigned","Awaiting reply":"Awaiting reply","Make a bid":"Make a bid","Bidding closed":"Bidding closed","Edit":"Edit","just now":"just now","a second ago":"a second ago","a minute ago":"a minute ago","few minutes ago":"few minutes ago","an hour ago":"an hour ago","few hours ago":"few hours ago","Your bid has now been received":"Your bid has now been received","Your bid has been removed":"Your bid has been removed","Params are missing":"Params are missing","Approved":"Approved","Not approved":"Not approved","Pending":"Pending","January":"January","February":"February","March":"March","April":"April","May":"May","June":"June","July":"July","August":"August","September":"September","October":"October","November":"November","December":"December","Create new":"Create new","E-mail address":"E-mail address","Send me notifications via e-mail":"Send me notifications via e-mail","Send me notifications via SMS":"Send me notifications via SMS","Activity report":"Activity report","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email","Add new time":"Add new time","Add time off":"Add time off","Choose an option":"Choose an option","Create time":"Create time","Create timeoff":"Create timeoff","Edit time":"Edit time","Every second week":"Every second week","Every fourth week":"Every fourth week","Add new time off":"Add new time off","Edit time off":"Edit time off","Remove":"Remove","Note":"Note","Thanks for your feedback":"Thanks for your feedback","Connections":"Connections","Explanation 1":"some explanation text","Explanation 2":"some explanation text","Explanation 3":"some explanation text","Explanation 4":"some explanation text","Explanation 5":"some explanation text","Explanation 6":"some explanation text","Explanation 7":"some explanation text","Explanation 8":"some explanation text","Explanation 9":"some explanation text","Explanation 10":"some explanation text","Explanation 11":"some explanation text","Explanation 12":"some explanation text","Explanation 13":"some explanation text","Explanation 14":"some explanation text","Explanation 15":"some explanation text","Explanation 16":"some explanation text","Explanation 17":"some explanation text","Explanation 18":"some explanation text","Explanation 19":"some explanation text","Explanation 20":"some explanation text"};
+            window.ovivo.dict = {"Loading content":"Loading content","Today":"Today","Week":"Week","Month":"Month","Feedback":"Feedback","Error":"Error","Comment":"Comment","Suggestion":"Suggestion","Send":"Send","Leave your feedback here":"Leave your feedback here","Settings":"Settings","General":"General","Notifications":"Notifications","Availability":"Availability","Time off":"Time off","First name":"First name","Last name":"Last name","Mobile number":"Mobile number","Yes":"Yes","No":"No","d":"d","Monday":"Monday","Tuesday":"Tuesday","Wednesday":"Wednesday","Thursday":"Thursday","Friday":"Friday","Saturday":"Saturday","Sunday":"Sunday","monday":"monday","tuesday":"tuesday","wednesday":"wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","Help":"Help","Write a comment here...":"Write a comment here...","Post":"Post","Load more":"Load more","Calendar":"Calendar","Logout":"Logout","Time":"Time","to":"to","Available":"Available","Unavailable":"Unavailable","Date":"Date","Repeat":"Repeat","Every other week":"Every other week","Every third week":"Every third week","Add time":"Add time","Delete":"Delete","Reason":"Reason","Status":"Status","hour":"hour","hours":"hours","Created by":"Created by","Assigned":"Assigned","Awaiting reply":"Awaiting reply","Make a bid":"Make a bid","Bidding closed":"Bidding closed","Edit":"Edit","just now":"just now","a second ago":"a second ago","a minute ago":"a minute ago","few minutes ago":"few minutes ago","an hour ago":"an hour ago","few hours ago":"few hours ago","Your bid has now been received":"Your bid has now been received","Your bid has been removed":"Your bid has been removed","Params are missing":"Params are missing","Approved":"Approved","Not approved":"Not approved","Pending":"Pending","January":"January","February":"February","March":"March","April":"April","May":"May","June":"June","July":"July","August":"August","September":"September","October":"October","November":"November","December":"December","Create new":"Create new","E-mail address":"E-mail address","Send me notifications via e-mail":"Send me notifications via e-mail","Send me notifications via SMS":"Send me notifications via SMS","Activity report":"Activity report","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email","Add new time":"Add new time","Add time off":"Add time off","Choose an option":"Choose an option","Create time":"Create time","Create timeoff":"Create timeoff","Edit time":"Edit time","Every second week":"Every second week","Every fourth week":"Every fourth week","Add new time off":"Add new time off","Edit time off":"Edit time off","Remove":"Remove","Note":"Note","Thanks for your feedback":"Thanks for your feedback","Connections":"Connections","Explanation 1":"<span style=\"color:red; background: black;\">Explanation 1</span>","Explanation 2":"<span style=\"color:red; background: black;\">Explanation 2</span>","Explanation 3":"<span style=\"color:red; background: black;\">Explanation 3</span>","Explanation 4":"<span style=\"color:red; background: black;\">Explanation 4</span>","Explanation 5":"<span style=\"color:red; background: black;\">Explanation 5</span>","Explanation 6":"<span style=\"color:red; background: black;\">Explanation 6</span>","Explanation 7":"<span style=\"color:red; background: black;\">Explanation 7</span>","Explanation 8":"<span style=\"color:red; background: black;\">Explanation 8</span>","Explanation 9":"<span style=\"color:red; background: black;\">Explanation 9</span>","Explanation 10":"<span style=\"color:red; background: black;\">Explanation 10</span>","Explanation 11":"<span style=\"color:red; background: black;\">Explanation 11</span>","Explanation 12":"<span style=\"color:red; background: black;\">Explanation 12</span>","Explanation 13":"<span style=\"color:red; background: black;\">Explanation 13</span>","Explanation 14":"<span style=\"color:red; background: black;\">Explanation 14</span>","Explanation 15":"<span style=\"color:red; background: black;\">Explanation 15</span>","Explanation 16":"<span style=\"color:red; background: black;\">Explanation 16</span>","Explanation 17":"<span style=\"color:red; background: black;\">Explanation 17</span>","Explanation 18":"<span style=\"color:red; background: black;\">Explanation 18</span>","Explanation 19":"<span style=\"color:red; background: black;\">Explanation 19</span>","Explanation 20":"<span style=\"color:red; background: black;\">Explanation 20</span>"};
         </script>
 
         <script>
@@ -831,16 +831,16 @@
             ovivo._config = {
                 USER_ID: {{ request.user.pk }},
                 SOCKET_IO_CONNECT_URL: '{{ SOCKETIO_URL }}',
-                FB_APP_ID: '{{ FACEBOOK_APP_ID }}'
-                TIMEZONE_OFFSET: {{ time_zone_offset }}
+                FB_APP_ID: '{{ FACEBOOK_APP_ID }}',
+                TIMEZONE_OFFSET: {{ time_zone_offset }},
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-desktop/assets/img/ajax-loader.gif'
             };
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        <script src="{{ MEDIA_URL }}desktop/lib/require.js"></script>
-        <script src="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee-require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-desktop/lib/require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-require.js"></script>
 
         <script>
             (function(d, s, id){

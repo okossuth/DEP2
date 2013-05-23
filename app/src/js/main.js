@@ -10,7 +10,8 @@ requirejs.config({
     'fastclick': '../../lib/fastclick',
     'airbrake': '../../lib/airbrake',
     'date': '../../lib/date',
-    'pickadate': '../../lib/pickadate.legacy'
+    'pickadate': '../../lib/pickadate.legacy',
+    'modernizr': '../../lib/modernizr'
   },
   shim: {
     'ovivo': {
@@ -35,23 +36,27 @@ requirejs.config({
       deps: ['date']
     },
     'date': {
+      deps: ['modernizr']
+    },
+    'modernizr': {
       deps: []
     }
   }
 });
 
-require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, socketIO) {
+require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', 'collections/ApiErrors', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events'], function(resourceName) {
-      var _resourceInstanceName;
+    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events', 'ApiErrors'], function(resourceName) {
+      var _instance, _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
-      ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))();
+      _instance = new (eval(resourceName))();
+      ovivo.desktop.resources[_resourceInstanceName] = _instance;
       return ovivo.desktop.resources[_resourceInstanceName].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
