@@ -10,14 +10,14 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee.css" rel="stylesheet" />
         
         <title>Ovivo</title>
 
         <!--[if lte IE 8]>
-        <script src="/lib/html5shiv.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/lib/html5shiv.js"></script>
 
-        <link href="/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
         <![endif]-->
      </head>
 
@@ -25,7 +25,7 @@
         <!-- <div id="splash" style="background: #f3f2ec; position: absolute; top: 0; left: 0; z-index: 10000; width: 100%; height: 100%;">
             <div style="width: 160px; height: 30px; margin: 0 auto 0 auto; position: relative; top: 50%;">
                 <div style="position: relative; top: -15px; width: 100%; height: 100%; text-align:center;">
-                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}desktop/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">{{#i18n}}Loading content{{/i18n}}</div>
+                    <div id="splash-logo-inner" src="{{ MEDIA_URL }}employee-tablet/assets/img/loading-title-100x18.png" style="display: block; margin: 0 auto 5px auto; width: 150px; height: 18px; text-align: center; font: bold 12px 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">{{#i18n}}Loading content{{/i18n}}</div>
                     <img src="{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif" />
                 </div>
             </div>
@@ -643,7 +643,7 @@
 
         <section class="side-bar">
             <h1 class="title">
-                <img src="{{ MEDIA_URL }}desktop/assets/img/global-loader.gif" />
+                <img src="{{ MEDIA_URL }}employee-tablet/assets/img/global-loader.gif" />
                 <i class="logo title"></i>
 
                 <div class="notifications-indicator-container" style="display: none;">
@@ -860,13 +860,13 @@
                 TIMEZONE_OFFSET: {{ time_zone_offset }}
 
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}desktop/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif'
             };
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        <script src="{{ MEDIA_URL }}desktop/lib/require.js"></script>
-        <script src="{{ MEDIA_URL }}desktop/dist/ovivo-desktop-employee-require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/lib/require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-require.js"></script>
 
         <script>
             (function(d, s, id){
