@@ -52,10 +52,11 @@ require(['routers/main', 'models/resources/User', 'models/resources/Communicatio
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
     $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events', 'ApiErrors'], function(resourceName) {
-      var _resourceInstanceName;
+      var _instance, _resourceInstanceName;
 
       _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
-      ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))();
+      _instance = new (eval(resourceName))();
+      ovivo.desktop.resources[_resourceInstanceName] = _instance;
       return ovivo.desktop.resources[_resourceInstanceName].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();

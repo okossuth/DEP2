@@ -98,8 +98,9 @@ require [
         'ApiErrors'
       ], (resourceName) ->
         _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
+        _instance = new (eval(resourceName))()
 
-        ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))()
+        ovivo.desktop.resources[_resourceInstanceName] = _instance
         ovivo.desktop.resources[_resourceInstanceName].def).then () ->
 
         ovivo.desktop.pages.calendar.show()
