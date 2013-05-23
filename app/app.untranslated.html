@@ -831,8 +831,8 @@
             ovivo._config = {
                 USER_ID: {{ request.user.pk }},
                 SOCKET_IO_CONNECT_URL: '{{ SOCKETIO_URL }}',
-                FB_APP_ID: '{{ FACEBOOK_APP_ID }}'
-                TIMEZONE_OFFSET: {{ time_zone_offset }}
+                FB_APP_ID: '{{ FACEBOOK_APP_ID }}',
+                TIMEZONE_OFFSET: {{ time_zone_offset }},
                 PAGE_TRANSITION_ANIMATION: false,
                 LOADER_URL: '{{ MEDIA_URL }}employee-desktop/assets/img/ajax-loader.gif'
             };
