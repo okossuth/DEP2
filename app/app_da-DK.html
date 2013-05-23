@@ -1,4 +1,4 @@
-{% load general_purpose_tags %}
+{% load general_purpose_tags compressed %}
 <!DOCTYPE html>
 <!--<html lang="en" manifest="/app.appcache"> -->
 
@@ -10,7 +10,7 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        {% compressed_css "backbone-employee-tablet" %}
         
         <title>Ovivo</title>
 
@@ -860,13 +860,17 @@
                 TIMEZONE_OFFSET: {{ time_zone_offset }},
 
                 PAGE_TRANSITION_ANIMATION: false,
-                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif'
+                LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif',
+                CACHE_RESOURCES: {
+                    {% for url, resource in cache_resources.items %}
+                    '{{ url|safe }}': '{{ resource|safe }}',
+                    {% endfor %}
+                },
             };
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        <script src="{{ MEDIA_URL }}employee-tablet/lib/require.js"></script>
-        <script src="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-require.js"></script>
+        {% compressed_js "backbone-employee-tablet" %}
 
         <script>
             (function(d, s, id){
