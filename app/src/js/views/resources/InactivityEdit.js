@@ -11,8 +11,15 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     template: Handlebars.templates['inactivityEdit'],
     groupTemplate: Handlebars.templates['inactivityEdit_group'],
     edit: function() {
+      var _mode;
+
+      if (this.model.isSingle() === true) {
+        _mode = 'edit-single';
+      } else {
+        _mode = 'edit';
+      }
       ovivo.desktop.popups.editPopupTimeoff.show();
-      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model);
+      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model, _mode);
     },
     _getDateStr: function(_date) {
       if (_date != null) {

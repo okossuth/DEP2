@@ -3,8 +3,6 @@ define [
 
   '_common/WorkingHoursEdit',
 
-  '_features/trailZero',
-
   'ovivo'
 ], (EditPopup, WorkingHoursEdit, trailZero) ->
   EditPopup.extend _.extend WorkingHoursEdit,

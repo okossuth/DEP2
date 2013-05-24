@@ -674,8 +674,12 @@
                     </li>
 
                     <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Start date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        <div class="header edit-single-mode">
+                            <span class="">{{#i18n}}Date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="header edit-mode">
+                            <span class="">{{#i18n}}Start date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
                         </div>
 
                         <div class="item-content">
@@ -725,6 +729,80 @@
                                 <option value="3">{{#i18n}}Every third week{{/i18n}}</option>
                                 <option value="4">{{#i18n}}Every fourth week{{/i18n}}</option>
                             </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer>
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>{{#i18n}}Save{{/i18n}}</span>
+                    </div>
+
+                    <div class="button warning right button-delete capital">
+                        <span>{{#i18n}}Delete{{/i18n}}</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <section class="page page-edit page-edit-inactivity hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title edit-mode">{{#i18n}}Edit inactivity{{/i18n}}</span>
+                    <span class="title edit-single-mode">{{#i18n}}Edit one-day inactivity{{/i18n}}</span>
+
+                    <div class="button capital right button-close">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header edit-single-mode">
+                            <span class="">{{#i18n}}Date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="header edit-mode">
+                            <span class="">{{#i18n}}Start date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-start datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>{{#i18n}}End date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-end datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>{{#i18n}}Reason{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="{{#i18n}}Reason{{/i18n}}" class="property-value property-value-reason" />
                             </div>
                         </div>
                     </li>

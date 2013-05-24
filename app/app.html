@@ -674,8 +674,12 @@
                     </li>
 
                     <li class="settings-item">
-                        <div class="header">
-                            <span>Start date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        <div class="header edit-single-mode">
+                            <span class="">Date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        </div>
+
+                        <div class="header edit-mode">
+                            <span class="">Start date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
                         </div>
 
                         <div class="item-content">
@@ -725,6 +729,80 @@
                                 <option value="3">Every third week</option>
                                 <option value="4">Every fourth week</option>
                             </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer>
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>Save</span>
+                    </div>
+
+                    <div class="button warning right button-delete capital">
+                        <span>Delete</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <section class="page page-edit page-edit-inactivity hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title edit-mode">Edit inactivity</span>
+                    <span class="title edit-single-mode">Edit one-day inactivity</span>
+
+                    <div class="button capital right button-close">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header edit-single-mode">
+                            <span class="">Date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        </div>
+
+                        <div class="header edit-mode">
+                            <span class="">Start date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-start datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>End date</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-end datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Reason</span><em><span style="color:red; background: black;">Explanation 15</span></em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="Reason" class="property-value property-value-reason" />
                             </div>
                         </div>
                     </li>

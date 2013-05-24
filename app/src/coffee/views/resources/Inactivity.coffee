@@ -22,8 +22,8 @@ define [
       else
         _mode = 'edit'
 
-      ovivo.desktop.popups.editPopupTimeoff.show()
-      ovivo.desktop.popups.editPopupTimeoff.edit @model, _mode
+      ovivo.desktop.pages.editInactivity.view.showEl()
+      ovivo.desktop.pages.editInactivity.view.edit @model, _mode
 
       e.stopPropagation()
 

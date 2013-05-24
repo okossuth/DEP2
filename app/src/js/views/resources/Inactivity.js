@@ -17,8 +17,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         _mode = 'edit';
       }
-      ovivo.desktop.popups.editPopupTimeoff.show();
-      ovivo.desktop.popups.editPopupTimeoff.edit(this.model, _mode);
+      ovivo.desktop.pages.editInactivity.view.showEl();
+      ovivo.desktop.pages.editInactivity.view.edit(this.model, _mode);
       e.stopPropagation();
       return false;
     },
