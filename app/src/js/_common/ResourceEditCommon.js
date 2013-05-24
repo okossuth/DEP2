@@ -72,27 +72,46 @@ define([], function() {
         _createEditCopy: function(model) {
           return new model.constructor(model.toJSON());
         },
+        _initComponents: function() {
+          var _this = this;
+
+          this._components = {};
+          _.each(this.fields, function(field, i) {
+            if (typeof field === 'object') {
+              return _this[field.init](field.name, i);
+            } else {
+              return _this._components[field] = _this.$(".property-value-" + field);
+            }
+          });
+          return this._initComponents = function() {};
+        },
         setModel: function(model) {
           var _this = this;
 
+          this._initComponents();
           this.original = model;
           this.model = this._createEditCopy(model);
           this.trigger('change:model', this.model);
           this.initEditMode();
           return _.each(this.fields, function(field) {
-            var _date, _ref, _value;
+            var _component, _date, _ref;
 
-            _value = _this.$('.property-value-' + field);
-            if (_value.hasClass('datepicker')) {
+            if (typeof field === 'object') {
+              _this[field.setValue](field.name, _this.model[field.name]());
+              return true;
+            }
+            _component = _this._components[field];
+            if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
-              return _value.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
-            } else if (_value.hasClass('plain-value')) {
-              return $.when(_this.model.view[field]()).done(function(_str) {
-                return _value.html(_str);
+              _component.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+            } else if (_component.hasClass('plain-value')) {
+              $.when(_this.model.view[field]()).done(function(_str) {
+                return _component.html(_str);
               });
             } else {
-              return _value.val((_ref = _this.model[field]()) != null ? _ref.toString() : void 0);
+              _component.val((_ref = _this.model[field]()) != null ? _ref.toString() : void 0);
             }
+            return true;
           });
         }
       };

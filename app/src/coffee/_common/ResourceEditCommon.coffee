@@ -68,7 +68,21 @@ define [
 
     _createEditCopy: (model) -> new model.constructor model.toJSON()
 
+    _initComponents: () ->
+      @_components = {}
+
+      _.each @fields, (field, i) =>
+        if typeof field is 'object'
+          @[field.init] field.name, i
+
+        else
+          @_components[field] = @$(".property-value-#{field}")
+
+      @_initComponents = () ->
+
     setModel: (model) ->
+      @_initComponents()
+
       @original = model
 
       @model = @_createEditCopy model
@@ -78,15 +92,22 @@ define [
       @initEditMode()
 
       _.each @fields, (field) =>
-        _value = @$('.property-value-' + field)
+        if typeof field is 'object'
+          @[field.setValue] field.name, @model[field.name]()
 
-        if _value.hasClass 'datepicker'
+          return true
+
+        _component = @_components[field]
+
+        if _component.hasClass 'datepicker'
           _date = new Date Date.parse @model[field]()
 
-          _value.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _component.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
 
-        else if _value.hasClass 'plain-value'
-          $.when(@model.view[field]()).done (_str) -> _value.html _str
+        else if _component.hasClass 'plain-value'
+          $.when(@model.view[field]()).done (_str) -> _component.html _str
 
         else
-          _value.val @model[field]()?.toString()
+          _component.val @model[field]()?.toString()
+
+        true
