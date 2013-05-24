@@ -30,9 +30,11 @@ define [
 
     _getSaveSyncHandler: (collection, model, originalModel) ->
       _handler = () -> 
-        originalModel.set model.toJSON()
+        originalModel.set model.toJSON(), { update: true }
 
         model.off 'sync', _handler
+
+        delete model.url
 
       _handler
 
@@ -81,7 +83,11 @@ define [
 
       @initMode mode
 
-    _createEditCopy: (model) -> new model.constructor model.toJSON()
+    _createEditCopy: (model) -> 
+      _copy = new model.constructor model.toJSON()
+      _copy.editCopy = true
+
+      _copy
 
     _initComponents: () ->
       @_components = {}

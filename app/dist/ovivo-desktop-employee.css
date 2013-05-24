@@ -1610,7 +1610,8 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     padding: 0;
     vertical-align: top;
     min-height: 100px;
-    overflow: visible; }
+    overflow: visible;
+    cursor: pointer; }
     ul.months-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours, ul.weeks-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours {
       display: inline-block; }
     ul.months-list > li table.days-container .week-row > .cell.show-popup, ul.weeks-list > li table.days-container .week-row > .cell.show-popup {

@@ -47,9 +47,10 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
       if (this._checkIfIgnore(model) === true) {
         return true;
       }
-      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return model.save();
+      if ((model.editCopy !== true) && (model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true) && (obj.update !== true)) {
+        model.save();
       }
+      return true;
     },
     _checkIfIgnore: function(model) {
       var _i;
@@ -69,7 +70,7 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
       return localStorageCache.cache(this, this._url);
     },
     changeCacheHandler: function(model) {
-      if (this._checkIfIgnore(model) === true) {
+      if ((this._checkIfIgnore(model) === true) || (model.editCopy === true)) {
         return true;
       }
       return localStorageCache.cache(this, this._url);

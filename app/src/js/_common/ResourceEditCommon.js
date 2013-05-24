@@ -34,8 +34,11 @@ define([], function() {
           var _handler;
 
           _handler = function() {
-            originalModel.set(model.toJSON());
-            return model.off('sync', _handler);
+            originalModel.set(model.toJSON(), {
+              update: true
+            });
+            model.off('sync', _handler);
+            return delete model.url;
           };
           return _handler;
         },
@@ -87,7 +90,11 @@ define([], function() {
           return this.initMode(mode);
         },
         _createEditCopy: function(model) {
-          return new model.constructor(model.toJSON());
+          var _copy;
+
+          _copy = new model.constructor(model.toJSON());
+          _copy.editCopy = true;
+          return _copy;
         },
         _initComponents: function() {
           var _this = this;

@@ -44,7 +44,9 @@ define [
   processModelChange: (model, obj) ->
     if @_checkIfIgnore(model) is true then return true
 
-    if (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then model.save()
+    if (model.editCopy isnt true) and (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) and (obj.update isnt true) then model.save()
+
+    true
 
   _checkIfIgnore: (model) ->
     if @_ignoreChange instanceof Array
@@ -62,7 +64,7 @@ define [
     localStorageCache.cache @, @_url
 
   changeCacheHandler: (model) ->
-    if @_checkIfIgnore(model) is true then return true
+    if (@_checkIfIgnore(model) is true) or (model.editCopy is true) then return true
 
     localStorageCache.cache @, @_url
 

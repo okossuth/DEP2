@@ -18404,9 +18404,10 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
       if (this._checkIfIgnore(model) === true) {
         return true;
       }
-      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return model.save();
+      if ((model.editCopy !== true) && (model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true) && (obj.update !== true)) {
+        model.save();
       }
+      return true;
     },
     _checkIfIgnore: function(model) {
       var _i;
@@ -18426,7 +18427,7 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
       return localStorageCache.cache(this, this._url);
     },
     changeCacheHandler: function(model) {
-      if (this._checkIfIgnore(model) === true) {
+      if ((this._checkIfIgnore(model) === true) || (model.editCopy === true)) {
         return true;
       }
       return localStorageCache.cache(this, this._url);
@@ -18971,8 +18972,11 @@ define('_common/ResourceEditCommon',[], function() {
           var _handler;
 
           _handler = function() {
-            originalModel.set(model.toJSON());
-            return model.off('sync', _handler);
+            originalModel.set(model.toJSON(), {
+              update: true
+            });
+            model.off('sync', _handler);
+            return delete model.url;
           };
           return _handler;
         },
@@ -19024,7 +19028,11 @@ define('_common/ResourceEditCommon',[], function() {
           return this.initMode(mode);
         },
         _createEditCopy: function(model) {
-          return new model.constructor(model.toJSON());
+          var _copy;
+
+          _copy = new model.constructor(model.toJSON());
+          _copy.editCopy = true;
+          return _copy;
         },
         _initComponents: function() {
           var _this = this;
