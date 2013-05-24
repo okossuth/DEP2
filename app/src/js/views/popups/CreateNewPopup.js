@@ -17,8 +17,10 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
       } else {
         _obj = {};
       }
-      ovivo.desktop.pages.settings.show();
-      ovivo.desktop.pages.settings.view.showSubView('availability');
+      if (this.date == null) {
+        ovivo.desktop.pages.settings.show();
+        ovivo.desktop.pages.settings.view.showSubView('availability');
+      }
       ovivo.desktop.popups.editPopupWorkingHour.create(_obj, this.mode);
       ovivo.desktop.popups.editPopupWorkingHour.show();
       return this.close();
@@ -34,8 +36,10 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
       } else {
         _obj = {};
       }
-      ovivo.desktop.pages.settings.show();
-      ovivo.desktop.pages.settings.view.showSubView('timeoff');
+      if (this.date == null) {
+        ovivo.desktop.pages.settings.show();
+        ovivo.desktop.pages.settings.view.showSubView('timeoff');
+      }
       ovivo.desktop.popups.editPopupTimeoff.create(_obj, this.mode);
       ovivo.desktop.popups.editPopupTimeoff.show();
       return this.close();

@@ -17,8 +17,9 @@ define [
       else
         _obj = {}
 
-      ovivo.desktop.pages.settings.show()
-      ovivo.desktop.pages.settings.view.showSubView('availability')
+      if not @date?
+        ovivo.desktop.pages.settings.show()
+        ovivo.desktop.pages.settings.view.showSubView('availability')
 
       ovivo.desktop.popups.editPopupWorkingHour.create(_obj, @mode)
       ovivo.desktop.popups.editPopupWorkingHour.show()
@@ -32,8 +33,9 @@ define [
       else
         _obj = {}
 
-      ovivo.desktop.pages.settings.show()
-      ovivo.desktop.pages.settings.view.showSubView('timeoff')
+      if not @date?
+        ovivo.desktop.pages.settings.show()
+        ovivo.desktop.pages.settings.view.showSubView('timeoff')
       
       ovivo.desktop.popups.editPopupTimeoff.create(_obj, @mode)
       ovivo.desktop.popups.editPopupTimeoff.show()
