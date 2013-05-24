@@ -1,4 +1,4 @@
-{% load general_purpose_tags compressed %}
+{% load general_purpose_tags %}
 <!DOCTYPE html>
 <!--<html lang="en" manifest="/app.appcache"> -->
 
@@ -10,7 +10,7 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        {% compressed_css "backbone-employee-tablet" %}
+        <link href="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee.css" rel="stylesheet" />
         
         <title>Ovivo</title>
 
@@ -870,7 +870,8 @@
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        {% compressed_js "backbone-employee-tablet" %}
+        <script src="{{ MEDIA_URL }}employee-tablet/lib/require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-tablet/dist/ovivo-desktop-employee-require.js"></script>
 
         <script>
             (function(d, s, id){
