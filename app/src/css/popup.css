@@ -22,14 +22,14 @@
     animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
-  width: 300px;
+  width: 400px;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 100000;
-  margin: 0 0 0 -158px;
-  padding: 16px; }
+  margin: 0 0 0 -236px;
+  padding: 10px 36px 36px 36px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
     -moz-animation: popup-enter 200ms ease-out 0s;
@@ -47,7 +47,7 @@
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
   .popup > h1 {
     text-align: center;
-    padding: 7px 0 0 0; }
+    padding: 7px 0 20px 0; }
   .popup > div.close {
     position: absolute;
     top: 10px;

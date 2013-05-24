@@ -8,7 +8,7 @@
       font-size: 15px;
       text-align: center;
       padding: 9px 9px;
-      width: 287px;
+      width: 387px;
       -webkit-appearance: none; }
     .form-component > .settings-items > li.settings-item > div.item-content > input {
       height: 17px; }
@@ -22,4 +22,4 @@
       color: #807e73;
       margin: 0 4px; }
     .form-component > .settings-items > li.settings-item > div.item-content.two > input {
-      width: 110px; }
+      width: 160px; }
