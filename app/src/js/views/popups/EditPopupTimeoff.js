@@ -8,7 +8,19 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       'end': String,
       'reason': String
     },
-    createNew: function(obj) {
+    modes: ['edit', 'create', 'create-single', 'edit-single'],
+    startDateChangeHandler: function() {
+      return this.set('end', this.start());
+    },
+    attachHandlers: function(mode) {
+      if (mode.match(/single/) !== null) {
+        return this.model.on('change:start', this.startDateChangeHandler, this.model);
+      }
+    },
+    detachHandlers: function(mode) {
+      return this.model.off('change:start', this.startDateChangeHandler);
+    },
+    createNew: function(obj, mode) {
       var _end, _now, _start;
 
       if (obj == null) {
@@ -25,7 +37,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         end: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
-      }, obj)));
+      }, obj)), mode);
     },
     initialize: function() {
       var _min;

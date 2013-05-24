@@ -686,6 +686,9 @@
             <h1 class="create-mode">Tilføj ny tid</h1>
             <h1 class="edit-mode">Ret tid</h1>
 
+            <h1 class="create-single-mode">Add new time for one day</h1>
+            <h1 class="edit-single-mode">Edit time for one day</h1>
+
             <div class="close">X</div>
 
             <ul class="settings-items">
@@ -706,10 +709,14 @@
                         <span>Dato</span><em>some explanation text</em>
                     </div>
 
-                    <div class="item-content two">
+                    <div class="item-content two create-mode edit-mode">
                         <input type="text" class="property-value property-value-start_date datepicker" />
                         <span>til</span>
                         <input type="date" class="property-value property-value-end_date datepicker" />
+                    </div>
+
+                    <div class="item-content create-single-mode edit-single-mode">
+                        <input type="text" class="property-value property-value-start_date datepicker" />
                     </div>
                 </li>
 
@@ -726,7 +733,7 @@
                     </div>
                 </li>
                 
-                <li class="settings-item">
+                <li class="settings-item create-mode edit-mode">
                     <div class="header">
                         <span>Gentag</span><em>some explanation text</em>
                     </div>
@@ -746,10 +753,14 @@
                 + Tilføj tid
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + Add time for one day
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     Slet
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     Save
                 </div>
             </div>
@@ -758,6 +769,8 @@
         <div class="popup popup-timeoff" style="display: none;">
             <h1 class="create-mode">Tilføj ny tid væk fra arbejdspladsen</h1>
             <h1 class="edit-mode">Rediger tid væk fra arbejdspladsen</h1>
+            <h1 class="create-single-mode">Add new day off</h1>
+            <h1 class="edit-single-mode">Edit day off</h1>
 
             <div class="close">X</div>
 
@@ -767,10 +780,14 @@
                         <span>Dato</span><em>some explanation text</em>
                     </div>
 
-                    <div class="item-content two">
+                    <div class="item-content two create-mode edit-mode">
                         <input type="text" class="datepicker property-value property-value-start" />
                         <span>til</span>
                         <input type="text" class="datepicker property-value property-value-end" />
+                    </div>
+
+                    <div class="item-content create-single-mode edit-single-mode">
+                        <input type="text" class="datepicker property-value property-value-start" />
                     </div>
                 </li>
 
@@ -789,10 +806,14 @@
                 + Tilføj tid væk fra arbejdspladsen
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + Add day off
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     Slet
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     Save
                 </div>
             </div>

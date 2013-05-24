@@ -20,9 +20,19 @@ define [
     processMouseEnter: () -> @model.highlight()
     processMouseLeave: () -> @model.removeHighlight()
 
-    processClick: () ->
+    processClick: (e) ->
+      if @model.isSingle() is true
+        _mode = 'edit-single'
+
+      else
+        _mode = 'edit'
+
       ovivo.desktop.popups.editPopupWorkingHour.show()
-      ovivo.desktop.popups.editPopupWorkingHour.edit @model
+      ovivo.desktop.popups.editPopupWorkingHour.edit @model, _mode
+
+      e.stopPropagation()
+
+      false
 
     _getDateStr: (_date) ->
       if _date?

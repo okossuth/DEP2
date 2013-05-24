@@ -15,7 +15,19 @@ define [
       'end': String
       'reason': String
 
-    createNew: (obj) ->
+    modes: ['edit', 'create', 'create-single', 'edit-single']
+
+    startDateChangeHandler: () ->
+      @set 'end', @start()
+
+    attachHandlers: (mode) ->
+      if mode.match(/single/) isnt null
+        @model.on 'change:start', @startDateChangeHandler, @model
+
+    detachHandlers: (mode) ->
+      @model.off 'change:start', @startDateChangeHandler
+
+    createNew: (obj, mode) ->
       if not obj? then obj = {}
 
       _now = Date.today()
@@ -27,12 +39,12 @@ define [
       _now.moveToDayOfWeek(5)
       _end = new Date _now
 
-      @setModel new @collection.model _.extend {
+      @setModel (new @collection.model _.extend {
           start: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
           end: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
           reason: ''
           municipality: ovivo.desktop.resources.municipalities.at(0).id
-        }, obj
+        }, obj), mode
 
     initialize: () ->
       @collection = ovivo.desktop.resources.inactivities

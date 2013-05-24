@@ -15,9 +15,19 @@ define [
     events:
       'click': 'processClick'
 
-    processClick: () ->
+    processClick: (e) ->
+      if @model.isSingle() is true
+        _mode = 'edit-single'
+
+      else
+        _mode = 'edit'
+
       ovivo.desktop.popups.editPopupTimeoff.show()
-      ovivo.desktop.popups.editPopupTimeoff.edit @model
+      ovivo.desktop.popups.editPopupTimeoff.edit @model, _mode
+
+      e.stopPropagation()
+
+      false
 
     _getDateStr: (_date) ->
       if _date?

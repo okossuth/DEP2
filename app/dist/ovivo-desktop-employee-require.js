@@ -18515,10 +18515,12 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       'click': 'processClick',
       'click .type-button': 'changeType'
     },
-    processClick: function() {
-      return ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
+    processClick: function(e) {
+      ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
         trigger: true
       });
+      e.stopPropagation();
+      return false;
     },
     groupRenderComplete: function() {},
     group: function() {
@@ -19007,13 +19009,19 @@ define('_common/ResourceEditCommon',[], function() {
           });
           return this.$("." + name + "-mode").show();
         },
-        create: function(obj) {
-          this.createNew(obj);
-          return this.initMode('create');
+        create: function(obj, mode) {
+          if (mode == null) {
+            mode = 'create';
+          }
+          this.createNew(obj, mode);
+          return this.initMode(mode);
         },
-        edit: function(model) {
-          this.setModel(model);
-          return this.initMode('edit');
+        edit: function(model, mode) {
+          if (mode == null) {
+            mode = 'edit';
+          }
+          this.setModel(model, mode);
+          return this.initMode(mode);
         },
         _createEditCopy: function(model) {
           return new model.constructor(model.toJSON());
@@ -19031,12 +19039,18 @@ define('_common/ResourceEditCommon',[], function() {
           });
           return this._initComponents = function() {};
         },
-        setModel: function(model) {
+        attachHandlers: function() {},
+        detachHandlers: function() {},
+        setModel: function(model, mode) {
           var _this = this;
 
           this._initComponents();
           this.original = model;
+          if (this.model != null) {
+            this.detachHandlers(mode);
+          }
           this.model = this._createEditCopy(model);
+          this.attachHandlers(mode);
           this.trigger('change:model', this.model);
           return _.each(this.fields, function(field) {
             var _component, _date, _ref;
@@ -19048,7 +19062,9 @@ define('_common/ResourceEditCommon',[], function() {
             _component = _this._components[field];
             if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
-              _component.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              _component.each(function(i, el) {
+                return $(el).data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              });
             } else if (_component.hasClass('plain-value')) {
               $.when(_this.model.view[field]()).done(function(_str) {
                 return _component.html(_str);
@@ -19082,7 +19098,28 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
       'end_date': String,
       'repeat': eval
     },
-    createNew: function(obj) {
+    modes: ['edit', 'create', 'create-single', 'edit-single'],
+    startDateChangeHandler: function() {
+      var _date, _day;
+
+      _date = new Date(Date.parse(this.start_date()));
+      this.set('end_date', this.start_date());
+      _day = _date.getDay();
+      if (_day === 0) {
+        _day = 7;
+      }
+      return this.set('weekdays', _day.toString());
+    },
+    attachHandlers: function(mode) {
+      if (mode.match(/single/) !== null) {
+        this.model.on('change:start_date', this.startDateChangeHandler, this.model);
+      }
+      return this.startDateChangeHandler.call(this.model);
+    },
+    detachHandlers: function(mode) {
+      return this.model.off('change:start_date', this.startDateChangeHandler);
+    },
+    createNew: function(obj, mode) {
       var _end, _now, _start;
 
       if (obj == null) {
@@ -19101,7 +19138,7 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
         available: true,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
-      }, obj)));
+      }, obj)), mode);
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;
@@ -19126,7 +19163,19 @@ define('views/popups/EditPopupTimeoff',['views/popups/EditPopup', '_features/tra
       'end': String,
       'reason': String
     },
-    createNew: function(obj) {
+    modes: ['edit', 'create', 'create-single', 'edit-single'],
+    startDateChangeHandler: function() {
+      return this.set('end', this.start());
+    },
+    attachHandlers: function(mode) {
+      if (mode.match(/single/) !== null) {
+        return this.model.on('change:start', this.startDateChangeHandler, this.model);
+      }
+    },
+    detachHandlers: function(mode) {
+      return this.model.off('change:start', this.startDateChangeHandler);
+    },
+    createNew: function(obj, mode) {
       var _end, _now, _start;
 
       if (obj == null) {
@@ -19143,7 +19192,7 @@ define('views/popups/EditPopupTimeoff',['views/popups/EditPopup', '_features/tra
         end: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
-      }, obj)));
+      }, obj)), mode);
     },
     initialize: function() {
       var _min;
@@ -19173,18 +19222,47 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
       'click .button-create-timeoff': 'createTimeoff'
     }),
     createTime: function() {
+      var _obj;
+
+      if (this.date != null) {
+        _obj = {
+          start_date: this.date,
+          end_date: this.date
+        };
+      } else {
+        _obj = {};
+      }
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('availability');
-      ovivo.desktop.popups.editPopupWorkingHour.create();
+      ovivo.desktop.popups.editPopupWorkingHour.create(_obj, this.mode);
       ovivo.desktop.popups.editPopupWorkingHour.show();
       return this.close();
     },
     createTimeoff: function() {
+      var _obj;
+
+      if (this.date != null) {
+        _obj = {
+          start: this.date,
+          end: this.date
+        };
+      } else {
+        _obj = {};
+      }
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('timeoff');
-      ovivo.desktop.popups.editPopupTimeoff.create();
+      ovivo.desktop.popups.editPopupTimeoff.create(_obj, this.mode);
       ovivo.desktop.popups.editPopupTimeoff.show();
       return this.close();
+    },
+    show: function(singleFlag, date) {
+      this.date = date;
+      if (singleFlag === true) {
+        this.mode = 'create-single';
+      } else {
+        this.mode = 'create';
+      }
+      return Popup.prototype.show.call(this);
     },
     initialize: function() {
       this._initialize();
@@ -20161,9 +20239,21 @@ define('models/calendar/Day',['ovivo'], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/calendar/Day',['ovivo'], function() {
+define('_features/getDateString',['_features/trailZero'], function(trailZero) {
+  return function(date) {
+    return "" + (date.getFullYear()) + "-" + (trailZero(date.getMonth() + 1)) + "-" + (trailZero(date.getDate()));
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/Day',['_features/getDateString', 'ovivo'], function(getDateString) {
   return {
-    events: {},
+    events: {
+      'click': 'processDayClick'
+    },
+    processDayClick: function() {
+      return ovivo.desktop.popups.createNewPopup.show(true, getDateString(this.dateObj()));
+    },
     render: function() {
       return true;
     },
@@ -20188,7 +20278,7 @@ define('views/calendar/Day',['ovivo'], function() {
       } else if (_name === 'workingHour') {
         return this.workingHours[elem.id];
       } else if (_name === 'event') {
-        return this.events[elem.id];
+        return this.events_[elem.id];
       }
     },
     _removeModel: function(model, hash) {
@@ -20252,12 +20342,12 @@ define('views/calendar/Day',['ovivo'], function() {
       return this._insertElement(model, view, hash);
     },
     addEvent: function(view, model) {
-      this._addModel(model, view, this.events);
+      this._addModel(model, view, this.events_);
       this.updateEventsCounter();
       return true;
     },
     removeEvent: function(model) {
-      return this._removeModel(model, this.events);
+      return this._removeModel(model, this.events_);
     },
     addWorkingHour: function(view, model) {
       return this._addModel(model, view, this.workingHours);
@@ -20274,21 +20364,22 @@ define('views/calendar/Day',['ovivo'], function() {
     updateEventsCounter: function() {
       var _amount, _html;
 
-      _amount = _.keys(this.events).length;
-      _html = _amount > 1 ? _amount + ' ' + ngettext('event', 'events', this.events) : '';
-      return this.eventsCounter.html(_html);
+      _amount = _.keys(this.events_).length;
+      _html = _amount > 1 ? _amount + ' ' + ngettext('event', 'events', this.events_) : '';
+      return this.events_Counter.html(_html);
     },
     setToday: function() {
       return this.$el.addClass('current');
     },
     initialize: function() {
       this.proxyCall('initialize', arguments);
-      this.events = {};
+      this.events_ = {};
       this.workingHours = {};
       this.inactivities = {};
       this.elements = [];
       this.calendarItems = this.$('.calendar-items');
-      this.eventsCounter = this.$('.events-counter');
+      this.events_Counter = this.$('.events-counter');
+      this.delegateEvents();
       return true;
     }
   };
@@ -21929,9 +22020,18 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
     processMouseLeave: function() {
       return this.model.removeHighlight();
     },
-    processClick: function() {
+    processClick: function(e) {
+      var _mode;
+
+      if (this.model.isSingle() === true) {
+        _mode = 'edit-single';
+      } else {
+        _mode = 'edit';
+      }
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      return ovivo.desktop.popups.editPopupWorkingHour.edit(this.model);
+      ovivo.desktop.popups.editPopupWorkingHour.edit(this.model, _mode);
+      e.stopPropagation();
+      return false;
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -22094,6 +22194,9 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
   return ResourceBase.extend({
     typeName: 'workingHour',
     _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj', 'deltaHours'],
+    isSingle: function() {
+      return this.start_date() === this.end_date();
+    },
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -22305,9 +22408,18 @@ define('views/resources/Inactivity',['views/resources/ResourceBase', 'ovivo'], f
     events: {
       'click': 'processClick'
     },
-    processClick: function() {
+    processClick: function(e) {
+      var _mode;
+
+      if (this.model.isSingle() === true) {
+        _mode = 'edit-single';
+      } else {
+        _mode = 'edit';
+      }
       ovivo.desktop.popups.editPopupTimeoff.show();
-      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model);
+      ovivo.desktop.popups.editPopupTimeoff.edit(this.model, _mode);
+      e.stopPropagation();
+      return false;
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -22440,6 +22552,9 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
   return ResourceBase.extend({
     typeName: 'inactivity',
     _gettersNames: ['start', 'end', 'reason', 'approved', 'municipality', 'type', 'pk'],
+    isSingle: function() {
+      return this.start() === this.end();
+    },
     validate: function(attrs) {
       if ((attrs.start != null) && (attrs.end != null) && (attrs.municipality != null)) {
         return void 0;

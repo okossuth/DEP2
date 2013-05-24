@@ -20,8 +20,12 @@ define [
       'click': 'processClick'
       'click .type-button': 'changeType'
 
-    processClick: () -> 
+    processClick: (e) -> 
       ovivo.desktop.routers.main.navigate "/events/#{@model.id}/", { trigger: true }
+
+      e.stopPropagation()
+
+      false
 
     groupRenderComplete: () ->
       # ovivo.mobile.pages.list.trigger 'eventsRendered'

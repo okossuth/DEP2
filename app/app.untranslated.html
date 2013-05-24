@@ -686,6 +686,9 @@
             <h1 class="create-mode">{{#i18n}}Add new time{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time{{/i18n}}</h1>
 
+            <h1 class="create-single-mode">{{#i18n}}Add new time for one day{{/i18n}}</h1>
+            <h1 class="edit-single-mode">{{#i18n}}Edit time for one day{{/i18n}}</h1>
+
             <div class="close">X</div>
 
             <ul class="settings-items">
@@ -706,10 +709,14 @@
                         <span>{{#i18n}}Date{{/i18n}}</span><em>{{#i18n}}Explanation 16{{/i18n}}</em>
                     </div>
 
-                    <div class="item-content two">
+                    <div class="item-content two create-mode edit-mode">
                         <input type="text" class="property-value property-value-start_date datepicker" />
                         <span>{{#i18n}}to{{/i18n}}</span>
                         <input type="date" class="property-value property-value-end_date datepicker" />
+                    </div>
+
+                    <div class="item-content create-single-mode edit-single-mode">
+                        <input type="text" class="property-value property-value-start_date datepicker" />
                     </div>
                 </li>
 
@@ -726,7 +733,7 @@
                     </div>
                 </li>
                 
-                <li class="settings-item">
+                <li class="settings-item create-mode edit-mode">
                     <div class="header">
                         <span>{{#i18n}}Repeat{{/i18n}}</span><em>{{#i18n}}Explanation 18{{/i18n}}</em>
                     </div>
@@ -746,10 +753,14 @@
                 + {{#i18n}}Add time{{/i18n}}
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + {{#i18n}}Add time for one day{{/i18n}}
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     {{#i18n}}Save{{/i18n}}
                 </div>
             </div>
@@ -758,6 +769,8 @@
         <div class="popup popup-timeoff" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time off{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time off{{/i18n}}</h1>
+            <h1 class="create-single-mode">{{#i18n}}Add new day off{{/i18n}}</h1>
+            <h1 class="edit-single-mode">{{#i18n}}Edit day off{{/i18n}}</h1>
 
             <div class="close">X</div>
 
@@ -767,10 +780,14 @@
                         <span>{{#i18n}}Date{{/i18n}}</span><em>{{#i18n}}Explanation 19{{/i18n}}</em>
                     </div>
 
-                    <div class="item-content two">
+                    <div class="item-content two create-mode edit-mode">
                         <input type="text" class="datepicker property-value property-value-start" />
                         <span>{{#i18n}}to{{/i18n}}</span>
                         <input type="text" class="datepicker property-value property-value-end" />
+                    </div>
+
+                    <div class="item-content create-single-mode edit-single-mode">
+                        <input type="text" class="datepicker property-value property-value-start" />
                     </div>
                 </li>
 
@@ -789,10 +806,14 @@
                 + {{#i18n}}Add time off{{/i18n}}
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + {{#i18n}}Add day off{{/i18n}}
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     {{#i18n}}Save{{/i18n}}
                 </div>
             </div>

@@ -19,6 +19,8 @@ define [
       'pk'
     ]
 
+    isSingle: () -> @start() is @end()
+
     validate: (attrs) -> 
       if attrs.start? and attrs.end? and attrs.municipality?
         undefined

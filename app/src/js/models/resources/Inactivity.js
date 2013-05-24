@@ -3,6 +3,9 @@ define(['models/resources/ResourceBase', 'views/resources/Inactivity', 'views/re
   return ResourceBase.extend({
     typeName: 'inactivity',
     _gettersNames: ['start', 'end', 'reason', 'approved', 'municipality', 'type', 'pk'],
+    isSingle: function() {
+      return this.start() === this.end();
+    },
     validate: function(attrs) {
       if ((attrs.start != null) && (attrs.end != null) && (attrs.municipality != null)) {
         return void 0;

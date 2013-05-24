@@ -10,10 +10,12 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       'click': 'processClick',
       'click .type-button': 'changeType'
     },
-    processClick: function() {
-      return ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
+    processClick: function(e) {
+      ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
         trigger: true
       });
+      e.stopPropagation();
+      return false;
     },
     groupRenderComplete: function() {},
     group: function() {

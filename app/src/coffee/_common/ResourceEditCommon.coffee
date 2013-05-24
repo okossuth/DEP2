@@ -67,15 +67,19 @@ define [
 
       @$(".#{name}-mode").show()
 
-    create: (obj) ->
-      @createNew obj
+    create: (obj, mode) ->
+      if not mode? then mode = 'create'
 
-      @initMode 'create'
+      @createNew obj, mode
 
-    edit: (model) ->
-      @setModel model
+      @initMode mode
 
-      @initMode 'edit'
+    edit: (model, mode) ->
+      if not mode? then mode = 'edit'
+
+      @setModel model, mode
+
+      @initMode mode
 
     _createEditCopy: (model) -> new model.constructor model.toJSON()
 
@@ -91,12 +95,20 @@ define [
 
       @_initComponents = () ->
 
-    setModel: (model) ->
+    attachHandlers: () ->
+
+    detachHandlers: () ->
+
+    setModel: (model, mode) ->
       @_initComponents()
 
       @original = model
 
+      if @model? then @detachHandlers mode
+
       @model = @_createEditCopy model
+
+      @attachHandlers mode
 
       @trigger 'change:model', @model
 
@@ -111,7 +123,7 @@ define [
         if _component.hasClass 'datepicker'
           _date = new Date Date.parse @model[field]()
 
-          _component.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _component.each (i, el) -> $(el).data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
 
         else if _component.hasClass 'plain-value'
           $.when(@model.view[field]()).done (_str) -> _component.html _str

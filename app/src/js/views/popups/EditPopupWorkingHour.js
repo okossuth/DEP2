@@ -11,7 +11,28 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       'end_date': String,
       'repeat': eval
     },
-    createNew: function(obj) {
+    modes: ['edit', 'create', 'create-single', 'edit-single'],
+    startDateChangeHandler: function() {
+      var _date, _day;
+
+      _date = new Date(Date.parse(this.start_date()));
+      this.set('end_date', this.start_date());
+      _day = _date.getDay();
+      if (_day === 0) {
+        _day = 7;
+      }
+      return this.set('weekdays', _day.toString());
+    },
+    attachHandlers: function(mode) {
+      if (mode.match(/single/) !== null) {
+        this.model.on('change:start_date', this.startDateChangeHandler, this.model);
+      }
+      return this.startDateChangeHandler.call(this.model);
+    },
+    detachHandlers: function(mode) {
+      return this.model.off('change:start_date', this.startDateChangeHandler);
+    },
+    createNew: function(obj, mode) {
       var _end, _now, _start;
 
       if (obj == null) {
@@ -30,7 +51,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         available: true,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
-      }, obj)));
+      }, obj)), mode);
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;

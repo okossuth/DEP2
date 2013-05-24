@@ -17,9 +17,18 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     processMouseLeave: function() {
       return this.model.removeHighlight();
     },
-    processClick: function() {
+    processClick: function(e) {
+      var _mode;
+
+      if (this.model.isSingle() === true) {
+        _mode = 'edit-single';
+      } else {
+        _mode = 'edit';
+      }
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      return ovivo.desktop.popups.editPopupWorkingHour.edit(this.model);
+      ovivo.desktop.popups.editPopupWorkingHour.edit(this.model, _mode);
+      e.stopPropagation();
+      return false;
     },
     _getDateStr: function(_date) {
       if (_date != null) {

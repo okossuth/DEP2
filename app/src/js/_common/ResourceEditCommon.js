@@ -72,13 +72,19 @@ define([], function() {
           });
           return this.$("." + name + "-mode").show();
         },
-        create: function(obj) {
-          this.createNew(obj);
-          return this.initMode('create');
+        create: function(obj, mode) {
+          if (mode == null) {
+            mode = 'create';
+          }
+          this.createNew(obj, mode);
+          return this.initMode(mode);
         },
-        edit: function(model) {
-          this.setModel(model);
-          return this.initMode('edit');
+        edit: function(model, mode) {
+          if (mode == null) {
+            mode = 'edit';
+          }
+          this.setModel(model, mode);
+          return this.initMode(mode);
         },
         _createEditCopy: function(model) {
           return new model.constructor(model.toJSON());
@@ -96,12 +102,18 @@ define([], function() {
           });
           return this._initComponents = function() {};
         },
-        setModel: function(model) {
+        attachHandlers: function() {},
+        detachHandlers: function() {},
+        setModel: function(model, mode) {
           var _this = this;
 
           this._initComponents();
           this.original = model;
+          if (this.model != null) {
+            this.detachHandlers(mode);
+          }
           this.model = this._createEditCopy(model);
+          this.attachHandlers(mode);
           this.trigger('change:model', this.model);
           return _.each(this.fields, function(field) {
             var _component, _date, _ref;
@@ -113,7 +125,9 @@ define([], function() {
             _component = _this._components[field];
             if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
-              _component.data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              _component.each(function(i, el) {
+                return $(el).data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+              });
             } else if (_component.hasClass('plain-value')) {
               $.when(_this.model.view[field]()).done(function(_str) {
                 return _component.html(_str);
