@@ -13,7 +13,7 @@ define [
 
     addNew: () ->
       ovivo.desktop.popups.editPopupTimeoff.show()
-      ovivo.desktop.popups.editPopupTimeoff.createNew()
+      ovivo.desktop.popups.editPopupTimeoff.create()
       
       true
 

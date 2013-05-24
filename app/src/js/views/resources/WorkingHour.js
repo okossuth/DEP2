@@ -19,7 +19,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      return ovivo.desktop.popups.editPopupWorkingHour.setModel(this.model);
+      return ovivo.desktop.popups.editPopupWorkingHour.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {

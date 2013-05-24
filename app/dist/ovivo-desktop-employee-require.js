@@ -18945,6 +18945,7 @@ define('_common/ResourceEditCommon',[], function() {
           'click .button-delete': 'delete'
         }),
         propertyRegExp: /\bproperty-value-(\w+)\b/,
+        modes: ['edit', 'create'],
         changeProperty: function(e) {
           var _input, _name;
 
@@ -18996,13 +18997,23 @@ define('_common/ResourceEditCommon',[], function() {
           this.original.destroy();
           return this.close();
         },
-        initCreateMode: function() {
-          this.$('.create-mode').show();
-          return this.$('.edit-mode').hide();
+        initMode: function(name) {
+          var _hide,
+            _this = this;
+
+          _hide = _.without(this.modes, name);
+          _.each(_hide, function(name) {
+            return _this.$("." + name + "-mode").hide();
+          });
+          return this.$("." + name + "-mode").show();
         },
-        initEditMode: function() {
-          this.$('.create-mode').hide();
-          return this.$('.edit-mode').show();
+        create: function(obj) {
+          this.createNew(obj);
+          return this.initMode('create');
+        },
+        edit: function(model) {
+          this.setModel(model);
+          return this.initMode('edit');
         },
         _createEditCopy: function(model) {
           return new model.constructor(model.toJSON());
@@ -19027,7 +19038,6 @@ define('_common/ResourceEditCommon',[], function() {
           this.original = model;
           this.model = this._createEditCopy(model);
           this.trigger('change:model', this.model);
-          this.initEditMode();
           return _.each(this.fields, function(field) {
             var _component, _date, _ref;
 
@@ -19072,15 +19082,18 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
       'end_date': String,
       'repeat': eval
     },
-    createNew: function() {
+    createNew: function(obj) {
       var _end, _now, _start;
 
+      if (obj == null) {
+        obj = {};
+      }
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         start_time: '09:00',
@@ -19088,8 +19101,7 @@ define('views/popups/EditPopupWorkingHour',['views/popups/EditPopup', '_features
         available: true,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
-      }));
-      return this.initCreateMode();
+      }, obj)));
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;
@@ -19114,22 +19126,24 @@ define('views/popups/EditPopupTimeoff',['views/popups/EditPopup', '_features/tra
       'end': String,
       'reason': String
     },
-    createNew: function() {
+    createNew: function(obj) {
       var _end, _now, _start;
 
+      if (obj == null) {
+        obj = {};
+      }
       _now = Date.today();
       _now.setWeek(_now.getWeek() + 1);
       _now.moveToDayOfWeek(1);
       _start = new Date(_now);
       _now.moveToDayOfWeek(5);
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
-      }));
-      return this.initCreateMode();
+      }, obj)));
     },
     initialize: function() {
       var _min;
@@ -19161,14 +19175,14 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
     createTime: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('availability');
-      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      ovivo.desktop.popups.editPopupWorkingHour.create();
       ovivo.desktop.popups.editPopupWorkingHour.show();
       return this.close();
     },
     createTimeoff: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('timeoff');
-      ovivo.desktop.popups.editPopupTimeoff.createNew();
+      ovivo.desktop.popups.editPopupTimeoff.create();
       ovivo.desktop.popups.editPopupTimeoff.show();
       return this.close();
     },
@@ -20724,7 +20738,7 @@ define('views/pages/Settings/Availability',['views/pages/PageBase', 'ovivo'], fu
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      ovivo.desktop.popups.editPopupWorkingHour.create();
       return true;
     },
     addWorkingHour: function(workingHour) {
@@ -20757,7 +20771,7 @@ define('views/pages/Settings/Timeoff',['views/pages/PageBase', 'ovivo'], functio
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupTimeoff.show();
-      ovivo.desktop.popups.editPopupTimeoff.createNew();
+      ovivo.desktop.popups.editPopupTimeoff.create();
       return true;
     },
     addInactivity: function(inactivity) {
@@ -21917,7 +21931,7 @@ define('views/resources/WorkingHour',['views/resources/ResourceBase', 'ovivo'], 
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      return ovivo.desktop.popups.editPopupWorkingHour.setModel(this.model);
+      return ovivo.desktop.popups.editPopupWorkingHour.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -21989,7 +22003,7 @@ define('views/resources/WorkingHourEdit',['views/resources/ResourceBase', 'ovivo
     },
     edit: function() {
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      return ovivo.desktop.popups.editPopupWorkingHour.setModel(this.model);
+      return ovivo.desktop.popups.editPopupWorkingHour.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -22293,7 +22307,7 @@ define('views/resources/Inactivity',['views/resources/ResourceBase', 'ovivo'], f
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupTimeoff.show();
-      return ovivo.desktop.popups.editPopupTimeoff.setModel(this.model);
+      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {
@@ -22363,7 +22377,7 @@ define('views/resources/InactivityEdit',['views/resources/ResourceBase', 'ovivo'
     groupTemplate: Handlebars.templates['inactivityEdit_group'],
     edit: function() {
       ovivo.desktop.popups.editPopupTimeoff.show();
-      return ovivo.desktop.popups.editPopupTimeoff.setModel(this.model);
+      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {

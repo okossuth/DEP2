@@ -10,6 +10,7 @@ define([], function() {
           'click .button-delete': 'delete'
         }),
         propertyRegExp: /\bproperty-value-(\w+)\b/,
+        modes: ['edit', 'create'],
         changeProperty: function(e) {
           var _input, _name;
 
@@ -61,13 +62,23 @@ define([], function() {
           this.original.destroy();
           return this.close();
         },
-        initCreateMode: function() {
-          this.$('.create-mode').show();
-          return this.$('.edit-mode').hide();
+        initMode: function(name) {
+          var _hide,
+            _this = this;
+
+          _hide = _.without(this.modes, name);
+          _.each(_hide, function(name) {
+            return _this.$("." + name + "-mode").hide();
+          });
+          return this.$("." + name + "-mode").show();
         },
-        initEditMode: function() {
-          this.$('.create-mode').hide();
-          return this.$('.edit-mode').show();
+        create: function(obj) {
+          this.createNew(obj);
+          return this.initMode('create');
+        },
+        edit: function(model) {
+          this.setModel(model);
+          return this.initMode('edit');
         },
         _createEditCopy: function(model) {
           return new model.constructor(model.toJSON());
@@ -92,7 +103,6 @@ define([], function() {
           this.original = model;
           this.model = this._createEditCopy(model);
           this.trigger('change:model', this.model);
-          this.initEditMode();
           return _.each(this.fields, function(field) {
             var _component, _date, _ref;
 

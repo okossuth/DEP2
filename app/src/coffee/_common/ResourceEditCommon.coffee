@@ -9,6 +9,8 @@ define [
 
     propertyRegExp: /\bproperty-value-(\w+)\b/
 
+    modes: ['edit', 'create']
+
     changeProperty: (e) ->
       _input = $(e.target).closest('.property-value')
       _name = @propertyRegExp.exec(_input[0].className)[1]
@@ -58,13 +60,22 @@ define [
 
       @close()
 
-    initCreateMode: () ->
-      @$('.create-mode').show()
-      @$('.edit-mode').hide()
+    initMode: (name) ->
+      _hide = _.without @modes, name
 
-    initEditMode: () ->
-      @$('.create-mode').hide()
-      @$('.edit-mode').show()
+      _.each _hide, (name) => @$(".#{name}-mode").hide()
+
+      @$(".#{name}-mode").show()
+
+    create: (obj) ->
+      @createNew obj
+
+      @initMode 'create'
+
+    edit: (model) ->
+      @setModel model
+
+      @initMode 'edit'
 
     _createEditCopy: (model) -> new model.constructor model.toJSON()
 
@@ -88,8 +99,6 @@ define [
       @model = @_createEditCopy model
 
       @trigger 'change:model', @model
-
-      @initEditMode()
 
       _.each @fields, (field) =>
         if typeof field is 'object'

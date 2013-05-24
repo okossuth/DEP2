@@ -18,7 +18,7 @@ define [
 
     edit: () -> 
       ovivo.desktop.popups.editPopupTimeoff.show()
-      ovivo.desktop.popups.editPopupTimeoff.setModel @model
+      ovivo.desktop.popups.editPopupTimeoff.edit @model
 
     _getDateStr: (_date) ->
       if _date?

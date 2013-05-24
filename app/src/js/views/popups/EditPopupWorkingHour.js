@@ -11,15 +11,18 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       'end_date': String,
       'repeat': eval
     },
-    createNew: function() {
+    createNew: function(obj) {
       var _end, _now, _start;
 
+      if (obj == null) {
+        obj = {};
+      }
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         start_time: '09:00',
@@ -27,8 +30,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         available: true,
         repeat: 1,
         weekdays: '1,2,3,4,5,6,7'
-      }));
-      return this.initCreateMode();
+      }, obj)));
     },
     initialize: function() {
       this.collection = ovivo.desktop.resources.workingHours;

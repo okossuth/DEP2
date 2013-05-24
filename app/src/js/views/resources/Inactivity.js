@@ -11,7 +11,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupTimeoff.show();
-      return ovivo.desktop.popups.editPopupTimeoff.setModel(this.model);
+      return ovivo.desktop.popups.editPopupTimeoff.edit(this.model);
     },
     _getDateStr: function(_date) {
       if (_date != null) {

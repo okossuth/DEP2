@@ -15,7 +15,9 @@ define [
       'end': String
       'reason': String
 
-    createNew: () ->
+    createNew: (obj) ->
+      if not obj? then obj = {}
+
       _now = Date.today()
       _now.setWeek _now.getWeek() + 1
       _now.moveToDayOfWeek(1)
@@ -25,13 +27,12 @@ define [
       _now.moveToDayOfWeek(5)
       _end = new Date _now
 
-      @setModel new @collection.model
-        start: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
-        end: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
-        reason: ''
-        municipality: ovivo.desktop.resources.municipalities.at(0).id
-
-      @initCreateMode()
+      @setModel new @collection.model _.extend {
+          start: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
+          end: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
+          reason: ''
+          municipality: ovivo.desktop.resources.municipalities.at(0).id
+        }, obj
 
     initialize: () ->
       @collection = ovivo.desktop.resources.inactivities

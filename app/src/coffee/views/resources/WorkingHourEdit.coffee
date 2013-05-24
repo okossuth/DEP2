@@ -25,7 +25,7 @@ define [
 
     edit: () -> 
       ovivo.desktop.popups.editPopupWorkingHour.show()
-      ovivo.desktop.popups.editPopupWorkingHour.setModel @model
+      ovivo.desktop.popups.editPopupWorkingHour.edit @model
 
     _getDateStr: (_date) ->
       if _date?

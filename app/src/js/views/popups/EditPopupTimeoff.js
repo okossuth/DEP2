@@ -8,22 +8,24 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       'end': String,
       'reason': String
     },
-    createNew: function() {
+    createNew: function(obj) {
       var _end, _now, _start;
 
+      if (obj == null) {
+        obj = {};
+      }
       _now = Date.today();
       _now.setWeek(_now.getWeek() + 1);
       _now.moveToDayOfWeek(1);
       _start = new Date(_now);
       _now.moveToDayOfWeek(5);
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         reason: '',
         municipality: ovivo.desktop.resources.municipalities.at(0).id
-      }));
-      return this.initCreateMode();
+      }, obj)));
     },
     initialize: function() {
       var _min;

@@ -18,7 +18,9 @@ define [
       'end_date': String
       'repeat': eval
 
-    createNew: () ->
+    createNew: (obj) ->
+      if not obj? then obj = {}
+      
       _now = Date.today()
 
       _now.moveToFirstDayOfMonth()
@@ -27,16 +29,15 @@ define [
       _now.moveToLastDayOfMonth()
       _end = new Date _now
 
-      @setModel new @collection.model
-        start_date: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
-        end_date: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
-        start_time: '09:00'
-        end_time: '17:00'
-        available: true
-        repeat: 1
-        weekdays: '1,2,3,4,5,6,7'
-
-      @initCreateMode()
+      @setModel new @collection.model _.extend {
+          start_date: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
+          end_date: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
+          start_time: '09:00'
+          end_time: '17:00'
+          available: true
+          repeat: 1
+          weekdays: '1,2,3,4,5,6,7'
+        }, obj
 
     initialize: () ->
       @collection = ovivo.desktop.resources.workingHours

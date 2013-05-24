@@ -9,14 +9,14 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
     createTime: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('availability');
-      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      ovivo.desktop.popups.editPopupWorkingHour.create();
       ovivo.desktop.popups.editPopupWorkingHour.show();
       return this.close();
     },
     createTimeoff: function() {
       ovivo.desktop.pages.settings.show();
       ovivo.desktop.pages.settings.view.showSubView('timeoff');
-      ovivo.desktop.popups.editPopupTimeoff.createNew();
+      ovivo.desktop.popups.editPopupTimeoff.create();
       ovivo.desktop.popups.editPopupTimeoff.show();
       return this.close();
     },
