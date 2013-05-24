@@ -1,3 +1,6 @@
+.notifications-view .settings-items, .general-view .settings-items {
+  margin: 90px 0 70px 0; }
+
 .settings-items {
   margin: 90px 0 0 0; }
   .settings-items > li.settings-item {

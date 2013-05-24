@@ -1929,6 +1929,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 .page.page-settings.scrolled-top .shadow.top {
   display: block; }
 
+.page.page-settings .content.notifications-view > .shadow.bottom, .page.page-settings .content.general-view > .shadow.bottom {
+  bottom: 70px; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px;
   overflow-x: hidden; }
@@ -2122,6 +2125,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   left: 0;
   right: 0;
   overflow: auto; }
+
+.notifications-view .settings-items, .general-view .settings-items {
+  margin: 90px 0 70px 0; }
 
 .settings-items {
   margin: 90px 0 0 0; }
