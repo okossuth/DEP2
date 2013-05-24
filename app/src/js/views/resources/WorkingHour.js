@@ -25,8 +25,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         _mode = 'edit';
       }
-      ovivo.desktop.popups.editPopupWorkingHour.show();
-      ovivo.desktop.popups.editPopupWorkingHour.edit(this.model, _mode);
+      ovivo.desktop.pages.editWorkingHours.view.showEl();
+      ovivo.desktop.pages.editWorkingHours.view.edit(this.model, _mode);
       e.stopPropagation();
       return false;
     },

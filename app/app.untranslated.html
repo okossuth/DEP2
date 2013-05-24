@@ -632,6 +632,120 @@
             </div>
         </section>
 
+        <section class="page page-edit page-edit-working-hours hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title edit-mode">{{#i18n}}Edit working hours{{/i18n}}</span>
+                    <span class="title edit-single-mode">{{#i18n}}Edit one-day working hours{{/i18n}}</span>
+
+                    <div class="button capital right button-close">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>{{#i18n}}Start time{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="time" class="property-value property-value-start_time" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>{{#i18n}}End time{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="time" class="property-value property-value-end_time" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>{{#i18n}}Start date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-start_date datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>{{#i18n}}End date{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-end_date datepicker" />
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>{{#i18n}}Status{{/i18n}}</span><em>{{#i18n}}Explanation 17{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <select class="property-value property-value-available">
+                                    <option value="true">{{#i18n}}Available{{/i18n}}</option>
+                                    <option value="false">{{#i18n}}Unavailable{{/i18n}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>{{#i18n}}Repeat{{/i18n}}</span><em>{{#i18n}}Explanation 18{{/i18n}}</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <select class="property-value property-value-repeat">
+                                <option value="1">{{#i18n}}Every other week{{/i18n}}</option>
+                                <option value="2">{{#i18n}}Every second week{{/i18n}}</option>
+                                <option value="3">{{#i18n}}Every third week{{/i18n}}</option>
+                                <option value="4">{{#i18n}}Every fourth week{{/i18n}}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer>
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>{{#i18n}}Save{{/i18n}}</span>
+                    </div>
+
+                    <div class="button warning right button-delete capital">
+                        <span>{{#i18n}}Delete{{/i18n}}</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
         <section class="side-bar">
             <h1 class="title">
                 <img src="/assets/img/global-loader.gif" />
@@ -682,7 +796,7 @@
             </div>
         </div>
 
-        <div class="popup popup-working-hour" style="display: none;">
+        <div class="popup popup-working-hour form-component" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time{{/i18n}}</h1>
 
@@ -766,7 +880,7 @@
             </div>
         </div>
 
-        <div class="popup popup-timeoff" style="display: none;">
+        <div class="popup popup-timeoff form-component" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time off{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time off{{/i18n}}</h1>
             <h1 class="create-single-mode">{{#i18n}}Add new day off{{/i18n}}</h1>

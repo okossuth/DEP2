@@ -89,6 +89,32 @@ select {
   font-family: KontrapunktBobLight;
   src: url("../assets/fonts/Kontrapunkt Bob Light.otf"); }
 
+.form-component > .settings-items {
+  margin: 20px 0; }
+  .form-component > .settings-items > li.settings-item > div.item-content {
+    text-align: center; }
+    .form-component > .settings-items > li.settings-item > div.item-content > input, .form-component > .settings-items > li.settings-item > div.item-content > select {
+      background: #ebe9e0;
+      color: #525044;
+      font-size: 15px;
+      text-align: center;
+      padding: 9px 9px;
+      width: 287px;
+      -webkit-appearance: none; }
+    .form-component > .settings-items > li.settings-item > div.item-content > input {
+      height: 17px; }
+    .form-component > .settings-items > li.settings-item > div.item-content > select {
+      -webkit-appearance: menulist-button; }
+    .form-component > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
+      -webkit-appearance: initial; }
+    .form-component > .settings-items > li.settings-item > div.item-content > span {
+      font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-style: italic;
+      color: #807e73;
+      margin: 0 4px; }
+    .form-component > .settings-items > li.settings-item > div.item-content.two > input {
+      width: 110px; }
+
 i.logo {
   display: block;
   width: 100px;
@@ -573,31 +599,6 @@ section.page .notification-message {
   .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
-  .popup > .settings-items {
-    margin: 20px 0; }
-    .popup > .settings-items > li.settings-item > div.item-content {
-      text-align: center; }
-      .popup > .settings-items > li.settings-item > div.item-content > input, .popup > .settings-items > li.settings-item > div.item-content > select {
-        background: #ebe9e0;
-        color: #525044;
-        font-size: 15px;
-        text-align: center;
-        padding: 9px 9px;
-        width: 287px;
-        -webkit-appearance: none; }
-      .popup > .settings-items > li.settings-item > div.item-content > input {
-        height: 17px; }
-      .popup > .settings-items > li.settings-item > div.item-content > select {
-        -webkit-appearance: menulist-button; }
-      .popup > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
-        -webkit-appearance: initial; }
-      .popup > .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-        font-style: italic;
-        color: #807e73;
-        margin: 0 4px; }
-      .popup > .settings-items > li.settings-item > div.item-content.two > input {
-        width: 110px; }
 
 .popup.popup-create-new {
   margin-top: -62px; }
@@ -1716,6 +1717,29 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   overflow-y: scroll; }
 
 
+.page.page-edit {
+  width: 500px;
+  z-index: 9999;
+  box-shadow: -2px 0 30px #888888;
+  left: auto; }
+  .page.page-edit.enter {
+    -webkit-animation: event-details-enter 200ms ease-out 0s;
+    -moz-animation: event-details-enter 200ms ease-out 0s;
+    -ms-animation: event-details-enter 200ms ease-out 0s;
+    -o-animation: event-details-enter 200ms ease-out 0s;
+    animation: event-details-enter 200ms ease-out 0s; }
+  .page.page-edit.exit {
+    -webkit-animation: event-details-exit 200ms ease-out 0s;
+    -moz-animation: event-details-exit 200ms ease-out 0s;
+    -ms-animation: event-details-exit 200ms ease-out 0s;
+    -o-animation: event-details-exit 200ms ease-out 0s;
+    animation: event-details-exit 200ms ease-out 0s; }
+  .page.page-edit > header > div.line > div.button {
+    width: 40px; }
+
+.page.page-edit .settings-items {
+  margin: 30px 20px 0 20px; }
+
 .page.page-event-details div.content .event {
   margin-top: 0; }
   .page.page-event-details div.content .event .element-container > div.buttons > div.button-element.single {
@@ -2148,7 +2172,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
         border-radius: 1px;
         box-shadow: 0 1px 0 #d9d6c6;
         padding: 10px; }
-        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input {
+        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content > div.input-wrapper > select {
           font-size: 15px;
           color: #525044;
           width: 100%; }

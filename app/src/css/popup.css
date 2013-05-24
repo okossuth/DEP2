@@ -64,28 +64,3 @@
   .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
-  .popup > .settings-items {
-    margin: 20px 0; }
-    .popup > .settings-items > li.settings-item > div.item-content {
-      text-align: center; }
-      .popup > .settings-items > li.settings-item > div.item-content > input, .popup > .settings-items > li.settings-item > div.item-content > select {
-        background: #ebe9e0;
-        color: #525044;
-        font-size: 15px;
-        text-align: center;
-        padding: 9px 9px;
-        width: 287px;
-        -webkit-appearance: none; }
-      .popup > .settings-items > li.settings-item > div.item-content > input {
-        height: 17px; }
-      .popup > .settings-items > li.settings-item > div.item-content > select {
-        -webkit-appearance: menulist-button; }
-      .popup > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
-        -webkit-appearance: initial; }
-      .popup > .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-        font-style: italic;
-        color: #807e73;
-        margin: 0 4px; }
-      .popup > .settings-items > li.settings-item > div.item-content.two > input {
-        width: 110px; }

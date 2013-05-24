@@ -632,6 +632,120 @@
             </div>
         </section>
 
+        <section class="page page-edit page-edit-working-hours hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title edit-mode">Edit working hours</span>
+                    <span class="title edit-single-mode">Edit one-day working hours</span>
+
+                    <div class="button capital right button-close">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Start time</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="time" class="property-value property-value-start_time" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>End time</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="time" class="property-value property-value-end_time" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Start date</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-start_date datepicker" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>End date</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input type="date" class="property-value property-value-end_date datepicker" />
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Status</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <select class="property-value property-value-available">
+                                    <option value="true">Tilgængelig</option>
+                                    <option value="false">Utilgængelig</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="settings-item create-mode edit-mode">
+                        <div class="header">
+                            <span>Gentag</span><em>some explanation text</em>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <select class="property-value property-value-repeat">
+                                <option value="1">Hver anden uge</option>
+                                <option value="2">Hver anden uge</option>
+                                <option value="3">Hver tredje uge</option>
+                                <option value="4">Hver fjerde uge</option>
+                            </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <footer>
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>Save</span>
+                    </div>
+
+                    <div class="button warning right button-delete capital">
+                        <span>Slet</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
         <section class="side-bar">
             <h1 class="title">
                 <img src="/assets/img/global-loader.gif" />
@@ -682,7 +796,7 @@
             </div>
         </div>
 
-        <div class="popup popup-working-hour" style="display: none;">
+        <div class="popup popup-working-hour form-component" style="display: none;">
             <h1 class="create-mode">Tilføj ny tid</h1>
             <h1 class="edit-mode">Ret tid</h1>
 
@@ -766,7 +880,7 @@
             </div>
         </div>
 
-        <div class="popup popup-timeoff" style="display: none;">
+        <div class="popup popup-timeoff form-component" style="display: none;">
             <h1 class="create-mode">Tilføj ny tid væk fra arbejdspladsen</h1>
             <h1 class="edit-mode">Rediger tid væk fra arbejdspladsen</h1>
             <h1 class="create-single-mode">Add new day off</h1>

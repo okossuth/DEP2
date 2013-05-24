@@ -22,7 +22,7 @@
         border-radius: 1px;
         box-shadow: 0 1px 0 #d9d6c6;
         padding: 10px; }
-        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input {
+        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content > div.input-wrapper > select {
           font-size: 15px;
           color: #525044;
           width: 100%; }

@@ -27,8 +27,8 @@ define [
       else
         _mode = 'edit'
 
-      ovivo.desktop.popups.editPopupWorkingHour.show()
-      ovivo.desktop.popups.editPopupWorkingHour.edit @model, _mode
+      ovivo.desktop.pages.editWorkingHours.view.showEl()
+      ovivo.desktop.pages.editWorkingHours.view.edit @model, _mode
 
       e.stopPropagation()
 

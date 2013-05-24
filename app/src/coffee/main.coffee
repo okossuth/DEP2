@@ -57,6 +57,7 @@ require [
   'models/pages/Help',
   'models/pages/Notifications',
   'models/pages/EventDetails',
+  'models/pages/EditWorkingHours',
 
   'views/SideBar',
 
@@ -73,7 +74,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
+], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, EditWorkingHoursPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -115,7 +116,8 @@ require [
         'Feedback',
         'Help',
         'Notifications',
-        'EventDetails'
+        'EventDetails',
+        'EditWorkingHours'
       ], (pageVarName) ->
         _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))
         _page = ovivo.desktop.pages.addPage eval(pageVarName + 'Page'), _pageInstanceName
