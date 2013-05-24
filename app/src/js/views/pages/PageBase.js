@@ -43,15 +43,19 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
       return true;
     },
     showSubView: function(name) {
+      var _subView;
+
       if (name == null) {
         return;
       }
+      _subView = this.subViews[name];
       _.each(_.without(this.subViews, this.subViews[name]), function(subView) {
         return this.$("." + subView.name + "-only").hide();
       });
       this.$("." + name + "-only").show();
       this.model.set('subView', name);
-      return this.processContentScrollBind.process(this.subViews[name].el);
+      this.processContentScrollBind.process(_subView.el);
+      return _subView.trigger('show');
     },
     subView: function() {
       return this.model.get('subView');

@@ -40,9 +40,13 @@ define([], function() {
         },
         _syncProcessor: function(handlerGetter) {
           this.model.on('sync', handlerGetter.call(this, this.collection, this.model, this.original));
-          this.model.url = this.collection.url;
-          if (this.model.id != null) {
-            this.model.url += this.model.id + '/';
+          if (this.model.standaloneModel !== true) {
+            this.model.url = this.collection.url;
+            if (this.model.id != null) {
+              this.model.url += this.model.id + '/';
+            }
+          } else {
+            this.model.url = this.original.url;
           }
           this.model.save();
           return this.close();

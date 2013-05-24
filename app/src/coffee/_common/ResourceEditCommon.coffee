@@ -37,9 +37,13 @@ define [
     _syncProcessor: (handlerGetter) ->
       @model.on 'sync', handlerGetter.call @, @collection, @model, @original
 
-      @model.url = @collection.url
+      if @model.standaloneModel isnt true
+        @model.url = @collection.url
 
-      if @model.id? then @model.url += @model.id + '/'
+        if @model.id? then @model.url += @model.id + '/'
+
+      else
+        @model.url = @original.url
 
       @model.save()
 

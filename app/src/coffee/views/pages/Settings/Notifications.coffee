@@ -30,8 +30,13 @@ define [
 
         _switcher.setValue ovivo.desktop.resources.communication[key]()
 
+    save: () ->
+      console.log 'notifications save'
+
     initialize: () ->
       @switchers = {}
+
+      @on 'action:save', @save, @
 
       _.each @keys, (key, i) => 
         _switcher = @switchers[key] = new Switcher @$('.options-' + key), @variants[@types[i]]

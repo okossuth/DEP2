@@ -22,10 +22,14 @@ define(['views/pages/PageBase', '_features/Switcher', 'ovivo'], function(PageBas
         return _switcher.setValue(ovivo.desktop.resources.communication[key]());
       });
     },
+    save: function() {
+      return console.log('notifications save');
+    },
     initialize: function() {
       var _this = this;
 
       this.switchers = {};
+      this.on('action:save', this.save, this);
       _.each(this.keys, function(key, i) {
         var _switcher;
 

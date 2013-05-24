@@ -1,32 +1,33 @@
 define [
   'views/pages/PageBase',
 
+  '_common/ResourceEditCommon',
+
   'ovivo'
-], (PageBase) ->
-  PageBase.extend
+], (PageBase, ResourceEditCommon) ->
+  PageBase.extend _.extend {}, ResourceEditCommon.get({}),
     el: '.page.page-settings .general-view'
 
     name: 'general'
 
-    events:
-      'change input.value': 'changeValue'
+    fields: ['first_name', 'last_name', 'mobile_phone', 'email']
 
-    nameRegExp: /\bvalue-(.+)\b/
+    types: 
+      'first_name': String
+      'last_name': String
+      'mobile_phone': String
+      'email': String
 
-    keys: ['first_name', 'last_name', 'mobile_phone', 'email']
+    saveHandler: () ->
+      @save()
 
-    changeValue: (e) ->
-      _input = $(e.target).closest('.value')[0]
-      _name = @nameRegExp.exec(_input.className)[1]
+    close: () ->
 
-      ovivo.desktop.resources.user.set _name, _input.value
-
-    setValues: () ->
-      _.each @keys, (key) => @$('input.value-' + key).val ovivo.desktop.resources.user[key]()
-
+    show: () ->
+      ovivo.desktop.resources.user.def.done () => @setModel ovivo.desktop.resources.user
+      
     initialize: () ->
-      ovivo.desktop.resources.user.def.done _.bind @setValues, @
-
-      ovivo.desktop.resources.user.on 'sync', @setValues, @
+      @on 'action:save', @saveHandler, @
+      @on 'show', @show, @
 
       true
