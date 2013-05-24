@@ -1,4 +1,4 @@
-{% load general_purpose_tags compressed mixpanel %}
+{% load general_purpose_tags mixpanel %}
 <!DOCTYPE html>
 <!--<html lang="en" manifest="/app.appcache"> -->
 
@@ -10,14 +10,14 @@
         <meta charset="utf-8" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        {% compressed_css "backbone-employee-desktop" %}
+        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee.css" rel="stylesheet" />
         
         <title>Ovivo</title>
 
         <!--[if lte IE 8]>
         <script src="{{ MEDIA_URL }}employee-desktop/lib/html5shiv.js"></script>
 
-        {% compressed_css "backbone-employee-desktop-ie" %}
+        <link href="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
         <![endif]-->
      </head>
 
@@ -844,7 +844,8 @@
         </script>
 
         <!-- <script src="{{ MEDIA_URL }}desktop/lib/require.js" data-main="/src/js/main"></script> -->
-        {% compressed_js "backbone-employee-desktop" %}
+        <script src="{{ MEDIA_URL }}employee-desktop/lib/require.js"></script>
+        <script src="{{ MEDIA_URL }}employee-desktop/dist/ovivo-desktop-employee-require.js"></script>
 
         <script>
             (function(d, s, id){
