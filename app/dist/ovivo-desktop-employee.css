@@ -563,7 +563,7 @@ section.page .notification-message {
     right: 10px;
     cursor: pointer; }
   .popup > div.button {
-    width: 156px; }
+    width: 200px; }
   .popup > div.buttons-container {
     text-align: center; }
     .popup > div.buttons-container > div.button {
@@ -1997,9 +1997,10 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     float: left;
     border: 1px solid #807e73;
     border-radius: 2px;
-    width: 120px;
+    min-width: 100px;
     text-align: center;
     margin: 0 0 0 28px;
+    padding: 0 10px;
     font-size: 15px;
     color: #807e73;
     cursor: pointer; }

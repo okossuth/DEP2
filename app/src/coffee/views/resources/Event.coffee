@@ -73,12 +73,12 @@ define [
       if _now > _date then false else true
 
     _biddingClosed: () ->
-      _date = Date.parse @start_date()
+      _date = Date.parse @model.get 'start_date'
       _now = new Date()
 
       _now = new Date _now.getFullYear(), _now.getMonth(), _now.getDate()
 
-      if (_now > _date) and (@type() isnt 'closed') then true else false
+      if (_now > _date) and (@model.get('type') isnt 'closed') then true else false
 
     hasComment: () -> 
       _comment = @comment()
@@ -99,9 +99,9 @@ define [
     initialize: () ->
       @model.setDeltaHours()
 
-      @proxyCall 'initialize', arguments
-
       @biddingClosed = @_biddingClosed()
+
+      @proxyCall 'initialize', arguments
 
       if (ovivo.desktop.resources.groups.def.state() isnt 'resolved') or (ovivo.desktop.resources.municipalities.def.state() isnt 'resolved') or (ovivo.desktop.resources.primaryDepartments.def.state() isnt 'resolved')
         $.when(ovivo.desktop.resources.groups.def, ovivo.desktop.resources.municipalities.def, ovivo.desktop.resources.primaryDepartments.def).then _.bind @render, @
