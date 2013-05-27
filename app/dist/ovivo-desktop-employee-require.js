@@ -18410,18 +18410,21 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
       return true;
     },
     _checkIfIgnore: function(model) {
-      var _i;
+      var _changed, _i;
 
       if (this._ignoreChange instanceof Array) {
         _i = 0;
-        while (_i < this._ignoreChange.length) {
-          if (typeof model.changed[this._ignoreChange[_i]] !== 'undefined') {
-            return true;
+        _changed = _.keys(model.changed);
+        while (_i < _changed.length) {
+          if (_.indexOf(this._ignoreChange, _changed[_i]) === -1) {
+            return false;
           }
           _i += 1;
         }
+        return true;
+      } else {
+        return false;
       }
-      return false;
     },
     cache: function() {
       return localStorageCache.cache(this, this._url);
@@ -22375,7 +22378,6 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', 'views/r
         });
         _json.groups = null;
       }
-      delete _json.exclusions;
       delete _json.start_date_obj;
       delete _json.end_date_obj;
       delete _json.deltaHours;

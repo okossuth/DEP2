@@ -51,14 +51,18 @@ define [
   _checkIfIgnore: (model) ->
     if @_ignoreChange instanceof Array
       _i = 0
+      _changed = _.keys model.changed
 
-      while _i < @_ignoreChange.length
-        if typeof model.changed[@_ignoreChange[_i]] isnt 'undefined'
-          return true
+      while _i < _changed.length
+        if _.indexOf(@_ignoreChange, _changed[_i]) is -1
+          return false
 
         _i += 1
 
-    return false
+      return true
+
+    else
+      return false
 
   cache: () ->
     localStorageCache.cache @, @_url
