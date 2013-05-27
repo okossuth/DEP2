@@ -22689,11 +22689,20 @@ define('models/resources/Inactivity',['models/resources/ResourceBase', 'views/re
       }
       _i = new Date(start);
       while (_i <= end) {
-        _type = (_i - _start) === 0 ? 'first' : (_i - _end) === 0 ? 'last' : 'none';
+        _type = [];
+        if ((_i - _start) === 0) {
+          _type.push('first');
+        }
+        if ((_i - _end) === 0) {
+          _type.push('last');
+        }
+        if (((_i - _start) !== 0) && ((_i - _end) !== 0)) {
+          _type.push('none');
+        }
         _arr.push({
           date: new Date(_i),
           model: this,
-          itemType: _type
+          itemType: _type.join(' ')
         });
         _i.setDate(_i.getDate() + 1);
       }
