@@ -5,10 +5,10 @@ define(['_features/trailZero', 'ovivo'], function(trailZero) {
     types: {
       'start_time': String,
       'end_time': String,
-      'available': eval,
+      'available': Boolean,
       'start_date': String,
       'end_date': String,
-      'repeat': eval
+      'repeat': Number
     },
     modes: ['edit', 'create', 'create-single', 'edit-single'],
     startDateChangeHandler: function() {

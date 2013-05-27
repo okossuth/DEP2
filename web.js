@@ -42,6 +42,14 @@ app.set('views', __dirname + '/app');
 
 app.all('/api/*', proxyFunc);
 
+app.all('/dist/ovivo-desktop-employee-require.min.js', function (req, res, next) {
+    res.set({
+        'X-SourceMap': 'ovivo-desktop-employee-require.min.js.map'
+    });
+
+    next();
+});
+
 app.all('/', renderApp);
 app.all('/:lang/', renderAppInt);
 app.all('/events/*', renderApp);
