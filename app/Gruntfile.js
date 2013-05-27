@@ -116,7 +116,7 @@ module.exports = function(grunt) {
         },
 
         'closure-compiler': {
-            js: {
+            dist: {
                 closurePath: '../tools/closure-compiler',
                 js: 'dist/ovivo-desktop-employee-require.js',
                 jsOutputFile: 'dist/ovivo-desktop-employee-require.min.js',
@@ -127,12 +127,21 @@ module.exports = function(grunt) {
                     compilation_level: 'SIMPLE_OPTIMIZATIONS'
                 }
             }
+        },
+
+        csso: {
+            dist: {
+                files: {
+                    'dist/ovivo-desktop-employee.min.css': ['dist/ovivo-desktop-employee.css']
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-closure-compiler');
+    grunt.loadNpmTasks('grunt-csso')
 
     grunt.registerMultiTask('translate', 'Apply dictionary to file', function() {
         var src = grunt.file.read(this.data.src),
