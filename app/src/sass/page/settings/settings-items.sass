@@ -14,6 +14,8 @@
       margin-top: 0
 
     > div.header
+      min-height: 23px
+
       span
         font-family: 'Helvetica Neue Bold', HelveticaNeueBold, Helvetica, Arial, sans-serif
 
@@ -25,6 +27,15 @@
         font-style: normal
 
         color: #807e73
+
+      .badge
+        visibility: hidden
+
+        margin: 0 0 0 10px
+
+      &.changed
+        .badge
+          visibility: visible
 
     > div.item-content
       margin: 13px 0 0 0

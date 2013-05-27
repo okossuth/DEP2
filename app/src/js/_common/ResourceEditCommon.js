@@ -12,11 +12,18 @@ define([], function() {
         propertyRegExp: /\bproperty-value-(\w+)\b/,
         modes: ['edit', 'create'],
         changeProperty: function(e) {
-          var _input, _name;
+          var _header, _input, _name, _value;
 
           _input = $(e.target).closest('.property-value');
+          _header = $(e.target).closest('.settings-item').children('.header');
           _name = this.propertyRegExp.exec(_input[0].className)[1];
-          return this.model.set(_name, this.types[_name](_input.val()), {
+          _value = this.types[_name](_input.val());
+          if (_value === this.original[_name]()) {
+            _header.removeClass('changed');
+          } else {
+            _header.addClass('changed');
+          }
+          return this.model.set(_name, _value, {
             validate: true
           });
         },
@@ -31,9 +38,11 @@ define([], function() {
           return _handler;
         },
         _getSaveSyncHandler: function(collection, model, originalModel) {
-          var _handler;
+          var _handler, _this;
 
+          _this = this;
           _handler = function() {
+            _this.clearChangeState();
             originalModel.set(model.toJSON(), {
               update: true
             });
@@ -111,9 +120,13 @@ define([], function() {
         },
         attachHandlers: function() {},
         detachHandlers: function() {},
+        clearChangeState: function() {
+          return this.$('.header.changed').removeClass('changed');
+        },
         setModel: function(model, mode) {
           var _this = this;
 
+          this.clearChangeState();
           this._initComponents();
           this.original = model;
           if (this.model != null) {

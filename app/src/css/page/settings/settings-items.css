@@ -8,13 +8,20 @@
     margin: 22px 0 0 0; }
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
-    .settings-items > li.settings-item > div.header span {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      color: #525044;
-      margin: 0 10px 0 0; }
-    .settings-items > li.settings-item > div.header em {
-      font-style: normal;
-      color: #807e73; }
+    .settings-items > li.settings-item > div.header {
+      min-height: 23px; }
+      .settings-items > li.settings-item > div.header span {
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        color: #525044;
+        margin: 0 10px 0 0; }
+      .settings-items > li.settings-item > div.header em {
+        font-style: normal;
+        color: #807e73; }
+      .settings-items > li.settings-item > div.header .badge {
+        visibility: hidden;
+        margin: 0 0 0 10px; }
+      .settings-items > li.settings-item > div.header.changed .badge {
+        visibility: visible; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {

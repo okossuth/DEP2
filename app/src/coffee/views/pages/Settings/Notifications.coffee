@@ -54,8 +54,15 @@ define [
 
     _valueHandlerCreator: (key) ->
       _this = this
+      _header = @$('.options-' + key).closest('.settings-item').children('.header')
 
       (value) ->
+        if value is _this.original[key]()
+          _header.removeClass 'changed'
+
+        else
+          _header.addClass 'changed'
+
         _this.model.set key, value
 
     saveHandler: () ->

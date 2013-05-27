@@ -13,9 +13,18 @@ define [
 
     changeProperty: (e) ->
       _input = $(e.target).closest('.property-value')
-      _name = @propertyRegExp.exec(_input[0].className)[1]
+      _header = $(e.target).closest('.settings-item').children('.header')
 
-      @model.set _name, @types[_name](_input.val()),
+      _name = @propertyRegExp.exec(_input[0].className)[1]
+      _value = @types[_name](_input.val())
+
+      if _value is @original[_name]()
+        _header.removeClass 'changed'
+
+      else
+        _header.addClass 'changed'
+
+      @model.set _name, _value,
         validate: true
 
     _getAddSyncHandler: (collection, model, originalModel) ->
@@ -29,7 +38,11 @@ define [
       _handler
 
     _getSaveSyncHandler: (collection, model, originalModel) ->
-      _handler = () -> 
+      _this = @
+
+      _handler = () ->
+        _this.clearChangeState()
+
         originalModel.set model.toJSON(), { update: true }
 
         model.off 'sync', _handler
@@ -105,7 +118,11 @@ define [
 
     detachHandlers: () ->
 
+    clearChangeState: () -> @$('.header.changed').removeClass 'changed'
+
     setModel: (model, mode) ->
+      @clearChangeState()
+
       @_initComponents()
 
       @original = model

@@ -42,10 +42,16 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', '_features/Switche
       return this.switchers[name].setValue(value);
     },
     _valueHandlerCreator: function(key) {
-      var _this;
+      var _header, _this;
 
       _this = this;
+      _header = this.$('.options-' + key).closest('.settings-item').children('.header');
       return function(value) {
+        if (value === _this.original[key]()) {
+          _header.removeClass('changed');
+        } else {
+          _header.addClass('changed');
+        }
         return _this.model.set(key, value);
       };
     },
