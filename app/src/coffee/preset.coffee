@@ -27,7 +27,7 @@ Date.parse = do () ->
     processor: (str) ->
       [match, year, month, day] = str.match @regExp
 
-      new Date parseInt(year), parseInt(month) - 1, parseInt(day)
+      new Date parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10)
   }, {
     regExp: /^(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d\d\d\d\d\d)$/
     processor: (str) ->

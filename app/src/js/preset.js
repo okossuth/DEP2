@@ -35,7 +35,7 @@ Date.parse = (function() {
         var day, match, month, year, _ref;
 
         _ref = str.match(this.regExp), match = _ref[0], year = _ref[1], month = _ref[2], day = _ref[3];
-        return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+        return new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
       }
     }, {
       regExp: /^(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d\d\d\d\d\d)$/,
