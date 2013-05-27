@@ -107,21 +107,24 @@ select {
       font-size: 15px;
       text-align: center;
       padding: 9px 9px;
-      width: 387px;
       -webkit-appearance: none; }
     .form-component > .settings-items > li.settings-item > div.item-content > input {
-      height: 17px; }
+      height: 17px;
+      width: 382px; }
     .form-component > .settings-items > li.settings-item > div.item-content > select {
-      -webkit-appearance: menulist-button; }
+      -webkit-appearance: menulist-button;
+      width: 400px; }
     .form-component > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
       -webkit-appearance: initial; }
     .form-component > .settings-items > li.settings-item > div.item-content > span {
       font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       font-style: italic;
       color: #807e73;
-      margin: 0 4px; }
+      margin: 0 4px;
+      display: inline-block;
+      width: 16px; }
     .form-component > .settings-items > li.settings-item > div.item-content.two > input {
-      width: 160px; }
+      width: 166px; }
 
 i.logo {
   display: block;
@@ -565,13 +568,13 @@ section.page .notification-message {
     animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
-  width: 400px;
+  width: 410px;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 100000;
-  margin: 0 0 0 -236px;
+  margin: 0 0 0 -241px;
   padding: 10px 36px 36px 36px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;

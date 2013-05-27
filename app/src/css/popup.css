@@ -22,13 +22,13 @@
     animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
-  width: 400px;
+  width: 410px;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 100000;
-  margin: 0 0 0 -236px;
+  margin: 0 0 0 -241px;
   padding: 10px 36px 36px 36px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
