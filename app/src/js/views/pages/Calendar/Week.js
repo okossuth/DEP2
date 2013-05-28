@@ -28,6 +28,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       _now = Date.today();
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
+      this.current = _now;
       return this.navigate(_now.getFullYear(), _now.getWeek());
     },
     _isToday: function(year, number) {

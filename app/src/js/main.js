@@ -51,12 +51,41 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['User', 'ResourceNeeds', 'Templates', 'Periods', 'Skills', 'Municipalities', 'PrimaryDepartments', 'Groups', 'Users', 'WorkingHours'], function(resourceName) {
-      var _resourceInstanceName;
-
-      _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
-      ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))();
-      return ovivo.desktop.resources[_resourceInstanceName].def;
+    $.when.apply($, _.map([
+      {
+        name: 'user',
+        constr: User
+      }, {
+        name: 'skills',
+        constr: Skills
+      }, {
+        name: 'municipalities',
+        constr: Municipalities
+      }, {
+        name: 'primaryDepartments',
+        constr: PrimaryDepartments
+      }, {
+        name: 'groups',
+        constr: Groups
+      }, {
+        name: 'users',
+        constr: Users
+      }, {
+        name: 'workingHours',
+        constr: WorkingHours
+      }, {
+        name: 'resourceNeeds',
+        constr: ResourceNeeds
+      }, {
+        name: 'templates',
+        constr: Templates
+      }, {
+        name: 'periods',
+        constr: Periods
+      }
+    ], function(o) {
+      ovivo.desktop.resources[o.name] = new o.constr();
+      return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
       return Backbone.history.start({
@@ -64,25 +93,49 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       });
     });
     ovivo.desktop.sideBar = new SideBar();
-    _.each(['Calendar', 'Resources', 'Settings'], function(pageVarName) {
-      var _page, _pageInstanceName;
+    _.each([
+      {
+        name: 'calendar',
+        constr: CalendarPage
+      }, {
+        name: 'resources',
+        constr: ResourcesPage
+      }, {
+        name: 'settings',
+        constr: SettingsPage
+      }
+    ], function(o) {
+      var _page;
 
-      _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);
-      _page = ovivo.desktop.pages.addPage(eval(pageVarName + 'Page'), _pageInstanceName);
+      _page = ovivo.desktop.pages.addPage(o.constr, o.name);
       return true;
     });
     ovivo.desktop.popups = {};
-    _.each(['EditPopupResourceNeed', 'EditPopupTemplate', 'EditPopupPeriod', 'CreateNewPopup', 'PeriodBlockPopup'], function(popupName) {
-      var _popupInstanceName;
-
-      _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);
-      return ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))();
+    _.each([
+      {
+        name: 'editPopupResourceNeed',
+        constr: EditPopupResourceNeed
+      }, {
+        name: 'editPopupTemplate',
+        constr: EditPopupTemplate
+      }, {
+        name: 'editPopupPeriod',
+        constr: EditPopupPeriod
+      }, {
+        name: 'createNewPopup',
+        constr: CreateNewPopup
+      }, {
+        name: 'periodBlockPopup',
+        constr: PeriodBlockPopup
+      }
+    ], function(o) {
+      return ovivo.desktop.popups[o.name] = new o.constr();
     });
     _.each(ovivo.desktop.resources, (function() {
       var _complete, _num, _total;
 
       _num = 0;
-      _total = 0;
+      _total = _.keys(ovivo.desktop.resources).length;
       _complete = function() {
         _num += 1;
         return console.log('Resources loading: ' + Math.round(35 + 65 * _num / _total) + '%');
@@ -92,7 +145,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
 
         _res = value.initFetch();
         if (_res.then != null) {
-          _total += 1;
           return _res.then(_complete);
         }
       };

@@ -4,7 +4,8 @@ define(['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Set
     el: '.page.page-settings',
     events: function() {
       return _.extend({}, PageBase.prototype.events, {
-        'click .sections-menu-item': 'menuClick'
+        'click .sections-menu-item': 'menuClick',
+        'click .button-save': 'save'
       });
     },
     menuRegExp: /\bsections-menu-item-(.+)\b/,
@@ -13,6 +14,9 @@ define(['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Set
 
       _item = $(e.target).closest('.sections-menu-item');
       return this.showSubView(this.menuRegExp.exec(_item[0].className)[1]);
+    },
+    save: function() {
+      return this.subViews[this.subView()].trigger('action:save');
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);

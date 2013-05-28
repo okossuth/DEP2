@@ -1,3 +1,6 @@
+.notifications-view .settings-items, .general-view .settings-items {
+  margin: 90px 0 70px 0; }
+
 .settings-items {
   margin: 90px 0 0 0; }
   .settings-items > li.settings-item {
@@ -6,7 +9,7 @@
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
     .settings-items > li.settings-item > div.header {
-      text-align: left; }
+      min-height: 23px; }
       .settings-items > li.settings-item > div.header span {
         font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         color: #525044;
@@ -14,6 +17,11 @@
       .settings-items > li.settings-item > div.header em {
         font-style: normal;
         color: #807e73; }
+      .settings-items > li.settings-item > div.header .badge {
+        visibility: hidden;
+        margin: 0 0 0 10px; }
+      .settings-items > li.settings-item > div.header.changed .badge {
+        visibility: visible; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {
@@ -21,7 +29,7 @@
         border-radius: 1px;
         box-shadow: 0 1px 0 #d9d6c6;
         padding: 10px; }
-        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input {
+        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content > div.input-wrapper > select {
           font-size: 15px;
           color: #525044;
           width: 100%; }

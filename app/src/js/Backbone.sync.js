@@ -74,7 +74,10 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
         return _processReadSuccess(url, model, resp, options);
       }
     }), indicator.success);
-    _errorCreator = _callbackCreatorCreator(indicator.errorAction, indicator.error);
+    _errorCreator = _callbackCreatorCreator((function(url, model, resp, method, options) {
+      ovivo.desktop.resources.apiErrors.addError(url, model, resp, method, options);
+      return indicator.errorAction();
+    }), indicator.error);
     _postProcess = function(method, model, options) {
       if (((method === 'update') || (method === 'delete')) && typeof model.url === 'function') {
         model.url = model.url() + '/';
@@ -139,12 +142,14 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
           return true;
         }
       };
-      if (_flag === true) {
-        return _call.call(this);
-      } else if (model.localStorageOnly !== true) {
-        return setTimeout((function() {
-          return _call.call(_this);
-        }), 300);
+      if (model.localStorageOnly !== true) {
+        if (_flag === true) {
+          return _call.call(this);
+        } else {
+          return setTimeout((function() {
+            return _call.call(_this);
+          }), 300);
+        }
       }
     };
   })();

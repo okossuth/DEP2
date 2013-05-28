@@ -20,6 +20,18 @@ define([], function() {
     cache: function(model, url) {
       return localStorage[url] = JSON.stringify(((model instanceof Backbone.Model) || (model instanceof Backbone.Collection) ? model.toJSON() : model));
     },
+    init: function(model, url) {
+      if (model.initializeEmpty === true) {
+        if (typeof localStorage[url] === 'undefined') {
+          if (model instanceof Backbone.Model) {
+            localStorage[url] = "{}";
+          } else if (model instanceof Backbone.Collection) {
+            localStorage[url] = "[]";
+          }
+        }
+      }
+      return true;
+    },
     reset: function(model, url, options) {
       var _value;
 

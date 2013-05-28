@@ -6,6 +6,9 @@ define [
 
   'ovivo'
 ], (PageBase, Switcher, facebook) ->
+  _processors =
+      'facebook': facebook
+
   PageBase.extend
     el: '.page.page-settings .connections-view'
 
@@ -48,7 +51,7 @@ define [
 
       _.each @keys, (key, i) => 
         _switcher = @switchers[key] = new Switcher @$('.options-' + key), @variants[@types[i]]
-        _processor = eval(key)
+        _processor = _processors[key]
 
         _processor.initialize()
         _processor.on 'change:status', @_valueHandlerSetCreator key

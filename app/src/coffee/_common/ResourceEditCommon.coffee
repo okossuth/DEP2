@@ -9,11 +9,22 @@ define [
 
     propertyRegExp: /\bproperty-value-(\w+)\b/
 
+    modes: ['edit', 'create']
+
     changeProperty: (e) ->
       _input = $(e.target).closest('.property-value')
-      _name = @propertyRegExp.exec(_input[0].className)[1]
+      _header = $(e.target).closest('.settings-item').children('.header')
 
-      @model.set _name, @types[_name](_input.val()),
+      _name = @propertyRegExp.exec(_input[0].className)[1]
+      _value = @types[_name](_input.val())
+
+      if _value is @original[_name]()
+        _header.removeClass 'changed'
+
+      else
+        _header.addClass 'changed'
+
+      @model.set _name, _value,
         validate: true
 
     _getAddSyncHandler: (collection, model, originalModel) ->
@@ -29,21 +40,29 @@ define [
       _handler
 
     _getSaveSyncHandler: (collection, model, originalModel) ->
-      _handler = () -> 
-        if model.postEditSync? then model.postEditSync collection, model, originalModel
-        
-        originalModel.set model.toJSON()
+      _this = @
+
+      _handler = () ->
+        _this.clearChangeState()
+
+        originalModel.set model.toJSON(), { update: true }
 
         model.off 'sync', _handler
+
+        delete model.url
 
       _handler
 
     _syncProcessor: (handlerGetter) ->
       @model.on 'sync', handlerGetter.call @, @collection, @model, @original
 
-      @model.url = @collection.url
+      if @model.standaloneModel isnt true
+        @model.url = @collection.url
 
-      if @model.id? then @model.url += @model.id + '/'
+        if @model.id? then @model.url += @model.id + '/'
+
+      else
+        @model.url = @original.url
 
       @model.save()
 
@@ -58,39 +77,87 @@ define [
 
       @close()
 
-    initCreateMode: () ->
-      @$('.create-mode').show()
-      @$('.edit-mode').hide()
+    initMode: (name) ->
+      _hide = _.without @modes, name
 
-    initEditMode: () ->
-      @$('.create-mode').hide()
-      @$('.edit-mode').show()
+      _.each _hide, (name) => @$(".#{name}-mode").hide()
 
-    _createEditCopy: (model) -> new model.constructor _.extend {}, model.attributes
+      @$(".#{name}-mode").show()
 
-    setModel: (model) ->
+    create: (obj, mode) ->
+      if not mode? then mode = 'create'
+
+      @createNew obj, mode
+
+      @initMode mode
+
+    edit: (model, mode) ->
+      if not mode? then mode = 'edit'
+
+      @setModel model, mode
+
+      @initMode mode
+
+    _createEditCopy: (model) -> 
+      _copy = new model.constructor model.toJSON()
+      _copy.editCopy = true
+
+      _copy
+
+    _initComponents: () ->
+      @_components = {}
+
+      _.each @fields, (field, i) =>
+        if typeof field is 'object'
+          @[field.init] field.name, i
+
+        else
+          @_components[field] = @$(".property-value-#{field}")
+
+      @_initComponents = () ->
+
+    attachHandlers: () ->
+
+    detachHandlers: () ->
+
+    clearChangeState: () -> @$('.header.changed').removeClass 'changed'
+
+    setModel: (model, mode) ->
+      @clearChangeState()
+
+      @_initComponents()
+
       @original = model
+
+      if @model? then @detachHandlers mode
 
       @model = @_createEditCopy model
 
+      @attachHandlers mode
+
       @trigger 'change:model', @model
 
-      @initEditMode()
-
       _.each @fields, (field) =>
-        _value = @$('.property-value-' + field)
+        if typeof field is 'object'
+          @[field.setValue] field.name, @model[field.name]()
 
-        if _value.hasClass 'datepicker'
+          return true
+
+        _component = @_components[field]
+
+        if _component.hasClass 'datepicker'
           _date = new Date Date.parse @model[field]()
 
-          _value.data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _component.each (i, el) -> $(el).data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
 
-        else if _value.hasClass 'plain-value'
-          $.when(@model.view[field]()).done (_str) -> _value.html _str
+        else if _component.hasClass 'plain-value'
+          $.when(@model.view[field]()).done (_str) -> _component.html _str
 
         else
           _v = @model[field]()
 
           if not (_v instanceof Array) then _v = _v.toString()
 
-          _value.val _v
+          _component.val _v
+
+        true

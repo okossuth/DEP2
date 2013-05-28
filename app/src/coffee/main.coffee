@@ -82,21 +82,19 @@ require [
       ovivo.desktop.resources = {}
 
       $.when.apply($, _.map [
-        'User'
-        'ResourceNeeds'
-        'Templates'
-        'Periods'
-        'Skills'
-        'Municipalities'
-        'PrimaryDepartments'
-        'Groups'
-        'Users'
-        'WorkingHours'
-      ], (resourceName) ->
-        _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
-
-        ovivo.desktop.resources[_resourceInstanceName] = new (eval(resourceName))()
-        ovivo.desktop.resources[_resourceInstanceName].def).then () ->
+        { name: 'user', constr: User },
+        { name: 'skills', constr: Skills },
+        { name: 'municipalities', constr: Municipalities },
+        { name: 'primaryDepartments', constr: PrimaryDepartments },
+        { name: 'groups', constr: Groups },
+        { name: 'users', constr: Users },
+        { name: 'workingHours', constr: WorkingHours },
+        { name: 'resourceNeeds', constr: ResourceNeeds },
+        { name: 'templates', constr: Templates },
+        { name: 'periods', constr: Periods },
+      ], (o) ->
+        ovivo.desktop.resources[o.name] = new o.constr()
+        ovivo.desktop.resources[o.name].def).then () ->
 
         ovivo.desktop.pages.calendar.show()
 
@@ -105,31 +103,28 @@ require [
       ovivo.desktop.sideBar = new SideBar()
 
       _.each [
-        'Calendar'
-        'Resources'
-        'Settings'
-      ], (pageVarName) ->
-        _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))
-        _page = ovivo.desktop.pages.addPage eval(pageVarName + 'Page'), _pageInstanceName
+        { name: 'calendar', constr: CalendarPage },
+        { name: 'resources', constr: ResourcesPage },
+        { name: 'settings', constr: SettingsPage }
+      ], (o) ->
+        _page = ovivo.desktop.pages.addPage o.constr, o.name
 
         true
 
       ovivo.desktop.popups = {}
 
       _.each [
-        'EditPopupResourceNeed'
-        'EditPopupTemplate'
-        'EditPopupPeriod'
-        'CreateNewPopup'
-        'PeriodBlockPopup'
-      ], (popupName) ->
-        _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
-
-        ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))()
+        { name: 'editPopupResourceNeed', constr: EditPopupResourceNeed },
+        { name: 'editPopupTemplate', constr: EditPopupTemplate },
+        { name: 'editPopupPeriod', constr: EditPopupPeriod },
+        { name: 'createNewPopup', constr: CreateNewPopup },
+        { name: 'periodBlockPopup', constr: PeriodBlockPopup }
+      ], (o) ->
+        ovivo.desktop.popups[o.name] = new o.constr()
 
       _.each ovivo.desktop.resources, do () ->
         _num = 0
-        _total = 0
+        _total = _.keys(ovivo.desktop.resources).length
 
         _complete = () ->
           _num += 1
@@ -140,8 +135,6 @@ require [
           _res = value.initFetch()
 
           if _res.then? 
-            _total += 1
-
             _res.then _complete
 
       true

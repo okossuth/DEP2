@@ -6,7 +6,11 @@ define [
   'ovivo'
 ], (ResourceBase, ResourceManagerBase) ->
   ResourceBase.extend _.extend {}, ResourceManagerBase,
+    name: 'user'
+    
     url: () -> "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/"
+
+    standaloneModel: true
 
     _gettersNames: [
       'first_name'

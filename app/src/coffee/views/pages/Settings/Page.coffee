@@ -12,6 +12,7 @@ define [
 
     events: () -> _.extend {}, PageBase.prototype.events,
       'click .sections-menu-item': 'menuClick'
+      'click .button-save': 'save'
 
     menuRegExp: /\bsections-menu-item-(.+)\b/
 
@@ -19,6 +20,9 @@ define [
       _item = $(e.target).closest('.sections-menu-item')
 
       @showSubView @menuRegExp.exec(_item[0].className)[1]
+
+    save: () ->
+      @subViews[@subView()].trigger 'action:save'
 
     transitionStart: () ->
       @proxyCall 'transitionStart', arguments

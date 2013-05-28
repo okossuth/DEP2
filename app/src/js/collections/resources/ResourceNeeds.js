@@ -4,6 +4,7 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common
     model: Model,
     fullResponse: true,
     localStorageOnly: true,
+    initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {

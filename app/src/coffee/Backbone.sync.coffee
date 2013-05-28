@@ -65,7 +65,10 @@ requirejs [
     _successCreator = _callbackCreatorCreator ((url, model, resp, method, options) -> 
       if method is 'read' then _processReadSuccess(url, model, resp, options)), indicator.success
 
-    _errorCreator = _callbackCreatorCreator indicator.errorAction, indicator.error
+    _errorCreator = _callbackCreatorCreator ((url, model, resp, method, options) ->
+      ovivo.desktop.resources.apiErrors.addError url, model, resp, method, options
+
+      indicator.errorAction()), indicator.error
 
     _postProcess = (method, model, options) ->
       if ((method is 'update') or (method is 'delete')) and typeof model.url is 'function'
@@ -112,7 +115,7 @@ requirejs [
 
           false
 
-        else
+        else 
           true
 
       _call = () ->
@@ -135,8 +138,9 @@ requirejs [
 
         if (_queueRules[method] is true) and (_queue[method].length is 1) or (_queueRules[method] is false) then _sync method, model, options else true
 
-      if _flag is true
-        _call.call @
+      if model.localStorageOnly isnt true
+        if _flag is true
+          _call.call @
 
-      else if model.localStorageOnly isnt true
-        setTimeout (() => _call.call @), 300
+        else
+          setTimeout (() => _call.call @), 300

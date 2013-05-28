@@ -12,6 +12,15 @@ define(['views/popups/Popup', 'ovivo'], function(Popup) {
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return this.close();
     },
+    show: function(singleFlag, date) {
+      this.date = date;
+      if (singleFlag === true) {
+        this.mode = 'create-single';
+      } else {
+        this.mode = 'create';
+      }
+      return Popup.prototype.show.call(this);
+    },
     initialize: function() {
       this._initialize();
       return true;

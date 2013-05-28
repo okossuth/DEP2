@@ -188,58 +188,62 @@
                     </ul>
                 </div>
 
-                <ul class="scroll-container scrollable settings-items">
+                <ul class="scroll-container scrollable settings-items apply-animation">
                     <li class="settings-item">
                         <div class="header">
-                            <span>{{#i18n}}First name{{/i18n}}</span><em>{{#i18n}}Explanation 1{{/i18n}}</em>
+                            <span>{{#i18n}}First name{{/i18n}}</span><em>{{#i18n}}Explanation{{/i18n}}</em>
+                            <strong class="badge">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
                             <div class="input-wrapper">
-                                <input class="value value-first_name" type="text" placeholder="{{#i18n}}First name{{/i18n}}" />
+                                <input class="value property-value property-value-first_name" type="text" placeholder="{{#i18n}}First name{{/i18n}}" />
                             </div>
                         </div>
                     </li>
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>{{#i18n}}Last name{{/i18n}}</span><em>{{#i18n}}Explanation 2{{/i18n}}</em>
+                            <span>{{#i18n}}Last name{{/i18n}}</span><em>{{#i18n}}Explanation{{/i18n}}</em>
+                            <strong class="badge">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
                             <div class="input-wrapper">
-                                <input class="value value-last_name" type="text" placeholder="{{#i18n}}Last name{{/i18n}}" />
+                                <input class="value property-value property-value-last_name" type="text" placeholder="{{#i18n}}Last name{{/i18n}}" />
                             </div>
                         </div>
                     </li>
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>{{#i18n}}Mobile number{{/i18n}}</span><em>{{#i18n}}Explanation 3{{/i18n}}</em>
+                            <span>{{#i18n}}Mobile number{{/i18n}}</span><em>{{#i18n}}Explanation{{/i18n}}</em>
+                            <strong class="badge">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
                             <div class="input-wrapper">
-                                <input class="value value-mobile_phone" type="text" placeholder="{{#i18n}}Mobile number{{/i18n}}" />
+                                <input class="value property-value property-value-mobile_phone" type="text" placeholder="{{#i18n}}Mobile number{{/i18n}}" />
                             </div>
                         </div>
                     </li>
 
                     <li class="settings-item">
                         <div class="header">
-                            <span>{{#i18n}}E-mail address{{/i18n}}</span><em>{{#i18n}}Explanation 4{{/i18n}}</em>
+                            <span>{{#i18n}}E-mail address{{/i18n}}</span><em>{{#i18n}}Explanation{{/i18n}}</em>
+                            <strong class="badge">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
                             <div class="input-wrapper">
-                                <input class="value value-email" type="text" placeholder="{{#i18n}}E-mail address{{/i18n}}" />
+                                <input class="value property-value property-value-email" type="text" placeholder="{{#i18n}}E-mail address{{/i18n}}" />
                             </div>
                         </div>
                     </li>
                 </ul>
 
-                <div class="shadow top"></div>
-                <div class="shadow bottom"></div>
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
             </div>
 
             <div class="content resource-need-view resource-needs-container hide">
@@ -263,12 +267,12 @@
                     </ul>
                 </div>
 
-                <div class="info">
-                    <h2>{{#i18n}}Explanation 11{{/i18n}}</h2>
-                    <h3>{{#i18n}}Explanation 12{{/i18n}}</h3>
+                <div class="info apply-animation">
+                    <h2>{{#i18n}}Explanation{{/i18n}}</h2>
+                    <h3>{{#i18n}}Explanation{{/i18n}}</h3>
                 </div>
 
-                <div class="wireframe elements-header">
+                <div class="wireframe elements-header apply-animation">
                     <div class="side-container">
                         <div class="button button-add-new">
                             <span>+ {{#i18n}}Add new resource need{{/i18n}}</span>
@@ -317,12 +321,12 @@
                     </ul>
                 </div>
 
-                <div class="info">
-                    <h2>{{#i18n}}Explanation 21{{/i18n}}</h2>
-                    <h3>{{#i18n}}Explanation 22{{/i18n}}</h3>
+                <div class="info apply-animation">
+                    <h2>{{#i18n}}Explanation{{/i18n}}</h2>
+                    <h3>{{#i18n}}Explanation{{/i18n}}</h3>
                 </div>
 
-                <ul class="connections-container">
+                <ul class="connections-container apply-animation">
                     <li>
                         <i class="icon-huge facebook"></i>
                         <ul class="options-group options-facebook">
@@ -337,6 +341,16 @@
                     </li>
                 </ul>
             </div>
+
+            <footer class="general-only notifications-only">
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>{{#i18n}}Save{{/i18n}}</span>
+                    </div>
+                </div>
+            </footer>
         </section>
 
         <section class="page page-help hide">
@@ -617,6 +631,9 @@
             <h1 class="create-mode">{{#i18n}}Add new period{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit period{{/i18n}}</h1>
 
+            <h1 class="create-single-mode">{{#i18n}}Add new time for one day{{/i18n}}</h1>
+            <h1 class="edit-single-mode">{{#i18n}}Edit time for one day{{/i18n}}</h1>
+
             <div class="close">X</div>
 
             <div class="columns-container">
@@ -787,6 +804,7 @@
                         </select>
                     </div>
                 </li>
+
                 <!-- <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Groups{{/i18n}}</span><em>some explanation text</em>
@@ -804,10 +822,14 @@
                 + {{#i18n}}Add time{{/i18n}}
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + {{#i18n}}Add time for one day{{/i18n}}
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     {{#i18n}}Save{{/i18n}}
                 </div>
             </div>
@@ -843,6 +865,10 @@
                             <option value="4">{{#i18n}}Every fourth week{{/i18n}}</option>
                         </select>
                     </div>
+
+                    <div class="item-content create-single-mode edit-single-mode">
+                        <input type="text" class="datepicker property-value property-value-start" />
+                    </div>
                 </li>
 
                 <li class="settings-item">
@@ -863,10 +889,14 @@
                 + {{#i18n}}Add time off{{/i18n}}
             </div>
 
+            <div class="button capital button-add create-single-mode">
+                + {{#i18n}}Add day off{{/i18n}}
+            </div>
+
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode">
+                <div class="button capital warning button-delete edit-mode edit-single-mode">
                     {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode">
+                </div><div class="button capital button-save edit-mode edit-single-mode">
                     {{#i18n}}Save{{/i18n}}
                 </div>
             </div>

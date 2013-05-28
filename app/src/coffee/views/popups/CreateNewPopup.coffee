@@ -15,7 +15,19 @@ define [
       ovivo.desktop.popups.editPopupResourceNeed.createNew()
 
       ovivo.desktop.popups.editPopupResourceNeed.show()
+
       @close()
+
+    show: (singleFlag, date) ->
+      @date = date
+
+      if singleFlag is true
+        @mode = 'create-single'
+
+      else
+        @mode = 'create'
+
+      Popup.prototype.show.call @
 
     initialize: () ->
       @_initialize()

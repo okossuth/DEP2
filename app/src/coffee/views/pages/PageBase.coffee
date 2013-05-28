@@ -1,8 +1,10 @@
 define [
   '_common/ToolsBase',
+
+  '_features/transition',
   
   'ovivo'
-], (ToolsBase) ->
+], (ToolsBase, transition) ->
   _Base = Backbone.View.extend _.extend {}, ToolsBase,
     show: () ->
       @model.trigger.apply @model, ['show'].concat Array.prototype.slice.call arguments, 0
@@ -57,6 +59,8 @@ define [
     showSubView: (name) ->
       if not name? then return
 
+      _subView = @subViews[name]
+
       _.each _.without(@subViews, @subViews[name]), (subView) ->
         @$(".#{subView.name}-only").hide()
 
@@ -66,7 +70,9 @@ define [
 
       @model.trigger 'change:subView', @model, @model.collection
 
-      @processContentScrollBind.process @subViews[name].el
+      @processContentScrollBind.process _subView.el
+
+      _subView.trigger 'show'
 
     subView: () -> @model.get 'subView'
 
@@ -76,17 +82,34 @@ define [
     showElements: (name, selector) ->
       @$(".#{name}-only #{selector}").show()
 
+    transition: (source, target) ->
+      _.each [source, target], (page) -> 
+        page.showEl()
+
+        true
+
+      transition.transit(source.el, target.el, 'enter', 'exit', false).done () =>
+        source.hideEl()
+
+        true
+
     processSubView: (page) ->
       _subViewName = @subView()
+      _subView = @subViews[_subViewName]
 
-      if @prevSubView? then @prevSubView.hideEl()
+      if _subView?
+        if @prevSubView?
+          @transition(@prevSubView, _subView).done () =>
+            @trigger 'subViewChange', _subViewName
 
-      if (_subView = @subViews[_subViewName])?
-        _subView.showEl()
+            @prevSubView = _subView
 
-        @trigger 'subViewChange', _subViewName
+        else
+          _subView.showEl()
 
-        @prevSubView = _subView
+          @trigger 'subViewChange', _subViewName
+
+          @prevSubView = _subView
 
       true
 
