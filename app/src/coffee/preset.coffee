@@ -61,3 +61,14 @@ ovivo.Y = (f) -> do (g = (g) -> (a, b) -> f(g(g))(a, b)) -> (a, b) -> f(g(g))(a,
 
 window.onerror = () ->
   window.localStorage.clear()
+
+ovivo.parseBoolean = (str) ->
+  if typeof str is 'boolean' then return str
+  if typeof str isnt 'string' then return Boolean str
+
+  str = str.toLowerCase()
+
+  if str is 'false' then return false
+  if str is 'true' then return true
+
+  return Boolean str

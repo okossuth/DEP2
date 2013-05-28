@@ -8,7 +8,7 @@ define [
   types: 
     'start_time': String
     'end_time': String
-    'available': Boolean
+    'available': ovivo.parseBoolean
     'start_date': String
     'end_date': String
     'repeat': Number

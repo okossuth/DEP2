@@ -92,3 +92,20 @@ ovivo.Y = function(f) {
 window.onerror = function() {
   return window.localStorage.clear();
 };
+
+ovivo.parseBoolean = function(str) {
+  if (typeof str === 'boolean') {
+    return str;
+  }
+  if (typeof str !== 'string') {
+    return Boolean(str);
+  }
+  str = str.toLowerCase();
+  if (str === 'false') {
+    return false;
+  }
+  if (str === 'true') {
+    return true;
+  }
+  return Boolean(str);
+};
