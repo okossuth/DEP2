@@ -14,19 +14,6 @@ define [
     events:
       'click .no-selection': 'clearSelection'
       'click .button-close': 'close'
-      'click .button-close-subview': 'closeSubview'
-      'click .button-add': 'addButton'
-      'click .button-save': 'saveButton'
-      'click .button-delete': 'deleteButton'
-
-    addButton: () ->
-      @subViews[@subView()].trigger 'action:add'
-
-    deleteButton: () ->
-      @subViews[@subView()].trigger 'action:delete'
-
-    saveButton: () ->
-      @subViews[@subView()].trigger 'action:save'
 
     clearSelection: () ->
       if window.getSelection?
@@ -42,7 +29,6 @@ define [
       true
 
     close: () -> @hideEl()
-    closeSubview: () -> @subViews[@subView()].close()
 
     showEl: () -> @$el.removeClass 'hide'
     hideEl: () -> @$el.addClass 'hide'
@@ -66,21 +52,13 @@ define [
 
       @$(".#{name}-only").show()
 
-      @model.set 'subView', name, { silent: true }
-
-      @model.trigger 'change:subView', @model, @model.collection
+      @model.set 'subView', name
 
       @processContentScrollBind.process _subView.el
 
       _subView.trigger 'show'
 
     subView: () -> @model.get 'subView'
-
-    hideElements: (name, selector) ->
-      @$(".#{name}-only #{selector}").hide()
-
-    showElements: (name, selector) ->
-      @$(".#{name}-only #{selector}").show()
 
     transition: (source, target) ->
       _.each [source, target], (page) -> 
@@ -114,10 +92,11 @@ define [
       true
 
     _initSubView: () ->
-      if not (_subViewName = @subView())?
-        _subViewName = @defaultSubView
+      if not (_subViewName = @subView())? 
+        @model.set 'subView', @defaultSubView
 
-      @showSubView _subViewName
+      else
+        @processSubView()
 
       true
 
@@ -222,7 +201,6 @@ define [
 
       _.each @SubViews, (SubView) => 
         _subView = new SubView()
-        _subView.page = @
 
         _subView.baseView = @
 

@@ -19082,20 +19082,7 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     events: {
       'click .no-selection': 'clearSelection',
-      'click .button-close': 'close',
-      'click .button-close-subview': 'closeSubview',
-      'click .button-add': 'addButton',
-      'click .button-save': 'saveButton',
-      'click .button-delete': 'deleteButton'
-    },
-    addButton: function() {
-      return this.subViews[this.subView()].trigger('action:add');
-    },
-    deleteButton: function() {
-      return this.subViews[this.subView()].trigger('action:delete');
-    },
-    saveButton: function() {
-      return this.subViews[this.subView()].trigger('action:save');
+      'click .button-close': 'close'
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -19111,9 +19098,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     close: function() {
       return this.hideEl();
-    },
-    closeSubview: function() {
-      return this.subViews[this.subView()].close();
     },
     showEl: function() {
       return this.$el.removeClass('hide');
@@ -19142,21 +19126,12 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
         return this.$("." + subView.name + "-only").hide();
       });
       this.$("." + name + "-only").show();
-      this.model.set('subView', name, {
-        silent: true
-      });
-      this.model.trigger('change:subView', this.model, this.model.collection);
+      this.model.set('subView', name);
       this.processContentScrollBind.process(_subView.el);
       return _subView.trigger('show');
     },
     subView: function() {
       return this.model.get('subView');
-    },
-    hideElements: function(name, selector) {
-      return this.$("." + name + "-only " + selector).hide();
-    },
-    showElements: function(name, selector) {
-      return this.$("." + name + "-only " + selector).show();
     },
     transition: function(source, target) {
       var _this = this;
@@ -19194,9 +19169,10 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
       var _subViewName;
 
       if ((_subViewName = this.subView()) == null) {
-        _subViewName = this.defaultSubView;
+        this.model.set('subView', this.defaultSubView);
+      } else {
+        this.processSubView();
       }
-      this.showSubView(_subViewName);
       return true;
     },
     processContentScrollBind: (function() {
@@ -19308,7 +19284,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
         var _subView;
 
         _subView = new SubView();
-        _subView.page = _this;
         _subView.baseView = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);
