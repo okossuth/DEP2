@@ -23005,3 +23005,5 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
 });
 
 define("main", function(){});
+
+//@ sourceMappingURL=ovivo-desktop-employee-require.js.map
