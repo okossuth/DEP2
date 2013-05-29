@@ -42,10 +42,10 @@ app.set('views', __dirname + '/app');
 
 app.all('/api/*', proxyFunc);
 
-app.all('/dist/ovivo-desktop-employee-require.min.js', function (req, res, next) {
-    res.set({
-        'X-SourceMap': 'ovivo-desktop-employee-require.min.js.map'
-    });
+app.all('/dist/ovivo-desktop-employee-require.js', function (req, res, next) {
+    // res.set({
+    //     'X-SourceMap': '/dist/ovivo-desktop-employee-require.js.map'
+    // });
 
     next();
 });

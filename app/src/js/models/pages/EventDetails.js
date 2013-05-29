@@ -5,6 +5,7 @@ define(['models/pages/PageBase', 'views/pages/EventDetails/Page', 'ovivo'], func
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
+      a.c;
       return true;
     }
   });

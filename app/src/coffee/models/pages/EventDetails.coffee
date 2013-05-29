@@ -13,4 +13,6 @@ define [
       
       @proxyCall 'initialize', arguments
       
+      a.c
+
       true

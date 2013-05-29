@@ -21558,6 +21558,7 @@ define('models/pages/EventDetails',['models/pages/PageBase', 'views/pages/EventD
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
+      a.c;
       return true;
     }
   });
@@ -23069,3 +23070,5 @@ require(['routers/main', 'models/resources/User', 'models/resources/Communicatio
 });
 
 define("main", function(){});
+
+//@ sourceMappingURL=ovivo-desktop-employee-require.js.map

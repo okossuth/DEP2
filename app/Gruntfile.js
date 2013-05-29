@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
         shell: {
             optimize: {
-                command: 'r.js.cmd -o src/js/build.js optimize=none',
+                command: 'r.js.cmd -o src/js/build.js optimize=none generateSourceMaps=true preserveLicenseComments=false',
                 stdout: false
             },
 
