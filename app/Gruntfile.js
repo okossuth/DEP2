@@ -49,6 +49,11 @@ module.exports = function(grunt) {
                 stdout: false
             },
 
+            minify: {
+                command: 'r.js.cmd -o src/js/build.min.js optimize=uglify2 generateSourceMaps=true preserveLicenseComments=false',
+                stdout: false
+            },
+
             templates: {
                 command: 'handlebars src/templates -f dist/templates.js',
                 stdout: false
@@ -115,20 +120,6 @@ module.exports = function(grunt) {
             }
         },
 
-        'closure-compiler': {
-            dist: {
-                closurePath: '../tools/closure-compiler',
-                js: 'dist/ovivo-desktop-employee-require.js',
-                jsOutputFile: 'dist/ovivo-desktop-employee-require.min.js',
-
-                maxBuffer: 2000,
-
-                options: {
-                    compilation_level: 'SIMPLE_OPTIMIZATIONS'
-                }
-            }
-        },
-
         csso: {
             dist: {
                 files: {
@@ -140,7 +131,6 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-closure-compiler');
     grunt.loadNpmTasks('grunt-csso')
 
     grunt.registerMultiTask('translate', 'Apply dictionary to file', function() {
