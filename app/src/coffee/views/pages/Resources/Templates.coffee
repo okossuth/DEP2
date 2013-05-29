@@ -27,8 +27,9 @@ define [
 
     createTemplate: () ->
       ovivo.desktop.pages.resources.view.showSubView('template')
-      ovivo.desktop.pages.resources.view.subViews.template.createNew()
+      ovivo.desktop.pages.resources.view.subViews.template.create()
 
+      @removeHighlight()
       @highlight()
 
       @$('.button-add-template').addClass('selected')

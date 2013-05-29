@@ -39,7 +39,8 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         'primary_department': Number
       };
     },
-    createNew: function() {
+    modes: ['edit', 'create'],
+    createNew: function(obj, mode) {
       var _end, _now, _ref, _start;
 
       _now = Date.today();
@@ -47,14 +48,13 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         groups: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0,
         templates: []
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processGroups: function() {
       this.$('.property-value-groups').children().remove();

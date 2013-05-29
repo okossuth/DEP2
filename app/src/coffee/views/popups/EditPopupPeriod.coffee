@@ -32,7 +32,9 @@ define [
       'templates': @templatesProcessor
       'primary_department': Number
 
-    createNew: () ->
+    modes: ['edit', 'create']
+
+    createNew: (obj, mode) ->
       _now = Date.today()
 
       _now.moveToFirstDayOfMonth()
@@ -41,15 +43,14 @@ define [
       _now.moveToLastDayOfMonth()
       _end = new Date _now
 
-      @setModel new @collection.model
+      @setModel (new @collection.model _.extend {
         start_date: "#{_start.getFullYear()}-#{trailZero(_start.getMonth() + 1)}-#{trailZero(_start.getDate())}"
         end_date: "#{_end.getFullYear()}-#{trailZero(_end.getMonth() + 1)}-#{trailZero(_end.getDate())}"
 
         groups: []
         primary_department: @primary_departments[0]?.pk()
         templates: []
-
-      @initCreateMode()
+      }, obj), mode
 
     processGroups: () ->
       @$('.property-value-groups').children().remove()

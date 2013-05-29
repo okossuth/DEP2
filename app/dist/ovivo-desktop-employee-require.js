@@ -18448,6 +18448,9 @@ define('_common/ResourceEditCommon',[], function() {
           _this = this;
           _handler = function() {
             _this.clearChangeState();
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             originalModel.set(model.toJSON(), {
               update: true
             });
@@ -18508,6 +18511,9 @@ define('_common/ResourceEditCommon',[], function() {
 
           _copy = new model.constructor(model.toJSON());
           _copy.editCopy = true;
+          if (_copy.finishCopy != null) {
+            _copy.finishCopy(model);
+          }
           return _copy;
         },
         _initComponents: function() {
@@ -18601,6 +18607,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         'num_employees': Number
       };
     },
+    modes: ['edit', 'create'],
     skills: function() {
       return ovivo.desktop.resources.skills.map(function(skill) {
         return skill;
@@ -18615,7 +18622,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         }
       }));
     },
-    createNew: function() {
+    createNew: function(obj, mode) {
       var _end, _now, _ref, _ref1, _start;
 
       _now = Date.today();
@@ -18623,7 +18630,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_time: '09:00',
         end_time: '17:00',
         employee_type: 'fulltime',
@@ -18631,8 +18638,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         weekdays: '1,2,3,4,5,6,7',
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
         primary_department: (_ref1 = this.primary_departments[0]) != null ? _ref1.pk() : void 0
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());
@@ -18749,7 +18755,8 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
         'primary_department': Number
       };
     },
-    createNew: function() {
+    modes: ['edit', 'create'],
+    createNew: function(obj, mode) {
       var _end, _now, _ref, _start;
 
       _now = Date.today();
@@ -18757,14 +18764,13 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_date: "" + (_start.getFullYear()) + "-" + (trailZero(_start.getMonth() + 1)) + "-" + (trailZero(_start.getDate())),
         end_date: "" + (_end.getFullYear()) + "-" + (trailZero(_end.getMonth() + 1)) + "-" + (trailZero(_end.getDate())),
         groups: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0,
         templates: []
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processGroups: function() {
       this.$('.property-value-groups').children().remove();
@@ -19082,7 +19088,20 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     events: {
       'click .no-selection': 'clearSelection',
-      'click .button-close': 'close'
+      'click .button-close': 'close',
+      'click .button-close-subview': 'closeSubview',
+      'click .button-add': 'addButton',
+      'click .button-save': 'saveButton',
+      'click .button-delete': 'deleteButton'
+    },
+    addButton: function() {
+      return this.subViews[this.subView()].trigger('action:add');
+    },
+    deleteButton: function() {
+      return this.subViews[this.subView()].trigger('action:delete');
+    },
+    saveButton: function() {
+      return this.subViews[this.subView()].trigger('action:save');
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -19098,6 +19117,9 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     close: function() {
       return this.hideEl();
+    },
+    closeSubview: function() {
+      return this.subViews[this.subView()].close();
     },
     showEl: function() {
       return this.$el.removeClass('hide');
@@ -19174,6 +19196,12 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
         this.processSubView();
       }
       return true;
+    },
+    hideElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).hide();
+    },
+    showElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).show();
     },
     processContentScrollBind: (function() {
       var _cache, _checkScrollBottom, _checkScrollTop, _func, _initialHandler, _usualHandler;
@@ -19284,6 +19312,7 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
         var _subView;
 
         _subView = new SubView();
+        _subView.page = _this;
         _subView.baseView = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);
@@ -20395,7 +20424,8 @@ define('views/pages/Resources/Templates',['views/pages/PageBase', '_common/Empty
     },
     createTemplate: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      ovivo.desktop.pages.resources.view.subViews.template.create();
+      this.removeHighlight();
       this.highlight();
       return this.$('.button-add-template').addClass('selected');
     },
@@ -20523,7 +20553,7 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
     events: {},
     createNew: function() {
       ovivo.desktop.popups.editPopupPeriod.show();
-      return ovivo.desktop.popups.editPopupPeriod.createNew();
+      return ovivo.desktop.popups.editPopupPeriod.create();
     },
     periodAdd: function(model) {
       var _date, _key, _period;
@@ -20604,9 +20634,10 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         'primary_department': Number
       };
     },
+    modes: ['edit', 'create'],
     addNew: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      ovivo.desktop.popups.editPopupResourceNeed.create();
       return true;
     },
     resourceNeedRegExp: /resource-need-template-(.+)/,
@@ -20653,27 +20684,27 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
       });
     },
-    initCreateMode: function() {
-      _resourceEditCommon.initCreateMode.call(this);
-      this.page.showElements('template', '.create-mode');
-      return this.page.hideElements('template', '.edit-mode');
+    initMode: function(name) {
+      _resourceEditCommon.initMode.call(this, name);
+      if (name === 'create') {
+        this.page.showElements('template', '.create-mode');
+        this.page.hideElements('template', '.edit-mode');
+      }
+      if (name === 'edit') {
+        this.page.subViews.templates.removeHighlight();
+        this.page.showElements('template', '.edit-mode');
+        return this.page.hideElements('template', '.create-mode');
+      }
     },
-    initEditMode: function() {
-      _resourceEditCommon.initEditMode.call(this);
-      this.page.subViews.templates.removeHighlight();
-      this.page.showElements('template', '.edit-mode');
-      return this.page.hideElements('template', '.create-mode');
-    },
-    createNew: function() {
+    createNew: function(obj, mode) {
       var _ref;
 
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         name: '',
         repeat: 1,
         resource_needs: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processPD: function() {
       return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());
@@ -20946,7 +20977,7 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/Emp
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      ovivo.desktop.popups.editPopupResourceNeed.create();
       return true;
     },
     addResourceNeed: function(model) {
@@ -21291,7 +21322,7 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
     },
     processClick: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
+      return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model);
     },
     available: function() {
       if (this.model.available() === true) {
@@ -21354,7 +21385,7 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     edit: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
+      return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model);
     },
     templates: function() {
       var _templates;
@@ -21762,7 +21793,7 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
     },
     processClick: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      ovivo.desktop.pages.resources.view.subViews.template.edit(this.model);
       return ovivo.desktop.pages.resources.view.subViews.templates.highlight(this.$el);
     },
     _periods: function(def) {
@@ -21811,6 +21842,9 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
       _json = Backbone.Model.prototype.toJSON.call(this);
       delete _json.periods;
       return _json;
+    },
+    finishCopy: function(model) {
+      return this.set('periods', model.periods());
     },
     postEditSync: function(collection, model, originalModel) {
       return this.resourceNeedsChange(originalModel.resource_needs());
@@ -21995,7 +22029,7 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
     },
     editClick: function(e) {
       ovivo.desktop.popups.editPopupPeriod.show();
-      ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
+      ovivo.desktop.popups.editPopupPeriod.edit(this.model);
       e.stopPropagation();
       return false;
     },

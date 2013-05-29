@@ -25,7 +25,7 @@ define [
 
     edit: () -> 
       ovivo.desktop.popups.editPopupResourceNeed.show()
-      ovivo.desktop.popups.editPopupResourceNeed.setModel @model
+      ovivo.desktop.popups.editPopupResourceNeed.edit @model
 
     templates: () ->
       _templates = @model.templates()

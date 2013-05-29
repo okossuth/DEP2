@@ -45,6 +45,8 @@ define [
       _handler = () ->
         _this.clearChangeState()
 
+        if model.postEditSync? then model.postEditSync collection, model, originalModel
+
         originalModel.set model.toJSON(), { update: true }
 
         model.off 'sync', _handler
@@ -101,6 +103,8 @@ define [
     _createEditCopy: (model) -> 
       _copy = new model.constructor model.toJSON()
       _copy.editCopy = true
+
+      if _copy.finishCopy? then _copy.finishCopy model
 
       _copy
 

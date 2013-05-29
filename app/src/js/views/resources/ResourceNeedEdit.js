@@ -20,7 +20,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     edit: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      return ovivo.desktop.popups.editPopupResourceNeed.setModel(this.model);
+      return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model);
     },
     templates: function() {
       var _templates;

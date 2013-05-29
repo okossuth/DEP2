@@ -40,9 +40,10 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         'primary_department': Number
       };
     },
+    modes: ['edit', 'create'],
     addNew: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      ovivo.desktop.popups.editPopupResourceNeed.create();
       return true;
     },
     resourceNeedRegExp: /resource-need-template-(.+)/,
@@ -89,27 +90,27 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
       });
     },
-    initCreateMode: function() {
-      _resourceEditCommon.initCreateMode.call(this);
-      this.page.showElements('template', '.create-mode');
-      return this.page.hideElements('template', '.edit-mode');
+    initMode: function(name) {
+      _resourceEditCommon.initMode.call(this, name);
+      if (name === 'create') {
+        this.page.showElements('template', '.create-mode');
+        this.page.hideElements('template', '.edit-mode');
+      }
+      if (name === 'edit') {
+        this.page.subViews.templates.removeHighlight();
+        this.page.showElements('template', '.edit-mode');
+        return this.page.hideElements('template', '.create-mode');
+      }
     },
-    initEditMode: function() {
-      _resourceEditCommon.initEditMode.call(this);
-      this.page.subViews.templates.removeHighlight();
-      this.page.showElements('template', '.edit-mode');
-      return this.page.hideElements('template', '.create-mode');
-    },
-    createNew: function() {
+    createNew: function(obj, mode) {
       var _ref;
 
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         name: '',
         repeat: 1,
         resource_needs: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processPD: function() {
       return this.$('.property-value-primary_department').append($(this.primaryDepartmentsTemplate(this)).children());

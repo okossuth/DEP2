@@ -59,7 +59,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     editClick: function(e) {
       ovivo.desktop.popups.editPopupPeriod.show();
-      ovivo.desktop.popups.editPopupPeriod.setModel(this.model);
+      ovivo.desktop.popups.editPopupPeriod.edit(this.model);
       e.stopPropagation();
       return false;
     },

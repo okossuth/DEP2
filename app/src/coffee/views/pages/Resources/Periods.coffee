@@ -16,7 +16,7 @@ define [
 
     createNew: () ->
       ovivo.desktop.popups.editPopupPeriod.show()
-      ovivo.desktop.popups.editPopupPeriod.createNew()
+      ovivo.desktop.popups.editPopupPeriod.create()
 
     periodAdd: (model) ->
       @empty.hide()

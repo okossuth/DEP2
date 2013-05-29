@@ -11,7 +11,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     processClick: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      ovivo.desktop.pages.resources.view.subViews.template.setModel(this.model);
+      ovivo.desktop.pages.resources.view.subViews.template.edit(this.model);
       return ovivo.desktop.pages.resources.view.subViews.templates.highlight(this.$el);
     },
     _periods: function(def) {

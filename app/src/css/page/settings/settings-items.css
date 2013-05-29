@@ -9,7 +9,8 @@
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
     .settings-items > li.settings-item > div.header {
-      min-height: 23px; }
+      min-height: 23px;
+      text-align: left; }
       .settings-items > li.settings-item > div.header span {
         font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         color: #525044;

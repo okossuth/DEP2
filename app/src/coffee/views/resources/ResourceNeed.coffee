@@ -24,7 +24,7 @@ define [
 
     processClick: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
-      ovivo.desktop.popups.editPopupResourceNeed.setModel @model
+      ovivo.desktop.popups.editPopupResourceNeed.edit @model
 
     available: () -> if @model.available() is true then gettext('Available') else gettext('Unavailable')
 

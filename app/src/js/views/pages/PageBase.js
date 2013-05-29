@@ -9,7 +9,20 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
     },
     events: {
       'click .no-selection': 'clearSelection',
-      'click .button-close': 'close'
+      'click .button-close': 'close',
+      'click .button-close-subview': 'closeSubview',
+      'click .button-add': 'addButton',
+      'click .button-save': 'saveButton',
+      'click .button-delete': 'deleteButton'
+    },
+    addButton: function() {
+      return this.subViews[this.subView()].trigger('action:add');
+    },
+    deleteButton: function() {
+      return this.subViews[this.subView()].trigger('action:delete');
+    },
+    saveButton: function() {
+      return this.subViews[this.subView()].trigger('action:save');
     },
     clearSelection: function() {
       if (window.getSelection != null) {
@@ -25,6 +38,9 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
     },
     close: function() {
       return this.hideEl();
+    },
+    closeSubview: function() {
+      return this.subViews[this.subView()].close();
     },
     showEl: function() {
       return this.$el.removeClass('hide');
@@ -101,6 +117,12 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
         this.processSubView();
       }
       return true;
+    },
+    hideElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).hide();
+    },
+    showElements: function(name, selector) {
+      return this.$("." + name + "-only " + selector).show();
     },
     processContentScrollBind: (function() {
       var _cache, _checkScrollBottom, _checkScrollTop, _func, _initialHandler, _usualHandler;
@@ -211,6 +233,7 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
         var _subView;
 
         _subView = new SubView();
+        _subView.page = _this;
         _subView.baseView = _this;
         _this.subViews[_subView.name] = _subView;
         return _this.subViews.push(_subView);

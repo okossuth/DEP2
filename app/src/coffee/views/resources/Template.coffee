@@ -17,7 +17,7 @@ define [
 
     processClick: () ->
       ovivo.desktop.pages.resources.view.showSubView('template')
-      ovivo.desktop.pages.resources.view.subViews.template.setModel @model
+      ovivo.desktop.pages.resources.view.subViews.template.edit @model
 
       ovivo.desktop.pages.resources.view.subViews.templates.highlight @$el
 

@@ -15,6 +15,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         'num_employees': Number
       };
     },
+    modes: ['edit', 'create'],
     skills: function() {
       return ovivo.desktop.resources.skills.map(function(skill) {
         return skill;
@@ -29,7 +30,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         }
       }));
     },
-    createNew: function() {
+    createNew: function(obj, mode) {
       var _end, _now, _ref, _ref1, _start;
 
       _now = Date.today();
@@ -37,7 +38,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
       _start = new Date(_now);
       _now.moveToLastDayOfMonth();
       _end = new Date(_now);
-      this.setModel(new this.collection.model({
+      return this.setModel(new this.collection.model(_.extend({
         start_time: '09:00',
         end_time: '17:00',
         employee_type: 'fulltime',
@@ -45,8 +46,7 @@ define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(Edit
         weekdays: '1,2,3,4,5,6,7',
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
         primary_department: (_ref1 = this.primary_departments[0]) != null ? _ref1.pk() : void 0
-      }));
-      return this.initCreateMode();
+      }, obj)), mode);
     },
     processSkills: function() {
       return this.$('.property-value-skill').append($(this.skillsTemplate(this)).children());

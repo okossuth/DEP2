@@ -46,6 +46,9 @@ define([], function() {
           _this = this;
           _handler = function() {
             _this.clearChangeState();
+            if (model.postEditSync != null) {
+              model.postEditSync(collection, model, originalModel);
+            }
             originalModel.set(model.toJSON(), {
               update: true
             });
@@ -106,6 +109,9 @@ define([], function() {
 
           _copy = new model.constructor(model.toJSON());
           _copy.editCopy = true;
+          if (_copy.finishCopy != null) {
+            _copy.finishCopy(model);
+          }
           return _copy;
         },
         _initComponents: function() {

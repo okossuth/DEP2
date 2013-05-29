@@ -21,11 +21,13 @@ define [
       'primary_department': Number
       'num_employees': Number
 
+    modes: ['edit', 'create']
+
     skills: () -> ovivo.desktop.resources.skills.map (skill) -> skill
     primaryDepartments: () ->
       @primary_departments = _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
 
-    createNew: () ->
+    createNew: (obj, mode) ->
       _now = Date.today()
 
       _now.moveToFirstDayOfMonth()
@@ -34,7 +36,7 @@ define [
       _now.moveToLastDayOfMonth()
       _end = new Date _now
 
-      @setModel new @collection.model
+      @setModel (new @collection.model _.extend {
         start_time: '09:00'
         end_time: '17:00'
         employee_type: 'fulltime'
@@ -42,8 +44,7 @@ define [
         weekdays: '1,2,3,4,5,6,7'
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
         primary_department: @primary_departments[0]?.pk()
-
-      @initCreateMode()
+      }, obj), mode
 
     processSkills: () ->
       @$('.property-value-skill').append $(@skillsTemplate @).children()
@@ -54,11 +55,6 @@ define [
     initialize: () ->
       @types = @types()
       @collection = ovivo.desktop.resources.resourceNeeds
-
-      # @$('.datepicker').pickadate
-      #   format: 'yyyy-mm-dd'
-      #   formatSubmit: 'yyyy-mm-dd'
-      #   firstDay: 1
 
       @_initialize()
 

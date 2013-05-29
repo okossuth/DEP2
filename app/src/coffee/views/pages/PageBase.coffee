@@ -14,6 +14,19 @@ define [
     events:
       'click .no-selection': 'clearSelection'
       'click .button-close': 'close'
+      'click .button-close-subview': 'closeSubview'
+      'click .button-add': 'addButton'
+      'click .button-save': 'saveButton'
+      'click .button-delete': 'deleteButton'
+
+    addButton: () ->
+      @subViews[@subView()].trigger 'action:add'
+
+    deleteButton: () ->
+      @subViews[@subView()].trigger 'action:delete'
+
+    saveButton: () ->
+      @subViews[@subView()].trigger 'action:save'
 
     clearSelection: () ->
       if window.getSelection?
@@ -29,6 +42,7 @@ define [
       true
 
     close: () -> @hideEl()
+    closeSubview: () -> @subViews[@subView()].close()
 
     showEl: () -> @$el.removeClass 'hide'
     hideEl: () -> @$el.addClass 'hide'
@@ -99,6 +113,12 @@ define [
         @processSubView()
 
       true
+
+    hideElements: (name, selector) ->
+      @$(".#{name}-only #{selector}").hide()
+
+    showElements: (name, selector) ->
+      @$(".#{name}-only #{selector}").show()
 
     processContentScrollBind: do ->
       _checkScrollTop = () ->
@@ -201,6 +221,8 @@ define [
 
       _.each @SubViews, (SubView) => 
         _subView = new SubView()
+
+        _subView.page = @
 
         _subView.baseView = @
 

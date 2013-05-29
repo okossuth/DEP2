@@ -6,7 +6,7 @@ define(['views/pages/PageBase', '_features/PercentageIndicator', 'collections/Pe
     events: {},
     createNew: function() {
       ovivo.desktop.popups.editPopupPeriod.show();
-      return ovivo.desktop.popups.editPopupPeriod.createNew();
+      return ovivo.desktop.popups.editPopupPeriod.create();
     },
     periodAdd: function(model) {
       var _date, _key, _period;

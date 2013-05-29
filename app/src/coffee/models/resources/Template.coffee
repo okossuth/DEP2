@@ -29,6 +29,8 @@ define [
 
       _json
 
+    finishCopy: (model) -> @set 'periods', model.periods()
+
     postEditSync: (collection, model, originalModel) -> @resourceNeedsChange originalModel.resource_needs()
 
     resourceNeedsChange: (_prev) ->

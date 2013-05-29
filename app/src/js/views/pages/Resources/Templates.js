@@ -19,7 +19,8 @@ define(['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(
     },
     createTemplate: function() {
       ovivo.desktop.pages.resources.view.showSubView('template');
-      ovivo.desktop.pages.resources.view.subViews.template.createNew();
+      ovivo.desktop.pages.resources.view.subViews.template.create();
+      this.removeHighlight();
       this.highlight();
       return this.$('.button-add-template').addClass('selected');
     },

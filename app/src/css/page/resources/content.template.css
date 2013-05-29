@@ -11,6 +11,7 @@
     margin-top: 0; }
     .page.page-resources .content.content-template ul.settings-items > li.settings-item {
       display: inline-block;
+      width: 304px;
       margin: 22px 15px 0 15px; }
   .page.page-resources .content.content-template .elements {
     margin: 20px 0; }

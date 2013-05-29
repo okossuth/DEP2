@@ -38,11 +38,14 @@
       margin: 20px auto; }
       .popup.wide > .settings-items > li.settings-item > div.item-content > select {
         width: 400px; }
-    .popup.wide .columns-container > .settings-items {
-      float: left;
-      margin: 0 0 0 40px; }
-      .popup.wide .columns-container > .settings-items:first-child {
-        margin-left: 30px; }
+    .popup.wide .columns-container {
+      overflow: auto; }
+      .popup.wide .columns-container > .settings-items {
+        float: left;
+        margin: 0 0 0 40px;
+        width: 310px; }
+        .popup.wide .columns-container > .settings-items:first-child {
+          margin-left: 30px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
     -moz-animation: popup-enter 200ms ease-out 0s;

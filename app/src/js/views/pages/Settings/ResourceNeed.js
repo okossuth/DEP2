@@ -8,7 +8,7 @@ define(['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupResourceNeed.show();
-      ovivo.desktop.popups.editPopupResourceNeed.createNew();
+      ovivo.desktop.popups.editPopupResourceNeed.create();
       return true;
     },
     addResourceNeed: function(model) {

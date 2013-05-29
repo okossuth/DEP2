@@ -485,6 +485,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Name</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -495,6 +496,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Repeat</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -510,6 +512,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Primary department</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -631,9 +634,6 @@
             <h1 class="create-mode">Add new period</h1>
             <h1 class="edit-mode">Edit period</h1>
 
-            <h1 class="create-single-mode">Add new time for one day</h1>
-            <h1 class="edit-single-mode">Edit time for one day</h1>
-
             <div class="close">X</div>
 
             <div class="columns-container">
@@ -641,6 +641,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Date</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content two">
@@ -653,6 +654,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Primary department</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -664,6 +666,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Templates</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content two">
@@ -678,6 +681,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Groups</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content two">
@@ -694,7 +698,7 @@
             </ul>
 
             <div class="button capital button-add create-mode">
-                + Add time
+                + Add period
             </div>
 
             <div class="buttons-container">
@@ -717,6 +721,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Time</span><em>Explanation 15</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content two">
@@ -726,22 +731,10 @@
                         </div>
                     </li>
 
-                    <!--
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>Date</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content two">
-                            <input type="text" class="property-value property-value-start_date datepicker" />
-                            <span>to</span>
-                            <input type="date" class="property-value property-value-end_date datepicker" />
-                        </div>
-                    </li> -->
-
                     <li class="settings-item">
                         <div class="header">
                             <span>Employee type</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -758,6 +751,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Repeat</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -773,6 +767,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Skill</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -784,6 +779,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>Number of employees</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">changed</strong>
                         </div>
 
                         <div class="item-content">
@@ -797,6 +793,7 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>Primary department</span><em>some explanation text</em>
+                        <strong class="badge edit-mode">changed</strong>
                     </div>
 
                     <div class="item-content">
@@ -819,84 +816,13 @@
             </ul>
 
             <div class="button capital button-add create-mode">
-                + Add time
-            </div>
-
-            <div class="button capital button-add create-single-mode">
-                + Add time for one day
+                + Add resource need
             </div>
 
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode edit-single-mode">
+                <div class="button capital warning button-delete edit-mode">
                     Delete
-                </div><div class="button capital button-save edit-mode edit-single-mode">
-                    Save
-                </div>
-            </div>
-        </div>
-
-        <div class="popup popup-template" style="display: none;">
-            <h1 class="create-mode">Add new template</h1>
-            <h1 class="edit-mode">Edit template</h1>
-
-            <div class="close">X</div>
-
-            <ul class="settings-items">
-                <li class="settings-item">
-                    <div class="header">
-                        <span>Name</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <input type="text" class="property-value property-value-name" />
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
-                        <span>Repeat</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <select class="property-value property-value-repeat">
-                            <option value="1">Every other week</option>
-                            <option value="2">Every second week</option>
-                            <option value="3">Every third week</option>
-                            <option value="4">Every fourth week</option>
-                        </select>
-                    </div>
-
-                    <div class="item-content create-single-mode edit-single-mode">
-                        <input type="text" class="datepicker property-value property-value-start" />
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
-                        <span>Resource needs</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <select multiple="multiple" class="property-value property-value-resource_needs">
-
-                        </select>
-                    </div>
-                </li>
-            </ul>
-
-
-            <div class="button capital button-add create-mode">
-                + Add time off
-            </div>
-
-            <div class="button capital button-add create-single-mode">
-                + Add day off
-            </div>
-
-            <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode edit-single-mode">
-                    Delete
-                </div><div class="button capital button-save edit-mode edit-single-mode">
+                </div><div class="button capital button-save edit-mode">
                     Save
                 </div>
             </div>

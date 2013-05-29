@@ -485,6 +485,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Name{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -495,6 +496,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Repeat{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -510,6 +512,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Primary department{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -631,9 +634,6 @@
             <h1 class="create-mode">{{#i18n}}Add new period{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit period{{/i18n}}</h1>
 
-            <h1 class="create-single-mode">{{#i18n}}Add new time for one day{{/i18n}}</h1>
-            <h1 class="edit-single-mode">{{#i18n}}Edit time for one day{{/i18n}}</h1>
-
             <div class="close">X</div>
 
             <div class="columns-container">
@@ -641,6 +641,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Date{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content two">
@@ -653,6 +654,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Primary department{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -664,6 +666,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Templates{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content two">
@@ -678,6 +681,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Groups{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content two">
@@ -694,7 +698,7 @@
             </ul>
 
             <div class="button capital button-add create-mode">
-                + {{#i18n}}Add time{{/i18n}}
+                + {{#i18n}}Add period{{/i18n}}
             </div>
 
             <div class="buttons-container">
@@ -717,6 +721,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Time{{/i18n}}</span><em>{{#i18n}}Explanation 15{{/i18n}}</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content two">
@@ -726,22 +731,10 @@
                         </div>
                     </li>
 
-                    <!--
-                    <li class="settings-item">
-                        <div class="header">
-                            <span>{{#i18n}}Date{{/i18n}}</span><em>some explanation text</em>
-                        </div>
-
-                        <div class="item-content two">
-                            <input type="text" class="property-value property-value-start_date datepicker" />
-                            <span>{{#i18n}}to{{/i18n}}</span>
-                            <input type="date" class="property-value property-value-end_date datepicker" />
-                        </div>
-                    </li> -->
-
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Employee type{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -758,6 +751,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Repeat{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -773,6 +767,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Skill{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -784,6 +779,7 @@
                     <li class="settings-item">
                         <div class="header">
                             <span>{{#i18n}}Number of employees{{/i18n}}</span><em>some explanation text</em>
+                            <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                         </div>
 
                         <div class="item-content">
@@ -797,6 +793,7 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Primary department{{/i18n}}</span><em>some explanation text</em>
+                        <strong class="badge edit-mode">{{#i18n}}changed{{/i18n}}</strong>
                     </div>
 
                     <div class="item-content">
@@ -819,84 +816,13 @@
             </ul>
 
             <div class="button capital button-add create-mode">
-                + {{#i18n}}Add time{{/i18n}}
-            </div>
-
-            <div class="button capital button-add create-single-mode">
-                + {{#i18n}}Add time for one day{{/i18n}}
+                + {{#i18n}}Add resource need{{/i18n}}
             </div>
 
             <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode edit-single-mode">
+                <div class="button capital warning button-delete edit-mode">
                     {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode edit-single-mode">
-                    {{#i18n}}Save{{/i18n}}
-                </div>
-            </div>
-        </div>
-
-        <div class="popup popup-template" style="display: none;">
-            <h1 class="create-mode">{{#i18n}}Add new template{{/i18n}}</h1>
-            <h1 class="edit-mode">{{#i18n}}Edit template{{/i18n}}</h1>
-
-            <div class="close">X</div>
-
-            <ul class="settings-items">
-                <li class="settings-item">
-                    <div class="header">
-                        <span>{{#i18n}}Name{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <input type="text" class="property-value property-value-name" />
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
-                        <span>{{#i18n}}Repeat{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <select class="property-value property-value-repeat">
-                            <option value="1">{{#i18n}}Every other week{{/i18n}}</option>
-                            <option value="2">{{#i18n}}Every second week{{/i18n}}</option>
-                            <option value="3">{{#i18n}}Every third week{{/i18n}}</option>
-                            <option value="4">{{#i18n}}Every fourth week{{/i18n}}</option>
-                        </select>
-                    </div>
-
-                    <div class="item-content create-single-mode edit-single-mode">
-                        <input type="text" class="datepicker property-value property-value-start" />
-                    </div>
-                </li>
-
-                <li class="settings-item">
-                    <div class="header">
-                        <span>{{#i18n}}Resource needs{{/i18n}}</span><em>some explanation text</em>
-                    </div>
-
-                    <div class="item-content">
-                        <select multiple="multiple" class="property-value property-value-resource_needs">
-
-                        </select>
-                    </div>
-                </li>
-            </ul>
-
-
-            <div class="button capital button-add create-mode">
-                + {{#i18n}}Add time off{{/i18n}}
-            </div>
-
-            <div class="button capital button-add create-single-mode">
-                + {{#i18n}}Add day off{{/i18n}}
-            </div>
-
-            <div class="buttons-container">
-                <div class="button capital warning button-delete edit-mode edit-single-mode">
-                    {{#i18n}}Delete{{/i18n}}
-                </div><div class="button capital button-save edit-mode edit-single-mode">
+                </div><div class="button capital button-save edit-mode">
                     {{#i18n}}Save{{/i18n}}
                 </div>
             </div>

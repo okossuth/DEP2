@@ -15,7 +15,7 @@ define [
 
     addNew: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
-      ovivo.desktop.popups.editPopupResourceNeed.createNew()
+      ovivo.desktop.popups.editPopupResourceNeed.create()
       
       true
 

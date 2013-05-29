@@ -35,9 +35,11 @@ define [
       'resource_needs': @resourceNeedsProcessor
       'primary_department': Number
 
+    modes: ['edit', 'create']
+
     addNew: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
-      ovivo.desktop.popups.editPopupResourceNeed.createNew()
+      ovivo.desktop.popups.editPopupResourceNeed.create()
       
       true
 
@@ -78,28 +80,26 @@ define [
 
         $("#resource-need-template-#{need} .resource-need-check")[0]?.checked = true
 
-    initCreateMode: () ->
-      _resourceEditCommon.initCreateMode.call @
+    initMode: (name) ->
+      _resourceEditCommon.initMode.call @, name
 
-      @page.showElements 'template', '.create-mode'
-      @page.hideElements 'template', '.edit-mode'
+      if name is 'create'
+        @page.showElements 'template', '.create-mode'
+        @page.hideElements 'template', '.edit-mode'
 
-    initEditMode: () ->
-      _resourceEditCommon.initEditMode.call @
+      if name is 'edit'
+        @page.subViews.templates.removeHighlight()
 
-      @page.subViews.templates.removeHighlight()
+        @page.showElements 'template', '.edit-mode'
+        @page.hideElements 'template', '.create-mode'
 
-      @page.showElements 'template', '.edit-mode'
-      @page.hideElements 'template', '.create-mode'
-
-    createNew: () ->
-      @setModel new @collection.model
+    createNew: (obj, mode) ->
+      @setModel (new @collection.model _.extend {
         name: ''
         repeat: 1
         resource_needs: []
         primary_department: @primary_departments[0]?.pk()
-
-      @initCreateMode()
+      }, obj), mode
 
     processPD: () ->
       @$('.property-value-primary_department').append $(@primaryDepartmentsTemplate @).children()

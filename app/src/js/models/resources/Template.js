@@ -14,6 +14,9 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
       delete _json.periods;
       return _json;
     },
+    finishCopy: function(model) {
+      return this.set('periods', model.periods());
+    },
     postEditSync: function(collection, model, originalModel) {
       return this.resourceNeedsChange(originalModel.resource_needs());
     },

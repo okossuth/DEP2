@@ -59,7 +59,7 @@ define [
 
     editClick: (e) ->
       ovivo.desktop.popups.editPopupPeriod.show()
-      ovivo.desktop.popups.editPopupPeriod.setModel @model
+      ovivo.desktop.popups.editPopupPeriod.edit @model
 
       e.stopPropagation()
 
