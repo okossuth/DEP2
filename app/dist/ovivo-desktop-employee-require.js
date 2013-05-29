@@ -21558,7 +21558,6 @@ define('models/pages/EventDetails',['models/pages/PageBase', 'views/pages/EventD
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
-      a.c;
       return true;
     }
   });

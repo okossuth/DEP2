@@ -12,7 +12,5 @@ define [
       @View = View
       
       @proxyCall 'initialize', arguments
-      
-      a.c
 
       true
