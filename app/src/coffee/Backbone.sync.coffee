@@ -66,7 +66,7 @@ requirejs [
       if method is 'read' then _processReadSuccess(url, model, resp, options)), indicator.success
 
     _errorCreator = _callbackCreatorCreator ((url, model, resp, method, options) ->
-      ovivo.desktop.resources.apiErrors.addError url, model, resp, method, options
+      # ovivo.desktop.resources.apiErrors.addError url, model, resp, method, options
 
       indicator.errorAction()), indicator.error
 

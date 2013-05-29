@@ -17869,7 +17869,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       }
     }), indicator.success);
     _errorCreator = _callbackCreatorCreator((function(url, model, resp, method, options) {
-      ovivo.desktop.resources.apiErrors.addError(url, model, resp, method, options);
       return indicator.errorAction();
     }), indicator.error);
     _postProcess = function(method, model, options) {
