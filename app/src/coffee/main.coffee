@@ -55,6 +55,7 @@ require [
   'models/pages/Calendar',
   'models/pages/Resources',
   'models/pages/Settings',
+  'models/pages/Notifications',
 
   'views/SideBar',
 
@@ -67,11 +68,12 @@ require [
   'collections/resources/Groups',
   'collections/resources/Users',
   'collections/resources/WorkingHours',
+  'collections/resources/Notifications',
 
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -92,6 +94,7 @@ require [
         { name: 'resourceNeeds', constr: ResourceNeeds },
         { name: 'templates', constr: Templates },
         { name: 'periods', constr: Periods },
+        { name: 'notifications', constr: Notifications }
       ], (o) ->
         ovivo.desktop.resources[o.name] = new o.constr()
         ovivo.desktop.resources[o.name].def).then () ->
@@ -105,7 +108,8 @@ require [
       _.each [
         { name: 'calendar', constr: CalendarPage },
         { name: 'resources', constr: ResourcesPage },
-        { name: 'settings', constr: SettingsPage }
+        { name: 'settings', constr: SettingsPage },
+        { name: 'notifications', constr: NotificationsPage }
       ], (o) ->
         _page = ovivo.desktop.pages.addPage o.constr, o.name
 

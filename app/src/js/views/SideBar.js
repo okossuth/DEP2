@@ -47,6 +47,8 @@ define(['ovivo'], function() {
       return this._processItem(_item);
     },
     initialize: function() {
+      ovivo.desktop.resources.notifications.on('reset', this.updateNotifications, this);
+      ovivo.desktop.resources.notifications.on('add', this.updateNotifications, this);
       return true;
     }
   });

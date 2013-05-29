@@ -11,16 +11,14 @@ body.loading
     top: 0
     left: 0
 
-    margin: 4px 0 0 30px
-
-    width: 100px
+    margin: 21px 0 0 30px
 
     cursor: pointer
 
     > img
       position: absolute
 
-      left: 120px
+      left: 200px
       top: 4px
       z-index: 9000
 
@@ -33,29 +31,36 @@ body.loading
 
       left: 50%
 
-      > div
+      > div.arrow
         position: absolute
 
-        left: 37px
+        left: 70px
+        top: 16px
 
-        padding: 3px 5px 0 5px
+        width: 0
+        height: 0
 
-        height: 15px
+        border-color: transparent
+        border-style: solid
+        border-right-color: #fd5308
+        border-width: 5px 5px 5px 0
+
+      > div.notifications-indicator
+        position: absolute
+
+        left: 75px
+        top: 6px
+
+        padding: 4px 8px 0 8px
+
+        height: 26px
 
         border-radius: 1px
 
-        background: white
-        background: -webkit-linear-gradient(top, #ffffff, #dcdcdc)
-        background: -moz-linear-gradient(top, #ffffff, #dcdcdc)
-        background: -ms-linear-gradient(top, #ffffff, #dcdcdc)
-        background: -o-linear-gradient(top, #ffffff, #dcdcdc)
-        background: linear-gradient(top, #ffffff, #dcdcdc)
+        background: #fd5308
 
-        box-shadow: 0 1px 0 rgba(7, 70, 50, 0.3)
-        text-shadow: 0 1px 0 white
+        font: normal 20px KontrapunktBobBold, 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif
 
-        font: normal 11px KontrapunktBobBold, 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif
-
-        color: #007550
+        color: white
 
         text-align: center

@@ -44,7 +44,7 @@ requirejs.config({
   }
 });
 
-require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, socketIO) {
+require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'models/pages/Notifications', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', 'collections/resources/Notifications', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.routers = {};
@@ -82,6 +82,9 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       }, {
         name: 'periods',
         constr: Periods
+      }, {
+        name: 'notifications',
+        constr: Notifications
       }
     ], function(o) {
       ovivo.desktop.resources[o.name] = new o.constr();
@@ -103,6 +106,9 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       }, {
         name: 'settings',
         constr: SettingsPage
+      }, {
+        name: 'notifications',
+        constr: NotificationsPage
       }
     ], function(o) {
       var _page;
