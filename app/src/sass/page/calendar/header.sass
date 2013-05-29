@@ -1,8 +1,9 @@
 .page.page-calendar > header
   background: #edf0f2
+
+  height: 100px
   
   > div.line
-    text-align: center
     margin-right: 30px
 
     > span.title
@@ -13,29 +14,29 @@
       color: black
 
     > .button.today
-      float: left
 
-  > div.status.line
-    > span
-      font-style: italic
+    > .button.add-groups
+      padding: 11px 20px
 
-      display: none
+    > ul.groups-list
+      display: inline-block
 
-      &.in-progress
-        color: #e78b23
+      font-size: 16px
 
-      &.closed
-        color: #06bd5b
+      margin: 0 0 0 32px
 
-    &.in-progress
-      > span
-        &.in-progress
-          display: inline
+      > li
+        display: inline-block
 
-    &.closed
-      > span
-        &.closed
-          display: inline
+        color: #999999
+
+        margin: 0 0 0 28px
+
+        &:first-child
+          margin-left: 0
+
+        &.selected
+          color: #fd5308
 
   .weekdays
     position: absolute
@@ -46,9 +47,9 @@
     width: 100%
 
     ul.row
-      font-size: 12px
+      font-size: 16px
 
-      margin: 0 50px 0 30px
+      margin: 0 50px 0 130px
 
       overflow: auto
       

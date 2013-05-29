@@ -42,9 +42,11 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     processCollectorShow: function(collector) {
       var _this = this;
 
-      this.title.html(gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year());
+      this.values.week.html(collector.number());
+      this.values.month.html(ovivo.config.MONTHS[collector.month()].slice(0, 3));
+      this.values.year.html(collector.year());
       return _.each(collector.days, function(obj, i) {
-        return _this.dates[i].innerHTML = "" + obj.date + ". " + ovivo.config.MONTHS[obj.month] + ", " + obj.year;
+        return _this.dates[i].innerHTML = "" + obj.date;
       });
     },
     processCollectorHide: function(month) {},
@@ -58,6 +60,11 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this.title = $('.page.page-calendar header span.title.week-title');
       this.dates = $('.page.page-calendar header .weekdays-row span.date');
       this.collectorsList = this.$('.weeks-list');
+      this.values = {
+        week: $('.page.page-calendar header .week-banner .week-value'),
+        month: $('.page.page-calendar header .week-banner .month-value'),
+        year: $('.page.page-calendar header .week-banner .year-value')
+      };
       this.todayButton = $('.page.page-calendar header .week-today');
       this.navigate(_now.getFullYear(), _now.getWeek());
       return true;

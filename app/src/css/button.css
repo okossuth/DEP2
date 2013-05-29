@@ -24,3 +24,7 @@
     text-transform: uppercase; }
   .button.dark {
     background: #003927; }
+  .button.black {
+    border-radius: 2px;
+    background: #333333;
+    font-size: 16px; }

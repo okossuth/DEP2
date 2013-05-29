@@ -1,0 +1,54 @@
+.page.page-calendar > header > .week-banner {
+  position: absolute;
+  top: 156px;
+  left: 30px;
+  background: #63b483; }
+  .page.page-calendar > header > .week-banner > ul {
+    width: 100px; }
+    .page.page-calendar > header > .week-banner > ul > li {
+      position: relative;
+      border-top: 1px solid #5aa477;
+      text-align: center;
+      font-size: 25px;
+      color: white;
+      padding: 15px 0;
+      overflow: hidden; }
+      .page.page-calendar > header > .week-banner > ul > li:first-child {
+        border-top: 0; }
+      .page.page-calendar > header > .week-banner > ul > li.selected {
+        background: #4b8f66;
+        border-top-color: #52956c; }
+      .page.page-calendar > header > .week-banner > ul > li > strong {
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-weight: normal; }
+      .page.page-calendar > header > .week-banner > ul > li > span {
+        display: block; }
+      .page.page-calendar > header > .week-banner > ul > li > em {
+        display: block;
+        font-style: normal;
+        font-size: 13px; }
+      .page.page-calendar > header > .week-banner > ul > li:hover > .arrow {
+        opacity: 1; }
+      .page.page-calendar > header > .week-banner > ul > li > .arrow {
+        position: absolute;
+        top: 0;
+        height: 54px;
+        cursor: pointer;
+        opacity: 0;
+        -webkit-transition: opacity 300ms; }
+        .page.page-calendar > header > .week-banner > ul > li > .arrow > .inner {
+          border-color: transparent;
+          border-style: solid;
+          border-width: 10px; }
+        .page.page-calendar > header > .week-banner > ul > li > .arrow.left {
+          left: 0;
+          padding: 20px 0 0 15px; }
+          .page.page-calendar > header > .week-banner > ul > li > .arrow.left > .inner {
+            border-left-width: 0;
+            border-right-color: #52956c; }
+        .page.page-calendar > header > .week-banner > ul > li > .arrow.right {
+          right: 0;
+          padding: 20px 15px 0 0; }
+          .page.page-calendar > header > .week-banner > ul > li > .arrow.right > .inner {
+            border-right-width: 0;
+            border-left-color: #52956c; }
