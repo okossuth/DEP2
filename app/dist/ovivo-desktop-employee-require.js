@@ -21601,7 +21601,6 @@ define('_features/validators',[], function() {
 define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
-    localStorageOnly: true,
     _gettersNames: ['weekdays', 'repeat', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
@@ -21877,7 +21876,6 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['primary_department']), {
     model: Model,
     fullResponse: true,
-    localStorageOnly: true,
     initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
     processRange: function(start, end) {
@@ -21945,7 +21943,6 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
 define('models/resources/Template',['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     typeName: 'template',
-    localStorageOnly: true,
     _gettersNames: ['pk', 'name', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
@@ -22037,7 +22034,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
-    localStorageOnly: true,
     initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
     _ignoreChange: ['periods'],
@@ -22398,7 +22394,6 @@ define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/p
 define('models/resources/Period',['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, View, RuleCompiler, PeriodBlocks) {
   return ResourceBase.extend({
     typeName: 'period',
-    localStorageOnly: true,
     _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department', 'groups'],
     changePD: function() {
       this.set('templates', []);
@@ -22507,7 +22502,6 @@ define('collections/resources/Periods',['models/resources/Period', '_common/Reso
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
-    localStorageOnly: true,
     initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
     _processPeriodAdd: function(model) {

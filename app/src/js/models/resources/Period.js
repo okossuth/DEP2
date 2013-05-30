@@ -2,7 +2,6 @@
 define(['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, View, RuleCompiler, PeriodBlocks) {
   return ResourceBase.extend({
     typeName: 'period',
-    localStorageOnly: true,
     _gettersNames: ['pk', 'start_date', 'end_date', 'templates', 'primary_department', 'groups'],
     changePD: function() {
       this.set('templates', []);
