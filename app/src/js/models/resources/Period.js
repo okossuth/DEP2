@@ -59,7 +59,7 @@ define(['models/resources/ResourceBase', 'views/resources/Period', '_features/Ru
         return _.each(_.map(t.resource_needs(), function(rnId) {
           return ovivo.desktop.resources.resourceNeeds.get(rnId);
         }), function(rn) {
-          return _arr = _arr.concat(RuleCompiler.compile(start, end, _this.start_date(), _this.end_date(), t.repeat(), rn.weekdaysHash, {
+          return _arr = _arr.concat(RuleCompiler.compile(start, end, _this.start_date(), _this.end_date(), rn.repeat(), rn.weekdaysHash, {
             resourceNeed: rn,
             template: t,
             period: _this

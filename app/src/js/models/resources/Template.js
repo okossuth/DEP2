@@ -3,7 +3,7 @@ define(['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], f
   return ResourceBase.extend({
     typeName: 'template',
     localStorageOnly: true,
-    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
+    _gettersNames: ['pk', 'name', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
     },

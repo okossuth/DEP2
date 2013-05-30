@@ -8,7 +8,7 @@ define [
   EditPopup.extend
     el: '.popup-template'
 
-    fields: ['name', 'repeat', 'resource_needs']
+    fields: ['name', 'resource_needs']
 
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds']
 

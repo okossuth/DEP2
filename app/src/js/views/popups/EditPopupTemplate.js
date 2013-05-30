@@ -2,7 +2,7 @@
 define(['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-template',
-    fields: ['name', 'repeat', 'resource_needs'],
+    fields: ['name', 'resource_needs'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     resourceNeeds: function() {
       return ovivo.desktop.resources.resourceNeeds.map(function(model) {

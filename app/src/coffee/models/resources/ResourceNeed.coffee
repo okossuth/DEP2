@@ -15,6 +15,7 @@ define [
 
     _gettersNames: [
       'weekdays'
+      'repeat'
       'start_time'
       'end_time'
       'pk'

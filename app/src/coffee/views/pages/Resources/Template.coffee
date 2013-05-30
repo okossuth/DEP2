@@ -16,7 +16,7 @@ define [
       'click .button-add-new': 'addNew'
       'click .resource-need-check': 'clickCheckbox'
 
-    fields: ['name', 'repeat', 'resource_needs', 'primary_department', 'periods']
+    fields: ['name', 'resource_needs', 'primary_department', 'periods']
 
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments']
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds']
@@ -31,7 +31,6 @@ define [
 
     types: () ->
       'name': String
-      'repeat': Number
       'resource_needs': @resourceNeedsProcessor
       'primary_department': Number
 
@@ -96,7 +95,6 @@ define [
     createNew: (obj, mode) ->
       @setModel (new @collection.model _.extend {
         name: ''
-        repeat: 1
         resource_needs: []
         primary_department: @primary_departments[0]?.pk()
       }, obj), mode

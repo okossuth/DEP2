@@ -3,7 +3,7 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
+    _gettersNames: ['weekdays', 'repeat', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {

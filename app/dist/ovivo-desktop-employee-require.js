@@ -18584,7 +18584,7 @@ define('_features/trailZero',[], function() {
 define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
-    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees', 'primary_department'],
+    fields: ['start_time', 'end_time', 'repeat', 'employee_type', 'skill', 'num_employees', 'primary_department'],
     skillsTemplate: Handlebars.templates['skills'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     types: function() {
@@ -18594,7 +18594,8 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         'employee_type': String,
         'skill': Number,
         'primary_department': Number,
-        'num_employees': Number
+        'num_employees': Number,
+        'repeat': Number
       };
     },
     modes: ['edit', 'create'],
@@ -18626,6 +18627,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
         employee_type: 'fulltime',
         num_employees: 1,
         weekdays: '1,2,3,4,5,6,7',
+        repeat: 1,
         skill: (_ref = ovivo.desktop.resources.skills.at(0)) != null ? _ref.pk() : void 0,
         primary_department: (_ref1 = this.primary_departments[0]) != null ? _ref1.pk() : void 0
       }, obj)), mode);
@@ -18651,7 +18653,7 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
 define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-template',
-    fields: ['name', 'repeat', 'resource_needs'],
+    fields: ['name', 'resource_needs'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     resourceNeeds: function() {
       return ovivo.desktop.resources.resourceNeeds.map(function(model) {
@@ -20601,7 +20603,7 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       'click .button-add-new': 'addNew',
       'click .resource-need-check': 'clickCheckbox'
     }),
-    fields: ['name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
+    fields: ['name', 'resource_needs', 'primary_department', 'periods'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     primaryDepartments: function() {
@@ -20626,7 +20628,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     types: function() {
       return {
         'name': String,
-        'repeat': Number,
         'resource_needs': this.resourceNeedsProcessor,
         'primary_department': Number
       };
@@ -20698,7 +20699,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
 
       return this.setModel(new this.collection.model(_.extend({
         name: '',
-        repeat: 1,
         resource_needs: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
       }, obj)), mode);
@@ -21602,7 +21602,7 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
   return ResourceBase.extend({
     typeName: 'resourceNeed',
     localStorageOnly: true,
-    _gettersNames: ['weekdays', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
+    _gettersNames: ['weekdays', 'repeat', 'start_time', 'end_time', 'pk', 'deltaHours', 'num_employees', 'employee_type', 'skill', 'primary_department', 'checked', 'templates', 'startValue', 'endValue'],
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -21946,7 +21946,7 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
   return ResourceBase.extend({
     typeName: 'template',
     localStorageOnly: true,
-    _gettersNames: ['pk', 'name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
+    _gettersNames: ['pk', 'name', 'resource_needs', 'primary_department', 'periods'],
     changePD: function() {
       return this.set('resource_needs', []);
     },
@@ -22455,7 +22455,7 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
         return _.each(_.map(t.resource_needs(), function(rnId) {
           return ovivo.desktop.resources.resourceNeeds.get(rnId);
         }), function(rn) {
-          return _arr = _arr.concat(RuleCompiler.compile(start, end, _this.start_date(), _this.end_date(), t.repeat(), rn.weekdaysHash, {
+          return _arr = _arr.concat(RuleCompiler.compile(start, end, _this.start_date(), _this.end_date(), rn.repeat(), rn.weekdaysHash, {
             resourceNeed: rn,
             template: t,
             period: _this

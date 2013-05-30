@@ -64,7 +64,7 @@ define [
 
       _.each _.map(@templates(), (tId) -> ovivo.desktop.resources.templates.get tId), (t) =>
         _.each _.map(t.resource_needs(), (rnId) -> ovivo.desktop.resources.resourceNeeds.get rnId), (rn) =>
-          _arr = _arr.concat RuleCompiler.compile start, end, @start_date(), @end_date(), t.repeat(), rn.weekdaysHash,
+          _arr = _arr.concat RuleCompiler.compile start, end, @start_date(), @end_date(), rn.repeat(), rn.weekdaysHash,
             resourceNeed: rn
             template: t
             period: @

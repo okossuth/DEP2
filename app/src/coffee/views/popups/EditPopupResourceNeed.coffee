@@ -8,7 +8,7 @@ define [
   EditPopup.extend
     el: '.popup-resource-need'
 
-    fields: ['start_time', 'end_time', 'employee_type', 'skill', 'num_employees', 'primary_department']
+    fields: ['start_time', 'end_time', 'repeat', 'employee_type', 'skill', 'num_employees', 'primary_department']
 
     skillsTemplate: Handlebars.templates['skills']
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments']
@@ -20,6 +20,7 @@ define [
       'skill': Number
       'primary_department': Number
       'num_employees': Number
+      'repeat': Number
 
     modes: ['edit', 'create']
 
@@ -42,6 +43,7 @@ define [
         employee_type: 'fulltime'
         num_employees: 1
         weekdays: '1,2,3,4,5,6,7'
+        repeat: 1
         skill: ovivo.desktop.resources.skills.at(0)?.pk()
         primary_department: @primary_departments[0]?.pk()
       }, obj), mode

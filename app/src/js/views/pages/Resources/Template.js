@@ -10,7 +10,7 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       'click .button-add-new': 'addNew',
       'click .resource-need-check': 'clickCheckbox'
     }),
-    fields: ['name', 'repeat', 'resource_needs', 'primary_department', 'periods'],
+    fields: ['name', 'resource_needs', 'primary_department', 'periods'],
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments'],
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds'],
     primaryDepartments: function() {
@@ -35,7 +35,6 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
     types: function() {
       return {
         'name': String,
-        'repeat': Number,
         'resource_needs': this.resourceNeedsProcessor,
         'primary_department': Number
       };
@@ -107,7 +106,6 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
 
       return this.setModel(new this.collection.model(_.extend({
         name: '',
-        repeat: 1,
         resource_needs: [],
         primary_department: (_ref = this.primary_departments[0]) != null ? _ref.pk() : void 0
       }, obj)), mode);

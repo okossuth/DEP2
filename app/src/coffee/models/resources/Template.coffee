@@ -13,7 +13,6 @@ define [
     _gettersNames: [
       'pk'
       'name'
-      'repeat'
       'resource_needs'
       'primary_department'
       'periods'
