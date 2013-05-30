@@ -5,17 +5,17 @@
   bottom: 0;
   right: 0;
   margin: 83px 0 0 0;
-  min-height: 600px; }
+  min-height: 600px;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -ms-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s;
+  opacity: 1; }
   .page.side-enabled {
     margin-left: 260px; }
-  .page.initial-show {
-    min-height: initial;
-    overflow: visible;
-    -webkit-transition: -webkit-transform 2s, opacity 2s;
-    -moz-transition: -webkit-transform 2s, opacity 2s;
-    -ms-transition: -webkit-transform 2s, opacity 2s;
-    -o-transition: -webkit-transform 2s, opacity 2s;
-    transition: -webkit-transform 2s, opacity 2s; }
+  .page.initial-loading {
+    opacity: 0; }
   .page.enter {
     -webkit-animation: page-enter 200ms ease-out 0s;
     -moz-animation: page-enter 200ms ease-out 0s;

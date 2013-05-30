@@ -101,13 +101,7 @@ require [
 
         ovivo.desktop.pages.calendar.show()
 
-        ovivo.desktop.pages.calendar.view.$el.addClass('initial-show')
-
-        setTimeout (() -> 
-          ovivo.desktop.pages.calendar.view.$el.css
-            '-webkit-transform': 'translate(0, 0)'
-
-          ovivo.desktop.pages.calendar.view.$('.content').css 'opacity', 1), 100
+        setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading')), 50
 
         Backbone.history.start { pushState: true }
 
@@ -122,13 +116,6 @@ require [
         _page = ovivo.desktop.pages.addPage o.constr, o.name
 
         true
-
-      ovivo.desktop.pages.calendar.view.$el.css
-        '-webkit-transform': 'translate(0, -' + (document.body.offsetHeight - 83) + 'px)'
-
-      ovivo.desktop.pages.calendar.view.$('.content').css 'opacity', 0
-
-      ovivo.desktop.pages.calendar.show()
 
       ovivo.desktop.popups = {}
 

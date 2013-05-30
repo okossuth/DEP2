@@ -91,13 +91,9 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
-      ovivo.desktop.pages.calendar.view.$el.addClass('initial-show');
       setTimeout((function() {
-        ovivo.desktop.pages.calendar.view.$el.css({
-          '-webkit-transform': 'translate(0, 0)'
-        });
-        return ovivo.desktop.pages.calendar.view.$('.content').css('opacity', 1);
-      }), 100);
+        return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading');
+      }), 50);
       return Backbone.history.start({
         pushState: true
       });
@@ -123,11 +119,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       _page = ovivo.desktop.pages.addPage(o.constr, o.name);
       return true;
     });
-    ovivo.desktop.pages.calendar.view.$el.css({
-      '-webkit-transform': 'translate(0, -' + (document.body.offsetHeight - 83) + 'px)'
-    });
-    ovivo.desktop.pages.calendar.view.$('.content').css('opacity', 0);
-    ovivo.desktop.pages.calendar.show();
     ovivo.desktop.popups = {};
     _.each([
       {

@@ -13,16 +13,16 @@
 
   min-height: 600px
 
-  &.initial-show
-    min-height: initial
+  -webkit-transition: opacity 2s
+  -moz-transition: opacity 2s
+  -ms-transition: opacity 2s
+  -o-transition: opacity 2s
+  transition: opacity 2s
 
-    overflow: visible
+  opacity: 1
 
-    -webkit-transition: -webkit-transform 2s, opacity 2s
-    -moz-transition: -webkit-transform 2s, opacity 2s
-    -ms-transition: -webkit-transform 2s, opacity 2s
-    -o-transition: -webkit-transform 2s, opacity 2s
-    transition: -webkit-transform 2s, opacity 2s
+  &.initial-loading
+    opacity: 0
 
   &.enter
     -webkit-animation: page-enter 200ms ease-out 0s
