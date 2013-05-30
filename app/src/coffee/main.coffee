@@ -105,8 +105,9 @@ require [
 
         setTimeout (() -> 
           ovivo.desktop.pages.calendar.view.$el.css
-            'bottom': 0
-            'opacity': 1), 100
+            '-webkit-transform': 'translate(0, 0)'
+
+          ovivo.desktop.pages.calendar.view.$('.content').css 'opacity', 1), 100
 
         Backbone.history.start { pushState: true }
 
@@ -123,8 +124,11 @@ require [
         true
 
       ovivo.desktop.pages.calendar.view.$el.css
-        'bottom': (document.body.offsetHeight - 83)
-        'opacity': 0
+        '-webkit-transform': 'translate(0, -' + (document.body.offsetHeight - 83) + 'px)'
+
+      ovivo.desktop.pages.calendar.view.$('.content').css 'opacity', 0
+
+      ovivo.desktop.pages.calendar.show()
 
       ovivo.desktop.popups = {}
 

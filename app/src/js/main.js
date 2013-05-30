@@ -93,10 +93,10 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       ovivo.desktop.pages.calendar.show();
       ovivo.desktop.pages.calendar.view.$el.addClass('initial-show');
       setTimeout((function() {
-        return ovivo.desktop.pages.calendar.view.$el.css({
-          'bottom': 0,
-          'opacity': 1
+        ovivo.desktop.pages.calendar.view.$el.css({
+          '-webkit-transform': 'translate(0, 0)'
         });
+        return ovivo.desktop.pages.calendar.view.$('.content').css('opacity', 1);
       }), 100);
       return Backbone.history.start({
         pushState: true
@@ -124,9 +124,10 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return true;
     });
     ovivo.desktop.pages.calendar.view.$el.css({
-      'bottom': document.body.offsetHeight - 83,
-      'opacity': 0
+      '-webkit-transform': 'translate(0, -' + (document.body.offsetHeight - 83) + 'px)'
     });
+    ovivo.desktop.pages.calendar.view.$('.content').css('opacity', 0);
+    ovivo.desktop.pages.calendar.show();
     ovivo.desktop.popups = {};
     _.each([
       {

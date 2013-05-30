@@ -54,7 +54,7 @@ input {
   font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
 
 body {
-  background: #f3f2ec; }
+  background: #edf0f2; }
 
 h1, h2, h3, h4 {
   margin: 0; }
@@ -1247,7 +1247,12 @@ section.page .notification-message {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #f3f2ec; }
+  background: #edf0f2;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -ms-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s; }
   .page > div.content.side {
     margin-top: 0;
     left: -260px;
@@ -1381,12 +1386,12 @@ section.page .notification-message {
     margin-left: 260px; }
   .page.initial-show {
     min-height: initial;
-    overflow: hidden;
-    -webkit-transition: bottom 2s, opacity 2s;
-    -moz-transition: bottom 2s, opacity 2s;
-    -ms-transition: bottom 2s, opacity 2s;
-    -o-transition: bottom 2s, opacity 2s;
-    transition: bottom 2s, opacity 2s; }
+    overflow: visible;
+    -webkit-transition: -webkit-transform 2s, opacity 2s;
+    -moz-transition: -webkit-transform 2s, opacity 2s;
+    -ms-transition: -webkit-transform 2s, opacity 2s;
+    -o-transition: -webkit-transform 2s, opacity 2s;
+    transition: -webkit-transform 2s, opacity 2s; }
   .page.enter {
     -webkit-animation: page-enter 200ms ease-out 0s;
     -moz-animation: page-enter 200ms ease-out 0s;
@@ -1399,6 +1404,17 @@ section.page .notification-message {
     -ms-animation: page-exit 200ms ease-out 0s;
     -o-animation: page-exit 200ms ease-out 0s;
     animation: page-exit 200ms ease-out 0s; }
+
+.page .page-loader {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -70px; }
+  .page .page-loader img {
+    display: block;
+    margin: 0 auto;
+    width: 48px;
+    height: 48px; }
 
 .shadow {
   position: absolute;
