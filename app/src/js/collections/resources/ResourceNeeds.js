@@ -11,9 +11,26 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common
       }), []);
     },
     _ignoreChange: ['checked', 'deltaHours', 'templates'],
+    processRemove: function(model) {
+      var _templates;
+
+      if ((_templates = model.templates()) == null) {
+        return;
+      }
+      return _.each(_.keys(_templates), function(id) {
+        var _template;
+
+        _template = ovivo.desktop.resources.templates.get(id);
+        if (_template == null) {
+          return;
+        }
+        return _template.removeResourceNeed(model.id);
+      });
+    },
     initialize: function() {
       this.initResource();
       this.initCacheProcessors();
+      this.on('remove', this.processRemove, this);
       return true;
     }
   }));

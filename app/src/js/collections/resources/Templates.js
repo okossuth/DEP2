@@ -38,10 +38,27 @@ define(['models/resources/Template', '_common/ResourceManagerBase', 'ovivo'], fu
         return _this._processTemplateRemove(model);
       });
     },
+    processRemove: function(model) {
+      var _periods;
+
+      if ((_periods = model.periods()) == null) {
+        return;
+      }
+      return _.each(_.keys(_periods), function(id) {
+        var _period;
+
+        _period = ovivo.desktop.resources.periods.get(id);
+        if (_period == null) {
+          return;
+        }
+        return _period.removeTemplate(model.id);
+      });
+    },
     initialize: function() {
       this.initResource();
       this.on('add', this.processTemplateAdd, this);
       this.on('remove', this.processTemplateRemove, this);
+      this.on('remove', this.processRemove, this);
       return true;
     }
   }));

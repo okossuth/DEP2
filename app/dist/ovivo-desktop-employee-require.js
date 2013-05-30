@@ -20655,7 +20655,9 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       });
       if (e.target.checked === true) {
         _val.push(_id);
-        _model.set('checked', true);
+        if (_model != null) {
+          _model.set('checked', true);
+        }
       } else {
         _i = _val.indexOf(_id);
         if (_i !== -1) {
@@ -20663,7 +20665,9 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
         } else {
           return true;
         }
-        _model.set('checked', false);
+        if (_model != null) {
+          _model.set('checked', false);
+        }
       }
       return this.model.set('resource_needs', _val);
     },
@@ -21884,9 +21888,26 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
       }), []);
     },
     _ignoreChange: ['checked', 'deltaHours', 'templates'],
+    processRemove: function(model) {
+      var _templates;
+
+      if ((_templates = model.templates()) == null) {
+        return;
+      }
+      return _.each(_.keys(_templates), function(id) {
+        var _template;
+
+        _template = ovivo.desktop.resources.templates.get(id);
+        if (_template == null) {
+          return;
+        }
+        return _template.removeResourceNeed(model.id);
+      });
+    },
     initialize: function() {
       this.initResource();
       this.initCacheProcessors();
+      this.on('remove', this.processRemove, this);
       return true;
     }
   }));
@@ -22069,10 +22090,27 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
         return _this._processTemplateRemove(model);
       });
     },
+    processRemove: function(model) {
+      var _periods;
+
+      if ((_periods = model.periods()) == null) {
+        return;
+      }
+      return _.each(_.keys(_periods), function(id) {
+        var _period;
+
+        _period = ovivo.desktop.resources.periods.get(id);
+        if (_period == null) {
+          return;
+        }
+        return _period.removeTemplate(model.id);
+      });
+    },
     initialize: function() {
       this.initResource();
       this.on('add', this.processTemplateAdd, this);
       this.on('remove', this.processTemplateRemove, this);
+      this.on('remove', this.processRemove, this);
       return true;
     }
   }));

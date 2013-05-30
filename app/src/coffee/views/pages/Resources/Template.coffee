@@ -59,13 +59,13 @@ define [
       if e.target.checked is true
         _val.push _id
 
-        _model.set 'checked', true
+        _model?.set 'checked', true
 
       else
         _i = _val.indexOf _id
         if _i isnt -1 then _val.splice(_i, 1) else return true
 
-        _model.set 'checked', false
+        _model?.set 'checked', false
 
       @model.set 'resource_needs', _val
 

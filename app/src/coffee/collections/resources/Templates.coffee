@@ -35,10 +35,22 @@ define [
     processTemplateRemove: (model) ->
       ovivo.desktop.resources.resourceNeeds.def.done () => @_processTemplateRemove model
 
+    processRemove: (model) ->
+      if not (_periods = model.periods())? then return
+
+      _.each _.keys(_periods), (id) ->
+        _period = ovivo.desktop.resources.periods.get(id)
+
+        if not _period? then return
+
+        _period.removeTemplate model.id
+
     initialize: () ->
       @initResource()
 
       @on 'add', @processTemplateAdd, @
       @on 'remove', @processTemplateRemove, @
+
+      @on 'remove', @processRemove, @
 
       true

@@ -62,7 +62,9 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
       });
       if (e.target.checked === true) {
         _val.push(_id);
-        _model.set('checked', true);
+        if (_model != null) {
+          _model.set('checked', true);
+        }
       } else {
         _i = _val.indexOf(_id);
         if (_i !== -1) {
@@ -70,7 +72,9 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function
         } else {
           return true;
         }
-        _model.set('checked', false);
+        if (_model != null) {
+          _model.set('checked', false);
+        }
       }
       return this.model.set('resource_needs', _val);
     },
