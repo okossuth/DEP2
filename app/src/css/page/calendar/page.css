@@ -1,2 +1,2 @@
-.page.page-calendar .content {
+.page.page-calendar > .content {
   overflow-y: scroll; }
