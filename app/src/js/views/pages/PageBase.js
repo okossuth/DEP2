@@ -48,15 +48,15 @@ define(['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBas
     hideEl: function() {
       return this.$el.addClass('hide');
     },
-    transitionStart: function() {},
+    transitionStart: function(type) {
+      if (type === 'enter') {
+        return this.showSubView(this.subView());
+      }
+    },
     transitionComplete: function(type) {
       if (type === 'exit') {
-        this.hideEl();
+        return this.hideEl();
       }
-      if (type === 'enter') {
-        this.showSubView(this.subView());
-      }
-      return true;
     },
     showSubView: function(name) {
       var _subView;

@@ -47,14 +47,11 @@ define [
     showEl: () -> @$el.removeClass 'hide'
     hideEl: () -> @$el.addClass 'hide'
 
-    transitionStart: () ->
+    transitionStart: (type) ->
+      if type is 'enter' then @showSubView @subView()
 
     transitionComplete: (type) -> 
       if type is 'exit' then @hideEl()
-
-      if type is 'enter' then @showSubView @subView()
-
-      true
 
     showSubView: (name) ->
       if not name? then return
