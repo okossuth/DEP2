@@ -101,7 +101,9 @@ require [
 
         ovivo.desktop.pages.calendar.show()
 
-        setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading')), 50
+        setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-hide')), 50
+
+        setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading')), 2500
 
         Backbone.history.start { pushState: true }
 

@@ -92,8 +92,11 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
       setTimeout((function() {
-        return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading');
+        return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-hide');
       }), 50);
+      setTimeout((function() {
+        return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading');
+      }), 2500);
       return Backbone.history.start({
         pushState: true
       });
