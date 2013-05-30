@@ -91,6 +91,13 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
+      ovivo.desktop.pages.calendar.view.$el.addClass('initial-show');
+      setTimeout((function() {
+        return ovivo.desktop.pages.calendar.view.$el.css({
+          'bottom': 0,
+          'opacity': 1
+        });
+      }), 100);
       return Backbone.history.start({
         pushState: true
       });
@@ -115,6 +122,10 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
 
       _page = ovivo.desktop.pages.addPage(o.constr, o.name);
       return true;
+    });
+    ovivo.desktop.pages.calendar.view.$el.css({
+      'bottom': document.body.offsetHeight - 83,
+      'opacity': 0
     });
     ovivo.desktop.popups = {};
     _.each([

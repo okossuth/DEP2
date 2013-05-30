@@ -101,6 +101,13 @@ require [
 
         ovivo.desktop.pages.calendar.show()
 
+        ovivo.desktop.pages.calendar.view.$el.addClass('initial-show')
+
+        setTimeout (() -> 
+          ovivo.desktop.pages.calendar.view.$el.css
+            'bottom': 0
+            'opacity': 1), 100
+
         Backbone.history.start { pushState: true }
 
       ovivo.desktop.sideBar = new SideBar()
@@ -114,6 +121,10 @@ require [
         _page = ovivo.desktop.pages.addPage o.constr, o.name
 
         true
+
+      ovivo.desktop.pages.calendar.view.$el.css
+        'bottom': (document.body.offsetHeight - 83)
+        'opacity': 0
 
       ovivo.desktop.popups = {}
 

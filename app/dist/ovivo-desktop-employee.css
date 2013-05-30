@@ -1379,6 +1379,14 @@ section.page .notification-message {
   min-height: 600px; }
   .page.side-enabled {
     margin-left: 260px; }
+  .page.initial-show {
+    min-height: initial;
+    overflow: hidden;
+    -webkit-transition: bottom 2s, opacity 2s;
+    -moz-transition: bottom 2s, opacity 2s;
+    -ms-transition: bottom 2s, opacity 2s;
+    -o-transition: bottom 2s, opacity 2s;
+    transition: bottom 2s, opacity 2s; }
   .page.enter {
     -webkit-animation: page-enter 200ms ease-out 0s;
     -moz-animation: page-enter 200ms ease-out 0s;
