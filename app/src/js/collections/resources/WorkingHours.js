@@ -7,38 +7,21 @@ define(['models/resources/WorkingHour', '_common/ResourceManagerBase', '_common/
     comparator: function(workingHour) {
       return Date.parse(workingHour.start_date()).valueOf();
     },
-    processResponse: (function() {
+    preProcessJSON: (function() {
       var _processUser;
 
       _processUser = function(arr, user) {
         var _this = this;
 
-        return _.each(arr, function(obj) {
+        return _.map(arr, function(obj) {
           obj.user = user;
-          return _this.add(obj);
+          return obj;
         });
       };
-      return function(data) {
-        return _.each(data, _.bind(_processUser, this));
+      return function(resp) {
+        return Array.prototype.concat.apply([], _.map(resp, _.bind(_processUser, this)));
       };
     })(),
-    _fetch: function() {
-      var _request,
-        _this = this;
-
-      _request = $.ajax({
-        dataType: 'json',
-        type: 'GET',
-        url: this.url
-      });
-      return _request.done(function(data) {
-        _this.processResponse(data);
-        return _this.def.resolve();
-      });
-    },
-    initFetch: function() {
-      return this._fetch();
-    },
     _recalcSkillsCache: function() {
       return this.recalculateCache(['skills']);
     },

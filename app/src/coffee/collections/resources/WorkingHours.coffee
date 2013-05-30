@@ -19,29 +19,10 @@ define [
 
     comparator: (workingHour) -> Date.parse(workingHour.start_date()).valueOf()
 
-    processResponse: do ->
-      _processUser = (arr, user) ->
-        _.each arr, (obj) =>
-          obj.user = user
+    preProcessJSON: do ->
+      _processUser = (arr, user) -> _.map arr, (obj) => obj.user = user; obj
 
-          @add obj
-
-      (data) ->
-        _.each data, _.bind _processUser, @
-
-    _fetch: () ->
-      _request = $.ajax
-        dataType: 'json'
-        type: 'GET'
-        url: @url
-
-      _request.done (data) => 
-        @processResponse data
-
-        @def.resolve()
-
-    initFetch: () ->
-      @_fetch()
+      (resp) ->  Array.prototype.concat.apply [], _.map resp, _.bind _processUser, @
 
     _recalcSkillsCache: () ->
       @recalculateCache ['skills']
