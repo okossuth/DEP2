@@ -1,4 +1,4 @@
-{% load general_purpose_tags %}
+{% load general_purpose_tags mixpanel %}
 <!DOCTYPE html>
 <!--<html lang="en" manifest="/app.appcache"> -->
 
@@ -1112,6 +1112,11 @@
 
                 PAGE_TRANSITION_ANIMATION: true,
                 LOADER_URL: '{{ MEDIA_URL }}employee-tablet/assets/img/ajax-loader.gif'
+                CACHE_RESOURCES: {
+                    {% for url, resource in cache_resources.items %}
+                    '{{ url|safe }}': '{{ resource|safe }}',
+                    {% endfor %}
+                },
             };
         </script>
 
