@@ -17903,6 +17903,9 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       };
     };
     _processReadSuccess = function(url, model, resp, options) {
+      if (model.preProcessJSON != null) {
+        resp = model.preProcessJSON(resp);
+      }
       localStorageCache.cache(resp, url);
       if ((model instanceof Backbone.Collection) && (resp instanceof Array)) {
         if (model.fullResponse === true) {
@@ -18962,14 +18965,15 @@ define('_common/ResourceEditCommon',[], function() {
     get: function(parentEvents) {
       return {
         events: _.extend({}, parentEvents, {
-          'change .property-value': 'changeProperty',
+          'change .property-value': 'processPropertyChange',
+          'keyup .property-value': 'processPropertyChange',
           'click .button-add': 'add',
           'click .button-save': 'save',
           'click .button-delete': 'delete'
         }),
         propertyRegExp: /\bproperty-value-(\w+)\b/,
         modes: ['edit', 'create'],
-        changeProperty: function(e) {
+        processPropertyChange: function(e) {
           var _header, _input, _name, _value;
 
           _input = $(e.target).closest('.property-value');

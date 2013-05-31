@@ -157,6 +157,9 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       };
     };
     _processReadSuccess = function(url, model, resp, options) {
+      if (model.preProcessJSON != null) {
+        resp = model.preProcessJSON(resp);
+      }
       localStorageCache.cache(resp, url);
       if ((model instanceof Backbone.Collection) && (resp instanceof Array)) {
         if (model.fullResponse === true) {
