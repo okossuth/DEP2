@@ -20529,7 +20529,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     initialize: function() {
       var _now;
 
-      this.current = _now = new Date();
+      this.current = _now = Date.today().moveToFirstDayOfMonth();
       this._initialize();
       this.title = $('.page.page-calendar header span.title.month-title');
       this.collectorsList = this.$('.months-list');
