@@ -4,14 +4,15 @@ define([], function() {
     get: function(parentEvents) {
       return {
         events: _.extend({}, parentEvents, {
-          'change .property-value': 'changeProperty',
+          'change .property-value': 'processPropertyChange',
+          'keyup .property-value': 'processPropertyChange',
           'click .button-add': 'add',
           'click .button-save': 'save',
           'click .button-delete': 'delete'
         }),
         propertyRegExp: /\bproperty-value-(\w+)\b/,
         modes: ['edit', 'create'],
-        changeProperty: function(e) {
+        processPropertyChange: function(e) {
           var _header, _input, _name, _value;
 
           _input = $(e.target).closest('.property-value');

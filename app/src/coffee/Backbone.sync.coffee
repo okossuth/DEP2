@@ -44,7 +44,7 @@ requirejs [
 
     _processReadSuccess = (url, model, resp, options) ->
       if model.preProcessJSON? then resp = model.preProcessJSON resp
-      
+
       localStorageCache.cache resp, url
 
       if (model instanceof Backbone.Collection) and (resp instanceof Array)

@@ -2,7 +2,8 @@ define [
 ], () ->
   get: (parentEvents) ->
     events: _.extend {}, parentEvents,
-      'change .property-value': 'changeProperty'
+      'change .property-value': 'processPropertyChange'
+      'keyup .property-value': 'processPropertyChange'
       'click .button-add': 'add'
       'click .button-save': 'save'
       'click .button-delete': 'delete'
@@ -11,7 +12,7 @@ define [
 
     modes: ['edit', 'create']
 
-    changeProperty: (e) ->
+    processPropertyChange: (e) ->
       _input = $(e.target).closest('.property-value')
       _header = $(e.target).closest('.settings-item').children('.header')
 
