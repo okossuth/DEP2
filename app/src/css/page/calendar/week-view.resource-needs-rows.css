@@ -1,5 +1,6 @@
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
-  margin: 5px 29px 20px 180px; }
+  margin: 5px 29px 20px 180px;
+  position: relative; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
     display: block;
     position: relative;

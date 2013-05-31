@@ -39,7 +39,6 @@ define(['ovivo'], function() {
     },
     initDays: function() {
       this.collection.days.initElements(this.view.dayElements, this.days);
-      this.removeLoading();
       return true;
     },
     removeLoading: function() {

@@ -35,8 +35,6 @@ define [
 
     # @initResources()
 
-    @removeLoading()
-
     true
 
   removeLoading: () -> @view.removeLoading()
