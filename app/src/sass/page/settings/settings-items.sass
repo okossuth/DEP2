@@ -30,17 +30,15 @@
 
         color: #807e73
 
-      .badge
-        visibility: hidden
-
-        margin: 0 0 0 10px
-
-      &.changed
-        .badge
-          visibility: visible
-
     > div.item-content
       margin: 13px 0 0 0
+
+      &.changed
+        > div.input-wrapper
+          background: #63b483
+
+          > input, > select
+            background: #63b483
 
       > div.input-wrapper
         background: white

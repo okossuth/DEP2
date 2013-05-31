@@ -18,13 +18,12 @@
       .settings-items > li.settings-item > div.header em {
         font-style: normal;
         color: #807e73; }
-      .settings-items > li.settings-item > div.header .badge {
-        visibility: hidden;
-        margin: 0 0 0 10px; }
-      .settings-items > li.settings-item > div.header.changed .badge {
-        visibility: visible; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
+      .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper {
+        background: #63b483; }
+        .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper > select {
+          background: #63b483; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {
         background: white;
         border-radius: 1px;

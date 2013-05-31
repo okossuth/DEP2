@@ -623,12 +623,14 @@ section.page .notification-message {
   .popup > div.buttons-container {
     text-align: center; }
     .popup > div.buttons-container > div.button {
-      margin: 0 9px;
+      margin: 30px 9px 0 9px;
       width: 130px;
       display: inline-block; }
   .popup div.button {
-    margin: 10px auto 0 auto;
+    margin: 30px auto 0 auto;
     display: block; }
+  .popup.edit-mode .settings-items > li.settings-item > div.item-content.changed > input, .popup.edit-mode .settings-items > li.settings-item > div.item-content.changed > select {
+    background: #63b483; }
 
 .popup.popup-period-block {
   text-align: center;
@@ -653,7 +655,7 @@ section.page .notification-message {
       margin: 0 20px 0 0; }
 
 .popup.popup-period .settings-items > li.settings-item > div.item-content > select.property-value-groups {
-  min-height: 336px; }
+  min-height: 346px; }
 
 .popup.popup-create-new {
   margin-top: -38px; }
@@ -2602,13 +2604,12 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       .settings-items > li.settings-item > div.header em {
         font-style: normal;
         color: #807e73; }
-      .settings-items > li.settings-item > div.header .badge {
-        visibility: hidden;
-        margin: 0 0 0 10px; }
-      .settings-items > li.settings-item > div.header.changed .badge {
-        visibility: visible; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
+      .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper {
+        background: #63b483; }
+        .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content.changed > div.input-wrapper > select {
+          background: #63b483; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {
         background: white;
         border-radius: 1px;

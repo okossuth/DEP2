@@ -109,13 +109,21 @@
     text-align: center
 
     > div.button
-      margin: 0 9px
+      margin: 30px 9px 0 9px
 
       width: 130px
 
       display: inline-block
 
   div.button
-    margin: 10px auto 0 auto
+    margin: 30px auto 0 auto
 
     display: block
+
+  &.edit-mode
+    .settings-items
+      > li.settings-item
+        > div.item-content
+          &.changed
+            > input, > select
+              background: #63b483

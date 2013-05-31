@@ -14,16 +14,16 @@ define [
 
     processPropertyChange: (e) ->
       _input = $(e.target).closest('.property-value')
-      _header = $(e.target).closest('.settings-item').children('.header')
+      _item = $(e.target).closest('.item-content')
 
       _name = @propertyRegExp.exec(_input[0].className)[1]
       _value = @types[_name](_input.val())
 
       if _value is @original[_name]()
-        _header.removeClass 'changed'
+        _item.removeClass 'changed'
 
       else
-        _header.addClass 'changed'
+        _item.addClass 'changed'
 
       @model.set _name, _value,
         validate: true
@@ -87,6 +87,9 @@ define [
 
       @$(".#{name}-mode").show()
 
+      @$el.removeClass _.map(_hide, (name) -> "#{name}-mode").join(' ')
+      @$el.addClass "#{name}-mode"
+
     create: (obj, mode) ->
       if not mode? then mode = 'create'
 
@@ -125,7 +128,7 @@ define [
 
     detachHandlers: () ->
 
-    clearChangeState: () -> @$('.header.changed').removeClass 'changed'
+    clearChangeState: () -> @$('.changed').removeClass 'changed'
 
     setModel: (model, mode) ->
       @clearChangeState()

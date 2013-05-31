@@ -74,9 +74,11 @@
   .popup > div.buttons-container {
     text-align: center; }
     .popup > div.buttons-container > div.button {
-      margin: 0 9px;
+      margin: 30px 9px 0 9px;
       width: 130px;
       display: inline-block; }
   .popup div.button {
-    margin: 10px auto 0 auto;
+    margin: 30px auto 0 auto;
     display: block; }
+  .popup.edit-mode .settings-items > li.settings-item > div.item-content.changed > input, .popup.edit-mode .settings-items > li.settings-item > div.item-content.changed > select {
+    background: #63b483; }
