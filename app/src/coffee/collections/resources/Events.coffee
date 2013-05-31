@@ -92,6 +92,8 @@ define [
       @_ready = false
       @_calls = []
 
+      @initCacheProcessors()
+
       @type =
         'open': true
         'open-responses': true

@@ -95,6 +95,7 @@ define(['_common/CachableCollection', 'models/resources/Event', 'ovivo'], functi
     initialize: function(models, options) {
       this._ready = false;
       this._calls = [];
+      this.initCacheProcessors();
       this.type = {
         'open': true,
         'open-responses': true,
