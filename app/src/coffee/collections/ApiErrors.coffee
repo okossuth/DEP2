@@ -12,6 +12,8 @@ define [
 
     localStorageOnly: true
 
+    initializeEmpty: true
+
     url: "/API-errors/"
 
     addError: (url, model, resp, method, options) ->

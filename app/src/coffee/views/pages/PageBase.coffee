@@ -45,6 +45,8 @@ define [
     showSubView: (name) ->
       if not name? then return
 
+      _subView = @subViews[name]
+
       _.each _.without(@subViews, @subViews[name]), (subView) ->
         @$(".#{subView.name}-only").hide()
 
@@ -52,7 +54,9 @@ define [
 
       @model.set 'subView', name
 
-      @processContentScrollBind.process @subViews[name].el
+      @processContentScrollBind.process _subView.el
+
+      _subView.trigger 'show'
 
     subView: () -> @model.get 'subView'
 

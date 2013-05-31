@@ -47,29 +47,33 @@ define(['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(l
       if (this._checkIfIgnore(model) === true) {
         return true;
       }
-      if ((model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true)) {
-        return model.save();
+      if ((model.editCopy !== true) && (model.url != null) && (model.changed.pk == null) && (model.id != null) && (obj.socket_io !== true) && (obj.cache_update !== true) && (obj.update !== true)) {
+        model.save();
       }
+      return true;
     },
     _checkIfIgnore: function(model) {
-      var _i;
+      var _changed, _i;
 
       if (this._ignoreChange instanceof Array) {
         _i = 0;
-        while (_i < this._ignoreChange.length) {
-          if (typeof model.changed[this._ignoreChange[_i]] !== 'undefined') {
-            return true;
+        _changed = _.keys(model.changed);
+        while (_i < _changed.length) {
+          if (_.indexOf(this._ignoreChange, _changed[_i]) === -1) {
+            return false;
           }
           _i += 1;
         }
+        return true;
+      } else {
+        return false;
       }
-      return false;
     },
     cache: function() {
       return localStorageCache.cache(this, this._url);
     },
     changeCacheHandler: function(model) {
-      if (this._checkIfIgnore(model) === true) {
+      if ((this._checkIfIgnore(model) === true) || (model.editCopy === true)) {
         return true;
       }
       return localStorageCache.cache(this, this._url);

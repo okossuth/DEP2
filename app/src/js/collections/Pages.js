@@ -54,7 +54,6 @@ define(['_features/transition', 'models/Page', 'ovivo'], function(transition, Mo
     },
     initialize: function() {
       this.on('show', this.processShow, this);
-      $(window).on('resize', _.bind(this.resizeHandler, this));
       return true;
     }
   });

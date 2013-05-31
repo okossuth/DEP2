@@ -27,6 +27,8 @@ define [
       'deltaHours'
     ]
 
+    isSingle: () -> @start_date() is @end_date()
+
     _getTrueHash: (hash) -> _.compact _.map _.pairs(hash), (arr) -> if arr[1] is true then (parseInt(arr[0]) + 1) else undefined
 
     processWeek: (num, value) ->
@@ -80,7 +82,6 @@ define [
         @set 'groups', null, { silent: true }
         _json.groups = null
 
-      delete _json.exclusions
       delete _json.start_date_obj
       delete _json.end_date_obj
       delete _json.deltaHours

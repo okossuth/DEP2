@@ -4,6 +4,7 @@ define(['models/ApiError', '_common/ResourceManagerBase', 'ovivo'], function(Mod
     model: Model,
     fullResponse: true,
     localStorageOnly: true,
+    initializeEmpty: true,
     url: "/API-errors/",
     addError: function(url, model, resp, method, options) {
       if ((method === 'update') || (method === 'create')) {

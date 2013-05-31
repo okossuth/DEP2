@@ -2,7 +2,11 @@
   div.shadow
     display: block
 
-.page > header
+.page.scrolled-bottom > footer
+  div.shadow
+    display: block
+
+.page > header, .page > footer
   position: absolute
 
   top: 0
@@ -101,3 +105,14 @@
 
         &.selected
           border: 2px solid #007550
+
+.page > footer
+  top: auto
+  left: 0
+  bottom: 0
+
+  div.shadow
+    position: absolute
+
+    bottom: auto
+    top: -2px

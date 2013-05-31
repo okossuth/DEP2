@@ -5,6 +5,7 @@ define(['models/resources/ResourceBase', '_common/ResourceManagerBase', 'ovivo']
     url: function() {
       return "" + ovivo.config.API_URL_PREFIX + "users/" + ovivo.config.USER_ID + "/";
     },
+    standaloneModel: true,
     _gettersNames: ['first_name', 'last_name', 'groups', 'skills', 'email', 'email_confirmed', 'mobile_phone_prefix', 'mobile_phone'],
     toJSON: function() {
       var _json;

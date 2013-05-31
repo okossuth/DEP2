@@ -1,7 +1,13 @@
 define [
+  '_features/getDateString',
+
   'ovivo'
-], () ->
-  events: {}
+], (getDateString) ->
+  events:
+    'click': 'processDayClick'
+
+  processDayClick: () ->
+    ovivo.desktop.popups.createNewPopup.show true, getDateString @dateObj()
 
   render: () -> true
 
@@ -24,7 +30,7 @@ define [
       @workingHours[elem.id]
 
     else if _name is 'event'
-      @events[elem.id]
+      @events_[elem.id]
 
   _removeModel: (model, hash) ->
     _view = hash[model.id]
@@ -90,13 +96,13 @@ define [
     @_insertElement model, view, hash
 
   addEvent: (view, model) ->
-    @_addModel model, view, @events
+    @_addModel model, view, @events_
 
     @updateEventsCounter()
 
     true
 
-  removeEvent: (model) -> @_removeModel model, @events
+  removeEvent: (model) -> @_removeModel model, @events_
 
   addWorkingHour: (view, model) ->
     @_addModel model, view, @workingHours
@@ -109,26 +115,28 @@ define [
   removeInactivity: (model) -> @_removeModel model, @inactivities
 
   updateEventsCounter: () ->
-    _amount = _.keys(@events).length
+    _amount = _.keys(@events_).length
     _html = if _amount > 1
-        _amount + ' ' + ngettext('event', 'events', @events)
+        _amount + ' ' + ngettext('event', 'events', @events_)
       else
         ''
 
-    @eventsCounter.html _html
+    @events_Counter.html _html
 
   setToday: () -> @$el.addClass 'current'
 
   initialize: () ->
     @proxyCall 'initialize', arguments
 
-    @events = {}
+    @events_ = {}
     @workingHours = {}
     @inactivities = {}
 
     @elements = []
 
     @calendarItems = @$('.calendar-items')
-    @eventsCounter = @$('.events-counter')
+    @events_Counter = @$('.events-counter')
+
+    @delegateEvents()
 
     true

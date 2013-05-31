@@ -3,6 +3,9 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
   return ResourceBase.extend({
     typeName: 'workingHour',
     _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'pk', 'start_date_obj', 'end_date_obj', 'deltaHours'],
+    isSingle: function() {
+      return this.start_date() === this.end_date();
+    },
     _getTrueHash: function(hash) {
       return _.compact(_.map(_.pairs(hash), function(arr) {
         if (arr[1] === true) {
@@ -77,7 +80,6 @@ define(['models/resources/ResourceBase', 'views/resources/WorkingHour', 'views/r
         });
         _json.groups = null;
       }
-      delete _json.exclusions;
       delete _json.start_date_obj;
       delete _json.end_date_obj;
       delete _json.deltaHours;
