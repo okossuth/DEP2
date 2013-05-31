@@ -57,6 +57,8 @@ require [
   'models/pages/Help',
   'models/pages/Notifications',
   'models/pages/EventDetails',
+  'models/pages/EditWorkingHours',
+  'models/pages/EditInactivity',
 
   'views/SideBar',
 
@@ -73,7 +75,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
+], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, EditWorkingHoursPage, EditInactivityPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -85,23 +87,20 @@ require [
       ovivo.desktop.resources = {}
 
       $.when.apply($, _.map [
-        'Notifications',
-        'Municipalities',
-        'PrimaryDepartments',
-        'Groups',
-        'User',
-        'Communication',
-        'GroupRelations',
-        'WorkingHours',
-        'Inactivities',
-        'Events',
-        'ApiErrors'
-      ], (resourceName) ->
-        _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1)
-        _instance = new (eval(resourceName))()
-
-        ovivo.desktop.resources[_resourceInstanceName] = _instance
-        ovivo.desktop.resources[_resourceInstanceName].def).then () ->
+        { name: 'notifications', constr: Notifications },
+        { name: 'municipalities', constr: Municipalities },
+        { name: 'primaryDepartments', constr: PrimaryDepartments },
+        { name: 'groups', constr: Groups },
+        { name: 'user', constr: User },
+        { name: 'communication', constr: Communication },
+        { name: 'groupRelations', constr: GroupRelations },
+        { name: 'workingHours', constr: WorkingHours },
+        { name: 'inactivities', constr: Inactivities },
+        { name: 'events', constr: Events },
+        { name: 'apiErrors', constr: ApiErrors }
+      ], (o) ->
+        ovivo.desktop.resources[o.name] = new o.constr()
+        ovivo.desktop.resources[o.name].def).then () ->
 
         ovivo.desktop.pages.calendar.show()
 
@@ -110,28 +109,27 @@ require [
       ovivo.desktop.sideBar = new SideBar()
 
       _.each [
-        'Calendar',
-        'Settings',
-        'Feedback',
-        'Help',
-        'Notifications',
-        'EventDetails'
-      ], (pageVarName) ->
-        _pageInstanceName = (pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1))
-        _page = ovivo.desktop.pages.addPage eval(pageVarName + 'Page'), _pageInstanceName
+        { name: 'calendar', constr: CalendarPage },
+        { name: 'settings', constr: SettingsPage },
+        { name: 'feedback', constr: FeedbackPage },
+        { name: 'help', constr: HelpPage },
+        { name: 'notifications', constr: NotificationsPage },
+        { name: 'eventDetails', constr: EventDetailsPage },
+        { name: 'editWorkingHours', constr: EditWorkingHoursPage },
+        { name: 'editInactivity', constr: EditInactivityPage }
+      ], (o) ->
+        _page = ovivo.desktop.pages.addPage o.constr, o.name
 
         true
 
       ovivo.desktop.popups = {}
 
       _.each [
-        'EditPopupWorkingHour',
-        'EditPopupTimeoff',
-        'CreateNewPopup'
-      ], (popupName) ->
-        _popupInstanceName = (popupName.slice(0, 1).toLowerCase() + popupName.slice(1))
-
-        ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))()
+        { name: 'editPopupWorkingHour', constr: EditPopupWorkingHour },
+        { name: 'editPopupTimeoff', constr: EditPopupTimeoff },
+        { name: 'createNewPopup', constr: CreateNewPopup }
+      ], (o) ->
+        ovivo.desktop.popups[o.name] = new o.constr()
 
       _.each ovivo.desktop.resources, do () ->
         _num = 0

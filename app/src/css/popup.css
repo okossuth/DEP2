@@ -22,14 +22,14 @@
     animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
-  width: 300px;
+  width: 410px;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 100000;
-  margin: 0 0 0 -158px;
-  padding: 16px; }
+  margin: 0 0 0 -241px;
+  padding: 10px 36px 36px 36px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
     -moz-animation: popup-enter 200ms ease-out 0s;
@@ -47,14 +47,14 @@
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
   .popup > h1 {
     text-align: center;
-    padding: 7px 0 0 0; }
+    padding: 7px 0 20px 0; }
   .popup > div.close {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer; }
   .popup > div.button {
-    width: 156px; }
+    width: 200px; }
   .popup > div.buttons-container {
     text-align: center; }
     .popup > div.buttons-container > div.button {
@@ -64,28 +64,3 @@
   .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
-  .popup > .settings-items {
-    margin: 20px 0; }
-    .popup > .settings-items > li.settings-item > div.item-content {
-      text-align: center; }
-      .popup > .settings-items > li.settings-item > div.item-content > input, .popup > .settings-items > li.settings-item > div.item-content > select {
-        background: #ebe9e0;
-        color: #525044;
-        font-size: 15px;
-        text-align: center;
-        padding: 9px 9px;
-        width: 287px;
-        -webkit-appearance: none; }
-      .popup > .settings-items > li.settings-item > div.item-content > input {
-        height: 17px; }
-      .popup > .settings-items > li.settings-item > div.item-content > select {
-        -webkit-appearance: menulist-button; }
-      .popup > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
-        -webkit-appearance: initial; }
-      .popup > .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-        font-style: italic;
-        color: #807e73;
-        margin: 0 4px; }
-      .popup > .settings-items > li.settings-item > div.item-content.two > input {
-        width: 110px; }

@@ -13,7 +13,7 @@ define [
 
     addNew: () ->
       ovivo.desktop.popups.editPopupWorkingHour.show()
-      ovivo.desktop.popups.editPopupWorkingHour.createNew()
+      ovivo.desktop.popups.editPopupWorkingHour.create()
       
       true
 

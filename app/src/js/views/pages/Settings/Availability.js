@@ -8,7 +8,7 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupWorkingHour.show();
-      ovivo.desktop.popups.editPopupWorkingHour.createNew();
+      ovivo.desktop.popups.editPopupWorkingHour.create();
       return true;
     },
     addWorkingHour: function(workingHour) {

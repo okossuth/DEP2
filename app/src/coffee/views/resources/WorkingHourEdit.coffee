@@ -24,8 +24,14 @@ define [
       @model.processWeek (_i), @model.weekdaysHash[_i]
 
     edit: () -> 
+      if @model.isSingle() is true
+        _mode = 'edit-single'
+
+      else
+        _mode = 'edit'
+
       ovivo.desktop.popups.editPopupWorkingHour.show()
-      ovivo.desktop.popups.editPopupWorkingHour.setModel @model
+      ovivo.desktop.popups.editPopupWorkingHour.edit @model, _mode
 
     _getDateStr: (_date) ->
       if _date?

@@ -10,6 +10,8 @@ define [
     
     url: () -> "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/communication/"
 
+    standaloneModel: true
+
     _gettersNames: [
       'event_urgent_within'
       'activity_digest'

@@ -8,7 +8,7 @@ define(['views/pages/PageBase', 'ovivo'], function(PageBase) {
     },
     addNew: function() {
       ovivo.desktop.popups.editPopupTimeoff.show();
-      ovivo.desktop.popups.editPopupTimeoff.createNew();
+      ovivo.desktop.popups.editPopupTimeoff.create();
       return true;
     },
     addInactivity: function(inactivity) {
