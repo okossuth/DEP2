@@ -17,8 +17,14 @@ define [
     groupTemplate: Handlebars.templates['inactivityEdit_group']
 
     edit: () -> 
+      if @model.isSingle() is true
+        _mode = 'edit-single'
+
+      else
+        _mode = 'edit'
+
       ovivo.desktop.popups.editPopupTimeoff.show()
-      ovivo.desktop.popups.editPopupTimeoff.setModel @model
+      ovivo.desktop.popups.editPopupTimeoff.edit @model, _mode
 
     _getDateStr: (_date) ->
       if _date?

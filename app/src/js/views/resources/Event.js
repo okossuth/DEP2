@@ -10,10 +10,12 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       'click': 'processClick',
       'click .type-button': 'changeType'
     },
-    processClick: function() {
-      return ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
+    processClick: function(e) {
+      ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
         trigger: true
       });
+      e.stopPropagation();
+      return false;
     },
     groupRenderComplete: function() {},
     group: function() {
@@ -98,10 +100,10 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
     _biddingClosed: function() {
       var _date, _now;
 
-      _date = Date.parse(this.start_date());
+      _date = Date.parse(this.model.get('start_date'));
       _now = new Date();
       _now = new Date(_now.getFullYear(), _now.getMonth(), _now.getDate());
-      if ((_now > _date) && (this.type() !== 'closed')) {
+      if ((_now > _date) && (this.model.get('type') !== 'closed')) {
         return true;
       } else {
         return false;
@@ -125,8 +127,8 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
     },
     initialize: function() {
       this.model.setDeltaHours();
-      this.proxyCall('initialize', arguments);
       this.biddingClosed = this._biddingClosed();
+      this.proxyCall('initialize', arguments);
       if ((ovivo.desktop.resources.groups.def.state() !== 'resolved') || (ovivo.desktop.resources.municipalities.def.state() !== 'resolved') || (ovivo.desktop.resources.primaryDepartments.def.state() !== 'resolved')) {
         $.when(ovivo.desktop.resources.groups.def, ovivo.desktop.resources.municipalities.def, ovivo.desktop.resources.primaryDepartments.def).then(_.bind(this.render, this));
       }

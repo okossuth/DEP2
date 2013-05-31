@@ -44,20 +44,51 @@ requirejs.config({
   }
 });
 
-require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', 'collections/ApiErrors', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) {
+require(['routers/main', 'models/resources/User', 'models/resources/Communication', 'views/popups/EditPopupWorkingHour', 'views/popups/EditPopupTimeoff', 'views/popups/CreateNewPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Settings', 'models/pages/Feedback', 'models/pages/Help', 'models/pages/Notifications', 'models/pages/EventDetails', 'models/pages/EditWorkingHours', 'models/pages/EditInactivity', 'views/SideBar', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/GroupRelations', 'collections/resources/WorkingHours', 'collections/resources/Inactivities', 'collections/ApiErrors', '_features/socket.io', 'ovivo'], function(routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, EditWorkingHoursPage, EditInactivityPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) {
   $(function() {
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
-    $.when.apply($, _.map(['Notifications', 'Municipalities', 'PrimaryDepartments', 'Groups', 'User', 'Communication', 'GroupRelations', 'WorkingHours', 'Inactivities', 'Events', 'ApiErrors'], function(resourceName) {
-      var _instance, _resourceInstanceName;
-
-      _resourceInstanceName = resourceName.slice(0, 1).toLowerCase() + resourceName.slice(1);
-      _instance = new (eval(resourceName))();
-      ovivo.desktop.resources[_resourceInstanceName] = _instance;
-      return ovivo.desktop.resources[_resourceInstanceName].def;
+    $.when.apply($, _.map([
+      {
+        name: 'notifications',
+        constr: Notifications
+      }, {
+        name: 'municipalities',
+        constr: Municipalities
+      }, {
+        name: 'primaryDepartments',
+        constr: PrimaryDepartments
+      }, {
+        name: 'groups',
+        constr: Groups
+      }, {
+        name: 'user',
+        constr: User
+      }, {
+        name: 'communication',
+        constr: Communication
+      }, {
+        name: 'groupRelations',
+        constr: GroupRelations
+      }, {
+        name: 'workingHours',
+        constr: WorkingHours
+      }, {
+        name: 'inactivities',
+        constr: Inactivities
+      }, {
+        name: 'events',
+        constr: Events
+      }, {
+        name: 'apiErrors',
+        constr: ApiErrors
+      }
+    ], function(o) {
+      ovivo.desktop.resources[o.name] = new o.constr();
+      return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
       return Backbone.history.start({
@@ -65,19 +96,52 @@ require(['routers/main', 'models/resources/User', 'models/resources/Communicatio
       });
     });
     ovivo.desktop.sideBar = new SideBar();
-    _.each(['Calendar', 'Settings', 'Feedback', 'Help', 'Notifications', 'EventDetails'], function(pageVarName) {
-      var _page, _pageInstanceName;
+    _.each([
+      {
+        name: 'calendar',
+        constr: CalendarPage
+      }, {
+        name: 'settings',
+        constr: SettingsPage
+      }, {
+        name: 'feedback',
+        constr: FeedbackPage
+      }, {
+        name: 'help',
+        constr: HelpPage
+      }, {
+        name: 'notifications',
+        constr: NotificationsPage
+      }, {
+        name: 'eventDetails',
+        constr: EventDetailsPage
+      }, {
+        name: 'editWorkingHours',
+        constr: EditWorkingHoursPage
+      }, {
+        name: 'editInactivity',
+        constr: EditInactivityPage
+      }
+    ], function(o) {
+      var _page;
 
-      _pageInstanceName = pageVarName.slice(0, 1).toLowerCase() + pageVarName.slice(1);
-      _page = ovivo.desktop.pages.addPage(eval(pageVarName + 'Page'), _pageInstanceName);
+      _page = ovivo.desktop.pages.addPage(o.constr, o.name);
       return true;
     });
     ovivo.desktop.popups = {};
-    _.each(['EditPopupWorkingHour', 'EditPopupTimeoff', 'CreateNewPopup'], function(popupName) {
-      var _popupInstanceName;
-
-      _popupInstanceName = popupName.slice(0, 1).toLowerCase() + popupName.slice(1);
-      return ovivo.desktop.popups[_popupInstanceName] = new (eval(popupName))();
+    _.each([
+      {
+        name: 'editPopupWorkingHour',
+        constr: EditPopupWorkingHour
+      }, {
+        name: 'editPopupTimeoff',
+        constr: EditPopupTimeoff
+      }, {
+        name: 'createNewPopup',
+        constr: CreateNewPopup
+      }
+    ], function(o) {
+      return ovivo.desktop.popups[o.name] = new o.constr();
     });
     _.each(ovivo.desktop.resources, (function() {
       var _complete, _num, _total;

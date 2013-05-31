@@ -21,11 +21,13 @@ define([], function() {
       return localStorage[url] = JSON.stringify(((model instanceof Backbone.Model) || (model instanceof Backbone.Collection) ? model.toJSON() : model));
     },
     init: function(model, url) {
-      if (typeof localStorage[url] === 'undefined') {
-        if (model instanceof Backbone.Model) {
-          localStorage[url] = "{}";
-        } else if (model instanceof Backbone.Collection) {
-          localStorage[url] = "[]";
+      if (model.initializeEmpty === true) {
+        if (typeof localStorage[url] === 'undefined') {
+          if (model instanceof Backbone.Model) {
+            localStorage[url] = "{}";
+          } else if (model instanceof Backbone.Collection) {
+            localStorage[url] = "[]";
+          }
         }
       }
       return true;

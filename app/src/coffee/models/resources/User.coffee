@@ -10,6 +10,8 @@ define [
     
     url: () -> "#{ovivo.config.API_URL_PREFIX}users/#{ovivo.config.USER_ID}/"
 
+    standaloneModel: true
+
     _gettersNames: [
       'first_name'
       'last_name'

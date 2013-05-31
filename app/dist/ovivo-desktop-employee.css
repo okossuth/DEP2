@@ -1,3 +1,11 @@
+.badge {
+  display: inline-block;
+  padding: 3px 7px;
+  background: #007550;
+  color: white;
+  font-weight: normal;
+  border-radius: 3px; }
+
 .button {
   background: #007550;
   font-size: 13px;
@@ -88,6 +96,35 @@ select {
 @font-face {
   font-family: KontrapunktBobLight;
   src: url("../assets/fonts/Kontrapunkt Bob Light.otf"); }
+
+.form-component > .settings-items {
+  margin: 20px 0; }
+  .form-component > .settings-items > li.settings-item > div.item-content {
+    text-align: center; }
+    .form-component > .settings-items > li.settings-item > div.item-content > input, .form-component > .settings-items > li.settings-item > div.item-content > select {
+      background: #ebe9e0;
+      color: #525044;
+      font-size: 15px;
+      text-align: center;
+      padding: 9px 9px;
+      -webkit-appearance: none; }
+    .form-component > .settings-items > li.settings-item > div.item-content > input {
+      height: 17px;
+      width: 382px; }
+    .form-component > .settings-items > li.settings-item > div.item-content > select {
+      -webkit-appearance: menulist-button;
+      width: 400px; }
+    .form-component > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
+      -webkit-appearance: initial; }
+    .form-component > .settings-items > li.settings-item > div.item-content > span {
+      font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-style: italic;
+      color: #807e73;
+      margin: 0 4px;
+      display: inline-block;
+      width: 16px; }
+    .form-component > .settings-items > li.settings-item > div.item-content.two > input {
+      width: 166px; }
 
 i.logo {
   display: block;
@@ -531,14 +568,14 @@ section.page .notification-message {
     animation: popup-overlay-exit 200ms ease-in 0s; }
 
 .popup {
-  width: 300px;
+  width: 410px;
   background: white;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 100000;
-  margin: 0 0 0 -158px;
-  padding: 16px; }
+  margin: 0 0 0 -241px;
+  padding: 10px 36px 36px 36px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
     -moz-animation: popup-enter 200ms ease-out 0s;
@@ -555,7 +592,7 @@ section.page .notification-message {
     color: #807e73;
     font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
     text-align: center;
-    padding: 7px 0 0 0; }
+    padding: 7px 0 20px 0; }
   .popup > div.close.button {
     position: absolute;
     top: 2px;
@@ -563,7 +600,7 @@ section.page .notification-message {
     width: 50px;
     cursor: pointer; }
   .popup > div.button {
-    width: 156px; }
+    width: 200px; }
   .popup > div.buttons-container {
     text-align: center; }
     .popup > div.buttons-container > div.button {
@@ -573,40 +610,12 @@ section.page .notification-message {
   .popup div.button {
     margin: 10px auto 0 auto;
     display: block; }
-  .popup > .settings-items {
-    margin: 20px 0; }
-    .popup > .settings-items > li.settings-item > div.item-content {
-      text-align: center; }
-      .popup > .settings-items > li.settings-item > div.item-content > input, .popup > .settings-items > li.settings-item > div.item-content > select {
-        background: #ebe9e0;
-        color: #525044;
-        font-size: 15px;
-        text-align: center;
-        padding: 9px 9px;
-        width: 287px;
-        -webkit-appearance: none; }
-      .popup > .settings-items > li.settings-item > div.item-content > input {
-        height: 17px; }
-      .popup > .settings-items > li.settings-item > div.item-content > select {
-        -webkit-appearance: menulist-button; }
-      .popup > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
-        -webkit-appearance: initial; }
-      .popup > .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-        font-style: italic;
-        color: #807e73;
-        margin: 0 4px; }
-      .popup > .settings-items > li.settings-item > div.item-content.two > input {
-        width: 110px; }
 
 .popup.popup-create-new {
-  height: 124px;
   margin-top: -62px; }
 .popup.popup-working-hour {
-  height: 445px;
   margin-top: -222.5px; }
 .popup.popup-timeoff {
-  height: 260px;
   margin-top: -130px; }
 
 @-webkit-keyframes empty-enter {
@@ -1210,7 +1219,10 @@ section.page .notification-message {
 .page.scrolled-top > header div.shadow {
   display: block; }
 
-.page > header {
+.page.scrolled-bottom > footer div.shadow {
+  display: block; }
+
+.page > header, .page > footer {
   position: absolute;
   top: 0;
   left: 0;
@@ -1218,58 +1230,67 @@ section.page .notification-message {
   width: 100%;
   background: white;
   padding: 28px 0 28px 0; }
-  .page > header i {
+  .page > header i, .page > footer i {
     cursor: pointer; }
-  .page > header .shadow {
+  .page > header .shadow, .page > footer .shadow {
     bottom: -2px; }
-  .page > header > div.line {
+  .page > header > div.line, .page > footer > div.line {
     height: 39px;
     line-height: 16px;
     margin-left: 15px; }
-    .page > header > div.line > * {
+    .page > header > div.line > *, .page > footer > div.line > * {
       vertical-align: middle; }
-    .page > header > div.line > i.navigation {
+    .page > header > div.line > i.navigation, .page > footer > div.line > i.navigation {
       position: relative;
       top: 1px; }
-    .page > header > div.line > div.placeholder {
+    .page > header > div.line > div.placeholder, .page > footer > div.line > div.placeholder {
       height: 38px;
       width: 1px;
       display: inline-block;
       margin: 0 0 0 0; }
-    .page > header > div.line > span.title {
+    .page > header > div.line > span.title, .page > footer > div.line > span.title {
       font-size: 21px;
       font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
       color: #007550;
       margin: 0 10px 0 20px; }
-    .page > header > div.line > em.title {
+    .page > header > div.line > em.title, .page > footer > div.line > em.title {
       font-size: 21px;
       font-style: normal;
       color: #333333;
       margin: 0 15px 0 0; }
-    .page > header > div.line > div.button {
+    .page > header > div.line > div.button, .page > footer > div.line > div.button {
       margin: 0 10px 0 0; }
-      .page > header > div.line > div.button.today {
+      .page > header > div.line > div.button.today, .page > footer > div.line > div.button.today {
         width: 100px;
         margin-left: 10px; }
-      .page > header > div.line > div.button.right {
+      .page > header > div.line > div.button.right, .page > footer > div.line > div.button.right {
         float: right;
         width: 158px;
         margin: 0 30px 0 0; }
-    .page > header > div.line > ul.switcher {
+    .page > header > div.line > ul.switcher, .page > footer > div.line > ul.switcher {
       display: inline-block;
       float: right;
       margin: 0 20px 0 0; }
-      .page > header > div.line > ul.switcher > li {
+      .page > header > div.line > ul.switcher > li, .page > footer > div.line > ul.switcher > li {
         display: inline-block;
         position: relative;
         top: 4px;
         border: 2px solid transparent;
         cursor: pointer; }
-        .page > header > div.line > ul.switcher > li > span {
+        .page > header > div.line > ul.switcher > li > span, .page > footer > div.line > ul.switcher > li > span {
           display: inline-block;
           padding: 6px; }
-        .page > header > div.line > ul.switcher > li.selected {
+        .page > header > div.line > ul.switcher > li.selected, .page > footer > div.line > ul.switcher > li.selected {
           border: 2px solid #007550; }
+
+.page > footer {
+  top: auto;
+  left: 0;
+  bottom: 0; }
+  .page > footer div.shadow {
+    position: absolute;
+    bottom: auto;
+    top: -2px; }
 
 .page {
   position: absolute;
@@ -1499,6 +1520,9 @@ ul.months-list li.inactivity, ul.weeks-list li.inactivity {
   ul.months-list li.inactivity.last, ul.weeks-list li.inactivity.last {
     padding: 5px 8px 5px 10px;
     left: -10px; }
+    ul.months-list li.inactivity.last.first, ul.weeks-list li.inactivity.last.first {
+      padding: 5px 8px 5px 8px;
+      left: -8px; }
   ul.months-list li.inactivity.none, ul.weeks-list li.inactivity.none {
     padding: 5px 10px;
     left: -10px; }
@@ -1604,7 +1628,8 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
     padding: 0;
     vertical-align: top;
     min-height: 100px;
-    overflow: visible; }
+    overflow: visible;
+    cursor: pointer; }
     ul.months-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours, ul.weeks-list > li table.days-container .week-row > .cell:hover > div > em.add-working-hours {
       display: inline-block; }
     ul.months-list > li table.days-container .week-row > .cell.show-popup, ul.weeks-list > li table.days-container .week-row > .cell.show-popup {
@@ -1709,6 +1734,30 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   overflow-y: scroll; }
 
 
+.page.page-edit {
+  width: 500px;
+  min-width: 0;
+  z-index: 9999;
+  box-shadow: -2px 0 30px #888888;
+  left: auto; }
+  .page.page-edit.enter {
+    -webkit-animation: event-details-enter 200ms ease-out 0s;
+    -moz-animation: event-details-enter 200ms ease-out 0s;
+    -ms-animation: event-details-enter 200ms ease-out 0s;
+    -o-animation: event-details-enter 200ms ease-out 0s;
+    animation: event-details-enter 200ms ease-out 0s; }
+  .page.page-edit.exit {
+    -webkit-animation: event-details-exit 200ms ease-out 0s;
+    -moz-animation: event-details-exit 200ms ease-out 0s;
+    -ms-animation: event-details-exit 200ms ease-out 0s;
+    -o-animation: event-details-exit 200ms ease-out 0s;
+    animation: event-details-exit 200ms ease-out 0s; }
+  .page.page-edit > header > div.line > div.button {
+    width: 40px; }
+
+.page.page-edit .settings-items {
+  margin: 30px 20px 0 20px; }
+
 .page.page-event-details div.content .event {
   margin-top: 0; }
   .page.page-event-details div.content .event .element-container > div.buttons > div.button-element.single {
@@ -1787,7 +1836,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 
 .page.page-event-details {
   width: 500px;
-  min-width: auto;
+  min-width: 0;
   z-index: 9999;
   box-shadow: -2px 0 30px #888888;
   left: auto; }
@@ -1922,6 +1971,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 .page.page-settings.scrolled-top .shadow.top {
   display: block; }
 
+.page.page-settings .content.notifications-view > .shadow.bottom, .page.page-settings .content.general-view > .shadow.bottom {
+  bottom: 70px; }
+
 .page.page-settings .content {
   margin: 135px 40px 40px 40px;
   overflow-x: hidden; }
@@ -1990,9 +2042,10 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     float: left;
     border: 1px solid #807e73;
     border-radius: 2px;
-    width: 120px;
+    min-width: 100px;
     text-align: center;
     margin: 0 0 0 28px;
+    padding: 0 10px;
     font-size: 15px;
     color: #807e73;
     cursor: pointer; }
@@ -2116,6 +2169,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   overflow: auto;
   -webkit-overflow-scrolling: touch; }
 
+.notifications-view .settings-items, .general-view .settings-items {
+  margin: 90px 0 70px 0; }
+
 .settings-items {
   margin: 90px 0 0 0; }
   .settings-items > li.settings-item {
@@ -2123,13 +2179,20 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     margin: 22px 0 0 0; }
     .settings-items > li.settings-item:first-child {
       margin-top: 0; }
-    .settings-items > li.settings-item > div.header span {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      color: #525044;
-      margin: 0 10px 0 0; }
-    .settings-items > li.settings-item > div.header em {
-      font-style: normal;
-      color: #807e73; }
+    .settings-items > li.settings-item > div.header {
+      min-height: 23px; }
+      .settings-items > li.settings-item > div.header span {
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        color: #525044;
+        margin: 0 10px 0 0; }
+      .settings-items > li.settings-item > div.header em {
+        font-style: normal;
+        color: #807e73; }
+      .settings-items > li.settings-item > div.header .badge {
+        visibility: hidden;
+        margin: 0 0 0 10px; }
+      .settings-items > li.settings-item > div.header.changed .badge {
+        visibility: visible; }
     .settings-items > li.settings-item > div.item-content {
       margin: 13px 0 0 0; }
       .settings-items > li.settings-item > div.item-content > div.input-wrapper {
@@ -2137,7 +2200,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
         border-radius: 1px;
         box-shadow: 0 1px 0 #d9d6c6;
         padding: 10px; }
-        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input {
+        .settings-items > li.settings-item > div.item-content > div.input-wrapper > input, .settings-items > li.settings-item > div.item-content > div.input-wrapper > select {
           font-size: 15px;
           color: #525044;
           width: 100%; }

@@ -60,6 +60,6 @@ define [
     initialize: () ->
       @on 'show', @processShow, @
 
-      $(window).on 'resize', _.bind @resizeHandler, @
+      # $(window).on 'resize', _.bind @resizeHandler, @
 
       true

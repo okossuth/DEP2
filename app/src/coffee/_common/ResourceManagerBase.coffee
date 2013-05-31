@@ -44,25 +44,31 @@ define [
   processModelChange: (model, obj) ->
     if @_checkIfIgnore(model) is true then return true
 
-    if (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) then model.save()
+    if (model.editCopy isnt true) and (model.url?) and (not model.changed.pk?) and model.id? and (obj.socket_io isnt true) and (obj.cache_update isnt true) and (obj.update isnt true) then model.save()
+
+    true
 
   _checkIfIgnore: (model) ->
     if @_ignoreChange instanceof Array
       _i = 0
+      _changed = _.keys model.changed
 
-      while _i < @_ignoreChange.length
-        if typeof model.changed[@_ignoreChange[_i]] isnt 'undefined'
-          return true
+      while _i < _changed.length
+        if _.indexOf(@_ignoreChange, _changed[_i]) is -1
+          return false
 
         _i += 1
 
-    return false
+      return true
+
+    else
+      return false
 
   cache: () ->
     localStorageCache.cache @, @_url
 
   changeCacheHandler: (model) ->
-    if @_checkIfIgnore(model) is true then return true
+    if (@_checkIfIgnore(model) is true) or (model.editCopy is true) then return true
 
     localStorageCache.cache @, @_url
 

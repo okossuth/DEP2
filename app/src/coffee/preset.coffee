@@ -27,7 +27,7 @@ Date.parse = do () ->
     processor: (str) ->
       [match, year, month, day] = str.match @regExp
 
-      new Date parseInt(year), parseInt(month) - 1, parseInt(day)
+      new Date parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10)
   }, {
     regExp: /^(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d\d\d\d\d\d)$/
     processor: (str) ->
@@ -61,3 +61,14 @@ ovivo.Y = (f) -> do (g = (g) -> (a, b) -> f(g(g))(a, b)) -> (a, b) -> f(g(g))(a,
 
 window.onerror = () ->
   window.localStorage.clear()
+
+ovivo.parseBoolean = (str) ->
+  if typeof str is 'boolean' then return str
+  if typeof str isnt 'string' then return Boolean str
+
+  str = str.toLowerCase()
+
+  if str is 'false' then return false
+  if str is 'true' then return true
+
+  return Boolean str

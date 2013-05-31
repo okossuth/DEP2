@@ -19,6 +19,8 @@ define [
       'pk'
     ]
 
+    isSingle: () -> @start() is @end()
+
     validate: (attrs) -> 
       if attrs.start? and attrs.end? and attrs.municipality?
         undefined
@@ -37,18 +39,21 @@ define [
       _i = new Date start
 
       while _i <= end
-        _type = if (_i - _start) is 0 
-            'first'
+        _type = []
 
-          else if (_i - _end) is 0
-            'last'
+        if (_i - _start) is 0 
+            _type.push 'first'
 
-          else 'none'
+        if (_i - _end) is 0
+            _type.push 'last'
+
+        if ((_i - _start) isnt 0) and ((_i - _end) isnt 0 )
+          _type.push 'none'
 
         _arr.push
           date: new Date _i
           model: @
-          itemType: _type
+          itemType: _type.join(' ')
 
         _i.setDate _i.getDate() + 1
 

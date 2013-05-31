@@ -1,8 +1,5 @@
-.page.page-event-details {
+.page.page-event-details, .page.page-notifications, .page.page-edit {
   border-left: 1px solid #888888; }
-
-.page.page-notifications {
-  border-right: 1px solid #888888; }
 
 ul.months-list .element > div.element-container, ul.weeks-list .element > div.element-container, .page-event-details .element > div.element-container {
   border: 1px solid #dddddd; }
