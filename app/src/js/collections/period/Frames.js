@@ -36,10 +36,14 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
       });
     },
     initialize: function() {
+      var _this = this;
+
       this.on('add', this.processFrameAdd, this);
-      ovivo.desktop.resources.periods.on('add', this.processPeriodAdd, this);
-      ovivo.desktop.resources.periods.on('remove', this.processPeriodRemove, this);
-      ovivo.desktop.resources.periods.on('updateFrames', this.processPeriodChange, this);
+      ovivo.desktop.resources.periods.def.done(function() {
+        ovivo.desktop.resources.periods.on('add', _this.processPeriodAdd, _this);
+        ovivo.desktop.resources.periods.on('remove', _this.processPeriodRemove, _this);
+        return ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
+      });
       return true;
     }
   });

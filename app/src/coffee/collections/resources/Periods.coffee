@@ -12,7 +12,6 @@ define [
 
     fullResponse: true
 
-    # localStorageOnly: true
     initializeEmpty: true
 
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/periods/"

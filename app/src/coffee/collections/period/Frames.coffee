@@ -34,9 +34,9 @@ define [
     initialize: () ->
       @on 'add', @processFrameAdd, @
 
-      ovivo.desktop.resources.periods.on 'add', @processPeriodAdd, @
-      ovivo.desktop.resources.periods.on 'remove', @processPeriodRemove, @
-
-      ovivo.desktop.resources.periods.on 'updateFrames', @processPeriodChange, @
+      ovivo.desktop.resources.periods.def.done () =>
+        ovivo.desktop.resources.periods.on 'add', @processPeriodAdd, @
+        ovivo.desktop.resources.periods.on 'remove', @processPeriodRemove, @
+        ovivo.desktop.resources.periods.on 'updateFrames', @processPeriodChange, @
 
       true

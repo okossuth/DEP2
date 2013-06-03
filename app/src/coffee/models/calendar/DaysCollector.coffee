@@ -6,8 +6,8 @@ define [
   show: () -> @view.show()
   hide: () -> @view.hide()
 
-  _initPeriods: (start, end) ->
-    ovivo.desktop.resources.frames.addFrame start, end
+  _initFrame: (start, end) ->
+    @frame = ovivo.desktop.resources.frames.addFrame start, end
 
   initResources: () ->
     _start = do =>
@@ -29,7 +29,7 @@ define [
     _start = new Date _start.year, _start.month, _start.date
     _end = new Date _end.year, _end.month, _end.date
 
-    ovivo.desktop.resources.periods.def.done _.bind _.partial(@_initPeriods, _start, _end), @
+    @_initFrame _start, _end
 
     true
 

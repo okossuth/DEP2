@@ -47,7 +47,7 @@ define [
       true
 
     initialize: () ->
-      @SubViews = [MonthView, WeekView]
+      @SubViews = [WeekView]
       @defaultSubView = 'week'
 
       @on 'subViewChange', @processSubViewChange, @

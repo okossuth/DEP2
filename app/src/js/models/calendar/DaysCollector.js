@@ -10,8 +10,8 @@ define(['ovivo'], function(PeriodBlocks) {
     hide: function() {
       return this.view.hide();
     },
-    _initPeriods: function(start, end) {
-      return ovivo.desktop.resources.frames.addFrame(start, end);
+    _initFrame: function(start, end) {
+      return this.frame = ovivo.desktop.resources.frames.addFrame(start, end);
     },
     initResources: function() {
       var _end, _start,
@@ -37,7 +37,7 @@ define(['ovivo'], function(PeriodBlocks) {
       })();
       _start = new Date(_start.year, _start.month, _start.date);
       _end = new Date(_end.year, _end.month, _end.date);
-      ovivo.desktop.resources.periods.def.done(_.bind(_.partial(this._initPeriods, _start, _end), this));
+      this._initFrame(_start, _end);
       return true;
     },
     initDays: function() {

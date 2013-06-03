@@ -39,7 +39,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       return true;
     },
     initialize: function() {
-      this.SubViews = [MonthView, WeekView];
+      this.SubViews = [WeekView];
       this.defaultSubView = 'week';
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
