@@ -54,11 +54,37 @@ define(['models/resources/Template', '_common/ResourceManagerBase', 'ovivo'], fu
         return _period.removeTemplate(model.id);
       });
     },
+    passFrameUpdate: function(model) {
+      return _.each(_.keys(model.periods()), function(id) {
+        var _period;
+
+        _period = ovivo.desktop.resources.periods.get(id);
+        if (_period == null) {
+          return;
+        }
+        return ovivo.desktop.resources.periods.trigger('updateFrames', _period);
+      });
+    },
+    processFrameUpdate: (function() {
+      var _monitorChanges;
+
+      _monitorChanges = ['resource_needs'];
+      return function(template) {
+        var _int;
+
+        _int = _.intersection(_.keys(template.changed), _monitorChanges);
+        if (_int.length > 0) {
+          this.passFrameUpdate(template);
+        }
+        return true;
+      };
+    })(),
     initialize: function() {
       this.initResource();
       this.on('add', this.processTemplateAdd, this);
       this.on('remove', this.processTemplateRemove, this);
       this.on('remove', this.processRemove, this);
+      this.on('change', this.processFrameUpdate, this);
       return true;
     }
   }));

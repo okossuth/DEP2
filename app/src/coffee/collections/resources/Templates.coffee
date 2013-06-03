@@ -45,6 +45,24 @@ define [
 
         _period.removeTemplate model.id
 
+    passFrameUpdate: (model) ->
+      _.each _.keys(model.periods()), (id) ->
+        _period = ovivo.desktop.resources.periods.get(id)
+
+        if not _period? then return
+
+        ovivo.desktop.resources.periods.trigger 'updateFrames', _period
+
+    processFrameUpdate: do ->
+      _monitorChanges = ['resource_needs']
+
+      (template) ->
+        _int = _.intersection _.keys(template.changed), _monitorChanges
+
+        if _int.length > 0 then @passFrameUpdate template
+
+        true
+
     initialize: () ->
       @initResource()
 
@@ -52,5 +70,7 @@ define [
       @on 'remove', @processTemplateRemove, @
 
       @on 'remove', @processRemove, @
+
+      @on 'change', @processFrameUpdate, @
 
       true
