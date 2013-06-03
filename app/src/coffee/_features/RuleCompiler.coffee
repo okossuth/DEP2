@@ -1,7 +1,7 @@
 define [
   'ovivo'
 ], () ->
-  compile: (start, end, start_date, end_date, repeat, weekdaysHash, models) ->
+  compile: (start, end, start_date, end_date, repeat, weekdaysHash, models, codeGen) ->
     _arr = []
 
     _start = new Date Date.parse start_date
@@ -24,8 +24,12 @@ define [
       if _day < 0 then _day = 7 + _day
 
       if (weekdaysHash[_day] is true) and ((repeat is 1) or (((Math.floor((_i - _startMonday) / 86400000 / 7)) % repeat) is 0))
-        _arr.push _.extend {}, models,
+        _obj = _.extend {}, models,
           date: new Date _i
+
+        if codeGen? then _obj.code = codeGen _obj
+        
+        _arr.push _obj
 
       _i.setDate _i.getDate() + 1
 

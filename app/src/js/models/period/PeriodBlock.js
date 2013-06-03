@@ -2,7 +2,7 @@
 define(['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(View, Block) {
   return Block.extend({
     idAttribute: 'cid',
-    _gettersNames: ['date', 'hours', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
     addHour: function(hour, groups) {
       var _this = this;
 

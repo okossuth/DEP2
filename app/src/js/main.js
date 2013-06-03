@@ -45,8 +45,10 @@ requirejs.config({
   }
 });
 
-require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'models/pages/Notifications', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', 'collections/resources/Notifications', 'collections/resources/Events', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, socketIO) {
+require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'models/pages/Notifications', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/period/Frames', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) {
   $(function() {
+    var _resourcesForLoad;
+
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
@@ -106,6 +108,7 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       });
     });
     ovivo.desktop.sideBar = new SideBar();
+    ovivo.desktop.resources.frames = new Frames();
     _.each([
       {
         name: 'calendar',
@@ -147,16 +150,19 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     ], function(o) {
       return ovivo.desktop.popups[o.name] = new o.constr();
     });
-    _.each(ovivo.desktop.resources, (function() {
+    _resourcesForLoad = _.filter(_.values(ovivo.desktop.resources), function(res) {
+      return res.doNotFetch !== true;
+    });
+    _.each(_resourcesForLoad, (function() {
       var _complete, _num, _total;
 
       _num = 0;
-      _total = _.keys(ovivo.desktop.resources).length;
+      _total = _resourcesForLoad.length;
       _complete = function() {
         _num += 1;
         return console.log('Resources loading: ' + Math.round(35 + 65 * _num / _total) + '%');
       };
-      return function(value, name) {
+      return function(value) {
         var _res;
 
         _res = value.initFetch();

@@ -54,6 +54,11 @@ define [
 
       @set 'templates', _val
 
+    _blockCodeGenerator: (obj) ->
+      _date = obj.date
+
+      "#{_date.getFullYear()}-#{_date.getMonth()}-#{_date.getDate()}.#{obj.resourceNeed.pk()}.#{obj.template.pk()}.#{obj.period.pk()}"
+
     compile: (start, end) ->
       if not start? then start = new Date Date.parse @start_date()
       if not end? then end = new Date Date.parse @end_date()
@@ -62,10 +67,11 @@ define [
 
       _.each _.map(@templates(), (tId) -> ovivo.desktop.resources.templates.get tId), (t) =>
         _.each _.map(t.resource_needs(), (rnId) -> ovivo.desktop.resources.resourceNeeds.get rnId), (rn) =>
-          _arr = _arr.concat RuleCompiler.compile start, end, @start_date(), @end_date(), rn.repeat(), rn.weekdaysHash,
+          _arr = _arr.concat RuleCompiler.compile start, end, @start_date(), @end_date(), rn.repeat(), rn.weekdaysHash, {
             resourceNeed: rn
             template: t
             period: @
+          }, @_blockCodeGenerator
 
       _arr
 
@@ -96,7 +102,7 @@ define [
 
     initialize: (attrs, options) ->
       @View = View
-      
+
       @on 'change:primary_department', @changePD, @
 
       @proxyCall 'initialize', arguments

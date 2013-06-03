@@ -41,6 +41,12 @@ define(['models/resources/ResourceBase', 'views/resources/Period', '_features/Ru
       }
       return this.set('templates', _val);
     },
+    _blockCodeGenerator: function(obj) {
+      var _date;
+
+      _date = obj.date;
+      return "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate()) + "." + (obj.resourceNeed.pk()) + "." + (obj.template.pk()) + "." + (obj.period.pk());
+    },
     compile: function(start, end) {
       var _arr,
         _this = this;
@@ -62,7 +68,7 @@ define(['models/resources/ResourceBase', 'views/resources/Period', '_features/Ru
             resourceNeed: rn,
             template: t,
             period: _this
-          }));
+          }, _this._blockCodeGenerator));
         });
       });
       return _arr;

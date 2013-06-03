@@ -71,11 +71,12 @@ require [
   'collections/resources/WorkingHours',
   'collections/resources/Notifications',
   'collections/resources/Events',
+  'collections/period/Frames',
 
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -112,6 +113,8 @@ require [
 
       ovivo.desktop.sideBar = new SideBar()
 
+      ovivo.desktop.resources.frames = new Frames()
+
       _.each [
         { name: 'calendar', constr: CalendarPage },
         { name: 'resources', constr: ResourcesPage },
@@ -133,16 +136,18 @@ require [
       ], (o) ->
         ovivo.desktop.popups[o.name] = new o.constr()
 
-      _.each ovivo.desktop.resources, do () ->
+      _resourcesForLoad = _.filter _.values(ovivo.desktop.resources), (res) -> res.doNotFetch isnt true
+
+      _.each _resourcesForLoad, do () ->
         _num = 0
-        _total = _.keys(ovivo.desktop.resources).length
+        _total = _resourcesForLoad.length
 
         _complete = () ->
           _num += 1
 
           console.log 'Resources loading: ' + Math.round(35 + 65 * _num / _total) + '%'
 
-        (value, name) ->
+        (value) ->
           _res = value.initFetch()
 
           if _res.then? 

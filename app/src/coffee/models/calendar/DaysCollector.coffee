@@ -1,6 +1,4 @@
 define [
-  'collections/period/PeriodBlocks',
-
   'ovivo'
 ], (PeriodBlocks) ->
   firstDate: () -> @_firstDate
@@ -8,7 +6,8 @@ define [
   show: () -> @view.show()
   hide: () -> @view.hide()
 
-  _initPeriods: () ->
+  _initPeriods: (start, end) ->
+    ovivo.desktop.resources.frames.addFrame start, end
 
   initResources: () ->
     _start = do =>
@@ -30,9 +29,7 @@ define [
     _start = new Date _start.year, _start.month, _start.date
     _end = new Date _end.year, _end.month, _end.date
 
-    @periodBlocks = new PeriodBlocks()
-
-    ovivo.desktop.resources.periods.def.done _.bind @_initPeriods, @
+    ovivo.desktop.resources.periods.def.done _.bind _.partial(@_initPeriods, _start, _end), @
 
     true
 

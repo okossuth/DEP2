@@ -1,10 +1,12 @@
 define [
+  'collections/period/Frames',
+
   'models/resources/Period',
 
   '_common/ResourceManagerBase',
 
   'ovivo'
-], (Model, ResourceManagerBase) ->
+], (Frames, Model, ResourceManagerBase) ->
   Backbone.Collection.extend _.extend {}, ResourceManagerBase,
     model: Model
 
@@ -33,10 +35,22 @@ define [
     processPeriodRemove: (model) ->
       ovivo.desktop.resources.templates.def.done () => @_processPeriodRemove model
 
+    processFrameUpdate: do ->
+      _monitorChanges = ['templates', 'start_date', 'end_date']
+
+      (period) ->
+        _int = _.intersection _.keys(period.changed), _monitorChanges
+
+        if _int.length > 0 then @trigger 'updateFrames', period
+
+        true
+
     initialize: () ->
       @initResource()
 
       @on 'add', @processPeriodAdd, @
       @on 'remove', @processPeriodRemove, @
+
+      @on 'change', @processFrameUpdate, @
 
       true

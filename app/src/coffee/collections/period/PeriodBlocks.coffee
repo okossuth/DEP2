@@ -1,13 +1,13 @@
 define [
   'collections/period/Blocks',
-  
+
   'models/period/PeriodBlock',
 
   '_common/CachableCollection',
 
   'ovivo'
 ], (Blocks, Model, CachableCollection) ->
-  Blocks.extend _.extend {}, CachableCollection.get(['skill', 'groups', 'date']),
+  Blocks.extend _.extend {}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code']),
     model: Model
 
     initialize: () ->

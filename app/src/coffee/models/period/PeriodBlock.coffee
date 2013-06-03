@@ -11,6 +11,10 @@ define [
     _gettersNames: [
       'date',
       'hours',
+      'resourceNeed',
+      'template',
+      'period',
+      'code',
       ['start_time', 'resourceNeed']
       ['end_time', 'resourceNeed']
       ['skill', 'resourceNeed']
