@@ -1,6 +1,7 @@
 requirejs.config
   paths:
     'underscore': '../../lib/underscore'
+    'lodash': '../../lib/lodash'
     'backbone': '../../lib/backbone'
     'handlebars': '../../lib/handlebars'
     'ovivo': '../../dist/ovivo-desktop-employee'
@@ -23,9 +24,9 @@ requirejs.config
       deps: ['backbone']
     
     'backbone':
-      deps: ['underscore']
+      deps: ['lodash']
     
-    'underscore':
+    'lodash':
       deps: ['pickadate']
 
     'pickadate':

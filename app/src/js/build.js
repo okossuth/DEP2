@@ -1,6 +1,7 @@
 {
   paths: {
     "underscore": "../../lib/underscore",
+    "lodash": "../../lib/lodash",
     "backbone": "../../lib/backbone",
     "handlebars": "../../lib/handlebars",
     "ovivo": "../../dist/ovivo-desktop-employee",
@@ -27,10 +28,10 @@
     },
     
     "backbone": {
-      deps: ["underscore"]
+      deps: ["lodash"]
     },
     
-    "underscore": {
+    "lodash": {
       deps: ["pickadate"]
     },
 

@@ -131,7 +131,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-csso')
+    grunt.loadNpmTasks('grunt-csso');
 
     grunt.registerMultiTask('translate', 'Apply dictionary to file', function() {
         var src = grunt.file.read(this.data.src),

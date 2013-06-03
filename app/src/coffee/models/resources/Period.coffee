@@ -12,8 +12,6 @@ define [
   ResourceBase.extend
     typeName: 'period'
 
-    # localStorageOnly: true
-
     _gettersNames: [
       'pk'
       'start_date'

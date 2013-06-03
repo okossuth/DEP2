@@ -1,5 +1,6 @@
 define [
   'collections/period/Blocks',
+  
   'models/period/PeriodBlock',
 
   '_common/CachableCollection',

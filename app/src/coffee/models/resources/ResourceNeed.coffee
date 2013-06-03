@@ -11,8 +11,6 @@ define [
   ResourceBase.extend
     typeName: 'resourceNeed'
 
-    # localStorageOnly: true
-
     _gettersNames: [
       'weekdays'
       'repeat'
