@@ -121,7 +121,7 @@ define [
     _updateMatchedValues: () ->
       _closed = @eventUsers.getBy('type', 'closed')
 
-      @view._updateMatchedValues _closed.length
+      if @view._updateMatchedValues? then @view._updateMatchedValues _closed.length
 
     initialize: () ->
       @View = if @collection.View? then @collection.View else View

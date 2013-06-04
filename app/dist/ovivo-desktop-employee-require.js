@@ -26106,7 +26106,9 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
       var _closed;
 
       _closed = this.eventUsers.getBy('type', 'closed');
-      return this.view._updateMatchedValues(_closed.length);
+      if (this.view._updateMatchedValues != null) {
+        return this.view._updateMatchedValues(_closed.length);
+      }
     },
     initialize: function() {
       var _day;
@@ -26132,7 +26134,9 @@ define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/p
   return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code', 'dateKey']), {
     model: Model,
     initialize: function(models, options) {
-      this.View = options.View;
+      if ((options != null ? options.View : void 0) != null) {
+        this.View = options.View;
+      }
       this._initialize();
       return true;
     }

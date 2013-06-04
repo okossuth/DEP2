@@ -115,7 +115,9 @@ define(['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/per
       var _closed;
 
       _closed = this.eventUsers.getBy('type', 'closed');
-      return this.view._updateMatchedValues(_closed.length);
+      if (this.view._updateMatchedValues != null) {
+        return this.view._updateMatchedValues(_closed.length);
+      }
     },
     initialize: function() {
       var _day;

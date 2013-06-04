@@ -3,7 +3,9 @@ define(['collections/period/Blocks', 'models/period/PeriodBlock', '_common/Cacha
   return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code', 'dateKey']), {
     model: Model,
     initialize: function(models, options) {
-      this.View = options.View;
+      if ((options != null ? options.View : void 0) != null) {
+        this.View = options.View;
+      }
       this._initialize();
       return true;
     }

@@ -11,7 +11,8 @@ define [
     model: Model
 
     initialize: (models, options) ->
-      @View = options.View
+      if options?.View?
+        @View = options.View
 
       @_initialize()
 
