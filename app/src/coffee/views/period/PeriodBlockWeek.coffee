@@ -1,10 +1,8 @@
 define [
   'views/resources/ResourceBase',
 
-  '_common/ToolsBase',
-
   'ovivo'
-], (ResourceBase, ToolsBase) ->
+], (ResourceBase) ->
   ResourceBase.extend
     common: {}
 
@@ -17,13 +15,11 @@ define [
 
     events: {}
 
-    exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) =>
-      if name instanceof Array then name = name[0]
+    processClick: () ->
+      window.a = @model.eventUsers
 
-      if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
-
-    getTotalHours: () ->
-      _val = ((@resourceNeed().endValue() - @resourceNeed().startValue()) / 60 * @num_employees())
+    getEmployeeHours: (num) ->
+      _val = ((@resourceNeed().endValue() - @resourceNeed().startValue()) / 60 * num)
 
       if ((_val * 100 - Math.floor(_val * 100)) isnt 0)
         _val = parseFloat _val.toFixed 2
@@ -34,18 +30,24 @@ define [
       @model.set 'skill_name', ovivo.desktop.resources.skills.get(@skill()).name()
 
     _processNum_employees: () ->
-      @model.set 'total_hours', @getTotalHours()
+      @model.set 'total_hours', @getEmployeeHours @num_employees()
 
     _processStart_time: () ->
-      @model.set 'total_hours', @getTotalHours()
+      @model.set 'total_hours', @getEmployeeHours @num_employees()
 
     _processEnd_time: () ->
-      @model.set 'total_hours', @getTotalHours()
+      @model.set 'total_hours', @getEmployeeHours @num_employees()
 
     postRender: () ->
       @header = @$ '.header .inner'
       @content = @$ '.content .inner'
       @footer = @$ '.footer .inner'
+
+      @employees = @$ '.content .employees'
+
+      @emptySlots = @$ '.content div.empty'
+
+      @header.on 'click', _.bind @processClick, @
 
       @renderDef.resolve()
 
@@ -72,6 +74,24 @@ define [
 
         $(_el).html @[field]()
 
+    updateEventsHanlder: () ->
+      @model.refreshEvents()
+
+    processEmptySlots: () ->
+      if @empty_slots() <= 0
+        @emptySlots.hide()
+
+      else
+        @emptySlots.show()
+
+      true
+      
+    _updateMatchedValues: (value) ->
+      @renderDef.done () => 
+        @model.set 'matched_employees', value
+        @model.set 'matched_hours', @getEmployeeHours value
+        @model.set 'empty_slots', @num_employees() - value
+
     _setInitialValues: () ->
       ovivo.desktop.resources.skills.def.done _.bind @_renderSkill, @
 
@@ -82,14 +102,23 @@ define [
 
       @listenTo @resourceNeed(), 'change', @changeHanlder
 
+      @listenTo @resourceNeed(), 'change:start_time', @updateEventsHanlder
+      @listenTo @resourceNeed(), 'change:end_time', @updateEventsHanlder
+      @listenTo @resourceNeed(), 'change:skill', @updateEventsHanlder
+
       @model.on 'change', @changeHanlder, @
+      @model.on 'change:empty_slots', @processEmptySlots, @
 
       @_setInitialValues()
 
     _detachHandlers: () ->
       @stopListening @resourceNeed(), 'change', @changeHanlder
+      @stopListening @resourceNeed(), 'change:start_time', @updateEventsHanlder
+      @stopListening @resourceNeed(), 'change:end_time', @updateEventsHanlder
+      @stopListening @resourceNeed(), 'change:skill', @updateEventsHanlder
 
       @model.off 'change', @changeHanlder
+      @model.off 'change:empty_slots', @processEmptySlots
 
     _processRemove: () ->
       @header.remove()
@@ -98,10 +127,22 @@ define [
 
       @_detachHandlers()
 
+    addEventUser: (eventUser) ->
+      _i = @model.eventUsers.indexOf eventUser
+
+      if _i is (@model.eventUsers.length - 1)
+        @renderDef.done () => @employees.append eventUser.view.el
+
+      else
+        @renderDef.done () => @model.eventUsers.at(_i + 1).view.$el.before eventUser.view.el
+
+      true
+
     initialize: () ->
-      @model.on 'rendered', @_attachHandlers, @
+      @model.eventUsers.on 'add', @addEventUser, @
 
       @renderDef = new $.Deferred()
+      @renderDef.done () => @_attachHandlers()
 
       @proxyCall 'initialize', arguments
 

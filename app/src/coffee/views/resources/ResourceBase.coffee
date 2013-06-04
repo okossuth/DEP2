@@ -23,7 +23,10 @@ define [
     processRemove: () ->
       @model.destroy()
 
-    exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) => if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
+    exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) =>
+      if name instanceof Array then name = name[0]
+
+      if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
 
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50)
 

@@ -28,6 +28,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       var _this = this;
 
       return _.each(this.model._gettersNames, function(name) {
+        if (name instanceof Array) {
+          name = name[0];
+        }
         if (_this.constructor.prototype[name] == null) {
           return _this.constructor.prototype[name] = function() {
             return this.model[name]();

@@ -41,6 +41,15 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'ovi
         return _this.periodBlocks.add(_hash[code]);
       });
     },
+    addEvent: function(event) {
+      var _byDate, _bySkill;
+
+      _byDate = this.periodBlocks.getBy('dateKey', event.date());
+      _bySkill = this.periodBlocks.getBy('skill', event.skill());
+      return _.each(_.intersection(_byDate, _bySkill), function(block) {
+        return block.addEvent(event);
+      });
+    },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       this.periodBlocks = new PeriodBlocks([], options);

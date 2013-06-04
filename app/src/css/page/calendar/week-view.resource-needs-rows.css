@@ -89,9 +89,9 @@
               width: 11px;
               height: 11px;
               border: 1px solid #333333; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .assigned > div.indicator {
+            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .closed > div.indicator {
               background: #4b9968; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .responsed > div.indicator {
+            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .open-responses > div.indicator {
               background: #f6e332; }
             .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .open > div.indicator {
               background: #f05050; }

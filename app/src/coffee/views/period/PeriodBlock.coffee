@@ -1,10 +1,8 @@
 define [
   'views/resources/ResourceBase',
 
-  '_common/ToolsBase',
-
   'ovivo'
-], (ResourceBase, ToolsBase) ->
+], (ResourceBase) ->
   ResourceBase.extend
     common: {}
 
@@ -31,11 +29,6 @@ define [
       ovivo.desktop.popups.periodBlockPopup.show()
 
       true
-
-    exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) =>
-      if name instanceof Array then name = name[0]
-
-      if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
 
     _getTimeObj: (field) ->
       _obj = new Date Date.parse @date()

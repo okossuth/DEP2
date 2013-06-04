@@ -1,10 +1,8 @@
 define [
   'views/resources/ResourceBase',
 
-  '_common/ToolsBase',
-
   'ovivo'
-], (ResourceBase, ToolsBase) ->
+], (ResourceBase) ->
   ResourceBase.extend
     common: {}
 
@@ -22,11 +20,6 @@ define [
     processClick: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
       ovivo.desktop.popups.editPopupResourceNeed.edit @model.resourceNeed()
-
-    exposeAttrs: (ToolsBase.once 'exposeAttrs', () -> _.each @model._gettersNames, (name) =>
-      if name instanceof Array then name = name[0]
-
-      if not @constructor.prototype[name]? then @constructor.prototype[name] = () -> @model[name]())
 
     addBlock: (block) ->
       $.when(block.view.renderDef, @renderDef).done () =>

@@ -35,6 +35,26 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
         return frame.changePeriod(period);
       });
     },
+    processEventAdd: function(event) {
+      if (event.skill() == null) {
+        return;
+      }
+      return this.each(function(frame) {
+        return frame.addEvent(event);
+      });
+    },
+    processEventRemove: function(event) {
+      if (event.periodBlock == null) {
+        return;
+      }
+      return event.periodBlock.removeEvent(event);
+    },
+    processEventChange: function(event) {
+      if (event.periodBlock != null) {
+        return;
+      }
+      return this.processEventAdd(event);
+    },
     initialize: function() {
       var _this = this;
 
@@ -42,7 +62,12 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
       ovivo.desktop.resources.periods.def.done(function() {
         ovivo.desktop.resources.periods.on('add', _this.processPeriodAdd, _this);
         ovivo.desktop.resources.periods.on('remove', _this.processPeriodRemove, _this);
-        return ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
+        ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
+        return ovivo.desktop.resources.events.def.done(function() {
+          ovivo.desktop.resources.events.on('add', _this.processEventAdd, _this);
+          ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
+          return ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
+        });
       });
       return true;
     }

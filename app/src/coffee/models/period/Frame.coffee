@@ -39,6 +39,13 @@ define [
       _.each _remove, (code) => @periodBlocks.remove @periodBlocks.getBy('code', code)
       _.each _add, (code) => @periodBlocks.add _hash[code]
 
+    addEvent: (event) ->
+      _byDate = @periodBlocks.getBy 'dateKey', event.date()
+      _bySkill = @periodBlocks.getBy 'skill', event.skill()
+
+      _.each _.intersection(_byDate, _bySkill), (block) ->
+        block.addEvent event
+
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
 

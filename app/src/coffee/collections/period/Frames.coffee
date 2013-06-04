@@ -32,6 +32,21 @@ define [
     processPeriodChange: (period) ->
       @each (frame) -> frame.changePeriod period
 
+    processEventAdd: (event) ->
+      if not event.skill()? then return
+      
+      @each (frame) -> frame.addEvent event
+
+    processEventRemove: (event) ->
+      if not event.periodBlock? then return
+
+      event.periodBlock.removeEvent event
+
+    processEventChange: (event) ->
+      if event.periodBlock? then return
+
+      @processEventAdd event
+
     initialize: () ->
       @on 'add', @processFrameAdd, @
 
@@ -39,5 +54,10 @@ define [
         ovivo.desktop.resources.periods.on 'add', @processPeriodAdd, @
         ovivo.desktop.resources.periods.on 'remove', @processPeriodRemove, @
         ovivo.desktop.resources.periods.on 'updateFrames', @processPeriodChange, @
+
+        ovivo.desktop.resources.events.def.done () =>
+          ovivo.desktop.resources.events.on 'add', @processEventAdd, @
+          ovivo.desktop.resources.events.on 'remove', @processEventRemove, @
+          ovivo.desktop.resources.events.on 'change', @processEventChange, @
 
       true

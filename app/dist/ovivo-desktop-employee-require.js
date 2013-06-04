@@ -19589,17 +19589,17 @@ function program1(depth0,data) {
   
   return "Loading content";}
 
-  buffer += "<ul class=\"resource-needs-rows\">\r\n    <li class=\"resource-need-row\">\r\n        <div class=\"time-range\">\r\n            <span class=\"time top\">07.00</span>\r\n            <span class=\"time bottom\">12.00</span>\r\n        </div>\r\n\r\n        <table class=\"day-blocks header\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr class=\"bottom-shadow\">\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks content\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks footer\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </li>\r\n\r\n    <li class=\"resource-need-row\">\r\n        <div class=\"time-range\">\r\n            <span class=\"time top\">12.00</span>\r\n            <span class=\"time bottom\">17.00</span>\r\n        </div>\r\n\r\n        <table class=\"day-blocks header\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr class=\"bottom-shadow\">\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks content\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks footer\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </li>\r\n\r\n    <li class=\"resource-need-row\">\r\n        <div class=\"time-range\">\r\n            <span class=\"time top\">12.00</span>\r\n            <span class=\"time bottom\">17.00</span>\r\n        </div>\r\n\r\n        <table class=\"day-blocks header\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <strong>Sosu</strong><span>6 of 9</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr class=\"bottom-shadow\">\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks content\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"employees\">\r\n                                <li class=\"employee assigned\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee responsed\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                                <li class=\"employee open\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>Anders Friis</span>\r\n                                </li>\r\n                            </ul>\r\n\r\n                            <div class=\"empty\">\r\n                                <div class=\"indicator\"></div>\r\n                                <span>2 empty slots</span>\r\n                            </div>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n\r\n        <table class=\"day-blocks footer\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block\">\r\n                        <div class=\"inner\">\r\n                            <span>20h of 45h</span>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </li>\r\n\r\n    <li class=\"overlay\">\r\n        <em>\r\n            <span>";
+  buffer += "<ul class=\"resource-needs-rows\">\r\n</ul>\r\n\r\n<div class=\"overlay\">\r\n    <em>\r\n        <span>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
   if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span><br />\r\n            <img src=\"";
+  buffer += "</span><br />\r\n        <img src=\"";
   foundHelper = helpers.loaderUrl;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n        </em>\r\n    </li>\r\n</ul>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" />\r\n    </em>\r\n</div>";
   return buffer;});
 templates['calendarWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -19616,7 +19616,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"resource-needs-rows\">\r\n        <li class=\"resource-need-row\">\r\n            <div class=\"time-range\">\r\n                <span class=\"time top\">07.00</span>\r\n                <span class=\"time bottom\">12.00</span>\r\n            </div>\r\n\r\n            <table class=\"day-blocks header\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr class=\"bottom-shadow\">\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks content\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks footer\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </li>\r\n\r\n        <li class=\"resource-need-row\">\r\n            <div class=\"time-range\">\r\n                <span class=\"time top\">12.00</span>\r\n                <span class=\"time bottom\">17.00</span>\r\n            </div>\r\n\r\n            <table class=\"day-blocks header\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr class=\"bottom-shadow\">\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks content\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks footer\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </li>\r\n\r\n        <li class=\"resource-need-row\">\r\n            <div class=\"time-range\">\r\n                <span class=\"time top\">12.00</span>\r\n                <span class=\"time bottom\">17.00</span>\r\n            </div>\r\n\r\n            <table class=\"day-blocks header\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <strong>Sosu</strong><span>6 of 9</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n\r\n                    <tr class=\"bottom-shadow\">\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks content\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <ul class=\"employees\">\r\n                                    <li class=\"employee assigned\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee responsed\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                    <li class=\"employee open\">\r\n                                        <div class=\"indicator\"></div>\r\n                                        <span>Anders Friis</span>\r\n                                    </li>\r\n                                </ul>\r\n\r\n                                <div class=\"empty\">\r\n                                    <div class=\"indicator\"></div>\r\n                                    <span>2 empty slots</span>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n            <table class=\"day-blocks footer\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n\r\n                        <td class=\"day-block\">\r\n                            <div class=\"inner\">\r\n                                <span>20h of 45h</span>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
+  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -19632,6 +19632,47 @@ function program2(depth0,data) {
   
   
   return "Loading content";}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
+templates['eventUser'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"indicator\"></div><span>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>";
+  return buffer;});
+templates['eventUser_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"indicator\"></div><span>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
+  return buffer;}
 
   buffer += "<ul>\r\n\r\n";
   foundHelper = helpers.elements;
@@ -21363,17 +21404,33 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
 
   _Base = Backbone.Model.extend(_.extend({}, ToolsBase, {
     idAttribute: 'pk',
-    createGetters: ToolsBase.once('createGetters', function() {
-      var _this = this;
+    createGetters: (function() {
+      var _foreignGetter, _nativeGetter;
 
-      return _.each(this._gettersNames, function(name) {
-        if (_this.constructor.prototype[name] == null) {
-          return _this.constructor.prototype[name] = function() {
-            return this.get(name);
-          };
-        }
+      _nativeGetter = function(_name) {
+        return function() {
+          return this.get(_name);
+        };
+      };
+      _foreignGetter = function(_arr) {
+        return function() {
+          return this.get(_arr[1])[_arr[0]]();
+        };
+      };
+      return ToolsBase.once('createGetters', function() {
+        var _this = this;
+
+        return _.each(this._gettersNames, function(arr) {
+          var _getter, _name;
+
+          _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
+          _name = typeof arr === 'string' ? arr : arr[0];
+          if (_this.constructor.prototype[_name] == null) {
+            return _this.constructor.prototype[_name] = _getter;
+          }
+        });
       });
-    }),
+    })(),
     addDay: function(day) {
       return this.calendarDays[day.cid] = day;
     },
@@ -22938,6 +22995,9 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       var _this = this;
 
       return _.each(this.model._gettersNames, function(name) {
+        if (name instanceof Array) {
+          name = name[0];
+        }
         if (_this.constructor.prototype[name] == null) {
           return _this.constructor.prototype[name] = function() {
             return this.model[name]();
@@ -23010,7 +23070,7 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/ToolsBase', 'ovivo'], function(ResourceBase, ToolsBase) {
+define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
     tagName: 'table',
@@ -23018,24 +23078,13 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/
     groupTemplate: Handlebars.templates['periodBlockWeek_group'],
     preventChangeRender: true,
     events: {},
-    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
-      var _this = this;
-
-      return _.each(this.model._gettersNames, function(name) {
-        if (name instanceof Array) {
-          name = name[0];
-        }
-        if (_this.constructor.prototype[name] == null) {
-          return _this.constructor.prototype[name] = function() {
-            return this.model[name]();
-          };
-        }
-      });
-    }),
-    getTotalHours: function() {
+    processClick: function() {
+      return window.a = this.model.eventUsers;
+    },
+    getEmployeeHours: function(num) {
       var _val;
 
-      _val = (this.resourceNeed().endValue() - this.resourceNeed().startValue()) / 60 * this.num_employees();
+      _val = (this.resourceNeed().endValue() - this.resourceNeed().startValue()) / 60 * num;
       if ((_val * 100 - Math.floor(_val * 100)) !== 0) {
         _val = parseFloat(_val.toFixed(2));
       }
@@ -23045,18 +23094,21 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/
       return this.model.set('skill_name', ovivo.desktop.resources.skills.get(this.skill()).name());
     },
     _processNum_employees: function() {
-      return this.model.set('total_hours', this.getTotalHours());
+      return this.model.set('total_hours', this.getEmployeeHours(this.num_employees()));
     },
     _processStart_time: function() {
-      return this.model.set('total_hours', this.getTotalHours());
+      return this.model.set('total_hours', this.getEmployeeHours(this.num_employees()));
     },
     _processEnd_time: function() {
-      return this.model.set('total_hours', this.getTotalHours());
+      return this.model.set('total_hours', this.getEmployeeHours(this.num_employees()));
     },
     postRender: function() {
       this.header = this.$('.header .inner');
       this.content = this.$('.content .inner');
       this.footer = this.$('.footer .inner');
+      this.employees = this.$('.content .employees');
+      this.emptySlots = this.$('.content div.empty');
+      this.header.on('click', _.bind(this.processClick, this));
       return this.renderDef.resolve();
     },
     changeHanlder: function(resourceNeed) {
@@ -23087,6 +23139,26 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/
         return $(_el).html(_this[field]());
       });
     },
+    updateEventsHanlder: function() {
+      return this.model.refreshEvents();
+    },
+    processEmptySlots: function() {
+      if (this.empty_slots() <= 0) {
+        this.emptySlots.hide();
+      } else {
+        this.emptySlots.show();
+      }
+      return true;
+    },
+    _updateMatchedValues: function(value) {
+      var _this = this;
+
+      return this.renderDef.done(function() {
+        _this.model.set('matched_employees', value);
+        _this.model.set('matched_hours', _this.getEmployeeHours(value));
+        return _this.model.set('empty_slots', _this.num_employees() - value);
+      });
+    },
     _setInitialValues: function() {
       ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));
       return this._processNum_employees();
@@ -23094,12 +23166,20 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/
     _attachHandlers: function() {
       this.model.off('rendered', this._attachHandlers);
       this.listenTo(this.resourceNeed(), 'change', this.changeHanlder);
+      this.listenTo(this.resourceNeed(), 'change:start_time', this.updateEventsHanlder);
+      this.listenTo(this.resourceNeed(), 'change:end_time', this.updateEventsHanlder);
+      this.listenTo(this.resourceNeed(), 'change:skill', this.updateEventsHanlder);
       this.model.on('change', this.changeHanlder, this);
+      this.model.on('change:empty_slots', this.processEmptySlots, this);
       return this._setInitialValues();
     },
     _detachHandlers: function() {
       this.stopListening(this.resourceNeed(), 'change', this.changeHanlder);
-      return this.model.off('change', this.changeHanlder);
+      this.stopListening(this.resourceNeed(), 'change:start_time', this.updateEventsHanlder);
+      this.stopListening(this.resourceNeed(), 'change:end_time', this.updateEventsHanlder);
+      this.stopListening(this.resourceNeed(), 'change:skill', this.updateEventsHanlder);
+      this.model.off('change', this.changeHanlder);
+      return this.model.off('change:empty_slots', this.processEmptySlots);
     },
     _processRemove: function() {
       this.header.remove();
@@ -23107,9 +23187,30 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/
       this.footer.remove();
       return this._detachHandlers();
     },
+    addEventUser: function(eventUser) {
+      var _i,
+        _this = this;
+
+      _i = this.model.eventUsers.indexOf(eventUser);
+      if (_i === (this.model.eventUsers.length - 1)) {
+        this.renderDef.done(function() {
+          return _this.employees.append(eventUser.view.el);
+        });
+      } else {
+        this.renderDef.done(function() {
+          return _this.model.eventUsers.at(_i + 1).view.$el.before(eventUser.view.el);
+        });
+      }
+      return true;
+    },
     initialize: function() {
-      this.model.on('rendered', this._attachHandlers, this);
+      var _this = this;
+
+      this.model.eventUsers.on('add', this.addEventUser, this);
       this.renderDef = new $.Deferred();
+      this.renderDef.done(function() {
+        return _this._attachHandlers();
+      });
       this.proxyCall('initialize', arguments);
       return true;
     }
@@ -23503,7 +23604,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', '_common/ToolsBase', 'ovivo'], function(ResourceBase, ToolsBase) {
+define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
     tagName: 'li',
@@ -23518,20 +23619,6 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', '_common
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model.resourceNeed());
     },
-    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
-      var _this = this;
-
-      return _.each(this.model._gettersNames, function(name) {
-        if (name instanceof Array) {
-          name = name[0];
-        }
-        if (_this.constructor.prototype[name] == null) {
-          return _this.constructor.prototype[name] = function() {
-            return this.model[name]();
-          };
-        }
-      });
-    }),
     addBlock: function(block) {
       var _this = this;
 
@@ -23564,36 +23651,9 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', '_common
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/period/ResourceNeedWeek',['_common/ToolsBase', 'models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ToolsBase, ResourceBase, View) {
+define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['resourceNeed', ['pk', 'resourceNeed'], ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed']],
-    createGetters: (function() {
-      var _foreignGetter, _nativeGetter;
-
-      _nativeGetter = function(_name) {
-        return function() {
-          return this.get(_name);
-        };
-      };
-      _foreignGetter = function(_arr) {
-        return function() {
-          return this.get(_arr[1])[_arr[0]]();
-        };
-      };
-      return ToolsBase.once('createGetters', function() {
-        var _this = this;
-
-        return _.each(this._gettersNames, function(arr) {
-          var _getter, _name;
-
-          _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
-          _name = typeof arr === 'string' ? arr : arr[0];
-          if (_this.constructor.prototype[_name] == null) {
-            return _this.constructor.prototype[_name] = _getter;
-          }
-        });
-      });
-    })(),
     addBlock: function(block) {
       this.view.addBlock(block);
       return this._blocksCounter += 1;
@@ -25750,7 +25810,61 @@ define('collections/period/Blocks',['ovivo'], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/period/PeriodBlock',['views/resources/ResourceBase', '_common/ToolsBase', 'ovivo'], function(ResourceBase, ToolsBase) {
+define('views/period/EventUser',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'employee',
+    template: Handlebars.templates['eventUser'],
+    groupTemplate: Handlebars.templates['eventUser_group'],
+    events: {},
+    postRender: function() {
+      return this.$el.addClass(this.type());
+    },
+    initialize: function() {
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/period/EventUser',['models/resources/ResourceBase', 'views/period/EventUser', 'ovivo'], function(ResourceBase, View) {
+  return ResourceBase.extend({
+    _gettersNames: ['event', 'name', 'type', ['pk', 'event']],
+    initialize: function(attrs, options) {
+      this.View = View;
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('collections/period/EventUsers',['_common/CachableCollection', 'models/period/EventUser', 'ovivo'], function(CachableCollection, Model) {
+  return Backbone.Collection.extend(_.extend({}, CachableCollection.get(['pk', 'type']), {
+    model: Model,
+    comparator: (function() {
+      var _order;
+
+      _order = {
+        'closed': 1,
+        'open-responses': 2,
+        'open': 3
+      };
+      return function(model) {
+        return "" + _order[model.type()] + "-" + (model.name());
+      };
+    })(),
+    initialize: function() {
+      this.initCacheProcessors();
+      return true;
+    }
+  }));
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
     tagName: 'li',
@@ -25779,20 +25893,6 @@ define('views/period/PeriodBlock',['views/resources/ResourceBase', '_common/Tool
       ovivo.desktop.popups.periodBlockPopup.show();
       return true;
     },
-    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
-      var _this = this;
-
-      return _.each(this.model._gettersNames, function(name) {
-        if (name instanceof Array) {
-          name = name[0];
-        }
-        if (_this.constructor.prototype[name] == null) {
-          return _this.constructor.prototype[name] = function() {
-            return this.model[name]();
-          };
-        }
-      });
-    }),
     _getTimeObj: function(field) {
       var _hours, _minutes, _obj, _ref, _ref1;
 
@@ -25890,10 +25990,16 @@ define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase)
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(View, Block) {
+define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(EventUsers, View, Block) {
   return Block.extend({
     idAttribute: 'cid',
-    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', 'matched_employees', 'matched_hours', 'empty_slots', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    dateKey: function() {
+      var _date;
+
+      _date = this.date();
+      return "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate());
+    },
     addHour: function(hour, groups) {
       var _this = this;
 
@@ -25925,21 +26031,90 @@ define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/B
       var _init;
 
       _init = function() {
-        var _date, _key;
+        var _byDate, _bySkill, _key,
+          _this = this;
 
-        _date = this.date();
-        _key = "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate());
-        return console.log(ovivo.desktop.resources.events.getBy('date', _key));
+        _key = this.dateKey();
+        _byDate = ovivo.desktop.resources.events.getBy('date', _key);
+        _bySkill = ovivo.desktop.resources.events.getBy('skill', this.skill());
+        return _.each(_.intersection(_byDate, _bySkill), function(event) {
+          return _this.addEvent(event);
+        });
       };
       return function() {
         return ovivo.desktop.resources.events.def.done(_.bind(_init, this));
       };
     })(),
+    removeAllEvents: function() {
+      var _this = this;
+
+      return _.each(_.values(this.events), function(event) {
+        return _this.removeEvent(event);
+      });
+    },
+    refreshEvents: function() {
+      this.removeAllEvents();
+      return this.initEvents();
+    },
+    changeEvent: function(event) {
+      this.removeEvent(event);
+      return this.addEvent(event);
+    },
+    addEvent: function(event) {
+      var _this = this;
+
+      if (!((event.skill() === this.skill()) && (event.start_time() === this.start_time()) && (event.end_time() === this.end_time()))) {
+        return;
+      }
+      event.periodBlock = this;
+      this.events[event.pk()] = event;
+      event.on('change', this.changeEvent, this);
+      ovivo.desktop.resources.users.def.done(function() {
+        var _models;
+
+        _models = _.map(event.users(), function(obj) {
+          var _user;
+
+          _user = ovivo.desktop.resources.users.get(obj.pk);
+          return {
+            event: event,
+            name: "" + (_user.first_name()) + " " + (_user.last_name()),
+            type: obj.type
+          };
+        });
+        return _.each(_models, function(obj) {
+          return _this.eventUsers.add(obj);
+        });
+      });
+      this._updateMatchedValues();
+      return true;
+    },
+    removeEvent: function(event) {
+      var _remove,
+        _this = this;
+
+      _remove = this.eventUsers.getBy('pk', event.pk());
+      _.each(_remove, function(eventUser) {
+        return _this.eventUsers.remove(eventUser);
+      });
+      event.off('change', this.changeEvent);
+      delete this.events[event.pk()];
+      delete event.periodBlock;
+      return this._updateMatchedValues();
+    },
+    _updateMatchedValues: function() {
+      var _closed;
+
+      _closed = this.eventUsers.getBy('type', 'closed');
+      return this.view._updateMatchedValues(_closed.length);
+    },
     initialize: function() {
       var _day;
 
       this.View = this.collection.View != null ? this.collection.View : View;
       this.initGroups();
+      this.events = {};
+      this.eventUsers = new EventUsers();
       this.proxyCall('initialize', arguments);
       this.initEvents();
       _day = this.date().getDay() - 1;
@@ -25954,7 +26129,7 @@ define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/B
 
 // Generated by CoffeeScript 1.6.2
 define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/period/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
-  return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code']), {
+  return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code', 'dateKey']), {
     model: Model,
     initialize: function(models, options) {
       this.View = options.View;
@@ -26007,6 +26182,15 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         return _this.periodBlocks.add(_hash[code]);
       });
     },
+    addEvent: function(event) {
+      var _byDate, _bySkill;
+
+      _byDate = this.periodBlocks.getBy('dateKey', event.date());
+      _bySkill = this.periodBlocks.getBy('skill', event.skill());
+      return _.each(_.intersection(_byDate, _bySkill), function(block) {
+        return block.addEvent(event);
+      });
+    },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       this.periodBlocks = new PeriodBlocks([], options);
@@ -26052,6 +26236,26 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
         return frame.changePeriod(period);
       });
     },
+    processEventAdd: function(event) {
+      if (event.skill() == null) {
+        return;
+      }
+      return this.each(function(frame) {
+        return frame.addEvent(event);
+      });
+    },
+    processEventRemove: function(event) {
+      if (event.periodBlock == null) {
+        return;
+      }
+      return event.periodBlock.removeEvent(event);
+    },
+    processEventChange: function(event) {
+      if (event.periodBlock != null) {
+        return;
+      }
+      return this.processEventAdd(event);
+    },
     initialize: function() {
       var _this = this;
 
@@ -26059,7 +26263,12 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
       ovivo.desktop.resources.periods.def.done(function() {
         ovivo.desktop.resources.periods.on('add', _this.processPeriodAdd, _this);
         ovivo.desktop.resources.periods.on('remove', _this.processPeriodRemove, _this);
-        return ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
+        ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
+        return ovivo.desktop.resources.events.def.done(function() {
+          ovivo.desktop.resources.events.on('add', _this.processEventAdd, _this);
+          ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
+          return ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
+        });
       });
       return true;
     }
