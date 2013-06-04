@@ -10,7 +10,9 @@ define [
   Blocks.extend _.extend {}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code']),
     model: Model
 
-    initialize: () ->
+    initialize: (models, options) ->
+      @View = options.View
+
       @_initialize()
 
       true

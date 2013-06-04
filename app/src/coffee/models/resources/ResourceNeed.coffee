@@ -145,7 +145,7 @@ define [
       @_startValue = @_getTimeValue @start_time()
       @_endValue = @_getTimeValue @end_time()
 
-      if @endValue < @startValue then @endValue += 24 * 60
+      if @_endValue < @_startValue then @_endValue += 24 * 60
 
       @set 'startValue', @_startValue
       @set 'endValue', @_endValue

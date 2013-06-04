@@ -142,8 +142,8 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
     updateTimeValues: function() {
       this._startValue = this._getTimeValue(this.start_time());
       this._endValue = this._getTimeValue(this.end_time());
-      if (this.endValue < this.startValue) {
-        this.endValue += 24 * 60;
+      if (this._endValue < this._startValue) {
+        this._endValue += 24 * 60;
       }
       this.set('startValue', this._startValue);
       return this.set('endValue', this._endValue);

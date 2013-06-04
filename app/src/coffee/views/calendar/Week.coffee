@@ -47,10 +47,14 @@ define [
 
       @container = @$('.resource-needs-rows')
 
+      @frameInitDef.resolve()
+
     addResourceNeed: (model) ->
-      @container.append model.view.$el
+      @frameInitDef.done => @container.append model.view.$el
 
     initialize: () ->
+      @frameInitDef = new $.Deferred()
+
       @resourceNeedWeeks = new ResourceNeedWeeks()
       @resourceNeedWeeks.on 'add', @addResourceNeed, @
       

@@ -49,12 +49,18 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       }));
       this.model.frame.periodBlocks.on('add', this.addBlock, this);
       this.model.frame.periodBlocks.on('remove', this.removeBlock, this);
-      return this.container = this.$('.resource-needs-rows');
+      this.container = this.$('.resource-needs-rows');
+      return this.frameInitDef.resolve();
     },
     addResourceNeed: function(model) {
-      return this.container.append(model.view.$el);
+      var _this = this;
+
+      return this.frameInitDef.done(function() {
+        return _this.container.append(model.view.$el);
+      });
     },
     initialize: function() {
+      this.frameInitDef = new $.Deferred();
       this.resourceNeedWeeks = new ResourceNeedWeeks();
       this.resourceNeedWeeks.on('add', this.addResourceNeed, this);
       this.model.on('rendered', this._initFrame, this);

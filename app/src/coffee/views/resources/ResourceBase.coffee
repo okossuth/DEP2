@@ -65,7 +65,7 @@ define [
 
       @render()
 
-      @model.on 'change', @render, @
+      if @preventChangeRender isnt true then @model.on 'change', @render, @
       @model.on 'remove', @_processRemove, @
 
       true

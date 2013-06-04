@@ -9,12 +9,14 @@ define [
     idAttribute: 'cid'
 
     _gettersNames: [
-      'date',
-      'hours',
-      'resourceNeed',
-      'template',
-      'period',
-      'code',
+      'date'
+      'hours'
+      'resourceNeed'
+      'template'
+      'period'
+      'code'
+      'skill_name'
+      'total_hours'
       ['start_time', 'resourceNeed']
       ['end_time', 'resourceNeed']
       ['skill', 'resourceNeed']
@@ -48,10 +50,15 @@ define [
       _.each @get('period').groups(), (group) => @groupsHash[group] = []
 
     initialize: () ->
-      @View = View
+      @View = if @collection.View? then @collection.View else View
 
       @initGroups()
 
       @proxyCall 'initialize', arguments
+
+      _day = @date().getDay() - 1
+      if _day is -1 then _day = 6
+
+      @day = _day
 
       true

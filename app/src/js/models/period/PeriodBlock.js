@@ -2,7 +2,7 @@
 define(['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(View, Block) {
   return Block.extend({
     idAttribute: 'cid',
-    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
     addHour: function(hour, groups) {
       var _this = this;
 
@@ -31,9 +31,16 @@ define(['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(Vi
       });
     },
     initialize: function() {
-      this.View = View;
+      var _day;
+
+      this.View = this.collection.View != null ? this.collection.View : View;
       this.initGroups();
       this.proxyCall('initialize', arguments);
+      _day = this.date().getDay() - 1;
+      if (_day === -1) {
+        _day = 6;
+      }
+      this.day = _day;
       return true;
     }
   });

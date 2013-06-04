@@ -43,7 +43,7 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'ovi
     },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
-      this.periodBlocks = new PeriodBlocks();
+      this.periodBlocks = new PeriodBlocks([], options);
       return true;
     }
   });

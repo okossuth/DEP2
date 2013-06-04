@@ -1,13 +1,16 @@
 define [
+  'views/period/PeriodBlockWeek',
+
   'ovivo'
-], (PeriodBlocks) ->
+], (PeriodBlockWeekView) ->
   firstDate: () -> @_firstDate
   
   show: () -> @view.show()
   hide: () -> @view.hide()
 
   _initFrame: (start, end) ->
-    @frame = ovivo.desktop.resources.frames.addFrame start, end
+    @frame = ovivo.desktop.resources.frames.addFrame start, end,
+      View: PeriodBlockWeekView
 
   initResources: () ->
     _start = do =>

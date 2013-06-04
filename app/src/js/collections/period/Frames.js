@@ -3,13 +3,13 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
     doNotFetch: true,
-    addFrame: function(start, end) {
+    addFrame: function(start, end, options) {
       var _model;
 
       _model = new Model({
         start: start,
         end: end
-      });
+      }, options);
       this.add(_model);
       return _model;
     },

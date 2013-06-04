@@ -19960,10 +19960,61 @@ function program5(depth0,data) {
   return buffer;});
 templates['periodBlockWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<tr>\r\n    <td class=\"header\">\r\n        <div class=\"inner\">\r\n            <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"content\">\r\n        <div class=\"inner\">\r\n            <ul class=\"employees\">\r\n            </ul>\r\n\r\n            <div class=\"empty\">\r\n                <div class=\"indicator\"></div>\r\n                <span><span class=\"empty_slots-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> empty slots</span>\r\n            </div>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"footer\">\r\n        <div class=\"inner\">\r\n            <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
+  foundHelper = helpers['total_hours-value'];
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n</tr>";
+  return buffer;});
+templates['periodBlockWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
   
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<table id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\r\n    <tr>\r\n        <td class=\"header\">\r\n            <div class=\"inner\">\r\n                <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"content\">\r\n            <div class=\"inner\">\r\n                <ul class=\"employees\">\r\n                </ul>\r\n\r\n                <div class=\"empty\">\r\n                    <div class=\"indicator\"></div>\r\n                    <span><span class=\"empty_slots-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> empty slots</span>\r\n                </div>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"footer\">\r\n            <div class=\"inner\">\r\n                <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
+  foundHelper = helpers['total_hours-value'];
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n    </tr>\r\n</table>\r\n\r\n";
+  return buffer;}
 
-
-  return "<tr>\r\n    <td class=\"header\">\r\n\r\n    </td>\r\n\r\n    <td class=\"content\">\r\n\r\n    </td>\r\n\r\n    <td class=\"footer\">\r\n\r\n    </td>\r\n</tr>";});
+  buffer += "<div>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</div>";
+  return buffer;});
 templates['periodMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -20525,11 +20576,11 @@ templates['resourceNeedWeek'] = template(function (Handlebars,depth0,helpers,par
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"time-range\">\r\n    <span class=\"time top\">";
+  buffer += "<div class=\"time-range\">\r\n    <span class=\"time top start-time-value\">";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    <span class=\"time bottom\">";
+  buffer += escapeExpression(stack1) + "</span>\r\n    <span class=\"time bottom end-time-value\">";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -20550,11 +20601,11 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"time-range\">\r\n        <span class=\"time top\">";
+  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"time-range\">\r\n        <span class=\"time top start-time-value\">";
   foundHelper = helpers.start_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        <span class=\"time bottom\">";
+  buffer += escapeExpression(stack1) + "</span>\r\n        <span class=\"time bottom end-time-value\">";
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -22858,86 +22909,6 @@ define('_common/CalendarBase',[], function() {
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/calendar/DaysCollector',['ovivo'], function(PeriodBlocks) {
-  return {
-    firstDate: function() {
-      return this._firstDate;
-    },
-    show: function() {
-      return this.view.show();
-    },
-    hide: function() {
-      return this.view.hide();
-    },
-    _initFrame: function(start, end) {
-      return this.frame = ovivo.desktop.resources.frames.addFrame(start, end);
-    },
-    initResources: function() {
-      var _end, _start,
-        _this = this;
-
-      _start = (function() {
-        var _i;
-
-        _i = 0;
-        while (_this.days[_i].disabled === true) {
-          _i += 1;
-        }
-        return _this.days[_i];
-      })();
-      _end = (function() {
-        var _i;
-
-        _i = _this.days.length - 1;
-        while (_this.days[_i].disabled === true) {
-          _i -= 1;
-        }
-        return _this.days[_i];
-      })();
-      _start = new Date(_start.year, _start.month, _start.date);
-      _end = new Date(_end.year, _end.month, _end.date);
-      this._initFrame(_start, _end);
-      return true;
-    },
-    initDays: function() {
-      this.collection.days.initElements(this.view.dayElements, this.days);
-      this.initResources();
-      return true;
-    },
-    removeLoading: function() {
-      return this.view.removeLoading();
-    },
-    _initialize: function(attrs, options) {
-      this.on('rendered', this.initDays, this);
-      return true;
-    }
-  };
-});
-
-// Generated by CoffeeScript 1.6.2
-define('views/calendar/DaysCollector',['ovivo'], function() {
-  return {
-    tagName: 'li',
-    show: function() {
-      return this.$el.removeClass('hide');
-    },
-    hide: function() {
-      return this.$el.addClass('hide');
-    },
-    removeLoading: function() {
-      return this.$('.overlay').remove();
-    },
-    loaderUrl: function() {
-      return ovivo.config.LOADER_URL;
-    },
-    postRender: function() {
-      this.dayElements = this.$('.days-container .week-row > td');
-      return this.hide();
-    }
-  };
-});
-
-// Generated by CoffeeScript 1.6.2
 define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
 
@@ -23021,7 +22992,9 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
     initialize: function() {
       this.exposeAttrs();
       this.render();
-      this.model.on('change', this.render, this);
+      if (this.preventChangeRender !== true) {
+        this.model.on('change', this.render, this);
+      }
       this.model.on('remove', this._processRemove, this);
       return true;
     },
@@ -23034,6 +23007,195 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
   }));
   _Base.prototype._base = _Base;
   return _Base;
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', '_common/ToolsBase', 'ovivo'], function(ResourceBase, ToolsBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'table',
+    template: Handlebars.templates['periodBlockWeek'],
+    groupTemplate: Handlebars.templates['periodBlockWeek_group'],
+    preventChangeRender: true,
+    events: {},
+    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
+      var _this = this;
+
+      return _.each(this.model._gettersNames, function(name) {
+        if (name instanceof Array) {
+          name = name[0];
+        }
+        if (_this.constructor.prototype[name] == null) {
+          return _this.constructor.prototype[name] = function() {
+            return this.model[name]();
+          };
+        }
+      });
+    }),
+    getTotalHours: function() {
+      var _val;
+
+      _val = (this.resourceNeed().endValue() - this.resourceNeed().startValue()) / 60 * this.num_employees();
+      if ((_val * 100 - Math.floor(_val * 100)) !== 0) {
+        _val = parseFloat(_val.toFixed(2));
+      }
+      return "" + _val + "h";
+    },
+    _renderSkill: function() {
+      return this.model.set('skill_name', ovivo.desktop.resources.skills.get(this.skill()).name());
+    },
+    _processNum_employees: function() {
+      return this.model.set('total_hours', this.getTotalHours());
+    },
+    _processStart_time: function() {
+      return this.model.set('total_hours', this.getTotalHours());
+    },
+    _processEnd_time: function() {
+      return this.model.set('total_hours', this.getTotalHours());
+    },
+    postRender: function() {
+      this.header = this.$('.header .inner');
+      this.content = this.$('.content .inner');
+      this.footer = this.$('.footer .inner');
+      return this.renderDef.resolve();
+    },
+    changeHanlder: function(resourceNeed) {
+      var _changed,
+        _this = this;
+
+      _changed = _.keys(resourceNeed.changed);
+      return _.each(_changed, function(field) {
+        var _el, _method, _processMethod, _sel;
+
+        _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
+        _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
+        if (_this[_method] != null) {
+          _this[_method]();
+          return;
+        }
+        if (_this[_processMethod] != null) {
+          _this[_processMethod]();
+        }
+        _sel = "." + field + "-value";
+        if ((_el = _this.header.find(_sel)[0]) == null) {
+          if ((_el = _this.content.find(_sel)[0]) == null) {
+            if ((_el = _this.footer.find(_sel)[0]) == null) {
+              return;
+            }
+          }
+        }
+        return $(_el).html(_this[field]());
+      });
+    },
+    _setInitialValues: function() {
+      ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));
+      return this._processNum_employees();
+    },
+    _attachHandlers: function() {
+      this.model.off('rendered', this._attachHandlers);
+      this.listenTo(this.resourceNeed(), 'change', this.changeHanlder);
+      this.model.on('change', this.changeHanlder, this);
+      return this._setInitialValues();
+    },
+    _detachHandlers: function() {
+      this.stopListening(this.resourceNeed(), 'change', this.changeHanlder);
+      return this.model.off('change', this.changeHanlder);
+    },
+    _processRemove: function() {
+      this.header.remove();
+      this.content.remove();
+      this.footer.remove();
+      return this._detachHandlers();
+    },
+    initialize: function() {
+      this.model.on('rendered', this._attachHandlers, this);
+      this.renderDef = new $.Deferred();
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('models/calendar/DaysCollector',['views/period/PeriodBlockWeek', 'ovivo'], function(PeriodBlockWeekView) {
+  return {
+    firstDate: function() {
+      return this._firstDate;
+    },
+    show: function() {
+      return this.view.show();
+    },
+    hide: function() {
+      return this.view.hide();
+    },
+    _initFrame: function(start, end) {
+      return this.frame = ovivo.desktop.resources.frames.addFrame(start, end, {
+        View: PeriodBlockWeekView
+      });
+    },
+    initResources: function() {
+      var _end, _start,
+        _this = this;
+
+      _start = (function() {
+        var _i;
+
+        _i = 0;
+        while (_this.days[_i].disabled === true) {
+          _i += 1;
+        }
+        return _this.days[_i];
+      })();
+      _end = (function() {
+        var _i;
+
+        _i = _this.days.length - 1;
+        while (_this.days[_i].disabled === true) {
+          _i -= 1;
+        }
+        return _this.days[_i];
+      })();
+      _start = new Date(_start.year, _start.month, _start.date);
+      _end = new Date(_end.year, _end.month, _end.date);
+      this._initFrame(_start, _end);
+      return true;
+    },
+    initDays: function() {
+      this.collection.days.initElements(this.view.dayElements, this.days);
+      this.initResources();
+      return true;
+    },
+    removeLoading: function() {
+      return this.view.removeLoading();
+    },
+    _initialize: function(attrs, options) {
+      this.on('rendered', this.initDays, this);
+      return true;
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/DaysCollector',['ovivo'], function() {
+  return {
+    tagName: 'li',
+    show: function() {
+      return this.$el.removeClass('hide');
+    },
+    hide: function() {
+      return this.$el.addClass('hide');
+    },
+    removeLoading: function() {
+      return this.$('.overlay').remove();
+    },
+    loaderUrl: function() {
+      return ovivo.config.LOADER_URL;
+    },
+    postRender: function() {
+      this.dayElements = this.$('.days-container .week-row > td');
+      return this.hide();
+    }
+  };
 });
 
 // Generated by CoffeeScript 1.6.2
@@ -23348,22 +23510,92 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', '_common
     className: 'resource-need-row',
     template: Handlebars.templates['resourceNeedWeek'],
     groupTemplate: Handlebars.templates['resourceNeedWeek_group'],
-    events: {},
+    preventChangeRender: true,
+    events: {
+      'click .time-range': 'processClick'
+    },
+    processClick: function() {
+      ovivo.desktop.popups.editPopupResourceNeed.show();
+      return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model.resourceNeed());
+    },
+    exposeAttrs: ToolsBase.once('exposeAttrs', function() {
+      var _this = this;
+
+      return _.each(this.model._gettersNames, function(name) {
+        if (name instanceof Array) {
+          name = name[0];
+        }
+        if (_this.constructor.prototype[name] == null) {
+          return _this.constructor.prototype[name] = function() {
+            return this.model[name]();
+          };
+        }
+      });
+    }),
+    addBlock: function(block) {
+      var _this = this;
+
+      return $.when(block.view.renderDef, this.renderDef).done(function() {
+        $(_this.headers.get(block.day)).append(block.view.header);
+        $(_this.footers.get(block.day)).append(block.view.footer);
+        return $(_this.contents.get(block.day)).append(block.view.content);
+      });
+    },
+    postRender: function() {
+      this.headers = this.$('.day-blocks.header td.day-block');
+      this.contents = this.$('.day-blocks.content td.day-block');
+      this.footers = this.$('.day-blocks.footer td.day-block');
+      return this.renderDef.resolve();
+    },
+    startTimeChange: function() {
+      return this.$('.start-time-value').html(this.start_time());
+    },
+    endTimeChange: function() {
+      return this.$('.end-time-value').html(this.end_time());
+    },
     initialize: function() {
+      this.renderDef = new $.Deferred();
       this.proxyCall('initialize', arguments);
+      this.model.resourceNeed().on('change:start_time', this.startTimeChange, this);
+      this.model.resourceNeed().on('change:end_time', this.endTimeChange, this);
       return true;
     }
   });
 });
 
 // Generated by CoffeeScript 1.6.2
-define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ResourceBase, View) {
+define('models/period/ResourceNeedWeek',['_common/ToolsBase', 'models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ToolsBase, ResourceBase, View) {
   return ResourceBase.extend({
-    _gettersNames: ['resourceNeed'],
-    pk: function() {
-      return this.resourceNeed().pk();
-    },
+    _gettersNames: ['resourceNeed', ['pk', 'resourceNeed'], ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed']],
+    createGetters: (function() {
+      var _foreignGetter, _nativeGetter;
+
+      _nativeGetter = function(_name) {
+        return function() {
+          return this.get(_name);
+        };
+      };
+      _foreignGetter = function(_arr) {
+        return function() {
+          return this.get(_arr[1])[_arr[0]]();
+        };
+      };
+      return ToolsBase.once('createGetters', function() {
+        var _this = this;
+
+        return _.each(this._gettersNames, function(arr) {
+          var _getter, _name;
+
+          _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
+          _name = typeof arr === 'string' ? arr : arr[0];
+          if (_this.constructor.prototype[_name] == null) {
+            return _this.constructor.prototype[_name] = _getter;
+          }
+        });
+      });
+    })(),
     addBlock: function(block) {
+      this.view.addBlock(block);
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
@@ -23559,12 +23791,18 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       }));
       this.model.frame.periodBlocks.on('add', this.addBlock, this);
       this.model.frame.periodBlocks.on('remove', this.removeBlock, this);
-      return this.container = this.$('.resource-needs-rows');
+      this.container = this.$('.resource-needs-rows');
+      return this.frameInitDef.resolve();
     },
     addResourceNeed: function(model) {
-      return this.container.append(model.view.$el);
+      var _this = this;
+
+      return this.frameInitDef.done(function() {
+        return _this.container.append(model.view.$el);
+      });
     },
     initialize: function() {
+      this.frameInitDef = new $.Deferred();
       this.resourceNeedWeeks = new ResourceNeedWeeks();
       this.resourceNeedWeeks.on('add', this.addResourceNeed, this);
       this.model.on('rendered', this._initFrame, this);
@@ -25186,8 +25424,8 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     updateTimeValues: function() {
       this._startValue = this._getTimeValue(this.start_time());
       this._endValue = this._getTimeValue(this.end_time());
-      if (this.endValue < this.startValue) {
-        this.endValue += 24 * 60;
+      if (this._endValue < this._startValue) {
+        this._endValue += 24 * 60;
       }
       this.set('startValue', this._startValue);
       return this.set('endValue', this._endValue);
@@ -25654,7 +25892,7 @@ define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase)
 define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(View, Block) {
   return Block.extend({
     idAttribute: 'cid',
-    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
     addHour: function(hour, groups) {
       var _this = this;
 
@@ -25683,9 +25921,16 @@ define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/B
       });
     },
     initialize: function() {
-      this.View = View;
+      var _day;
+
+      this.View = this.collection.View != null ? this.collection.View : View;
       this.initGroups();
       this.proxyCall('initialize', arguments);
+      _day = this.date().getDay() - 1;
+      if (_day === -1) {
+        _day = 6;
+      }
+      this.day = _day;
       return true;
     }
   });
@@ -25695,7 +25940,8 @@ define('models/period/PeriodBlock',['views/period/PeriodBlock', 'models/period/B
 define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/period/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
   return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code']), {
     model: Model,
-    initialize: function() {
+    initialize: function(models, options) {
+      this.View = options.View;
       this._initialize();
       return true;
     }
@@ -25747,7 +25993,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
-      this.periodBlocks = new PeriodBlocks();
+      this.periodBlocks = new PeriodBlocks([], options);
       return true;
     }
   });
@@ -25758,13 +26004,13 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
   return Backbone.Collection.extend({
     model: Model,
     doNotFetch: true,
-    addFrame: function(start, end) {
+    addFrame: function(start, end, options) {
       var _model;
 
       _model = new Model({
         start: start,
         end: end
-      });
+      }, options);
       this.add(_model);
       return _model;
     },

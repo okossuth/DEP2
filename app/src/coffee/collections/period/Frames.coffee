@@ -8,10 +8,11 @@ define [
 
     doNotFetch: true
 
-    addFrame: (start, end) ->
-      _model = new Model
-        start: start
-        end: end
+    addFrame: (start, end, options) ->
+      _model = new Model {
+          start: start
+          end: end
+        }, options
 
       @add _model
 

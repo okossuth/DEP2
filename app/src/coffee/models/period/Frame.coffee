@@ -1,7 +1,7 @@
 define [
   'models/resources/ResourceBase',
 
-  'collections/period/PeriodBlocks',
+  'collections/period/PeriodBlocks'
 
   'ovivo'
 ], (ResourceBase, PeriodBlocks) ->
@@ -42,6 +42,6 @@ define [
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
 
-      @periodBlocks = new PeriodBlocks()
+      @periodBlocks = new PeriodBlocks [], options
 
       true

@@ -82,7 +82,9 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     initialize: function() {
       this.exposeAttrs();
       this.render();
-      this.model.on('change', this.render, this);
+      if (this.preventChangeRender !== true) {
+        this.model.on('change', this.render, this);
+      }
       this.model.on('remove', this._processRemove, this);
       return true;
     },
