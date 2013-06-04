@@ -49,12 +49,24 @@ define [
 
       _.each @get('period').groups(), (group) => @groupsHash[group] = []
 
+    initEvents: do ->
+      _init = () ->
+        _date = @date()
+        _key = "#{_date.getFullYear()}-#{_date.getMonth()}-#{_date.getDate()}"
+
+        console.log ovivo.desktop.resources.events.getBy 'date', _key
+
+      () ->
+        ovivo.desktop.resources.events.def.done _.bind _init, @
+
     initialize: () ->
       @View = if @collection.View? then @collection.View else View
 
       @initGroups()
 
       @proxyCall 'initialize', arguments
+
+      @initEvents()
 
       _day = @date().getDay() - 1
       if _day is -1 then _day = 6

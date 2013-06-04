@@ -30,12 +30,27 @@ define(['views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(Vi
         return _this.groupsHash[group] = [];
       });
     },
+    initEvents: (function() {
+      var _init;
+
+      _init = function() {
+        var _date, _key;
+
+        _date = this.date();
+        _key = "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate());
+        return console.log(ovivo.desktop.resources.events.getBy('date', _key));
+      };
+      return function() {
+        return ovivo.desktop.resources.events.def.done(_.bind(_init, this));
+      };
+    })(),
     initialize: function() {
       var _day;
 
       this.View = this.collection.View != null ? this.collection.View : View;
       this.initGroups();
       this.proxyCall('initialize', arguments);
+      this.initEvents();
       _day = this.date().getDay() - 1;
       if (_day === -1) {
         _day = 6;

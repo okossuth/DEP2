@@ -21,6 +21,8 @@ define(['models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views
       return _arr;
     },
     initialize: function(attrs, options) {
+      var _def;
+
       this._initialize();
       this.View = View;
       this.set('pk', "" + attrs.year + "-" + attrs.number);
@@ -30,8 +32,9 @@ define(['models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views
       this._firstDate.moveToDayOfWeek(4);
       this.set('month', this._firstDate.getMonth());
       this.days = this.getDaysArr();
+      _def = ovivo.desktop.resources.events.fetchWeek(attrs.number, attrs.year, this._firstDate);
       this.proxyCall('initialize', arguments);
-      ovivo.desktop.resources.events.fetchWeek(this.number(), this.year(), this._firstDate).done(_.bind(this.removeLoading, this));
+      _def.done(_.bind(this.removeLoading, this));
       return true;
     }
   }));

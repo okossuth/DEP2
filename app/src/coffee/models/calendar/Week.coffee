@@ -49,8 +49,10 @@ define [
 
       @days = @getDaysArr()
 
+      _def = ovivo.desktop.resources.events.fetchWeek(attrs.number, attrs.year, @_firstDate)
+
       @proxyCall 'initialize', arguments
 
-      ovivo.desktop.resources.events.fetchWeek(@number(), @year(), @_firstDate).done _.bind @removeLoading, @
+      _def.done _.bind @removeLoading, @
 
       true

@@ -5,7 +5,7 @@ define [
 
   'ovivo'
 ], (CachableCollection, Event) ->
-  Backbone.Collection.extend _.extend {}, CachableCollection.get(['date']),
+  Backbone.Collection.extend _.extend {}, CachableCollection.get(['date', 'skill', 'group']),
     model: Event
 
     url: () -> "#{ovivo.config.API_URL_PREFIX}events/"

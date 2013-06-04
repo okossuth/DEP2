@@ -31,17 +31,15 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
           resourceNeed: block.resourceNeed()
         });
       }
-      _rn.addBlock(block);
-      return console.log('Add', block);
+      return _rn.addBlock(block);
     },
     removeBlock: function(block) {
       var _rn;
 
       _rn = this.resourceNeedWeeks.getBy('pk', block.resourceNeed().pk())[0];
       if (_rn != null) {
-        _rn.removeBlock(block);
+        return _rn.removeBlock(block);
       }
-      return console.log('Remove', block);
     },
     _initFrame: function() {
       this.addBlocks(this.model.frame.periodBlocks.map(function(b) {

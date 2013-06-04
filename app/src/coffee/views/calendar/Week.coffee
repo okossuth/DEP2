@@ -30,15 +30,11 @@ define [
 
       _rn.addBlock block
 
-      console.log 'Add', block
-
     removeBlock: (block) ->
       _rn = @resourceNeedWeeks.getBy('pk', block.resourceNeed().pk())[0]
 
       if _rn? then _rn.removeBlock block
       
-      console.log 'Remove', block
-
     _initFrame: () ->
       @addBlocks @model.frame.periodBlocks.map (b) -> b
 
