@@ -13,7 +13,15 @@ define [
 
     Collectors: Weeks
 
-    events: {}
+    events:
+      'scroll': 'processScroll'
+
+    processScroll: () ->
+      if @_scrollDataFlag is false then @_offsetHeight = @el.offsetHeight
+
+      if @currentModel isnt null then @currentModel.view.processScroll @el.scrollTop, @_offsetHeight
+
+      true
 
     _getKey: (year, number) -> "#{year}-#{number}"
 
@@ -21,15 +29,22 @@ define [
       year: year
       number: number
 
+    _postNavigate: () ->
+      @processScroll()
+
     prev: () -> 
       @current.moveToDayOfWeek(4, -1)
 
       @navigate @current.getFullYear(), @current.getWeek()
 
+      @_postNavigate()
+
     next: () ->
       @current.moveToDayOfWeek(4, 1)
 
       @navigate @current.getFullYear(), @current.getWeek()
+
+      @_postNavigate()
 
     today: () ->
       _now = Date.today()
@@ -40,6 +55,8 @@ define [
 
       @navigate _now.getFullYear(), _now.getWeek()
 
+      @_postNavigate()
+
     _isToday: (year, number) ->
       _now = Date.today()
       _now.setWeek _now.getWeek()
@@ -48,8 +65,6 @@ define [
       (_now.getFullYear() is year) and (_now.getWeek() is number)
 
     processCollectorShow: (collector) ->
-      # @title.html gettext('Week') + ' ' + collector.number() + '. ' + ovivo.config.MONTHS[collector.month()] + ' ' + collector.year()
-
       @values.week.html collector.number()
       @values.month.html ovivo.config.MONTHS[collector.month()].slice 0, 3
       @values.year.html collector.year()
@@ -59,8 +74,15 @@ define [
 
     processCollectorHide: (month) ->
 
+    processWindowResize: () ->
+      @_scrollDataFlag = false
+
     initialize: () ->
       @current = _now = new Date.today()
+
+      @_scrollDataFlag = false
+
+      $(window).on 'resize', @processWindowResize, @
       
       _now.setWeek _now.getWeek()
       _now.moveToDayOfWeek(4)

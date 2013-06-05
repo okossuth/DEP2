@@ -15,7 +15,7 @@ define [
 
     @collectors.show _collector
 
-    true
+    @currentModel = _collector
 
   processToday: () ->
     @todayButton.addClass 'disabled'
@@ -26,6 +26,8 @@ define [
   processCollectorAdd: (collector, collectors) -> @collectorsList.append collector.view.el
 
   _initialize: () ->
+    @currentModel = null
+
     @collectors = new @Collectors()
 
     @collectors.on 'add', @processCollectorAdd, @

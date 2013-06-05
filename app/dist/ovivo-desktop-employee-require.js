@@ -22661,7 +22661,7 @@ define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
         _collector = this.collectors.addElement(this._getObj.apply(this, Array.prototype.slice.call(arguments, 0)));
       }
       this.collectors.show(_collector);
-      return true;
+      return this.currentModel = _collector;
     },
     processToday: function() {
       return this.todayButton.addClass('disabled');
@@ -22673,6 +22673,7 @@ define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
       return this.collectorsList.append(collector.view.el);
     },
     _initialize: function() {
+      this.currentModel = null;
       this.collectors = new this.Collectors();
       this.collectors.on('add', this.processCollectorAdd, this);
       this.collectors.on('show', this.processCollectorShow, this);
@@ -23793,6 +23794,15 @@ define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek',
       this.add(_model);
       return _model;
     },
+    getScrollData: function() {
+      return this.map(function(model) {
+        return {
+          el: model.view.el,
+          top: model.view.el.offsetTop,
+          height: model.view.el.offsetHeight
+        };
+      });
+    },
     initialize: function() {
       this.initCacheProcessors();
       return true;
@@ -23807,6 +23817,18 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
     template: Handlebars.templates['calendarWeek'],
     groupTemplate: Handlebars.templates['calendarWeek_group'],
     events: {},
+    processScroll: function(val, height) {
+      if (this._scrollDataFlag === false) {
+        this._calcScrollData();
+      }
+      return console.log(this.number(), val, height, this._offsetHeight);
+    },
+    _calcScrollData: function() {
+      console.log('Offset height', this._offsetHeight = this.el.offsetHeight);
+      console.log('RN scroll data', this._RNScrollData = this.resourceNeedWeeks.getScrollData());
+      this._scrollDataFlag = true;
+      return true;
+    },
     days: function() {
       return this.model.days;
     },
@@ -23861,10 +23883,12 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
     },
     initialize: function() {
       this.frameInitDef = new $.Deferred();
+      this._scrollDataFlag = false;
       this.resourceNeedWeeks = new ResourceNeedWeeks();
       this.resourceNeedWeeks.on('add', this.addResourceNeed, this);
       this.model.on('rendered', this._initFrame, this);
       this.proxyCall('initialize', arguments);
+      this.model.frame.periodBlocks.on('updateScroll', this._calcScrollData, this);
       return true;
     }
   }));
@@ -23942,7 +23966,18 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     el: '.page.page-calendar .week-view',
     name: 'week',
     Collectors: Weeks,
-    events: {},
+    events: {
+      'scroll': 'processScroll'
+    },
+    processScroll: function() {
+      if (this._scrollDataFlag === false) {
+        this._offsetHeight = this.el.offsetHeight;
+      }
+      if (this.currentModel !== null) {
+        this.currentModel.view.processScroll(this.el.scrollTop, this._offsetHeight);
+      }
+      return true;
+    },
     _getKey: function(year, number) {
       return "" + year + "-" + number;
     },
@@ -23952,13 +23987,18 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
         number: number
       };
     },
+    _postNavigate: function() {
+      return this.processScroll();
+    },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);
-      return this.navigate(this.current.getFullYear(), this.current.getWeek());
+      this.navigate(this.current.getFullYear(), this.current.getWeek());
+      return this._postNavigate();
     },
     next: function() {
       this.current.moveToDayOfWeek(4, 1);
-      return this.navigate(this.current.getFullYear(), this.current.getWeek());
+      this.navigate(this.current.getFullYear(), this.current.getWeek());
+      return this._postNavigate();
     },
     today: function() {
       var _now;
@@ -23967,7 +24007,8 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
       this.current = _now;
-      return this.navigate(_now.getFullYear(), _now.getWeek());
+      this.navigate(_now.getFullYear(), _now.getWeek());
+      return this._postNavigate();
     },
     _isToday: function(year, number) {
       var _now;
@@ -23988,10 +24029,15 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       });
     },
     processCollectorHide: function(month) {},
+    processWindowResize: function() {
+      return this._scrollDataFlag = false;
+    },
     initialize: function() {
       var _now;
 
       this.current = _now = new Date.today();
+      this._scrollDataFlag = false;
+      $(window).on('resize', this.processWindowResize, this);
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
       this._initialize();

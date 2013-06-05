@@ -9,6 +9,15 @@ define(['models/period/ResourceNeedWeek', '_common/CachableCollection', 'ovivo']
       this.add(_model);
       return _model;
     },
+    getScrollData: function() {
+      return this.map(function(model) {
+        return {
+          el: model.view.el,
+          top: model.view.el.offsetTop,
+          height: model.view.el.offsetHeight
+        };
+      });
+    },
     initialize: function() {
       this.initCacheProcessors();
       return true;

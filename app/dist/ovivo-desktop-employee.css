@@ -1958,7 +1958,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   right: 20px; }
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
-  margin: 8px 29px 20px 187px;
+  padding: 8px 29px 20px 187px;
   position: relative; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
     display: block;

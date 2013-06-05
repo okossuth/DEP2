@@ -14,7 +14,7 @@ define(['ovivo'], function() {
         _collector = this.collectors.addElement(this._getObj.apply(this, Array.prototype.slice.call(arguments, 0)));
       }
       this.collectors.show(_collector);
-      return true;
+      return this.currentModel = _collector;
     },
     processToday: function() {
       return this.todayButton.addClass('disabled');
@@ -26,6 +26,7 @@ define(['ovivo'], function() {
       return this.collectorsList.append(collector.view.el);
     },
     _initialize: function() {
+      this.currentModel = null;
       this.collectors = new this.Collectors();
       this.collectors.on('add', this.processCollectorAdd, this);
       this.collectors.on('show', this.processCollectorShow, this);

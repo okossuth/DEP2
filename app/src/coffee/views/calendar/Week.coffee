@@ -14,6 +14,20 @@ define [
 
     events: {}
 
+    processScroll: (val, height) ->
+      if @_scrollDataFlag is false then @_calcScrollData()
+
+      console.log @number(), val, height, @_offsetHeight
+
+    _calcScrollData: () ->
+      console.log 'Offset height', @_offsetHeight = @el.offsetHeight
+
+      console.log 'RN scroll data', @_RNScrollData = @resourceNeedWeeks.getScrollData()
+
+      @_scrollDataFlag = true
+
+      true
+
     days: () -> @model.days
 
     addBlocks: (arr) ->
@@ -51,11 +65,16 @@ define [
     initialize: () ->
       @frameInitDef = new $.Deferred()
 
+      @_scrollDataFlag = false
+
       @resourceNeedWeeks = new ResourceNeedWeeks()
+
       @resourceNeedWeeks.on 'add', @addResourceNeed, @
-      
+
       @model.on 'rendered', @_initFrame, @
 
       @proxyCall 'initialize', arguments
+
+      @model.frame.periodBlocks.on 'updateScroll', @_calcScrollData, @
 
       true
