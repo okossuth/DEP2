@@ -1,6 +1,6 @@
 .page.page-calendar > header {
   background: #edf0f2;
-  height: 100px; }
+  height: 88px; }
   .page.page-calendar > header > div.line {
     margin-right: 30px; }
     .page.page-calendar > header > div.line > span.title {
@@ -8,15 +8,16 @@
       font-size: 18px;
       color: black; }
     .page.page-calendar > header > div.line > .button.add-groups {
-      padding: 11px 20px; }
+      padding: 14px 28px;
+      margin: 3px 0 0 17px; }
     .page.page-calendar > header > div.line > ul.groups-list {
       display: inline-block;
       font-size: 16px;
-      margin: 0 0 0 32px; }
+      margin: 0 0 0 29px; }
       .page.page-calendar > header > div.line > ul.groups-list > li {
         display: inline-block;
         color: #999999;
-        margin: 0 0 0 28px; }
+        margin: 0 0 0 22px; }
         .page.page-calendar > header > div.line > ul.groups-list > li:first-child {
           margin-left: 0; }
         .page.page-calendar > header > div.line > ul.groups-list > li.selected {

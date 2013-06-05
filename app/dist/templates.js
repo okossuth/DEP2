@@ -620,7 +620,7 @@ templates['periodBlockWeek'] = template(function (Handlebars,depth0,helpers,part
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"content\">\r\n        <div class=\"inner\">\r\n            <ul class=\"employees\">\r\n            </ul>\r\n\r\n            <div class=\"empty\">\r\n                <div class=\"indicator\"></div>\r\n                <span><span class=\"empty_slots-value\">";
+  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"content\">\r\n        <div class=\"inner\">\r\n            <ul class=\"employees\">\r\n            </ul>\r\n\r\n            <div class=\"empty\">\r\n                <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -649,7 +649,7 @@ function program1(depth0,data) {
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"content\">\r\n            <div class=\"inner\">\r\n                <ul class=\"employees\">\r\n                </ul>\r\n\r\n                <div class=\"empty\">\r\n                    <div class=\"indicator\"></div>\r\n                    <span><span class=\"empty_slots-value\">";
+  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"content\">\r\n            <div class=\"inner\">\r\n                <ul class=\"employees\">\r\n                </ul>\r\n\r\n                <div class=\"empty\">\r\n                    <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }

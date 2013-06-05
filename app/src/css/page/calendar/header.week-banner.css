@@ -1,7 +1,7 @@
 .page.page-calendar > header > .week-banner {
   position: absolute;
-  top: 161px;
-  left: 30px;
+  top: 152px;
+  left: 37px;
   background: #63b483; }
   .page.page-calendar > header > .week-banner > ul {
     width: 100px; }
@@ -18,6 +18,14 @@
       .page.page-calendar > header > .week-banner > ul > li.selected {
         background: #4b8f66;
         border-top-color: #52956c; }
+      .page.page-calendar > header > .week-banner > ul > li.week-block {
+        padding: 24px 0 12px 0; }
+      .page.page-calendar > header > .week-banner > ul > li.month-block, .page.page-calendar > header > .week-banner > ul > li.year-block {
+        padding: 10px 0 9px 0; }
+      .page.page-calendar > header > .week-banner > ul > li.users-block {
+        padding: 10px 0 5px 0; }
+      .page.page-calendar > header > .week-banner > ul > li.time-block {
+        padding: 10px 0 4px 0; }
       .page.page-calendar > header > .week-banner > ul > li > strong {
         font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
         font-weight: normal; }

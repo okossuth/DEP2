@@ -21,7 +21,7 @@ body.loading .side-bar > h1.title > img {
     left: 50%; }
     .side-bar > h1.title .notifications-indicator-container > div.arrow {
       position: absolute;
-      left: 70px;
+      left: 74px;
       top: 16px;
       width: 0;
       height: 0;
@@ -31,9 +31,9 @@ body.loading .side-bar > h1.title > img {
       border-width: 5px 5px 5px 0; }
     .side-bar > h1.title .notifications-indicator-container > div.notifications-indicator {
       position: absolute;
-      left: 75px;
-      top: 6px;
-      padding: 4px 8px 0 8px;
+      left: 79px;
+      top: 5px;
+      padding: 5px 10px 1px 10px;
       height: 26px;
       border-radius: 1px;
       background: #fd5308;

@@ -1,5 +1,5 @@
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
-  margin: 5px 29px 20px 180px;
+  margin: 8px 29px 20px 187px;
   position: relative; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
     display: block;
@@ -25,9 +25,9 @@
         text-align: center;
         left: 0; }
         .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time.top {
-          top: 18px; }
+          top: 15px; }
         .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time.bottom {
-          bottom: 18px; }
+          bottom: 15px; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks {
       overflow: auto;
       border-spacing: 0;
@@ -61,7 +61,7 @@
           border-left-color: #e8e8e8; }
           .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner {
             height: 17px;
-            padding: 17px 0 14px 0;
+            padding: 16px 0 15px 0;
             text-align: center; }
             .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner > strong, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner > span {
               display: inline-block; }
@@ -69,18 +69,18 @@
               margin: 0 0 0 10px; }
       .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content {
         font-size: 13px;
-        line-height: 20px;
+        line-height: 19px;
         box-shadow: 0 0 5px #e4e7e9; }
         .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block {
           border-left-color: #dddddd; }
           .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner {
-            padding: 60px 20px 55px 20px; }
+            padding: 60px 5px 55px 20px; }
             .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner div.indicator {
               display: inline-block;
               border-radius: 2px;
               width: 12px;
               height: 12px;
-              margin: 0 10px 0 0;
+              margin: 0 15px 0 0;
               vertical-align: middle; }
             .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner span {
               vertical-align: middle; }
