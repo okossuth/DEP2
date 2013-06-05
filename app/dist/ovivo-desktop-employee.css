@@ -666,6 +666,7 @@ section.page .notification-message {
 .popup.popup-period-block {
   margin-top: -200px; }
 
+
 @-webkit-keyframes empty-enter {
   from {
     opacity: 1; }
@@ -1953,6 +1954,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     display: block;
     margin: 0 10px 0 0; }
 
+.page.page-calendar > .content.week-view {
+  right: 20px; }
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
   margin: 8px 29px 20px 187px;
@@ -2065,6 +2068,20 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
             height: 16px;
             padding: 16px 0 14px 0;
             text-align: center; }
+
+.page.page-calendar ::-webkit-scrollbar {
+  width: 7px;
+  margin: 0 5px 0 0; }
+.page.page-calendar ::-webkit-scrollbar-track {
+  background: #f9f9f9;
+  border-radius: 2px; }
+.page.page-calendar ::-webkit-scrollbar-thumb {
+  background: #d0d5cb;
+  border-radius: 2px; }
+.page.page-calendar ::-webkit-scrollbar-button:decrement {
+  height: 8px; }
+.page.page-calendar ::-webkit-scrollbar-button:increment {
+  height: 10px; }
 
 .page.page-edit {
   width: 500px;
