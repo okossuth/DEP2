@@ -138,8 +138,14 @@ define [
 
       true
 
+    _updateScroll: () ->
+      @model.trigger 'updateScroll'
+
     initialize: () ->
       @model.eventUsers.on 'add', @addEventUser, @
+
+      @model.eventUsers.on 'add', @_updateScroll, @
+      @model.eventUsers.on 'remove', @_updateScroll, @
 
       @renderDef = new $.Deferred()
       @renderDef.done () => @_attachHandlers()

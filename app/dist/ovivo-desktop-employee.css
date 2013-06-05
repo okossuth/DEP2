@@ -1641,6 +1641,15 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
           display: block;
           margin: 0 0 0 7px; }
 
+.page.page-calendar > header div.static-headers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 29px 20px 187px; }
+  .page.page-calendar > header div.static-headers > div {
+    position: relative; }
+
 .page.page-calendar > header > .week-banner {
   position: absolute;
   top: 152px;
@@ -1957,6 +1966,88 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 .page.page-calendar > .content.week-view {
   right: 20px; }
 
+.page.page-calendar > .content.week-view .day-blocks {
+  overflow: auto;
+  border-spacing: 0;
+  width: 100%; }
+  .page.page-calendar > .content.week-view .day-blocks .day-block {
+    width: 14.28571%;
+    background: white;
+    padding: 0;
+    border-left: 1px solid transparent;
+    vertical-align: top; }
+    .page.page-calendar > .content.week-view .day-blocks .day-block:first-child {
+      border-left: 0; }
+  .page.page-calendar > .content.week-view .day-blocks.header, .page.page-calendar > .content.week-view .day-blocks.static-header {
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: visible;
+    height: 48px; }
+    .page.page-calendar > .content.week-view .day-blocks.header .bottom-shadow, .page.page-calendar > .content.week-view .day-blocks.static-header .bottom-shadow {
+      position: absolute;
+      background: #eeeeee;
+      height: 4px;
+      width: 100%;
+      left: 0;
+      bottom: -4px;
+      opacity: 0.5;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
+    .page.page-calendar > .content.week-view .day-blocks.header .day-block, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block {
+      border-left-color: #e8e8e8; }
+      .page.page-calendar > .content.week-view .day-blocks.header .day-block > div.inner, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block > div.inner {
+        height: 17px;
+        padding: 16px 0 15px 0;
+        text-align: center; }
+        .page.page-calendar > .content.week-view .day-blocks.header .day-block > div.inner > strong, .page.page-calendar > .content.week-view .day-blocks.header .day-block > div.inner > span, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block > div.inner > strong, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block > div.inner > span {
+          display: inline-block; }
+        .page.page-calendar > .content.week-view .day-blocks.header .day-block > div.inner > span, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block > div.inner > span {
+          margin: 0 0 0 10px; }
+  .page.page-calendar > .content.week-view .day-blocks.content {
+    font-size: 13px;
+    line-height: 19px;
+    box-shadow: 0 0 5px #e4e7e9; }
+    .page.page-calendar > .content.week-view .day-blocks.content .day-block {
+      border-left-color: #dddddd; }
+      .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner {
+        padding: 60px 5px 55px 20px; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner div.indicator {
+          display: inline-block;
+          border-radius: 2px;
+          width: 12px;
+          height: 12px;
+          margin: 0 15px 0 0;
+          vertical-align: middle; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner span {
+          vertical-align: middle; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .empty > div.indicator {
+          background: white;
+          width: 11px;
+          height: 11px;
+          border: 1px solid #333333; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .closed > div.indicator {
+          background: #4b9968; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .open-responses > div.indicator {
+          background: #f6e332; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .open > div.indicator {
+          background: #f05050; }
+  .page.page-calendar > .content.week-view .day-blocks.footer {
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 46px; }
+    .page.page-calendar > .content.week-view .day-blocks.footer .day-block {
+      background: #f9f9f9;
+      border-left-color: #dddddd; }
+      .page.page-calendar > .content.week-view .day-blocks.footer .day-block > div.inner {
+        height: 16px;
+        padding: 16px 0 14px 0;
+        text-align: center; }
+
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
   padding: 8px 29px 20px 187px;
   position: relative; }
@@ -1968,7 +2059,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: -50px;
       width: 50px;
       height: 100%;
@@ -1987,87 +2078,6 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
           top: 15px; }
         .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time.bottom {
           bottom: 15px; }
-    .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks {
-      overflow: auto;
-      border-spacing: 0;
-      width: 100%; }
-      .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks .day-block {
-        width: 14.28571%;
-        background: white;
-        padding: 0;
-        border-left: 1px solid transparent;
-        vertical-align: top; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks .day-block:first-child {
-          border-left: 0; }
-      .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header {
-        font-size: 15px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        overflow: visible;
-        height: 48px; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .bottom-shadow {
-          position: absolute;
-          background: #eeeeee;
-          height: 4px;
-          width: 100%;
-          left: 0;
-          bottom: -4px;
-          opacity: 0.5;
-          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block {
-          border-left-color: #e8e8e8; }
-          .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner {
-            height: 17px;
-            padding: 16px 0 15px 0;
-            text-align: center; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner > strong, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner > span {
-              display: inline-block; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.header .day-block > div.inner > span {
-              margin: 0 0 0 10px; }
-      .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content {
-        font-size: 13px;
-        line-height: 19px;
-        box-shadow: 0 0 5px #e4e7e9; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block {
-          border-left-color: #dddddd; }
-          .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner {
-            padding: 60px 5px 55px 20px; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner div.indicator {
-              display: inline-block;
-              border-radius: 2px;
-              width: 12px;
-              height: 12px;
-              margin: 0 15px 0 0;
-              vertical-align: middle; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner span {
-              vertical-align: middle; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .empty > div.indicator {
-              background: white;
-              width: 11px;
-              height: 11px;
-              border: 1px solid #333333; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .closed > div.indicator {
-              background: #4b9968; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .open-responses > div.indicator {
-              background: #f6e332; }
-            .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.content .day-block > div.inner .open > div.indicator {
-              background: #f05050; }
-      .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.footer {
-        font-size: 14px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 46px; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.footer .day-block {
-          background: #f9f9f9;
-          border-left-color: #dddddd; }
-          .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > .day-blocks.footer .day-block > div.inner {
-            height: 16px;
-            padding: 16px 0 14px 0;
-            text-align: center; }
 
 .page.page-calendar ::-webkit-scrollbar {
   width: 7px;
@@ -2082,6 +2092,18 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   height: 8px; }
 .page.page-calendar ::-webkit-scrollbar-button:increment {
   height: 10px; }
+
+.page.page-calendar > .content.week-view div.static-headers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 29px 20px 187px; }
+  .page.page-calendar > .content.week-view div.static-headers > div {
+    position: relative; }
+
+.page.page-calendar > .content.week-view ul.weeks-list > li {
+  position: relative; }
 
 .page.page-edit {
   width: 500px;

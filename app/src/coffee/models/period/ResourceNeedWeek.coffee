@@ -13,6 +13,10 @@ define [
       ['end_time', 'resourceNeed']
     ]
 
+    clearScroll: () -> @view.clearScroll()
+
+    processScroll: (obj, val) -> @view.processScroll obj, val
+
     addBlock: (block) ->
       @view.addBlock block
 

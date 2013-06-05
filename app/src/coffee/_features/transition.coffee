@@ -6,7 +6,7 @@ define [
 
       _def.resolve()
 
-      $(this).off 'webkitAnimationEnd', _func
+      $(this).off ovivo.config.ANIMATION_END, _func
 
       true
 

@@ -1,0 +1,8 @@
+.page.page-calendar > .content.week-view div.static-headers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 29px 20px 187px; }
+  .page.page-calendar > .content.week-view div.static-headers > div {
+    position: relative; }

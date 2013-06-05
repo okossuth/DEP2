@@ -19616,7 +19616,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
+  buffer += escapeExpression(stack1) + "\">\r\n    <<ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -21281,6 +21281,8 @@ ovivo.config.ANIMATION_END = (function() {
   return (_animation + "End").replace(/^ms/, "MS").replace(/^Webkit/, "webkit").replace(/^Moz.*/, "animationend");
 })();
 
+ovivo.config.TRANSFORM = false;
+
 if (ovivo._config != null) {
   ovivo.config = _.extend(ovivo.config, ovivo._config);
 }
@@ -22219,7 +22221,7 @@ define('_features/transition',[], function() {
     _func = function(e) {
       $(this).removeClass("" + enterClass + " " + exitClass + " transition back");
       _def.resolve();
-      $(this).off('webkitAnimationEnd', _func);
+      $(this).off(ovivo.config.ANIMATION_END, _func);
       return true;
     };
     return _func;
@@ -23204,10 +23206,15 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
       }
       return true;
     },
+    _updateScroll: function() {
+      return this.model.trigger('updateScroll');
+    },
     initialize: function() {
       var _this = this;
 
       this.model.eventUsers.on('add', this.addEventUser, this);
+      this.model.eventUsers.on('add', this._updateScroll, this);
+      this.model.eventUsers.on('remove', this._updateScroll, this);
       this.renderDef = new $.Deferred();
       this.renderDef.done(function() {
         return _this._attachHandlers();
@@ -23608,6 +23615,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
 define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
+    MIN_BLOCK_HEIGHT: 110,
     tagName: 'li',
     className: 'resource-need-row',
     template: Handlebars.templates['resourceNeedWeek'],
@@ -23620,6 +23628,25 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model.resourceNeed());
     },
+    clearScroll: function() {
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = '';
+      } else {
+        this.header.style.top = '';
+      }
+      this.timeRange.style.height = '';
+      return true;
+    },
+    processScroll: function(obj, val) {
+      val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + val + "px)";
+      } else {
+        this.header.style.top = "" + val + "px";
+      }
+      this.timeRange.style.height = "" + (obj.height - val) + "px";
+      return true;
+    },
     addBlock: function(block) {
       var _this = this;
 
@@ -23630,6 +23657,8 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
       });
     },
     postRender: function() {
+      this.header = this.$('.day-blocks.header')[0];
+      this.timeRange = this.$('.time-range')[0];
       this.headers = this.$('.day-blocks.header td.day-block');
       this.contents = this.$('.day-blocks.content td.day-block');
       this.footers = this.$('.day-blocks.footer td.day-block');
@@ -23655,6 +23684,12 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
 define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['resourceNeed', ['pk', 'resourceNeed'], ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed']],
+    clearScroll: function() {
+      return this.view.clearScroll();
+    },
+    processScroll: function(obj, val) {
+      return this.view.processScroll(obj, val);
+    },
     addBlock: function(block) {
       this.view.addBlock(block);
       return this._blocksCounter += 1;
@@ -23796,10 +23831,16 @@ define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek',
     },
     getScrollData: function() {
       return this.map(function(model) {
+        var _h, _t;
+
+        _h = model.view.el.offsetHeight;
+        _t = model.view.el.offsetTop;
         return {
           el: model.view.el,
-          top: model.view.el.offsetTop,
-          height: model.view.el.offsetHeight
+          model: model,
+          start: _t,
+          end: _t + _h,
+          height: _h
         };
       });
     },
@@ -23811,21 +23852,79 @@ define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek',
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collections/period/ResourceNeedWeeks', 'ovivo'], function(DaysCollector, ResourceBase, ResourceNeedWeeks) {
+define('_features/binarySearch',['ovivo'], function() {
+  return function(arr, val, comparator) {
+    var _cur, _end, _shift, _start;
+
+    if (arr.length < 1) {
+      return null;
+    }
+    _start = 0;
+    _end = arr.length - 1;
+    if (comparator(arr[_start], val) === -1 || comparator(arr[_end], val) === 1) {
+      return null;
+    }
+    while (true) {
+      _cur = Math.floor((_start + _end) / 2);
+      _shift = comparator(arr[_cur], val);
+      if (_shift === 0) {
+        return arr[_cur];
+      }
+      if (_start === _end) {
+        return null;
+      } else if (_shift === -1) {
+        _end = _cur;
+      } else if (_shift === 1) {
+        _start = _cur + 1;
+      } else {
+        return null;
+      }
+    }
+  };
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collections/period/ResourceNeedWeeks', '_features/binarySearch', 'ovivo'], function(DaysCollector, ResourceBase, ResourceNeedWeeks, binarySearch) {
   return ResourceBase.extend(_.extend({}, DaysCollector, {
     common: {},
     template: Handlebars.templates['calendarWeek'],
     groupTemplate: Handlebars.templates['calendarWeek_group'],
     events: {},
     processScroll: function(val, height) {
+      var _res;
+
       if (this._scrollDataFlag === false) {
         this._calcScrollData();
+        if (this._prev != null) {
+          this._prev.model.clearScroll();
+        }
+        this._prev = null;
       }
-      return console.log(this.number(), val, height, this._offsetHeight);
+      _res = binarySearch(this._RNScrollData, val, this._RNComparator);
+      if (_res !== null) {
+        _res.model.processScroll(_res, val - _res.start);
+      }
+      if (_res === this._prev) {
+        return;
+      }
+      if (this._prev !== null) {
+        this._prev.model.clearScroll();
+      }
+      this._prev = _res;
+      return true;
+    },
+    _RNComparator: function(obj, val) {
+      if (obj.start >= val) {
+        return -1;
+      }
+      if (obj.end < val) {
+        return 1;
+      }
+      return 0;
     },
     _calcScrollData: function() {
-      console.log('Offset height', this._offsetHeight = this.el.offsetHeight);
-      console.log('RN scroll data', this._RNScrollData = this.resourceNeedWeeks.getScrollData());
+      this._offsetHeight = this.el.offsetHeight;
+      this._RNScrollData = this.resourceNeedWeeks.getScrollData();
       this._scrollDataFlag = true;
       return true;
     },
@@ -23881,14 +23980,22 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
         return _this.container.append(model.view.$el);
       });
     },
+    _updateScroll: function() {
+      return this._scrollDataFlag = false;
+    },
     initialize: function() {
       this.frameInitDef = new $.Deferred();
       this._scrollDataFlag = false;
       this.resourceNeedWeeks = new ResourceNeedWeeks();
+      this.resourceNeedWeeks.week = this;
       this.resourceNeedWeeks.on('add', this.addResourceNeed, this);
+      this.resourceNeedWeeks.on('add', this._updateScroll, this);
+      this.resourceNeedWeeks.on('remove', this._updateScroll, this);
       this.model.on('rendered', this._initFrame, this);
       this.proxyCall('initialize', arguments);
-      this.model.frame.periodBlocks.on('updateScroll', this._calcScrollData, this);
+      this.model.frame.periodBlocks.on('add', this._updateScroll, this);
+      this.model.frame.periodBlocks.on('remove', this._updateScroll, this);
+      this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
       return true;
     }
   }));
@@ -23972,6 +24079,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     processScroll: function() {
       if (this._scrollDataFlag === false) {
         this._offsetHeight = this.el.offsetHeight;
+        this._scrollDataFlag = true;
       }
       if (this.currentModel !== null) {
         this.currentModel.view.processScroll(this.el.scrollTop, this._offsetHeight);
@@ -23988,7 +24096,14 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
       };
     },
     _postNavigate: function() {
-      return this.processScroll();
+      var _this = this;
+
+      this.processScroll();
+      return setTimeout((function() {
+        if (_this.currentModel !== null) {
+          return _this.currentModel.view._updateScroll();
+        }
+      }), 50);
     },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);
@@ -24030,14 +24145,18 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     },
     processCollectorHide: function(month) {},
     processWindowResize: function() {
-      return this._scrollDataFlag = false;
+      this._scrollDataFlag = false;
+      if (this.currentModel != null) {
+        this.currentModel.view._updateScroll();
+      }
+      return true;
     },
     initialize: function() {
       var _now;
 
       this.current = _now = new Date.today();
       this._scrollDataFlag = false;
-      $(window).on('resize', this.processWindowResize, this);
+      $(window).on('resize', _.bind(this.processWindowResize, this));
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
       this._initialize();

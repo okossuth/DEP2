@@ -132,10 +132,15 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       }
       return true;
     },
+    _updateScroll: function() {
+      return this.model.trigger('updateScroll');
+    },
     initialize: function() {
       var _this = this;
 
       this.model.eventUsers.on('add', this.addEventUser, this);
+      this.model.eventUsers.on('add', this._updateScroll, this);
+      this.model.eventUsers.on('remove', this._updateScroll, this);
       this.renderDef = new $.Deferred();
       this.renderDef.done(function() {
         return _this._attachHandlers();

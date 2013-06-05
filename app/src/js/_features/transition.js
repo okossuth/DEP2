@@ -8,7 +8,7 @@ define([], function() {
     _func = function(e) {
       $(this).removeClass("" + enterClass + " " + exitClass + " transition back");
       _def.resolve();
-      $(this).off('webkitAnimationEnd', _func);
+      $(this).off(ovivo.config.ANIMATION_END, _func);
       return true;
     };
     return _func;

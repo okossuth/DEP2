@@ -10,6 +10,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     processScroll: function() {
       if (this._scrollDataFlag === false) {
         this._offsetHeight = this.el.offsetHeight;
+        this._scrollDataFlag = true;
       }
       if (this.currentModel !== null) {
         this.currentModel.view.processScroll(this.el.scrollTop, this._offsetHeight);
@@ -26,7 +27,14 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       };
     },
     _postNavigate: function() {
-      return this.processScroll();
+      var _this = this;
+
+      this.processScroll();
+      return setTimeout((function() {
+        if (_this.currentModel !== null) {
+          return _this.currentModel.view._updateScroll();
+        }
+      }), 50);
     },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);
@@ -68,14 +76,18 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     },
     processCollectorHide: function(month) {},
     processWindowResize: function() {
-      return this._scrollDataFlag = false;
+      this._scrollDataFlag = false;
+      if (this.currentModel != null) {
+        this.currentModel.view._updateScroll();
+      }
+      return true;
     },
     initialize: function() {
       var _now;
 
       this.current = _now = new Date.today();
       this._scrollDataFlag = false;
-      $(window).on('resize', this.processWindowResize, this);
+      $(window).on('resize', _.bind(this.processWindowResize, this));
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
       this._initialize();

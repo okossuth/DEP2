@@ -228,7 +228,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
+  buffer += escapeExpression(stack1) + "\">\r\n    <<ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
   foundHelper = helpers.i18n;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
   else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }

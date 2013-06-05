@@ -304,6 +304,8 @@ ovivo.config.ANIMATION_END = (function() {
   return (_animation + "End").replace(/^ms/, "MS").replace(/^Webkit/, "webkit").replace(/^Moz.*/, "animationend");
 })();
 
+ovivo.config.TRANSFORM = false;
+
 if (ovivo._config != null) {
   ovivo.config = _.extend(ovivo.config, ovivo._config);
 }

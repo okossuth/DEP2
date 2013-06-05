@@ -17,9 +17,14 @@ define [
 
     getScrollData: () ->
       @map (model) ->
+        _h = model.view.el.offsetHeight
+        _t = model.view.el.offsetTop
+
         el: model.view.el
-        top: model.view.el.offsetTop
-        height: model.view.el.offsetHeight
+        model: model
+        start: _t
+        end: _t + _h
+        height: _h
 
     initialize: () ->
       @initCacheProcessors()

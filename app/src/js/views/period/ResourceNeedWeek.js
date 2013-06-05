@@ -2,6 +2,7 @@
 define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
+    MIN_BLOCK_HEIGHT: 110,
     tagName: 'li',
     className: 'resource-need-row',
     template: Handlebars.templates['resourceNeedWeek'],
@@ -14,6 +15,25 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       ovivo.desktop.popups.editPopupResourceNeed.show();
       return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model.resourceNeed());
     },
+    clearScroll: function() {
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = '';
+      } else {
+        this.header.style.top = '';
+      }
+      this.timeRange.style.height = '';
+      return true;
+    },
+    processScroll: function(obj, val) {
+      val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + val + "px)";
+      } else {
+        this.header.style.top = "" + val + "px";
+      }
+      this.timeRange.style.height = "" + (obj.height - val) + "px";
+      return true;
+    },
     addBlock: function(block) {
       var _this = this;
 
@@ -24,6 +44,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       });
     },
     postRender: function() {
+      this.header = this.$('.day-blocks.header')[0];
+      this.timeRange = this.$('.time-range')[0];
       this.headers = this.$('.day-blocks.header td.day-block');
       this.contents = this.$('.day-blocks.content td.day-block');
       this.footers = this.$('.day-blocks.footer td.day-block');

@@ -4,8 +4,10 @@ define [
 
   'collections/period/ResourceNeedWeeks',
 
+  '_features/binarySearch',
+
   'ovivo'
-], (DaysCollector, ResourceBase, ResourceNeedWeeks) ->
+], (DaysCollector, ResourceBase, ResourceNeedWeeks, binarySearch) ->
   ResourceBase.extend _.extend {}, DaysCollector,
     common: {}
 
@@ -15,14 +17,37 @@ define [
     events: {}
 
     processScroll: (val, height) ->
-      if @_scrollDataFlag is false then @_calcScrollData()
+      if @_scrollDataFlag is false 
+        @_calcScrollData()
 
-      console.log @number(), val, height, @_offsetHeight
+        if @_prev? then @_prev.model.clearScroll()
+
+        @_prev = null
+
+      _res = binarySearch @_RNScrollData, val, @_RNComparator
+
+      if _res isnt null
+        _res.model.processScroll _res, val - _res.start
+
+      if _res is @_prev then return
+
+      if @_prev isnt null then @_prev.model.clearScroll()
+
+      @_prev = _res
+
+      true
+
+    _RNComparator: (obj, val) ->
+      return -1 if obj.start >= val 
+
+      return 1 if obj.end < val 
+
+      return 0
 
     _calcScrollData: () ->
-      console.log 'Offset height', @_offsetHeight = @el.offsetHeight
+      @_offsetHeight = @el.offsetHeight
 
-      console.log 'RN scroll data', @_RNScrollData = @resourceNeedWeeks.getScrollData()
+      @_RNScrollData = @resourceNeedWeeks.getScrollData()
 
       @_scrollDataFlag = true
 
@@ -62,6 +87,9 @@ define [
     addResourceNeed: (model) ->
       @frameInitDef.done => @container.append model.view.$el
 
+    _updateScroll: () ->
+      @_scrollDataFlag = false
+
     initialize: () ->
       @frameInitDef = new $.Deferred()
 
@@ -69,12 +97,19 @@ define [
 
       @resourceNeedWeeks = new ResourceNeedWeeks()
 
+      @resourceNeedWeeks.week = @
+
       @resourceNeedWeeks.on 'add', @addResourceNeed, @
+
+      @resourceNeedWeeks.on 'add', @_updateScroll, @
+      @resourceNeedWeeks.on 'remove', @_updateScroll, @
 
       @model.on 'rendered', @_initFrame, @
 
       @proxyCall 'initialize', arguments
 
-      @model.frame.periodBlocks.on 'updateScroll', @_calcScrollData, @
+      @model.frame.periodBlocks.on 'add', @_updateScroll, @
+      @model.frame.periodBlocks.on 'remove', @_updateScroll, @
+      @model.frame.periodBlocks.on 'updateScroll', @_updateScroll, @
 
       true

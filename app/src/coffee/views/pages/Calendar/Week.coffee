@@ -17,7 +17,10 @@ define [
       'scroll': 'processScroll'
 
     processScroll: () ->
-      if @_scrollDataFlag is false then @_offsetHeight = @el.offsetHeight
+      if @_scrollDataFlag is false 
+        @_offsetHeight = @el.offsetHeight
+
+        @_scrollDataFlag = true
 
       if @currentModel isnt null then @currentModel.view.processScroll @el.scrollTop, @_offsetHeight
 
@@ -31,6 +34,9 @@ define [
 
     _postNavigate: () ->
       @processScroll()
+
+      setTimeout (() =>
+        if @currentModel isnt null then @currentModel.view._updateScroll()), 50
 
     prev: () -> 
       @current.moveToDayOfWeek(4, -1)
@@ -77,12 +83,16 @@ define [
     processWindowResize: () ->
       @_scrollDataFlag = false
 
+      if @currentModel? then @currentModel.view._updateScroll()
+
+      true
+
     initialize: () ->
       @current = _now = new Date.today()
 
       @_scrollDataFlag = false
 
-      $(window).on 'resize', @processWindowResize, @
+      $(window).on 'resize', _.bind @processWindowResize, @
       
       _now.setWeek _now.getWeek()
       _now.moveToDayOfWeek(4)

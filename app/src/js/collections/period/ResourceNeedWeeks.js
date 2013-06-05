@@ -11,10 +11,16 @@ define(['models/period/ResourceNeedWeek', '_common/CachableCollection', 'ovivo']
     },
     getScrollData: function() {
       return this.map(function(model) {
+        var _h, _t;
+
+        _h = model.view.el.offsetHeight;
+        _t = model.view.el.offsetTop;
         return {
           el: model.view.el,
-          top: model.view.el.offsetTop,
-          height: model.view.el.offsetHeight
+          model: model,
+          start: _t,
+          end: _t + _h,
+          height: _h
         };
       });
     },
