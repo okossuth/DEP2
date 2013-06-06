@@ -23615,7 +23615,7 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
 define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
-    MIN_BLOCK_HEIGHT: 130,
+    MIN_BLOCK_HEIGHT: 100,
     tagName: 'li',
     className: 'resource-need-row',
     template: Handlebars.templates['resourceNeedWeek'],
@@ -23654,10 +23654,12 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
       if (_val !== val) {
         _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
         this.el.style.opacity = Math.pow(1 - _frac, 2);
+        this.$el.addClass('folding');
         if (ovivo.config.TRANSFORM !== false) {
           this.el.style[ovivo.config.TRANSFORM] = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px) scale(" + (1 - 0.05 * Math.pow(_frac, 2)) + ") rotateX(" + (60 * Math.pow(_frac, 2)) + "deg)";
         }
       } else {
+        this.$el.removeClass('folding');
         this.el.style.opacity = '';
         if (ovivo.config.TRANSFORM !== false) {
           this.el.style[ovivo.config.TRANSFORM] = '';
