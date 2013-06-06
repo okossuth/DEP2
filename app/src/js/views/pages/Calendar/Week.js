@@ -38,9 +38,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
 
       this.processScroll();
       return setTimeout((function() {
-        _this.scrollerInner.height(_this._scrollHeight = _this.el.scrollHeight);
         _this.scroller[0].scrollTop = 0;
-        _this.processScroll(null, 0);
         if (_this.currentModel !== null) {
           return _this.currentModel.view._updateScroll();
         }

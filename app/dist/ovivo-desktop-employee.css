@@ -1653,7 +1653,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
 
 .page.page-calendar > header > .week-banner {
   position: absolute;
-  top: 152px;
+  top: 144px;
   left: 37px;
   background: #63b483; }
   .page.page-calendar > header > .week-banner > ul {
@@ -2063,7 +2063,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         text-align: center; }
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
-  padding: 8px 29px 20px 187px;
+  padding: 0 29px 20px 187px;
   position: relative;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
@@ -2115,7 +2115,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   background: #d0d5cb;
   border-radius: 2px; }
 .page.page-calendar ::-webkit-scrollbar-button:decrement {
-  height: 8px; }
+  height: 0; }
 .page.page-calendar ::-webkit-scrollbar-button:increment {
   height: 10px; }
 

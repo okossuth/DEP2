@@ -89,10 +89,11 @@ define [
     addResourceNeed: (model) ->
       @frameInitDef.done => @container.append model.view.$el
 
-    _updateScroll: () ->
-      setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 150
+    _updateScroll: _.throttle (() ->
+      console.log 'ddd'
+      # setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 500
 
-      @_scrollDataFlag = false
+      @_scrollDataFlag = false), 50
 
     initialize: () ->
       @frameInitDef = new $.Deferred()

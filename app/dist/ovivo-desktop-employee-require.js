@@ -24113,14 +24113,10 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
         return _this.container.append(model.view.$el);
       });
     },
-    _updateScroll: function() {
-      var _this = this;
-
-      setTimeout((function() {
-        return _this.scrollerInner.height(_this._offsetHeight = _this.el.offsetHeight);
-      }), 150);
+    _updateScroll: _.throttle((function() {
+      console.log('ddd');
       return this._scrollDataFlag = false;
-    },
+    }), 50),
     initialize: function() {
       this.frameInitDef = new $.Deferred();
       this._scrollDataFlag = false;
@@ -24247,9 +24243,7 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
 
       this.processScroll();
       return setTimeout((function() {
-        _this.scrollerInner.height(_this._scrollHeight = _this.el.scrollHeight);
         _this.scroller[0].scrollTop = 0;
-        _this.processScroll(null, 0);
         if (_this.currentModel !== null) {
           return _this.currentModel.view._updateScroll();
         }

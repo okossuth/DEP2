@@ -33,8 +33,6 @@ define [
     processWheel: (e, delta, deltaX, deltaY) ->
       @scroller[0].scrollTop -= delta * 50
 
-      # @processScroll null, @scroller[0].scrollTop - delta * 10
-
     _getKey: (year, number) -> "#{year}-#{number}"
 
     _getObj: (year, number) ->
@@ -45,10 +43,7 @@ define [
       @processScroll()
 
       setTimeout (() =>
-        @scrollerInner.height @_scrollHeight = @el.scrollHeight
-
         @scroller[0].scrollTop = 0
-        @processScroll null, 0
 
         if @currentModel isnt null then @currentModel.view._updateScroll()), 100
 
@@ -126,8 +121,6 @@ define [
 
       @scroller = $('.page.page-calendar .scroller')
       @scrollerInner = $('.page.page-calendar .scroller .inner')
-
-      # @$el.mousewheel _.bind @processWheel, @
 
       @navigate _now.getFullYear(), _now.getWeek()
 

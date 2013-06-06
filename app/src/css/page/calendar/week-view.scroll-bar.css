@@ -8,6 +8,6 @@
   background: #d0d5cb;
   border-radius: 2px; }
 .page.page-calendar ::-webkit-scrollbar-button:decrement {
-  height: 8px; }
+  height: 0; }
 .page.page-calendar ::-webkit-scrollbar-button:increment {
   height: 10px; }
