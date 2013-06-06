@@ -2081,7 +2081,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     margin: 10px 0 0 0; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row:first-child {
       margin-top: 0; }
-    .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding li.employee {
+    .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding li.employee, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding div.empty {
       visibility: hidden; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range {
       position: absolute;
