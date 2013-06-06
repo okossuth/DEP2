@@ -6,7 +6,7 @@ define [
   ResourceBase.extend
     common: {}
 
-    MIN_BLOCK_HEIGHT: 110
+    MIN_BLOCK_HEIGHT: 130
 
     tagName: 'li'
     className: 'resource-need-row'
@@ -55,7 +55,7 @@ define [
         @el.style.opacity = Math.pow(1 - _frac, 2)
 
         if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px)"
+          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
 
       else
         @el.style.opacity = ''
