@@ -13,7 +13,8 @@ define [
 
     Collectors: Weeks
 
-    events: {}
+    events:
+      'mousewheel': 'processWheel'
 
     processScroll: (e, val) ->
       if not val? then val = @scroller[0].scrollTop
@@ -28,6 +29,11 @@ define [
       if @currentModel isnt null then @currentModel.view.processScroll val, @_offsetHeight
 
       true
+
+    processWheel: (e, delta, deltaX, deltaY) ->
+      @scroller[0].scrollTop -= delta * 50
+
+      # @processScroll null, @scroller[0].scrollTop - delta * 10
 
     _getKey: (year, number) -> "#{year}-#{number}"
 
@@ -120,6 +126,8 @@ define [
 
       @scroller = $('.page.page-calendar .scroller')
       @scrollerInner = $('.page.page-calendar .scroller .inner')
+
+      # @$el.mousewheel _.bind @processWheel, @
 
       @navigate _now.getFullYear(), _now.getWeek()
 

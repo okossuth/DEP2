@@ -4,7 +4,9 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     el: '.page.page-calendar .week-view',
     name: 'week',
     Collectors: Weeks,
-    events: {},
+    events: {
+      'mousewheel': 'processWheel'
+    },
     processScroll: function(e, val) {
       if (val == null) {
         val = this.scroller[0].scrollTop;
@@ -18,6 +20,9 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
         this.currentModel.view.processScroll(val, this._offsetHeight);
       }
       return true;
+    },
+    processWheel: function(e, delta, deltaX, deltaY) {
+      return this.scroller[0].scrollTop -= delta * 50;
     },
     _getKey: function(year, number) {
       return "" + year + "-" + number;

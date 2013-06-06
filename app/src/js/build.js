@@ -6,6 +6,7 @@
     "handlebars": "../../lib/handlebars",
     "ovivo": "../../dist/ovivo-desktop-employee",
     "jquery": "../../lib/jquery-1.9.1",
+    "jquery.mousewheel": "../../lib/jquery.mousewheel",
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
     "airbrake": "../../lib/airbrake",
@@ -36,6 +37,10 @@
     },
 
     "pickadate": {
+      deps: ["jquery.mousewheel"]
+    },
+
+    "jquery.mousewheel": {
       deps: ["jquery"]
     },
     
