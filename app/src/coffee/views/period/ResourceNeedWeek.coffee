@@ -32,18 +32,32 @@ define [
 
       @timeRange.style.height = ''
 
+      @el.style.opacity = ''
+      @el.style.WebkitTransform = ''
+
       true
 
     processScroll: (obj, val) ->
-      val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
+      _height = obj.height - @MIN_BLOCK_HEIGHT
+      _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 
       if ovivo.config.TRANSFORM isnt false
-        @header.style[ovivo.config.TRANSFORM] = "translate(0, #{val}px)"
+        @header.style[ovivo.config.TRANSFORM] = "translate(0, #{_val}px)"
 
       else
-        @header.style.top = "#{val}px"
+        @header.style.top = "#{_val}px"
 
-      @timeRange.style.height = "#{obj.height - val}px"
+      if _val isnt val
+        _frac = (val - _val) / @MIN_BLOCK_HEIGHT
+
+        @el.style.opacity = 1 - 0.5 * Math.pow(_frac, 2)
+        @el.style.WebkitTransform = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px)"
+
+      else
+        @el.style.opacity = ''
+        @el.style.WebkitTransform = ''
+
+      @timeRange.style.height = "#{obj.height - _val}px"
 
       true
 

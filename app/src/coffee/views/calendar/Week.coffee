@@ -24,6 +24,8 @@ define [
 
         @_prev = null
 
+      @el.style.top = "#{-val}px"
+
       _res = binarySearch @_RNScrollData, val, @_RNComparator
 
       if _res isnt null
@@ -45,7 +47,7 @@ define [
       return 0
 
     _calcScrollData: () ->
-      @_offsetHeight = @el.offsetHeight
+      @scrollerInner.height @_offsetHeight = @el.offsetHeight
 
       @_RNScrollData = @resourceNeedWeeks.getScrollData()
 
@@ -88,6 +90,8 @@ define [
       @frameInitDef.done => @container.append model.view.$el
 
     _updateScroll: () ->
+      setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 150
+
       @_scrollDataFlag = false
 
     initialize: () ->
@@ -111,5 +115,8 @@ define [
       @model.frame.periodBlocks.on 'add', @_updateScroll, @
       @model.frame.periodBlocks.on 'remove', @_updateScroll, @
       @model.frame.periodBlocks.on 'updateScroll', @_updateScroll, @
+
+      @scroller = $('.page.page-calendar .scroller')
+      @scrollerInner = $('.page.page-calendar .scroller .inner')
 
       true

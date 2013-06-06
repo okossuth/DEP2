@@ -13,16 +13,19 @@ define [
 
     Collectors: Weeks
 
-    events:
-      'scroll': 'processScroll'
+    events: {}
 
-    processScroll: () ->
+    processScroll: (e, val) ->
+      if not val? then val = @scroller[0].scrollTop
+
       if @_scrollDataFlag is false 
         @_offsetHeight = @el.offsetHeight
 
+        @scrollerInner.height @_scrollHeight = @el.scrollHeight
+
         @_scrollDataFlag = true
 
-      if @currentModel isnt null then @currentModel.view.processScroll @el.scrollTop, @_offsetHeight
+      if @currentModel isnt null then @currentModel.view.processScroll val, @_offsetHeight
 
       true
 
@@ -36,7 +39,12 @@ define [
       @processScroll()
 
       setTimeout (() =>
-        if @currentModel isnt null then @currentModel.view._updateScroll()), 50
+        @scrollerInner.height @_scrollHeight = @el.scrollHeight
+
+        @scroller[0].scrollTop = 0
+        @processScroll null, 0
+
+        if @currentModel isnt null then @currentModel.view._updateScroll()), 100
 
     prev: () -> 
       @current.moveToDayOfWeek(4, -1)
@@ -109,6 +117,9 @@ define [
         year: $('.page.page-calendar header .week-banner .year-value')
 
       @todayButton = $('.page.page-calendar header .week-today')
+
+      @scroller = $('.page.page-calendar .scroller')
+      @scrollerInner = $('.page.page-calendar .scroller .inner')
 
       @navigate _now.getFullYear(), _now.getWeek()
 

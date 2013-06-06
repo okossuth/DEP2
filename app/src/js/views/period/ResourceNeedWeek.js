@@ -22,16 +22,29 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         this.header.style.top = '';
       }
       this.timeRange.style.height = '';
+      this.el.style.opacity = '';
+      this.el.style.WebkitTransform = '';
       return true;
     },
     processScroll: function(obj, val) {
-      val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      var _frac, _height, _val;
+
+      _height = obj.height - this.MIN_BLOCK_HEIGHT;
+      _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       if (ovivo.config.TRANSFORM !== false) {
-        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + val + "px)";
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + _val + "px)";
       } else {
-        this.header.style.top = "" + val + "px";
+        this.header.style.top = "" + _val + "px";
       }
-      this.timeRange.style.height = "" + (obj.height - val) + "px";
+      if (_val !== val) {
+        _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
+        this.el.style.opacity = 1 - 0.5 * Math.pow(_frac, 2);
+        this.el.style.WebkitTransform = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px)";
+      } else {
+        this.el.style.opacity = '';
+        this.el.style.WebkitTransform = '';
+      }
+      this.timeRange.style.height = "" + (obj.height - _val) + "px";
       return true;
     },
     addBlock: function(block) {

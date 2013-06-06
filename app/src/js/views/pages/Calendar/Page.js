@@ -16,6 +16,12 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     next: function() {
       return this.subViews[this.mode].next();
     },
+    processScroll: function(e) {
+      if (this.subViews[this.mode].processScroll) {
+        this.subViews[this.mode].processScroll();
+      }
+      return true;
+    },
     today: function() {
       return this.subViews[this.mode].today();
     },
@@ -28,6 +34,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     },
     transitionComplete: function() {
       this.proxyCall('transitionComplete', arguments);
+      this.processScroll();
       return true;
     },
     processViewSwitcherValue: function(value) {
@@ -44,6 +51,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
+      this.$('.scroller').on('scroll', _.bind(this.processScroll, this));
       this.proxyCall('initialize', arguments);
       return true;
     }

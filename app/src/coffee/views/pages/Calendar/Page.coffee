@@ -20,6 +20,11 @@ define [
     prev: () -> @subViews[@mode].prev()
     next: () -> @subViews[@mode].next()
 
+    processScroll: (e) ->
+      if @subViews[@mode].processScroll then @subViews[@mode].processScroll()
+
+      true
+
     today: () ->
       @subViews[@mode].today()
 
@@ -33,6 +38,8 @@ define [
 
     transitionComplete: () ->
       @proxyCall 'transitionComplete', arguments
+
+      @processScroll()
 
       true
 
@@ -54,6 +61,8 @@ define [
 
       @viewSwitcher = new Switcher @$('.switcher-view'), ['week', 'month']
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
+
+      @$('.scroller').on 'scroll', _.bind @processScroll, @
 
       @proxyCall 'initialize', arguments
 

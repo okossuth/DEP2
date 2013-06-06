@@ -1504,6 +1504,7 @@ body.loading .side-bar > h1.title > img {
   margin-top: 144px;
   background: #edf0f2; }
 
+
 ul.months-list .element.highlight > div.element-container, ul.weeks-list .element.highlight > div.element-container, .page-event-details .element.highlight > div.element-container {
   background: #dddddd; }
 ul.months-list .element > div.element-container, ul.weeks-list .element > div.element-container, .page-event-details .element > div.element-container {
@@ -1963,8 +1964,21 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     display: block;
     margin: 0 10px 0 0; }
 
+.page.page-calendar > div.scroller {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  bottom: -20px;
+  width: 25px;
+  margin-top: 144px;
+  overflow: scroll; }
+  .page.page-calendar > div.scroller > div.inner {
+    height: 200%;
+    width: 1px; }
+
 .page.page-calendar > .content.week-view {
-  right: 20px; }
+  right: 20px;
+  overflow: hidden; }
 
 .page.page-calendar > .content.week-view .day-blocks {
   overflow: auto;
@@ -2050,8 +2064,10 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
   padding: 8px 29px 20px 187px;
-  position: relative; }
+  position: relative;
+  -webkit-perspective: 3000px; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
+    -webkit-transform-origin: bottom center;
     display: block;
     position: relative;
     margin: 10px 0 0 0; }

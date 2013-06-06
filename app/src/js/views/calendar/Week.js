@@ -15,6 +15,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
         }
         this._prev = null;
       }
+      this.el.style.top = "" + (-val) + "px";
       _res = binarySearch(this._RNScrollData, val, this._RNComparator);
       if (_res !== null) {
         _res.model.processScroll(_res, val - _res.start);
@@ -38,7 +39,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       return 0;
     },
     _calcScrollData: function() {
-      this._offsetHeight = this.el.offsetHeight;
+      this.scrollerInner.height(this._offsetHeight = this.el.offsetHeight);
       this._RNScrollData = this.resourceNeedWeeks.getScrollData();
       this._scrollDataFlag = true;
       return true;
@@ -96,6 +97,11 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       });
     },
     _updateScroll: function() {
+      var _this = this;
+
+      setTimeout((function() {
+        return _this.scrollerInner.height(_this._offsetHeight = _this.el.offsetHeight);
+      }), 150);
       return this._scrollDataFlag = false;
     },
     initialize: function() {
@@ -111,6 +117,8 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.model.frame.periodBlocks.on('add', this._updateScroll, this);
       this.model.frame.periodBlocks.on('remove', this._updateScroll, this);
       this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
+      this.scroller = $('.page.page-calendar .scroller');
+      this.scrollerInner = $('.page.page-calendar .scroller .inner');
       return true;
     }
   }));

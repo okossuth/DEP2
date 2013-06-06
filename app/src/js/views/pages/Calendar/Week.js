@@ -4,16 +4,18 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
     el: '.page.page-calendar .week-view',
     name: 'week',
     Collectors: Weeks,
-    events: {
-      'scroll': 'processScroll'
-    },
-    processScroll: function() {
+    events: {},
+    processScroll: function(e, val) {
+      if (val == null) {
+        val = this.scroller[0].scrollTop;
+      }
       if (this._scrollDataFlag === false) {
         this._offsetHeight = this.el.offsetHeight;
+        this.scrollerInner.height(this._scrollHeight = this.el.scrollHeight);
         this._scrollDataFlag = true;
       }
       if (this.currentModel !== null) {
-        this.currentModel.view.processScroll(this.el.scrollTop, this._offsetHeight);
+        this.currentModel.view.processScroll(val, this._offsetHeight);
       }
       return true;
     },
@@ -31,10 +33,13 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
 
       this.processScroll();
       return setTimeout((function() {
+        _this.scrollerInner.height(_this._scrollHeight = _this.el.scrollHeight);
+        _this.scroller[0].scrollTop = 0;
+        _this.processScroll(null, 0);
         if (_this.currentModel !== null) {
           return _this.currentModel.view._updateScroll();
         }
-      }), 50);
+      }), 100);
     },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);
@@ -100,6 +105,8 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
         year: $('.page.page-calendar header .week-banner .year-value')
       };
       this.todayButton = $('.page.page-calendar header .week-today');
+      this.scroller = $('.page.page-calendar .scroller');
+      this.scrollerInner = $('.page.page-calendar .scroller .inner');
       this.navigate(_now.getFullYear(), _now.getWeek());
       return true;
     }

@@ -23635,16 +23635,29 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
         this.header.style.top = '';
       }
       this.timeRange.style.height = '';
+      this.el.style.opacity = '';
+      this.el.style.WebkitTransform = '';
       return true;
     },
     processScroll: function(obj, val) {
-      val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      var _frac, _height, _val;
+
+      _height = obj.height - this.MIN_BLOCK_HEIGHT;
+      _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       if (ovivo.config.TRANSFORM !== false) {
-        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + val + "px)";
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + _val + "px)";
       } else {
-        this.header.style.top = "" + val + "px";
+        this.header.style.top = "" + _val + "px";
       }
-      this.timeRange.style.height = "" + (obj.height - val) + "px";
+      if (_val !== val) {
+        _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
+        this.el.style.opacity = 1 - 0.5 * Math.pow(_frac, 2);
+        this.el.style.WebkitTransform = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px)";
+      } else {
+        this.el.style.opacity = '';
+        this.el.style.WebkitTransform = '';
+      }
+      this.timeRange.style.height = "" + (obj.height - _val) + "px";
       return true;
     },
     addBlock: function(block) {
@@ -23900,6 +23913,7 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
         }
         this._prev = null;
       }
+      this.el.style.top = "" + (-val) + "px";
       _res = binarySearch(this._RNScrollData, val, this._RNComparator);
       if (_res !== null) {
         _res.model.processScroll(_res, val - _res.start);
@@ -23923,7 +23937,7 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       return 0;
     },
     _calcScrollData: function() {
-      this._offsetHeight = this.el.offsetHeight;
+      this.scrollerInner.height(this._offsetHeight = this.el.offsetHeight);
       this._RNScrollData = this.resourceNeedWeeks.getScrollData();
       this._scrollDataFlag = true;
       return true;
@@ -23981,6 +23995,11 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       });
     },
     _updateScroll: function() {
+      var _this = this;
+
+      setTimeout((function() {
+        return _this.scrollerInner.height(_this._offsetHeight = _this.el.offsetHeight);
+      }), 150);
       return this._scrollDataFlag = false;
     },
     initialize: function() {
@@ -23996,6 +24015,8 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       this.model.frame.periodBlocks.on('add', this._updateScroll, this);
       this.model.frame.periodBlocks.on('remove', this._updateScroll, this);
       this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
+      this.scroller = $('.page.page-calendar .scroller');
+      this.scrollerInner = $('.page.page-calendar .scroller .inner');
       return true;
     }
   }));
@@ -24073,16 +24094,18 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     el: '.page.page-calendar .week-view',
     name: 'week',
     Collectors: Weeks,
-    events: {
-      'scroll': 'processScroll'
-    },
-    processScroll: function() {
+    events: {},
+    processScroll: function(e, val) {
+      if (val == null) {
+        val = this.scroller[0].scrollTop;
+      }
       if (this._scrollDataFlag === false) {
         this._offsetHeight = this.el.offsetHeight;
+        this.scrollerInner.height(this._scrollHeight = this.el.scrollHeight);
         this._scrollDataFlag = true;
       }
       if (this.currentModel !== null) {
-        this.currentModel.view.processScroll(this.el.scrollTop, this._offsetHeight);
+        this.currentModel.view.processScroll(val, this._offsetHeight);
       }
       return true;
     },
@@ -24100,10 +24123,13 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
 
       this.processScroll();
       return setTimeout((function() {
+        _this.scrollerInner.height(_this._scrollHeight = _this.el.scrollHeight);
+        _this.scroller[0].scrollTop = 0;
+        _this.processScroll(null, 0);
         if (_this.currentModel !== null) {
           return _this.currentModel.view._updateScroll();
         }
-      }), 50);
+      }), 100);
     },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);
@@ -24169,6 +24195,8 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
         year: $('.page.page-calendar header .week-banner .year-value')
       };
       this.todayButton = $('.page.page-calendar header .week-today');
+      this.scroller = $('.page.page-calendar .scroller');
+      this.scrollerInner = $('.page.page-calendar .scroller .inner');
       this.navigate(_now.getFullYear(), _now.getWeek());
       return true;
     }
@@ -24235,6 +24263,12 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     next: function() {
       return this.subViews[this.mode].next();
     },
+    processScroll: function(e) {
+      if (this.subViews[this.mode].processScroll) {
+        this.subViews[this.mode].processScroll();
+      }
+      return true;
+    },
     today: function() {
       return this.subViews[this.mode].today();
     },
@@ -24247,6 +24281,7 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     },
     transitionComplete: function() {
       this.proxyCall('transitionComplete', arguments);
+      this.processScroll();
       return true;
     },
     processViewSwitcherValue: function(value) {
@@ -24263,6 +24298,7 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
+      this.$('.scroller').on('scroll', _.bind(this.processScroll, this));
       this.proxyCall('initialize', arguments);
       return true;
     }
