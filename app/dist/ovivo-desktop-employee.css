@@ -1968,10 +1968,10 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   position: absolute;
   top: 0;
   right: 15px;
-  bottom: -20px;
+  bottom: 0;
   width: 25px;
   margin-top: 144px;
-  overflow: scroll; }
+  overflow-y: scroll; }
   .page.page-calendar > div.scroller > div.inner {
     height: 200%;
     width: 1px; }
