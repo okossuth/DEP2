@@ -1,9 +1,17 @@
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
   padding: 8px 29px 20px 187px;
   position: relative;
-  -webkit-perspective: 3000px; }
+  -webkit-perspective: 3000px;
+  -moz-perspective: 3000px;
+  -ms-perspective: 3000px;
+  -o-perspective: 3000px;
+  perspective: 3000px; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
     -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
     display: block;
     position: relative;
     margin: 10px 0 0 0; }
