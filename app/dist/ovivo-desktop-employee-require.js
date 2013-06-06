@@ -23746,6 +23746,7 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'ovivo']
       }
       this.timeRange.style.height = '';
       this.el.style.opacity = '';
+      this.$el.removeClass('folding');
       if (ovivo.config.TRANSFORM !== false) {
         this.el.style[ovivo.config.TRANSFORM] = '';
       }

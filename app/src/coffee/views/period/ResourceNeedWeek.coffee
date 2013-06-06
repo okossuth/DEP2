@@ -34,6 +34,8 @@ define [
 
       @el.style.opacity = ''
 
+      @$el.removeClass 'folding'
+
       if ovivo.config.TRANSFORM isnt false
           @el.style[ovivo.config.TRANSFORM] = ''
 
