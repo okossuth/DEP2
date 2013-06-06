@@ -23,7 +23,9 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       }
       this.timeRange.style.height = '';
       this.el.style.opacity = '';
-      this.el.style.WebkitTransform = '';
+      if (ovivo.config.TRANSFORM !== false) {
+        this.el.style[ovivo.config.TRANSFORM] = '';
+      }
       return true;
     },
     processScroll: function(obj, val) {
@@ -38,11 +40,15 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       }
       if (_val !== val) {
         _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
-        this.el.style.opacity = 1 - 0.5 * Math.pow(_frac, 2);
-        this.el.style.WebkitTransform = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px)";
+        this.el.style.opacity = Math.pow(1 - _frac, 2);
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px)";
+        }
       } else {
         this.el.style.opacity = '';
-        this.el.style.WebkitTransform = '';
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = '';
+        }
       }
       this.timeRange.style.height = "" + (obj.height - _val) + "px";
       return true;

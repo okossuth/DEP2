@@ -33,7 +33,9 @@ define [
       @timeRange.style.height = ''
 
       @el.style.opacity = ''
-      @el.style.WebkitTransform = ''
+
+      if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = ''
 
       true
 
@@ -50,12 +52,16 @@ define [
       if _val isnt val
         _frac = (val - _val) / @MIN_BLOCK_HEIGHT
 
-        @el.style.opacity = 1 - 0.5 * Math.pow(_frac, 2)
-        @el.style.WebkitTransform = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px)"
+        @el.style.opacity = Math.pow(1 - _frac, 2)
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px)"
 
       else
         @el.style.opacity = ''
-        @el.style.WebkitTransform = ''
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = ''
 
       @timeRange.style.height = "#{obj.height - _val}px"
 
