@@ -97,7 +97,11 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       });
     },
     _updateScroll: _.throttle((function() {
-      console.log('ddd');
+      var _this = this;
+
+      setTimeout((function() {
+        return _this.scrollerInner.height(_this._offsetHeight = _this.el.offsetHeight);
+      }), 150);
       return this._scrollDataFlag = false;
     }), 50),
     initialize: function() {

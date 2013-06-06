@@ -90,8 +90,7 @@ define [
       @frameInitDef.done => @container.append model.view.$el
 
     _updateScroll: _.throttle (() ->
-      console.log 'ddd'
-      # setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 500
+      setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 150
 
       @_scrollDataFlag = false), 50
 
