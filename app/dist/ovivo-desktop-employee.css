@@ -1636,10 +1636,28 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       margin: 3px 0 0 17px;
       position: relative;
       z-index: 1; }
-      .page.page-calendar > header > div.line > .button.add-groups i.plus {
+      .page.page-calendar > header > div.line > .button.add-groups.swap-icons i.plus {
+        display: none; }
+      .page.page-calendar > header > div.line > .button.add-groups.swap-icons i.cross {
+        display: block; }
+      .page.page-calendar > header > div.line > .button.add-groups.rotate i.plus {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg); }
+      .page.page-calendar > header > div.line > .button.add-groups i.plus, .page.page-calendar > header > div.line > .button.add-groups i.cross {
         position: absolute;
         top: 11px;
         left: 14px; }
+      .page.page-calendar > header > div.line > .button.add-groups i.plus {
+        -webkit-transition: -webkit-transform 300ms;
+        -moz-transition: -webkit-transform 300ms;
+        -ms-transition: -webkit-transform 300ms;
+        -o-transition: -webkit-transform 300ms;
+        transition: -webkit-transform 300ms; }
+      .page.page-calendar > header > div.line > .button.add-groups i.cross {
+        display: none; }
     .page.page-calendar > header > div.line > .button.button-resources {
       padding: 14px 28px;
       margin: 0 19px 0 0;
@@ -1689,7 +1707,8 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0; }
+    bottom: 0;
+    min-width: 209px; }
     .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item {
       display: block;
       margin-top: 2px; }

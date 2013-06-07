@@ -17,6 +17,16 @@ define [
       'click .today': 'today'
       'click .button-create-new': 'createNew'
       'click .button-resources': 'navigateResources'
+      'click .add-groups': 'addGroupsClick'
+
+    addGroupsClick: () ->
+      if ovivo.config.TRANSFORM is false
+        @$('.add-groups').toggleClass 'swap-icons'
+
+      else
+        @$('.add-groups').toggleClass 'rotate'
+
+      @$('.groups-popup').toggle 300
 
     navigateResources: () ->
       ovivo.desktop.pages.resources.show()

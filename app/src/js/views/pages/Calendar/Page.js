@@ -8,8 +8,17 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
         'click .navigate-right': 'next',
         'click .today': 'today',
         'click .button-create-new': 'createNew',
-        'click .button-resources': 'navigateResources'
+        'click .button-resources': 'navigateResources',
+        'click .add-groups': 'addGroupsClick'
       });
+    },
+    addGroupsClick: function() {
+      if (ovivo.config.TRANSFORM === false) {
+        this.$('.add-groups').toggleClass('swap-icons');
+      } else {
+        this.$('.add-groups').toggleClass('rotate');
+      }
+      return this.$('.groups-popup').toggle(300);
     },
     navigateResources: function() {
       return ovivo.desktop.pages.resources.show();
