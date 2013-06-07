@@ -61,6 +61,8 @@ require [
   'models/pages/Resources',
   'models/pages/Settings',
   'models/pages/Notifications',
+  'models/pages/Feedback',
+  'models/pages/Help',
 
   'views/SideBar',
 
@@ -80,7 +82,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, FeedbackPage, HelpPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -125,7 +127,9 @@ require [
         { name: 'calendar', constr: CalendarPage },
         { name: 'resources', constr: ResourcesPage },
         { name: 'settings', constr: SettingsPage },
-        { name: 'notifications', constr: NotificationsPage }
+        { name: 'notifications', constr: NotificationsPage },
+        { name: 'feedback', constr: FeedbackPage },
+        { name: 'help', constr: HelpPage }
       ], (o) ->
         _page = ovivo.desktop.pages.addPage o.constr, o.name
 
