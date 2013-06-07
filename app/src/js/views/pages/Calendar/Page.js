@@ -26,6 +26,12 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       }
       return true;
     },
+    _postNavigate: function() {
+      if (this.subViews[this.mode]._postNavigate) {
+        this.subViews[this.mode]._postNavigate();
+      }
+      return true;
+    },
     today: function() {
       return this.subViews[this.mode].today();
     },
@@ -38,7 +44,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
     },
     transitionComplete: function() {
       this.proxyCall('transitionComplete', arguments);
-      this.processScroll();
+      this._postNavigate();
       return true;
     },
     processViewSwitcherValue: function(value) {

@@ -139,7 +139,7 @@ i.logo {
   width: 140px;
   height: 40px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.logo.inline {
     display: inline-block; }
   i.logo.title {
@@ -150,7 +150,7 @@ i.icon {
   width: 29px;
   height: 29px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.icon.inline {
     display: inline-block; }
   i.icon.left {
@@ -177,13 +177,30 @@ i.icon-huge {
   width: 125px;
   height: 125px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.icon-huge.inline {
     display: inline-block; }
   i.icon-huge.ok {
     background-position: -169px 0px; }
   i.icon-huge.facebook {
     background-position: -169px -125px; }
+
+i.icon-smaller {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../assets/img/sprite.png") no-repeat;
+  background-size: 318px 261px; }
+  i.icon-smaller.inline {
+    display: inline-block; }
+  i.icon-smaller.checkbox {
+    background-position: -294px 0px; }
+  i.icon-smaller.checkbox.checked {
+    background-position: -294px -24px; }
+  i.icon-smaller.plus {
+    background-position: -294px -48px; }
+  i.icon-smaller.cross {
+    background-position: -294px -72px; }
 
 section.page .notification-message {
   position: absolute;
@@ -1615,10 +1632,14 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       font-size: 18px;
       color: black; }
     .page.page-calendar > header > div.line > .button.add-groups {
-      padding: 14px 28px;
+      padding: 14px 28px 14px 40px;
       margin: 3px 0 0 17px;
       position: relative;
       z-index: 1; }
+      .page.page-calendar > header > div.line > .button.add-groups i.plus {
+        position: absolute;
+        top: 11px;
+        left: 14px; }
     .page.page-calendar > header > div.line > .button.button-resources {
       padding: 14px 28px;
       margin: 0 19px 0 0;
@@ -1654,21 +1675,15 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
 
 .page.page-calendar > header .groups-popup {
   position: absolute;
-  top: -10px;
-  left: 6px;
+  top: 60px;
+  left: 22px;
   z-index: 0;
-  width: 300px;
-  height: 500px;
+  width: 209px;
+  height: 280px;
   background: white;
-  border: 2px solid black; }
-  .page.page-calendar > header .groups-popup > .button.close {
-    position: absolute;
-    top: 16px;
-    right: 15px;
-    width: 40px; }
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
   .page.page-calendar > header .groups-popup > ul.groups-list {
-    background: #edf0f2;
-    margin: 70px 15px 15px 15px;
     padding: 15px;
     position: absolute;
     top: 0;
@@ -1677,7 +1692,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     bottom: 0; }
     .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item {
       display: block;
-      margin-top: 15px; }
+      margin-top: 2px; }
       .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item:first-child {
         margin-top: 0; }
       .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > * {

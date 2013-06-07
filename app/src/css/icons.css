@@ -3,7 +3,7 @@ i.logo {
   width: 140px;
   height: 40px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.logo.inline {
     display: inline-block; }
   i.logo.title {
@@ -14,7 +14,7 @@ i.icon {
   width: 29px;
   height: 29px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.icon.inline {
     display: inline-block; }
   i.icon.left {
@@ -41,10 +41,27 @@ i.icon-huge {
   width: 125px;
   height: 125px;
   background: url("../assets/img/sprite.png") no-repeat;
-  background-size: 294px 261px; }
+  background-size: 318px 261px; }
   i.icon-huge.inline {
     display: inline-block; }
   i.icon-huge.ok {
     background-position: -169px 0px; }
   i.icon-huge.facebook {
     background-position: -169px -125px; }
+
+i.icon-smaller {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../assets/img/sprite.png") no-repeat;
+  background-size: 318px 261px; }
+  i.icon-smaller.inline {
+    display: inline-block; }
+  i.icon-smaller.checkbox {
+    background-position: -294px 0px; }
+  i.icon-smaller.checkbox.checked {
+    background-position: -294px -24px; }
+  i.icon-smaller.plus {
+    background-position: -294px -48px; }
+  i.icon-smaller.cross {
+    background-position: -294px -72px; }

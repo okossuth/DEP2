@@ -29,6 +29,11 @@ define [
 
       true
 
+    _postNavigate: () ->
+      if @subViews[@mode]._postNavigate then @subViews[@mode]._postNavigate()
+
+      true
+
     today: () ->
       @subViews[@mode].today()
 
@@ -43,7 +48,7 @@ define [
     transitionComplete: () ->
       @proxyCall 'transitionComplete', arguments
 
-      @processScroll()
+      @_postNavigate()
 
       true
 

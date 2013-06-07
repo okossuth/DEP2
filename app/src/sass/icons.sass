@@ -1,4 +1,4 @@
-$spriteWidth: 294px
+$spriteWidth: 318px
 $spriteHeight: 261px
 
 @mixin icon-body($sizeW, $sizeH, $shift, $iconNames, $backgroundUrl)
@@ -26,4 +26,7 @@ i.icon
 
 i.icon-huge
   @include icon-body(125px, 125px, -169px, ('ok', 'facebook') , '../assets/img/sprite.png')
+
+i.icon-smaller
+  @include icon-body(24px, 24px, -294px, ('checkbox', 'checkbox.checked', 'plus', 'cross') , '../assets/img/sprite.png')
     

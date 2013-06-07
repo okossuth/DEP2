@@ -24421,6 +24421,12 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       }
       return true;
     },
+    _postNavigate: function() {
+      if (this.subViews[this.mode]._postNavigate) {
+        this.subViews[this.mode]._postNavigate();
+      }
+      return true;
+    },
     today: function() {
       return this.subViews[this.mode].today();
     },
@@ -24433,7 +24439,7 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     },
     transitionComplete: function() {
       this.proxyCall('transitionComplete', arguments);
-      this.processScroll();
+      this._postNavigate();
       return true;
     },
     processViewSwitcherValue: function(value) {
