@@ -22455,7 +22455,9 @@ define('collections/Pages',['_features/transition', 'models/Page', 'ovivo'], fun
       var _args;
 
       _args = Array.prototype.slice.call(arguments, 1);
-      ovivo.desktop.sideBar.setPage(page.page.name);
+      if (page.page.menuFlag !== false) {
+        ovivo.desktop.sideBar.setPage(page.page.name);
+      }
       if (this.current !== page) {
         if ((this.current !== void 0) && (page.page.popup !== true)) {
           this.transition(this.current, page, _args);
@@ -25016,6 +25018,7 @@ define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Resour
 define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     saveState: false,
+    menuFlag: false,
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);

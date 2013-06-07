@@ -7,6 +7,8 @@ define [
 ], (PageBase, View) ->
   PageBase.extend
     saveState: false
+
+    menuFlag: false
     
     initialize: (attrs, options) ->
       @View = View
