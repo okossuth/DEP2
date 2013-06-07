@@ -56,6 +56,26 @@ define [
     () ->
       def.resolve()
 
+  bounceRepeater: (start, bounce, func) ->
+    _func = (args, delay, iteration) ->
+      _timeoutFunc = () =>
+        func.apply @, args
+
+        iteration -= 1
+
+        if iteration is 0 then return
+
+        delay *= 2
+
+        setTimeout _timeoutFunc, delay
+
+      setTimeout _timeoutFunc, delay
+
+    () ->
+      _args = Array.prototype.slice.call arguments, 0
+
+      _func.call @, _args, start, bounce
+
   throttleGroup: (funcName, groupFuncName, limit) ->
     _processGroupCall = () ->
       @[groupFuncName] @common.calls

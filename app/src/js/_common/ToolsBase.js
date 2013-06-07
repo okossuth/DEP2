@@ -68,6 +68,31 @@ define(['ovivo'], function() {
         return def.resolve();
       };
     },
+    bounceRepeater: function(start, bounce, func) {
+      var _func;
+
+      _func = function(args, delay, iteration) {
+        var _timeoutFunc,
+          _this = this;
+
+        _timeoutFunc = function() {
+          func.apply(_this, args);
+          iteration -= 1;
+          if (iteration === 0) {
+            return;
+          }
+          delay *= 2;
+          return setTimeout(_timeoutFunc, delay);
+        };
+        return setTimeout(_timeoutFunc, delay);
+      };
+      return function() {
+        var _args;
+
+        _args = Array.prototype.slice.call(arguments, 0);
+        return _func.call(this, _args, start, bounce);
+      };
+    },
     throttleGroup: function(funcName, groupFuncName, limit) {
       var _processGroupCall;
 

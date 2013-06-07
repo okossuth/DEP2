@@ -5,9 +5,10 @@ define [
   'collections/period/ResourceNeedWeeks',
 
   '_features/binarySearch',
+  '_common/ToolsBase',
 
   'ovivo'
-], (DaysCollector, ResourceBase, ResourceNeedWeeks, binarySearch) ->
+], (DaysCollector, ResourceBase, ResourceNeedWeeks, binarySearch, ToolsBase) ->
   ResourceBase.extend _.extend {}, DaysCollector,
     common: {}
 
@@ -89,10 +90,13 @@ define [
     addResourceNeed: (model) ->
       @frameInitDef.done => @container.append model.view.$el
 
-    _updateScroll: _.throttle (() ->
-      setTimeout (() => @scrollerInner.height @_offsetHeight = @el.offsetHeight), 150
+    _updateScrollThrottledRepeater: _.throttle (ToolsBase.bounceRepeater 50, 3, () -> 
+      @scrollerInner.height @_offsetHeight = @el.offsetHeight
 
-      @_scrollDataFlag = false), 50
+      @_scrollDataFlag = false), 100
+
+    _updateScroll: () ->
+      if @model.visible then @_updateScrollThrottledRepeater()
 
     initialize: () ->
       @frameInitDef = new $.Deferred()

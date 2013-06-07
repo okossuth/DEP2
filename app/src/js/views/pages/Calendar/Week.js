@@ -34,15 +34,11 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       };
     },
     _postNavigate: function() {
-      var _this = this;
-
-      this.processScroll();
-      return setTimeout((function() {
-        _this.scroller[0].scrollTop = 0;
-        if (_this.currentModel !== null) {
-          return _this.currentModel.view._updateScroll();
-        }
-      }), 100);
+      this.scroller[0].scrollTop = 0;
+      this.processScroll(null, 0);
+      if (this.currentModel !== null) {
+        return this.currentModel.view._updateScroll();
+      }
     },
     prev: function() {
       this.current.moveToDayOfWeek(4, -1);

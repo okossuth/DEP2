@@ -40,12 +40,10 @@ define [
       number: number
 
     _postNavigate: () ->
-      @processScroll()
+      @scroller[0].scrollTop = 0
+      @processScroll null, 0
 
-      setTimeout (() =>
-        @scroller[0].scrollTop = 0
-
-        if @currentModel isnt null then @currentModel.view._updateScroll()), 100
+      if @currentModel isnt null then @currentModel.view._updateScroll()
 
     prev: () -> 
       @current.moveToDayOfWeek(4, -1)

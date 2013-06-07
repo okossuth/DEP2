@@ -19,7 +19,9 @@ define(['_common/ToolsBase', 'collections/calendar/Days', 'ovivo'], function(Too
       if (this.prevElem != null) {
         this.prevElem.hide();
         this.trigger('hide', this.prevElem);
+        delete this.prevElem.visible;
       }
+      elem.visible = true;
       elem.show();
       this.trigger('show', elem);
       return this.prevElem = elem;

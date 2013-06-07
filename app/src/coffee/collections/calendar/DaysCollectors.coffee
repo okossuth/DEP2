@@ -22,6 +22,10 @@ define [
 
         @trigger 'hide', @prevElem
 
+        delete @prevElem.visible
+
+      elem.visible = true
+
       elem.show()
       
       @trigger 'show', elem
