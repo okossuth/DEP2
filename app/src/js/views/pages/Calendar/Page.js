@@ -7,8 +7,12 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
         'click .navigate-left': 'prev',
         'click .navigate-right': 'next',
         'click .today': 'today',
-        'click .button-create-new': 'createNew'
+        'click .button-create-new': 'createNew',
+        'click .button-resources': 'navigateResources'
       });
+    },
+    navigateResources: function() {
+      return ovivo.desktop.pages.resources.show();
     },
     prev: function() {
       return this.subViews[this.mode].prev();

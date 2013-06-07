@@ -24402,8 +24402,12 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
         'click .navigate-left': 'prev',
         'click .navigate-right': 'next',
         'click .today': 'today',
-        'click .button-create-new': 'createNew'
+        'click .button-create-new': 'createNew',
+        'click .button-resources': 'navigateResources'
       });
+    },
+    navigateResources: function() {
+      return ovivo.desktop.pages.resources.show();
     },
     prev: function() {
       return this.subViews[this.mode].prev();
@@ -27715,6 +27719,7 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
+      ovivo.spinner.stop();
       setTimeout((function() {
         return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-hide');
       }), 50);

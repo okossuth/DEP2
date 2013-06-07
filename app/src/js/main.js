@@ -101,6 +101,7 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       return ovivo.desktop.resources[o.name].def;
     })).then(function() {
       ovivo.desktop.pages.calendar.show();
+      ovivo.spinner.stop();
       setTimeout((function() {
         return ovivo.desktop.pages.calendar.view.$el.removeClass('initial-hide');
       }), 50);

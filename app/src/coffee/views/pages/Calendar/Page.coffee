@@ -16,6 +16,10 @@ define [
       'click .navigate-right': 'next'
       'click .today': 'today'
       'click .button-create-new': 'createNew'
+      'click .button-resources': 'navigateResources'
+
+    navigateResources: () ->
+      ovivo.desktop.pages.resources.show()
 
     prev: () -> @subViews[@mode].prev()
     next: () -> @subViews[@mode].next()

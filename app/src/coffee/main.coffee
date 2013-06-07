@@ -109,6 +109,8 @@ require [
 
         ovivo.desktop.pages.calendar.show()
 
+        ovivo.spinner.stop()
+
         setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-hide')), 50
 
         setTimeout (() -> ovivo.desktop.pages.calendar.view.$el.removeClass('initial-loading')), 2500
