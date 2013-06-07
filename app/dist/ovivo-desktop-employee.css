@@ -2397,6 +2397,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     cursor: auto;
     font-style: italic; }
 
+.page.page-resources > header .button-close {
+  width: 40px; }
+
 .page.page-resources .content-timeline .timeline {
   position: absolute;
   top: 40px;

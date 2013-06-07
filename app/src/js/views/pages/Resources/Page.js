@@ -3,7 +3,14 @@ define(['views/pages/PageBase', 'views/pages/Resources/Templates', 'views/pages/
   return PageBase.extend({
     el: '.page.page-resources',
     events: function() {
-      return _.extend({}, PageBase.prototype.events, {});
+      return _.extend({}, PageBase.prototype.events, {
+        'click .button-close': 'clickClose'
+      });
+    },
+    clickClose: function(e) {
+      ovivo.desktop.pages.calendar.show();
+      e.stopPropagation();
+      return false;
     },
     transitionStart: function() {
       this.proxyCall('transitionStart', arguments);

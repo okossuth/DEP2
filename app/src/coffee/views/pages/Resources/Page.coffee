@@ -11,7 +11,15 @@ define [
   PageBase.extend
     el: '.page.page-resources'
 
-    events: () -> _.extend {}, PageBase.prototype.events, {}
+    events: () -> _.extend {}, PageBase.prototype.events,
+      'click .button-close': 'clickClose'
+
+    clickClose: (e) ->
+      ovivo.desktop.pages.calendar.show()
+
+      e.stopPropagation()
+
+      false
 
     transitionStart: () ->
       @proxyCall 'transitionStart', arguments
