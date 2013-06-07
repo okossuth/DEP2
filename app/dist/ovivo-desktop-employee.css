@@ -1427,7 +1427,7 @@ section.page .notification-message {
   display: none; }
 
 .side-bar ul.menu {
-  margin: 0 0 0 253px;
+  margin: 0 33px 0 253px;
   position: absolute;
   top: 0;
   left: 0;
@@ -1441,6 +1441,8 @@ section.page .notification-message {
     height: 21px;
     font-size: 16px;
     color: #999999; }
+    .side-bar ul.menu > li.right {
+      float: right; }
     .side-bar ul.menu > li.selected {
       color: #fd5308; }
     .side-bar ul.menu > li > a {
@@ -1605,6 +1607,8 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
   background: #edf0f2;
   height: 88px; }
   .page.page-calendar > header > div.line {
+    position: relative;
+    z-index: 1;
     margin-right: 30px; }
     .page.page-calendar > header > div.line > span.title {
       margin-left: 20px;
@@ -1612,7 +1616,13 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       color: black; }
     .page.page-calendar > header > div.line > .button.add-groups {
       padding: 14px 28px;
-      margin: 3px 0 0 17px; }
+      margin: 3px 0 0 17px;
+      position: relative;
+      z-index: 1; }
+    .page.page-calendar > header > div.line > .button.button-resources {
+      padding: 14px 28px;
+      margin: 0 19px 0 0;
+      float: right; }
     .page.page-calendar > header > div.line > ul.groups-list {
       display: inline-block;
       font-size: 16px;
@@ -1641,6 +1651,42 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         .page.page-calendar > header .weekdays ul.row > li > span {
           display: block;
           margin: 0 0 0 7px; }
+
+.page.page-calendar > header .groups-popup {
+  position: absolute;
+  top: -10px;
+  left: 6px;
+  z-index: 0;
+  width: 300px;
+  height: 500px;
+  background: white;
+  border: 2px solid black; }
+  .page.page-calendar > header .groups-popup > .button.close {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    width: 40px; }
+  .page.page-calendar > header .groups-popup > ul.groups-list {
+    background: #edf0f2;
+    margin: 70px 15px 15px 15px;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+    .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item {
+      display: block;
+      margin-top: 15px; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item:first-child {
+        margin-top: 0; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > * {
+        vertical-align: middle; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > input {
+        position: relative;
+        top: 1px; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > span {
+        margin: 0 0 0 10px; }
 
 .page.page-calendar > header div.static-headers {
   position: absolute;

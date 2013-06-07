@@ -2,6 +2,8 @@
   background: #edf0f2;
   height: 88px; }
   .page.page-calendar > header > div.line {
+    position: relative;
+    z-index: 1;
     margin-right: 30px; }
     .page.page-calendar > header > div.line > span.title {
       margin-left: 20px;
@@ -9,7 +11,13 @@
       color: black; }
     .page.page-calendar > header > div.line > .button.add-groups {
       padding: 14px 28px;
-      margin: 3px 0 0 17px; }
+      margin: 3px 0 0 17px;
+      position: relative;
+      z-index: 1; }
+    .page.page-calendar > header > div.line > .button.button-resources {
+      padding: 14px 28px;
+      margin: 0 19px 0 0;
+      float: right; }
     .page.page-calendar > header > div.line > ul.groups-list {
       display: inline-block;
       font-size: 16px;

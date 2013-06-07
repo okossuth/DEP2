@@ -1,0 +1,35 @@
+.page.page-calendar > header .groups-popup {
+  position: absolute;
+  top: -10px;
+  left: 6px;
+  z-index: 0;
+  width: 300px;
+  height: 500px;
+  background: white;
+  border: 2px solid black; }
+  .page.page-calendar > header .groups-popup > .button.close {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    width: 40px; }
+  .page.page-calendar > header .groups-popup > ul.groups-list {
+    background: #edf0f2;
+    margin: 70px 15px 15px 15px;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+    .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item {
+      display: block;
+      margin-top: 15px; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item:first-child {
+        margin-top: 0; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > * {
+        vertical-align: middle; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > input {
+        position: relative;
+        top: 1px; }
+      .page.page-calendar > header .groups-popup > ul.groups-list > li.group-item > span {
+        margin: 0 0 0 10px; }

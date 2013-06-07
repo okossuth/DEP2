@@ -53,6 +53,41 @@
                         <li>Birgittegården</li>
                     </ul>
 
+                    <div class="groups-popup" style="display: none;">
+                        <div class="button close">X</div>
+
+                        <ul class="groups-list">
+                            <li class="group-item">
+                                <input type="checkbox" />
+                                <span>Root group 1</span>
+                            </li>
+
+                            <li class="group-item">
+                                <input type="checkbox" />
+                                <span>Root group 1</span>
+                            </li>
+
+                            <li class="group-item">
+                                <input type="checkbox" />
+                                <span>Root group 1</span>
+                            </li>
+
+                            <li class="group-item">
+                                <input type="checkbox" />
+                                <span>Root group 1</span>
+                            </li>
+
+                            <li class="group-item">
+                                <input type="checkbox" />
+                                <span>Root group 1</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="button black week-only button-resources">
+                        <span>{{#i18n}}Resources{{/i18n}}</span>
+                    </div>
+
                     <!-- <ul class="switcher switcher-view">
                         <li>
                             <span>{{#i18n}}Week{{/i18n}}</span>
@@ -605,20 +640,44 @@
             </h1>
 
             <ul class="menu">
+                <li>
+                    {{#i18n}}Dashboard{{/i18n}}
+                </li>
+
                 <li id="menu-item-calendar" class="menu-item">
                     {{#i18n}}Calendar{{/i18n}}
                 </li>
 
-                <li id="menu-item-resources" class="menu-item">
-                    {{#i18n}}Resources{{/i18n}}
+                <li>
+                    {{#i18n}}Employees{{/i18n}}
+                </li>
+
+                <li>
+                    {{#i18n}}Inbox{{/i18n}}
+                </li>
+
+                <li>
+                    {{#i18n}}App store{{/i18n}}
                 </li>
 
                 <li id="menu-item-settings" class="menu-item">
                     {{#i18n}}Settings{{/i18n}}
                 </li>
 
-                <li>
+                <li class="right">
                     <a href="#">{{#i18n}}Logout{{/i18n}}</a>
+                </li>
+
+                <li class="right">
+                    {{#i18n}}Ovivo Test{{/i18n}}
+                </li>
+
+                <li class="right">
+                    {{#i18n}}Help{{/i18n}}
+                </li>
+
+                <li class="right">
+                    {{#i18n}}Feedback{{/i18n}}
                 </li>
             </ul>
         </section>
