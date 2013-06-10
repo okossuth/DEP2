@@ -22,6 +22,7 @@ define [
       'matched_employees'
       'matched_hours'
       'empty_slots'
+      'group'
       ['start_time', 'resourceNeed']
       ['end_time', 'resourceNeed']
       ['skill', 'resourceNeed']

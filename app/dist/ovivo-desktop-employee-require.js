@@ -26528,7 +26528,7 @@ define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase)
 define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(EventUsers, View, Block) {
   return Block.extend({
     idAttribute: 'cid',
-    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', 'matched_employees', 'matched_hours', 'empty_slots', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
+    _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', 'matched_employees', 'matched_hours', 'empty_slots', 'group', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
     dateKey: function() {
       var _date;
 
