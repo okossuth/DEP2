@@ -2,13 +2,13 @@ define [
   'views/calendar/DaysCollector',
   'views/resources/ResourceBase',
 
-  'collections/period/ResourceNeedWeeks',
+  'collections/period/PeriodGroups',
 
   '_features/binarySearch',
   '_common/ToolsBase',
 
   'ovivo'
-], (DaysCollector, ResourceBase, ResourceNeedWeeks, binarySearch, ToolsBase) ->
+], (DaysCollector, ResourceBase, PeriodGroups, binarySearch, ToolsBase) ->
   ResourceBase.extend _.extend {}, DaysCollector,
     common: {}
 
@@ -27,7 +27,7 @@ define [
 
       @el.style.top = "#{-val}px"
 
-      _res = binarySearch @_RNScrollData, val, @_RNComparator
+      _res = binarySearch @_pGScrollData, val, @_pGComparator
 
       if _res isnt null
         _res.model.processScroll _res, val - _res.start
@@ -40,7 +40,7 @@ define [
 
       true
 
-    _RNComparator: (obj, val) ->
+    _pGComparator: (obj, val) ->
       return -1 if obj.start >= val 
 
       return 1 if obj.end < val 
@@ -50,7 +50,7 @@ define [
     _calcScrollData: () ->
       @scrollerInner.height @_offsetHeight = @el.offsetHeight
 
-      @_RNScrollData = @resourceNeedWeeks.getScrollData()
+      @_pGScrollData = @periodGroups.getScrollData()
 
       @_scrollDataFlag = true
 
@@ -65,17 +65,17 @@ define [
       _.each arr, (block) => @removeBlock block
 
     addBlock: (block) ->
-      _rn = @resourceNeedWeeks.getBy('pk', block.resourceNeed().pk())[0]
+      _periodGroup = @periodGroups.getBy('group', block.group())[0]
 
-      if not _rn? then _rn = @resourceNeedWeeks.addModel
-        resourceNeed: block.resourceNeed()
+      if not _periodGroup? then _periodGroup = @periodGroups.addModel
+        group: block.group()
 
-      _rn.addBlock block
+      _periodGroup.addBlock block
 
     removeBlock: (block) ->
-      _rn = @resourceNeedWeeks.getBy('pk', block.resourceNeed().pk())[0]
+      _periodGroup = @periodGroups.getBy('group', block.group())[0]
 
-      if _rn? then _rn.removeBlock block
+      if _periodGroup? then _periodGroup.removeBlock block
       
     _initFrame: () ->
       @addBlocks @model.frame.periodBlocks.map (b) -> b
@@ -83,11 +83,11 @@ define [
       @model.frame.periodBlocks.on 'add', @addBlock, @
       @model.frame.periodBlocks.on 'remove', @removeBlock, @
 
-      @container = @$('.resource-needs-rows')
+      @container = @$('.period-groups')
 
       @frameInitDef.resolve()
 
-    addResourceNeed: (model) ->
+    addPeriodGroup: (model) ->
       @frameInitDef.done => @container.append model.view.$el
 
     _updateScrollThrottledRepeater: _.throttle (ToolsBase.bounceRepeater 50, 3, () -> 
@@ -103,14 +103,14 @@ define [
 
       @_scrollDataFlag = false
 
-      @resourceNeedWeeks = new ResourceNeedWeeks()
+      @periodGroups = new PeriodGroups()
 
-      @resourceNeedWeeks.week = @
+      @periodGroups.week = @
 
-      @resourceNeedWeeks.on 'add', @addResourceNeed, @
+      @periodGroups.on 'add', @addPeriodGroup, @
 
-      @resourceNeedWeeks.on 'add', @_updateScroll, @
-      @resourceNeedWeeks.on 'remove', @_updateScroll, @
+      @periodGroups.on 'add', @_updateScroll, @
+      @periodGroups.on 'remove', @_updateScroll, @
 
       @model.on 'rendered', @_initFrame, @
 
