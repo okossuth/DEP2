@@ -1,4 +1,4 @@
-start node web.js
+start node server.js
 start coffee -o app/src/js/ -cwb app/src/coffee/
 start sass --style=nested app/src/sass:app/src/css --watch
 cd app
