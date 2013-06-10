@@ -171,7 +171,7 @@ define("date", ["modernizr"], function(){});
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
 // Support: Firefox 18+
-//"use strict";
+//
 var
     // The deferred used on DOM ready
     readyList,
@@ -9769,7 +9769,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 ;(function( $, document, undefined ) {
 
-    'use strict';
+    
 
 
 
