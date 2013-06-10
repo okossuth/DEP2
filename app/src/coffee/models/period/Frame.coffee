@@ -11,8 +11,21 @@ define [
       'end'
     ]
 
+    _compilePeriodGroups: (period, start, end) ->
+      if not (_groups = period.groups())? then return []
+
+      _blocksInitial = period.compile start, end
+
+      _.union.apply _, _.map _groups, (group) -> _blocksInitial.map (block) -> 
+        block = _.clone block
+
+        block.group = group
+        block.code += ".#{group}"
+
+        block
+
     addPeriod: (period) ->
-      _blocks = period.compile @start(), @end()
+      _blocks = @_compilePeriodGroups period, @start(), @end()
 
       @periodBlocks.add _blocks
 
@@ -25,8 +38,8 @@ define [
       _curBlocks = @periodBlocks.getBy('pk', period.pk())
       _curCodes = _.map _curBlocks, (block) -> block.code()
 
-      _newBlocks = period.compile @start(), @end()
-      _newCodes = _.map _newBlocks, (block) -> 
+      _newBlocks = @_compilePeriodGroups period, @start(), @end()
+      _newCodes = _.map _newBlocks, (block) ->
         _code = block.code
 
         _hash[_code] = block

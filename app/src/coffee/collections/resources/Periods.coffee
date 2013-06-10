@@ -35,7 +35,7 @@ define [
       ovivo.desktop.resources.templates.def.done () => @_processPeriodRemove model
 
     processFrameUpdate: do ->
-      _monitorChanges = ['templates', 'start_date', 'end_date']
+      _monitorChanges = ['templates', 'start_date', 'end_date', 'groups']
 
       (period) ->
         _int = _.intersection _.keys(period.changed), _monitorChanges

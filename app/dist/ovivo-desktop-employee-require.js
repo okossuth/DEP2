@@ -26682,10 +26682,26 @@ define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/p
 define('models/period/Frame',['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, PeriodBlocks) {
   return ResourceBase.extend({
     _gettersNames: ['start', 'end'],
+    _compilePeriodGroups: function(period, start, end) {
+      var _blocksInitial, _groups;
+
+      if ((_groups = period.groups()) == null) {
+        return [];
+      }
+      _blocksInitial = period.compile(start, end);
+      return _.union.apply(_, _.map(_groups, function(group) {
+        return _blocksInitial.map(function(block) {
+          block = _.clone(block);
+          block.group = group;
+          block.code += "." + group;
+          return block;
+        });
+      }));
+    },
     addPeriod: function(period) {
       var _blocks;
 
-      _blocks = period.compile(this.start(), this.end());
+      _blocks = this._compilePeriodGroups(period, this.start(), this.end());
       return this.periodBlocks.add(_blocks);
     },
     removePeriod: function(period) {
@@ -26704,7 +26720,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       _curCodes = _.map(_curBlocks, function(block) {
         return block.code();
       });
-      _newBlocks = period.compile(this.start(), this.end());
+      _newBlocks = this._compilePeriodGroups(period, this.start(), this.end());
       _newCodes = _.map(_newBlocks, function(block) {
         var _code;
 
@@ -27083,7 +27099,7 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
     processFrameUpdate: (function() {
       var _monitorChanges;
 
-      _monitorChanges = ['templates', 'start_date', 'end_date'];
+      _monitorChanges = ['templates', 'start_date', 'end_date', 'groups'];
       return function(period) {
         var _int;
 

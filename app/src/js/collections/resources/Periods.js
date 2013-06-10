@@ -40,7 +40,7 @@ define(['collections/period/Frames', 'models/resources/Period', '_common/Resourc
     processFrameUpdate: (function() {
       var _monitorChanges;
 
-      _monitorChanges = ['templates', 'start_date', 'end_date'];
+      _monitorChanges = ['templates', 'start_date', 'end_date', 'groups'];
       return function(period) {
         var _int;
 
