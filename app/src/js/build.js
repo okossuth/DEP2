@@ -7,7 +7,6 @@
     "jquery": "../../lib/jquery-1.9.1",
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
-    "airbrake": "../../lib/airbrake",
     "date": "../../lib/date",
     "pickadate": "../../lib/pickadate.legacy",
     "modernizr": "../../lib/modernizr"
