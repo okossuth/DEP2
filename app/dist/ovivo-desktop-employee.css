@@ -1468,7 +1468,7 @@ section.page .notification-message {
 
 .side-bar {
   position: absolute;
-  overflow: visible;
+  overflow: hidden;
   top: 0;
   left: 0;
   z-index: 10000;

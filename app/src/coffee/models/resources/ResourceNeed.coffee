@@ -150,6 +150,22 @@ define [
       @set 'startValue', @_startValue
       @set 'endValue', @_endValue
 
+    updateFrame: () ->
+      _templates = @templates()
+
+      if typeof _templates is 'object'
+        _.each (_.unique _.reduce _.keys(_templates), ((memo, id) ->
+          _periods = ovivo.desktop.resources.templates.get(id).periods()
+
+          memo.concat if typeof _periods is 'object'
+            _.keys _periods
+
+          else []), []), (id) -> 
+          _period = ovivo.desktop.resources.periods.get(id)
+          ovivo.desktop.resources.periods.trigger 'updateFrames', _period
+
+      true
+
     initialize: (attrs, options) ->
       @View = View
 
@@ -164,6 +180,9 @@ define [
 
       @on 'change:start_time', @updateTimeValues, @
       @on 'change:end_time', @updateTimeValues, @
+
+      @on 'change:start_time', @updateFrame, @
+      @on 'change:end_time', @updateFrame, @
 
       @updateTimeValues()
 

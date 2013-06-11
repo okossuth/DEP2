@@ -20,7 +20,7 @@ define [
         block = _.clone block
 
         block.group = group
-        block.code += ".#{group}"
+        block.code += ".#{group}.#{block.resourceNeed.start_time()}.#{block.resourceNeed.end_time()}"
 
         block
 

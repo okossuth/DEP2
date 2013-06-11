@@ -13,7 +13,7 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'ovi
         return _blocksInitial.map(function(block) {
           block = _.clone(block);
           block.group = group;
-          block.code += "." + group;
+          block.code += "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time());
           return block;
         });
       }));

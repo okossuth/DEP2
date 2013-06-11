@@ -148,6 +148,25 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       this.set('startValue', this._startValue);
       return this.set('endValue', this._endValue);
     },
+    updateFrame: function() {
+      var _templates;
+
+      _templates = this.templates();
+      if (typeof _templates === 'object') {
+        _.each(_.unique(_.reduce(_.keys(_templates), (function(memo, id) {
+          var _periods;
+
+          _periods = ovivo.desktop.resources.templates.get(id).periods();
+          return memo.concat(typeof _periods === 'object' ? _.keys(_periods) : []);
+        }), [])), function(id) {
+          var _period;
+
+          _period = ovivo.desktop.resources.periods.get(id);
+          return ovivo.desktop.resources.periods.trigger('updateFrames', _period);
+        });
+      }
+      return true;
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -157,6 +176,8 @@ define(['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/
       this.updateWeekdaysHash();
       this.on('change:start_time', this.updateTimeValues, this);
       this.on('change:end_time', this.updateTimeValues, this);
+      this.on('change:start_time', this.updateFrame, this);
+      this.on('change:end_time', this.updateFrame, this);
       this.updateTimeValues();
       return true;
     }

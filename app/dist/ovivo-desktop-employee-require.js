@@ -26159,6 +26159,25 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       this.set('startValue', this._startValue);
       return this.set('endValue', this._endValue);
     },
+    updateFrame: function() {
+      var _templates;
+
+      _templates = this.templates();
+      if (typeof _templates === 'object') {
+        _.each(_.unique(_.reduce(_.keys(_templates), (function(memo, id) {
+          var _periods;
+
+          _periods = ovivo.desktop.resources.templates.get(id).periods();
+          return memo.concat(typeof _periods === 'object' ? _.keys(_periods) : []);
+        }), [])), function(id) {
+          var _period;
+
+          _period = ovivo.desktop.resources.periods.get(id);
+          return ovivo.desktop.resources.periods.trigger('updateFrames', _period);
+        });
+      }
+      return true;
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this.proxyCall('initialize', arguments);
@@ -26168,6 +26187,8 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
       this.updateWeekdaysHash();
       this.on('change:start_time', this.updateTimeValues, this);
       this.on('change:end_time', this.updateTimeValues, this);
+      this.on('change:start_time', this.updateFrame, this);
+      this.on('change:end_time', this.updateFrame, this);
       this.updateTimeValues();
       return true;
     }
@@ -26936,7 +26957,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         return _blocksInitial.map(function(block) {
           block = _.clone(block);
           block.group = group;
-          block.code += "." + group;
+          block.code += "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time());
           return block;
         });
       }));
