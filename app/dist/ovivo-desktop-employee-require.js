@@ -25650,9 +25650,13 @@ define('views/SideBar',['ovivo'], function() {
       _item = this.$('#menu-item-' + name);
       return this._processItem(_item);
     },
+    renderUser: function() {
+      return this.$('.user-name-value').html("" + (ovivo.desktop.resources.user.first_name()) + " " + (ovivo.desktop.resources.user.last_name()));
+    },
     initialize: function() {
       ovivo.desktop.resources.notifications.on('reset', this.updateNotifications, this);
       ovivo.desktop.resources.notifications.on('add', this.updateNotifications, this);
+      ovivo.desktop.resources.user.def.done(_.bind(this.renderUser, this));
       return true;
     }
   });

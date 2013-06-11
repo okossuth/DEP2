@@ -48,8 +48,13 @@ define [
 
       @_processItem _item
 
+    renderUser: () ->
+      @$('.user-name-value').html "#{ovivo.desktop.resources.user.first_name()} #{ovivo.desktop.resources.user.last_name()}"
+
     initialize: () ->
       ovivo.desktop.resources.notifications.on 'reset', @updateNotifications, @
       ovivo.desktop.resources.notifications.on 'add', @updateNotifications, @
+
+      ovivo.desktop.resources.user.def.done _.bind @renderUser, @
 
       true
