@@ -26,7 +26,7 @@ define [
     addBlock: (block) ->
 
     _renderGroup: () ->
-      @$('.group-name').html ovivo.desktop.resources.groups.get(@pk()).name()
+      @$('.group-name').html ovivo.desktop.resources.groups.get(@pk()).chainName()
 
     postRender: () ->
       ovivo.desktop.resources.groups.def.done _.bind @_renderGroup, @

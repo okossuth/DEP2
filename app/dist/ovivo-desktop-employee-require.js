@@ -24048,7 +24048,7 @@ define('views/period/PeriodGroup',['views/resources/ResourceBase', 'ovivo'], fun
     processScroll: function(obj, val) {},
     addBlock: function(block) {},
     _renderGroup: function() {
-      return this.$('.group-name').html(ovivo.desktop.resources.groups.get(this.pk()).name());
+      return this.$('.group-name').html(ovivo.desktop.resources.groups.get(this.pk()).chainName());
     },
     postRender: function() {
       var _this = this;
