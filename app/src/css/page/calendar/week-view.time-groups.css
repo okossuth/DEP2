@@ -1,27 +1,30 @@
-.page.page-calendar > .content.week-view ul.time-groups > li.time-group {
-  display: block;
-  position: relative;
-  margin: 10px 0 0 0; }
-  .page.page-calendar > .content.week-view ul.time-groups > li.time-group:first-child {
-    margin-top: 0; }
-  .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {
-    position: absolute;
-    bottom: 0;
-    left: -50px;
-    width: 50px;
-    height: 100%;
-    background: #333333;
-    cursor: pointer; }
-    .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time {
-      font-size: 15px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      color: white;
+.page.page-calendar > .content.week-view ul.time-groups {
+  padding: 0 0 0 50px; }
+  .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
+    display: block;
+    position: relative;
+    margin: 10px 0 0 0; }
+    .page.page-calendar > .content.week-view ul.time-groups > li.time-group:first-child {
+      margin-top: 0; }
+    .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {
       position: absolute;
-      display: block;
-      width: 100%;
-      text-align: center;
-      left: 0; }
-      .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time.top {
-        top: 15px; }
-      .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time.bottom {
-        bottom: 15px; }
+      bottom: 0;
+      left: -50px;
+      z-index: 1;
+      width: 50px;
+      height: 100%;
+      background: #333333;
+      cursor: pointer; }
+      .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time {
+        font-size: 15px;
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        color: white;
+        position: absolute;
+        display: block;
+        width: 100%;
+        text-align: center;
+        left: 0; }
+        .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time.top {
+          top: 15px; }
+        .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time.bottom {
+          bottom: 15px; }
