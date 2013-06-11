@@ -19,6 +19,8 @@ define [
     processScroll: (obj, val) -> @view.processScroll obj, val
 
     addBlock: (block) ->
+      block.timeGroup = @
+
       _rn = block.resourceNeed()
       _resourceNeedWeek = @resourceNeedWeeks.get _rn.pk()
 
@@ -30,6 +32,8 @@ define [
       @_blocksCounter += 1
 
     removeBlock: (block) ->
+      delete block.timeGroup
+
       _resourceNeedWeek = @resourceNeedWeeks.get block.resourceNeed().pk()
 
       if _resourceNeedWeek? then _resourceNeedWeek.removeBlock block
@@ -37,6 +41,8 @@ define [
       @_blocksCounter -= 1
 
       if @_blocksCounter is 0
+        console.log 'remove time group'
+        
         @collection.remove @
 
     initialize: (attrs, options) ->

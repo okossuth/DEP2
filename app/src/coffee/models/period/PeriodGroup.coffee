@@ -31,15 +31,15 @@ define [
       @_blocksCounter += 1
 
     removeBlock: (block) ->
-      _key = "#{block.start_time()}-#{block.end_time()}"
-
-      _timeGroup = @timeGroups.get _key
+      _timeGroup = block.timeGroup
 
       if _timeGroup? then _timeGroup.removeBlock block
 
       @_blocksCounter -= 1
 
       if @_blocksCounter is 0
+        console.log 'remove period group'
+        
         @collection.remove @
 
     initialize: (attrs, options) ->

@@ -24,15 +24,15 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedTimeGro
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
-      var _key, _timeGroup;
+      var _timeGroup;
 
-      _key = "" + (block.start_time()) + "-" + (block.end_time());
-      _timeGroup = this.timeGroups.get(_key);
+      _timeGroup = block.timeGroup;
       if (_timeGroup != null) {
         _timeGroup.removeBlock(block);
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
+        console.log('remove period group');
         return this.collection.remove(this);
       }
     },

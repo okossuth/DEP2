@@ -23898,6 +23898,7 @@ define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views
     removeBlock: function(block) {
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
+        console.log('remove resource need week');
         return this.collection.remove(this);
       }
     },
@@ -23979,6 +23980,7 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
     addBlock: function(block) {
       var _resourceNeedWeek, _rn;
 
+      block.timeGroup = this;
       _rn = block.resourceNeed();
       _resourceNeedWeek = this.resourceNeedWeeks.get(_rn.pk());
       if (_resourceNeedWeek == null) {
@@ -23992,12 +23994,14 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
     removeBlock: function(block) {
       var _resourceNeedWeek;
 
+      delete block.timeGroup;
       _resourceNeedWeek = this.resourceNeedWeeks.get(block.resourceNeed().pk());
       if (_resourceNeedWeek != null) {
         _resourceNeedWeek.removeBlock(block);
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
+        console.log('remove time group');
         return this.collection.remove(this);
       }
     },
@@ -24098,15 +24102,15 @@ define('models/period/PeriodGroup',['models/resources/ResourceBase', 'collection
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
-      var _key, _timeGroup;
+      var _timeGroup;
 
-      _key = "" + (block.start_time()) + "-" + (block.end_time());
-      _timeGroup = this.timeGroups.get(_key);
+      _timeGroup = block.timeGroup;
       if (_timeGroup != null) {
         _timeGroup.removeBlock(block);
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
+        console.log('remove period group');
         return this.collection.remove(this);
       }
     },

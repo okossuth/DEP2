@@ -11,6 +11,7 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedWeeks',
     addBlock: function(block) {
       var _resourceNeedWeek, _rn;
 
+      block.timeGroup = this;
       _rn = block.resourceNeed();
       _resourceNeedWeek = this.resourceNeedWeeks.get(_rn.pk());
       if (_resourceNeedWeek == null) {
@@ -24,12 +25,14 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedWeeks',
     removeBlock: function(block) {
       var _resourceNeedWeek;
 
+      delete block.timeGroup;
       _resourceNeedWeek = this.resourceNeedWeeks.get(block.resourceNeed().pk());
       if (_resourceNeedWeek != null) {
         _resourceNeedWeek.removeBlock(block);
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
+        console.log('remove time group');
         return this.collection.remove(this);
       }
     },
