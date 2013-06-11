@@ -3,9 +3,9 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
     tagName: 'li',
-    className: 'period-group',
-    template: Handlebars.templates['periodGroup'],
-    groupTemplate: Handlebars.templates['periodGroup_group'],
+    className: 'time-group',
+    template: Handlebars.templates['resourceNeedTimeGroup'],
+    groupTemplate: Handlebars.templates['resourceNeedTimeGroup_group'],
     preventChangeRender: true,
     events: {
       'click': 'processClick'
@@ -14,22 +14,18 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     clearScroll: function() {},
     processScroll: function(obj, val) {},
     addBlock: function(block) {},
-    _renderGroup: function() {
-      return this.$('.group-name').html(ovivo.desktop.resources.groups.get(this.pk()).name());
-    },
     postRender: function() {
       var _this = this;
 
-      ovivo.desktop.resources.groups.def.done(_.bind(this._renderGroup, this));
-      this.timeGroups = this.$('.time-groups');
-      this.model.timeGroups.each(function(timeGroup) {
-        return _this.addTimeGroup(timeGroup);
+      this.resourceNeedWeeks = this.$('.resource-needs-rows');
+      this.model.resourceNeedWeeks.each(function(rnw) {
+        return _this.addResourcNeedWeek(rnw);
       });
-      this.model.timeGroups.on('add', this.addTimeGroup, this);
+      this.model.resourceNeedWeeks.on('add', this.addResourcNeedWeek, this);
       return this.renderDef.resolve();
     },
-    addTimeGroup: function(timeGroup) {
-      return this.timeGroups.append(timeGroup.view.el);
+    addResourcNeedWeek: function(rnw) {
+      return this.resourceNeedWeeks.append(rnw.view.el);
     },
     initialize: function() {
       this.renderDef = new $.Deferred();

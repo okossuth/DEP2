@@ -1,11 +1,9 @@
 define [
   'models/period/PeriodGroup',
 
-  '_common/CachableCollection',
-
   'ovivo'
-], (Model, CachableCollection) ->
-  Backbone.Collection.extend _.extend {}, CachableCollection.get(['group']),
+], (Model) ->
+  Backbone.Collection.extend _.extend {},
     model: Model
 
     addModel: (obj) ->
@@ -27,6 +25,5 @@ define [
       #   height: _h
 
     initialize: () ->
-      @initCacheProcessors()
       
       true

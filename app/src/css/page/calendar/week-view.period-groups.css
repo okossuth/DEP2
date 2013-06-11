@@ -1,0 +1,5 @@
+.page.page-calendar > .content.week-view ul.period-groups {
+  padding: 0 29px 20px 187px; }
+  .page.page-calendar > .content.week-view ul.period-groups > li.period-groups {
+    display: block;
+    position: relative; }

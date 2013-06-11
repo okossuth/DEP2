@@ -64,10 +64,10 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
     addBlock: function(block) {
       var _periodGroup;
 
-      _periodGroup = this.periodGroups.getBy('group', block.group())[0];
+      _periodGroup = this.periodGroups.get(block.group());
       if (_periodGroup == null) {
         _periodGroup = this.periodGroups.addModel({
-          group: block.group()
+          pk: block.group()
         });
       }
       return _periodGroup.addBlock(block);
@@ -75,7 +75,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
     removeBlock: function(block) {
       var _periodGroup;
 
-      _periodGroup = this.periodGroups.getBy('group', block.group())[0];
+      _periodGroup = this.periodGroups.get(block.group());
       if (_periodGroup != null) {
         return _periodGroup.removeBlock(block);
       }

@@ -66,8 +66,9 @@ define [
 
         _byDate = ovivo.desktop.resources.events.getBy 'date', _key
         _bySkill = ovivo.desktop.resources.events.getBy 'skill', @skill()
+        _byGroup = ovivo.desktop.resources.events.getBy 'group', @group()
 
-        _.each _.intersection(_byDate, _bySkill), (event) =>
+        _.each _.intersection(_byDate, _bySkill, _byGroup), (event) =>
           @addEvent event
 
       () ->
@@ -84,7 +85,7 @@ define [
       @addEvent event
 
     addEvent: (event) ->
-      if not ((event.skill() is @skill()) and (event.start_time() is @start_time()) and (event.end_time() is @end_time()))
+      if not ((event.group() is @group()) and (event.skill() is @skill()) and (event.start_time() is @start_time()) and (event.end_time() is @end_time()))
         return
 
       event.periodBlock = @

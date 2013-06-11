@@ -1,5 +1,5 @@
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
-  padding: 0 29px 20px 187px;
+  padding: 0;
   position: relative;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
@@ -19,24 +19,3 @@
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding li.employee, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding div.empty {
       visibility: hidden; }
-    .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range {
-      position: absolute;
-      bottom: 0;
-      left: -50px;
-      width: 50px;
-      height: 100%;
-      background: #333333;
-      cursor: pointer; }
-      .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time {
-        font-size: 15px;
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-        color: white;
-        position: absolute;
-        display: block;
-        width: 100%;
-        text-align: center;
-        left: 0; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time.top {
-          top: 15px; }
-        .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row > div.time-range > .time.bottom {
-          bottom: 15px; }

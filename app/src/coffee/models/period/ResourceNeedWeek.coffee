@@ -29,6 +29,8 @@ define [
         @collection.remove @
 
     initialize: (attrs, options) ->
+      @set 'pk', attrs.resourceNeed.pk()
+      
       @View = View
 
       @_blocksCounter = 0

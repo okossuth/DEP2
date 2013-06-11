@@ -40,13 +40,14 @@ define(['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/per
       var _init;
 
       _init = function() {
-        var _byDate, _bySkill, _key,
+        var _byDate, _byGroup, _bySkill, _key,
           _this = this;
 
         _key = this.dateKey();
         _byDate = ovivo.desktop.resources.events.getBy('date', _key);
         _bySkill = ovivo.desktop.resources.events.getBy('skill', this.skill());
-        return _.each(_.intersection(_byDate, _bySkill), function(event) {
+        _byGroup = ovivo.desktop.resources.events.getBy('group', this.group());
+        return _.each(_.intersection(_byDate, _bySkill, _byGroup), function(event) {
           return _this.addEvent(event);
         });
       };
@@ -72,7 +73,7 @@ define(['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/per
     addEvent: function(event) {
       var _this = this;
 
-      if (!((event.skill() === this.skill()) && (event.start_time() === this.start_time()) && (event.end_time() === this.end_time()))) {
+      if (!((event.group() === this.group()) && (event.skill() === this.skill()) && (event.start_time() === this.start_time()) && (event.end_time() === this.end_time()))) {
         return;
       }
       event.periodBlock = this;

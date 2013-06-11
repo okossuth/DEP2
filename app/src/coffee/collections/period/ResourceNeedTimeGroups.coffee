@@ -1,5 +1,5 @@
 define [
-  'models/period/ResourceNeedWeek',
+  'models/period/ResourceNeedTimeGroup',
 
   'ovivo'
 ], (Model) ->
@@ -13,7 +13,7 @@ define [
 
       _model
 
-    getScrollData: () ->
+    getScrollData: () -> []
       # @map (model) ->
       #   _h = model.view.el.offsetHeight
       #   _t = model.view.el.offsetTop

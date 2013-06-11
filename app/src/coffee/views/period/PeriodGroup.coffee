@@ -14,8 +14,6 @@ define [
 
     preventChangeRender: true
 
-    pk: () -> @group()
-
     events:
       'click': 'processClick'
 
@@ -28,12 +26,21 @@ define [
     addBlock: (block) ->
 
     _renderGroup: () ->
-      @$('.group-name').html ovivo.desktop.resources.groups.get(@group()).name()
+      @$('.group-name').html ovivo.desktop.resources.groups.get(@pk()).name()
 
     postRender: () ->
       ovivo.desktop.resources.groups.def.done _.bind @_renderGroup, @
 
+      @timeGroups = @$('.time-groups')
+
+      @model.timeGroups.each (timeGroup) => @addTimeGroup timeGroup
+
+      @model.timeGroups.on 'add', @addTimeGroup, @
+
       @renderDef.resolve()
+
+    addTimeGroup: (timeGroup) -> 
+      @timeGroups.append timeGroup.view.el
 
     initialize: () ->
       @renderDef = new $.Deferred()

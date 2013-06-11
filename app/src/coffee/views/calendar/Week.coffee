@@ -65,15 +65,15 @@ define [
       _.each arr, (block) => @removeBlock block
 
     addBlock: (block) ->
-      _periodGroup = @periodGroups.getBy('group', block.group())[0]
+      _periodGroup = @periodGroups.get block.group()
 
       if not _periodGroup? then _periodGroup = @periodGroups.addModel
-        group: block.group()
+        pk: block.group()
 
       _periodGroup.addBlock block
 
     removeBlock: (block) ->
-      _periodGroup = @periodGroups.getBy('group', block.group())[0]
+      _periodGroup = @periodGroups.get block.group()
 
       if _periodGroup? then _periodGroup.removeBlock block
       

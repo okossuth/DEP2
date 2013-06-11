@@ -19,6 +19,7 @@ define(['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo
       }
     },
     initialize: function(attrs, options) {
+      this.set('pk', attrs.resourceNeed.pk());
       this.View = View;
       this._blocksCounter = 0;
       this.proxyCall('initialize', arguments);
