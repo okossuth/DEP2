@@ -7,6 +7,9 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     template: Handlebars.templates['periodGroup'],
     groupTemplate: Handlebars.templates['periodGroup_group'],
     preventChangeRender: true,
+    pk: function() {
+      return this.group();
+    },
     events: {
       'click': 'processClick'
     },
@@ -14,7 +17,11 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     clearScroll: function() {},
     processScroll: function(obj, val) {},
     addBlock: function(block) {},
+    _renderGroup: function() {
+      return this.$('.group-name').html(ovivo.desktop.resources.groups.get(this.group()).name());
+    },
     postRender: function() {
+      ovivo.desktop.resources.groups.def.done(_.bind(this._renderGroup, this));
       return this.renderDef.resolve();
     },
     initialize: function() {

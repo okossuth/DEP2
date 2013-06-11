@@ -2,6 +2,9 @@
 define(['models/resources/ResourceBase', 'views/period/PeriodGroup', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['group'],
+    pk: function() {
+      return this.group();
+    },
     clearScroll: function() {
       return this.view.clearScroll();
     },

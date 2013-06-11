@@ -673,7 +673,7 @@ templates['periodGroup'] = template(function (Handlebars,depth0,helpers,partials
   
 
 
-  return "<h1 class=\"title\">\r\n    <span class=\"groupName-value\"></span>\r\n</h1>\r\n\r\n<ul class=\"resource-needs-rows\">\r\n</ul>\r\n\r\n<ul class=\"children-groups\">\r\n</ul>";});
+  return "<h1 class=\"title\">\r\n    <span class=\"group-name\"></span>\r\n</h1>\r\n\r\n<ul class=\"resource-needs-rows\">\r\n</ul>\r\n\r\n<ul class=\"children-groups\">\r\n</ul>";});
 templates['periodGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -689,7 +689,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <ul class=\"children-groups\">\r\n    </ul>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\">\r\n    <h1 class=\"title\">\r\n        <span class=\"group-name\"></span>\r\n    </h1>\r\n\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n\r\n    <ul class=\"children-groups\">\r\n    </ul>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";

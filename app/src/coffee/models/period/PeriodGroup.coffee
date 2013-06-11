@@ -10,6 +10,8 @@ define [
       'group'
     ]
 
+    pk: () -> @group()
+
     clearScroll: () -> @view.clearScroll()
 
     processScroll: (obj, val) -> @view.processScroll obj, val

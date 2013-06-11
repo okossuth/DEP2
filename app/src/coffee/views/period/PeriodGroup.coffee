@@ -14,6 +14,8 @@ define [
 
     preventChangeRender: true
 
+    pk: () -> @group()
+
     events:
       'click': 'processClick'
 
@@ -25,7 +27,12 @@ define [
 
     addBlock: (block) ->
 
+    _renderGroup: () ->
+      @$('.group-name').html ovivo.desktop.resources.groups.get(@group()).name()
+
     postRender: () ->
+      ovivo.desktop.resources.groups.def.done _.bind @_renderGroup, @
+
       @renderDef.resolve()
 
     initialize: () ->
