@@ -60,12 +60,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     ovivo.desktop.resources = {};
     $.when.apply($, _.map([
       {
-        name: 'user',
-        constr: User
-      }, {
-        name: 'skills',
-        constr: Skills
-      }, {
         name: 'municipalities',
         constr: Municipalities
       }, {
@@ -74,6 +68,12 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       }, {
         name: 'groups',
         constr: Groups
+      }, {
+        name: 'user',
+        constr: User
+      }, {
+        name: 'skills',
+        constr: Skills
       }, {
         name: 'users',
         constr: Users

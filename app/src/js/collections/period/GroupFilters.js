@@ -3,7 +3,7 @@ define(['models/period/GroupFilter', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
     addGroup: function(model) {
-      return console.log('Group was added');
+      return console.log('Group was added', ovivo.desktop.resources.groups.def.state());
     },
     removeGroup: function(model) {
       return console.log('Group was removed');

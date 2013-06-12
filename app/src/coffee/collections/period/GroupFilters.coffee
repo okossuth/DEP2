@@ -7,7 +7,7 @@ define [
     model: Model
 
     addGroup: (model) ->
-      console.log 'Group was added'
+      console.log 'Group was added', ovivo.desktop.resources.groups.def.state()
 
     removeGroup: (model) ->
       console.log 'Group was removed'

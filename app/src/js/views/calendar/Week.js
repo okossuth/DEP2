@@ -37,15 +37,19 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       });
     },
     addBlock: function(block) {
-      var _periodGroup;
+      var _this = this;
 
-      _periodGroup = this.periodGroups.get(block.group());
-      if (_periodGroup == null) {
-        _periodGroup = this.periodGroups.addModel({
-          pk: block.group()
-        });
-      }
-      return _periodGroup.addBlock(block);
+      return ovivo.desktop.resources.groups.def.done(function() {
+        var _periodGroup;
+
+        _periodGroup = _this.periodGroups.get(block.group());
+        if (_periodGroup == null) {
+          _periodGroup = _this.periodGroups.addModel({
+            pk: block.group()
+          });
+        }
+        return _periodGroup.addBlock(block);
+      });
     },
     removeBlock: function(block) {
       var _periodGroup;

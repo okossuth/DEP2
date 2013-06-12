@@ -93,11 +93,11 @@ require [
       ovivo.desktop.resources = {}
 
       $.when.apply($, _.map [
-        { name: 'user', constr: User },
-        { name: 'skills', constr: Skills },
         { name: 'municipalities', constr: Municipalities },
         { name: 'primaryDepartments', constr: PrimaryDepartments },
         { name: 'groups', constr: Groups },
+        { name: 'user', constr: User },
+        { name: 'skills', constr: Skills },
         { name: 'users', constr: Users },
         { name: 'workingHours', constr: WorkingHours },
         { name: 'resourceNeeds', constr: ResourceNeeds },

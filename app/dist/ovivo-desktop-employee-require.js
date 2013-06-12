@@ -24472,7 +24472,7 @@ define('collections/period/GroupFilters',['models/period/GroupFilter', 'ovivo'],
   return Backbone.Collection.extend({
     model: Model,
     addGroup: function(model) {
-      return console.log('Group was added');
+      return console.log('Group was added', ovivo.desktop.resources.groups.def.state());
     },
     removeGroup: function(model) {
       return console.log('Group was removed');
@@ -24525,15 +24525,19 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       });
     },
     addBlock: function(block) {
-      var _periodGroup;
+      var _this = this;
 
-      _periodGroup = this.periodGroups.get(block.group());
-      if (_periodGroup == null) {
-        _periodGroup = this.periodGroups.addModel({
-          pk: block.group()
-        });
-      }
-      return _periodGroup.addBlock(block);
+      return ovivo.desktop.resources.groups.def.done(function() {
+        var _periodGroup;
+
+        _periodGroup = _this.periodGroups.get(block.group());
+        if (_periodGroup == null) {
+          _periodGroup = _this.periodGroups.addModel({
+            pk: block.group()
+          });
+        }
+        return _periodGroup.addBlock(block);
+      });
     },
     removeBlock: function(block) {
       var _periodGroup;
@@ -28433,12 +28437,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     ovivo.desktop.resources = {};
     $.when.apply($, _.map([
       {
-        name: 'user',
-        constr: User
-      }, {
-        name: 'skills',
-        constr: Skills
-      }, {
         name: 'municipalities',
         constr: Municipalities
       }, {
@@ -28447,6 +28445,12 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       }, {
         name: 'groups',
         constr: Groups
+      }, {
+        name: 'user',
+        constr: User
+      }, {
+        name: 'skills',
+        constr: Skills
       }, {
         name: 'users',
         constr: Users

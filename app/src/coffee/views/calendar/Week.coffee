@@ -44,7 +44,7 @@ define [
     removeBlocks: (arr) ->
       _.each arr, (block) => @removeBlock block
 
-    addBlock: (block) ->
+    addBlock: (block) -> ovivo.desktop.resources.groups.def.done () =>
       _periodGroup = @periodGroups.get block.group()
 
       if not _periodGroup? then _periodGroup = @periodGroups.addModel
