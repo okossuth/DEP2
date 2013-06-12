@@ -38,7 +38,7 @@ define [
       if @_prev? then @_prev.model.clearScroll()
 
       @_prev = null
-      
+
       @_scrollData = @map (model) ->
         _h = model.view.el.offsetHeight
         _t = model.view.el.offsetTop
@@ -48,6 +48,8 @@ define [
         start: _t
         end: _t + _h
         height: _h
+
+      @_scrollData[@_scrollData.length - 1].last = true
 
     initialize: () ->
       

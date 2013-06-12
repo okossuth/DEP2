@@ -38,7 +38,7 @@ define(['models/period/ResourceNeedWeek', '_features/binarySearch', 'ovivo'], fu
         this._prev.model.clearScroll();
       }
       this._prev = null;
-      return this._scrollData = this.map(function(model) {
+      this._scrollData = this.map(function(model) {
         var _h, _t;
 
         _h = model.view.el.offsetHeight;
@@ -51,6 +51,7 @@ define(['models/period/ResourceNeedWeek', '_features/binarySearch', 'ovivo'], fu
           height: _h
         };
       });
+      return this._scrollData[this._scrollData.length - 1].last = true;
     },
     initialize: function() {
       return true;

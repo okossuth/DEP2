@@ -54,6 +54,8 @@ define [
         end: _t + _h
         height: _h
 
+      @_scrollData[@_scrollData.length - 1].last = true
+
     initialize: () ->
       
       true

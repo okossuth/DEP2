@@ -40,7 +40,7 @@ define(['models/period/PeriodGroup', '_features/binarySearch', 'ovivo'], functio
         this._prev.model.clearScroll();
       }
       this._prev = null;
-      return this._scrollData = this.map(function(model) {
+      this._scrollData = this.map(function(model) {
         var _h, _t;
 
         _h = model.view.el.offsetHeight;
@@ -54,6 +54,7 @@ define(['models/period/PeriodGroup', '_features/binarySearch', 'ovivo'], functio
           height: _h
         };
       });
+      return this._scrollData[this._scrollData.length - 1].last = true;
     },
     initialize: function() {
       return true;
