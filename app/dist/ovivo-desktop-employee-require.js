@@ -27490,19 +27490,22 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
       var _processGroup, _processPD;
 
       _processGroup = function(group, name, level) {
-        var _arr, _name,
+        var _arr,
           _this = this;
 
         _arr = [];
-        _name = name + ' → ' + group.name();
+        if (name !== '') {
+          name += ' → ';
+        }
+        name += group.name();
         group.set('level', level);
-        group.set('chainName', _name);
+        group.set('chainName', name);
         _arr.push({
           group: group,
           level: level
         });
         return _.reduce(group.children, (function(memo, pk) {
-          return memo.concat(_processGroup.call(_this, _this.get(pk), _name, level + 1));
+          return memo.concat(_processGroup.call(_this, _this.get(pk), name, level + 1));
         }), _arr);
       };
       _processPD = function(pd) {
@@ -27513,7 +27516,7 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
           groups: _.reduce(this.filter(function(group) {
             return (group.primary_department() === pd.pk()) && (group.parent() === null);
           }), (function(memo, group) {
-            return memo.concat(_processGroup.call(_this, group, pd.name(), 0));
+            return memo.concat(_processGroup.call(_this, group, '', 0));
           }), [])
         };
       };
