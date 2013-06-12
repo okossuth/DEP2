@@ -28,14 +28,14 @@ define [
     postRender: () ->
       @resourceNeedWeeks = @$('.resource-needs-rows')
 
-      @model.resourceNeedWeeks.each (rnw) => @addResourcNeedWeek rnw
+      @addResourcNeedWeeks @model.resourceNeedWeeks.map (rnw) => rnw
 
-      @model.resourceNeedWeeks.on 'add', @addResourcNeedWeek, @
+      @model.resourceNeedWeeks.on 'add', @addResourcNeedWeeks, @
 
       @renderDef.resolve()
 
-    addResourcNeedWeek: (rnw) ->
-      @resourceNeedWeeks.append rnw.view.el
+    addResourcNeedWeeks: (rnws) ->
+      @_addViewSorted @resourceNeedWeeks, @model.resourceNeedWeeks, rnws
 
     initialize: () ->
       @renderDef = new $.Deferred()

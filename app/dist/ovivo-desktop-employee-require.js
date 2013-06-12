@@ -23968,14 +23968,14 @@ define('views/period/ResourceNeedTimeGroup',['views/resources/ResourceBase', 'ov
       var _this = this;
 
       this.resourceNeedWeeks = this.$('.resource-needs-rows');
-      this.model.resourceNeedWeeks.each(function(rnw) {
-        return _this.addResourcNeedWeek(rnw);
-      });
-      this.model.resourceNeedWeeks.on('add', this.addResourcNeedWeek, this);
+      this.addResourcNeedWeeks(this.model.resourceNeedWeeks.map(function(rnw) {
+        return rnw;
+      }));
+      this.model.resourceNeedWeeks.on('add', this.addResourcNeedWeeks, this);
       return this.renderDef.resolve();
     },
-    addResourcNeedWeek: function(rnw) {
-      return this.resourceNeedWeeks.append(rnw.view.el);
+    addResourcNeedWeeks: function(rnws) {
+      return this._addViewSorted(this.resourceNeedWeeks, this.model.resourceNeedWeeks, rnws);
     },
     initialize: function() {
       this.renderDef = new $.Deferred();
