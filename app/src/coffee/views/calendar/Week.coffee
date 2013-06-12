@@ -3,11 +3,12 @@ define [
   'views/resources/ResourceBase',
 
   'collections/period/PeriodGroups',
+  'collections/period/GroupFilters',
 
   '_common/ToolsBase',
 
   'ovivo'
-], (DaysCollector, ResourceBase, PeriodGroups, ToolsBase) ->
+], (DaysCollector, ResourceBase, PeriodGroups, GroupFilters, ToolsBase) ->
   ResourceBase.extend _.extend {}, DaysCollector,
     common: {}
 
@@ -83,6 +84,9 @@ define [
       @_scrollDataFlag = false
 
       @periodGroups = new PeriodGroups()
+
+      @groupFilters = new GroupFilters [],
+        periodGroups: @periodGroups
 
       @periodGroups.week = @
 
