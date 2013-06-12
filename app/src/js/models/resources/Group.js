@@ -2,7 +2,7 @@
 define(['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'group',
-    _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName', 'chainName'],
+    _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName', 'chainName', 'pkRoot'],
     levelChange: function() {
       var _level;
 

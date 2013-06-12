@@ -2,12 +2,22 @@
 define(['models/period/GroupFilter', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
+    comparator: function(model) {
+      return model.name();
+    },
     addGroup: function(model) {
-      return console.log('Group was added', ovivo.desktop.resources.groups.def.state());
+      var _model, _root;
+
+      _root = ovivo.desktop.resources.groups.get(ovivo.desktop.resources.groups.get(model.pk()).pkRoot());
+      _model = this.get(_root.pk());
+      if (_model != null) {
+        return;
+      }
+      return this.add({
+        root: _root
+      });
     },
-    removeGroup: function(model) {
-      return console.log('Group was removed');
-    },
+    removeGroup: function(model) {},
     initialize: function(models, options) {
       this.periodGroups = options.periodGroups;
       this.periodGroups.on('add', this.addGroup, this);

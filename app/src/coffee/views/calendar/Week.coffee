@@ -67,8 +67,18 @@ define [
 
       @frameInitDef.resolve()
 
+    postRender: () ->
+      @groupsList = @$('.groups-list')
+
+      @addGroupFilters @groupFilters.map (f) -> f
+
+      @groupFilters.on 'add', @addGroupFilters, @
+
     addPeriodGroup: (model) ->
       @frameInitDef.done => @container.append model.view.$el
+
+    addGroupFilters: (models) ->
+      @_addViewSorted @groupsList, @groupFilters, models
 
     _updateScrollThrottledRepeater: _.throttle (ToolsBase.bounceRepeater 50, 3, () -> 
       @scrollerInner.height @_offsetHeight = @el.offsetHeight

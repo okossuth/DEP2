@@ -14,6 +14,7 @@ define [
       'level'
       'treeName'
       'chainName'
+      'pkRoot'
     ]
 
     levelChange: () ->

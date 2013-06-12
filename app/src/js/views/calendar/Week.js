@@ -68,12 +68,22 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.container = this.$('.period-groups');
       return this.frameInitDef.resolve();
     },
+    postRender: function() {
+      this.groupsList = this.$('.groups-list');
+      this.addGroupFilters(this.groupFilters.map(function(f) {
+        return f;
+      }));
+      return this.groupFilters.on('add', this.addGroupFilters, this);
+    },
     addPeriodGroup: function(model) {
       var _this = this;
 
       return this.frameInitDef.done(function() {
         return _this.container.append(model.view.$el);
       });
+    },
+    addGroupFilters: function(models) {
+      return this._addViewSorted(this.groupsList, this.groupFilters, models);
     },
     _updateScrollThrottledRepeater: _.throttle(ToolsBase.bounceRepeater(50, 3, function() {
       this.scrollerInner.height(this._offsetHeight = this.el.offsetHeight);

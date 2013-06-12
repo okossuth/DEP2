@@ -7,8 +7,8 @@ define [
 ], (ResourceBase, View) ->
   ResourceBase.extend
     _gettersNames: [
-      'pk'
-      'name'
+      ['pk', 'root']
+      ['name', 'root']
     ]
 
     initialize: (attrs, options) ->

@@ -7,7 +7,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
     createTree: (function() {
       var _processGroup, _processPD;
 
-      _processGroup = function(group, name, level) {
+      _processGroup = function(group, name, level, pkRoot) {
         var _arr,
           _this = this;
 
@@ -18,12 +18,13 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
         name += group.name();
         group.set('level', level);
         group.set('chainName', name);
+        group.set('pkRoot', pkRoot);
         _arr.push({
           group: group,
           level: level
         });
         return _.reduce(group.children, (function(memo, pk) {
-          return memo.concat(_processGroup.call(_this, _this.get(pk), name, level + 1));
+          return memo.concat(_processGroup.call(_this, _this.get(pk), name, level + 1, pkRoot));
         }), _arr);
       };
       _processPD = function(pd) {
@@ -34,7 +35,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
           groups: _.reduce(this.filter(function(group) {
             return (group.primary_department() === pd.pk()) && (group.parent() === null);
           }), (function(memo, group) {
-            return memo.concat(_processGroup.call(_this, group, '', 0));
+            return memo.concat(_processGroup.call(_this, group, '', 0, group.pk()));
           }), [])
         };
       };
@@ -58,7 +59,7 @@ define(['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], funct
         }
       });
     },
-    _ignoreChange: ['level', 'chainName', 'treeName'],
+    _ignoreChange: ['level', 'chainName', 'treeName', 'pkRoot'],
     initialize: function() {
       this.tree = [];
       this.initResource();

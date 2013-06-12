@@ -6,11 +6,19 @@ define [
   Backbone.Collection.extend
     model: Model
 
+    comparator: (model) -> model.name()
+
     addGroup: (model) ->
-      console.log 'Group was added', ovivo.desktop.resources.groups.def.state()
+      _root = ovivo.desktop.resources.groups.get ovivo.desktop.resources.groups.get(model.pk()).pkRoot()
+
+      _model = @get _root.pk()
+
+      if _model? then return
+
+      @add
+        root: _root
 
     removeGroup: (model) ->
-      console.log 'Group was removed'
 
     initialize: (models, options) ->
       @periodGroups = options.periodGroups
