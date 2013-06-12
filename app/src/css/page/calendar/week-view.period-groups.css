@@ -19,6 +19,8 @@
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group > h1.title {
       position: relative;
       padding: 10px;
+      height: 28px;
+      font-size: 24px;
       background: #333333;
       color: white;
       z-index: 1; }

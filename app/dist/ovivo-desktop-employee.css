@@ -2162,6 +2162,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group > h1.title {
       position: relative;
       padding: 10px;
+      height: 28px;
+      font-size: 24px;
       background: #333333;
       color: white;
       z-index: 1; }
@@ -2233,7 +2235,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       position: absolute;
       bottom: 0;
       left: -50px;
-      z-index: 1;
+      z-index: 0;
       width: 50px;
       height: 100%;
       background: #333333;
