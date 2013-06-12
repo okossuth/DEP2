@@ -4,8 +4,10 @@ define [
 
   'collections/calendar/Weeks',
 
+  '_common/ToolsBase',
+
   'ovivo'
-], (DaysCollectorPage, PageBase, Weeks) ->
+], (DaysCollectorPage, PageBase, Weeks, ToolsBase) ->
   PageBase.extend _.extend {}, DaysCollectorPage,
     el: '.page.page-calendar .week-view'
 

@@ -18,6 +18,8 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         this.header.style.top = '';
       }
+      this.el.style.opacity = '';
+      this.$el.removeClass('folding');
       if (ovivo.config.TRANSFORM !== false) {
         this.el.style[ovivo.config.TRANSFORM] = '';
       }

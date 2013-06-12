@@ -13,10 +13,13 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     processClick: function() {},
     clearScroll: function() {
+      this.el.style.opacity = '';
+      this.$el.removeClass('folding');
       this.timeRange.style.height = '';
       if (ovivo.config.TRANSFORM !== false) {
-        return this.el.style[ovivo.config.TRANSFORM] = '';
+        this.el.style[ovivo.config.TRANSFORM] = '';
       }
+      return true;
     },
     processScroll: function(obj, val) {
       var _frac, _height, _val;
