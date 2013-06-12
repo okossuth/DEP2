@@ -2142,8 +2142,18 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         text-align: center; }
 
 .page.page-calendar > .content.week-view ul.period-groups {
-  padding: 0 29px 20px 137px; }
+  padding: 0 29px 20px 137px;
+  -webkit-perspective: 3000px;
+  -moz-perspective: 3000px;
+  -ms-perspective: 3000px;
+  -o-perspective: 3000px;
+  perspective: 3000px; }
   .page.page-calendar > .content.week-view ul.period-groups > li.period-group {
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
     display: block;
     position: relative;
     margin: 10px 0 0 0; }
@@ -2152,7 +2162,6 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group > h1.title {
       position: relative;
       padding: 10px;
-      margin: 0 0 1px 0;
       background: #333333;
       color: white;
       z-index: 1; }
@@ -2202,8 +2211,18 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     position: relative; }
 
 .page.page-calendar > .content.week-view ul.time-groups {
-  padding: 0 0 0 50px; }
+  padding: 0 0 0 50px;
+  -webkit-perspective: 3000px;
+  -moz-perspective: 3000px;
+  -ms-perspective: 3000px;
+  -o-perspective: 3000px;
+  perspective: 3000px; }
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
     display: block;
     position: relative;
     margin: 10px 0 0 0;

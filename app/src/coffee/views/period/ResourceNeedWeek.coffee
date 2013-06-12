@@ -49,6 +49,8 @@ define [
       else
         @header.style.top = "#{_val}px"
 
+      if obj.last is true then return
+
       if _val isnt val
         _frac = (val - _val) / @MIN_BLOCK_HEIGHT
 
@@ -66,8 +68,6 @@ define [
 
         if ovivo.config.TRANSFORM isnt false
           @el.style[ovivo.config.TRANSFORM] = ''
-
-      # @timeRange.style.height = "#{obj.height - _val}px"
 
       true
 

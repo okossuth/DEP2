@@ -1,6 +1,16 @@
 .page.page-calendar > .content.week-view ul.time-groups {
-  padding: 0 0 0 50px; }
+  padding: 0 0 0 50px;
+  -webkit-perspective: 3000px;
+  -moz-perspective: 3000px;
+  -ms-perspective: 3000px;
+  -o-perspective: 3000px;
+  perspective: 3000px; }
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center;
     display: block;
     position: relative;
     margin: 10px 0 0 0;

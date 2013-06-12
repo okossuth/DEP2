@@ -23,12 +23,35 @@ define [
 
     clearScroll: () ->
       @timeRange.style.height = ''
+
+      if ovivo.config.TRANSFORM isnt false
+        @el.style[ovivo.config.TRANSFORM] = ''
       
     processScroll: (obj, val) ->
       _height = obj.height - @MIN_BLOCK_HEIGHT
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 
       @timeRange.style.height = "#{obj.height - _val}px"
+
+      if obj.last is true then return
+
+      if _val isnt val
+        _frac = (val - _val) / @MIN_BLOCK_HEIGHT
+
+        @el.style.opacity = Math.pow(1 - _frac, 2)
+
+        @$el.addClass 'folding'
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
+
+      else
+        @$el.removeClass 'folding'
+
+        @el.style.opacity = ''
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = ''
 
     addBlock: (block) ->
 

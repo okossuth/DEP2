@@ -33,10 +33,15 @@ define(['models/period/ResourceNeedTimeGroup', '_features/binarySearch', 'ovivo'
       if (_res === this._prev) {
         return;
       }
-      if (this._prev !== null) {
-        this._prev.model.clearScroll();
-      }
+      this._clearPrev();
       return console.log(this._prev = _res);
+    },
+    _clearPrev: function() {
+      if (this._prev === null) {
+        return;
+      }
+      this._prev.model.clearScroll();
+      return this._prev.model.resourceNeedWeeks._clearPrev();
     },
     calcScrollData: function() {
       if (this._prev != null) {

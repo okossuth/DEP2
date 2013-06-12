@@ -38,6 +38,9 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         this.header.style.top = "" + _val + "px";
       }
+      if (obj.last === true) {
+        return;
+      }
       if (_val !== val) {
         _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
         this.el.style.opacity = Math.pow(1 - _frac, 2);

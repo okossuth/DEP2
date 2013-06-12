@@ -2,7 +2,7 @@
 define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
-    MIN_BLOCK_HEIGHT: 100,
+    MIN_BLOCK_HEIGHT: 148,
     tagName: 'li',
     className: 'period-group',
     template: Handlebars.templates['periodGroup'],
@@ -14,13 +14,17 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     processClick: function() {},
     clearScroll: function() {
       if (ovivo.config.TRANSFORM !== false) {
-        return this.header.style[ovivo.config.TRANSFORM] = '';
+        this.header.style[ovivo.config.TRANSFORM] = '';
       } else {
-        return this.header.style.top = '';
+        this.header.style.top = '';
       }
+      if (ovivo.config.TRANSFORM !== false) {
+        this.el.style[ovivo.config.TRANSFORM] = '';
+      }
+      return true;
     },
     processScroll: function(obj, val) {
-      var _height, _val;
+      var _frac, _height, _val;
 
       _height = obj.height - this.MIN_BLOCK_HEIGHT;
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
@@ -28,6 +32,20 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
         this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + _val + "px)";
       } else {
         this.header.style.top = "" + _val + "px";
+      }
+      if (_val !== val) {
+        _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
+        this.el.style.opacity = Math.pow(1 - _frac, 2);
+        this.$el.addClass('folding');
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px) scale(" + (1 - 0.05 * Math.pow(_frac, 2)) + ") rotateX(" + (60 * Math.pow(_frac, 2)) + "deg)";
+        }
+      } else {
+        this.$el.removeClass('folding');
+        this.el.style.opacity = '';
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = '';
+        }
       }
       return true;
     },

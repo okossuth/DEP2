@@ -6,7 +6,7 @@ define [
   ResourceBase.extend
     common: {}
 
-    MIN_BLOCK_HEIGHT: 100
+    MIN_BLOCK_HEIGHT: 148
 
     tagName: 'li'
     className: 'period-group'
@@ -27,6 +27,11 @@ define [
 
       else
         @header.style.top = ''
+
+      if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = ''
+
+      true
       
     processScroll: (obj, val) ->
       _height = obj.height - @MIN_BLOCK_HEIGHT
@@ -37,6 +42,24 @@ define [
 
       else
         @header.style.top = "#{_val}px"
+
+      if _val isnt val
+        _frac = (val - _val) / @MIN_BLOCK_HEIGHT
+
+        @el.style.opacity = Math.pow(1 - _frac, 2)
+
+        @$el.addClass 'folding'
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
+
+      else
+        @$el.removeClass 'folding'
+
+        @el.style.opacity = ''
+
+        if ovivo.config.TRANSFORM isnt false
+          @el.style[ovivo.config.TRANSFORM] = ''
 
       true
 

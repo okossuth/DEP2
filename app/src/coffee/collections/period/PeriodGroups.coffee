@@ -33,9 +33,16 @@ define [
 
       if _res is @_prev then return
 
-      if @_prev isnt null then @_prev.model.clearScroll()
+      @_clearPrev()
 
       console.log @_prev = _res
+
+    _clearPrev: () ->
+      if @_prev is null then return
+
+      @_prev.model.clearScroll()
+
+      @_prev.model.timeGroups._clearPrev()
 
     calcScrollData: () ->
       if @_prev? then @_prev.model.clearScroll()
