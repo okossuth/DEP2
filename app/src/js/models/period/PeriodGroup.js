@@ -17,7 +17,8 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedTimeGro
         _timeGroup = this.timeGroups.addModel({
           pk: _key,
           start_time: block.start_time(),
-          end_time: block.end_time()
+          end_time: block.end_time(),
+          startValue: block.resourceNeed().startValue()
         });
       }
       _timeGroup.addBlock(block);

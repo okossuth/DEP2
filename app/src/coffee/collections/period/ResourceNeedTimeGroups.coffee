@@ -13,6 +13,8 @@ define [
 
       _model
 
+    comparator: (model) -> model.startValue()
+
     getScrollData: () -> []
       # @map (model) ->
       #   _h = model.view.el.offsetHeight

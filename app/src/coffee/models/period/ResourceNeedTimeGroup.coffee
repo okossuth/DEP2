@@ -12,6 +12,7 @@ define [
       'pk'
       'start_time'
       'end_time'
+      'startValue'
     ]
 
     clearScroll: () -> @view.clearScroll()

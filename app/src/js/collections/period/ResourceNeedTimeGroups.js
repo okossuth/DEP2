@@ -9,6 +9,9 @@ define(['models/period/ResourceNeedTimeGroup', 'ovivo'], function(Model) {
       this.add(_model);
       return _model;
     },
+    comparator: function(model) {
+      return model.startValue();
+    },
     getScrollData: function() {
       return [];
     },
