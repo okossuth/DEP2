@@ -21,7 +21,6 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       } else {
         this.header.style.top = '';
       }
-      this.timeRange.style.height = '';
       this.el.style.opacity = '';
       this.$el.removeClass('folding');
       if (ovivo.config.TRANSFORM !== false) {
@@ -30,6 +29,29 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       return true;
     },
     processScroll: function(obj, val) {
+      var _frac, _height, _val;
+
+      _height = obj.height - this.MIN_BLOCK_HEIGHT;
+      _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + _val + "px)";
+      } else {
+        this.header.style.top = "" + _val + "px";
+      }
+      if (_val !== val) {
+        _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
+        this.el.style.opacity = Math.pow(1 - _frac, 2);
+        this.$el.addClass('folding');
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = "translate(0, " + (this.MIN_BLOCK_HEIGHT * _frac) + "px) scale(" + (1 - 0.05 * Math.pow(_frac, 2)) + ") rotateX(" + (60 * Math.pow(_frac, 2)) + "deg)";
+        }
+      } else {
+        this.$el.removeClass('folding');
+        this.el.style.opacity = '';
+        if (ovivo.config.TRANSFORM !== false) {
+          this.el.style[ovivo.config.TRANSFORM] = '';
+        }
+      }
       return true;
     },
     addBlock: function(block) {
@@ -43,7 +65,6 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     },
     postRender: function() {
       this.header = this.$('.day-blocks.header')[0];
-      this.timeRange = this.$('.time-range')[0];
       this.headers = this.$('.day-blocks.header td.day-block');
       this.contents = this.$('.day-blocks.content td.day-block');
       this.footers = this.$('.day-blocks.footer td.day-block');

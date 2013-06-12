@@ -2,6 +2,7 @@
 define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
+    MIN_BLOCK_HEIGHT: 100,
     tagName: 'li',
     className: 'period-group',
     template: Handlebars.templates['periodGroup'],
@@ -11,8 +12,25 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       'click': 'processClick'
     },
     processClick: function() {},
-    clearScroll: function() {},
-    processScroll: function(obj, val) {},
+    clearScroll: function() {
+      if (ovivo.config.TRANSFORM !== false) {
+        return this.header.style[ovivo.config.TRANSFORM] = '';
+      } else {
+        return this.header.style.top = '';
+      }
+    },
+    processScroll: function(obj, val) {
+      var _height, _val;
+
+      _height = obj.height - this.MIN_BLOCK_HEIGHT;
+      _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      if (ovivo.config.TRANSFORM !== false) {
+        this.header.style[ovivo.config.TRANSFORM] = "translate(0, " + _val + "px)";
+      } else {
+        this.header.style.top = "" + _val + "px";
+      }
+      return true;
+    },
     addBlock: function(block) {},
     _renderGroup: function() {
       return this.$('.group-name').html(ovivo.desktop.resources.groups.get(this.pk()).chainName());
@@ -22,6 +40,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
 
       ovivo.desktop.resources.groups.def.done(_.bind(this._renderGroup, this));
       this.timeGroups = this.$('.time-groups');
+      this.header = this.$('h1.title')[0];
       this.addTimeGroups(this.model.timeGroups.map(function(t) {
         return t;
       }));

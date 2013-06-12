@@ -6,6 +6,8 @@ define [
   ResourceBase.extend
     common: {}
 
+    MIN_BLOCK_HEIGHT: 100
+
     tagName: 'li'
     className: 'period-group'
 
@@ -20,8 +22,23 @@ define [
     processClick: () ->
 
     clearScroll: () ->
+      if ovivo.config.TRANSFORM isnt false
+        @header.style[ovivo.config.TRANSFORM] = ''
+
+      else
+        @header.style.top = ''
       
     processScroll: (obj, val) ->
+      _height = obj.height - @MIN_BLOCK_HEIGHT
+      _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
+
+      if ovivo.config.TRANSFORM isnt false
+        @header.style[ovivo.config.TRANSFORM] = "translate(0, #{_val}px)"
+
+      else
+        @header.style.top = "#{_val}px"
+
+      true
 
     addBlock: (block) ->
 
@@ -32,6 +49,7 @@ define [
       ovivo.desktop.resources.groups.def.done _.bind @_renderGroup, @
 
       @timeGroups = @$('.time-groups')
+      @header = @$('h1.title')[0]
 
       @addTimeGroups @model.timeGroups.map (t) => t
 

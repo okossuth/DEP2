@@ -2,6 +2,7 @@
 define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
+    MIN_BLOCK_HEIGHT: 100,
     tagName: 'li',
     className: 'time-group',
     template: Handlebars.templates['resourceNeedTimeGroup'],
@@ -11,13 +12,22 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       'click': 'processClick'
     },
     processClick: function() {},
-    clearScroll: function() {},
-    processScroll: function(obj, val) {},
+    clearScroll: function() {
+      return this.timeRange.style.height = '';
+    },
+    processScroll: function(obj, val) {
+      var _height, _val;
+
+      _height = obj.height - this.MIN_BLOCK_HEIGHT;
+      _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
+      return this.timeRange.style.height = "" + (obj.height - _val) + "px";
+    },
     addBlock: function(block) {},
     postRender: function() {
       var _this = this;
 
       this.resourceNeedWeeks = this.$('.resource-needs-rows');
+      this.timeRange = this.$('.time-range')[0];
       this.addResourcNeedWeeks(this.model.resourceNeedWeeks.map(function(rnw) {
         return rnw;
       }));
