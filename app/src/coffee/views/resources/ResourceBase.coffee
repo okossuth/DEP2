@@ -63,6 +63,21 @@ define [
 
     _processRemove: () -> @remove()
 
+    _addViewSorted: (container, collection, model) ->
+      if model instanceof Array
+        _.each model, (model) -> container.append model.view.el
+
+      else
+        if (_i = collection.indexOf model) is -1 then return
+
+        if _i is collection.length - 1
+          container.append model.view.el
+
+        else
+          collection.at(_i + 1).view.$el.before model.view.el
+
+      true
+
     initialize: () ->
       @exposeAttrs()
 

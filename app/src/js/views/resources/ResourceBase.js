@@ -82,6 +82,25 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     _processRemove: function() {
       return this.remove();
     },
+    _addViewSorted: function(container, collection, model) {
+      var _i;
+
+      if (model instanceof Array) {
+        _.each(model, function(model) {
+          return container.append(model.view.el);
+        });
+      } else {
+        if ((_i = collection.indexOf(model)) === -1) {
+          return;
+        }
+        if (_i === collection.length - 1) {
+          container.append(model.view.el);
+        } else {
+          collection.at(_i + 1).view.$el.before(model.view.el);
+        }
+      }
+      return true;
+    },
     initialize: function() {
       this.exposeAttrs();
       this.render();

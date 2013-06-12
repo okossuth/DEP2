@@ -33,14 +33,14 @@ define [
 
       @timeGroups = @$('.time-groups')
 
-      @model.timeGroups.each (timeGroup) => @addTimeGroup timeGroup
+      @addTimeGroups @model.timeGroups.map (t) => t
 
-      @model.timeGroups.on 'add', @addTimeGroup, @
+      @model.timeGroups.on 'add', @addTimeGroups, @
 
       @renderDef.resolve()
 
-    addTimeGroup: (timeGroup) -> 
-      @timeGroups.append timeGroup.view.el
+    addTimeGroups: (timeGroups) ->
+      @_addViewSorted @timeGroups, @model.timeGroups, timeGroups
 
     initialize: () ->
       @renderDef = new $.Deferred()

@@ -22,14 +22,14 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
 
       ovivo.desktop.resources.groups.def.done(_.bind(this._renderGroup, this));
       this.timeGroups = this.$('.time-groups');
-      this.model.timeGroups.each(function(timeGroup) {
-        return _this.addTimeGroup(timeGroup);
-      });
-      this.model.timeGroups.on('add', this.addTimeGroup, this);
+      this.addTimeGroups(this.model.timeGroups.map(function(t) {
+        return t;
+      }));
+      this.model.timeGroups.on('add', this.addTimeGroups, this);
       return this.renderDef.resolve();
     },
-    addTimeGroup: function(timeGroup) {
-      return this.timeGroups.append(timeGroup.view.el);
+    addTimeGroups: function(timeGroups) {
+      return this._addViewSorted(this.timeGroups, this.model.timeGroups, timeGroups);
     },
     initialize: function() {
       this.renderDef = new $.Deferred();
