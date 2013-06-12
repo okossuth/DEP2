@@ -38,8 +38,6 @@ define [
       @_blocksCounter -= 1
 
       if @_blocksCounter is 0
-        console.log 'remove period group'
-        
         @collection.remove @
 
     initialize: (attrs, options) ->

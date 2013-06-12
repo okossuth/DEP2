@@ -23898,7 +23898,6 @@ define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views
     removeBlock: function(block) {
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove resource need week');
         return this.collection.remove(this);
       }
     },
@@ -24001,7 +24000,6 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove time group');
         return this.collection.remove(this);
       }
     },
@@ -24110,7 +24108,6 @@ define('models/period/PeriodGroup',['models/resources/ResourceBase', 'collection
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove period group');
         return this.collection.remove(this);
       }
     },

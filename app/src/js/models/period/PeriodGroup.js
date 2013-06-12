@@ -32,7 +32,6 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedTimeGro
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove period group');
         return this.collection.remove(this);
       }
     },

@@ -32,7 +32,6 @@ define(['models/resources/ResourceBase', 'collections/period/ResourceNeedWeeks',
       }
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove time group');
         return this.collection.remove(this);
       }
     },

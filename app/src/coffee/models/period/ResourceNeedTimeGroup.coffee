@@ -41,8 +41,6 @@ define [
       @_blocksCounter -= 1
 
       if @_blocksCounter is 0
-        console.log 'remove time group'
-        
         @collection.remove @
 
     initialize: (attrs, options) ->

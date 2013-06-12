@@ -15,7 +15,6 @@ define(['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo
     removeBlock: function(block) {
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
-        console.log('remove resource need week');
         return this.collection.remove(this);
       }
     },
