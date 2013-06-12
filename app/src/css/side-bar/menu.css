@@ -7,11 +7,11 @@
   bottom: 0; }
   .side-bar ul.menu > li {
     display: block;
-    padding: 31px 20px;
+    padding: 27px 20px 24px 20px;
     cursor: pointer;
     float: left;
     height: 21px;
-    font-size: 16px;
+    font-size: 15px;
     color: #999999; }
     .side-bar ul.menu > li.right {
       float: right; }
