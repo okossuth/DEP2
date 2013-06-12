@@ -3,7 +3,8 @@
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
     display: block;
     position: relative;
-    margin: 10px 0 0 0; }
+    margin: 10px 0 0 0;
+    box-shadow: 0 0 5px #e4e7e9; }
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {

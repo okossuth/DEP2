@@ -13,8 +13,7 @@
     -o-transform-origin: bottom center;
     transform-origin: bottom center;
     display: block;
-    position: relative;
-    margin: 10px 0 0 0; }
+    position: relative; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding li.employee, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding div.empty {

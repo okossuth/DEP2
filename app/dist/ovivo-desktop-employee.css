@@ -2101,8 +2101,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
           margin: 0 0 0 10px; }
   .page.page-calendar > .content.week-view .day-blocks.content {
     font-size: 13px;
-    line-height: 19px;
-    box-shadow: 0 0 5px #e4e7e9; }
+    line-height: 19px; }
     .page.page-calendar > .content.week-view .day-blocks.content .day-block {
       border-left-color: #dddddd; }
       .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner {
@@ -2173,8 +2172,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     -o-transform-origin: bottom center;
     transform-origin: bottom center;
     display: block;
-    position: relative;
-    margin: 10px 0 0 0; }
+    position: relative; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding li.employee, .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row.folding div.empty {
@@ -2208,7 +2206,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
     display: block;
     position: relative;
-    margin: 10px 0 0 0; }
+    margin: 10px 0 0 0;
+    box-shadow: 0 0 5px #e4e7e9; }
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {
