@@ -37,7 +37,7 @@ define [
 
       @_clearPrev()
 
-      console.log @_prev = _res
+      @_prev = _res
 
     _clearPrev: () ->
       if @_prev is null then return

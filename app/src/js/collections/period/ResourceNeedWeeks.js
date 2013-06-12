@@ -29,7 +29,7 @@ define(['models/period/ResourceNeedWeek', '_features/binarySearch', 'ovivo'], fu
         return;
       }
       this._clearPrev();
-      return console.log(this._prev = _res);
+      return this._prev = _res;
     },
     _clearPrev: function() {
       if (this._prev === null) {

@@ -24017,7 +24017,7 @@ define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek',
         return;
       }
       this._clearPrev();
-      return console.log(this._prev = _res);
+      return this._prev = _res;
     },
     _clearPrev: function() {
       if (this._prev === null) {
@@ -24201,7 +24201,7 @@ define('collections/period/ResourceNeedTimeGroups',['models/period/ResourceNeedT
         return;
       }
       this._clearPrev();
-      return console.log(this._prev = _res);
+      return this._prev = _res;
     },
     _clearPrev: function() {
       if (this._prev === null) {
@@ -24391,13 +24391,13 @@ define('collections/period/PeriodGroups',['models/period/PeriodGroup', '_feature
       if (_res !== null) {
         _delta = val - _res.start;
         _res.model.processScroll(_res, _delta);
-        _res.model.timeGroups.processScroll(_delta + 48, height);
+        _res.model.timeGroups.processScroll(_delta, height);
       }
       if (_res === this._prev) {
         return;
       }
       this._clearPrev();
-      return console.log(this._prev = _res);
+      return this._prev = _res;
     },
     _clearPrev: function() {
       if (this._prev === null) {

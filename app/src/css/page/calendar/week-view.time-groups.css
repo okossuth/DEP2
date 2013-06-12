@@ -4,7 +4,8 @@
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
   -o-perspective: 3000px;
-  perspective: 3000px; }
+  perspective: 3000px;
+  position: relative; }
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
     -webkit-transform-origin: bottom center;
     -moz-transform-origin: bottom center;

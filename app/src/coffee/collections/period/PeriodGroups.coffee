@@ -29,13 +29,13 @@ define [
         _delta = val - _res.start
 
         _res.model.processScroll _res, _delta
-        _res.model.timeGroups.processScroll _delta + 48, height
+        _res.model.timeGroups.processScroll _delta, height
 
       if _res is @_prev then return
 
       @_clearPrev()
 
-      console.log @_prev = _res
+      @_prev = _res
 
     _clearPrev: () ->
       if @_prev is null then return

@@ -34,7 +34,7 @@ define(['models/period/ResourceNeedTimeGroup', '_features/binarySearch', 'ovivo'
         return;
       }
       this._clearPrev();
-      return console.log(this._prev = _res);
+      return this._prev = _res;
     },
     _clearPrev: function() {
       if (this._prev === null) {

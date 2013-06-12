@@ -2147,7 +2147,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
   -o-perspective: 3000px;
-  perspective: 3000px; }
+  perspective: 3000px;
+  position: relative; }
   .page.page-calendar > .content.week-view ul.period-groups > li.period-group {
     -webkit-transform-origin: bottom center;
     -moz-transform-origin: bottom center;
@@ -2170,12 +2171,12 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
   padding: 0;
-  position: relative;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
   -o-perspective: 3000px;
-  perspective: 3000px; }
+  perspective: 3000px;
+  position: relative; }
   .page.page-calendar > .content.week-view ul.resource-needs-rows > li.resource-need-row {
     -webkit-transform-origin: bottom center;
     -moz-transform-origin: bottom center;
@@ -2218,7 +2219,8 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
   -o-perspective: 3000px;
-  perspective: 3000px; }
+  perspective: 3000px;
+  position: relative; }
   .page.page-calendar > .content.week-view ul.time-groups > li.time-group {
     -webkit-transform-origin: bottom center;
     -moz-transform-origin: bottom center;
