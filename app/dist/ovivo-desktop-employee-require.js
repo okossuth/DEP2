@@ -24082,7 +24082,7 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
       return this._prev = _res;
     },
     _clearPrev: function() {
-      if (this._prev === null) {
+      if (this._prev == null) {
         return;
       }
       this._prev.model.clearScroll();

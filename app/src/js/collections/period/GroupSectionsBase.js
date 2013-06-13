@@ -35,7 +35,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
       return this._prev = _res;
     },
     _clearPrev: function() {
-      if (this._prev === null) {
+      if (this._prev == null) {
         return;
       }
       this._prev.model.clearScroll();

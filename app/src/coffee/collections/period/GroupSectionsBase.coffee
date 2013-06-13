@@ -33,7 +33,7 @@ define [
     @_prev = _res
 
   _clearPrev: () ->
-    if @_prev is null then return
+    if not @_prev? then return
 
     @_prev.model.clearScroll()
 
