@@ -41,12 +41,14 @@ define [
 
     true
 
+  _itemsSelector: () -> @map (m) -> m
+
   calcScrollData: () ->
     if @_prev? then @_prev.model.clearScroll()
 
     @_prev = null
 
-    @_scrollData = @map (model) =>
+    @_scrollData = _.map @_itemsSelector(), (model) =>
       _h = model.view.el.offsetHeight
       _t = model.view.el.offsetTop
 

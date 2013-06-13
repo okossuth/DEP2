@@ -98,6 +98,9 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
         return this._updateScrollThrottledRepeater();
       }
     },
+    _processFilterApply: function() {
+      return this.model.collection.page._postNavigate();
+    },
     initialize: function() {
       this.frameInitDef = new $.Deferred();
       this._scrollDataFlag = false;
@@ -105,6 +108,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.groupFilters = new GroupFilters([], {
         periodGroups: this.periodGroups
       });
+      this.groupFilters.on('apply', this._processFilterApply, this);
       this.periodGroups.week = this;
       this.periodGroups.on('add', this.addPeriodGroup, this);
       this.periodGroups.on('add', this._updateScroll, this);

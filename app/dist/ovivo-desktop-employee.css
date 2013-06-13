@@ -2164,6 +2164,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   font-size: 16px;
   margin: 0 0 0 29px; }
   .page.page-calendar > .content.week-view ul.groups-list > li {
+    cursor: pointer;
     display: inline-block;
     color: #999999;
     margin: 0 0 0 22px; }
@@ -2188,7 +2189,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     transform-origin: bottom center;
     display: block;
     position: relative;
-    margin: 10px 0 0 0; }
+    margin: 0 0 10px 0; }
+    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.hide {
+      display: none; }
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group > h1.title {

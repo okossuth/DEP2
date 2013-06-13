@@ -44,6 +44,11 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
       }
       return true;
     },
+    _itemsSelector: function() {
+      return this.map(function(m) {
+        return m;
+      });
+    },
     calcScrollData: function() {
       var _this = this;
 
@@ -51,7 +56,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
         this._prev.model.clearScroll();
       }
       this._prev = null;
-      this._scrollData = this.map(function(model) {
+      this._scrollData = _.map(this._itemsSelector(), function(model) {
         var _h, _t;
 
         _h = model.view.el.offsetHeight;

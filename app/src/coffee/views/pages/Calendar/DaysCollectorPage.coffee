@@ -29,6 +29,7 @@ define [
     @currentModel = null
 
     @collectors = new @Collectors()
+    @collectors.page = @
 
     @collectors.on 'add', @processCollectorAdd, @
 

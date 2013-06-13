@@ -10,6 +10,8 @@ define [
   ResourceBase.extend
     _gettersNames: [
       'pk'
+      'root'
+      'visible'
     ]
 
     clearScroll: () -> @view.clearScroll()
@@ -50,5 +52,7 @@ define [
       @_blocksCounter = 0
 
       @proxyCall 'initialize', arguments
+
+      @set 'root', ovivo.desktop.resources.groups.get(@pk()).pkRoot()
 
       true

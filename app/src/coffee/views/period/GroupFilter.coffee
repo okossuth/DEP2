@@ -12,7 +12,17 @@ define [
     template: Handlebars.templates['groupFilter']
     groupTemplate: Handlebars.templates['groupFilter_group']
 
-    events: {}
+    events:
+      'click': 'triggerApply'
+
+    triggerApply: () ->
+      @model.trigger 'apply', @model
+
+    apply: () ->
+      @$el.addClass 'selected'
+
+    cancel: () ->
+      @$el.removeClass 'selected'
 
     postRender: () ->
 

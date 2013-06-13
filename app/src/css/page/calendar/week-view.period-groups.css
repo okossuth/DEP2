@@ -14,7 +14,9 @@
     transform-origin: bottom center;
     display: block;
     position: relative;
-    margin: 10px 0 0 0; }
+    margin: 0 0 10px 0; }
+    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.hide {
+      display: none; }
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group:first-child {
       margin-top: 0; }
     .page.page-calendar > .content.week-view ul.period-groups > li.period-group > h1.title {

@@ -92,6 +92,8 @@ define [
     _updateScroll: () ->
       if @model.visible then @_updateScrollThrottledRepeater()
 
+    _processFilterApply: () -> @model.collection.page._postNavigate()
+
     initialize: () ->
       @frameInitDef = new $.Deferred()
 
@@ -101,6 +103,8 @@ define [
 
       @groupFilters = new GroupFilters [],
         periodGroups: @periodGroups
+
+      @groupFilters.on 'apply', @_processFilterApply, @
 
       @periodGroups.week = @
 

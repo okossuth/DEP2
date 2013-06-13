@@ -28,6 +28,7 @@ define(['ovivo'], function() {
     _initialize: function() {
       this.currentModel = null;
       this.collectors = new this.Collectors();
+      this.collectors.page = this;
       this.collectors.on('add', this.processCollectorAdd, this);
       this.collectors.on('show', this.processCollectorShow, this);
       this.collectors.on('hide', this.processCollectorHide, this);

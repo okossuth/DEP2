@@ -44,7 +44,11 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'
     addTimeGroups: function(timeGroups) {
       return this._addViewSorted(this.timeGroups, this.model.timeGroups, timeGroups);
     },
+    changeVisible: function() {
+      return this.$el["" + (this.visible() === true ? 'remove' : 'add') + "Class"]('hide');
+    },
     initialize: function() {
+      this.model.on('change:visible', this.changeVisible, this);
       this.renderDef = new $.Deferred();
       this.proxyCall('initialize', arguments);
       return true;

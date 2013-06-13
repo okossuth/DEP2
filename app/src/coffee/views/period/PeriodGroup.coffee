@@ -59,7 +59,12 @@ define [
     addTimeGroups: (timeGroups) ->
       @_addViewSorted @timeGroups, @model.timeGroups, timeGroups
 
+    changeVisible: () ->
+      @$el["#{if @visible() is true then 'remove' else 'add'}Class"] 'hide'
+
     initialize: () ->
+      @model.on 'change:visible', @changeVisible, @
+
       @renderDef = new $.Deferred()
 
       @proxyCall 'initialize', arguments
