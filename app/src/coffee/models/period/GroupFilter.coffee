@@ -7,11 +7,15 @@ define [
 ], (ResourceBase, View) ->
   ResourceBase.extend
     _gettersNames: [
-      ['pk', 'root']
+      'pk'
       ['name', 'root']
     ]
 
     initialize: (attrs, options) ->
+      @set 'pk', attrs.root.pk()
+
+      @count = 1
+
       @View = View
 
       @proxyCall 'initialize', arguments

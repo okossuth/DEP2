@@ -11,13 +11,23 @@ define(['models/period/GroupFilter', 'ovivo'], function(Model) {
       _root = ovivo.desktop.resources.groups.get(ovivo.desktop.resources.groups.get(model.pk()).pkRoot());
       _model = this.get(_root.pk());
       if (_model != null) {
+        _model.count += 1;
         return;
       }
       return this.add({
         root: _root
       });
     },
-    removeGroup: function(model) {},
+    removeGroup: function(model) {
+      var _model, _root;
+
+      _root = ovivo.desktop.resources.groups.get(ovivo.desktop.resources.groups.get(model.pk()).pkRoot());
+      _model = this.get(_root.pk());
+      if ((_model != null) && (_model.count -= 1) === 0) {
+        this.remove(_model);
+      }
+      return true;
+    },
     initialize: function(models, options) {
       this.periodGroups = options.periodGroups;
       this.periodGroups.on('add', this.addGroup, this);
