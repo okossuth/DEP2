@@ -1,0 +1,16 @@
+.side-bar.expandable .menu-toggle {
+  display: block; }
+.side-bar .menu-toggle {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+  display: none;
+  cursor: pointer; }
+  .side-bar .menu-toggle > span {
+    border-bottom: 2px solid #dddddd; }
+  .side-bar .menu-toggle .less {
+    display: none; }
+  .side-bar .menu-toggle.expanded .less {
+    display: inline; }
+  .side-bar .menu-toggle.expanded .more {
+    display: none; }

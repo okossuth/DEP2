@@ -1,0 +1,27 @@
+.side-bar
+  &.expandable
+    .menu-toggle
+      display: block
+
+  .menu-toggle
+    position: absolute
+
+    right: 5px
+    bottom: 10px
+
+    display: none
+
+    cursor: pointer
+
+    > span
+      border-bottom: 2px solid #ddd
+
+    .less
+      display: none
+
+    &.expanded
+      .less
+        display: inline
+
+      .more
+        display: none

@@ -13,7 +13,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
     addModel: function(obj) {
       var _model;
 
-      _model = new Model(obj);
+      _model = new this.model(obj);
       this.add(_model);
       return _model;
     },
@@ -45,6 +45,8 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
       return true;
     },
     calcScrollData: function() {
+      var _this = this;
+
       if (this._prev != null) {
         this._prev.model.clearScroll();
       }
@@ -54,8 +56,8 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
 
         _h = model.view.el.offsetHeight;
         _t = model.view.el.offsetTop;
-        if (this.innerCollectionName != null) {
-          model[this.innerCollectionName].calcScrollData();
+        if (_this.innerCollectionName != null) {
+          model[_this.innerCollectionName].calcScrollData();
         }
         return {
           el: model.view.el,

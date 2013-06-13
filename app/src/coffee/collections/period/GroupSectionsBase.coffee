@@ -1,6 +1,6 @@
 define [
   '_features/binarySearch',
-  
+
   'ovivo'
 ], (binarySearch) ->
   _scrollComparator: (obj, val) ->
@@ -11,7 +11,7 @@ define [
     return 0
 
   addModel: (obj) ->
-    _model = new Model obj
+    _model = new @model obj
 
     @add _model
 
@@ -46,7 +46,7 @@ define [
 
     @_prev = null
 
-    @_scrollData = @map (model) ->
+    @_scrollData = @map (model) =>
       _h = model.view.el.offsetHeight
       _t = model.view.el.offsetTop
 

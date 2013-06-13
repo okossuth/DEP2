@@ -5,7 +5,7 @@ define [
 
   'ovivo'
 ], (ResourceBase, GroupSectionBase) ->
-  ResourceBase.extend _.extend, {}, GroupSectionBase,
+  ResourceBase.extend _.extend {}, GroupSectionBase,
     common: {}
 
     MIN_BLOCK_HEIGHT: 100

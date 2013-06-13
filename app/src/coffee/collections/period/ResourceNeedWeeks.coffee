@@ -1,11 +1,11 @@
 define [
   'models/period/ResourceNeedWeek',
 
-  'collections/period/GroupSectionBase',
+  'collections/period/GroupSectionsBase',
 
   'ovivo'
-], (Model, GroupSectionBase) ->
-  Backbone.Collection.extend _.extend {}, GroupSectionBase,
+], (Model, GroupSectionsBase) ->
+  Backbone.Collection.extend _.extend {}, GroupSectionsBase,
     model: Model
 
     initialize: () ->

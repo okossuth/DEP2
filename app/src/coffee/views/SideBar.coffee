@@ -1,12 +1,17 @@
 define [
+  '_common/ToolsBase',
+
   'ovivo'
-], () ->
+], (ToolsBase) ->
   Backbone.View.extend
     el: '.side-bar'
+
+    TOP_MENU_LINE_HEIGHT: 71
 
     events: 
       'click .menu-item': 'processItemClick'
       'click .logo.title': 'showNotifications'
+      'click .menu-toggle': 'toggleMenu'
 
     updateNotifications: (model, collection, options) ->
       _unread = ovivo.desktop.resources.notifications.unreadLength()
@@ -19,6 +24,33 @@ define [
       true
 
     menuItemRegExp: /^menu-item-(.*)$/
+
+    _collapseMenu: () ->
+      @menuToggled = false
+
+      @$el.height @TOP_MENU_LINE_HEIGHT
+
+      @toggler.removeClass 'expanded'
+      @$el.removeClass 'expanded'
+
+    _expandMenu: () ->
+      @menuToggled = true
+
+      @$el.height @menu.offsetHeight
+
+      @toggler.addClass 'expanded'
+      @$el.addClass 'expanded'
+
+    toggleMenu: () ->
+      @menuToggled = not @menuToggled
+
+      if @menuToggled is true
+        @_expandMenu()
+
+      else
+        @_collapseMenu()
+
+      true
 
     showNotifications: (e) ->
       ovivo.desktop.pages.notifications.view.showEl()
@@ -51,7 +83,29 @@ define [
     renderUser: () ->
       @$('.user-name-value').html "#{ovivo.desktop.resources.user.first_name()} #{ovivo.desktop.resources.user.last_name()}"
 
+      @_checkMenu()
+
+    _checkMenu: () ->
+      if @menu.offsetHeight > @TOP_MENU_LINE_HEIGHT
+        @$el.addClass 'expandable'
+
+      else
+        @$el.removeClass 'expandable'
+
+        @_collapseMenu()
+
+      true
+
     initialize: () ->
+      @menuToggled = false
+
+      @menu = @$('ul.menu')[0]
+      @toggler = @$('.menu-toggle')
+
+      ToolsBase.bounceRepeater(50, 5, _.bind @_checkMenu, @)()
+
+      $(window).on 'resize', _.bind @_checkMenu, @
+
       ovivo.desktop.resources.notifications.on 'reset', @updateNotifications, @
       ovivo.desktop.resources.notifications.on 'add', @updateNotifications, @
 
