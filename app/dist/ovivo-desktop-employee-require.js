@@ -24425,7 +24425,11 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       if (this._scrollDataFlag === false) {
         this._calcScrollData();
       }
-      this.el.style.top = "" + (-val) + "px";
+      if (ovivo.config.TRANSFORM !== false) {
+        this.container[0].style[ovivo.config.TRANSFORM] = "translate(0, " + (-val) + "px)";
+      } else {
+        this.container[0].style.top = "" + (-val) + "px";
+      }
       this.periodGroups.processScroll(val, height);
       return true;
     },

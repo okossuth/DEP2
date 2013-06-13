@@ -21,7 +21,11 @@ define [
       if @_scrollDataFlag is false
         @_calcScrollData()
 
-      @el.style.top = "#{-val}px"
+      if ovivo.config.TRANSFORM isnt false
+        @container[0].style[ovivo.config.TRANSFORM] = "translate(0, #{-val}px)"
+
+      else
+        @container[0].style.top = "#{-val}px"
 
       @periodGroups.processScroll val, height
 
