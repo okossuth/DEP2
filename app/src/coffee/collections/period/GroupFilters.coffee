@@ -9,8 +9,6 @@ define [
     comparator: (model) -> model.name()
 
     addGroup: (model) ->
-      console.log model
-
       _root = ovivo.desktop.resources.groups.get model.root()
 
       _model = @get _root.pk()

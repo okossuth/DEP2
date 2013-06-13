@@ -8,7 +8,6 @@ define(['models/period/GroupFilter', 'ovivo'], function(Model) {
     addGroup: function(model) {
       var _model, _root;
 
-      console.log(model);
       _root = ovivo.desktop.resources.groups.get(model.root());
       _model = this.get(_root.pk());
       if (_model != null) {
