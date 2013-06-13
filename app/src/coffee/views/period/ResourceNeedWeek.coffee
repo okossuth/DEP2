@@ -26,23 +26,13 @@ define [
       ovivo.desktop.popups.editPopupResourceNeed.edit @model.resourceNeed()
 
     clearScroll: () ->
-      if ovivo.config.TRANSFORM isnt false
-        @header.style[ovivo.config.TRANSFORM] = ''
+      @_clearHeader()
 
-      else
-        @header.style.top = ''
-
-      @el.style.opacity = ''
-
-      @$el.removeClass 'folding'
-
-      if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = ''
+      @_clearFolding()
 
       true
 
     processScroll: (obj, val) ->
-      _height = obj.height - @MIN_BLOCK_HEIGHT
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 
       @_animateHeader _val, val

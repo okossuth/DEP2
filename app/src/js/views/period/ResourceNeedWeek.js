@@ -16,22 +16,13 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'
       return ovivo.desktop.popups.editPopupResourceNeed.edit(this.model.resourceNeed());
     },
     clearScroll: function() {
-      if (ovivo.config.TRANSFORM !== false) {
-        this.header.style[ovivo.config.TRANSFORM] = '';
-      } else {
-        this.header.style.top = '';
-      }
-      this.el.style.opacity = '';
-      this.$el.removeClass('folding');
-      if (ovivo.config.TRANSFORM !== false) {
-        this.el.style[ovivo.config.TRANSFORM] = '';
-      }
+      this._clearHeader();
+      this._clearFolding();
       return true;
     },
     processScroll: function(obj, val) {
-      var _height, _val;
+      var _val;
 
-      _height = obj.height - this.MIN_BLOCK_HEIGHT;
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this._animateHeader(_val, val);
       if (obj.last === true) {

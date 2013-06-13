@@ -13,18 +13,13 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'
     },
     processClick: function() {},
     clearScroll: function() {
-      this.el.style.opacity = '';
-      this.$el.removeClass('folding');
+      this._clearFolding();
       this.timeRange.style.height = '';
-      if (ovivo.config.TRANSFORM !== false) {
-        this.el.style[ovivo.config.TRANSFORM] = '';
-      }
       return true;
     },
     processScroll: function(obj, val) {
-      var _height, _val;
+      var _val;
 
-      _height = obj.height - this.MIN_BLOCK_HEIGHT;
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this.timeRange.style.height = "" + (obj.height - _val) + "px";
       if (obj.last === true) {

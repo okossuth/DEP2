@@ -12,13 +12,7 @@ define [
       if ovivo.config.TRANSFORM isnt false
         @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
 
-    else
-      @$el.removeClass 'folding'
-
-      @el.style.opacity = ''
-
-      if ovivo.config.TRANSFORM isnt false
-        @el.style[ovivo.config.TRANSFORM] = ''
+    else @_clearFolding()
 
     true
 
@@ -28,3 +22,20 @@ define [
 
     else
       @header.style.top = "#{_val}px"
+
+  _clearFolding: () ->
+    @el.style.opacity = ''
+
+    @$el.removeClass 'folding'
+
+    if ovivo.config.TRANSFORM isnt false
+        @el.style[ovivo.config.TRANSFORM] = ''
+
+    true
+
+  _clearHeader: () ->
+    if ovivo.config.TRANSFORM isnt false
+      @header.style[ovivo.config.TRANSFORM] = ''
+
+    else
+      @header.style.top = ''

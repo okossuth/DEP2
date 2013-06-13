@@ -24,19 +24,13 @@ define [
     processClick: () ->
 
     clearScroll: () ->
-      @el.style.opacity = ''
-
-      @$el.removeClass 'folding'
+      @_clearFolding()
 
       @timeRange.style.height = ''
-
-      if ovivo.config.TRANSFORM isnt false
-        @el.style[ovivo.config.TRANSFORM] = ''
 
       true
       
     processScroll: (obj, val) ->
-      _height = obj.height - @MIN_BLOCK_HEIGHT
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 
       @timeRange.style.height = "#{obj.height - _val}px"
