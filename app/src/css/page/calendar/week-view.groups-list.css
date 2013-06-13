@@ -1,0 +1,16 @@
+.page.page-calendar > .content.week-view ul.groups-list {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -100px;
+  z-index: 1000;
+  font-size: 16px;
+  margin: 0 0 0 29px; }
+  .page.page-calendar > .content.week-view ul.groups-list > li {
+    display: inline-block;
+    color: #999999;
+    margin: 0 0 0 22px; }
+    .page.page-calendar > .content.week-view ul.groups-list > li:first-child {
+      margin-left: 0; }
+    .page.page-calendar > .content.week-view ul.groups-list > li.selected {
+      color: #fd5308; }

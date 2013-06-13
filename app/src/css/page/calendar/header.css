@@ -40,18 +40,6 @@
       padding: 14px 28px;
       margin: 0 19px 0 0;
       float: right; }
-    .page.page-calendar > header > div.line > ul.groups-list {
-      display: inline-block;
-      font-size: 16px;
-      margin: 0 0 0 29px; }
-      .page.page-calendar > header > div.line > ul.groups-list > li {
-        display: inline-block;
-        color: #999999;
-        margin: 0 0 0 22px; }
-        .page.page-calendar > header > div.line > ul.groups-list > li:first-child {
-          margin-left: 0; }
-        .page.page-calendar > header > div.line > ul.groups-list > li.selected {
-          color: #fd5308; }
   .page.page-calendar > header .weekdays {
     position: absolute;
     left: 0;
