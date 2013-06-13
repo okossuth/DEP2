@@ -40,3 +40,11 @@
         color: white
 
         z-index: 1
+
+      &.folding
+        > ul.time-groups
+          > li.time-group
+            visibility: hidden
+
+            &:last-child
+              visibility: visible

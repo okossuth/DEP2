@@ -25,3 +25,7 @@
       background: #333333;
       color: white;
       z-index: 1; }
+    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group {
+      visibility: hidden; }
+      .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group:last-child {
+        visibility: visible; }

@@ -10,3 +10,6 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
   margin: 0 8px 50px 8px;
   border: 1px solid #dddddd;
   border-top: 0; }
+
+.page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group {
+  visibility: visible; }
