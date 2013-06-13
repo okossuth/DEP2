@@ -1,9 +1,11 @@
 define [
   'views/resources/ResourceBase',
 
+  'views/period/GroupSectionBase',
+
   'ovivo'
 ], (ResourceBase) ->
-  ResourceBase.extend
+  ResourceBase.extend _.extend, {}, GroupSectionBase,
     common: {}
 
     MIN_BLOCK_HEIGHT: 100
@@ -41,23 +43,7 @@ define [
 
       if obj.last is true then return
 
-      if _val isnt val
-        _frac = (val - _val) / @MIN_BLOCK_HEIGHT
-
-        @el.style.opacity = Math.pow(1 - _frac, 2)
-
-        @$el.addClass 'folding'
-
-        if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
-
-      else
-        @$el.removeClass 'folding'
-
-        @el.style.opacity = ''
-
-        if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = ''
+      @_animateFolding _val, val
 
     addBlock: (block) ->
 

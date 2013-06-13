@@ -1,9 +1,11 @@
 define [
   'views/resources/ResourceBase',
 
+  'views/period/GroupSectionBase',
+
   'ovivo'
 ], (ResourceBase) ->
-  ResourceBase.extend
+  ResourceBase.extend _.extend, {}, GroupSectionBase,
     common: {}
 
     MIN_BLOCK_HEIGHT: 148
@@ -41,29 +43,9 @@ define [
       _height = obj.height - @MIN_BLOCK_HEIGHT
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 
-      if ovivo.config.TRANSFORM isnt false
-        @header.style[ovivo.config.TRANSFORM] = "translate(0, #{_val}px)"
-
-      else
-        @header.style.top = "#{_val}px"
-
-      if _val isnt val
-        _frac = (val - _val) / @MIN_BLOCK_HEIGHT
-
-        @el.style.opacity = Math.pow(1 - _frac, 2)
-
-        @$el.addClass 'folding'
-
-        if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = "translate(0, #{@MIN_BLOCK_HEIGHT * _frac}px) scale(#{1 - 0.05 * Math.pow(_frac, 2)}) rotateX(#{60 * Math.pow(_frac, 2)}deg)"
-
-      else
-        @$el.removeClass 'folding'
-
-        @el.style.opacity = ''
-
-        if ovivo.config.TRANSFORM isnt false
-          @el.style[ovivo.config.TRANSFORM] = ''
+      @_animateHeader _val, val
+      
+      @_animateFolding _val, val
 
       true
 
