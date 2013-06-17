@@ -42,7 +42,7 @@ define [
 
     variants: [
       [true, false]
-      [3, 7, 14]
+      [3, 7, 14, null]
     ]
 
     _initSwitcher: (key, i) ->
@@ -50,7 +50,9 @@ define [
 
       _switcher.on 'value', @_valueHandlerCreator key
 
-    _setValue: (name, value) -> @switchers[name].setValue value
+    _setValue: (name, value) -> 
+      console.log arguments
+      @switchers[name].setValue value
 
     _valueHandlerCreator: (key) ->
       _this = this

@@ -20847,7 +20847,7 @@ define('views/pages/Settings/Notifications',['views/pages/PageBase', '_common/Re
       }
     ],
     types: [0, 0, 0, 0, 0, 1],
-    variants: [[true, false], [3, 7, 14]],
+    variants: [[true, false], [3, 7, 14, null]],
     _initSwitcher: function(key, i) {
       var _switcher;
 
@@ -20855,6 +20855,7 @@ define('views/pages/Settings/Notifications',['views/pages/PageBase', '_common/Re
       return _switcher.on('value', this._valueHandlerCreator(key));
     },
     _setValue: function(name, value) {
+      console.log(arguments);
       return this.switchers[name].setValue(value);
     },
     _valueHandlerCreator: function(key) {
