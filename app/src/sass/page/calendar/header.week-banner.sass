@@ -5,10 +5,21 @@
     top: 144px
     left: 37px
 
-    background: #63b483
+    > ul.white
+      background: white
+
+      > li
+        border-top: 1px solid #e8e8e8
 
     > ul
       width: 100px
+
+      background: #63b483
+
+      margin-top: 10px
+
+      &:first-child
+        margin-top: 0
 
       > li
         position: relative
@@ -25,13 +36,28 @@
 
         overflow: hidden
 
+        > div.stripe
+          position: absolute
+
+          top: 0
+          bottom: 0
+          right: 0
+
+          width: 5px
+
+          background: #333333
+
+          display: none
+
         &:first-child
           border-top: 0
 
-        &.selected
-          background: #4b8f66
+        &.clickable
+          cursor: pointer
 
-          border-top-color: #52956c
+        &.selected
+          > div.stripe
+            display: block
 
         &.week-block
           padding: 24px 0 12px 0

@@ -1,10 +1,17 @@
 .page.page-calendar > header > .week-banner {
   position: absolute;
   top: 144px;
-  left: 37px;
-  background: #63b483; }
+  left: 37px; }
+  .page.page-calendar > header > .week-banner > ul.white {
+    background: white; }
+    .page.page-calendar > header > .week-banner > ul.white > li {
+      border-top: 1px solid #e8e8e8; }
   .page.page-calendar > header > .week-banner > ul {
-    width: 100px; }
+    width: 100px;
+    background: #63b483;
+    margin-top: 10px; }
+    .page.page-calendar > header > .week-banner > ul:first-child {
+      margin-top: 0; }
     .page.page-calendar > header > .week-banner > ul > li {
       position: relative;
       border-top: 1px solid #5aa477;
@@ -13,11 +20,20 @@
       color: white;
       padding: 15px 0;
       overflow: hidden; }
+      .page.page-calendar > header > .week-banner > ul > li > div.stripe {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 5px;
+        background: #333333;
+        display: none; }
       .page.page-calendar > header > .week-banner > ul > li:first-child {
         border-top: 0; }
-      .page.page-calendar > header > .week-banner > ul > li.selected {
-        background: #4b8f66;
-        border-top-color: #52956c; }
+      .page.page-calendar > header > .week-banner > ul > li.clickable {
+        cursor: pointer; }
+      .page.page-calendar > header > .week-banner > ul > li.selected > div.stripe {
+        display: block; }
       .page.page-calendar > header > .week-banner > ul > li.week-block {
         padding: 24px 0 12px 0; }
       .page.page-calendar > header > .week-banner > ul > li.month-block, .page.page-calendar > header > .week-banner > ul > li.year-block {
