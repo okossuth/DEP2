@@ -8,6 +8,7 @@
         "grunt-closure-compiler": "0.0.x",
         "grunt-contrib-concat": "0.2.x",
         "grunt-csso": "0.5.x",
-        "grunt-shell": "0.2.x"
+        "grunt-shell": "0.2.x",
+        "underscore": "1.4.4"
     }
 }
