@@ -12,7 +12,7 @@ script:
   - cd ../
   
 after_script:
-  - git add remote azure https://eur00t@desktop-employee.scm.azurewebsites.net/desktop-employee.git
+  - git remote add azure https://eur00t@desktop-employee.scm.azurewebsites.net/desktop-employee.git
   - git add .
   - git commit -m "Travis CI build"
   - git push azure master
