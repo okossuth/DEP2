@@ -9,6 +9,7 @@ env:
     - secure: "IbMKdst5S2nD6VlOgoc4eJ1LOX736kRX/4hKRRNt0xEBeJvpgFP81ey/PKYP\nHwabfg198eO7jR+4Ajg4rTOvlBKRH8nhR34HC1ZK+j7enZpbNXWn9/aEwrCS\nuqJGf+1yiVrGN/tvpLONvRi4TVUUDXXQWfIwy6C32qop4vdyKbs="
 
 install:
+  - git checkout master
   - npm install -g grunt-cli
   - cd app
   - npm install
