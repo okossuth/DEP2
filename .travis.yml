@@ -4,6 +4,7 @@ node_js:
 install:
   - cd app
   - npm install
+  - cd ../
 script:
   - cd app
   - grunt
