@@ -21,6 +21,6 @@ define [
       _res[key] = () -> 
         _args = arguments
 
-        _.each arr, (func) => func.apply @, _args
+        _.map(arr, (func) => func.apply @, _args)[0]
 
     _res

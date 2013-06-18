@@ -30,9 +30,9 @@ define(['ovivo'], function() {
             _this = this;
 
           _args = arguments;
-          return _.each(arr, function(func) {
+          return _.map(arr, function(func) {
             return func.apply(_this, _args);
-          });
+          })[0];
         };
       });
       return _res;
