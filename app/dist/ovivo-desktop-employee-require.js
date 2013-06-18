@@ -25133,6 +25133,8 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
+      this.weekViewSwitcher = new Switcher(this.$('.week-view-switcher'), ['employees', 'periods']);
+      this.weekViewSwitcher.setValue('employees');
       this.$('.scroller').on('scroll', _.bind(this.processScroll, this));
       this.proxyCall('initialize', arguments);
       return true;

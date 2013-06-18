@@ -81,6 +81,9 @@ define [
       @viewSwitcher = new Switcher @$('.switcher-view'), ['week', 'month']
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
 
+      @weekViewSwitcher = new Switcher @$('.week-view-switcher'), ['employees', 'periods']
+      @weekViewSwitcher.setValue 'employees'
+
       @$('.scroller').on 'scroll', _.bind @processScroll, @
 
       @proxyCall 'initialize', arguments
