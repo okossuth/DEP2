@@ -35,6 +35,14 @@ ovivo.config.ANIMATION_END = (function() {
 
 ovivo.config.TRANSFORM = Modernizr.prefixed('transform');
 
+ovivo.config.TRANSITION_END = {
+  'WebkitTransition': 'webkitTransitionEnd',
+  'MozTransition': 'transitionend',
+  'OTransition': 'oTransitionEnd',
+  'msTransition': 'MSTransitionEnd',
+  'transition': 'transitionend'
+}[Modernizr.prefixed('transition')];
+
 if (ovivo._config != null) {
   ovivo.config = _.extend(ovivo.config, ovivo._config);
 }

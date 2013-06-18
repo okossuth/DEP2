@@ -117,6 +117,20 @@ define(['ovivo'], function() {
           });
         }
       };
+    },
+    onceEventBind: function(obj, eventName, handler) {
+      var _func;
+
+      _func = function() {
+        handler.apply(this, arguments);
+        return obj.off(eventName, _func);
+      };
+      obj.on(eventName, _func);
+      return {
+        cancel: function() {
+          return obj.off(eventName, _func);
+        }
+      };
     }
   };
 });

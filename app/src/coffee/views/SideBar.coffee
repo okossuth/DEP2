@@ -25,16 +25,29 @@ define [
 
     menuItemRegExp: /^menu-item-(.*)$/
 
-    _collapseMenu: () ->
-      @menuToggled = false
-
-      @$el.height @TOP_MENU_LINE_HEIGHT
-
+    _collapseMenuClear: () ->
       @toggler.removeClass 'expanded'
       @$el.removeClass 'expanded'
 
+      console.log 'menu collapsed: end'
+
+    _collapseMenu: () ->
+      @menuToggled = false
+
+      console.log 'menu collapsed'
+
+      if ovivo.config.TRANSITION_END?
+        @_collapseAction = ToolsBase.onceEventBind @$el, ovivo.config.TRANSITION_END, _.bind @_collapseMenuClear, @
+
+      else
+        @_collapseMenuClear()
+
+      @$el.height @TOP_MENU_LINE_HEIGHT
+
     _expandMenu: () ->
       @menuToggled = true
+
+      if @_collapseAction? then @_collapseAction.cancel()
 
       @$el.height @menu.offsetHeight
 
@@ -89,7 +102,7 @@ define [
       if @menu.offsetHeight > @TOP_MENU_LINE_HEIGHT
         @$el.addClass 'expandable'
 
-      else
+      else if @$el.hasClass 'expandable'
         @$el.removeClass 'expandable'
 
         @_collapseMenu()

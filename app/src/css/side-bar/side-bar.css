@@ -7,10 +7,11 @@
   width: 100%;
   height: 71px;
   background: white;
-  -webkit-transition: 300ms height;
-  -moz-transition: 300ms height;
-  -ms-transition: 300ms height;
-  -o-transition: 300ms height;
-  transition: 300ms height; }
+  -webkit-transition: 300ms height, 300ms box-shadow;
+  -moz-transition: 300ms height, 300ms box-shadow;
+  -ms-transition: 300ms height, 300ms box-shadow;
+  -o-transition: 300ms height, 300ms box-shadow;
+  transition: 300ms height, 300ms box-shadow;
+  box-shadow: 0 0 0 black; }
   .side-bar.expanded {
     box-shadow: 0 0 5px black; }

@@ -22,14 +22,26 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       return true;
     },
     menuItemRegExp: /^menu-item-(.*)$/,
+    _collapseMenuClear: function() {
+      this.toggler.removeClass('expanded');
+      this.$el.removeClass('expanded');
+      return console.log('menu collapsed: end');
+    },
     _collapseMenu: function() {
       this.menuToggled = false;
-      this.$el.height(this.TOP_MENU_LINE_HEIGHT);
-      this.toggler.removeClass('expanded');
-      return this.$el.removeClass('expanded');
+      console.log('menu collapsed');
+      if (ovivo.config.TRANSITION_END != null) {
+        this._collapseAction = ToolsBase.onceEventBind(this.$el, ovivo.config.TRANSITION_END, _.bind(this._collapseMenuClear, this));
+      } else {
+        this._collapseMenuClear();
+      }
+      return this.$el.height(this.TOP_MENU_LINE_HEIGHT);
     },
     _expandMenu: function() {
       this.menuToggled = true;
+      if (this._collapseAction != null) {
+        this._collapseAction.cancel();
+      }
       this.$el.height(this.menu.offsetHeight);
       this.toggler.addClass('expanded');
       return this.$el.addClass('expanded');
@@ -76,7 +88,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     _checkMenu: function() {
       if (this.menu.offsetHeight > this.TOP_MENU_LINE_HEIGHT) {
         this.$el.addClass('expandable');
-      } else {
+      } else if (this.$el.hasClass('expandable')) {
         this.$el.removeClass('expandable');
         this._collapseMenu();
       }

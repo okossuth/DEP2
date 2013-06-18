@@ -99,3 +99,14 @@ define [
         @common.calls.push
           ctx: @
           args: _args
+
+  onceEventBind: (obj, eventName, handler) ->
+    _func = () ->
+      handler.apply @, arguments
+
+      obj.off eventName, _func
+
+    obj.on eventName, _func
+
+    cancel: () -> obj.off eventName, _func
+
