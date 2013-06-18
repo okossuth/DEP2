@@ -6,6 +6,7 @@ node_js:
 env:
   global:
     - secure: "hIoJ3T0ETQICdb/dc7slq/+794/2rxhASZ4xyipm4IUC0APLBIEyanfzXJd7\nsNX3IDcHyXSxOBK+Ut0y6ydPMqmbxTceAn3JOScg/h5XnjhTeeluP8zjB8LL\nhDFUTX6IR8kGIgAYC/KV3xcCV7IUNUpy6tVyI3vrNm4FL8nlRME="
+    - secure: "IbMKdst5S2nD6VlOgoc4eJ1LOX736kRX/4hKRRNt0xEBeJvpgFP81ey/PKYP\nHwabfg198eO7jR+4Ajg4rTOvlBKRH8nhR34HC1ZK+j7enZpbNXWn9/aEwrCS\nuqJGf+1yiVrGN/tvpLONvRi4TVUUDXXQWfIwy6C32qop4vdyKbs="
 
 install:
   - npm install -g grunt-cli
@@ -20,6 +21,7 @@ script:
   
 after_script:
   - git config --global user.email "$EMAIL"
+  - git config --global user.name "$USER_NAME"
   - git remote add azure https://eur00t@desktop-employee.scm.azurewebsites.net/desktop-employee.git
   - git add .
   - git commit -m "Travis CI build"
