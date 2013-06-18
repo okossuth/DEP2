@@ -18,7 +18,7 @@ install:
 
 script:
   - cd app
-  - grunt
+  - grunt travis
   - cd ../
   
 after_script:
