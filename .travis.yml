@@ -1,5 +1,9 @@
 language: node_js
 node_js:
   - "0.8.14"
+install:
+  - cd app
+  - npm install
 script:
-  - ./script/ci/build.sh
+  - cd app
+  - grunt
