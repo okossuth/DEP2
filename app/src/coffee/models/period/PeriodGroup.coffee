@@ -1,13 +1,16 @@
 define [
+  '_features/objsMerger',
+
   'models/resources/ResourceBase',
+  'models/period/PeriodGroupEmployees',
 
   'collections/period/ResourceNeedTimeGroups',
 
   'views/period/PeriodGroup',
 
   'ovivo'
-], (ResourceBase, TimeGroups, View) ->
-  ResourceBase.extend
+], (objsMerger, ResourceBase, PeriodGroupEmployees, TimeGroups, View) ->
+  ResourceBase.extend objsMerger.funcMerge PeriodGroupEmployees,
     _gettersNames: [
       'pk'
       'root'
