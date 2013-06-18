@@ -27,7 +27,7 @@ after_script:
   - git remote add azure https://eur00t:$PASSWORD@desktop-employee.scm.azurewebsites.net/desktop-employee.git
   - git add .
   - git commit -m "Travis CI build"
-  - git push azure master
+  - git push -f azure master
 
 branches:
   only:
