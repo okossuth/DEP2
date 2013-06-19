@@ -1,11 +1,14 @@
 define [
-  'views/resources/ResourceBase',
+  '_features/objsMerger',
 
+  'views/resources/ResourceBase',
+  
   'views/period/GroupSectionBase',
+  'views/period/PeriodGroupEmployees',
 
   'ovivo'
-], (ResourceBase, GroupSectionBase) ->
-  ResourceBase.extend _.extend {}, GroupSectionBase,
+], (objsMerger, ResourceBase, GroupSectionBase, PeriodGroupEmployees) ->
+  ResourceBase.extend _.extend {}, GroupSectionBase, objsMerger.funcMerge PeriodGroupEmployees,
     common: {}
 
     MIN_BLOCK_HEIGHT: 148

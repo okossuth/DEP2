@@ -1,6 +1,8 @@
 define [
   'models/resources/ResourceBase',
 
+  'views/period/SkillGroup',
+
   'ovivo'
 ], (ResourceBase, View) ->
   ResourceBase.extend

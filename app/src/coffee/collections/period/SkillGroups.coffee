@@ -1,17 +1,13 @@
 define [
   'models/period/SkillGroup',
 
+  'collections/period/GroupSectionsBase',
+
   'ovivo'
-], (Model) ->
-  Backbone.Collection.extend
+], (Model, GroupSectionsBase) ->
+  Backbone.Collection.extend _.extend {}, GroupSectionsBase,
     model: Model
-    
-    addModel: (obj) ->
-      _model = new @model obj
-
-      @add _model
-
-      _model
 
     initialize: () ->
+      
       true
