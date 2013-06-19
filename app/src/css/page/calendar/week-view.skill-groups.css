@@ -32,6 +32,8 @@
       height: auto; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block.side-column {
       font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
+  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block > div.inner {
+    min-height: 40px; }
   .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column {
     width: 120px;
     height: 100%;
@@ -47,5 +49,4 @@
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column span {
       margin: 0; }
   .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.first-column {
-    width: auto;
     border-left: 0; }
