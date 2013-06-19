@@ -1,7 +1,8 @@
 .page.page-calendar > .content.week-view .day-blocks {
   overflow: auto;
   border-spacing: 0;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
   .page.page-calendar > .content.week-view .day-blocks .day-block {
     width: 14.28571%;
     background: white;
@@ -12,13 +13,12 @@
       border-left: 0; }
   .page.page-calendar > .content.week-view .day-blocks.header, .page.page-calendar > .content.week-view .day-blocks.static-header {
     font-size: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    z-index: 1;
     width: 100%;
     overflow: visible;
     height: 48px; }
-    .page.page-calendar > .content.week-view .day-blocks.header .bottom-shadow, .page.page-calendar > .content.week-view .day-blocks.static-header .bottom-shadow {
+    .page.page-calendar > .content.week-view .day-blocks.header tr.bottom-shadow, .page.page-calendar > .content.week-view .day-blocks.static-header tr.bottom-shadow {
       position: absolute;
       background: #eeeeee;
       height: 4px;
@@ -43,7 +43,7 @@
     .page.page-calendar > .content.week-view .day-blocks.content .day-block {
       border-left-color: #dddddd; }
       .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner {
-        padding: 60px 5px 55px 20px; }
+        padding: 15px 5px 15px 20px; }
         .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner div.indicator {
           display: inline-block;
           border-radius: 2px;
@@ -66,9 +66,7 @@
           background: #f05050; }
   .page.page-calendar > .content.week-view .day-blocks.footer {
     font-size: 14px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 46px; }
     .page.page-calendar > .content.week-view .day-blocks.footer .day-block {

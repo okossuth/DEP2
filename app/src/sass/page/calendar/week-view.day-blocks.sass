@@ -6,6 +6,8 @@
 
     width: 100%
 
+    position: relative
+
     .day-block
       width: 14.28571428571429%
 
@@ -23,10 +25,9 @@
     &.header, &.static-header
       font-size: 15px
 
-      position: absolute
+      position: relative
 
-      top: 0
-      left: 0
+      z-index: 1
 
       width: 100%
 
@@ -34,7 +35,7 @@
 
       height: 48px
 
-      .bottom-shadow
+      tr.bottom-shadow
         position: absolute
 
         background: #eeeeee
@@ -73,7 +74,7 @@
         border-left-color: #dddddd
 
         > div.inner
-          padding: 60px 5px 55px 20px
+          padding: 15px 5px 15px 20px
 
           div.indicator
             display: inline-block
@@ -114,10 +115,7 @@
     &.footer
       font-size: 14px
 
-      position: absolute
-
-      bottom: 0
-      left: 0
+      position: relative
 
       width: 100%
 
