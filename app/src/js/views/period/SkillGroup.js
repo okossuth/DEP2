@@ -28,18 +28,20 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'
       return this._animateFolding(_val, val);
     },
     addBlock: function(block) {},
-    postRender: function() {
-      this.header = this.$('.day-blocks.header')[0];
-      return this.renderDef.resolve();
+    _renderSkill: function() {
+      return this.$('.skill-name').html(ovivo.desktop.resources.skills.get(this.pk()).name());
     },
     postRender: function() {
       var _this = this;
 
+      this.header = this.$('.day-blocks.header')[0];
       this.employeeRows = this.$('.employee-rows');
+      ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));
       this.addEmployeeRows(this.model.skillEmployeeRows.map(function(t) {
         return t;
       }));
-      return this.model.skillEmployeeRows.on('add', this.addEmployeeRows, this);
+      this.model.skillEmployeeRows.on('add', this.addEmployeeRows, this);
+      return this.renderDef.resolve();
     },
     addEmployeeRows: function(employeeRows) {
       return this._addViewSorted(this.employeeRows, this.model.skillEmployeeRows, employeeRows);

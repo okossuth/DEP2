@@ -41,17 +41,20 @@ define [
 
     addBlock: (block) ->
 
+    _renderSkill: () ->
+      @$('.skill-name').html ovivo.desktop.resources.skills.get(@pk()).name()
+
     postRender: () ->
       @header = @$('.day-blocks.header')[0]
-
-      @renderDef.resolve()
-
-    postRender: () ->
       @employeeRows = @$('.employee-rows')
+
+      ovivo.desktop.resources.skills.def.done _.bind @_renderSkill, @
 
       @addEmployeeRows @model.skillEmployeeRows.map (t) => t
 
       @model.skillEmployeeRows.on 'add', @addEmployeeRows, @
+
+      @renderDef.resolve()
 
     addEmployeeRows: (employeeRows) ->
       @_addViewSorted @employeeRows, @model.skillEmployeeRows, employeeRows
