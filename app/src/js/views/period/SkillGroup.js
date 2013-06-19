@@ -32,6 +32,18 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'
       this.header = this.$('.day-blocks.header')[0];
       return this.renderDef.resolve();
     },
+    postRender: function() {
+      var _this = this;
+
+      this.employeeRows = this.$('.employee-rows');
+      this.addEmployeeRows(this.model.skillEmployeeRows.map(function(t) {
+        return t;
+      }));
+      return this.model.skillEmployeeRows.on('add', this.addEmployeeRows, this);
+    },
+    addEmployeeRows: function(employeeRows) {
+      return this._addViewSorted(this.employeeRows, this.model.skillEmployeeRows, employeeRows);
+    },
     initialize: function() {
       this.renderDef = new $.Deferred();
       this.proxyCall('initialize', arguments);

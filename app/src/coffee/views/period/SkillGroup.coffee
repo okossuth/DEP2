@@ -46,6 +46,16 @@ define [
 
       @renderDef.resolve()
 
+    postRender: () ->
+      @employeeRows = @$('.employee-rows')
+
+      @addEmployeeRows @model.skillEmployeeRows.map (t) => t
+
+      @model.skillEmployeeRows.on 'add', @addEmployeeRows, @
+
+    addEmployeeRows: (employeeRows) ->
+      @_addViewSorted @employeeRows, @model.skillEmployeeRows, employeeRows
+
     initialize: () ->
       @renderDef = new $.Deferred()
 

@@ -13,6 +13,7 @@ define [
     standaloneModel: true
 
     _gettersNames: [
+      'pk'
       'first_name'
       'last_name'
       'groups'

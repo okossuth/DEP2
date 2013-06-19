@@ -5,8 +5,10 @@ define [
 ], (ResourceBase) ->
   ResourceBase.extend
     _gettersNames: [
+      'pk'
       'first_name'
       'last_name'
+      'name'
       'groups'
       'skills'
       'email'
@@ -15,9 +17,9 @@ define [
       'mobile_phone'
     ]
 
-    name: () -> @first_name() + ' ' + @last_name()
-
     initialize: (attrs, options) ->
+      @attributes.name = attrs.first_name + ' ' + attrs.last_name
+
       @proxyCall 'initialize', arguments
 
       true
