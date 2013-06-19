@@ -19751,6 +19751,70 @@ function program2(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['employeeActivity'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  
+
+
+  return "<div class=\"indicator\"></div><span>08:00 – 09:00</span>";});
+templates['employeeActivity_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"indicator\"></div><span>08:00 – 09:00</span>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
+templates['employeeRowSkill'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  
+
+
+  return "<tbody>\r\n    <tr>\r\n        <td class=\"day-block side-column\">\r\n            <div class=\"inner\">\r\n                <span>Bente Brun Jørgensen</span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n    </tr>\r\n\r\n    <tr class=\"bottom-shadow\">\r\n    </tr>\r\n</tbody>";});
+templates['employeeRowSkill_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<table id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block side-column\">\r\n                <div class=\"inner\">\r\n                    <span>Bente Brun Jørgensen</span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<div>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</div>";
+  return buffer;});
 templates['eventUser'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -20795,6 +20859,38 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</select>";
   return buffer;});
+templates['resourceNeedSkillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  
+
+
+  return "<strong>07.00 – 15.00</strong><span>0 of 5</span>";});
+templates['resourceNeedSkillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <strong>07.00 – 15.00</strong><span>0 of 5</span>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
+  return buffer;});
 templates['resourceNeedTimeGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -20980,6 +21076,38 @@ function program1(depth0,data) {
   if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n</ul>";
+  return buffer;});
+templates['skillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  
+
+
+  return "<div class=\"separator\"></div>\r\n\r\n<table class=\"day-blocks header\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block side-column\">\r\n                <div class=\"inner\">\r\n                    <span>SOSU</span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<div class=\"employee-rows\">\r\n</div>";});
+templates['skillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n\r\n<li id=\"element-view-";
+  foundHelper = helpers.pk;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "-";
+  foundHelper = helpers.cid;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"separator\"></div>\r\n\r\n    <table class=\"day-blocks header\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block side-column\">\r\n                    <div class=\"inner\">\r\n                        <span>SOSU</span>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <div class=\"employee-rows\">\r\n    </div>\r\n</li>\r\n\r\n";
+  return buffer;}
+
+  buffer += "<ul>\r\n\r\n";
+  foundHelper = helpers.elements;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n\r\n</ul>";
   return buffer;});
 templates['skills'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
