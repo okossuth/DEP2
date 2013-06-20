@@ -72,7 +72,9 @@ define [
             if not (_el = @footer.find(_sel)[0])? 
               return
 
-        $(_el).html @[field]()
+        if typeof (_field = @[field]) isnt 'function' then return
+
+        $(_el).html _field.call @
 
     updateEventsHanlder: () ->
       @model.refreshEvents()

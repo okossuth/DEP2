@@ -46,7 +46,7 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
 
       _changed = _.keys(resourceNeed.changed);
       return _.each(_changed, function(field) {
-        var _el, _method, _processMethod, _sel;
+        var _el, _field, _method, _processMethod, _sel;
 
         _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
@@ -65,7 +65,10 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
             }
           }
         }
-        return $(_el).html(_this[field]());
+        if (typeof (_field = _this[field]) !== 'function') {
+          return;
+        }
+        return $(_el).html(_field.call(_this));
       });
     },
     updateEventsHanlder: function() {

@@ -9,6 +9,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       return this.view.processScroll(obj, val);
     },
     addBlock: function(block) {
+      this.view.addBlock(block);
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {

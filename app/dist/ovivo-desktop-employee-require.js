@@ -19792,7 +19792,7 @@ templates['employeeRowSkill'] = template(function (Handlebars,depth0,helpers,par
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n    </tr>\r\n\r\n    <tr class=\"bottom-shadow\">\r\n    </tr>\r\n</tbody>";
+  buffer += escapeExpression(stack1) + "</span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block first-column container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"day-block container\">\r\n            <div class=\"inner\">\r\n                <ul class=\"activities\">\r\n                </ul>\r\n            </div>\r\n        </td>\r\n    </tr>\r\n\r\n    <tr class=\"bottom-shadow\">\r\n    </tr>\r\n</tbody>";
   return buffer;});
 templates['employeeRowSkill_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
@@ -19813,7 +19813,7 @@ function program1(depth0,data) {
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "</span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n";
   return buffer;}
 
   buffer += "<div>\r\n\r\n";
@@ -20870,10 +20870,23 @@ function program1(depth0,data) {
   return buffer;});
 templates['resourceNeedSkillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<strong>07.00 – 15.00</strong><span>0 of 5</span>";});
+  buffer += "<strong><span class=\"start_time-value\">";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> – <span class=\"end_time-value\">";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>";
+  return buffer;});
 templates['resourceNeedSkillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -20889,7 +20902,19 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <strong>07.00 – 15.00</strong><span>0 of 5</span>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <strong><span class=\"start_time-value\">";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> – <span class=\"end_time-value\">";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  foundHelper = helpers.num_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span></span>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -21091,7 +21116,7 @@ templates['skillGroup'] = template(function (Handlebars,depth0,helpers,partials,
   
 
 
-  return "<div class=\"separator\"></div>\r\n\r\n<table class=\"day-blocks header\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block side-column\">\r\n                <div class=\"inner\">\r\n                    <span class=\"skill-name\"></span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<div class=\"employee-rows\">\r\n</div>";});
+  return "<div class=\"separator\"></div>\r\n\r\n<table class=\"day-blocks header\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block side-column\">\r\n                <div class=\"inner\">\r\n                    <span class=\"skill-name\"></span>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block first-column container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"resource-needs\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<div class=\"employee-rows\">\r\n</div>";});
 templates['skillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -21107,7 +21132,7 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"separator\"></div>\r\n\r\n    <table class=\"day-blocks header\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block side-column\">\r\n                    <div class=\"inner\">\r\n                        <span class=\"skill-name\"></span>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <div class=\"employee-rows\">\r\n    </div>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"separator\"></div>\r\n\r\n    <table class=\"day-blocks header\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block side-column\">\r\n                    <div class=\"inner\">\r\n                        <span class=\"skill-name\"></span>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block first-column container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <div class=\"employee-rows\">\r\n    </div>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -23543,7 +23568,7 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
 
       _changed = _.keys(resourceNeed.changed);
       return _.each(_changed, function(field) {
-        var _el, _method, _processMethod, _sel;
+        var _el, _field, _method, _processMethod, _sel;
 
         _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
@@ -23562,7 +23587,10 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
             }
           }
         }
-        return $(_el).html(_this[field]());
+        if (typeof (_field = _this[field]) !== 'function') {
+          return;
+        }
+        return $(_el).html(_field.call(_this));
       });
     },
     updateEventsHanlder: function() {
@@ -24194,7 +24222,65 @@ define('collections/period/SkillEmployeeRows',['models/period/SkillEmployeeRow',
 });
 
 // Generated by CoffeeScript 1.6.2
-define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'], function(ResourceBase, GroupSectionBase) {
+define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
+  return ResourceBase.extend({
+    common: {},
+    tagName: 'li',
+    className: 'resource-need',
+    template: Handlebars.templates['resourceNeedSkillGroup'],
+    groupTemplate: Handlebars.templates['resourceNeedSkillGroup_group'],
+    preventChangeRender: true,
+    events: {},
+    postRender: function() {
+      return this.renderDef.resolve();
+    },
+    changeHanlder: function(resourceNeed) {
+      var _changed,
+        _this = this;
+
+      _changed = _.keys(resourceNeed.changed);
+      return _.each(_changed, function(field) {
+        var _field, _method, _processMethod;
+
+        _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
+        _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
+        if (_this[_method] != null) {
+          _this[_method]();
+          return;
+        }
+        if (_this[_processMethod] != null) {
+          _this[_processMethod]();
+        }
+        if (typeof (_field = _this[field]) !== 'function') {
+          return;
+        }
+        return _this.$("." + field + "-value").html(_field.call(_this));
+      });
+    },
+    _attachHandlers: function() {
+      this.model.off('rendered', this._attachHandlers);
+      this.listenTo(this.resourceNeed(), 'change', this.changeHanlder);
+      return this.model.on('change', this.changeHanlder, this);
+    },
+    _detachHandlers: function() {
+      this.stopListening(this.resourceNeed(), 'change', this.changeHanlder);
+      return this.model.off('change', this.changeHanlder);
+    },
+    initialize: function() {
+      var _this = this;
+
+      this.renderDef = new $.Deferred();
+      this.renderDef.done(function() {
+        return _this._attachHandlers();
+      });
+      this.proxyCall('initialize', arguments);
+      return true;
+    }
+  });
+});
+
+// Generated by CoffeeScript 1.6.2
+define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/period/PeriodBlockWeekEmployees', 'ovivo'], function(ResourceBase, GroupSectionBase, PeriodBlockView) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
     MIN_BLOCK_HEIGHT: 100,
@@ -24222,7 +24308,18 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
       }
       return this._animateFolding(_val, val);
     },
-    addBlock: function(block) {},
+    addBlock: function(block) {
+      var _this = this;
+
+      return this.renderDef.done(function() {
+        var _view;
+
+        _view = new PeriodBlockView({
+          model: block
+        });
+        return $(_this.headerBlocks.get(block.day)).append(_view.el);
+      });
+    },
     _renderSkill: function() {
       return this.$('.skill-name').html(ovivo.desktop.resources.skills.get(this.pk()).name());
     },
@@ -24230,6 +24327,7 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
       var _this = this;
 
       this.header = this.$('.day-blocks.header')[0];
+      this.headerBlocks = this.$('.day-blocks.header td.day-block.container ul.resource-needs');
       this.employeeRows = this.$('.employee-rows');
       ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));
       this.addEmployeeRows(this.model.skillEmployeeRows.map(function(t) {
@@ -24260,6 +24358,7 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
       return this.view.processScroll(obj, val);
     },
     addBlock: function(block) {
+      this.view.addBlock(block);
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {

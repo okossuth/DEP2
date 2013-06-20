@@ -2,9 +2,10 @@ define [
   'views/resources/ResourceBase',
 
   'views/period/GroupSectionBase',
+  'views/period/PeriodBlockWeekEmployees'
 
   'ovivo'
-], (ResourceBase, GroupSectionBase) ->
+], (ResourceBase, GroupSectionBase, PeriodBlockView) ->
   ResourceBase.extend _.extend {}, GroupSectionBase,
     common: {}
 
@@ -39,13 +40,18 @@ define [
 
       @_animateFolding _val, val
 
-    addBlock: (block) ->
+    addBlock: (block) -> @renderDef.done () =>
+      _view = new PeriodBlockView
+        model: block
+
+      $(@headerBlocks.get(block.day)).append _view.el
 
     _renderSkill: () ->
       @$('.skill-name').html ovivo.desktop.resources.skills.get(@pk()).name()
 
     postRender: () ->
       @header = @$('.day-blocks.header')[0]
+      @headerBlocks = @$('.day-blocks.header td.day-block.container ul.resource-needs')
       @employeeRows = @$('.employee-rows')
 
       ovivo.desktop.resources.skills.def.done _.bind @_renderSkill, @
