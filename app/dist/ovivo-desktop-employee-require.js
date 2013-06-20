@@ -24348,6 +24348,27 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
       this.add(_model);
       return _model;
     },
+    setMode: function(value) {
+      return this.mode = value;
+    },
+    _forwardCall: function(model, methodName) {
+      var _args, _inner, _type;
+
+      if (this.innerCollectionName == null) {
+        return;
+      }
+      _args = Array.prototype.slice.call(arguments, 2);
+      _inner = '';
+      if ((_type = typeof this.innerCollectionName) === 'string') {
+        _inner = this.innerCollectionName;
+      } else if ((_type === 'object') && (this.mode != null)) {
+        _inner = this.innerCollectionName[this.mode];
+      }
+      if ((_inner == null) || _inner === '') {
+        return;
+      }
+      return model[_inner][methodName].apply(model[_inner], _args);
+    },
     processScroll: function(val, height) {
       var _delta, _res;
 
@@ -24355,9 +24376,7 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
       if (_res !== null) {
         _delta = val - _res.start;
         _res.model.processScroll(_res, _delta);
-        if (this.innerCollectionName != null) {
-          _res.model[this.innerCollectionName].processScroll(_delta, height);
-        }
+        this._forwardCall(_res.model, 'processScroll', _delta, height);
       }
       if (_res === this._prev) {
         return;
@@ -24370,9 +24389,7 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
         return;
       }
       this._prev.model.clearScroll();
-      if (this.innerCollectionName != null) {
-        this._prev.model[this.innerCollectionName]._clearPrev();
-      }
+      this._forwardCall(this._prev.model, '_clearPrev');
       return true;
     },
     _itemsSelector: function() {
@@ -24392,9 +24409,7 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
 
         _h = model.view.el.offsetHeight;
         _t = model.view.el.offsetTop;
-        if (_this.innerCollectionName != null) {
-          model[_this.innerCollectionName].calcScrollData();
-        }
+        _this._forwardCall(model, 'calcScrollData');
         return {
           el: model.view.el,
           model: model,
@@ -24905,8 +24920,12 @@ define('collections/period/PeriodGroups',['models/period/PeriodGroup', 'collecti
         return m.visible() === true;
       });
     },
-    initialize: function() {
-      this.innerCollectionName = 'timeGroups';
+    initialize: function(models, options) {
+      _.extend(this, options);
+      this.innerCollectionName = {
+        periods: 'timeGroups',
+        employees: 'skillGroups'
+      };
       this.initCacheProcessors();
       return true;
     }
@@ -25097,6 +25116,9 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
         return _periodGroup.removeBlock(block);
       }
     },
+    _initFrameMode: function() {
+      return this.periodGroups.mode = this.model.frame.mode();
+    },
     _initFrame: function() {
       this.addBlocks(this.model.frame.periodBlocks.map(function(b) {
         return b;
@@ -25135,10 +25157,13 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
     _processFilterApply: function() {
       return this.model.collection.page._postNavigate();
     },
+    _processMode: function() {
+      this.periodGroups.setMode(this.model.frame.mode());
+      return this._updateScroll();
+    },
     _renderMode: function() {
       var _mode, _prevMode;
 
-      this._updateScroll();
       _mode = this.model.frame.mode();
       _prevMode = this.model.frame.previous('mode');
       return this.$el.removeClass("" + _prevMode + "-mode").addClass("" + _mode + "-mode");
@@ -25155,6 +25180,7 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       this.periodGroups.on('add', this.addPeriodGroup, this);
       this.periodGroups.on('add', this._updateScroll, this);
       this.periodGroups.on('remove', this._updateScroll, this);
+      this.model.on('rendered', this._initFrameMode, this);
       this.model.on('rendered', this._initFrame, this);
       this.proxyCall('initialize', arguments);
       this.model.frame.periodBlocks.on('add', this._updateScroll, this);
@@ -25162,6 +25188,7 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/resources/R
       this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
       this._renderMode();
       this.model.frame.on('change:mode', this._renderMode, this);
+      this.model.frame.on('change:mode', this._processMode, this);
       this.scroller = $('.page.page-calendar .scroller');
       this.scrollerInner = $('.page.page-calendar .scroller .inner');
       return true;

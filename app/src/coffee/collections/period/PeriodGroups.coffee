@@ -12,8 +12,12 @@ define [
 
     _itemsSelector: () -> @filter (m) -> m.visible() is true
 
-    initialize: () ->
-      @innerCollectionName = 'timeGroups'
+    initialize: (models, options) ->
+      _.extend @, options
+      
+      @innerCollectionName = 
+        periods: 'timeGroups'
+        employees: 'skillGroups'
 
       @initCacheProcessors()
       

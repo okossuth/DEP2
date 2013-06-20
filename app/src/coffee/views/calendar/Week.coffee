@@ -60,6 +60,9 @@ define [
       _periodGroup = @periodGroups.get block.group()
 
       if _periodGroup? then _periodGroup.removeBlock block
+
+    _initFrameMode: () ->
+      @periodGroups.mode = @model.frame.mode()
       
     _initFrame: () ->
       @addBlocks @model.frame.periodBlocks.map (b) -> b
@@ -94,9 +97,12 @@ define [
 
     _processFilterApply: () -> @model.collection.page._postNavigate()
 
-    _renderMode: () ->
+    _processMode: () ->
+      @periodGroups.setMode @model.frame.mode()
+
       @_updateScroll()
-      
+
+    _renderMode: () ->
       _mode = @model.frame.mode()
       _prevMode = @model.frame.previous 'mode'
 
@@ -121,6 +127,7 @@ define [
       @periodGroups.on 'add', @_updateScroll, @
       @periodGroups.on 'remove', @_updateScroll, @
 
+      @model.on 'rendered', @_initFrameMode, @
       @model.on 'rendered', @_initFrame, @
 
       @proxyCall 'initialize', arguments
@@ -131,6 +138,7 @@ define [
 
       @_renderMode()
       @model.frame.on 'change:mode', @_renderMode, @
+      @model.frame.on 'change:mode', @_processMode, @
 
       @scroller = $('.page.page-calendar .scroller')
       @scrollerInner = $('.page.page-calendar .scroller .inner')

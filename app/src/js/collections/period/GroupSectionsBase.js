@@ -17,6 +17,27 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
       this.add(_model);
       return _model;
     },
+    setMode: function(value) {
+      return this.mode = value;
+    },
+    _forwardCall: function(model, methodName) {
+      var _args, _inner, _type;
+
+      if (this.innerCollectionName == null) {
+        return;
+      }
+      _args = Array.prototype.slice.call(arguments, 2);
+      _inner = '';
+      if ((_type = typeof this.innerCollectionName) === 'string') {
+        _inner = this.innerCollectionName;
+      } else if ((_type === 'object') && (this.mode != null)) {
+        _inner = this.innerCollectionName[this.mode];
+      }
+      if ((_inner == null) || _inner === '') {
+        return;
+      }
+      return model[_inner][methodName].apply(model[_inner], _args);
+    },
     processScroll: function(val, height) {
       var _delta, _res;
 
@@ -24,9 +45,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
       if (_res !== null) {
         _delta = val - _res.start;
         _res.model.processScroll(_res, _delta);
-        if (this.innerCollectionName != null) {
-          _res.model[this.innerCollectionName].processScroll(_delta, height);
-        }
+        this._forwardCall(_res.model, 'processScroll', _delta, height);
       }
       if (_res === this._prev) {
         return;
@@ -39,9 +58,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
         return;
       }
       this._prev.model.clearScroll();
-      if (this.innerCollectionName != null) {
-        this._prev.model[this.innerCollectionName]._clearPrev();
-      }
+      this._forwardCall(this._prev.model, '_clearPrev');
       return true;
     },
     _itemsSelector: function() {
@@ -61,9 +78,7 @@ define(['_features/binarySearch', 'ovivo'], function(binarySearch) {
 
         _h = model.view.el.offsetHeight;
         _t = model.view.el.offsetTop;
-        if (_this.innerCollectionName != null) {
-          model[_this.innerCollectionName].calcScrollData();
-        }
+        _this._forwardCall(model, 'calcScrollData');
         return {
           el: model.view.el,
           model: model,

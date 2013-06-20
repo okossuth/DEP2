@@ -17,6 +17,26 @@ define [
 
     _model
 
+  setMode: (value) ->
+    @mode = value
+
+  _forwardCall: (model, methodName) ->
+    if not @innerCollectionName? then return
+
+    _args = Array.prototype.slice.call arguments, 2
+
+    _inner = ''
+
+    if (_type = typeof @innerCollectionName) is 'string'
+      _inner = @innerCollectionName
+
+    else if (_type is 'object') and @mode?
+      _inner = @innerCollectionName[@mode]
+
+    if (not _inner?) or _inner is '' then return
+
+    model[_inner][methodName].apply model[_inner], _args
+
   processScroll: (val, height) ->
     _res = binarySearch @_scrollData, val, @_scrollComparator
 
@@ -24,7 +44,8 @@ define [
       _delta = val - _res.start
 
       _res.model.processScroll _res, _delta
-      if @innerCollectionName? then _res.model[@innerCollectionName].processScroll _delta, height
+
+      @_forwardCall _res.model, 'processScroll', _delta, height
 
     if _res is @_prev then return
 
@@ -37,7 +58,7 @@ define [
 
     @_prev.model.clearScroll()
 
-    if @innerCollectionName? then @_prev.model[@innerCollectionName]._clearPrev()
+    @_forwardCall @_prev.model, '_clearPrev'
 
     true
 
@@ -52,7 +73,7 @@ define [
       _h = model.view.el.offsetHeight
       _t = model.view.el.offsetTop
 
-      if @innerCollectionName? then model[@innerCollectionName].calcScrollData()
+      @_forwardCall model, 'calcScrollData'
 
       el: model.view.el
       model: model

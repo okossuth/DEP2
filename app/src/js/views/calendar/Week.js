@@ -63,6 +63,9 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
         return _periodGroup.removeBlock(block);
       }
     },
+    _initFrameMode: function() {
+      return this.periodGroups.mode = this.model.frame.mode();
+    },
     _initFrame: function() {
       this.addBlocks(this.model.frame.periodBlocks.map(function(b) {
         return b;
@@ -101,10 +104,13 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
     _processFilterApply: function() {
       return this.model.collection.page._postNavigate();
     },
+    _processMode: function() {
+      this.periodGroups.setMode(this.model.frame.mode());
+      return this._updateScroll();
+    },
     _renderMode: function() {
       var _mode, _prevMode;
 
-      this._updateScroll();
       _mode = this.model.frame.mode();
       _prevMode = this.model.frame.previous('mode');
       return this.$el.removeClass("" + _prevMode + "-mode").addClass("" + _mode + "-mode");
@@ -121,6 +127,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.periodGroups.on('add', this.addPeriodGroup, this);
       this.periodGroups.on('add', this._updateScroll, this);
       this.periodGroups.on('remove', this._updateScroll, this);
+      this.model.on('rendered', this._initFrameMode, this);
       this.model.on('rendered', this._initFrame, this);
       this.proxyCall('initialize', arguments);
       this.model.frame.periodBlocks.on('add', this._updateScroll, this);
@@ -128,6 +135,7 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
       this._renderMode();
       this.model.frame.on('change:mode', this._renderMode, this);
+      this.model.frame.on('change:mode', this._processMode, this);
       this.scroller = $('.page.page-calendar .scroller');
       this.scrollerInner = $('.page.page-calendar .scroller .inner');
       return true;

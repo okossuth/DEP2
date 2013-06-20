@@ -7,8 +7,12 @@ define(['models/period/PeriodGroup', 'collections/period/GroupSectionsBase', '_c
         return m.visible() === true;
       });
     },
-    initialize: function() {
-      this.innerCollectionName = 'timeGroups';
+    initialize: function(models, options) {
+      _.extend(this, options);
+      this.innerCollectionName = {
+        periods: 'timeGroups',
+        employees: 'skillGroups'
+      };
       this.initCacheProcessors();
       return true;
     }
