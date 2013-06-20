@@ -89,7 +89,7 @@ define(['ovivo'], function() {
             return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
           });
         },
-        getBy: function(field, values) {
+        _getBySingle: function(field, values) {
           var _this = this;
 
           if ((values instanceof Array) !== true) {
@@ -98,6 +98,20 @@ define(['ovivo'], function() {
           return _.reduce(values, (function(memo, value) {
             return memo.concat(_.values(_this._cache[field][value.valueOf()]));
           }), []);
+        },
+        _getByGroup: function(request) {
+          var _this = this;
+
+          return _.intersection.apply(_, _.map(_.keys(request), function(field) {
+            return _this._getBySingle(field, request[field]);
+          }));
+        },
+        getBy: function() {
+          if (arguments.length === 1) {
+            return this._getByGroup.apply(this, arguments);
+          } else {
+            return this._getBySingle.apply(this, arguments);
+          }
         },
         getKeys: function(field) {
           return _.keys(this._cache[field]);

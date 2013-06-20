@@ -21,16 +21,17 @@ define [
       @_blocksCounter += 1
 
     removeBlock: (block) ->
-      @_blocksCounter -= 1
+      console.log @_blocksCounter -= 1
 
       if @_blocksCounter is 0
         @collection.remove @
 
     _initEmployees: () -> ovivo.desktop.resources.users.def.done () =>
-      _bySkill = ovivo.desktop.resources.users.getBy 'skills', @pk()
-      _byGroup = ovivo.desktop.resources.users.getBy 'groups', @group()
+      _arr = ovivo.desktop.resources.users.getBy 
+        'skills': @pk()
+        'groups': @group()
 
-      if not ((_arr = _.intersection _bySkill, _byGroup) instanceof Array) then return
+      if not (_arr instanceof Array) then return
 
       @skillEmployeeRows.add _.map _arr, (user) -> { user: user }
 

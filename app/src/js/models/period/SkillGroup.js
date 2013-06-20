@@ -12,7 +12,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
-      this._blocksCounter -= 1;
+      console.log(this._blocksCounter -= 1);
       if (this._blocksCounter === 0) {
         return this.collection.remove(this);
       }
@@ -21,11 +21,13 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       var _this = this;
 
       return ovivo.desktop.resources.users.def.done(function() {
-        var _arr, _byGroup, _bySkill;
+        var _arr;
 
-        _bySkill = ovivo.desktop.resources.users.getBy('skills', _this.pk());
-        _byGroup = ovivo.desktop.resources.users.getBy('groups', _this.group());
-        if (!((_arr = _.intersection(_bySkill, _byGroup)) instanceof Array)) {
+        _arr = ovivo.desktop.resources.users.getBy({
+          'skills': _this.pk(),
+          'groups': _this.group()
+        });
+        if (!(_arr instanceof Array)) {
           return;
         }
         return _this.skillEmployeeRows.add(_.map(_arr, function(user) {

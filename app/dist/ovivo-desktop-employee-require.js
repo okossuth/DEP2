@@ -24263,7 +24263,7 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
-      this._blocksCounter -= 1;
+      console.log(this._blocksCounter -= 1);
       if (this._blocksCounter === 0) {
         return this.collection.remove(this);
       }
@@ -24272,11 +24272,13 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
       var _this = this;
 
       return ovivo.desktop.resources.users.def.done(function() {
-        var _arr, _byGroup, _bySkill;
+        var _arr;
 
-        _bySkill = ovivo.desktop.resources.users.getBy('skills', _this.pk());
-        _byGroup = ovivo.desktop.resources.users.getBy('groups', _this.group());
-        if (!((_arr = _.intersection(_bySkill, _byGroup)) instanceof Array)) {
+        _arr = ovivo.desktop.resources.users.getBy({
+          'skills': _this.pk(),
+          'groups': _this.group()
+        });
+        if (!(_arr instanceof Array)) {
           return;
         }
         return _this.skillEmployeeRows.add(_.map(_arr, function(user) {
@@ -24451,6 +24453,18 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
         });
       }
       return _skillGroup.addBlock(block);
+    },
+    removeBlock: function(block) {
+      var _skillGroup;
+
+      _skillGroup = this.skillGroups.get(block.skill());
+      if (_skillGroup != null) {
+        _skillGroup.removeBlock(block);
+      }
+      this._blocksCounter -= 1;
+      if (this._blocksCounter === 0) {
+        return this.collection.remove(this);
+      }
     },
     initialize: function() {
       return this.skillGroups = new SkillGroups();
@@ -24893,7 +24907,7 @@ define('_common/CachableCollection',['ovivo'], function() {
             return _this.on("change:" + field, _.wrap(field, _this._cacheChangeProcessor), _this);
           });
         },
-        getBy: function(field, values) {
+        _getBySingle: function(field, values) {
           var _this = this;
 
           if ((values instanceof Array) !== true) {
@@ -24902,6 +24916,20 @@ define('_common/CachableCollection',['ovivo'], function() {
           return _.reduce(values, (function(memo, value) {
             return memo.concat(_.values(_this._cache[field][value.valueOf()]));
           }), []);
+        },
+        _getByGroup: function(request) {
+          var _this = this;
+
+          return _.intersection.apply(_, _.map(_.keys(request), function(field) {
+            return _this._getBySingle(field, request[field]);
+          }));
+        },
+        getBy: function() {
+          if (arguments.length === 1) {
+            return this._getByGroup.apply(this, arguments);
+          } else {
+            return this._getBySingle.apply(this, arguments);
+          }
         },
         getKeys: function(field) {
           return _.keys(this._cache[field]);

@@ -57,9 +57,19 @@ define [
       _.each fields, (field) =>
         @on "change:#{field}", _.wrap(field, @_cacheChangeProcessor), @
 
-    getBy: (field, values) -> 
+    _getBySingle: (field, values) ->
       if (values instanceof Array) isnt true then values = [values]
 
       _.reduce values, ((memo, value) => memo.concat _.values @_cache[field][value.valueOf()]), []
+
+    _getByGroup: (request) ->
+      _.intersection.apply _, _.map _.keys(request), (field) => @_getBySingle field, request[field]
+
+    getBy: () ->
+      if arguments.length is 1
+        @_getByGroup.apply @, arguments
+
+      else
+        @_getBySingle.apply @, arguments
 
     getKeys: (field) -> _.keys @_cache[field]
