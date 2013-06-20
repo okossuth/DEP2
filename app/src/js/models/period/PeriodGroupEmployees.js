@@ -14,16 +14,12 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
       }
       return _skillGroup.addBlock(block);
     },
-    removeBlock: function(block) {
+    _removeBlockPartial: function(block) {
       var _skillGroup;
 
       _skillGroup = this.skillGroups.get(block.skill());
       if (_skillGroup != null) {
-        _skillGroup.removeBlock(block);
-      }
-      this._blocksCounter -= 1;
-      if (this._blocksCounter === 0) {
-        return this.collection.remove(this);
+        return _skillGroup.removeBlock(block);
       }
     },
     initialize: function() {

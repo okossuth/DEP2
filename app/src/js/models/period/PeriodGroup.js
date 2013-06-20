@@ -24,13 +24,16 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
       _timeGroup.addBlock(block);
       return this._blocksCounter += 1;
     },
-    removeBlock: function(block) {
+    _removeBlockPartial: function(block) {
       var _timeGroup;
 
       _timeGroup = block.timeGroup;
       if (_timeGroup != null) {
-        _timeGroup.removeBlock(block);
+        return _timeGroup.removeBlock(block);
       }
+    },
+    removeBlock: function(block) {
+      this._removeBlockPartial(block);
       this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
         return this.collection.remove(this);

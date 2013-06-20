@@ -21,7 +21,7 @@ define [
       @_blocksCounter += 1
 
     removeBlock: (block) ->
-      console.log @_blocksCounter -= 1
+      @_blocksCounter -= 1
 
       if @_blocksCounter is 0
         @collection.remove @

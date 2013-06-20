@@ -12,7 +12,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       return this._blocksCounter += 1;
     },
     removeBlock: function(block) {
-      console.log(this._blocksCounter -= 1);
+      this._blocksCounter -= 1;
       if (this._blocksCounter === 0) {
         return this.collection.remove(this);
       }

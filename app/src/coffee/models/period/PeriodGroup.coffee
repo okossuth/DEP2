@@ -36,10 +36,13 @@ define [
 
       @_blocksCounter += 1
 
-    removeBlock: (block) ->
+    _removeBlockPartial: (block) ->
       _timeGroup = block.timeGroup
 
       if _timeGroup? then _timeGroup.removeBlock block
+
+    removeBlock: (block) ->
+      @_removeBlockPartial block
 
       @_blocksCounter -= 1
 

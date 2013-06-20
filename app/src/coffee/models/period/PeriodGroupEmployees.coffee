@@ -14,15 +14,10 @@ define [
 
     _skillGroup.addBlock block
 
-  removeBlock: (block) ->
+  _removeBlockPartial: (block) ->
     _skillGroup = @skillGroups.get block.skill()
 
     if _skillGroup? then _skillGroup.removeBlock block
-
-    @_blocksCounter -= 1
-
-    if @_blocksCounter is 0
-      @collection.remove @
 
   initialize: () ->
     @skillGroups = new SkillGroups()
