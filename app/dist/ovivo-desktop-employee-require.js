@@ -24455,9 +24455,14 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
       return _skillGroup.addBlock(block);
     },
     _removeBlockPartial: function(block) {
-      var _skillGroup;
+      var _key, _ref, _skillGroup;
 
-      _skillGroup = this.skillGroups.get(block.skill());
+      if (((_ref = block.resourceNeed().changed) != null ? _ref.skill : void 0) != null) {
+        _key = block.resourceNeed().previous('skill');
+      } else {
+        _key = block.skill();
+      }
+      _skillGroup = this.skillGroups.get(_key);
       if (_skillGroup != null) {
         return _skillGroup.removeBlock(block);
       }
@@ -27215,7 +27220,7 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     processFrameUpdate: (function() {
       var _monitorChanges;
 
-      _monitorChanges = ['repeat', 'weekdays'];
+      _monitorChanges = ['repeat', 'weekdays', 'skill'];
       return function(resourceNeed) {
         var _int;
 
@@ -27825,7 +27830,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         return _blocksInitial.map(function(block) {
           block = _.clone(block);
           block.group = group;
-          block.code += "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time());
+          block.code += "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time()) + "." + (block.resourceNeed.skill());
           return block;
         });
       }));

@@ -15,7 +15,13 @@ define [
     _skillGroup.addBlock block
 
   _removeBlockPartial: (block) ->
-    _skillGroup = @skillGroups.get block.skill()
+    if block.resourceNeed().changed?.skill?
+      _key = block.resourceNeed().previous 'skill'
+
+    else
+      _key = block.skill()
+
+    _skillGroup = @skillGroups.get _key
 
     if _skillGroup? then _skillGroup.removeBlock block
 

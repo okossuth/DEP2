@@ -39,7 +39,7 @@ define [
         ovivo.desktop.resources.templates.passFrameUpdate _template
 
     processFrameUpdate: do ->
-      _monitorChanges = ['repeat', 'weekdays']
+      _monitorChanges = ['repeat', 'weekdays', 'skill']
 
       (resourceNeed) ->
         _int = _.intersection _.keys(resourceNeed.changed), _monitorChanges

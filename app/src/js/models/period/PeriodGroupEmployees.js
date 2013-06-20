@@ -15,9 +15,14 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
       return _skillGroup.addBlock(block);
     },
     _removeBlockPartial: function(block) {
-      var _skillGroup;
+      var _key, _ref, _skillGroup;
 
-      _skillGroup = this.skillGroups.get(block.skill());
+      if (((_ref = block.resourceNeed().changed) != null ? _ref.skill : void 0) != null) {
+        _key = block.resourceNeed().previous('skill');
+      } else {
+        _key = block.skill();
+      }
+      _skillGroup = this.skillGroups.get(_key);
       if (_skillGroup != null) {
         return _skillGroup.removeBlock(block);
       }

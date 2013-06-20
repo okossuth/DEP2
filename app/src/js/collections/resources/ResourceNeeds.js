@@ -41,7 +41,7 @@ define(['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common
     processFrameUpdate: (function() {
       var _monitorChanges;
 
-      _monitorChanges = ['repeat', 'weekdays'];
+      _monitorChanges = ['repeat', 'weekdays', 'skill'];
       return function(resourceNeed) {
         var _int;
 
