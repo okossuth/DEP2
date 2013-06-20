@@ -1,9 +1,23 @@
 .page.page-calendar > .content.week-view
   ul.skill-groups
+    -webkit-perspective: 3000px
+    -moz-perspective: 3000px
+    -ms-perspective: 3000px
+    -o-perspective: 3000px
+    perspective: 3000px
+
+    position: relative
+
     > li.skill-group
       position: relative
 
       padding: 0 0 0 120px
+
+      -webkit-transform-origin: bottom center
+      -moz-transform-origin: bottom center
+      -ms-transform-origin: bottom center
+      -o-transform-origin: bottom center
+      transform-origin: bottom center
 
       &:first-child
         > div.separator

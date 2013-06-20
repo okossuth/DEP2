@@ -2217,9 +2217,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       background: #333333;
       color: white;
       z-index: 1; }
-    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group {
+    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li, .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.skill-groups > li {
       visibility: hidden; }
-      .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group:last-child {
+      .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li:last-child, .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.skill-groups > li:last-child {
         visibility: visible; }
 
 .page.page-calendar > .content.week-view ul.resource-needs-rows {
@@ -2257,58 +2257,70 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 .page.page-calendar ::-webkit-scrollbar-button:increment {
   height: 10px; }
 
-.page.page-calendar > .content.week-view ul.skill-groups > li.skill-group {
-  position: relative;
-  padding: 0 0 0 120px; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group:first-child > div.separator {
-    display: none; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group > div.separator {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: #eeeeee;
-    opacity: 0.5;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > strong {
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
-    font-weight: normal; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > span {
-    margin: 0 0 0 10px; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks tr {
-    position: relative; }
-    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks tr.bottom-shadow {
+.page.page-calendar > .content.week-view ul.skill-groups {
+  -webkit-perspective: 3000px;
+  -moz-perspective: 3000px;
+  -ms-perspective: 3000px;
+  -o-perspective: 3000px;
+  perspective: 3000px;
+  position: relative; }
+  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group {
+    position: relative;
+    padding: 0 0 0 120px;
+    -webkit-transform-origin: bottom center;
+    -moz-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    -o-transform-origin: bottom center;
+    transform-origin: bottom center; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group:first-child > div.separator {
+      display: none; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group > div.separator {
       position: absolute;
-      left: -120px;
-      bottom: -1px;
-      padding: 0 0 0 120px;
+      top: -1px;
+      left: 0;
       width: 100%;
-      height: 1px; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header {
-    height: auto; }
-    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block > div.inner {
+      height: 1px;
+      background: #eeeeee;
+      opacity: 0.5;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > strong {
+      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-weight: normal; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > span {
+      margin: 0 0 0 10px; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks tr {
+      position: relative; }
+      .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks tr.bottom-shadow {
+        position: absolute;
+        left: -120px;
+        bottom: -1px;
+        padding: 0 0 0 120px;
+        width: 100%;
+        height: 1px; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header {
       height: auto; }
-    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block.side-column {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block > div.inner {
-    min-height: 40px; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column {
-    width: 120px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: -120px;
-    background: #333333;
-    color: white;
-    text-align: center; }
-    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column > div.inner {
-      padding-left: 10px;
-      padding-right: 10px; }
-    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column span {
-      margin: 0; }
-  .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.first-column {
-    border-left: 0; }
+      .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block > div.inner {
+        height: auto; }
+      .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block.side-column {
+        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block > div.inner {
+      min-height: 40px; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column {
+      width: 120px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: -120px;
+      background: #333333;
+      color: white;
+      text-align: center; }
+      .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column > div.inner {
+        padding-left: 10px;
+        padding-right: 10px; }
+      .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column span {
+        margin: 0; }
+    .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.first-column {
+      border-left: 0; }
 
 .page.page-calendar > .content.week-view div.static-headers {
   position: absolute;

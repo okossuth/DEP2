@@ -27,7 +27,7 @@
       background: #333333;
       color: white;
       z-index: 1; }
-    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group {
+    .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li, .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.skill-groups > li {
       visibility: hidden; }
-      .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li.time-group:last-child {
+      .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.time-groups > li:last-child, .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.skill-groups > li:last-child {
         visibility: visible; }
