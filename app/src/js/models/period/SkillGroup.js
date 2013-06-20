@@ -19,26 +19,42 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       }
     },
     addEvent: function(event) {
-      var _frame;
+      var _frame,
+        _this = this;
 
+      if (this.events[event.pk()] != null) {
+        return;
+      }
+      if (this.employeesDef.state() !== 'resolved') {
+        return;
+      }
       _frame = this.frame();
       if ((event.dateObj > _frame.end()) || (event.dateObj < _frame.start())) {
         return;
       }
-      if (this.employeesDef.state() !== 'resolved') {
-        return;
-      }
-      if (this.events[event.pk()] != null) {
-        return;
-      }
-      this.events[event.pk()] = event;
+      this.events[event.pk()] = _.compact(_.map(event.users(), function(obj) {
+        var _row;
+
+        if ((_row = _this.skillEmployeeRows.get(obj.pk)) == null) {
+          return;
+        }
+        return _row.addEvent(event, obj);
+      }));
       console.log('added event', event);
       return true;
     },
     removeEvent: function(event) {
+      var _arr;
+
       if (this.employeesDef.state() !== 'resolved') {
         return;
       }
+      if ((_arr = this.events[event.pk()]) == null) {
+        return;
+      }
+      _.each(_arr, function(view) {
+        return view.remove();
+      });
       delete this.events[event.pk()];
       console.log('removed event', event);
       return true;
@@ -70,6 +86,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         }
         _this.skillEmployeeRows.add(_.map(_arr, function(user) {
           return {
+            pk: user.pk(),
             user: user
           };
         }));

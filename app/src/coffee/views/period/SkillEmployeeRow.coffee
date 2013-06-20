@@ -2,9 +2,10 @@ define [
   'views/resources/ResourceBase',
 
   'views/period/GroupSectionBase',
+  'views/period/EventEmployee',
 
   'ovivo'
-], (ResourceBase, GroupSectionBase) ->
+], (ResourceBase, GroupSectionBase, EventEmployee) ->
   ResourceBase.extend _.extend {}, GroupSectionBase,
     common: {}
 
@@ -28,7 +29,15 @@ define [
     processScroll: (obj, val) ->
 
     postRender: () ->
+      @eventContainers = @$('td.day-block ul.activities')
       @renderDef.resolve()
+
+    addEvent: (event, obj) -> @renderDef.done () =>
+      _view = new EventEmployee { model: event }, obj
+
+      $(@eventContainers.get(event.day)).append _view.el
+
+      _view
 
     initialize: () ->
       @renderDef = new $.Deferred()

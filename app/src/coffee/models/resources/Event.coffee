@@ -33,7 +33,12 @@ define [
 
     initialize: (attrs, options) ->
       @dateObj = new Date Date.parse attrs.start_date
-      
+
+      _day = @dateObj.getDay() - 1
+      if _day is -1 then _day = 6
+
+      @day = _day
+
       @proxyCall 'initialize', arguments
 
       true

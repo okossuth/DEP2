@@ -15,7 +15,14 @@ define(['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       }
     },
     initialize: function(attrs, options) {
+      var _day;
+
       this.dateObj = new Date(Date.parse(attrs.start_date));
+      _day = this.dateObj.getDay() - 1;
+      if (_day === -1) {
+        _day = 6;
+      }
+      this.day = _day;
       this.proxyCall('initialize', arguments);
       return true;
     }

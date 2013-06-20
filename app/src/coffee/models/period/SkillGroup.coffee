@@ -30,14 +30,17 @@ define [
         @collection.remove @
 
     addEvent: (event) ->
-      _frame = @frame()
-      if (event.dateObj > _frame.end()) or (event.dateObj < _frame.start()) then return
+      if @events[event.pk()]? then return
 
       if @employeesDef.state() isnt 'resolved' then return
 
-      if @events[event.pk()]? then return
+      _frame = @frame()
+      if (event.dateObj > _frame.end()) or (event.dateObj < _frame.start()) then return
 
-      @events[event.pk()] = event
+      @events[event.pk()] = _.compact _.map event.users(), (obj) => 
+        if not (_row = @skillEmployeeRows.get(obj.pk))? then return
+
+        _row.addEvent event, obj
 
       console.log 'added event', event
 
@@ -45,6 +48,10 @@ define [
 
     removeEvent: (event) ->
       if @employeesDef.state() isnt 'resolved' then return
+
+      if not (_arr = @events[event.pk()])? then return
+
+      _.each _arr, (view) -> view.remove()
 
       delete @events[event.pk()]
 
@@ -62,7 +69,7 @@ define [
 
       if not (_arr instanceof Array) then return
 
-      @skillEmployeeRows.add _.map _arr, (user) -> { user: user }
+      @skillEmployeeRows.add _.map _arr, (user) -> { pk: user.pk(), user: user }
 
       @employeesDef.resolve()
 

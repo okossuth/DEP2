@@ -7,8 +7,8 @@ define [
 ], (ResourceBase, View) ->
   ResourceBase.extend
     _gettersNames: [
+      'pk'
       'user'
-      ['pk', 'user']
       ['name', 'user']
     ]
 
@@ -27,9 +27,9 @@ define [
       if @_blocksCounter is 0
         @collection.remove @
 
-    initialize: (attrs, options) ->
-      @set 'pk', attrs.user.pk()
+    addEvent: (event, obj) -> @view.addEvent event, obj
 
+    initialize: (attrs, options) ->
       @View = View
 
       @_blocksCounter = 0
