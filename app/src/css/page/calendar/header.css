@@ -1,3 +1,6 @@
+.page.page-calendar.employees-mode > header .weekdays ul.row {
+  margin: 0 50px 0 260px; }
+
 .page.page-calendar > header {
   background: #edf0f2;
   height: 88px; }

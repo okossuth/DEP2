@@ -1647,6 +1647,9 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       ul.months-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, ul.weeks-list .element > div.element-container > div.buttons > div.button-element.right > div.button-background, .page-event-details .element > div.element-container > div.buttons > div.button-element.right > div.button-background {
         box-shadow: inset 1px 0 0 #f6f5f4; }
 
+.page.page-calendar.employees-mode > header .weekdays ul.row {
+  margin: 0 50px 0 260px; }
+
 .page.page-calendar > header {
   background: #edf0f2;
   height: 88px; }

@@ -25789,6 +25789,7 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       return true;
     },
     processWeekViewSwitcherValue: function(value) {
+      this.$el.removeClass('employees-mode periods-mode').addClass("" + value + "-mode");
       return ovivo.desktop.resources.frames.changeDisplayMode(value);
     },
     initialize: function() {
