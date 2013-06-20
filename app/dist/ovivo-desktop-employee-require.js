@@ -24268,15 +24268,15 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
         return this.collection.remove(this);
       }
     },
-    _initEmployees: function() {
+    _initEmployees: function(pk, group) {
       var _this = this;
 
       return ovivo.desktop.resources.users.def.done(function() {
         var _arr;
 
         _arr = ovivo.desktop.resources.users.getBy({
-          'skills': _this.pk(),
-          'groups': _this.group()
+          'skills': pk,
+          'groups': group
         });
         if (!(_arr instanceof Array)) {
           return;
@@ -24291,9 +24291,9 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     initialize: function(attrs, options) {
       this.View = View;
       this.skillEmployeeRows = new SkillEmployeeRows();
+      this._initEmployees(attrs.pk, attrs.group);
       this._blocksCounter = 0;
       this.proxyCall('initialize', arguments);
-      this._initEmployees();
       return true;
     }
   });

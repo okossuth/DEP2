@@ -26,10 +26,10 @@ define [
       if @_blocksCounter is 0
         @collection.remove @
 
-    _initEmployees: () -> ovivo.desktop.resources.users.def.done () =>
+    _initEmployees: (pk, group) -> ovivo.desktop.resources.users.def.done () =>
       _arr = ovivo.desktop.resources.users.getBy 
-        'skills': @pk()
-        'groups': @group()
+        'skills': pk
+        'groups': group
 
       if not (_arr instanceof Array) then return
 
@@ -40,10 +40,10 @@ define [
 
       @skillEmployeeRows = new SkillEmployeeRows()
 
+      @_initEmployees attrs.pk, attrs.group
+
       @_blocksCounter = 0
 
       @proxyCall 'initialize', arguments
-
-      @_initEmployees()
 
       true
