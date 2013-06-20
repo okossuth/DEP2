@@ -5,7 +5,7 @@ define [
 ], (ResourceBase) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'period'
 

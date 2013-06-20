@@ -7,9 +7,9 @@ define [
 
     if match.length is 0
       _returnValue = name
-    else 
+    else
       match = match.slice 1
-      
+
       _hours = parseInt match[2]
 
       if !((_hours >= 0) and (_hours <= 24))
@@ -23,4 +23,4 @@ define [
     _returnValue
 
   number: (name, value) ->
-    if (typeof value isnt 'number') or (value <= 0) or ((value - Math.floor(value)) isnt 0) then name else undefined
+    if (typeof value isnt 'number') or (value <= 0) or ((value - Math.floor(value)) isnt 0) then name else undefined

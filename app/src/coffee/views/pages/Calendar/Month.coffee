@@ -21,7 +21,7 @@ define [
       year: year
       month: month
 
-    prev: () -> 
+    prev: () ->
       @current.setMonth @current.getMonth() - 1
 
       @navigate @current.getFullYear(), @current.getMonth()
@@ -29,7 +29,7 @@ define [
     next: () ->
       @current.setMonth @current.getMonth() + 1
 
-      @navigate @current.getFullYear(), @current.getMonth() 
+      @navigate @current.getFullYear(), @current.getMonth()
 
     today: () ->
       _today = Date.today()

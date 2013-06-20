@@ -31,4 +31,4 @@ define [
 
     true
 
-  _PercentageIndicator
+  _PercentageIndicator

@@ -19,7 +19,7 @@ define [
 
           $.when(_res).done (res) -> localStorage[_key] = res
 
-  proxyCall: (methodName, args) -> 
+  proxyCall: (methodName, args) ->
     _args = Array.prototype.slice.call args, 0
     _tail = Array.prototype.slice.call arguments, 2
 
@@ -29,7 +29,7 @@ define [
 
   once: (funcName, func) ->
     _flagPropertyName = "_callFlag-#{funcName}"
-    
+
     () ->
       if @[_flagPropertyName] isnt true
         @[_flagPropertyName] = true
@@ -44,7 +44,7 @@ define [
 
     () ->
       _this = @
-      
+
       _args = Array.prototype.slice.call arguments, 0
 
       if _timeout is null
@@ -109,4 +109,4 @@ define [
     obj.on eventName, _func
 
     cancel: () -> obj.off eventName, _func
-
+

@@ -12,20 +12,20 @@ define [
       else true
     else false
 
-  getNumberOfDaysInMonth: (month, year) ->  
+  getNumberOfDaysInMonth: (month, year) ->
     if month isnt 1
       ovivo.config.DAYS_IN_MONTH[month]
     else if @isLeap(year) then 29 else 28
 
-  setMonth: (value) -> 
-    value = if value > 11 
+  setMonth: (value) ->
+    value = if value > 11
       @setYear @year() + 1
 
-      value % 12 
+      value % 12
     else if value < 0
       @setYear @year() - 1
 
-      value % 12 + 12 
+      value % 12 + 12
     else value
 
     @set 'month', value

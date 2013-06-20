@@ -5,7 +5,7 @@ define [
 ], (ResourceBase) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'template'
 
@@ -30,7 +30,7 @@ define [
         _str = gettext 'No periods attached'
 
       else
-        _str = _.map(_.keys(_periods), (id) -> 
+        _str = _.map(_.keys(_periods), (id) ->
           _period = ovivo.desktop.resources.periods.get(id)
 
           _period.view.start_date() + ' – ' + _period.view.end_date()).join ', '
@@ -47,4 +47,4 @@ define [
     initialize: () ->
       @proxyCall 'initialize', arguments
 
-      true
+      true

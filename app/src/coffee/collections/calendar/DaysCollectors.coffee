@@ -9,7 +9,7 @@ define [
     comparator: (elem) -> elem.firstDate()
 
     addElement: (obj) ->
-      _elem = new @model obj, 
+      _elem = new @model obj,
         collection: @
 
       @add _elem
@@ -27,7 +27,7 @@ define [
       elem.visible = true
 
       elem.show()
-      
+
       @trigger 'show', elem
 
       @prevElem = elem

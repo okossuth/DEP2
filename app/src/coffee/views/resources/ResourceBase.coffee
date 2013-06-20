@@ -4,7 +4,7 @@ define [
   'ovivo'
 ], (ToolsBase) ->
   _Base = Backbone.View.extend _.extend {}, ToolsBase,
-    _render: () -> 
+    _render: () ->
       @$el.html @template @
 
       if not @model.view? then @model.view = @
@@ -36,7 +36,7 @@ define [
       _hash = {}
       views = _.filter views, (view) -> if _hash[view.cid] isnt true then _hash[view.cid] = true; true else false
 
-      _DOM = $ @groupTemplate 
+      _DOM = $ @groupTemplate
         elements: views
 
       _.each views, (view) ->
@@ -93,4 +93,4 @@ define [
 
   _Base.prototype._base = _Base
 
-  _Base
+  _Base

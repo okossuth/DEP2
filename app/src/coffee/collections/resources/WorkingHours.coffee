@@ -39,10 +39,10 @@ define [
         _arr = _arr.concat RuleCompiler.compile start, end, wh.start_date(), wh.end_date(), wh.repeat(), wh.weekdaysHash,
           workingHour: wh
 
-      _blocks = new HoursBlocks 
+      _blocks = new HoursBlocks
 
       _blocks.add _arr
-    
+
     initialize: () ->
       @initResource()
 

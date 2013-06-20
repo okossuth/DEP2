@@ -12,7 +12,7 @@ define [
 
     fields: ['first_name', 'last_name', 'mobile_phone', 'email']
 
-    types: 
+    types:
       'first_name': String
       'last_name': String
       'mobile_phone': String
@@ -25,7 +25,7 @@ define [
 
     show: () ->
       ovivo.desktop.resources.user.def.done () => @setModel ovivo.desktop.resources.user
-      
+
     initialize: () ->
       @on 'action:save', @saveHandler, @
       @on 'show', @show, @

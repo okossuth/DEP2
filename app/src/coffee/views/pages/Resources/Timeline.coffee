@@ -27,7 +27,7 @@ define [
       _end = _end.setDate _end.getDate() + 1
 
       while _i <= _end
-        _obj = 
+        _obj =
           date: "#{trailZero(_i.getDate())}.#{trailZero(_i.getMonth() + 1)}.#{_i.getFullYear()}"
 
         if (_i - _end) is 0
@@ -98,9 +98,9 @@ define [
 
     setPeriod: do ->
       _attachHanlders = (model) ->
-        
+
       _detachHanlders = (model) ->
-        
+
       (model) ->
         @model = model
 

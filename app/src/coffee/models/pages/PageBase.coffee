@@ -23,14 +23,14 @@ define [
 
     initialize: (attrs, options) ->
       @name = attrs.name
-      
+
       @on 'change:subView', @processChange, @
 
       @id = "page-#{@name}"
 
       @_getFromLocalStorage()
 
-      _obj = 
+      _obj =
         model: @
 
       if options?.el? then _obj.el = options.el

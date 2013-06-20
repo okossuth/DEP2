@@ -14,11 +14,11 @@ define [
 
     initialize: (models, options) ->
       _.extend @, options
-      
-      @innerCollectionName = 
+
+      @innerCollectionName =
         periods: 'timeGroups'
         employees: 'skillGroups'
 
       @initCacheProcessors()
-      
+
       true

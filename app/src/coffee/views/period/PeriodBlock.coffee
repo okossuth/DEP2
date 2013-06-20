@@ -16,7 +16,7 @@ define [
       'click': 'processClick'
 
     processClick: () ->
-      ovivo.desktop.popups.periodBlockPopup.render 
+      ovivo.desktop.popups.periodBlockPopup.render
         groups: _.map @model.groupsHash, (arr, pk) ->
           groupName: ovivo.desktop.resources.groups.get(pk).chainName()
           hours: _.map arr, (hour) ->

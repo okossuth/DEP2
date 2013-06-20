@@ -47,7 +47,7 @@ define [
         if _int.length > 0 then @passFrameUpdate resourceNeed
 
         true
-    
+
     initialize: () ->
       @initResource()
 

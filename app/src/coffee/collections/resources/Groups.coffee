@@ -53,4 +53,4 @@ define [
 
       $.when(ovivo.desktop.resources.municipalities.def, ovivo.desktop.resources.primaryDepartments.def, @def).then _.bind @createTree, @
 
-      true
+      true

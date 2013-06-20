@@ -52,7 +52,7 @@ define [
       _s1 = @startValue()
       _e1 = @endValue()
 
-      if (_s <= _s1) and (_e >= _e1) 
+      if (_s <= _s1) and (_e >= _e1)
         @addHour hour, groups
 
     initGroups: () ->

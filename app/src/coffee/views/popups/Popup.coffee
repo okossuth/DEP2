@@ -62,11 +62,11 @@ define [
       true
 
     _initialize: () ->
-      
+
       true
 
   if Modernizr.cssanimations is true
     _Popup.prototype.show = _Popup.prototype._animationShow
     _Popup.prototype.hide = _Popup.prototype._animationHide
 
-  _Popup
+  _Popup

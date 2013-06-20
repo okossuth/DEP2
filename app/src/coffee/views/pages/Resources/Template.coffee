@@ -21,7 +21,7 @@ define [
     primaryDepartmentsTemplate: Handlebars.templates['primaryDepartments']
     resourceNeedsTemplate: Handlebars.templates['resourceNeeds']
 
-    primaryDepartments: () -> 
+    primaryDepartments: () ->
       @primary_departments = _.compact _.map ovivo.desktop.resources.groups.tree, (elem) -> if elem.groups.length > 0 then elem.pd else undefined
 
     resourceNeeds: () -> ovivo.desktop.resources.resourceNeeds.map (model) -> model
@@ -39,7 +39,7 @@ define [
     addNew: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
       ovivo.desktop.popups.editPopupResourceNeed.create()
-      
+
       true
 
     resourceNeedRegExp: /resource-need-template-(.+)/
@@ -113,7 +113,7 @@ define [
       _view.el.id = "resource-need-template-#{_view.model.id}"
 
       @processPrimaryDepartmentChange @model
-      
+
       @resourceNeeds.append _view.el
 
     removeResourceNeed: () -> @processPrimaryDepartmentChange @model

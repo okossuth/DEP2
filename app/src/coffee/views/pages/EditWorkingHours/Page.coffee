@@ -7,7 +7,7 @@ define [
 
   'ovivo'
 ], (PageBase, PageStandaloneAnimation, ResourceEditCommon, WorkingHoursEdit) ->
-  PageBase.extend _.extend {}, PageStandaloneAnimation, ResourceEditCommon.get(PageBase.prototype.events), WorkingHoursEdit, 
+  PageBase.extend _.extend {}, PageStandaloneAnimation, ResourceEditCommon.get(PageBase.prototype.events), WorkingHoursEdit,
     el: '.page.page-edit-working-hours'
 
     initialize: () ->

@@ -9,4 +9,4 @@ define [
     @model.skillGroups.on 'add', @addSkillGroups, @
 
   addSkillGroups: (skillGroups) ->
-    @_addViewSorted @skillGroups, @model.skillGroups, skillGroups
+    @_addViewSorted @skillGroups, @model.skillGroups, skillGroups

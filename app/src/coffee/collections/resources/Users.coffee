@@ -15,7 +15,7 @@ define [
 
     initialize: () ->
       @initCacheProcessors()
-      
+
       @initResource()
 
       true

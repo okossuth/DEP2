@@ -9,10 +9,10 @@ define [
     saveState: false
 
     menuFlag: false
-    
+
     initialize: (attrs, options) ->
       @View = View
-      
+
       @proxyCall 'initialize', arguments
-      
+
       true

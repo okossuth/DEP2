@@ -29,13 +29,13 @@ define [
         validate: true
 
     _getAddSyncHandler: (collection, model, originalModel) ->
-      _handler = () -> 
+      _handler = () ->
         collection.add model
 
         if model.postEditSync? then model.postEditSync collection, model, originalModel
 
         model.off 'sync', _handler
-        
+
         delete model.url
 
       _handler
@@ -104,7 +104,7 @@ define [
 
       @initMode mode
 
-    _createEditCopy: (model) -> 
+    _createEditCopy: (model) ->
       _copy = new model.constructor model.toJSON()
       _copy.editCopy = true
 

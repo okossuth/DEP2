@@ -42,7 +42,7 @@ define [
       if next?
         @insertBefore model, next
 
-      else 
+      else
         @appendItem model.view.el
 
       @checkLast()

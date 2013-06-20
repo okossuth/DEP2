@@ -20,7 +20,7 @@ define [
 
     periodAdd: (model) ->
       @empty.hide()
-      
+
       _date = new Date Date.parse(model.start_date())
 
       _key = "#{_date.getFullYear()}-#{_date.getMonth()}"
@@ -54,7 +54,7 @@ define [
 
       ovivo.desktop.resources.periods.on 'add', @periodAdd, @
 
-      # @$('li.period .percentage').each (i, el) -> 
+      # @$('li.period .percentage').each (i, el) ->
       #   new PercentageIndicator el, 100, 100, Math.floor(Math.random() * 50 + 50)
 
       true

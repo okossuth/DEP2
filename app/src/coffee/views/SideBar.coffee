@@ -8,14 +8,14 @@ define [
 
     TOP_MENU_LINE_HEIGHT: 71
 
-    events: 
+    events:
       'click .menu-item': 'processItemClick'
       'click .logo.title': 'showNotifications'
       'click .menu-toggle': 'toggleMenu'
 
     updateNotifications: (model, collection, options) ->
       _unread = ovivo.desktop.resources.notifications.unreadLength()
-      
+
       @$('.notifications-indicator-container').fadeOut(300).promise().then () =>
         if _unread isnt 0
           @$('.notifications-indicator').html _unread
@@ -120,4 +120,4 @@ define [
 
       ovivo.desktop.resources.user.def.done _.bind @renderUser, @
 
-      true
+      true

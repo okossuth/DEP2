@@ -69,7 +69,7 @@ define [
 
         if not (_el = @header.find(_sel)[0])?
           if not (_el = @content.find(_sel)[0])?
-            if not (_el = @footer.find(_sel)[0])? 
+            if not (_el = @footer.find(_sel)[0])?
               return
 
         if typeof (_field = @[field]) isnt 'function' then return
@@ -87,9 +87,9 @@ define [
         @emptySlots.show()
 
       true
-      
+
     _updateMatchedValues: (value) ->
-      @renderDef.done () => 
+      @renderDef.done () =>
         @model.set 'matched_employees', value
         @model.set 'matched_hours', @getEmployeeHours value
         @model.set 'empty_slots', @num_employees() - value

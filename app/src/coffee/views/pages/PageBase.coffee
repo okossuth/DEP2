@@ -2,7 +2,7 @@ define [
   '_common/ToolsBase',
 
   '_features/transition',
-  
+
   'ovivo'
 ], (ToolsBase, transition) ->
   _Base = Backbone.View.extend _.extend {}, ToolsBase,
@@ -50,7 +50,7 @@ define [
     transitionStart: (type) ->
       if type is 'enter' then @showSubView @subView()
 
-    transitionComplete: (type) -> 
+    transitionComplete: (type) ->
       if type is 'exit' then @hideEl()
 
     showSubView: (name) ->
@@ -72,7 +72,7 @@ define [
     subView: () -> @model.get 'subView'
 
     transition: (source, target) ->
-      _.each [source, target], (page) -> 
+      _.each [source, target], (page) ->
         page.showEl()
 
         true
@@ -103,7 +103,7 @@ define [
       true
 
     _initSubView: () ->
-      if not (_subViewName = @subView())? 
+      if not (_subViewName = @subView())?
         @model.set 'subView', @defaultSubView
 
       else
@@ -216,7 +216,7 @@ define [
 
       @subViews = []
 
-      _.each @SubViews, (SubView) => 
+      _.each @SubViews, (SubView) =>
         _subView = new SubView()
 
         _subView.page = @

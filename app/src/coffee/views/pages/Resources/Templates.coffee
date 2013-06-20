@@ -36,10 +36,10 @@ define [
 
     addTemplate: (model) ->
       @$('ul.templates').append model.view.el
-    
+
     initialize: () ->
       @initEmptyListDetector ovivo.desktop.resources.templates
-      
+
       ovivo.desktop.resources.templates.on 'add', @addTemplate, @
 
       true

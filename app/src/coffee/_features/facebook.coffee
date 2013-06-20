@@ -35,11 +35,11 @@ define [
         @_set 'status', true
 
       @trigger '_setHandlers'
-      
+
       true
 
     initFB: () ->
-      FB.init 
+      FB.init
         appId: ovivo.config.FB_APP_ID
         status: true
         cookie: true
@@ -47,7 +47,7 @@ define [
 
       indicator.start()
 
-      $.ajax 
+      $.ajax
         url: '/api/1.0/authorize/connection/'
         success: (_.bind @processAuth, @)
         error: indicator.error
@@ -87,7 +87,7 @@ define [
 
     unlinkFB: () ->
       indicator.start()
-      
+
       $.ajax
         type: 'DELETE'
         data: ' '
@@ -123,5 +123,5 @@ define [
       @once '_setHandlers', @_setHandlers, @
       if window.FB? then @initFB()
       else window.fbAsyncInit = () => @initFB()
-      
-      true
+
+      true

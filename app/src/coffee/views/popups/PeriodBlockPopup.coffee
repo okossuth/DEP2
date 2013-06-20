@@ -16,4 +16,4 @@ define [
     initialize: () ->
       @_initialize()
 
-      true
+      true

@@ -45,11 +45,11 @@ define [
         @switchers[key].setValue value
 
       _.bind _func, @
-        
+
     initialize: () ->
       @switchers = {}
 
-      _.each @keys, (key, i) => 
+      _.each @keys, (key, i) =>
         _switcher = @switchers[key] = new Switcher @$('.options-' + key), @variants[@types[i]]
         _processor = _processors[key]
 

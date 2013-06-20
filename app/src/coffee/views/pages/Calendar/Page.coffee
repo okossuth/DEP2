@@ -74,7 +74,7 @@ define [
 
     processWeekViewSwitcherValue: (value) ->
       @$el.removeClass('employees-mode periods-mode').addClass "#{value}-mode"
-      
+
       ovivo.desktop.resources.frames.changeDisplayMode value
 
     initialize: () ->

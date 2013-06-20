@@ -17,7 +17,7 @@ define [
 
       _blocksInitial = period.compile start, end
 
-      _.union.apply _, _.map _groups, (group) -> _blocksInitial.map (block) -> 
+      _.union.apply _, _.map _groups, (group) -> _blocksInitial.map (block) ->
         block = _.clone block
 
         block.group = group
@@ -67,7 +67,7 @@ define [
 
     removeEventEmployees: (event) ->
       if (event.dateObj > @end()) or (event.dateObj < @start()) then return
-      
+
       @collector.view.removeEvent event
 
     initialize: (attrs, options) ->

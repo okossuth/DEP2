@@ -4,7 +4,7 @@ define [
   'ovivo'
 ], (PeriodBlockWeekView) ->
   firstDate: () -> @_firstDate
-  
+
   show: () -> @view.show()
   hide: () -> @view.hide()
 
@@ -18,15 +18,15 @@ define [
     _start = do =>
       _i = 0
 
-      while @days[_i].disabled is true 
+      while @days[_i].disabled is true
         _i += 1
 
       @days[_i]
-      
+
     _end = do =>
       _i = @days.length - 1
 
-      while @days[_i].disabled is true 
+      while @days[_i].disabled is true
         _i -= 1
 
       @days[_i]
@@ -38,7 +38,7 @@ define [
 
     true
 
-  initDays: () -> 
+  initDays: () ->
     @collection.days.initElements @view.dayElements, @days
 
     @initResources()

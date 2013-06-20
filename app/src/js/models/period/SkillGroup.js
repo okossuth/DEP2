@@ -40,7 +40,6 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         }
         return _row.addEvent(event, obj);
       }));
-      console.log('added event', event);
       return true;
     },
     removeEvent: function(event) {
@@ -56,7 +55,6 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         return view.remove();
       });
       delete this.events[event.pk()];
-      console.log('removed event', event);
       return true;
     },
     _initEvents: function() {

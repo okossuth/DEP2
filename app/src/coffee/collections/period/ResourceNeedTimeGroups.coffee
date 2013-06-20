@@ -12,5 +12,5 @@ define [
 
     initialize: () ->
       @innerCollectionName = 'resourceNeedWeeks'
-      
+
       true

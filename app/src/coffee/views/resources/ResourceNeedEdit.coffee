@@ -5,7 +5,7 @@ define [
 ], (ResourceBase) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'resource-need element'
 
@@ -23,7 +23,7 @@ define [
 
       @model.processWeek (_i), @model.weekdaysHash[_i]
 
-    edit: () -> 
+    edit: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
       ovivo.desktop.popups.editPopupResourceNeed.edit @model
 
@@ -73,4 +73,4 @@ define [
 
       @weekDays = @$('ul.weekdays')
 
-      true
+      true

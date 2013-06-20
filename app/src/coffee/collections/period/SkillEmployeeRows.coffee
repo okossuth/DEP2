@@ -5,7 +5,7 @@ define [
 ], (Model) ->
   Backbone.Collection.extend
     model: Model
-    
+
     addModel: (obj) ->
       _model = new @model obj
 

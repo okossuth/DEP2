@@ -126,6 +126,12 @@ module.exports = function(grunt) {
                     'dist/ovivo-desktop-employee.min.css': ['dist/ovivo-desktop-employee.css']
                 }
             }
+        },
+
+        removeTrailingWhitespaces: {
+            main: {
+                src: ['src/coffee/', 'src/sass/']
+            }
         }
     });
 
@@ -227,6 +233,24 @@ module.exports = function(grunt) {
             }
 
             grunt.file.write(this.data.result, JSON.stringify(_obj, null, 4));
+        });
+
+        grunt.registerMultiTask('removeTrailingWhitespaces', 'Remove trailing whitespaces in source code files', function() {
+            _.each(this.data.src, function (path) {
+                grunt.file.recurse(path, function (abspath, rootdir, subdir, filename) {
+                    var src = grunt.file.read(abspath),
+                        match = _.compact(_.union(src.match(/ +$/mg), src.match(/\n+$/g)));
+
+                    if (match.length > 0) {
+                        src = src.replace(/ +$/mg, '');
+                        src = src.replace(/\n+$/g, '');
+
+                        grunt.file.write(abspath, src);
+
+                        console.log(match, abspath);
+                    }
+                });
+            });
         });
 
         grunt.registerMultiTask('dictapply', 'Search for strings, construct dictionary', function () {

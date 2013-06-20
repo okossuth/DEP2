@@ -52,4 +52,4 @@ define [
         ovivo.desktop.resources.resourceNeeds.on 'change', _resourceNeedsProcessor
         ovivo.desktop.resources.resourceNeeds.on 'remove', _resourceNeedsProcessor
 
-      true
+      true

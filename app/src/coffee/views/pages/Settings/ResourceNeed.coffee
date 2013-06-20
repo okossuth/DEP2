@@ -10,13 +10,13 @@ define [
 
     name: 'resourceNeed'
 
-    events: 
+    events:
       'click .button-add-new': 'addNew'
 
     addNew: () ->
       ovivo.desktop.popups.editPopupResourceNeed.show()
       ovivo.desktop.popups.editPopupResourceNeed.create()
-      
+
       true
 
     addResourceNeed: (model) ->

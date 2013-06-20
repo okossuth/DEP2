@@ -20,7 +20,7 @@ define [
 
     addBlock: (block) ->
       @view.addBlock block
-      
+
       @_blocksCounter += 1
 
     removeBlock: (block) ->
@@ -37,12 +37,10 @@ define [
       _frame = @frame()
       if (event.dateObj > _frame.end()) or (event.dateObj < _frame.start()) then return
 
-      @events[event.pk()] = _.compact _.map event.users(), (obj) => 
+      @events[event.pk()] = _.compact _.map event.users(), (obj) =>
         if not (_row = @skillEmployeeRows.get(obj.pk))? then return
 
         _row.addEvent event, obj
-
-      console.log 'added event', event
 
       true
 
@@ -54,8 +52,6 @@ define [
       _.each _arr, (view) -> view.remove()
 
       delete @events[event.pk()]
-
-      console.log 'removed event', event
 
       true
 

@@ -10,7 +10,7 @@ define [
 
     initialize: (attrs, options) ->
       @View = View
-      
+
       @proxyCall 'initialize', arguments
-      
+
       true

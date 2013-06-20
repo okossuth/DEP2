@@ -5,7 +5,7 @@ define [
 ], (trailZero) ->
   fields: ['start_time', 'end_time', 'available', 'start_date', 'end_date', 'repeat']
 
-  types: 
+  types:
     'start_time': String
     'end_time': String
     'available': ovivo.parseBoolean

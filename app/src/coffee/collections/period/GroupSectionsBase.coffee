@@ -4,9 +4,9 @@ define [
   'ovivo'
 ], (binarySearch) ->
   _scrollComparator: (obj, val) ->
-    return -1 if obj.start >= val 
+    return -1 if obj.start >= val
 
-    return 1 if obj.end < val 
+    return 1 if obj.end < val
 
     return 0
 

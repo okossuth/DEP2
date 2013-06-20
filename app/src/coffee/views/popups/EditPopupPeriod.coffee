@@ -116,4 +116,4 @@ define [
         ovivo.desktop.resources.templates.on 'change:name', @processTemplates, @
         ovivo.desktop.resources.templates.on 'change:primary_department', @processTemplates, @
 
-      true
+      true

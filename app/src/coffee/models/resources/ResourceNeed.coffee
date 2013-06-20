@@ -41,7 +41,7 @@ define [
 
       true
 
-    validate: (attrs) -> 
+    validate: (attrs) ->
       if attrs.available? and attrs.start_time? and attrs.end_time? and attrs.weekdays?
         undefined
 
@@ -75,7 +75,7 @@ define [
     toJSON: () ->
       _json = Backbone.Model.prototype.toJSON.call @
 
-      if (_json.groups instanceof Array) and (_json.groups.length is 0) 
+      if (_json.groups instanceof Array) and (_json.groups.length is 0)
         @set 'groups', null, { silent: true }
         _json.groups = null
 
@@ -101,14 +101,14 @@ define [
 
         hours * 60 + minutes
 
-      () -> 
+      () ->
         _end = _getMinutes(@end_time())
         _start = _getMinutes(@start_time())
 
         if _start <= _end
           _delta = (_end - _start) / 60
 
-        else 
+        else
           _delta = (_end - _start) / 60 + 24
 
         @set 'deltaHours', Math.round _delta
@@ -123,7 +123,7 @@ define [
 
       _hours * 60 + _minutes
 
-    getEditView: (name) -> 
+    getEditView: (name) ->
       @[name] = new EditView
         model: @
 
@@ -134,7 +134,7 @@ define [
 
       @set 'templates', _obj
 
-    removeTemplate: (id) -> 
+    removeTemplate: (id) ->
       _obj = _.extend {}, @templates()
 
       delete _obj[id]
@@ -160,7 +160,7 @@ define [
           memo.concat if typeof _periods is 'object'
             _.keys _periods
 
-          else []), []), (id) -> 
+          else []), []), (id) ->
           _period = ovivo.desktop.resources.periods.get(id)
           ovivo.desktop.resources.periods.trigger 'updateFrames', _period
 

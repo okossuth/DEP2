@@ -29,7 +29,7 @@ define [
       @timeRange.style.height = ''
 
       true
-      
+
     processScroll: (obj, val) ->
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 

@@ -44,7 +44,7 @@ define [
   _processMessage: (msg) ->
     msg = msg.data
     [_match, _path, _id] = msg.target.match _pathRegexp
-    
+
     if (_target = ovivo.desktop.resources[_path])?
       _model = _target.get parseInt _id
 
@@ -62,7 +62,7 @@ define [
       throw new Error 'Socket.IO: wrong target'
 
     true
-  
+
   init: () ->
     if io? and io.connect?
       @_socket = io.connect ovivo.config.SOCKET_IO_CONNECT_URL
@@ -74,4 +74,4 @@ define [
     else
       setTimeout (() => @init()), 300
 
-    true
+    true

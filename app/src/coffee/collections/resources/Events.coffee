@@ -19,12 +19,12 @@ define [
     _fetch: (data) ->
       _queryStringFinal = (@_getQueryString(data) + @_getTypeQueryString(@type)).slice 1
 
-      if @def.state() is 'resolved' 
+      if @def.state() is 'resolved'
         @def = new $.Deferred()
 
       _def = new $.Deferred()
 
-      _callObj = 
+      _callObj =
         update: true
         remove: false
 
@@ -45,7 +45,7 @@ define [
       if @_ready is true
         @fetch _callObj
 
-      else 
+      else
         @_calls.push _callObj
 
       @def
@@ -98,7 +98,7 @@ define [
         'open': true
         'open-responses': true
         'closed': true
-        
+
       _.extend @, options
 
       @def = new $.Deferred()

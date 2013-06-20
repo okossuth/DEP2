@@ -5,7 +5,7 @@ define [
 ], (ResourceBase) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'resource-need element'
 
@@ -48,7 +48,7 @@ define [
     addAvailability: (model) ->
       if (@model.groupsHash[model.group()] is true) and (@_checkMatch model, @model)
         @rendered.done _.bind _.wrap(model, @_addAvailability), @
-        
+
     initialize: () ->
       @model.setDeltaHours()
 

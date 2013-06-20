@@ -7,7 +7,7 @@ define [
 ], (ResourceBase, trailZero) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'availability'
 
@@ -31,8 +31,8 @@ define [
 
     postRender: () ->
       ovivo.desktop.resources.users.def.then _.bind @renderUser, @
-        
+
     initialize: () ->
       @proxyCall 'initialize', arguments
 
-      true
+      true

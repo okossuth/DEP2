@@ -15,7 +15,7 @@ requirejs [
       'delete': []
       'create': []
 
-    _queueRules = 
+    _queueRules =
       'read': false
       'update': true
       'delete': false
@@ -35,7 +35,7 @@ requirejs [
 
             if model._syncStamp isnt _curObj.stamp then resp = {}
 
-            if _queue[method].length > 0 
+            if _queue[method].length > 0
               _sync.apply _nextObj.context, _nextObj.args
 
           if _callsCounter is 0 then done()
@@ -64,7 +64,7 @@ requirejs [
 
       resp
 
-    _successCreator = _callbackCreatorCreator ((url, model, resp, method, options) -> 
+    _successCreator = _callbackCreatorCreator ((url, model, resp, method, options) ->
       if method is 'read' then _processReadSuccess(url, model, resp, options)), indicator.success
 
     _errorCreator = _callbackCreatorCreator ((url, model, resp, method, options) ->
@@ -90,10 +90,10 @@ requirejs [
 
           false
 
-        else 
+        else
           true
 
-      else 
+      else
         true
 
     Backbone.sync = (method, model, options) ->
@@ -103,7 +103,7 @@ requirejs [
 
       options._url = (do () => if typeof model.url is 'function' then model.url() else model.url) + (if options.data? and (options.data isnt '') then "?#{options.data}" else '')
 
-      _flag = if method is 'read' 
+      _flag = if method is 'read'
           _processLocalStorageCache model, options
 
         else if model.localStorageOnly is true
@@ -117,7 +117,7 @@ requirejs [
 
           false
 
-        else 
+        else
           true
 
       _call = () ->

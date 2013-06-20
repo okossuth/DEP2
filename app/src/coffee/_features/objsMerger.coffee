@@ -18,7 +18,7 @@ define [
     _.each _hash, (arr, key) ->
       if arr.length is 1 then _res[key] = arr[0]; return
 
-      _res[key] = () -> 
+      _res[key] = () ->
         _args = arguments
 
         _.map(arr, (func) => func.apply @, _args)[0]

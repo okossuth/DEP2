@@ -54,7 +54,7 @@ define [
 
         @_fetch _start, _end
 
-    fetchWeek: (number, year) -> 
+    fetchWeek: (number, year) ->
       _date = new Date year, 0, 1
       _date.setWeek number
 

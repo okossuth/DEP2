@@ -63,4 +63,4 @@ define [
       ovivo.desktop.resources.skills.def.then _.bind @processSkills, @
       ovivo.desktop.resources.groups.on 'tree-ready', @processPD, @
 
-      true
+      true

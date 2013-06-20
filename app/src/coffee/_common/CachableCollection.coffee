@@ -28,7 +28,7 @@ define [
 
         if _obj? then delete _obj[model.cid]
 
-    _cacheAddProcessor: (model) -> 
+    _cacheAddProcessor: (model) ->
       _.each fields, (field) => @_cacheAddProcessorField model, field
 
     _cacheRemoveProcessor: (model) ->

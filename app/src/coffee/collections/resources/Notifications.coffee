@@ -26,7 +26,7 @@ define [
       _unread = @filter (notification) -> notification.read() is false
       _jsonArr = []
 
-      _.each _unread, (notification) -> 
+      _.each _unread, (notification) ->
         notification.set 'read', true
 
         _jsonArr.push notification.toJSON()
@@ -34,17 +34,17 @@ define [
         true
 
       ovivo.desktop.sideBar.updateNotifications()
-      
+
       if _jsonArr.length > 0
         $.ajax
           url: @url
           type: 'PUT'
           data: JSON.stringify(_jsonArr)
           contentType: 'application/json'
-          
+
       else true
 
     initialize: () ->
       @initResource()
 
-      true
+      true

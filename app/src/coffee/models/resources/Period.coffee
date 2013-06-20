@@ -86,7 +86,7 @@ define [
         _skill = block.skill()
         _hours = @hoursBlocks.getBy 'date', block.date()
 
-        _hours = _.filter _hours, (hour) -> 
+        _hours = _.filter _hours, (hour) ->
           _flag = false
           _groups = []
 

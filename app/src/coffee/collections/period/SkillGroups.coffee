@@ -9,5 +9,5 @@ define [
     model: Model
 
     initialize: () ->
-      
+
       true

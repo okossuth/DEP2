@@ -24485,7 +24485,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
         }
         return _row.addEvent(event, obj);
       }));
-      console.log('added event', event);
       return true;
     },
     removeEvent: function(event) {
@@ -24501,7 +24500,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
         return view.remove();
       });
       delete this.events[event.pk()];
-      console.log('removed event', event);
       return true;
     },
     _initEvents: function() {

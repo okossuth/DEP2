@@ -28,7 +28,7 @@ define [
           date: new Date _i
 
         if codeGen? then _obj.code = codeGen _obj
-        
+
         _arr.push _obj
 
       _i.setDate _i.getDate() + 1

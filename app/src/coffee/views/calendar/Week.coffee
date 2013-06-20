@@ -65,7 +65,7 @@ define [
 
     _initFrameMode: () ->
       @periodGroups.mode = @model.frame.mode()
-      
+
     _initFrame: () ->
       @addBlocks @model.frame.periodBlocks.map (b) -> b
 
@@ -89,7 +89,7 @@ define [
     addGroupFilters: (models) ->
       @_addViewSorted @groupsList, @groupFilters, models
 
-    _updateScrollThrottledRepeater: _.throttle (ToolsBase.bounceRepeater 50, 3, () -> 
+    _updateScrollThrottledRepeater: _.throttle (ToolsBase.bounceRepeater 50, 3, () ->
       @scrollerInner.height @_offsetHeight = @el.offsetHeight
 
       @_scrollDataFlag = false), 100

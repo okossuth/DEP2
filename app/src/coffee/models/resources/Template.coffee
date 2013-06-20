@@ -64,7 +64,7 @@ define [
 
       @set 'periods', _obj
 
-    removePeriod: (id) -> 
+    removePeriod: (id) ->
       _obj = _.extend {}, @periods()
 
       delete _obj[id]

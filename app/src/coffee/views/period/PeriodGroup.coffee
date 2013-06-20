@@ -2,7 +2,7 @@ define [
   '_features/objsMerger',
 
   'views/resources/ResourceBase',
-  
+
   'views/period/GroupSectionBase',
   'views/period/PeriodGroupEmployees',
 
@@ -32,7 +32,7 @@ define [
       @_clearFolding()
 
       true
-      
+
     processScroll: (obj, val) ->
       _val = Math.min (obj.height - @MIN_BLOCK_HEIGHT), val
 

@@ -48,7 +48,7 @@ define [
         _delta
 
       else
-        _timeA = new Date(Date.parse a.start_time()) 
+        _timeA = new Date(Date.parse a.start_time())
         _timeB = new Date(Date.parse b.start_time())
 
         _timeB - _timeA

@@ -7,7 +7,7 @@ define [
 ], (dateFormatter, ResourceBase) ->
   ResourceBase.extend
     common: {}
-    
+
     tagName: 'li'
     className: 'notification'
 
@@ -26,4 +26,4 @@ define [
     initialize: () ->
       @proxyCall 'initialize', arguments
 
-      true
+      true

@@ -1,23 +1,23 @@
 define [
 ], () ->
-  _get: (model, url) -> 
+  _get: (model, url) ->
     if typeof (_str = localStorage[url]) isnt 'undefined'
       JSON.parse localStorage[url]
 
     else null
 
-  allowed: () -> 
+  allowed: () ->
     @allowed = () -> @_allowed
 
     @_allowed = typeof window.localStorage isnt 'undefined'
 
-    @_allowed    
+    @_allowed
 
   cache: (model, url) ->
     localStorage[url] = JSON.stringify (if (model instanceof Backbone.Model) or (model instanceof Backbone.Collection)
         model.toJSON()
-  
-      else 
+
+      else
         model)
 
   init: (model, url) ->
@@ -39,7 +39,7 @@ define [
         model.set
 
       else if model instanceof Backbone.Collection
-      
+
         model.add).call model, _value
 
       options.resp = _value

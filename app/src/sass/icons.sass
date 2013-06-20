@@ -3,17 +3,17 @@ $spriteHeight: 261px
 
 @mixin icon-body($sizeW, $sizeH, $shift, $iconNames, $backgroundUrl)
   display: block
-  
+
   &.inline
     display: inline-block
-    
+
   width: $sizeW
   height: $sizeH
-  
+
   background: url($backgroundUrl) no-repeat
-  
+
   background-size: $spriteWidth $spriteHeight
-  
+
   @for $i from 1 through length($iconNames)
     &.#{nth($iconNames, $i)}
       background-position: $shift (-($i - 1) * $sizeH)
@@ -28,5 +28,4 @@ i.icon-huge
   @include icon-body(125px, 125px, -169px, ('ok', 'facebook') , '../assets/img/sprite.png')
 
 i.icon-smaller
-  @include icon-body(24px, 24px, -294px, ('checkbox', 'checkbox.checked', 'plus', 'cross') , '../assets/img/sprite.png')
-    
+  @include icon-body(24px, 24px, -294px, ('checkbox', 'checkbox.checked', 'plus', 'cross') , '../assets/img/sprite.png')

@@ -5,7 +5,7 @@ define [
 ], (trailZero) ->
   fields: ['start', 'end', 'reason']
 
-  types: 
+  types:
     'start': String
     'end': String
     'reason': String

@@ -21,7 +21,7 @@ define [
     processScroll: (e, val) ->
       if not val? then val = @scroller[0].scrollTop
 
-      if @_scrollDataFlag is false 
+      if @_scrollDataFlag is false
         @_offsetHeight = @el.offsetHeight
 
         @scrollerInner.height @_scrollHeight = @el.scrollHeight
@@ -47,7 +47,7 @@ define [
 
       if @currentModel isnt null then @currentModel.view._updateScroll()
 
-    prev: () -> 
+    prev: () ->
       @current.moveToDayOfWeek(4, -1)
 
       @navigate @current.getFullYear(), @current.getWeek()
@@ -102,7 +102,7 @@ define [
       @_scrollDataFlag = false
 
       $(window).on 'resize', _.bind @processWindowResize, @
-      
+
       _now.setWeek _now.getWeek()
       _now.moveToDayOfWeek(4)
 

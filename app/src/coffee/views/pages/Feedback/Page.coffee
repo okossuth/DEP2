@@ -69,7 +69,7 @@ define [
 
       true
 
-    processType: (value) -> 
+    processType: (value) ->
       @type = value
 
       if @text isnt '' then @sendButton.removeClass 'disabled'

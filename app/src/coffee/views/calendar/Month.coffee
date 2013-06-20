@@ -18,7 +18,7 @@ define [
       _.map @model.weeks, (week) ->
         cells: week
 
-    postRender: () -> 
+    postRender: () ->
       @dayElements = @$('.days-container .week-row > td')
 
       @hide()

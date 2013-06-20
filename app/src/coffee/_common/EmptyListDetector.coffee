@@ -14,4 +14,4 @@ define [
 
     collection.on 'add', _createAddHanler(_empty, collection), @
     collection.on 'remove', _createRemoveHanler(_empty, collection), @
-
+

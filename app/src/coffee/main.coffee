@@ -17,16 +17,16 @@ requirejs.config
   shim:
     'ovivo':
       deps: ['templates']
-    
+
     'templates':
       deps: ['handlebars']
-    
+
     'handlebars':
       deps: ['backbone']
-    
+
     'backbone':
       deps: ['lodash']
-    
+
     'lodash':
       deps: ['pickadate']
 
@@ -35,7 +35,7 @@ requirejs.config
 
     'jquery.mousewheel':
       deps: ['jquery']
-    
+
     'jquery':
       deps: ['date']
 
@@ -160,7 +160,7 @@ require [
         (value) ->
           _res = value.initFetch()
 
-          if _res.then? 
+          if _res.then?
             _res.then _complete
 
       true

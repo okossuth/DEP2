@@ -29,4 +29,4 @@ define [
       _.each TIME_TITLES, (title) ->
         if delta > title[0] then returnValue = title[1]
 
-      returnValue
+      returnValue

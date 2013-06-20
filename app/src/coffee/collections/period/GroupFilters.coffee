@@ -13,7 +13,7 @@ define [
 
       _model = @get _root.pk()
 
-      if _model? 
+      if _model?
         _model.count += 1
 
       else
@@ -38,7 +38,7 @@ define [
 
       true
 
-    _cancelFilter: (model) -> 
+    _cancelFilter: (model) ->
       _.each @periodGroups.getBy('root', model.pk()), (model) -> model.set 'visible', false
 
       @periodGroups._clearPrev()
@@ -46,7 +46,7 @@ define [
     _applyFilter: (model) -> _.each @periodGroups.getBy('root', model.pk()), (model) -> model.set 'visible', true
 
     handleApply: (model) ->
-      if @activeGroup? 
+      if @activeGroup?
         @_cancelFilter @activeGroup
 
         @activeGroup.view.cancel()

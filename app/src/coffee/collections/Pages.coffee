@@ -22,7 +22,7 @@ define [
       _sourceView = source.page.view
       _targetView = target.page.view
 
-      _.each [_sourceView, _targetView], (page) -> 
+      _.each [_sourceView, _targetView], (page) ->
         page.showEl()
 
         true
@@ -47,7 +47,7 @@ define [
         if (@current isnt undefined) and (page.page.popup isnt true)
           @transition @current, page, _args
 
-        else 
+        else
           page.page.view.showEl()
 
         @current = page

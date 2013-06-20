@@ -35,7 +35,7 @@ define [
 
     processEventAdd: (event) ->
       if not event.skill()? then return
-      
+
       @each (frame) -> frame.addEvent event
 
     processEventRemove: (event) ->
@@ -50,14 +50,14 @@ define [
 
     processEventAddEmployees: (event) ->
       if not event.skill()? then return
-      
+
       @each (frame) -> frame.addEventEmployees event
 
     processEventRemoveEmployees: (event) ->
       @each (frame) -> frame.removeEventEmployees event
 
     processEventChangeEmployees: (event) ->
-      @each (frame) -> 
+      @each (frame) ->
         frame.removeEventEmployees event
         frame.addEventEmployees event
 
