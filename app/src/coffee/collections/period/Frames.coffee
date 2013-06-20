@@ -80,7 +80,7 @@ define [
           ovivo.desktop.resources.events.on 'change', @processEventChange, @
 
           ovivo.desktop.resources.events.on 'add', @processEventAddEmployees, @
-          ovivo.desktop.resources.events.on 'remove', @processEventAddEmployees, @
-          ovivo.desktop.resources.events.on 'change', @processEventAddEmployees, @
+          ovivo.desktop.resources.events.on 'remove', @processEventRemoveEmployees, @
+          ovivo.desktop.resources.events.on 'change', @processEventChangeEmployees, @
 
       true

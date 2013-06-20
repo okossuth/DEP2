@@ -94,8 +94,8 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
           ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
           ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
           ovivo.desktop.resources.events.on('add', _this.processEventAddEmployees, _this);
-          ovivo.desktop.resources.events.on('remove', _this.processEventAddEmployees, _this);
-          return ovivo.desktop.resources.events.on('change', _this.processEventAddEmployees, _this);
+          ovivo.desktop.resources.events.on('remove', _this.processEventRemoveEmployees, _this);
+          return ovivo.desktop.resources.events.on('change', _this.processEventChangeEmployees, _this);
         });
       });
       return true;

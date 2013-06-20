@@ -19753,10 +19753,19 @@ function program2(depth0,data) {
   return buffer;});
 templates['employeeActivity'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<div class=\"indicator\"></div><span>08:00 – 09:00</span>";});
+  buffer += "<div class=\"indicator\"></div><span>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>";
+  return buffer;});
 templates['employeeActivity_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -19772,7 +19781,15 @@ function program1(depth0,data) {
   foundHelper = helpers.cid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"indicator\"></div><span>08:00 – 09:00</span>\r\n</li>\r\n\r\n";
+  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"indicator\"></div><span>";
+  foundHelper = helpers.start_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + " – ";
+  foundHelper = helpers.end_time;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
   return buffer;}
 
   buffer += "<ul>\r\n\r\n";
@@ -24219,17 +24236,16 @@ define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/p
       return this.renderDef.resolve();
     },
     addEvent: function(event, obj) {
-      var _this = this;
+      var _view,
+        _this = this;
 
-      return this.renderDef.done(function() {
-        var _view;
-
-        _view = new EventEmployee({
-          model: event
-        }, obj);
-        $(_this.eventContainers.get(event.day)).append(_view.el);
-        return _view;
+      _view = new EventEmployee({
+        model: event
+      }, obj);
+      this.renderDef.done(function() {
+        return $(_this.eventContainers.get(event.day)).append(_view.el);
       });
+      return _view;
     },
     initialize: function() {
       this.renderDef = new $.Deferred();
@@ -28255,8 +28271,8 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
           ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
           ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
           ovivo.desktop.resources.events.on('add', _this.processEventAddEmployees, _this);
-          ovivo.desktop.resources.events.on('remove', _this.processEventAddEmployees, _this);
-          return ovivo.desktop.resources.events.on('change', _this.processEventAddEmployees, _this);
+          ovivo.desktop.resources.events.on('remove', _this.processEventRemoveEmployees, _this);
+          return ovivo.desktop.resources.events.on('change', _this.processEventChangeEmployees, _this);
         });
       });
       return true;

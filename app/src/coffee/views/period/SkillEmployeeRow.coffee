@@ -32,10 +32,10 @@ define [
       @eventContainers = @$('td.day-block ul.activities')
       @renderDef.resolve()
 
-    addEvent: (event, obj) -> @renderDef.done () =>
+    addEvent: (event, obj) -> 
       _view = new EventEmployee { model: event }, obj
 
-      $(@eventContainers.get(event.day)).append _view.el
+      @renderDef.done () => $(@eventContainers.get(event.day)).append _view.el
 
       _view
 

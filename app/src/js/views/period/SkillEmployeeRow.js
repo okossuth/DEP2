@@ -19,17 +19,16 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/
       return this.renderDef.resolve();
     },
     addEvent: function(event, obj) {
-      var _this = this;
+      var _view,
+        _this = this;
 
-      return this.renderDef.done(function() {
-        var _view;
-
-        _view = new EventEmployee({
-          model: event
-        }, obj);
-        $(_this.eventContainers.get(event.day)).append(_view.el);
-        return _view;
+      _view = new EventEmployee({
+        model: event
+      }, obj);
+      this.renderDef.done(function() {
+        return $(_this.eventContainers.get(event.day)).append(_view.el);
       });
+      return _view;
     },
     initialize: function() {
       this.renderDef = new $.Deferred();
