@@ -19,6 +19,11 @@ define [
     postRender: () ->
       @renderDef.resolve()
 
+    matched_employees: () ->
+      _num = @model.matched_employees()
+
+      if typeof _num isnt 'number' then '0' else _num
+
     changeHanlder: (resourceNeed) ->
       _changed = _.keys resourceNeed.changed
 

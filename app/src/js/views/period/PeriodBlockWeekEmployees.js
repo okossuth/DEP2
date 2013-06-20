@@ -11,6 +11,16 @@ define(['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
     postRender: function() {
       return this.renderDef.resolve();
     },
+    matched_employees: function() {
+      var _num;
+
+      _num = this.model.matched_employees();
+      if (typeof _num !== 'number') {
+        return '0';
+      } else {
+        return _num;
+      }
+    },
     changeHanlder: function(resourceNeed) {
       var _changed,
         _this = this;

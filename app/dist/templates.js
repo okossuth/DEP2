@@ -1383,7 +1383,11 @@ templates['resourceNeedSkillGroup'] = template(function (Handlebars,depth0,helpe
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">";
+  foundHelper = helpers.matched_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> of <span class=\"num_employees-value\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
@@ -1412,7 +1416,11 @@ function program1(depth0,data) {
   foundHelper = helpers.end_time;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">";
+  foundHelper = helpers.matched_employees;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</span> of <span class=\"num_employees-value\">";
   foundHelper = helpers.num_employees;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
