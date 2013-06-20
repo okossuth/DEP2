@@ -94,6 +94,14 @@ define [
 
     _processFilterApply: () -> @model.collection.page._postNavigate()
 
+    _renderMode: () ->
+      @_updateScroll()
+      
+      _mode = @model.frame.mode()
+      _prevMode = @model.frame.previous 'mode'
+
+      @$el.removeClass("#{_prevMode}-mode").addClass "#{_mode}-mode"
+
     initialize: () ->
       @frameInitDef = new $.Deferred()
 
@@ -120,6 +128,9 @@ define [
       @model.frame.periodBlocks.on 'add', @_updateScroll, @
       @model.frame.periodBlocks.on 'remove', @_updateScroll, @
       @model.frame.periodBlocks.on 'updateScroll', @_updateScroll, @
+
+      @_renderMode()
+      @model.frame.on 'change:mode', @_renderMode, @
 
       @scroller = $('.page.page-calendar .scroller')
       @scrollerInner = $('.page.page-calendar .scroller .inner')

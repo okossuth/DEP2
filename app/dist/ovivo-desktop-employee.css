@@ -2365,6 +2365,11 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
 .page.page-calendar > .content.week-view ul.weeks-list > li {
   position: relative; }
 
+.page.page-calendar > .content.week-view ul.weeks-list > li.employees-mode li.period-group > ul.time-groups {
+  display: none; }
+.page.page-calendar > .content.week-view ul.weeks-list > li.periods-mode li.period-group > ul.skill-groups {
+  display: none; }
+
 .page.page-edit {
   width: 500px;
   z-index: 9999;

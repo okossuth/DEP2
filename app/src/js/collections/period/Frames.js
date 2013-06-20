@@ -8,7 +8,8 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
 
       _model = new Model({
         start: start,
-        end: end
+        end: end,
+        mode: this.displayMode
       }, options);
       this.add(_model);
       return _model;
@@ -54,6 +55,12 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
         return;
       }
       return this.processEventAdd(event);
+    },
+    changeDisplayMode: function(value) {
+      this.displayMode = value;
+      return this.each(function(model) {
+        return model.set('mode', value);
+      });
     },
     initialize: function() {
       var _this = this;

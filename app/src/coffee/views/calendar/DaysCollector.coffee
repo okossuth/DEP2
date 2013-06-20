@@ -11,7 +11,7 @@ define [
 
   loaderUrl: () -> ovivo.config.LOADER_URL
 
-  postRender: () -> 
+  postRender: () ->
     @dayElements = @$('.days-container .week-row > td')
 
     @hide()

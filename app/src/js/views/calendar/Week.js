@@ -101,6 +101,14 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
     _processFilterApply: function() {
       return this.model.collection.page._postNavigate();
     },
+    _renderMode: function() {
+      var _mode, _prevMode;
+
+      this._updateScroll();
+      _mode = this.model.frame.mode();
+      _prevMode = this.model.frame.previous('mode');
+      return this.$el.removeClass("" + _prevMode + "-mode").addClass("" + _mode + "-mode");
+    },
     initialize: function() {
       this.frameInitDef = new $.Deferred();
       this._scrollDataFlag = false;
@@ -118,6 +126,8 @@ define(['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'collect
       this.model.frame.periodBlocks.on('add', this._updateScroll, this);
       this.model.frame.periodBlocks.on('remove', this._updateScroll, this);
       this.model.frame.periodBlocks.on('updateScroll', this._updateScroll, this);
+      this._renderMode();
+      this.model.frame.on('change:mode', this._renderMode, this);
       this.scroller = $('.page.page-calendar .scroller');
       this.scrollerInner = $('.page.page-calendar .scroller .inner');
       return true;

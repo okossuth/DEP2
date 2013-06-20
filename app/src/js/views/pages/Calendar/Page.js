@@ -30,13 +30,13 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       return this.subViews[this.mode].next();
     },
     processScroll: function(e) {
-      if (this.subViews[this.mode].processScroll) {
+      if (this.subViews[this.mode].processScroll != null) {
         this.subViews[this.mode].processScroll();
       }
       return true;
     },
     _postNavigate: function() {
-      if (this.subViews[this.mode]._postNavigate) {
+      if (this.subViews[this.mode]._postNavigate != null) {
         this.subViews[this.mode]._postNavigate();
       }
       return true;
@@ -64,6 +64,9 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       this.viewSwitcher.setValue(name);
       return true;
     },
+    processWeekViewSwitcherValue: function(value) {
+      return ovivo.desktop.resources.frames.changeDisplayMode(value);
+    },
     initialize: function() {
       this.SubViews = [WeekView];
       this.defaultSubView = 'week';
@@ -71,6 +74,7 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
       this.weekViewSwitcher = new Switcher(this.$('.week-view-switcher'), ['employees', 'periods']);
+      this.weekViewSwitcher.on('value', this.processWeekViewSwitcherValue, this);
       this.weekViewSwitcher.setValue('employees');
       this.$('.scroller').on('scroll', _.bind(this.processScroll, this));
       this.proxyCall('initialize', arguments);

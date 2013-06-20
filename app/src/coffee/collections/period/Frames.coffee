@@ -12,6 +12,7 @@ define [
       _model = new Model {
           start: start
           end: end
+          mode: @displayMode
         }, options
 
       @add _model
@@ -46,6 +47,11 @@ define [
       if event.periodBlock? then return
 
       @processEventAdd event
+
+    changeDisplayMode: (value) ->
+      @displayMode = value
+
+      @each (model) -> model.set 'mode', value
 
     initialize: () ->
       @on 'add', @processFrameAdd, @

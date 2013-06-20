@@ -35,12 +35,12 @@ define [
     next: () -> @subViews[@mode].next()
 
     processScroll: (e) ->
-      if @subViews[@mode].processScroll then @subViews[@mode].processScroll()
+      if @subViews[@mode].processScroll? then @subViews[@mode].processScroll()
 
       true
 
     _postNavigate: () ->
-      if @subViews[@mode]._postNavigate then @subViews[@mode]._postNavigate()
+      if @subViews[@mode]._postNavigate? then @subViews[@mode]._postNavigate()
 
       true
 
@@ -72,6 +72,9 @@ define [
 
       true
 
+    processWeekViewSwitcherValue: (value) ->
+      ovivo.desktop.resources.frames.changeDisplayMode value
+
     initialize: () ->
       @SubViews = [WeekView]
       @defaultSubView = 'week'
@@ -82,6 +85,9 @@ define [
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
 
       @weekViewSwitcher = new Switcher @$('.week-view-switcher'), ['employees', 'periods']
+
+      @weekViewSwitcher.on 'value', @processWeekViewSwitcherValue, @
+
       @weekViewSwitcher.setValue 'employees'
 
       @$('.scroller').on 'scroll', _.bind @processScroll, @

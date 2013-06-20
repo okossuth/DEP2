@@ -9,6 +9,7 @@ define [
     _gettersNames: [
       'start'
       'end'
+      'mode'
     ]
 
     _compilePeriodGroups: (period, start, end) ->

@@ -1,0 +1,4 @@
+.page.page-calendar > .content.week-view ul.weeks-list > li.employees-mode li.period-group > ul.time-groups {
+  display: none; }
+.page.page-calendar > .content.week-view ul.weeks-list > li.periods-mode li.period-group > ul.skill-groups {
+  display: none; }
