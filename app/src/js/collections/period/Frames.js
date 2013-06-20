@@ -56,6 +56,25 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
       }
       return this.processEventAdd(event);
     },
+    processEventAddEmployees: function(event) {
+      if (event.skill() == null) {
+        return;
+      }
+      return this.each(function(frame) {
+        return frame.addEventEmployees(event);
+      });
+    },
+    processEventRemoveEmployees: function(event) {
+      return this.each(function(frame) {
+        return frame.removeEventEmployees(event);
+      });
+    },
+    processEventChangeEmployees: function(event) {
+      return this.each(function(frame) {
+        frame.removeEventEmployees(event);
+        return frame.addEventEmployees(event);
+      });
+    },
     changeDisplayMode: function(value) {
       this.displayMode = value;
       return this.each(function(model) {
@@ -73,7 +92,10 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
         return ovivo.desktop.resources.events.def.done(function() {
           ovivo.desktop.resources.events.on('add', _this.processEventAdd, _this);
           ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
-          return ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
+          ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
+          ovivo.desktop.resources.events.on('add', _this.processEventAddEmployees, _this);
+          ovivo.desktop.resources.events.on('remove', _this.processEventAddEmployees, _this);
+          return ovivo.desktop.resources.events.on('change', _this.processEventAddEmployees, _this);
         });
       });
       return true;

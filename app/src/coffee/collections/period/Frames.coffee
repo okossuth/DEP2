@@ -48,6 +48,19 @@ define [
 
       @processEventAdd event
 
+    processEventAddEmployees: (event) ->
+      if not event.skill()? then return
+      
+      @each (frame) -> frame.addEventEmployees event
+
+    processEventRemoveEmployees: (event) ->
+      @each (frame) -> frame.removeEventEmployees event
+
+    processEventChangeEmployees: (event) ->
+      @each (frame) -> 
+        frame.removeEventEmployees event
+        frame.addEventEmployees event
+
     changeDisplayMode: (value) ->
       @displayMode = value
 
@@ -65,5 +78,9 @@ define [
           ovivo.desktop.resources.events.on 'add', @processEventAdd, @
           ovivo.desktop.resources.events.on 'remove', @processEventRemove, @
           ovivo.desktop.resources.events.on 'change', @processEventChange, @
+
+          ovivo.desktop.resources.events.on 'add', @processEventAddEmployees, @
+          ovivo.desktop.resources.events.on 'remove', @processEventAddEmployees, @
+          ovivo.desktop.resources.events.on 'change', @processEventAddEmployees, @
 
       true

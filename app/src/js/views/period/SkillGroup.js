@@ -43,23 +43,26 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/
       return this.$('.skill-name').html(ovivo.desktop.resources.skills.get(this.pk()).name());
     },
     postRender: function() {
-      var _this = this;
-
       this.header = this.$('.day-blocks.header')[0];
       this.headerBlocks = this.$('.day-blocks.header td.day-block.container ul.resource-needs');
       this.employeeRows = this.$('.employee-rows');
       ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));
+      return this.renderDef.resolve();
+    },
+    _renderEmployees: function() {
+      var _this = this;
+
       this.addEmployeeRows(this.model.skillEmployeeRows.map(function(t) {
         return t;
       }));
-      this.model.skillEmployeeRows.on('add', this.addEmployeeRows, this);
-      return this.renderDef.resolve();
+      return this.model.skillEmployeeRows.on('add', this.addEmployeeRows, this);
     },
     addEmployeeRows: function(employeeRows) {
       return this._addViewSorted(this.employeeRows, this.model.skillEmployeeRows, employeeRows);
     },
     initialize: function() {
       this.renderDef = new $.Deferred();
+      $.when(this.model.employeesDef, this.renderDef).done(_.bind(this._renderEmployees, this));
       this.proxyCall('initialize', arguments);
       return true;
     }

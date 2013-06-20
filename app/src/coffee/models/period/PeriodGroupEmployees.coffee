@@ -11,6 +11,7 @@ define [
     if not _skillGroup? then _skillGroup = @skillGroups.addModel
       pk: _key
       group: block.group()
+      frame: @frame()
 
     _skillGroup.addBlock block
 
@@ -25,5 +26,16 @@ define [
 
     if _skillGroup? then _skillGroup.removeBlock block
 
+  addEvent: (event) ->
+    if (_group = @skillGroups.get(event.skill()))? then _group.addEvent event
+
+    true
+
+  removeEvent: (event) ->
+    if (_group = @skillGroups.get(event.skill()))? then _group.removeEvent event
+
+    true
+
   initialize: () ->
     @skillGroups = new SkillGroups()
+    @skillGroups.periodGroup = @

@@ -32,6 +32,8 @@ define [
         @key = "#{year}-#{month}-#{date}"
 
     initialize: (attrs, options) ->
+      @dateObj = new Date Date.parse attrs.start_date
+      
       @proxyCall 'initialize', arguments
 
       true

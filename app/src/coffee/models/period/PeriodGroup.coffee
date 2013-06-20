@@ -15,6 +15,7 @@ define [
       'pk'
       'root'
       'visible'
+      'frame'
     ]
 
     clearScroll: () -> @view.clearScroll()

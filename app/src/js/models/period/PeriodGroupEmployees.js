@@ -9,7 +9,8 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
       if (_skillGroup == null) {
         _skillGroup = this.skillGroups.addModel({
           pk: _key,
-          group: block.group()
+          group: block.group(),
+          frame: this.frame()
         });
       }
       return _skillGroup.addBlock(block);
@@ -27,8 +28,25 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
         return _skillGroup.removeBlock(block);
       }
     },
+    addEvent: function(event) {
+      var _group;
+
+      if ((_group = this.skillGroups.get(event.skill())) != null) {
+        _group.addEvent(event);
+      }
+      return true;
+    },
+    removeEvent: function(event) {
+      var _group;
+
+      if ((_group = this.skillGroups.get(event.skill())) != null) {
+        _group.removeEvent(event);
+      }
+      return true;
+    },
     initialize: function() {
-      return this.skillGroups = new SkillGroups();
+      this.skillGroups = new SkillGroups();
+      return this.skillGroups.periodGroup = this;
     }
   };
 });

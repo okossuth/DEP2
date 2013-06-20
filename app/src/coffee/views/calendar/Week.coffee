@@ -1,5 +1,6 @@
 define [
   'views/calendar/DaysCollector',
+  'views/calendar/WeekEmployees',
   'views/resources/ResourceBase',
 
   'collections/period/PeriodGroups',
@@ -8,8 +9,8 @@ define [
   '_common/ToolsBase',
 
   'ovivo'
-], (DaysCollector, ResourceBase, PeriodGroups, GroupFilters, ToolsBase) ->
-  ResourceBase.extend _.extend {}, DaysCollector,
+], (DaysCollector, WeekEmployees, ResourceBase, PeriodGroups, GroupFilters, ToolsBase) ->
+  ResourceBase.extend _.extend {}, DaysCollector, WeekEmployees,
     common: {}
 
     template: Handlebars.templates['calendarWeek']
@@ -53,6 +54,7 @@ define [
 
       if not _periodGroup? then _periodGroup = @periodGroups.addModel
         pk: block.group()
+        frame: @model.frame
 
       _periodGroup.addBlock block
 

@@ -12,6 +12,8 @@ define [
     @frame = ovivo.desktop.resources.frames.addFrame start, end,
       View: PeriodBlockWeekView
 
+    @frame.collector = @
+
   initResources: () ->
     _start = do =>
       _i = 0

@@ -15,6 +15,7 @@ define(['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
       }
     },
     initialize: function(attrs, options) {
+      this.dateObj = new Date(Date.parse(attrs.start_date));
       this.proxyCall('initialize', arguments);
       return true;
     }

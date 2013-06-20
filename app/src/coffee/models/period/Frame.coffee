@@ -60,6 +60,16 @@ define [
       _.each _.intersection(_byDate, _bySkill), (block) ->
         block.addEvent event
 
+    addEventEmployees: (event) ->
+      if (event.dateObj > @end()) or (event.dateObj < @start()) then return
+
+      @collector.view.addEvent event
+
+    removeEventEmployees: (event) ->
+      if (event.dateObj > @end()) or (event.dateObj < @start()) then return
+      
+      @collector.view.removeEvent event
+
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
 

@@ -7,7 +7,7 @@ define [
 
   'ovivo'
 ], (Model, GroupSectionsBase, CachableCollection) ->
-  Backbone.Collection.extend _.extend {}, GroupSectionsBase, CachableCollection.get(['root']),
+  Backbone.Collection.extend _.extend {}, GroupSectionsBase, CachableCollection.get(['pk', 'root']),
     model: Model
 
     _itemsSelector: () -> @filter (m) -> m.visible() is true

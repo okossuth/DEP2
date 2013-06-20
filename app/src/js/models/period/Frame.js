@@ -66,6 +66,18 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'ovi
         return block.addEvent(event);
       });
     },
+    addEventEmployees: function(event) {
+      if ((event.dateObj > this.end()) || (event.dateObj < this.start())) {
+        return;
+      }
+      return this.collector.view.addEvent(event);
+    },
+    removeEventEmployees: function(event) {
+      if ((event.dateObj > this.end()) || (event.dateObj < this.start())) {
+        return;
+      }
+      return this.collector.view.removeEvent(event);
+    },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       this.periodBlocks = new PeriodBlocks([], options);

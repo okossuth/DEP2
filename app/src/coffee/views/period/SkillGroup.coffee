@@ -56,17 +56,20 @@ define [
 
       ovivo.desktop.resources.skills.def.done _.bind @_renderSkill, @
 
+      @renderDef.resolve()
+
+    _renderEmployees: () ->
       @addEmployeeRows @model.skillEmployeeRows.map (t) => t
 
       @model.skillEmployeeRows.on 'add', @addEmployeeRows, @
-
-      @renderDef.resolve()
 
     addEmployeeRows: (employeeRows) ->
       @_addViewSorted @employeeRows, @model.skillEmployeeRows, employeeRows
 
     initialize: () ->
       @renderDef = new $.Deferred()
+
+      $.when(@model.employeesDef, @renderDef).done _.bind @_renderEmployees, @
 
       @proxyCall 'initialize', arguments
 

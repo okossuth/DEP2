@@ -11,9 +11,10 @@ define(['views/period/PeriodBlockWeek', 'ovivo'], function(PeriodBlockWeekView) 
       return this.view.hide();
     },
     _initFrame: function(start, end) {
-      return this.frame = ovivo.desktop.resources.frames.addFrame(start, end, {
+      this.frame = ovivo.desktop.resources.frames.addFrame(start, end, {
         View: PeriodBlockWeekView
       });
+      return this.frame.collector = this;
     },
     initResources: function() {
       var _end, _start,
