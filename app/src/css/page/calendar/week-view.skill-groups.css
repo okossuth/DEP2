@@ -4,7 +4,8 @@
   -ms-perspective: 3000px;
   -o-perspective: 3000px;
   perspective: 3000px;
-  position: relative; }
+  position: relative;
+  z-index: 1; }
   .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group {
     position: relative;
     padding: 0 0 0 120px;
