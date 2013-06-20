@@ -29,12 +29,8 @@ define [
       @toggler.removeClass 'expanded'
       @$el.removeClass 'expanded'
 
-      console.log 'menu collapsed: end'
-
     _collapseMenu: () ->
       @menuToggled = false
-
-      console.log 'menu collapsed'
 
       if ovivo.config.TRANSITION_END?
         @_collapseAction = ToolsBase.onceEventBind @$el, ovivo.config.TRANSITION_END, _.bind @_collapseMenuClear, @

@@ -26694,12 +26694,10 @@ define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     menuItemRegExp: /^menu-item-(.*)$/,
     _collapseMenuClear: function() {
       this.toggler.removeClass('expanded');
-      this.$el.removeClass('expanded');
-      return console.log('menu collapsed: end');
+      return this.$el.removeClass('expanded');
     },
     _collapseMenu: function() {
       this.menuToggled = false;
-      console.log('menu collapsed');
       if (ovivo.config.TRANSITION_END != null) {
         this._collapseAction = ToolsBase.onceEventBind(this.$el, ovivo.config.TRANSITION_END, _.bind(this._collapseMenuClear, this));
       } else {
