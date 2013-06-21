@@ -75,9 +75,21 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
         return frame.addEventEmployees(event);
       });
     },
-    processWorkingHourAdd: function(wh) {},
-    processWorkingHourRemove: function(wh) {},
-    processWorkingHourChange: function(wh) {},
+    processWorkingHourAdd: function(wh) {
+      return this.each(function(frame) {
+        return frame.addWorkingHour(wh);
+      });
+    },
+    processWorkingHourRemove: function(wh) {
+      return this.each(function(frame) {
+        return frame.removeWorkingHour(wh);
+      });
+    },
+    processWorkingHourChange: function(wh) {
+      return this.each(function(frame) {
+        return frame.changeWorkingHour(wh);
+      });
+    },
     changeDisplayMode: function(value) {
       this.displayMode = value;
       return this.each(function(model) {

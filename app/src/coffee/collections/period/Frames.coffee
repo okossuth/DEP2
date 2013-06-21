@@ -62,10 +62,13 @@ define [
         frame.addEventEmployees event
 
     processWorkingHourAdd: (wh) ->
+      @each (frame) -> frame.addWorkingHour wh
 
     processWorkingHourRemove: (wh) ->
+      @each (frame) -> frame.removeWorkingHour wh
 
     processWorkingHourChange: (wh) ->
+      @each (frame) -> frame.changeWorkingHour wh
 
     changeDisplayMode: (value) ->
       @displayMode = value

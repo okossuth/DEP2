@@ -1,10 +1,11 @@
 define [
   'models/resources/ResourceBase',
 
-  'collections/period/PeriodBlocks'
+  'collections/period/PeriodBlocks',
+  'collections/period/HoursBlocks'
 
   'ovivo'
-], (ResourceBase, PeriodBlocks) ->
+], (ResourceBase, PeriodBlocks, HoursBlocks) ->
   ResourceBase.extend
     _gettersNames: [
       'start'
@@ -24,6 +25,11 @@ define [
         block.code += ".#{group}.#{block.resourceNeed.start_time()}.#{block.resourceNeed.end_time()}.#{block.resourceNeed.skill()}"
 
         block
+
+    _compileWorkingHoursGroups: (wh, start, end) ->
+
+    addWorkingHour: (wh) ->
+
 
     addPeriod: (period) ->
       _blocks = @_compilePeriodGroups period, @start(), @end()
@@ -74,5 +80,6 @@ define [
       @proxyCall 'initialize', arguments
 
       @periodBlocks = new PeriodBlocks [], options
+      @hoursBlocks = new HoursBlocks []
 
       true

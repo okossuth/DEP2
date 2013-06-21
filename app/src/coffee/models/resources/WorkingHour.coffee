@@ -1,8 +1,10 @@
 define [
   'models/resources/ResourceBase',
 
+  '_features/RuleCompiler',
+
   'ovivo'
-], (ResourceBase) ->
+], (ResourceBase, RuleCompiler) ->
   ResourceBase.extend
     typeName: 'workingHour'
 
@@ -41,6 +43,19 @@ define [
       [_hours, _minutes] = [parseInt(_hours), parseInt(_minutes)]
 
       _hours * 60 + _minutes
+
+    _blockCodeGenerator: (obj) ->
+      _date = obj.date
+
+      "#{_date.getFullYear()}-#{_date.getMonth()}-#{_date.getDate()}.#{obj.workingHour.pk()}"
+
+    compile: (start, end) ->
+      start = new Date Date.parse start
+      end = new Date Date.parse end
+
+      _arr = RuleCompiler.compile start, end, @start_date(), @end_date(), @repeat(), @weekdaysHash,{
+        workingHour: @
+      }, @_blockCodeGenerator
 
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
