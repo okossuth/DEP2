@@ -11,9 +11,6 @@ define [
 
     fullResponse: true
 
-    # localStorageOnly: true
-    initializeEmpty: true
-
     url: "#{ovivo.config.API_URL_PREFIX}resource-needs/"
 
     processRange: (start, end) -> @reduce ((arr, workingHour) -> arr.concat workingHour.processRange start, end), []

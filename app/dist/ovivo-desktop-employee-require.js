@@ -27453,7 +27453,6 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['primary_department']), {
     model: Model,
     fullResponse: true,
-    initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/",
     processRange: function(start, end) {
       return this.reduce((function(arr, workingHour) {
@@ -27654,7 +27653,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
-    initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/templates/",
     _ignoreChange: ['periods'],
     _processTemplateAdd: function(model) {
@@ -28207,7 +28205,7 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
         return frame.removePeriod(period);
       });
     },
-    processPeriodChange: function(period) {
+    processPeriodUpdateFrames: function(period) {
       return this.each(function(frame) {
         return frame.changePeriod(period);
       });
@@ -28251,27 +28249,75 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
         return frame.addEventEmployees(event);
       });
     },
+    processWorkingHourAdd: function(wh) {},
+    processWorkingHourRemove: function(wh) {},
+    processWorkingHourChange: function(wh) {},
     changeDisplayMode: function(value) {
       this.displayMode = value;
       return this.each(function(model) {
         return model.set('mode', value);
       });
     },
+    _handlers: {
+      periods: {
+        method: 'processPeriod{{s}}',
+        events: ['add', 'remove', 'updateFrames']
+      },
+      events: {
+        method: 'processEvent{{s}}',
+        events: ['add', 'remove', 'change']
+      },
+      eventsEmployees: {
+        method: 'processEvent{{s}}Employees',
+        events: ['add', 'remove', 'change']
+      },
+      workingHours: {
+        method: 'processWorkingHour{{s}}',
+        events: ['add', 'remove', 'change']
+      }
+    },
+    _initHandlers: function(resource, handlersGroup) {
+      var _obj,
+        _this = this;
+
+      if (handlersGroup == null) {
+        handlersGroup = resource;
+      }
+      return _.each((_obj = this._handlers[handlersGroup]).events, function(event) {
+        var _method;
+
+        _method = _obj.method.replace(/\{\{s\}\}/, event.slice(0, 1).toUpperCase() + event.slice(1));
+        return ovivo.desktop.resources[resource].on(event, _this[_method], _this);
+      });
+    },
+    _initSequence: [
+      {
+        deps: 'periods',
+        func: function() {
+          return this._initHandlers('periods');
+        }
+      }, {
+        deps: 'periods,events',
+        func: function() {
+          this._initHandlers('events');
+          return this._initHandlers('events', 'eventsEmployees');
+        }
+      }, {
+        deps: 'periods,workingHours',
+        func: function() {
+          return this._initHandlers('workingHours');
+        }
+      }
+    ],
     initialize: function() {
       var _this = this;
 
       this.on('add', this.processFrameAdd, this);
-      ovivo.desktop.resources.periods.def.done(function() {
-        ovivo.desktop.resources.periods.on('add', _this.processPeriodAdd, _this);
-        ovivo.desktop.resources.periods.on('remove', _this.processPeriodRemove, _this);
-        ovivo.desktop.resources.periods.on('updateFrames', _this.processPeriodChange, _this);
-        return ovivo.desktop.resources.events.def.done(function() {
-          ovivo.desktop.resources.events.on('add', _this.processEventAdd, _this);
-          ovivo.desktop.resources.events.on('remove', _this.processEventRemove, _this);
-          ovivo.desktop.resources.events.on('change', _this.processEventChange, _this);
-          ovivo.desktop.resources.events.on('add', _this.processEventAddEmployees, _this);
-          ovivo.desktop.resources.events.on('remove', _this.processEventRemoveEmployees, _this);
-          return ovivo.desktop.resources.events.on('change', _this.processEventChangeEmployees, _this);
+      _.each(this._initSequence, function(obj) {
+        return $.when.apply($, _.map(obj.deps.split(','), function(s) {
+          return ovivo.desktop.resources[s].def;
+        })).done(function() {
+          return obj.func.call(_this);
         });
       });
       return true;
@@ -28511,7 +28557,6 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
     fullResponse: true,
-    initializeEmpty: true,
     url: "" + ovivo.config.API_URL_PREFIX + "resource-needs/periods/",
     _processPeriodAdd: function(model) {
       var _id,
