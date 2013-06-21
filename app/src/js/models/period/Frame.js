@@ -18,6 +18,32 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
         });
       }));
     },
+    _changeModel: function(model, compileMethod, collection) {
+      var _add, _curBlocks, _curCodes, _hash, _newBlocks, _newCodes, _remove,
+        _this = this;
+
+      _hash = {};
+      _curBlocks = collection.getBy('pk', model.pk());
+      _curCodes = _.map(_curBlocks, function(block) {
+        return block.code();
+      });
+      _newBlocks = this[compileMethod](model, this.start(), this.end());
+      _newCodes = _.map(_newBlocks, function(block) {
+        var _code;
+
+        _code = block.code;
+        _hash[_code] = block;
+        return _code;
+      });
+      _remove = _.difference(_curCodes, _newCodes);
+      _add = _.difference(_newCodes, _curCodes);
+      _.each(_remove, function(code) {
+        return collection.remove(collection.getBy('code', code));
+      });
+      return _.each(_add, function(code) {
+        return collection.add(_hash[code]);
+      });
+    },
     _codeGeneratorPeriod: function(group, block) {
       return "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time()) + "." + (block.resourceNeed.skill());
     },
@@ -33,8 +59,18 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
     addWorkingHour: function(wh) {
       var _blocks;
 
-      _blocks = this._compileWorkingHoursGroups(period, this.start(), this.end());
+      _blocks = this._compileWorkingHoursGroups(wh, this.start(), this.end());
       return this.hoursBlocks.add(_blocks);
+    },
+    removeWorkingHour: function(wh) {
+      var _this = this;
+
+      return _.each(this.hoursBlocks.getBy('pk', wh.pk()), function(block) {
+        return _this.hoursBlocks.remove(block);
+      });
+    },
+    changeWorkingHour: function(wh) {
+      return this._changeModel(wh, '_compileWorkingHoursGroups', this.hoursBlocks);
     },
     addPeriod: function(period) {
       var _blocks;
@@ -50,30 +86,7 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
       });
     },
     changePeriod: function(period) {
-      var _add, _curBlocks, _curCodes, _hash, _newBlocks, _newCodes, _remove,
-        _this = this;
-
-      _hash = {};
-      _curBlocks = this.periodBlocks.getBy('pk', period.pk());
-      _curCodes = _.map(_curBlocks, function(block) {
-        return block.code();
-      });
-      _newBlocks = this._compilePeriodGroups(period, this.start(), this.end());
-      _newCodes = _.map(_newBlocks, function(block) {
-        var _code;
-
-        _code = block.code;
-        _hash[_code] = block;
-        return _code;
-      });
-      _remove = _.difference(_curCodes, _newCodes);
-      _add = _.difference(_newCodes, _curCodes);
-      _.each(_remove, function(code) {
-        return _this.periodBlocks.remove(_this.periodBlocks.getBy('code', code));
-      });
-      return _.each(_add, function(code) {
-        return _this.periodBlocks.add(_hash[code]);
-      });
+      return this._changeModel(period, '_compilePeriodGroups', this.periodBlocks);
     },
     addEvent: function(event) {
       var _byDate, _bySkill;

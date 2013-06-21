@@ -26,6 +26,26 @@ define [
 
         block
 
+    _changeModel: (model, compileMethod, collection) ->
+      _hash = {}
+
+      _curBlocks = collection.getBy('pk', model.pk())
+      _curCodes = _.map _curBlocks, (block) -> block.code()
+
+      _newBlocks = @[compileMethod] model, @start(), @end()
+      _newCodes = _.map _newBlocks, (block) ->
+        _code = block.code
+
+        _hash[_code] = block
+
+        _code
+
+      _remove = _.difference _curCodes, _newCodes
+      _add = _.difference _newCodes, _curCodes
+
+      _.each _remove, (code) => collection.remove collection.getBy('code', code)
+      _.each _add, (code) => collection.add _hash[code]
+
     _codeGeneratorPeriod: (group, block) ->
       ".#{group}.#{block.resourceNeed.start_time()}.#{block.resourceNeed.end_time()}.#{block.resourceNeed.skill()}"
 
@@ -37,9 +57,15 @@ define [
     _compileWorkingHoursGroups: (wh, start, end) -> @_compileGroups wh, start, end, @_codeGeneratorWorkingHour
 
     addWorkingHour: (wh) ->
-      _blocks = @_compileWorkingHoursGroups period, @start(), @end()
+      _blocks = @_compileWorkingHoursGroups wh, @start(), @end()
 
       @hoursBlocks.add _blocks
+
+    removeWorkingHour: (wh) ->
+      _.each @hoursBlocks.getBy('pk', wh.pk()), (block) => @hoursBlocks.remove block
+
+    changeWorkingHour: (wh) ->
+      @_changeModel wh, '_compileWorkingHoursGroups', @hoursBlocks
 
     addPeriod: (period) ->
       _blocks = @_compilePeriodGroups period, @start(), @end()
@@ -49,25 +75,7 @@ define [
     removePeriod: (period) ->
       _.each @periodBlocks.getBy('pk', period.pk()), (block) => @periodBlocks.remove block
 
-    changePeriod: (period) ->
-      _hash = {}
-
-      _curBlocks = @periodBlocks.getBy('pk', period.pk())
-      _curCodes = _.map _curBlocks, (block) -> block.code()
-
-      _newBlocks = @_compilePeriodGroups period, @start(), @end()
-      _newCodes = _.map _newBlocks, (block) ->
-        _code = block.code
-
-        _hash[_code] = block
-
-        _code
-
-      _remove = _.difference _curCodes, _newCodes
-      _add = _.difference _newCodes, _curCodes
-
-      _.each _remove, (code) => @periodBlocks.remove @periodBlocks.getBy('code', code)
-      _.each _add, (code) => @periodBlocks.add _hash[code]
+    changePeriod: (period) -> @_changeModel period, '_compilePeriodGroups', @periodBlocks
 
     addEvent: (event) ->
       _byDate = @periodBlocks.getBy 'dateKey', event.date()
