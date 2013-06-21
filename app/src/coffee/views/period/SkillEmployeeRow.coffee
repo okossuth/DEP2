@@ -3,9 +3,10 @@ define [
 
   'views/period/GroupSectionBase',
   'views/period/EventEmployee',
+  'views/period/WorkingHourEmployee',
 
   'ovivo'
-], (ResourceBase, GroupSectionBase, EventEmployee) ->
+], (ResourceBase, GroupSectionBase, EventEmployee, WorkingHourEmployee) ->
   ResourceBase.extend _.extend {}, GroupSectionBase,
     common: {}
 
@@ -38,6 +39,11 @@ define [
       @renderDef.done () => $(@eventContainers.get(event.day)).append _view.el
 
       _view
+
+    addHoursBlock: (block) ->
+      _view = new WorkingHourEmployee { model: block.workingHour() }
+
+      @renderDef.done () => $(@eventContainers.get(block.day)).append _view.el
 
     initialize: () ->
       @renderDef = new $.Deferred()

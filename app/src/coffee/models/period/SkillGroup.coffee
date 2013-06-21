@@ -55,11 +55,18 @@ define [
 
       true
 
+    addHoursBlock: (block) ->
+      if @employeesDef.state() isnt 'resolved' then return
+
+      _row = @skillEmployeeRows.get block.user()
+
+      if (_row) then _row.addHoursBlock block
+
     _initEvents: () -> ovivo.desktop.resources.events.def.done () =>
       _.each ovivo.desktop.resources.events.getBy({ 'skill': @pk(), 'group': @group()}), (e) => @addEvent e
 
     _initEmployees: (pk, group) -> ovivo.desktop.resources.users.def.done () =>
-      _arr = ovivo.desktop.resources.users.getBy
+      @users = _arr = ovivo.desktop.resources.users.getBy
         'skills': pk
         'groups': group
 
@@ -68,6 +75,13 @@ define [
       @skillEmployeeRows.add _.map _arr, (user) -> { pk: user.pk(), user: user }
 
       @employeesDef.resolve()
+
+    _initWorkingHours: () ->
+      _blocks = @frame().hoursBlocks.getBy 
+        'user': _.map @users, (u) -> u.pk()
+        'group': @group()
+
+      _.each _blocks, (b) => @addHoursBlock b
 
     initialize: (attrs, options) ->
       @employeesDef = new $.Deferred()
@@ -85,5 +99,6 @@ define [
       @proxyCall 'initialize', arguments
 
       @employeesDef.done _.bind @_initEvents, @
+      @employeesDef.done _.bind @_initWorkingHours, @
 
       true

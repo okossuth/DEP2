@@ -8,9 +8,11 @@ define [
 
   '_common/ToolsBase',
 
+  '_features/objsMerger',
+
   'ovivo'
-], (DaysCollector, WeekEmployees, ResourceBase, PeriodGroups, GroupFilters, ToolsBase) ->
-  ResourceBase.extend _.extend {}, DaysCollector, WeekEmployees,
+], (DaysCollector, WeekEmployees, ResourceBase, PeriodGroups, GroupFilters, ToolsBase, objsMerger) ->
+  ResourceBase.extend _.extend {}, DaysCollector, objsMerger.funcMerge WeekEmployees,
     common: {}
 
     template: Handlebars.templates['calendarWeek']
@@ -110,6 +112,14 @@ define [
 
       @$el.removeClass("#{_prevMode}-mode").addClass "#{_mode}-mode"
 
+    _postInitFrame: () ->
+      @model.frame.periodBlocks.on 'add', @_updateScroll, @
+      @model.frame.periodBlocks.on 'remove', @_updateScroll, @
+      @model.frame.periodBlocks.on 'updateScroll', @_updateScroll, @
+
+      @model.frame.on 'change:mode', @_renderMode, @
+      @model.frame.on 'change:mode', @_processMode, @
+
     initialize: () ->
       @frameInitDef = new $.Deferred()
 
@@ -134,13 +144,9 @@ define [
 
       @proxyCall 'initialize', arguments
 
-      @model.frame.periodBlocks.on 'add', @_updateScroll, @
-      @model.frame.periodBlocks.on 'remove', @_updateScroll, @
-      @model.frame.periodBlocks.on 'updateScroll', @_updateScroll, @
-
       @_renderMode()
-      @model.frame.on 'change:mode', @_renderMode, @
-      @model.frame.on 'change:mode', @_processMode, @
+
+      @frameInitDef.done _.bind @_postInitFrame, @
 
       @scroller = $('.page.page-calendar .scroller')
       @scrollerInner = $('.page.page-calendar .scroller .inner')

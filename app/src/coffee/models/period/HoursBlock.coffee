@@ -9,6 +9,8 @@ define [
     _gettersNames: [
       'date',
       'workingHour',
+      'code',
+      'group'
       ['start_time', 'workingHour']
       ['end_time', 'workingHour']
       ['skills', 'workingHour']
@@ -25,5 +27,10 @@ define [
       @groupsHash = @workingHour().groupsHash
 
       ovivo.desktop.resources.users.def.done () => @skillsHash = @workingHour().skillsHash
+
+      _day = @date().getDay() - 1
+      if _day is -1 then _day = 6
+
+      @day = _day
 
       true

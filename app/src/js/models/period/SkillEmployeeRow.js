@@ -21,6 +21,9 @@ define(['models/resources/ResourceBase', 'views/period/SkillEmployeeRow', 'ovivo
     addEvent: function(event, obj) {
       return this.view.addEvent(event, obj);
     },
+    addHoursBlock: function(block) {
+      return this.view.addHoursBlock(block);
+    },
     initialize: function(attrs, options) {
       this.View = View;
       this._blocksCounter = 0;

@@ -44,6 +44,21 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
       }
       return true;
     },
+    addHoursBlock: function(block) {
+      var _this = this;
+
+      return ovivo.desktop.resources.users.def.done(function() {
+        _.each(block.skills(), function(skill) {
+          var _group;
+
+          if ((_group = _this.skillGroups.get(skill)) != null) {
+            return _group.addHoursBlock(block);
+          }
+        });
+        return true;
+      });
+    },
+    removeHoursBlock: function(block) {},
     initialize: function() {
       this.skillGroups = new SkillGroups();
       return this.skillGroups.periodGroup = this;

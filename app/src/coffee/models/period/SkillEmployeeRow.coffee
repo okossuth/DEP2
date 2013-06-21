@@ -29,6 +29,8 @@ define [
 
     addEvent: (event, obj) -> @view.addEvent event, obj
 
+    addHoursBlock: (block) -> @view.addHoursBlock block
+
     initialize: (attrs, options) ->
       @View = View
 

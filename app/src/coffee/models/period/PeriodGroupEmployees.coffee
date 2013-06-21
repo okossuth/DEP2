@@ -36,6 +36,14 @@ define [
 
     true
 
+  addHoursBlock: (block) -> ovivo.desktop.resources.users.def.done () =>
+    _.each block.skills(), (skill) =>
+      if (_group = @skillGroups.get(skill))? then _group.addHoursBlock block
+
+    true
+      
+  removeHoursBlock: (block) ->
+
   initialize: () ->
     @skillGroups = new SkillGroups()
     @skillGroups.periodGroup = @

@@ -15,9 +15,14 @@ define(['models/period/Frame', 'ovivo'], function(Model) {
       return _model;
     },
     processFrameAdd: function(frame) {
-      return ovivo.desktop.resources.periods.def.done(function() {
+      ovivo.desktop.resources.periods.def.done(function() {
         return ovivo.desktop.resources.periods.each(function(period) {
           return frame.addPeriod(period);
+        });
+      });
+      return ovivo.desktop.resources.workingHours.def.done(function() {
+        return ovivo.desktop.resources.workingHours.each(function(wh) {
+          return frame.addWorkingHour(wh);
         });
       });
     },

@@ -57,6 +57,17 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       delete this.events[event.pk()];
       return true;
     },
+    addHoursBlock: function(block) {
+      var _row;
+
+      if (this.employeesDef.state() !== 'resolved') {
+        return;
+      }
+      _row = this.skillEmployeeRows.get(block.user());
+      if (_row) {
+        return _row.addHoursBlock(block);
+      }
+    },
     _initEvents: function() {
       var _this = this;
 
@@ -75,7 +86,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       return ovivo.desktop.resources.users.def.done(function() {
         var _arr;
 
-        _arr = ovivo.desktop.resources.users.getBy({
+        _this.users = _arr = ovivo.desktop.resources.users.getBy({
           'skills': pk,
           'groups': group
         });
@@ -91,6 +102,20 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         return _this.employeesDef.resolve();
       });
     },
+    _initWorkingHours: function() {
+      var _blocks,
+        _this = this;
+
+      _blocks = this.frame().hoursBlocks.getBy({
+        'user': _.map(this.users, function(u) {
+          return u.pk();
+        }),
+        'group': this.group()
+      });
+      return _.each(_blocks, function(b) {
+        return _this.addHoursBlock(b);
+      });
+    },
     initialize: function(attrs, options) {
       this.employeesDef = new $.Deferred();
       this.View = View;
@@ -100,6 +125,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
       this._blocksCounter = 0;
       this.proxyCall('initialize', arguments);
       this.employeesDef.done(_.bind(this._initEvents, this));
+      this.employeesDef.done(_.bind(this._initWorkingHours, this));
       return true;
     }
   });

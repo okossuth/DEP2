@@ -2160,6 +2160,10 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
           background: #f6e332; }
         .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .open > div.indicator {
           background: #f05050; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .available > div.indicator {
+          background: #2d94e3; }
+        .page.page-calendar > .content.week-view .day-blocks.content .day-block > div.inner .unavailable > div.indicator {
+          background: #6d0088; }
   .page.page-calendar > .content.week-view .day-blocks.footer {
     font-size: 14px;
     position: relative;
