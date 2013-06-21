@@ -13,23 +13,33 @@ define [
       'mode'
     ]
 
-    _compilePeriodGroups: (period, start, end) ->
-      if not (_groups = period.groups())? then return []
+    _compileGroups: (model, start, end, codeGenerator) ->
+      if not (_groups = model.groups())? then return []
 
-      _blocksInitial = period.compile start, end
+      _blocksInitial = model.compile start, end
 
       _.union.apply _, _.map _groups, (group) -> _blocksInitial.map (block) ->
         block = _.clone block
 
         block.group = group
-        block.code += ".#{group}.#{block.resourceNeed.start_time()}.#{block.resourceNeed.end_time()}.#{block.resourceNeed.skill()}"
+        block.code += codeGenerator group, block
 
         block
 
-    _compileWorkingHoursGroups: (wh, start, end) ->
+    _codeGeneratorPeriod: (group, block) ->
+      ".#{group}.#{block.resourceNeed.start_time()}.#{block.resourceNeed.end_time()}.#{block.resourceNeed.skill()}"
+
+    _codeGeneratorWorkingHour: (group, block) ->
+      ".#{group}"
+
+    _compilePeriodGroups: (period, start, end) -> @_compileGroups period, start, end, @_codeGeneratorPeriod
+
+    _compileWorkingHoursGroups: (wh, start, end) -> @_compileGroups wh, start, end, @_codeGeneratorWorkingHour
 
     addWorkingHour: (wh) ->
+      _blocks = @_compileWorkingHoursGroups period, @start(), @end()
 
+      @hoursBlocks.add _blocks
 
     addPeriod: (period) ->
       _blocks = @_compilePeriodGroups period, @start(), @end()

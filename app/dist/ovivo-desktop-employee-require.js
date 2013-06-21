@@ -28117,24 +28117,40 @@ define('collections/period/HoursBlocks',['collections/period/Blocks', 'models/pe
 define('models/period/Frame',['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'collections/period/HoursBlocks', 'ovivo'], function(ResourceBase, PeriodBlocks, HoursBlocks) {
   return ResourceBase.extend({
     _gettersNames: ['start', 'end', 'mode'],
-    _compilePeriodGroups: function(period, start, end) {
+    _compileGroups: function(model, start, end, codeGenerator) {
       var _blocksInitial, _groups;
 
-      if ((_groups = period.groups()) == null) {
+      if ((_groups = model.groups()) == null) {
         return [];
       }
-      _blocksInitial = period.compile(start, end);
+      _blocksInitial = model.compile(start, end);
       return _.union.apply(_, _.map(_groups, function(group) {
         return _blocksInitial.map(function(block) {
           block = _.clone(block);
           block.group = group;
-          block.code += "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time()) + "." + (block.resourceNeed.skill());
+          block.code += codeGenerator(group, block);
           return block;
         });
       }));
     },
-    _compileWorkingHoursGroups: function(wh, start, end) {},
-    addWorkingHour: function(wh) {},
+    _codeGeneratorPeriod: function(group, block) {
+      return "." + group + "." + (block.resourceNeed.start_time()) + "." + (block.resourceNeed.end_time()) + "." + (block.resourceNeed.skill());
+    },
+    _codeGeneratorWorkingHour: function(group, block) {
+      return "." + group;
+    },
+    _compilePeriodGroups: function(period, start, end) {
+      return this._compileGroups(period, start, end, this._codeGeneratorPeriod);
+    },
+    _compileWorkingHoursGroups: function(wh, start, end) {
+      return this._compileGroups(wh, start, end, this._codeGeneratorWorkingHour);
+    },
+    addWorkingHour: function(wh) {
+      var _blocks;
+
+      _blocks = this._compileWorkingHoursGroups(period, this.start(), this.end());
+      return this.hoursBlocks.add(_blocks);
+    },
     addPeriod: function(period) {
       var _blocks;
 
