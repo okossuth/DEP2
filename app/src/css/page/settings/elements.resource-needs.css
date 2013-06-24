@@ -14,7 +14,7 @@
   .resource-needs-container ul.columns.weekdays {
     padding: 40px 0 0 0; }
   .resource-needs-container ul.columns.weekdays-titles {
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     padding: 10px 0 0 0; }
     .resource-needs-container ul.columns.weekdays-titles > li {
       color: #807e73;

@@ -4,7 +4,7 @@
     position: relative;
     border-top: 1px solid transparent; }
     .page.page-resources .content.content-periods > ul.month-sections > li.month-section.current > h1.title {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #007550;
       border-bottom: 5px solid #007550; }
     .page.page-resources .content.content-periods > ul.month-sections > li.month-section > h1.title {
@@ -64,7 +64,7 @@
               position: absolute;
               top: 50%;
               left: 50%;
-              font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+              font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
               font-size: 18px;
               width: 100px;
               height: 22px;

@@ -22,7 +22,7 @@
     .elements .attributes > li > strong {
       width: 70px;
       display: inline-block;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       font-weight: normal;
       text-align: right;
       margin: 0 3px 0 0; }

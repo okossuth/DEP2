@@ -12,7 +12,7 @@
       min-height: 23px;
       text-align: left; }
       .settings-items > li.settings-item > div.header span {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         color: #525044;
         margin: 0 10px 0 0; }
       .settings-items > li.settings-item > div.header em {
@@ -52,7 +52,7 @@
         padding: 9px 9px;
         vertical-align: middle; }
       .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-style: italic;
         color: #807e73;
         margin: 0 4px; }
@@ -68,7 +68,7 @@ ul.options-group {
     padding: 8px 10px;
     border: 1px solid #807e73;
     border-radius: 2px;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     color: #807e73;
     width: 80px; }
     ul.options-group > li.option.selected {

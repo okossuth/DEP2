@@ -43,7 +43,7 @@
       .page.page-calendar > header > .week-banner > ul > li.time-block {
         padding: 10px 0 4px 0; }
       .page.page-calendar > header > .week-banner > ul > li > strong {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-weight: normal; }
       .page.page-calendar > header > .week-banner > ul > li > span {
         display: block; }

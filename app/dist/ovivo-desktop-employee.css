@@ -9,7 +9,7 @@
 .button {
   background: #007550;
   font-size: 13px;
-  font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+  font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
   color: white;
   display: inline-block;
   border-radius: 1px;
@@ -20,7 +20,7 @@
     background: transparent;
     padding: 9px 0 9px 0;
     border: 0;
-    font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+    font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
     font-size: 16px;
     color: black; }
   .button.warning {
@@ -43,7 +43,7 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
+  font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif; }
 
 input {
   border: 0;
@@ -51,7 +51,7 @@ input {
   margin: 0;
   outline: 0;
   background: white;
-  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif; }
+  font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif; }
 
 body {
   background: #edf0f2; }
@@ -90,20 +90,18 @@ select {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 @font-face {
-  font-family: HelveticaNeueBold;
-  src: url("../assets/fonts/HelveticaNeue Bold.ttf"); }
+  font-family: OvivoHelveticaNeueBold;
+  src: url("../assets/fonts/HelveticaNeue-Bold.eot");
+  src: url("../assets/fonts/HelveticaNeue-Bold.woff") format("woff"); }
 
 @font-face {
-  font-family: HelveticaNeue;
-  src: url("../assets/fonts/HelveticaNeue-Roman.otf"); }
+  font-family: OvivoHelveticaNeue;
+  src: url("../assets/fonts/HelveticaNeue-Roman.eot");
+  src: url("../assets/fonts/HelveticaNeue-Roman.woff") format("woff"); }
 
 @font-face {
   font-family: KontrapunktBobBold;
   src: url("../assets/fonts/Kontrapunkt Bob Bold.otf"); }
-
-@font-face {
-  font-family: KontrapunktBobLight;
-  src: url("../assets/fonts/Kontrapunkt Bob Light.otf"); }
 
 .form-component > .settings-items {
   margin: 20px 0; }
@@ -125,7 +123,7 @@ select {
     .form-component > .settings-items > li.settings-item > div.item-content > select[multiple="multiple"] {
       -webkit-appearance: initial; }
     .form-component > .settings-items > li.settings-item > div.item-content > span {
-      font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       font-style: italic;
       color: #807e73;
       margin: 0 4px;
@@ -229,7 +227,7 @@ section.page .notification-message {
   section.page .notification-message span {
     position: relative;
     z-index: 2;
-    font: normal 14px "HelveticaNeueBold", Helvetica, Arial, sans-serif;
+    font: normal 14px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     font-style: italic;
     color: white; }
 
@@ -626,7 +624,7 @@ section.page .notification-message {
     animation: popup-exit 200ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
-    font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
+    font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif; }
   .popup > h1 {
     text-align: center;
     padding: 7px 0 20px 0; }
@@ -1342,7 +1340,7 @@ section.page .notification-message {
       margin: 0 0 0 0; }
     .page > header > div.line > span.title, .page > footer > div.line > span.title {
       font-size: 21px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #007550;
       margin: 0 10px 0 20px; }
     .page > header > div.line > em.title, .page > footer > div.line > em.title {
@@ -1542,7 +1540,7 @@ body.loading .side-bar > h1.title > img {
       height: 26px;
       border-radius: 1px;
       background: #fd5308;
-      font: normal 20px KontrapunktBobBold, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+      font: normal 20px KontrapunktBobBold, OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       color: white;
       text-align: center; }
 
@@ -1595,12 +1593,12 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       font-weight: lighter;
       margin: 1px 0 0 0; }
     ul.months-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h2 {
-      font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
-      font-weight: lighter; }
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
+      font-weight: normal; }
       ul.months-list .element > div.element-container > div.info > h2 > em, ul.weeks-list .element > div.element-container > div.info > h2 > em, .page-event-details .element > div.element-container > div.info > h2 > em {
-        font-family: HelveticaNeue;
+        font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
         font-style: normal;
-        font-weight: lighter;
+        font-weight: normal;
         color: #666666; }
   ul.months-list .element > div.element-container > div.buttons, ul.weeks-list .element > div.element-container > div.buttons, .page-event-details .element > div.element-container > div.buttons {
     background: #f0efec;
@@ -1636,8 +1634,8 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > *, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > * {
           vertical-align: middle; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > span, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > span {
-          font-family: HelveticaNeueBold, Helvetica, Arial, sans-serif;
-          font-weight: lighter;
+          font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
+          font-weight: normal;
           font-size: 13px;
           color: #807e73; }
         ul.months-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > i, ul.weeks-list .element > div.element-container > div.buttons > div.button-element > div.button-inner > i, .page-event-details .element > div.element-container > div.buttons > div.button-element > div.button-inner > i {
@@ -1794,7 +1792,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       .page.page-calendar > header > .week-banner > ul > li.time-block {
         padding: 10px 0 4px 0; }
       .page.page-calendar > header > .week-banner > ul > li > strong {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-weight: normal; }
       .page.page-calendar > header > .week-banner > ul > li > span {
         display: block; }
@@ -2004,11 +2002,11 @@ ul.months-list.specific .element > div.element-container {
     ul.months-list.specific .element > div.element-container .info > h3, ul.months-list.specific .element > div.element-container .info > h4 {
       display: none; }
     ul.months-list.specific .element > div.element-container .info > h2 {
-      font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       font-size: 13px;
-      font-weight: lighter; }
+      font-weight: normal; }
       ul.months-list.specific .element > div.element-container .info > h2:first-child {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-size: 14px; }
       ul.months-list.specific .element > div.element-container .info > h2 > em {
         display: none; }
@@ -2292,7 +2290,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       opacity: 0.5;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > strong {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       font-weight: normal; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group ul.resource-needs > li.resource-need > span {
       margin: 0 0 0 10px; }
@@ -2310,7 +2308,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block > div.inner {
         height: auto; }
       .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks.header .day-block.side-column {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block > div.inner {
       min-height: 40px; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column {
@@ -2370,7 +2368,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       cursor: pointer; }
       .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range > .time {
         font-size: 15px;
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         color: white;
         position: absolute;
         display: block;
@@ -2429,7 +2427,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   .page.page-feedback .textarea-block textarea {
     margin: 0;
     width: 100%;
-    font: normal 17px HelveticaNeue;
+    font: normal 17px OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
     color: #8e8e8e; }
 
 .page.page-help .content {
@@ -2464,13 +2462,13 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   .page.page-notifications ul.notifications-list > li.notification > div {
     position: relative; }
     .page.page-notifications ul.notifications-list > li.notification > div > h2 {
-      font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font: normal 12px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.message {
-      font: normal 12px HelveticaNeue;
+      font: normal 12px OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       margin: 7px 0 0 0; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.time {
-      font: normal 11px HelveticaNeue;
+      font: normal 11px OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       margin: 8px 0 0 0;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > i.mark {
@@ -2512,7 +2510,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     position: relative;
     border-top: 1px solid transparent; }
     .page.page-resources .content.content-periods > ul.month-sections > li.month-section.current > h1.title {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #007550;
       border-bottom: 5px solid #007550; }
     .page.page-resources .content.content-periods > ul.month-sections > li.month-section > h1.title {
@@ -2572,7 +2570,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
               position: absolute;
               top: 50%;
               left: 50%;
-              font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+              font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
               font-size: 18px;
               width: 100px;
               height: 22px;
@@ -2796,7 +2794,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       text-align: center;
       font-weight: normal; }
     .page.page-settings .content > div.info > h2 {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       font-size: 17px;
       color: #807e73; }
     .page.page-settings .content > div.info > h3 {
@@ -2820,7 +2818,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     cursor: pointer; }
     .page.page-settings .content ul.sections-menu > li.selected {
       background: #807e73;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: white; }
     .page.page-settings .content ul.sections-menu > li:first-child {
       margin-left: 0; }
@@ -2852,7 +2850,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     .elements .attributes > li > strong {
       width: 70px;
       display: inline-block;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       font-weight: normal;
       text-align: right;
       margin: 0 3px 0 0; }
@@ -2924,7 +2922,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   .resource-needs-container ul.columns.weekdays {
     padding: 40px 0 0 0; }
   .resource-needs-container ul.columns.weekdays-titles {
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     padding: 10px 0 0 0; }
     .resource-needs-container ul.columns.weekdays-titles > li {
       color: #807e73;
@@ -2966,7 +2964,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
       min-height: 23px;
       text-align: left; }
       .settings-items > li.settings-item > div.header span {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         color: #525044;
         margin: 0 10px 0 0; }
       .settings-items > li.settings-item > div.header em {
@@ -3006,7 +3004,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
         padding: 9px 9px;
         vertical-align: middle; }
       .settings-items > li.settings-item > div.item-content > span {
-        font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-style: italic;
         color: #807e73;
         margin: 0 4px; }
@@ -3022,7 +3020,7 @@ ul.options-group {
     padding: 8px 10px;
     border: 1px solid #807e73;
     border-radius: 2px;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     color: #807e73;
     width: 80px; }
     ul.options-group > li.option.selected {

@@ -12,13 +12,13 @@
   .page.page-notifications ul.notifications-list > li.notification > div {
     position: relative; }
     .page.page-notifications ul.notifications-list > li.notification > div > h2 {
-      font: lighter 12px HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font: normal 12px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.message {
-      font: normal 12px HelveticaNeue;
+      font: normal 12px OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       margin: 7px 0 0 0; }
     .page.page-notifications ul.notifications-list > li.notification > div > p.time {
-      font: normal 11px HelveticaNeue;
+      font: normal 11px OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       margin: 8px 0 0 0;
       color: #807e73; }
     .page.page-notifications ul.notifications-list > li.notification > div > i.mark {
