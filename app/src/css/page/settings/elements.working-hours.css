@@ -11,7 +11,7 @@
   .page.page-settings .availability-view.content ul.columns.weekdays {
     padding: 34px 0 0 0; }
   .page.page-settings .availability-view.content ul.columns.weekdays-titles {
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     padding: 10px 0 0 0; }
     .page.page-settings .availability-view.content ul.columns.weekdays-titles > li {
       color: #807e73;

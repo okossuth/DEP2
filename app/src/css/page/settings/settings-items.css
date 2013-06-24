@@ -11,7 +11,7 @@
     .settings-items > li.settings-item > div.header {
       min-height: 23px; }
       .settings-items > li.settings-item > div.header span {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         color: #525044;
         margin: 0 10px 0 0; }
       .settings-items > li.settings-item > div.header em {
@@ -43,7 +43,7 @@ ul.options-group {
     padding: 8px 10px;
     border: 1px solid #807e73;
     border-radius: 2px;
-    font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+    font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     color: #807e73;
     width: 80px;
     cursor: pointer; }

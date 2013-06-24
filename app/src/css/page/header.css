@@ -32,7 +32,7 @@
       margin: 0 0 0 0; }
     .page > header > div.line > span.title, .page > footer > div.line > span.title {
       font-size: 21px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #007550;
       margin: 0 10px 0 20px; }
     .page > header > div.line > em.title, .page > footer > div.line > em.title {

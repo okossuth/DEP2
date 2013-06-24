@@ -7,7 +7,7 @@
     font-size: 14px;
     color: #cccccc; }
     .side-bar ul.menu > li.selected {
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: white; }
     .side-bar ul.menu > li > a {
       color: inherit;

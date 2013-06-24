@@ -25,6 +25,6 @@ section.page .notification-message {
   section.page .notification-message span {
     position: relative;
     z-index: 2;
-    font: normal 14px "HelveticaNeueBold", Helvetica, Arial, sans-serif;
+    font: normal 14px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
     font-style: italic;
     color: white; }

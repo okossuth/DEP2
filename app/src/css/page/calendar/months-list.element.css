@@ -6,11 +6,11 @@ ul.months-list.specific .element > div.element-container, ul.weeks-list.specific
     ul.months-list.specific .element > div.element-container .info > h3, ul.months-list.specific .element > div.element-container .info > h4, ul.weeks-list.specific .element > div.element-container .info > h3, ul.weeks-list.specific .element > div.element-container .info > h4 {
       display: none; }
     ul.months-list.specific .element > div.element-container .info > h2, ul.weeks-list.specific .element > div.element-container .info > h2 {
-      font-family: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
       font-size: 13px;
-      font-weight: lighter; }
+      font-weight: normal; }
       ul.months-list.specific .element > div.element-container .info > h2:first-child, ul.weeks-list.specific .element > div.element-container .info > h2:first-child {
-        font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+        font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
         font-size: 14px; }
       ul.months-list.specific .element > div.element-container .info > h2 > em, ul.weeks-list.specific .element > div.element-container .info > h2 > em {
         display: none; }

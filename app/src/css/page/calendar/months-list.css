@@ -14,7 +14,7 @@ ul.months-list > li > .title-line, ul.weeks-list > li > .title-line {
       display: inline-block; }
     ul.months-list > li > .title-line > div.line > span.title, ul.weeks-list > li > .title-line > div.line > span.title {
       font-size: 21px;
-      font-family: "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif;
+      font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;
       color: #007550;
       margin: 0 10px 0 30px; }
     ul.months-list > li > .title-line > div.line > em.title, ul.weeks-list > li > .title-line > div.line > em.title {

@@ -44,7 +44,7 @@
     animation: popup-exit 200ms ease-in 0s; }
   .popup > h1, .popup > div.close {
     color: #807e73;
-    font: normal 17px "Helvetica Neue Bold", HelveticaNeueBold, Helvetica, Arial, sans-serif; }
+    font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif; }
   .popup > h1 {
     text-align: center;
     padding: 7px 0 20px 0; }
