@@ -80,11 +80,21 @@ define [
       (_now.getFullYear() is year) and (_now.getWeek() is number)
 
     processCollectorShow: (collector) ->
+      _now = Date.today()
+      _nowDate = _now.getDate()
+      _nowMonth = _now.getMonth()
+      _nowYear = _now.getFullYear()
+
       @values.week.html collector.number()
       @values.month.html ovivo.config.MONTHS[collector.month()].slice 0, 3
       @values.year.html collector.year()
 
+      @datesBlocks.removeClass('today')
+
       _.each collector.days, (obj, i) =>
+        if (_nowDate is obj.date) and (_nowMonth is obj.month) and (_nowYear is obj.year)
+          $(@datesBlocks.get(i)).addClass 'today'
+
         @dates[i].innerHTML = "#{obj.date}"
 
     processCollectorHide: (month) ->
@@ -110,6 +120,7 @@ define [
 
       @title = $('.page.page-calendar header span.title.week-title')
       @dates = $('.page.page-calendar header .weekdays-row span.date')
+      @datesBlocks = $('.page.page-calendar header .weekdays-row li')
       @collectorsList = @$ '.weeks-list'
 
       @values =

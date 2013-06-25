@@ -56,6 +56,8 @@
         width: 14.28571%;
         float: left;
         text-align: center; }
+        .page.page-calendar > header .weekdays ul.row > li.today {
+          color: #fd5308; }
         .page.page-calendar > header .weekdays ul.row > li > span {
           display: block;
           margin: 0 0 0 7px; }

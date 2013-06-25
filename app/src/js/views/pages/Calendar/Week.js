@@ -69,12 +69,21 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       return (_now.getFullYear() === year) && (_now.getWeek() === number);
     },
     processCollectorShow: function(collector) {
-      var _this = this;
+      var _now, _nowDate, _nowMonth, _nowYear,
+        _this = this;
 
+      _now = Date.today();
+      _nowDate = _now.getDate();
+      _nowMonth = _now.getMonth();
+      _nowYear = _now.getFullYear();
       this.values.week.html(collector.number());
       this.values.month.html(ovivo.config.MONTHS[collector.month()].slice(0, 3));
       this.values.year.html(collector.year());
+      this.datesBlocks.removeClass('today');
       return _.each(collector.days, function(obj, i) {
+        if ((_nowDate === obj.date) && (_nowMonth === obj.month) && (_nowYear === obj.year)) {
+          $(_this.datesBlocks.get(i)).addClass('today');
+        }
         return _this.dates[i].innerHTML = "" + obj.date;
       });
     },
@@ -97,6 +106,7 @@ define(['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'colle
       this._initialize();
       this.title = $('.page.page-calendar header span.title.week-title');
       this.dates = $('.page.page-calendar header .weekdays-row span.date');
+      this.datesBlocks = $('.page.page-calendar header .weekdays-row li');
       this.collectorsList = this.$('.weeks-list');
       this.values = {
         week: $('.page.page-calendar header .week-banner .week-value'),
