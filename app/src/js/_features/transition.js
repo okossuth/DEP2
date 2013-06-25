@@ -6,7 +6,7 @@ define([], function() {
     var _func;
 
     _func = function(e) {
-      $(this).removeClass("" + enterClass + " " + exitClass + " transition back");
+      $(this).addClass('post-animation');
       _def.resolve();
       $(this).off(ovivo.config.ANIMATION_END, _func);
       return true;
@@ -15,7 +15,8 @@ define([], function() {
   };
   return {
     transit: function(prev, next, enterClass, exitClass, reverse) {
-      var _def, _defNext, _defPrev;
+      var _def, _defNext, _defPrev,
+        _this = this;
 
       _defNext = $.Deferred();
       _defPrev = $.Deferred();
@@ -33,9 +34,12 @@ define([], function() {
           $(next).addClass('back');
           $(prev).addClass('back');
         }
-        $(next).addClass(enterClass).addClass('transition');
-        $(prev).addClass(exitClass).addClass('transition');
-        return $.when(_defNext, _defPrev);
+        $(next).addClass(enterClass).addClass('transition').addClass('next-page');
+        $(prev).addClass(exitClass).addClass('transition').addClass('prev-page');
+        return $.when(_defNext, _defPrev).done(function() {
+          $(next).removeClass("" + enterClass + " transition back next-page post-animation");
+          return $(prev).removeClass("" + exitClass + " transition back prev-page post-animation");
+        });
       } else {
         $(prev).addClass('hide');
         $(next).removeClass('hide');
