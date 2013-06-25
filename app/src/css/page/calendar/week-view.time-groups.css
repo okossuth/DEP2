@@ -1,5 +1,5 @@
 .page.page-calendar > .content.week-view ul.time-groups {
-  padding: 0 0 0 120px;
+  padding: 0 0 0 130px;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
@@ -21,7 +21,7 @@
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {
       position: absolute;
       bottom: 0;
-      left: -120px;
+      left: -125px;
       z-index: 0;
       width: 120px;
       height: 100%;
