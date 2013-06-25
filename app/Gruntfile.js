@@ -315,4 +315,5 @@ module.exports = function(grunt) {
     // grunt.registerTask('default', ['shell:templates', 'concat', 'shell:optimize', 'translate', 'concat:pre-manifest', 'concat:manifest']);
 
     grunt.registerTask('default', ['shell:templates', 'concat:css', 'concat:ie', 'concat:js', 'shell:optimize', 'translate']);
+    grunt.registerTask('travis', ['translate']);
 }; 

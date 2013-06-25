@@ -58,7 +58,7 @@ define [
         scrollTop: _currentTop
 
     initialize: () ->
-      @current = _now = new Date()
+      @current = _now = Date.today().moveToFirstDayOfMonth()
 
       @_initialize()
 

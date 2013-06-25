@@ -9,7 +9,6 @@
     "jquery.mousewheel": "../../lib/jquery.mousewheel",
     "templates": "../../dist/templates",
     "fastclick": "../../lib/fastclick",
-    "airbrake": "../../lib/airbrake",
     "date": "../../lib/date",
     "pickadate": "../../lib/pickadate.legacy",
     "modernizr": "../../lib/modernizr"

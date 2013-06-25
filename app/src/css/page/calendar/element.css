@@ -35,11 +35,11 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       margin-top: 5px;
       font-size: 11px;
       color: #666666;
-      font-weight: lighter; }
+      font-weight: normal; }
     ul.months-list .element > div.element-container > div.info > h3, ul.months-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h3, ul.weeks-list .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h3, .page-event-details .element > div.element-container > div.info > h2 {
       font-size: 15px; }
     ul.months-list .element > div.element-container > div.info > h3, ul.weeks-list .element > div.element-container > div.info > h3, .page-event-details .element > div.element-container > div.info > h3 {
-      font-weight: lighter;
+      font-weight: normal;
       margin: 1px 0 0 0; }
     ul.months-list .element > div.element-container > div.info > h2, ul.weeks-list .element > div.element-container > div.info > h2, .page-event-details .element > div.element-container > div.info > h2 {
       font-family: OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif;

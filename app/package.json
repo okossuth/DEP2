@@ -1,0 +1,14 @@
+{
+    "name": "desktop-employee-app",
+
+    "version": "0.0.1",
+
+    "dependencies": {
+        "grunt": "0.4.x",
+        "grunt-closure-compiler": "0.0.x",
+        "grunt-contrib-concat": "0.2.x",
+        "grunt-csso": "0.5.x",
+        "grunt-shell": "0.2.x",
+        "underscore": "1.4.4"
+    }
+}
