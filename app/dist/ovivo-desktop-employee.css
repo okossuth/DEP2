@@ -1441,6 +1441,8 @@ section.page .notification-message {
         color: #007550;
         border: 2px solid #469a7f;
         border-right: 0; }
+  .page > div.content.post-animation.prev-page {
+    display: none; }
   .page > div.content.enter {
     -webkit-animation: sub-page-enter 200ms ease-out 0s;
     -moz-animation: sub-page-enter 200ms ease-out 0s;
@@ -1555,6 +1557,8 @@ section.page .notification-message {
     transition: opacity 2s; }
   .page.initial-hide {
     opacity: 0; }
+  .page.post-animation.prev-page {
+    display: none; }
   .page.enter {
     -webkit-animation: page-enter 200ms ease-out 0s;
     -moz-animation: page-enter 200ms ease-out 0s;
@@ -1846,7 +1850,7 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     width: 100%; }
     .page.page-calendar > header .weekdays ul.row {
       font-size: 16px;
-      margin: 0 50px 0 180px;
+      margin: 0 50px 0 260px;
       overflow: auto; }
       .page.page-calendar > header .weekdays ul.row > li {
         width: 14.28571%;
