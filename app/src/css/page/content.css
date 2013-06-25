@@ -33,6 +33,8 @@
         color: #007550;
         border: 2px solid #469a7f;
         border-right: 0; }
+  .page > div.content.post-animation.prev-page {
+    display: none; }
   .page > div.content.enter {
     -webkit-animation: sub-page-enter 200ms ease-out 0s;
     -moz-animation: sub-page-enter 200ms ease-out 0s;

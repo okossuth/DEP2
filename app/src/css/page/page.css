@@ -17,6 +17,8 @@
     transition: opacity 2s; }
   .page.initial-hide {
     opacity: 0; }
+  .page.post-animation.prev-page {
+    display: none; }
   .page.enter {
     -webkit-animation: page-enter 200ms ease-out 0s;
     -moz-animation: page-enter 200ms ease-out 0s;
