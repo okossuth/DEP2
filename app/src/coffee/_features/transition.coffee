@@ -2,11 +2,11 @@ define [
 ], () ->
   _animationEndGen = (_def, enterClass, exitClass) ->
     _func = (e) ->
-      $(this).removeClass("#{enterClass} #{exitClass} transition back")
+      $(this).addClass('post-animation')
 
       _def.resolve()
 
-      $(this).off 'webkitAnimationEnd', _func
+      $(this).off ovivo.config.ANIMATION_END, _func
 
       true
 
@@ -32,10 +32,12 @@ define [
         $(next).addClass('back')
         $(prev).addClass('back')
 
-      $(next).addClass(enterClass).addClass('transition')
-      $(prev).addClass(exitClass).addClass('transition')
+      $(next).addClass(enterClass).addClass('transition').addClass('next-page')
+      $(prev).addClass(exitClass).addClass('transition').addClass('prev-page')
 
-      $.when(_defNext, _defPrev)
+      $.when(_defNext, _defPrev).done () =>
+        $(next).removeClass("#{enterClass} transition back next-page post-animation")
+        $(prev).removeClass("#{exitClass} transition back prev-page post-animation")
 
     else
       $(prev).addClass 'hide'
