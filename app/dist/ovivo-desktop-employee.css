@@ -2487,7 +2487,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     position: relative; }
 
 .page.page-calendar > .content.week-view ul.time-groups {
-  padding: 0 0 0 50px;
+  padding: 0 0 0 120px;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
   -ms-perspective: 3000px;
@@ -2509,9 +2509,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     .page.page-calendar > .content.week-view ul.time-groups > li.time-group > div.time-range {
       position: absolute;
       bottom: 0;
-      left: -50px;
+      left: -120px;
       z-index: 0;
-      width: 50px;
+      width: 120px;
       height: 100%;
       background: #333333;
       cursor: pointer; }
