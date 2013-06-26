@@ -43,7 +43,7 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/
       return this.$('.skill-name').html(ovivo.desktop.resources.skills.get(this.pk()).name());
     },
     postRender: function() {
-      this.header = this.$('.day-blocks.header')[0];
+      this.header = this.$('.table-container.header')[0];
       this.headerBlocks = this.$('.day-blocks.header td.day-block.container ul.resource-needs');
       this.employeeRows = this.$('.employee-rows');
       ovivo.desktop.resources.skills.def.done(_.bind(this._renderSkill, this));

@@ -1,3 +1,12 @@
+.page.page-calendar > .content.week-view .bottom-shadow {
+  position: absolute;
+  background: #eeeeee;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  bottom: -4px;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
 .page.page-calendar > .content.week-view .day-blocks {
   overflow: auto;
   border-spacing: 0;
@@ -18,15 +27,6 @@
     width: 100%;
     overflow: visible;
     height: 48px; }
-    .page.page-calendar > .content.week-view .day-blocks.header tr.bottom-shadow, .page.page-calendar > .content.week-view .day-blocks.static-header tr.bottom-shadow {
-      position: absolute;
-      background: #eeeeee;
-      height: 4px;
-      width: 100%;
-      left: 0;
-      bottom: -4px;
-      opacity: 0.5;
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
     .page.page-calendar > .content.week-view .day-blocks.header .day-block, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block {
       border-left-color: #e8e8e8; }
       .page.page-calendar > .content.week-view .day-blocks.header .day-block > div.inner, .page.page-calendar > .content.week-view .day-blocks.static-header .day-block > div.inner {

@@ -50,7 +50,7 @@ define [
       @$('.skill-name').html ovivo.desktop.resources.skills.get(@pk()).name()
 
     postRender: () ->
-      @header = @$('.day-blocks.header')[0]
+      @header = @$('.table-container.header')[0]
       @headerBlocks = @$('.day-blocks.header td.day-block.container ul.resource-needs')
       @employeeRows = @$('.employee-rows')
 

@@ -3,8 +3,8 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
     MIN_BLOCK_HEIGHT: 100,
-    tagName: 'table',
-    className: 'day-blocks content employee-row',
+    tagName: 'div',
+    className: 'table-container content',
     template: Handlebars.templates['employeeRowSkill'],
     groupTemplate: Handlebars.templates['employeeRowSkill_group'],
     preventChangeRender: true,
