@@ -2251,9 +2251,9 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   overflow: auto;
   border-spacing: 0;
   width: 100%;
-  position: relative; }
+  position: relative;
+  table-layout: fixed; }
   .page.page-calendar > .content.week-view .day-blocks .day-block {
-    width: 14.28571%;
     background: white;
     padding: 0;
     border-left: 1px solid transparent;
@@ -2428,7 +2428,7 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
   z-index: 1; }
   .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group {
     position: relative;
-    padding: 0 0 0 130px;
+    padding: 0 0 0 5px;
     -webkit-transform-origin: bottom center;
     -moz-transform-origin: bottom center;
     -ms-transform-origin: bottom center;
@@ -2470,15 +2470,14 @@ ul.months-list .resource-need.element ul.availabilities, ul.weeks-list .resource
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column {
       width: 120px;
       height: 100%;
-      position: absolute;
-      top: 0;
-      left: -125px;
+      text-align: center;
       background: #333333;
       color: white;
-      text-align: center; }
+      border-right: 5px solid #edf0f2; }
       .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column > div.inner {
         padding-left: 10px;
-        padding-right: 10px; }
+        padding-right: 10px;
+        margin-right: 5px; }
       .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.side-column span {
         margin: 0; }
     .page.page-calendar > .content.week-view ul.skill-groups > li.skill-group .day-blocks .day-block.first-column {
