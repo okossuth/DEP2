@@ -16,3 +16,6 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
 
 .page.page-calendar > .content.week-view ul.period-groups > li.period-group.folding > ul.skill-groups > li.skill-group {
   visibility: visible; }
+
+.page.page-calendar > .content.week-view ul.skill-groups > li.skill-group.folding > div.employee-rows > div {
+  visibility: visible; }
