@@ -2,6 +2,8 @@ define [
   'ovivo'
 ], () ->
   navigate: () ->
+    console.log window._time = new Date()
+    
     _key = @_getKey.apply @, Array.prototype.slice.call arguments, 0
 
     if @_isToday.apply(@, Array.prototype.slice.call arguments, 0) is true

@@ -4,6 +4,10 @@ define(['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
     addBlock: function(block) {
       var _key, _skillGroup;
 
+      if (this._blocksHash[block.cid] != null) {
+        return;
+      }
+      this._blocksHash[block.cid] = block;
       _key = block.skill();
       _skillGroup = this.skillGroups.get(_key);
       if (_skillGroup == null) {

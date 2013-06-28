@@ -77,11 +77,19 @@ define [
       @employeesDef.resolve()
 
     _initWorkingHours: () ->
-      _blocks = @frame().hoursBlocks.getBy 
-        'user': _.map @users, (u) -> u.pk()
-        'group': @group()
+      # console.log window._time - (window._time = new Date())
 
-      _.each _blocks, (b) => @addHoursBlock b
+      # @frame().addWorkingHours ovivo.desktop.resources.workingHours.getBy
+      #   'groups': @group()
+      #   'user': _.map @users, (u) -> u.pk()
+
+      # console.log window._time - (window._time = new Date())
+
+      # _blocks = @frame().hoursBlocks.getBy 
+      #   'user': _.map @users, (u) -> u.pk()
+      #   'group': @group()
+
+      # _.each _blocks, (b) => @addHoursBlock b
 
     initialize: (attrs, options) ->
       @employeesDef = new $.Deferred()

@@ -4,6 +4,10 @@ define [
   'ovivo'
 ], (SkillGroups) ->
   addBlock: (block) ->
+    if @_blocksHash[block.cid]? then return
+
+    @_blocksHash[block.cid] = block
+
     _key = block.skill()
 
     _skillGroup = @skillGroups.get _key

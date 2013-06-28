@@ -22,7 +22,13 @@ define [
 
     processScroll: (obj, val) -> @view.processScroll obj, val
 
+    addBlocks: (blocks) -> _.each blocks, (b) => @addBlock b
+
     addBlock: (block) ->
+      if @_blocksHash[block.cid]? then return
+
+      @_blocksHash[block.cid] = block
+
       _key = "#{block.start_time()}-#{block.end_time()}".replace /\:/g, '-'
 
       _timeGroup = @timeGroups.get _key
@@ -47,16 +53,31 @@ define [
 
       @_blocksCounter -= 1
 
+      delete @_blocksHash[block.cid]
+
       if @_blocksCounter is 0
         @collection.remove @
 
+    processVisibility: () ->
+      if @_periodsInitFlag is false and @visible() is true
+        @_periodsInitFlag = true
+        
+        _blocks = @frame().periodBlocks.getBy 'group', @pk()
+
+        @addBlocks _blocks
+
     initialize: (attrs, options) ->
       @View = View
+
+      @_periodsInitFlag = false
+
+      @on 'change:visible', @processVisibility, @
 
       @timeGroups = new TimeGroups()
       @timeGroups.periodGroup = @
 
       @_blocksCounter = 0
+      @_blocksHash = {}
 
       @proxyCall 'initialize', arguments
 

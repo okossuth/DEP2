@@ -24,9 +24,8 @@ define [
         ovivo.desktop.resources.periods.each (period) ->
           frame.addPeriod period
 
-      ovivo.desktop.resources.workingHours.def.done () ->
-        ovivo.desktop.resources.workingHours.each (wh) ->
-          frame.addWorkingHour wh
+      # ovivo.desktop.resources.workingHours.def.done () ->
+      #   frame.addWorkingHours ovivo.desktop.resources.workingHours.map (wh) -> wh
 
     processPeriodAdd: (period) ->
       @each (frame) -> frame.addPeriod period

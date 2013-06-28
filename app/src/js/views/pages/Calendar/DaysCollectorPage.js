@@ -4,6 +4,7 @@ define(['ovivo'], function() {
     navigate: function() {
       var _collector, _key;
 
+      console.log(window._time = new Date());
       _key = this._getKey.apply(this, Array.prototype.slice.call(arguments, 0));
       if (this._isToday.apply(this, Array.prototype.slice.call(arguments, 0)) === true) {
         this.processToday();

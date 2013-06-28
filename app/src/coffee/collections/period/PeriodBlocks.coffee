@@ -7,7 +7,7 @@ define [
 
   'ovivo'
 ], (Blocks, Model, CachableCollection) ->
-  Blocks.extend _.extend {}, CachableCollection.get(['pk', 'skill', 'groups', 'date', 'code', 'dateKey']),
+  Blocks.extend _.extend {}, CachableCollection.get(['pk', 'skill', 'group' ,'groups', 'date', 'code', 'dateKey']),
     model: Model
 
     initialize: (models, options) ->

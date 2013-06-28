@@ -102,20 +102,7 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         return _this.employeesDef.resolve();
       });
     },
-    _initWorkingHours: function() {
-      var _blocks,
-        _this = this;
-
-      _blocks = this.frame().hoursBlocks.getBy({
-        'user': _.map(this.users, function(u) {
-          return u.pk();
-        }),
-        'group': this.group()
-      });
-      return _.each(_blocks, function(b) {
-        return _this.addHoursBlock(b);
-      });
-    },
+    _initWorkingHours: function() {},
     initialize: function(attrs, options) {
       this.employeesDef = new $.Deferred();
       this.View = View;

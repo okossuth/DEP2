@@ -58,7 +58,7 @@ define [
         pk: block.group()
         frame: @model.frame
 
-      _periodGroup.addBlock block
+      else if _periodGroup.visible() is true then _periodGroup.addBlock block
 
     removeBlock: (block) ->
       _periodGroup = @periodGroups.get block.group()

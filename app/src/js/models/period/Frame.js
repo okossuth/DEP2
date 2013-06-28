@@ -56,6 +56,15 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
     _compileWorkingHoursGroups: function(wh, start, end) {
       return this._compileGroups(wh, start, end, this._codeGeneratorWorkingHour);
     },
+    addWorkingHours: function(whs) {
+      var _blocks,
+        _this = this;
+
+      console.log(_blocks = [].concat.apply([], _.map(whs, function(wh) {
+        return _this._compileWorkingHoursGroups(wh, _this.start(), _this.end());
+      })));
+      return this.hoursBlocks.add(_blocks);
+    },
     addWorkingHour: function(wh) {
       var _blocks;
 

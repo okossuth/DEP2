@@ -56,9 +56,13 @@ define [
 
     _compileWorkingHoursGroups: (wh, start, end) -> @_compileGroups wh, start, end, @_codeGeneratorWorkingHour
 
+    addWorkingHours: (whs) ->
+      console.log _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end()
+      @hoursBlocks.add _blocks
+
     addWorkingHour: (wh) ->
       _blocks = @_compileWorkingHoursGroups wh, @start(), @end()
-
+      
       @hoursBlocks.add _blocks
 
     removeWorkingHour: (wh) ->
