@@ -41,10 +41,12 @@ define [
       if @_blocksHash[block.cid]? then return
 
       @_blocksHash[block.cid] = block
+      @_blocksHashCounter[block.cid] = block
 
       @_addBlockPartial block
 
-      @_blocksCounter += 1
+    addBlockHidden: (block) ->
+      @_blocksHashCounter[block.cid] = block
 
     _removeBlockPartial: (block) ->
       _timeGroup = block.timeGroup
@@ -54,11 +56,10 @@ define [
     removeBlock: (block) ->
       @_removeBlockPartial block
 
-      @_blocksCounter -= 1
-
       delete @_blocksHash[block.cid]
+      delete @_blocksHashCounter[block.cid]
 
-      if @_blocksCounter is 0
+      if _.keys(@_blocksHashCounter).length is 0
         @collection.remove @
 
     processVisibility: () ->
@@ -79,8 +80,8 @@ define [
       @timeGroups = new TimeGroups()
       @timeGroups.periodGroup = @
 
-      @_blocksCounter = 0
       @_blocksHash = {}
+      @_blocksHashCounter = {}
 
       @proxyCall 'initialize', arguments
 

@@ -35,8 +35,11 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
         return;
       }
       this._blocksHash[block.cid] = block;
-      this._addBlockPartial(block);
-      return this._blocksCounter += 1;
+      this._blocksHashCounter[block.cid] = block;
+      return this._addBlockPartial(block);
+    },
+    addBlockHidden: function(block) {
+      return this._blocksHashCounter[block.cid] = block;
     },
     _removeBlockPartial: function(block) {
       var _timeGroup;
@@ -48,9 +51,9 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
     },
     removeBlock: function(block) {
       this._removeBlockPartial(block);
-      this._blocksCounter -= 1;
       delete this._blocksHash[block.cid];
-      if (this._blocksCounter === 0) {
+      delete this._blocksHashCounter[block.cid];
+      if (_.keys(this._blocksHashCounter).length === 0) {
         return this.collection.remove(this);
       }
     },
@@ -69,8 +72,8 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
       this.on('change:visible', this.processVisibility, this);
       this.timeGroups = new TimeGroups();
       this.timeGroups.periodGroup = this;
-      this._blocksCounter = 0;
       this._blocksHash = {};
+      this._blocksHashCounter = {};
       this.proxyCall('initialize', arguments);
       this.set('root', ovivo.desktop.resources.groups.get(this.pk()).pkRoot());
       return true;

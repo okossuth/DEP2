@@ -48,13 +48,16 @@ define(['views/calendar/DaysCollector', 'views/calendar/WeekEmployees', 'views/r
 
         _periodGroup = _this.periodGroups.get(block.group());
         if (_periodGroup == null) {
-          return _periodGroup = _this.periodGroups.addModel({
+          _periodGroup = _this.periodGroups.addModel({
             pk: block.group(),
             frame: _this.model.frame
           });
         } else if (_periodGroup.visible() === true) {
-          return _periodGroup.addBlock(block);
+          _periodGroup.addBlock(block);
+        } else {
+          _periodGroup.addBlockHidden(block);
         }
+        return true;
       });
     },
     removeBlock: function(block) {
