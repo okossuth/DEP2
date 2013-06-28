@@ -28359,10 +28359,19 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         _this = this;
 
       whs = _.filter(whs, function(wh) {
-        if (_this.whsHash[wh.pk()] != null) {
+        var _arr, _key;
+
+        _key = group != null ? "" + (wh.pk()) + "-" + group : wh.pk();
+        if (_this.whsHash[_key] != null) {
           return false;
         }
-        _this.whsHash[wh.pk()] = wh;
+        _this.whsHash[_key] = wh;
+        if (group != null) {
+          if ((_arr = _this.whsGroupsHash[wh.pk()]) == null) {
+            _arr = _this.whsGroupsHash[wh.pk()] = [];
+          }
+          _arr.push(group);
+        }
         return true;
       });
       console.log(_blocks = [].concat.apply([], _.map(whs, function(wh) {
@@ -28370,18 +28379,36 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       })));
       return this.hoursBlocks.add(_blocks);
     },
-    addWorkingHour: function(wh) {
-      var _blocks;
+    addWorkingHour: function(wh, group) {
+      var _arr, _blocks, _key;
 
-      this.whsHash[wh.pk()] = wh;
-      _blocks = this._compileWorkingHoursGroups(wh, this.start(), this.end());
+      _key = "" + (wh.pk()) + "-" + group;
+      if (this.whsHash[_key] != null) {
+        return;
+      }
+      this.whsHash[_key] = wh;
+      if (group != null) {
+        if ((_arr = this.whsGroupsHash[wh.pk()]) == null) {
+          _arr = this.whsGroupsHash[wh.pk()] = [];
+        }
+        _arr.push(group);
+      }
+      _blocks = this._compileWorkingHoursGroups(wh, this.start(), this.end(), group);
       return this.hoursBlocks.add(_blocks);
     },
     removeWorkingHour: function(wh) {
-      var _this = this;
+      var _arr, _pk,
+        _this = this;
 
-      delete this.whsHash[wh.pk()];
-      return _.each(this.hoursBlocks.getBy('pk', wh.pk()), function(block) {
+      _pk = wh.pk();
+      delete this.whsHash[_pk];
+      if ((_arr = this.whsGroupsHash[_pk]) != null) {
+        _.each(_arr, function(group) {
+          return delete _this.whsHash["" + _pk + "-" + group];
+        });
+      }
+      delete this.whsGroupsHash[_pk];
+      return _.each(this.hoursBlocks.getBy('pk', _pk), function(block) {
         return _this.hoursBlocks.remove(block);
       });
     },
@@ -28428,6 +28455,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
       this.whsHash = {};
+      this.whsGroupsHash = {};
       this.periodBlocks = new PeriodBlocks([], options);
       this.hoursBlocks = new HoursBlocks([]);
       return true;

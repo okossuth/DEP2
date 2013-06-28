@@ -59,26 +59,49 @@ define [
 
     addWorkingHours: (whs, group) ->
       whs = _.filter whs, (wh) => 
-        if @whsHash[wh.pk()]? then return false
+        _key = if group? then "#{wh.pk()}-#{group}" else wh.pk()
 
-        @whsHash[wh.pk()] = wh
+        if @whsHash[_key]? then return false
+
+        @whsHash[_key] = wh
+
+        if group?
+          if not (_arr = @whsGroupsHash[wh.pk()])? then _arr = @whsGroupsHash[wh.pk()] = []
+
+          _arr.push group
 
         true
 
       console.log _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end(), group
       @hoursBlocks.add _blocks
 
-    addWorkingHour: (wh) ->
-      @whsHash[wh.pk()] = wh
+    addWorkingHour: (wh, group) ->
+      _key = "#{wh.pk()}-#{group}"
+      
+      if @whsHash[_key]? then return
 
-      _blocks = @_compileWorkingHoursGroups wh, @start(), @end()
+      @whsHash[_key] = wh
+
+      if group?
+        if not (_arr = @whsGroupsHash[wh.pk()])? then _arr = @whsGroupsHash[wh.pk()] = []
+
+        _arr.push group
+
+      _blocks = @_compileWorkingHoursGroups wh, @start(), @end(), group
       
       @hoursBlocks.add _blocks
 
     removeWorkingHour: (wh) ->
-      delete @whsHash[wh.pk()]
+      _pk = wh.pk()
       
-      _.each @hoursBlocks.getBy('pk', wh.pk()), (block) => @hoursBlocks.remove block
+      delete @whsHash[_pk]
+
+      if (_arr = @whsGroupsHash[_pk])?
+        _.each _arr, (group) => delete @whsHash["#{_pk}-#{group}"]
+
+      delete @whsGroupsHash[_pk]
+
+      _.each @hoursBlocks.getBy('pk', _pk), (block) => @hoursBlocks.remove block
 
     changeWorkingHour: (wh) ->
       @_changeModel wh, '_compileWorkingHoursGroups', @hoursBlocks
@@ -114,6 +137,7 @@ define [
       @proxyCall 'initialize', arguments
 
       @whsHash = {}
+      @whsGroupsHash = {}
 
       @periodBlocks = new PeriodBlocks [], options
       @hoursBlocks = new HoursBlocks []
