@@ -36,6 +36,8 @@ define(['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/
 
       _view = new WorkingHourEmployee({
         model: block.workingHour()
+      }, {
+        block: block
       });
       return this.renderDef.done(function() {
         return $(_this.eventContainers.get(block.day)).append(_view.el);

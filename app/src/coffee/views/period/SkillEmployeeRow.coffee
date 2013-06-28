@@ -41,7 +41,8 @@ define [
       _view
 
     addHoursBlock: (block) ->
-      _view = new WorkingHourEmployee { model: block.workingHour() }
+      _view = new WorkingHourEmployee { model: block.workingHour() },
+        block: block
 
       @renderDef.done () => $(@eventContainers.get(block.day)).append _view.el
 

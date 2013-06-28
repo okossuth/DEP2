@@ -15,9 +15,11 @@ define [
     events: {}
 
     postRender: () -> 
-      @$el.addClass if @available() is true then 'available' else 'unavailable'
+      @$el.removeClass('available unavailable').addClass if @available() is true then 'available' else 'unavailable'
 
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
+
+      options.block.on 'remove', @_processRemove, @
 
       true

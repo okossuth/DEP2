@@ -14,7 +14,12 @@ define [
     ]
 
     _compileGroups: (model, start, end, codeGenerator, group) ->
-      if group? then _groups = [group]
+      if group?
+        if group instanceof Array
+          _groups = group
+        else
+          _groups = [group]
+
       else if not (_groups = model.groups())? then return []
 
       _blocksInitial = model.compile start, end
@@ -27,13 +32,13 @@ define [
 
         block
 
-    _changeModel: (model, compileMethod, collection) ->
+    _changeModel: (model, compileMethod, collection, groups) ->
       _hash = {}
 
       _curBlocks = collection.getBy('pk', model.pk())
       _curCodes = _.map _curBlocks, (block) -> block.code()
 
-      _newBlocks = @[compileMethod] model, @start(), @end()
+      _newBlocks = @[compileMethod] model, @start(), @end(), groups
       _newCodes = _.map _newBlocks, (block) ->
         _code = block.code
 
@@ -72,7 +77,7 @@ define [
 
         true
 
-      console.log _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end(), group
+      _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end(), group
       @hoursBlocks.add _blocks
 
     addWorkingHour: (wh, group) ->
@@ -93,7 +98,7 @@ define [
 
     removeWorkingHour: (wh) ->
       _pk = wh.pk()
-      
+
       delete @whsHash[_pk]
 
       if (_arr = @whsGroupsHash[_pk])?
@@ -104,7 +109,7 @@ define [
       _.each @hoursBlocks.getBy('pk', _pk), (block) => @hoursBlocks.remove block
 
     changeWorkingHour: (wh) ->
-      @_changeModel wh, '_compileWorkingHoursGroups', @hoursBlocks
+      @_changeModel wh, '_compileWorkingHoursGroups', @hoursBlocks, @whsGroupsHash[wh.pk()]
 
     addPeriod: (period) ->
       _blocks = @_compilePeriodGroups period, @start(), @end()

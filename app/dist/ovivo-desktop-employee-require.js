@@ -24273,10 +24273,11 @@ define('views/period/WorkingHourEmployee',['views/resources/ResourceBase', 'oviv
     groupTemplate: Handlebars.templates['employeeActivity_group'],
     events: {},
     postRender: function() {
-      return this.$el.addClass(this.available() === true ? 'available' : 'unavailable');
+      return this.$el.removeClass('available unavailable').addClass(this.available() === true ? 'available' : 'unavailable');
     },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
+      options.block.on('remove', this._processRemove, this);
       return true;
     }
   });
@@ -24320,6 +24321,8 @@ define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/p
 
       _view = new WorkingHourEmployee({
         model: block.workingHour()
+      }, {
+        block: block
       });
       return this.renderDef.done(function() {
         return $(_this.eventContainers.get(block.day)).append(_view.el);
@@ -28302,7 +28305,11 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       var _blocksInitial, _groups;
 
       if (group != null) {
-        _groups = [group];
+        if (group instanceof Array) {
+          _groups = group;
+        } else {
+          _groups = [group];
+        }
       } else if ((_groups = model.groups()) == null) {
         return [];
       }
@@ -28316,7 +28323,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         });
       }));
     },
-    _changeModel: function(model, compileMethod, collection) {
+    _changeModel: function(model, compileMethod, collection, groups) {
       var _add, _curBlocks, _curCodes, _hash, _newBlocks, _newCodes, _remove,
         _this = this;
 
@@ -28325,7 +28332,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       _curCodes = _.map(_curBlocks, function(block) {
         return block.code();
       });
-      _newBlocks = this[compileMethod](model, this.start(), this.end());
+      _newBlocks = this[compileMethod](model, this.start(), this.end(), groups);
       _newCodes = _.map(_newBlocks, function(block) {
         var _code;
 
@@ -28374,9 +28381,9 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
         }
         return true;
       });
-      console.log(_blocks = [].concat.apply([], _.map(whs, function(wh) {
+      _blocks = [].concat.apply([], _.map(whs, function(wh) {
         return _this._compileWorkingHoursGroups(wh, _this.start(), _this.end(), group);
-      })));
+      }));
       return this.hoursBlocks.add(_blocks);
     },
     addWorkingHour: function(wh, group) {
@@ -28413,7 +28420,7 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       });
     },
     changeWorkingHour: function(wh) {
-      return this._changeModel(wh, '_compileWorkingHoursGroups', this.hoursBlocks);
+      return this._changeModel(wh, '_compileWorkingHoursGroups', this.hoursBlocks, this.whsGroupsHash[wh.pk()]);
     },
     addPeriod: function(period) {
       var _blocks;
