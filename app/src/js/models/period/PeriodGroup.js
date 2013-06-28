@@ -15,13 +15,9 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
         return _this.addBlock(b);
       });
     },
-    addBlock: function(block) {
+    _addBlockPartial: function(block) {
       var _key, _timeGroup;
 
-      if (this._blocksHash[block.cid] != null) {
-        return;
-      }
-      this._blocksHash[block.cid] = block;
       _key = ("" + (block.start_time()) + "-" + (block.end_time())).replace(/\:/g, '-');
       _timeGroup = this.timeGroups.get(_key);
       if (_timeGroup == null) {
@@ -32,7 +28,14 @@ define(['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/
           startValue: block.resourceNeed().startValue()
         });
       }
-      _timeGroup.addBlock(block);
+      return _timeGroup.addBlock(block);
+    },
+    addBlock: function(block) {
+      if (this._blocksHash[block.cid] != null) {
+        return;
+      }
+      this._blocksHash[block.cid] = block;
+      this._addBlockPartial(block);
       return this._blocksCounter += 1;
     },
     _removeBlockPartial: function(block) {

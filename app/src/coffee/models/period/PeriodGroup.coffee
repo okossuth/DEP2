@@ -24,11 +24,7 @@ define [
 
     addBlocks: (blocks) -> _.each blocks, (b) => @addBlock b
 
-    addBlock: (block) ->
-      if @_blocksHash[block.cid]? then return
-
-      @_blocksHash[block.cid] = block
-
+    _addBlockPartial: (block) ->
       _key = "#{block.start_time()}-#{block.end_time()}".replace /\:/g, '-'
 
       _timeGroup = @timeGroups.get _key
@@ -40,6 +36,13 @@ define [
         startValue: block.resourceNeed().startValue()
 
       _timeGroup.addBlock block
+
+    addBlock: (block) ->
+      if @_blocksHash[block.cid]? then return
+
+      @_blocksHash[block.cid] = block
+
+      @_addBlockPartial block
 
       @_blocksCounter += 1
 
