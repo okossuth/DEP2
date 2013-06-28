@@ -2,10 +2,12 @@
 define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'collections/period/HoursBlocks', 'ovivo'], function(ResourceBase, PeriodBlocks, HoursBlocks) {
   return ResourceBase.extend({
     _gettersNames: ['start', 'end', 'mode'],
-    _compileGroups: function(model, start, end, codeGenerator) {
+    _compileGroups: function(model, start, end, codeGenerator, group) {
       var _blocksInitial, _groups;
 
-      if ((_groups = model.groups()) == null) {
+      if (group != null) {
+        _groups = [group];
+      } else if ((_groups = model.groups()) == null) {
         return [];
       }
       _blocksInitial = model.compile(start, end);
@@ -53,27 +55,36 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
     _compilePeriodGroups: function(period, start, end) {
       return this._compileGroups(period, start, end, this._codeGeneratorPeriod);
     },
-    _compileWorkingHoursGroups: function(wh, start, end) {
-      return this._compileGroups(wh, start, end, this._codeGeneratorWorkingHour);
+    _compileWorkingHoursGroups: function(wh, start, end, group) {
+      return this._compileGroups(wh, start, end, this._codeGeneratorWorkingHour, group);
     },
-    addWorkingHours: function(whs) {
+    addWorkingHours: function(whs, group) {
       var _blocks,
         _this = this;
 
+      whs = _.filter(whs, function(wh) {
+        if (_this.whsHash[wh.pk()] != null) {
+          return false;
+        }
+        _this.whsHash[wh.pk()] = wh;
+        return true;
+      });
       console.log(_blocks = [].concat.apply([], _.map(whs, function(wh) {
-        return _this._compileWorkingHoursGroups(wh, _this.start(), _this.end());
+        return _this._compileWorkingHoursGroups(wh, _this.start(), _this.end(), group);
       })));
       return this.hoursBlocks.add(_blocks);
     },
     addWorkingHour: function(wh) {
       var _blocks;
 
+      this.whsHash[wh.pk()] = wh;
       _blocks = this._compileWorkingHoursGroups(wh, this.start(), this.end());
       return this.hoursBlocks.add(_blocks);
     },
     removeWorkingHour: function(wh) {
       var _this = this;
 
+      delete this.whsHash[wh.pk()];
       return _.each(this.hoursBlocks.getBy('pk', wh.pk()), function(block) {
         return _this.hoursBlocks.remove(block);
       });
@@ -120,6 +131,7 @@ define(['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'col
     },
     initialize: function(attrs, options) {
       this.proxyCall('initialize', arguments);
+      this.whsHash = {};
       this.periodBlocks = new PeriodBlocks([], options);
       this.hoursBlocks = new HoursBlocks([]);
       return true;

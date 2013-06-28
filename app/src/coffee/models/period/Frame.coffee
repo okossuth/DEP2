@@ -13,8 +13,9 @@ define [
       'mode'
     ]
 
-    _compileGroups: (model, start, end, codeGenerator) ->
-      if not (_groups = model.groups())? then return []
+    _compileGroups: (model, start, end, codeGenerator, group) ->
+      if group? then _groups = [group]
+      else if not (_groups = model.groups())? then return []
 
       _blocksInitial = model.compile start, end
 
@@ -54,18 +55,29 @@ define [
 
     _compilePeriodGroups: (period, start, end) -> @_compileGroups period, start, end, @_codeGeneratorPeriod
 
-    _compileWorkingHoursGroups: (wh, start, end) -> @_compileGroups wh, start, end, @_codeGeneratorWorkingHour
+    _compileWorkingHoursGroups: (wh, start, end, group) -> @_compileGroups wh, start, end, @_codeGeneratorWorkingHour, group
 
-    addWorkingHours: (whs) ->
-      console.log _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end()
+    addWorkingHours: (whs, group) ->
+      whs = _.filter whs, (wh) => 
+        if @whsHash[wh.pk()]? then return false
+
+        @whsHash[wh.pk()] = wh
+
+        true
+
+      console.log _blocks = [].concat.apply [], _.map whs, (wh) => @_compileWorkingHoursGroups wh, @start(), @end(), group
       @hoursBlocks.add _blocks
 
     addWorkingHour: (wh) ->
+      @whsHash[wh.pk()] = wh
+
       _blocks = @_compileWorkingHoursGroups wh, @start(), @end()
       
       @hoursBlocks.add _blocks
 
     removeWorkingHour: (wh) ->
+      delete @whsHash[wh.pk()]
+      
       _.each @hoursBlocks.getBy('pk', wh.pk()), (block) => @hoursBlocks.remove block
 
     changeWorkingHour: (wh) ->
@@ -100,6 +112,8 @@ define [
 
     initialize: (attrs, options) ->
       @proxyCall 'initialize', arguments
+
+      @whsHash = {}
 
       @periodBlocks = new PeriodBlocks [], options
       @hoursBlocks = new HoursBlocks []

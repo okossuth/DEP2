@@ -102,7 +102,26 @@ define(['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase',
         return _this.employeesDef.resolve();
       });
     },
-    _initWorkingHours: function() {},
+    _initWorkingHours: function() {
+      var _blocks,
+        _this = this;
+
+      this.frame().addWorkingHours(ovivo.desktop.resources.workingHours.getBy({
+        'groups': this.group(),
+        'user': _.map(this.users, function(u) {
+          return u.pk();
+        })
+      }), this.group());
+      _blocks = this.frame().hoursBlocks.getBy({
+        'user': _.map(this.users, function(u) {
+          return u.pk();
+        }),
+        'group': this.group()
+      });
+      return _.each(_blocks, function(b) {
+        return _this.addHoursBlock(b);
+      });
+    },
     initialize: function(attrs, options) {
       this.employeesDef = new $.Deferred();
       this.View = View;
