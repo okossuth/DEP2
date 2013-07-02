@@ -123,6 +123,7 @@ require [
         true
 
       ovivo.desktop.popups = {}
+      ovivo.desktop.popups.shown = {}
 
       _.each [
         { name: 'editPopupWorkingHour', constr: EditPopupWorkingHour },

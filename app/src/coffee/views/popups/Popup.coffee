@@ -11,12 +11,22 @@ define [
 
     close: () -> @hide()
 
+    _addShownState: () ->
+      ovivo.desktop.popups.shown[@cid] = @
+
+    _removeShownState: () ->
+      delete ovivo.desktop.popups.shown[@cid]
+
     show: () ->
+      @_addShownState()
+
       @$el.show()
 
       $('.popup-overlay').show()
 
     hide: () ->
+      @_removeShownState()
+
       @$el.hide()
 
       $('.popup-overlay').hide()
@@ -40,6 +50,8 @@ define [
       $el.off ovivo.config.ANIMATION_END, handler
 
     _animationShow: () ->
+      @_addShownState()
+
       _counter += 1
 
       @$el.show()
@@ -52,6 +64,8 @@ define [
       $('.popup-overlay').removeClass('exit').addClass('enter')
 
     _animationHide: () ->
+      @_removeShownState()
+
       @_attachHandler @_handlerExitEnd
 
       @$el.addClass 'exit'
@@ -68,5 +82,12 @@ define [
   if Modernizr.cssanimations is true
     _Popup.prototype.show = _Popup.prototype._animationShow
     _Popup.prototype.hide = _Popup.prototype._animationHide
+
+  _overlayClickHandler = (e) ->
+    _.each ovivo.desktop.popups.shown, (popup) -> popup.hide()
+
+    true
+
+  @$('.popup-overlay').on 'click', _overlayClickHandler
 
   _Popup

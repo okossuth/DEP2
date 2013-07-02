@@ -129,6 +129,7 @@ require(['routers/main', 'models/resources/User', 'models/resources/Communicatio
       return true;
     });
     ovivo.desktop.popups = {};
+    ovivo.desktop.popups.shown = {};
     _.each([
       {
         name: 'editPopupWorkingHour',
