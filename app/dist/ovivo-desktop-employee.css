@@ -21,6 +21,10 @@
     padding: 9px 0 9px 0;
     border: 2px solid #007550;
     color: #007550; }
+  .button.green-light {
+    border-radius: 2px;
+    background: #47b869;
+    font-size: 16px; }
   .button.warning {
     background: #b23333; }
   .button.disabled {
@@ -549,9 +553,9 @@ section.page .notification-message {
   z-index: 99999;
   width: 100%;
   height: 100%;
-  background: #e4e2d6;
-  opacity: 0.75;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; }
+  background: #333333;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; }
   .popup-overlay.enter {
     -webkit-animation: popup-overlay-enter 200ms ease-out 0s;
     -moz-animation: popup-overlay-enter 200ms ease-out 0s;
@@ -573,7 +577,8 @@ section.page .notification-message {
   top: 50%;
   z-index: 100000;
   margin: 0 0 0 -241px;
-  padding: 10px 36px 36px 36px; }
+  padding: 36px;
+  border-radius: 2px; }
   .popup.enter {
     -webkit-animation: popup-enter 200ms ease-out 0s;
     -moz-animation: popup-enter 200ms ease-out 0s;
@@ -587,15 +592,22 @@ section.page .notification-message {
     -o-animation: popup-exit 200ms ease-in 0s;
     animation: popup-exit 200ms ease-in 0s; }
   .popup > h1, .popup > div.close {
-    color: #807e73;
+    color: white;
     font: normal 17px OvivoHelveticaNeueBold, "Helvetica Neue Bold", "HelveticaNeue-Bold", sans-serif; }
   .popup > h1 {
+    position: absolute;
+    top: -70px;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding: 7px 0 20px 0; }
+    font-size: 30px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
   .popup > div.close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
     cursor: pointer; }
   .popup > div.button {
     width: 200px; }
@@ -615,6 +627,8 @@ section.page .notification-message {
   margin-top: -222.5px; }
 .popup.popup-timeoff {
   margin-top: -130px; }
+.popup.popup-create-new .button-create-time {
+  margin-top: 0; }
 
 .switcher .switcher-option.selected {
   -webkit-animation: switcher-pop 300ms ease-in 0s;
