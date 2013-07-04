@@ -51,7 +51,6 @@ define [
       _switcher.on 'value', @_valueHandlerCreator key
 
     _setValue: (name, value) -> 
-      console.log arguments
       @switchers[name].setValue value
 
     _valueHandlerCreator: (key) ->

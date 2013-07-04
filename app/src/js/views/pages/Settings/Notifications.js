@@ -39,7 +39,6 @@ define(['views/pages/PageBase', '_common/ResourceEditCommon', '_features/Switche
       return _switcher.on('value', this._valueHandlerCreator(key));
     },
     _setValue: function(name, value) {
-      console.log(arguments);
       return this.switchers[name].setValue(value);
     },
     _valueHandlerCreator: function(key) {

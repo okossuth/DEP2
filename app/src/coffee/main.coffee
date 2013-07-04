@@ -60,6 +60,7 @@ require [
   'models/pages/EditWorkingHours',
   'models/pages/EditInactivity',
 
+  'models/VoiceRecognition',
   'views/SideBar',
 
   'collections/resources/Notifications',
@@ -75,7 +76,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, EditWorkingHoursPage, EditInactivityPage, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
+], (routerMain, User, Communication, EditPopupWorkingHour, EditPopupTimeoff, CreateNewPopup, Pages, CalendarPage, SettingsPage, FeedbackPage, HelpPage, NotificationsPage, EventDetailsPage, EditWorkingHoursPage, EditInactivityPage, VoiceRecognition, SideBar, Notifications, Events, Municipalities, PrimaryDepartments, Groups, GroupRelations, WorkingHours, Inactivities, ApiErrors, socketIO) ->
   
   $ () ->
       socketIO.init()
@@ -85,6 +86,8 @@ require [
 
       ovivo.desktop.pages = new Pages()
       ovivo.desktop.resources = {}
+
+      new VoiceRecognition()
 
       $.when.apply($, _.map [
         { name: 'notifications', constr: Notifications },
