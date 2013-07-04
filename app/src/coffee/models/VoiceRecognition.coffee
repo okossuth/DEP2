@@ -3,8 +3,10 @@ define [
 
   'views/VoiceRecognition',
 
+  'text!../../xml/webSpeechGrammar.xml',
+
   'ovivo'
-], (ResourceBase, View) ->
+], (ResourceBase, View, webSpeechGrammar) ->
   ResourceBase.extend
     _gettersNames: [
       'processing'
@@ -43,6 +45,8 @@ define [
 
       @_recognition = new webkitSpeechRecognition()
       @_recognition.lang = ovivo.config.LANG
+
+      @_recognition.grammars.addFromString webSpeechGrammar
 
       $(@_recognition).on 'start', _.bind @processStart, @
       $(@_recognition).on 'end', _.bind @processEnd, @
