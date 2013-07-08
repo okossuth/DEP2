@@ -899,7 +899,7 @@
             </div>
         </div>
 
-        <div class="popup popup-working-hour form-component" style="display: none;">
+        <div class="popup popup-working-hour" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time{{/i18n}}</h1>
 
@@ -912,13 +912,12 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Time{{/i18n}}</span>
-                        <strong class="badge">{{#i18n}}changed{{/i18n}}</strong>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
                     </div>
 
                     <div class="item-content two">
+                        <span>{{#i18n}}from{{/i18n}}:</span>
                         <input type="time" class="property-value property-value-start_time" />
-                        <span>{{#i18n}}to{{/i18n}}</span>
+                        <span>{{#i18n}}to{{/i18n}}:</span>
                         <input type="time" class="property-value property-value-end_time" />
                     </div>
                 </li>
@@ -926,12 +925,12 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Date{{/i18n}}</span>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
                     </div>
 
                     <div class="item-content two create-mode edit-mode">
+                        <span>{{#i18n}}from{{/i18n}}:</span>
                         <input type="text" class="property-value property-value-start_date datepicker" />
-                        <span>{{#i18n}}to{{/i18n}}</span>
+                        <span>{{#i18n}}to{{/i18n}}:</span>
                         <input type="date" class="property-value property-value-end_date datepicker" />
                     </div>
 
@@ -943,7 +942,6 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>{{#i18n}}Status{{/i18n}}</span>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
                     </div>
 
                     <div class="item-content two">
@@ -957,7 +955,6 @@
                 <li class="settings-item create-mode edit-mode">
                     <div class="header">
                         <span>{{#i18n}}Repeat{{/i18n}}</span>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
                     </div>
 
                     <div class="item-content two">
@@ -995,7 +992,8 @@
             <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
-                        <span>{{#i18n}}Date{{/i18n}}</span>
+                        <span class="create-mode edit-mode">{{#i18n}}Select start and end dates of vacation period{{/i18n}}</span>
+                        <span class="create-single-mode edit-single-mode">{{#i18n}}Select time off day date{{/i18n}}</span>
                     </div>
 
                     <div class="item-content two create-mode edit-mode">
@@ -1006,17 +1004,17 @@
                     </div>
 
                     <div class="item-content create-single-mode edit-single-mode">
-                        <input type="text" class="datepicker property-value property-value-start" />
+                        <span>{{#i18n}}date{{/i18n}}:</span> <input type="text" class="datepicker property-value property-value-start" />
                     </div>
                 </li>
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>{{#i18n}}Reason{{/i18n}}</span>
+                        <span>{{#i18n}}Enter a reason of inactivity{{/i18n}}</span>
                     </div>
 
                     <div class="item-content">
-                        <input type="text" placeholder="{{#i18n}}Reason{{/i18n}}" class="property-value property-value-reason" />
+                        <input type="text" placeholder="{{#i18n}}Reason{{/i18n}}" class="full-width property-value property-value-reason" />
                     </div>
                 </li>
             </ul>

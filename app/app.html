@@ -899,7 +899,7 @@
             </div>
         </div>
 
-        <div class="popup popup-working-hour form-component" style="display: none;">
+        <div class="popup popup-working-hour" style="display: none;">
             <h1 class="create-mode">Add new time</h1>
             <h1 class="edit-mode">Edit time</h1>
 
@@ -912,13 +912,12 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>Time</span>
-                        <strong class="badge">changed</strong>
-                        <strong class="badge edit-mode edit-single-mode">changed</strong>
                     </div>
 
                     <div class="item-content two">
+                        <span>from:</span>
                         <input type="time" class="property-value property-value-start_time" />
-                        <span>to</span>
+                        <span>to:</span>
                         <input type="time" class="property-value property-value-end_time" />
                     </div>
                 </li>
@@ -926,12 +925,12 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>Date</span>
-                        <strong class="badge edit-mode edit-single-mode">changed</strong>
                     </div>
 
                     <div class="item-content two create-mode edit-mode">
+                        <span>from:</span>
                         <input type="text" class="property-value property-value-start_date datepicker" />
-                        <span>to</span>
+                        <span>to:</span>
                         <input type="date" class="property-value property-value-end_date datepicker" />
                     </div>
 
@@ -943,7 +942,6 @@
                 <li class="settings-item">
                     <div class="header">
                         <span>Status</span>
-                        <strong class="badge edit-mode edit-single-mode">changed</strong>
                     </div>
 
                     <div class="item-content two">
@@ -957,7 +955,6 @@
                 <li class="settings-item create-mode edit-mode">
                     <div class="header">
                         <span>Repeat</span>
-                        <strong class="badge edit-mode edit-single-mode">changed</strong>
                     </div>
 
                     <div class="item-content two">
@@ -995,7 +992,8 @@
             <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
-                        <span>Date</span>
+                        <span class="create-mode edit-mode">Select start and end dates of vacation period</span>
+                        <span class="create-single-mode edit-single-mode">Select time off day date</span>
                     </div>
 
                     <div class="item-content two create-mode edit-mode">
@@ -1006,17 +1004,17 @@
                     </div>
 
                     <div class="item-content create-single-mode edit-single-mode">
-                        <input type="text" class="datepicker property-value property-value-start" />
+                        <span>date:</span> <input type="text" class="datepicker property-value property-value-start" />
                     </div>
                 </li>
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>Reason</span>
+                        <span>Enter a reason of inactivity</span>
                     </div>
 
                     <div class="item-content">
-                        <input type="text" placeholder="Reason" class="property-value property-value-reason" />
+                        <input type="text" placeholder="Reason" class="full-width property-value property-value-reason" />
                     </div>
                 </li>
             </ul>
