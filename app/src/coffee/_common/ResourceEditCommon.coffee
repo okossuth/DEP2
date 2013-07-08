@@ -147,7 +147,7 @@ define [
         if _component.hasClass 'datepicker'
           _date = new Date Date.parse @model[field]()
 
-          _component.each (i, el) -> $(el).data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _component.each (i, el) -> $(el).pickadate('picker').set 'select', _date
 
         else if _component.hasClass 'plain-value'
           $.when(@model.view[field]()).done (_str) -> _component.html _str

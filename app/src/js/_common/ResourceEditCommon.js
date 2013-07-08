@@ -147,7 +147,7 @@ define([], function() {
             if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
               _component.each(function(i, el) {
-                return $(el).data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+                return $(el).pickadate('picker').set('select', _date);
               });
             } else if (_component.hasClass('plain-value')) {
               $.when(_this.model.view[field]()).done(function(_str) {

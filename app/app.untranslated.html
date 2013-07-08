@@ -984,7 +984,7 @@
             </div>
         </div>
 
-        <div class="popup popup-timeoff form-component" style="display: none;">
+        <div class="popup popup-timeoff" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Add new time off{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit time off{{/i18n}}</h1>
             <h1 class="create-single-mode">{{#i18n}}Add new day off{{/i18n}}</h1>
@@ -995,13 +995,13 @@
             <ul class="settings-items">
                 <li class="settings-item">
                     <div class="header">
-                        <span>{{#i18n}}Date{{/i18n}}</span><em>{{#i18n}}Explanation 32{{/i18n}}</em>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
+                        <span>{{#i18n}}Date{{/i18n}}</span>
                     </div>
 
                     <div class="item-content two create-mode edit-mode">
+                        <span>{{#i18n}}from{{/i18n}}:</span>
                         <input type="text" class="datepicker property-value property-value-start" />
-                        <span>{{#i18n}}to{{/i18n}}</span>
+                        <span>{{#i18n}}to{{/i18n}}:</span>
                         <input type="text" class="datepicker property-value property-value-end" />
                     </div>
 
@@ -1012,8 +1012,7 @@
 
                 <li class="settings-item">
                     <div class="header">
-                        <span>{{#i18n}}Reason{{/i18n}}</span><em>{{#i18n}}Explanation 33{{/i18n}}</em>
-                        <strong class="badge edit-mode edit-single-mode">{{#i18n}}changed{{/i18n}}</strong>
+                        <span>{{#i18n}}Reason{{/i18n}}</span>
                     </div>
 
                     <div class="item-content">

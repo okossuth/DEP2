@@ -1,0 +1,10 @@
+.popup > .settings-items {
+  margin: 0; }
+  .popup > .settings-items > li.settings-item > div.header {
+    text-align: center; }
+    .popup > .settings-items > li.settings-item > div.header > span {
+      color: black;
+      font-size: 14px; }
+  .popup > .settings-items > li.settings-item > div.item-content > span {
+    color: #333333;
+    margin: 0 10px 0 0; }
