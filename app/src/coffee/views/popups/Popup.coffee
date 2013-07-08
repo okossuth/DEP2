@@ -18,6 +18,8 @@ define [
       delete ovivo.desktop.popups.shown[@cid]
 
     show: () ->
+      _counter += 1
+
       @_addShownState()
 
       @$el.show()
@@ -25,11 +27,15 @@ define [
       $('.popup-overlay').show()
 
     hide: () ->
+      _counter -= 1
+      
       @_removeShownState()
 
       @$el.hide()
 
-      $('.popup-overlay').hide()
+      if _counter is 0
+        $('.popup-overlay').hide()
+        $('.popup-overlay').removeClass 'exit enter'
 
     _handlerEnterEnd: (handler, $el, e) ->
       $el.removeClass 'enter'

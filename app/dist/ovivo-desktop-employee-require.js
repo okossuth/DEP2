@@ -17135,14 +17135,19 @@ define('views/popups/Popup',['_common/AnimationControl', 'ovivo'], function(Anim
       return delete ovivo.desktop.popups.shown[this.cid];
     },
     show: function() {
+      _counter += 1;
       this._addShownState();
       this.$el.show();
       return $('.popup-overlay').show();
     },
     hide: function() {
+      _counter -= 1;
       this._removeShownState();
       this.$el.hide();
-      return $('.popup-overlay').hide();
+      if (_counter === 0) {
+        $('.popup-overlay').hide();
+        return $('.popup-overlay').removeClass('exit enter');
+      }
     },
     _handlerEnterEnd: function(handler, $el, e) {
       $el.removeClass('enter');
