@@ -10,14 +10,45 @@ define [
       @model.set 'show', true
       @model.set 'processing', true
 
+    resultsTemplate: Handlebars.templates['speechResults']
+
+    _clearState: () ->
+      @$el.removeClass 'initial processing result error'
+
     changeShow: () ->
       if @model.show() is true
+        @_clearState()
+
+        @$el.addClass 'initial'
+
         @$el.addClass 'show'
 
       else
-        @$el.removeClass 'show'
+        setTimeout (() => @_clearState(); @$el.removeClass 'show'), 1000
 
       true
+
+    processStart: () ->
+      @_clearState()
+
+      @$el.addClass 'processing'
+
+    processEnd: () ->
+
+    processResult: (results) ->
+      @_clearState()
+
+      @$el.addClass 'result'
+
+      @$('.result').html @resultsTemplate 
+        results: _.map results, (res) =>
+          status: if res.flag is true then 'success' else 'error'
+          text: res.text
+
+    processError: () ->
+      @_clearState()
+
+      @$el.addClass 'error'
 
     initialize: () ->
       $(window).on 'keypress', _.bind @processKey, @

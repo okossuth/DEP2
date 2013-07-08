@@ -17,18 +17,18 @@ define [
     ],
 
     commandOpen: [
-        'open',
+        gettext('open'),
 
         parser.OneOf([
-            ['calendar', parser.Tag('out = \'calendar\'')],
-            ['settings', parser.Tag('out = \'settings\'')],
-            ['feedback', parser.Tag('out = \'feedback\'')],
-            ['help', parser.Tag('out = \'help\'')]
+            [gettext('calendar'), parser.Tag('out = \'calendar\'')],
+            [gettext('settings'), parser.Tag('out = \'settings\'')],
+            [gettext('feedback'), parser.Tag('out = \'feedback\'')],
+            [gettext('help'), parser.Tag('out = \'help\'')]
         ])
     ],
 
     commandCreate: [
-        'create',
+        gettext('create'),
 
         parser.OneOf([
             ['time', 'off', parser.Tag('out = \'inactivity\'')],

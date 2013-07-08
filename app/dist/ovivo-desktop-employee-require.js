@@ -15560,6 +15560,32 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['speechResults'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <li class=\"";
+  foundHelper = helpers.status;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.text;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</li>\r\n";
+  return buffer;}
+
+  buffer += "<ul class=\"results\">\r\n";
+  foundHelper = helpers.results;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.results; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.results) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;});
 templates['workingHour'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -19875,13 +19901,47 @@ define('views/VoiceRecognition',['ovivo'], function() {
       this.model.set('show', true);
       return this.model.set('processing', true);
     },
+    resultsTemplate: Handlebars.templates['speechResults'],
+    _clearState: function() {
+      return this.$el.removeClass('initial processing result error');
+    },
     changeShow: function() {
+      var _this = this;
+
       if (this.model.show() === true) {
+        this._clearState();
+        this.$el.addClass('initial');
         this.$el.addClass('show');
       } else {
-        this.$el.removeClass('show');
+        setTimeout((function() {
+          _this._clearState();
+          return _this.$el.removeClass('show');
+        }), 1000);
       }
       return true;
+    },
+    processStart: function() {
+      this._clearState();
+      return this.$el.addClass('processing');
+    },
+    processEnd: function() {},
+    processResult: function(results) {
+      var _this = this;
+
+      this._clearState();
+      this.$el.addClass('result');
+      return this.$('.result').html(this.resultsTemplate({
+        results: _.map(results, function(res) {
+          return {
+            status: res.flag === true ? 'success' : 'error',
+            text: res.text
+          };
+        })
+      }));
+    },
+    processError: function() {
+      this._clearState();
+      return this.$el.addClass('error');
     },
     initialize: function() {
       $(window).on('keypress', _.bind(this.processKey, this));
@@ -20460,8 +20520,8 @@ define('_features/voiceRecognitionGrammar',['srgs-parser', 'ovivo'], function(pa
   return _.extend(new parser.Grammar('statement'), {
     statement: [parser.Ref('command'), parser.Tag('out = rules.command')],
     command: [parser.OneOf([[parser.Ref('commandOpen'), parser.Tag('out.type = \'open\''), parser.Tag('out.target = rules.commandOpen')], [parser.Ref('commandCreate'), parser.Tag('out.type = \'create\''), parser.Tag('out.target = rules.commandCreate')]])],
-    commandOpen: ['open', parser.OneOf([['calendar', parser.Tag('out = \'calendar\'')], ['settings', parser.Tag('out = \'settings\'')], ['feedback', parser.Tag('out = \'feedback\'')], ['help', parser.Tag('out = \'help\'')]])],
-    commandCreate: ['create', parser.OneOf([['time', 'off', parser.Tag('out = \'inactivity\'')], ['timeoff', parser.Tag('out = \'inactivity\'')], ['inactivity', parser.Tag('out = \'inactivity\'')], ['working', 'hours', parser.Tag('out = \'working-hours\'')], ['working', 'hour', parser.Tag('out = \'working-hours\'')]])]
+    commandOpen: [gettext('open'), parser.OneOf([[gettext('calendar'), parser.Tag('out = \'calendar\'')], [gettext('settings'), parser.Tag('out = \'settings\'')], [gettext('feedback'), parser.Tag('out = \'feedback\'')], [gettext('help'), parser.Tag('out = \'help\'')]])],
+    commandCreate: [gettext('create'), parser.OneOf([['time', 'off', parser.Tag('out = \'inactivity\'')], ['timeoff', parser.Tag('out = \'inactivity\'')], ['inactivity', parser.Tag('out = \'inactivity\'')], ['working', 'hours', parser.Tag('out = \'working-hours\'')], ['working', 'hour', parser.Tag('out = \'working-hours\'')]])]
   });
 });
 
@@ -20483,26 +20543,49 @@ define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceR
       return true;
     },
     _applyGrammar: function(str) {
-      var _res;
-
-      console.log(_res = parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root));
-      return _res;
+      return parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root);
     },
+    _analyseSpeech: (function() {
+      return function(str) {
+        var _tree;
+
+        if ((_tree = this._applyGrammar(str)[0]) == null) {
+          return false;
+        }
+        switch (_tree.data.type) {
+          case 'open':
+            ovivo.desktop.pages[_tree.data.target].show();
+        }
+        return true;
+      };
+    })(),
     processStart: function() {
-      return console.log('started');
+      return this.view.processStart();
     },
     processEnd: function() {
-      console.log('ended');
+      this.view.processEnd();
       return this.set('processing', false);
     },
     processResult: function(e) {
-      return console.log('result:', e.originalEvent.results);
+      var _this = this;
+
+      this.view.processResult(_.flatten(_.map(e.originalEvent.results, function(res) {
+        return _.map(res, function(res) {
+          var _flag;
+
+          _flag = _this._analyseSpeech(res.transcript);
+          return {
+            text: res.transcript,
+            flag: _flag
+          };
+        });
+      })));
+      return true;
     },
     processError: function() {
-      return console.log('error');
+      return this.view.processError();
     },
     initialize: function() {
-      this._applyGrammar('open calendar');
       if (window.webkitSpeechRecognition === void 0) {
         return;
       }

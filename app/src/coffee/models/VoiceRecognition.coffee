@@ -29,27 +29,40 @@ define [
       true
 
     _applyGrammar: (str) ->
-      console.log _res = parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule voiceRecognitionGrammar.$root
+      parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule voiceRecognitionGrammar.$root
 
-      _res
+    _analyseSpeech: do ->
+      (str) ->
+        if not (_tree = @_applyGrammar(str)[0])? then return false
+
+        switch _tree.data.type
+
+          when 'open'
+            ovivo.desktop.pages[_tree.data.target].show()
+
+        true
 
     processStart: () ->
-      console.log 'started'
+      @view.processStart()
 
     processEnd: () ->
-      console.log 'ended'
+      @view.processEnd()
 
       @set 'processing', false
 
     processResult: (e) ->
-      console.log 'result:', e.originalEvent.results
+      @view.processResult _.flatten _.map e.originalEvent.results, (res) => _.map res, (res) =>
+        _flag = @_analyseSpeech res.transcript
+
+        text: res.transcript
+        flag: _flag
+
+      true
 
     processError: () ->
-      console.log 'error'
+      @view.processError()
 
     initialize: () ->
-      @_applyGrammar 'open calendar'
-
       if window.webkitSpeechRecognition is undefined then return
 
       @_recognition = new webkitSpeechRecognition()

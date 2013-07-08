@@ -16,26 +16,49 @@ define(['models/resources/ResourceBase', 'views/VoiceRecognition', '_features/vo
       return true;
     },
     _applyGrammar: function(str) {
-      var _res;
-
-      console.log(_res = parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root));
-      return _res;
+      return parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root);
     },
+    _analyseSpeech: (function() {
+      return function(str) {
+        var _tree;
+
+        if ((_tree = this._applyGrammar(str)[0]) == null) {
+          return false;
+        }
+        switch (_tree.data.type) {
+          case 'open':
+            ovivo.desktop.pages[_tree.data.target].show();
+        }
+        return true;
+      };
+    })(),
     processStart: function() {
-      return console.log('started');
+      return this.view.processStart();
     },
     processEnd: function() {
-      console.log('ended');
+      this.view.processEnd();
       return this.set('processing', false);
     },
     processResult: function(e) {
-      return console.log('result:', e.originalEvent.results);
+      var _this = this;
+
+      this.view.processResult(_.flatten(_.map(e.originalEvent.results, function(res) {
+        return _.map(res, function(res) {
+          var _flag;
+
+          _flag = _this._analyseSpeech(res.transcript);
+          return {
+            text: res.transcript,
+            flag: _flag
+          };
+        });
+      })));
+      return true;
     },
     processError: function() {
-      return console.log('error');
+      return this.view.processError();
     },
     initialize: function() {
-      this._applyGrammar('open calendar');
       if (window.webkitSpeechRecognition === void 0) {
         return;
       }

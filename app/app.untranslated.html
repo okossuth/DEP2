@@ -1033,6 +1033,20 @@
         </div>
 
         <div id="voice-recognition">
+            <div class="initial">
+                {{#i18n}}Initializing{{/i18n}}
+            </div>
+
+            <div class="processing">
+                {{#i18n}}Speak{{/i18n}}
+            </div>
+
+            <div class="result">
+            </div>
+
+            <div class="error">
+                {{#i18n}}Error state{{/i18n}}
+            </div>
         </div>
 
         <div id="fb-root"></div>
@@ -1082,7 +1096,7 @@
                 TIMEZONE_OFFSET: 7200000,
                 PAGE_TRANSITION_ANIMATION: true,
                 LOADER_URL: '/assets/img/ajax-loader.gif',
-                LANG: 'ru-RU'
+                LANG: '{{locale-code}}'
             };
         </script>
 

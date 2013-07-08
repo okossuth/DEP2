@@ -74,12 +74,22 @@ module.exports = function(grunt) {
             en: {
                 dict: 'i18n/original.json',
                 src: 'app.untranslated.html',
-                dest: 'app.html'
-            }, 
+                dest: 'app.html',
+                locale: 'en-GB'
+            },
+
             da: {
                 dict: 'i18n/da.json',
                 src: 'app.untranslated.html',
-                dest: 'app_da-DK.html'
+                dest: 'app_da-DK.html',
+                locale: 'da-DK'
+            },
+
+            ru: {
+                dict: 'i18n/ru.json',
+                src: 'app.untranslated.html',
+                dest: 'app_ru-RU.html',
+                locale: 'ru-RU'
             }
         },
 
@@ -117,6 +127,11 @@ module.exports = function(grunt) {
             da: {
                 source: 'i18n/original.json',
                 target: 'i18n/da.json'
+            },
+
+            ru: {
+                source: 'i18n/original.json',
+                target: 'i18n/ru.json'
             }
         },
 
@@ -145,6 +160,7 @@ module.exports = function(grunt) {
         delete dict['_COMMENT'];
 
         src = src.replace(/\{\{dictionary\}\}/, JSON.stringify(dict));
+        src = src.replace(/\{\{locale-code\}\}/, this.data.locale);
 
         grunt.file.write(this.data.dest, src);
     });

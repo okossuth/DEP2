@@ -384,6 +384,23 @@ section.page .notification-message {
   transition: top 300ms; }
   #voice-recognition.show {
     top: 0; }
+  #voice-recognition > div {
+    display: none;
+    text-align: center;
+    font-size: 48px;
+    padding: 10px 0; }
+  #voice-recognition.initial > div.initial {
+    display: block; }
+  #voice-recognition.processing > div.processing {
+    display: block; }
+  #voice-recognition.result > div.result {
+    display: block; }
+  #voice-recognition.error > div.error {
+    display: block; }
+  #voice-recognition ul.results > li.success {
+    color: green; }
+  #voice-recognition ul.results > li.error {
+    color: red; }
 
 @-webkit-keyframes empty-enter {
   from {

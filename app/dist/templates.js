@@ -1133,6 +1133,32 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\r\n\r\n</ul>";
   return buffer;});
+templates['speechResults'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\r\n    <li class=\"";
+  foundHelper = helpers.status;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.text;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</li>\r\n";
+  return buffer;}
+
+  buffer += "<ul class=\"results\">\r\n";
+  foundHelper = helpers.results;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.results; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
+  if (!helpers.results) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n</ul>";
+  return buffer;});
 templates['workingHour'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
