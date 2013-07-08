@@ -19891,383 +19891,582 @@ define('views/VoiceRecognition',['ovivo'], function() {
   });
 });
 
-/**
- * @license RequireJS text 2.0.7 Copyright (c) 2010-2012, The Dojo Foundation All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: http://github.com/requirejs/text for details
- */
-/*jslint regexp: true */
-/*global require, XMLHttpRequest, ActiveXObject,
-  define, window, process, Packages,
-  java, location, Components, FileUtils */
+define('srgs-parser',[
+    'ovivo'
+], function () {
+    //
+    //  srgs.js
+    //  Copyright (C) 2009, 2010, Peter Ljunglöf. All rights reserved.
+    //
+    /*
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published 
+      by the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+      
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+      
+      You should have received a copy of the GNU General Public License
+      and the GNU Lesser General Public License along with this program.  
+      If not, see <http://www.gnu.org/licenses/>.
+    */
 
-define('text',['module'], function (module) {
-    
+    //////////////////////////////////////////////////////////////////////
+    // encoding SRGS grammars in javascript
 
-    var text, fs, Cc, Ci,
-        progIds = ['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.4.0'],
-        xmlRegExp = /^\s*<\?xml(\s)+version=[\'\"](\d)*.(\d)*[\'\"](\s)*\?>/im,
-        bodyRegExp = /<body[^>]*>\s*([\s\S]+)\s*<\/body>/im,
-        hasLocation = typeof location !== 'undefined' && location.href,
-        defaultProtocol = hasLocation && location.protocol && location.protocol.replace(/\:/, ''),
-        defaultHostName = hasLocation && location.hostname,
-        defaultPort = hasLocation && (location.port || undefined),
-        buildMap = {},
-        masterConfig = (module.config && module.config()) || {};
-
-    text = {
-        version: '2.0.7',
-
-        strip: function (content) {
-            //Strips <?xml ...?> declarations so that external SVG and XML
-            //documents can be added to a document without worry. Also, if the string
-            //is an HTML document, only the part inside the body tag is returned.
-            if (content) {
-                content = content.replace(xmlRegExp, "");
-                var matches = content.match(bodyRegExp);
-                if (matches) {
-                    content = matches[1];
-                }
-            } else {
-                content = "";
-            }
-            return content;
-        },
-
-        jsEscape: function (content) {
-            return content.replace(/(['\\])/g, '\\$1')
-                .replace(/[\f]/g, "\\f")
-                .replace(/[\b]/g, "\\b")
-                .replace(/[\n]/g, "\\n")
-                .replace(/[\t]/g, "\\t")
-                .replace(/[\r]/g, "\\r")
-                .replace(/[\u2028]/g, "\\u2028")
-                .replace(/[\u2029]/g, "\\u2029");
-        },
-
-        createXhr: masterConfig.createXhr || function () {
-            //Would love to dump the ActiveX crap in here. Need IE 6 to die first.
-            var xhr, i, progId;
-            if (typeof XMLHttpRequest !== "undefined") {
-                return new XMLHttpRequest();
-            } else if (typeof ActiveXObject !== "undefined") {
-                for (i = 0; i < 3; i += 1) {
-                    progId = progIds[i];
+    function Grammar(root) {
+        this.$root = root;
+        
+        this.VOID = [OneOf([])];
+        this.NULL = [];
+        this.GARBAGE = []; 
+        
+        this.$check = function() {
+            for (var i in this) {
+                if (i !== "$root" && i !== "$check") {
                     try {
-                        xhr = new ActiveXObject(progId);
-                    } catch (e) {}
-
-                    if (xhr) {
-                        progIds = [progId];  // so faster next time
-                        break;
+                        checkSequenceExpansion(this[i]);
+                    } catch(err) {
+                        throwRuleError("When checking grammar rule '" + i + "'", err);
                     }
                 }
             }
+        }
+    }
 
-            return xhr;
-        },
+    function WordSet(str) {
+        var words = str.split(/ +/);
+        var set = {};
+        for (var i in words) {
+            set[words[i]] = true;
+        }
+        return set;
+    }
 
-        /**
-         * Parses a resource name into its component parts. Resource names
-         * look like: module/name.ext!strip, where the !strip part is
-         * optional.
-         * @param {String} name the resource name
-         * @returns {Object} with properties "moduleName", "ext" and "strip"
-         * where strip is a boolean.
-         */
-        parseName: function (name) {
-            var modName, ext, temp,
-                strip = false,
-                index = name.indexOf("."),
-                isRelative = name.indexOf('./') === 0 ||
-                             name.indexOf('../') === 0;
 
-            if (index !== -1 && (!isRelative || index > 1)) {
-                modName = name.substring(0, index);
-                ext = name.substring(index + 1, name.length);
-            } else {
-                modName = name;
+    //////////////////////////////////////////////////////////////////////
+    // rule expansion constructors
+
+    // sequences are ordinary arrays
+    function Sequence(seq) {
+        return seq;
+    }
+
+    function Ref(ref) {
+        return new RefClass(ref);
+    }
+
+    function Tag(tag) {
+        return new TagClass(tag);
+    }
+
+    function OneOf(alternatives) {
+        return new OneOfClass(alternatives);
+    }
+
+    function Repeat(min, max, sequence) {
+        return new RepeatClass(min, max, sequence);
+    }
+
+    function Optional(sequence) {
+        return new RepeatClass(0, 1, sequence);
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // rule expansion classes
+
+    var RefClass = function (ruleref) {
+        this.content = ruleref;
+        this._string = "$" + ruleref;
+        this.toString = function toString() {return this._string}
+    }
+        
+    function TagClass(tag) {
+        this.content = tag;
+        this._string = "{" + tag + "}";
+        this.toString = function toString() {return this._string}
+    }
+
+    function OneOfClass(alternatives) {
+        this.content = alternatives;
+        this._string = "(" + alternatives.join("|") + ")";
+        this.toString = function toString() {return this._string}
+    }
+
+    function RepeatClass(min, max, sequence) {
+        this.min = min;
+        this.max = max;
+        this.content = sequence;
+        this._string = this.content + "<" + this.min + "-" + (this.max==Infinity ? "" : this.max) + ">"
+        this.toString = function toString() {return this._string}
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // checking rule expansions
+
+    function throwRuleError(message, error) {
+        if (error == undefined) {
+            throw TypeError(message);
+        } else {
+            throw TypeError(message + "; " + error.message);
+        }
+    }
+
+    function checkSequenceExpansion(sequence) {
+        try {
+            if (sequence.constructor !== Array) {
+                throwRuleError("Expected Array, found " + sequence.constructor.name);
             }
-
-            temp = ext || modName;
-            index = temp.indexOf("!");
-            if (index !== -1) {
-                //Pull off the strip arg.
-                strip = temp.substring(index + 1) === "strip";
-                temp = temp.substring(0, index);
-                if (ext) {
-                    ext = temp;
-                } else {
-                    modName = temp;
+            for (var i in sequence) {
+                if (sequence[i].constructor == Array) {
+                    checkSequenceExpansion(sequence[i]);
+                } else if (sequence[i].constructor != String) {
+                    sequence[i].checkExpansion();
                 }
             }
+        } catch(err) {
+            throwRuleError("When checking sequence expansion", err);
+        }
+    }
 
-            return {
-                moduleName: modName,
-                ext: ext,
-                strip: strip
-            };
-        },
+    RefClass.prototype.checkExpansion = function checkExpansion() {
+        if (this.content.constructor !== String) {
+            throwRuleError("When checking Ref content; Expected String, found " + 
+                           this.content.constructor.name);
+        }
+    }
 
-        xdRegExp: /^((\w+)\:)?\/\/([^\/\\]+)/,
+    TagClass.prototype.checkExpansion = function checkExpansion() {
+        if (this.content.constructor !== String) {
+            throwRuleError("When checking Tag content; Expected String, found " + 
+                           this.content.constructor.name);
+        }
+    }
 
-        /**
-         * Is an URL on another domain. Only works for browser use, returns
-         * false in non-browser environments. Only used to know if an
-         * optimized .js version of a text resource should be loaded
-         * instead.
-         * @param {String} url
-         * @returns Boolean
-         */
-        useXhr: function (url, protocol, hostname, port) {
-            var uProtocol, uHostName, uPort,
-                match = text.xdRegExp.exec(url);
-            if (!match) {
+    OneOfClass.prototype.checkExpansion = function checkExpansion() {
+        try {
+            if (this.content.constructor !== Array) {
+                throwRuleError("Expected Array, found " + this.content.constructor.name);
+            }
+            for (var i in this.content) {
+                checkSequenceExpansion(this.content[i]);
+            }
+        } catch(err) {
+            throwRuleError("When checking OneOf content", err);
+        }
+    }
+
+    RepeatClass.prototype.checkExpansion = function checkExpansion() {
+        try {
+            if (this.min.constructor !== Number || this.max.constructor !== Number) {
+                throwRuleError("Expected min/max to be Number, found " + 
+                               this.min.constructor.name + "/" + this.max.constructor.name);
+            }
+            if (!(0 <= this.min && this.min <= this.max)) {
+                throwRuleError("Expected 0 <= min <= max, found " + this.min + "/" + this.max);
+            }
+            checkSequenceExpansion(this.content);
+        } catch(err) {
+            throwRuleError("When checking Repeat content", err);
+        }
+    }
+
+    //
+    //  chartparser.js
+    //  Copyright (C) 2009, 2010, Peter Ljunglöf. All rights reserved.
+    //
+    /*
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published 
+      by the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+      
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+      
+      You should have received a copy of the GNU General Public License
+      and the GNU Lesser General Public License along with this program.  
+      If not, see <http://www.gnu.org/licenses/>.
+    */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // by default we do not produce debugging output:
+
+    function LOG(str) {}
+
+    // if you want to debug the parsing process, 
+    // define the following before calling the parse() function:
+    /* function LOG(msg) {console.log(String(msg));} */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // by default we include parse trees in the parse results:
+
+    function makeTree(label, children, data) {
+        return {label: label, children: children, data: data};
+    }
+
+    // ...which can result in bigger parse charts and longer execution times.
+    // if you don't want to include parse trees, 
+    // define the following before calling the parse() function:
+    /*
+     makeTree = false;
+     */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // we need to be able to clone objects between different edges
+    // borrowed from http://keithdevens.com/weblog/archive/2007/Jun/07/javascript.clone
+
+    function clone(obj){
+        if (obj == null || typeof(obj) != 'object') {
+            return obj;
+        }
+        var temp = new obj.constructor(); 
+        for (var key in obj) {
+            temp[key] = clone(obj[key]);
+        }
+        return temp;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // objects are by default printed "[Object]"
+    // to be able to use objects in hash tables, 
+    // we need a better string representation
+
+    function stringRepr(obj) {
+        if (obj == null || typeof(obj) != 'object') {
+            return String(obj);
+        }
+        var str = "{";
+        for (var key in obj) {
+            str += key + ":" + stringRepr(obj[key]) + ";";
+        }
+        return str + "}";
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // parse chart
+    // conceptually this is a set of edges, but it is optimized
+
+    function Chart(numberOfWords) {
+        this.numberOfWords = numberOfWords;
+        this.passives = new Array(numberOfWords);
+        this.actives = new Array(numberOfWords);
+        for (var i = 0; i <= numberOfWords; i++) {
+            this.passives[i] = {};
+            this.actives[i] = {};
+        }
+        
+        // Chart.add(edge)
+        // add the edge to the chart, return true if the chart was changed 
+        // (i.e. if the chart didn't already contain the edge)
+        this.add = function add(edge) {
+            var subchart, cat;
+            if (edge.isPassive) {
+                subchart = this.passives[edge.start];
+                cat = edge.lhs;
+            } else {
+                subchart = this.actives[edge.end];
+                cat = edge.next.content;
+            }
+            if (!(cat in subchart)) {
+                subchart[cat] = {};
+            }
+            if (edge in subchart[cat]) {
+                return false;
+            } else {
+                subchart[cat][edge] = edge;
                 return true;
             }
-            uProtocol = match[2];
-            uHostName = match[3];
-
-            uHostName = uHostName.split(':');
-            uPort = uHostName[1];
-            uHostName = uHostName[0];
-
-            return (!uProtocol || uProtocol === protocol) &&
-                   (!uHostName || uHostName.toLowerCase() === hostname.toLowerCase()) &&
-                   ((!uPort && !uHostName) || uPort === port);
-        },
-
-        finishLoad: function (name, strip, content, onLoad) {
-            content = strip ? text.strip(content) : content;
-            if (masterConfig.isBuild) {
-                buildMap[name] = content;
-            }
-            onLoad(content);
-        },
-
-        load: function (name, req, onLoad, config) {
-            //Name has format: some.module.filext!strip
-            //The strip part is optional.
-            //if strip is present, then that means only get the string contents
-            //inside a body tag in an HTML string. For XML/SVG content it means
-            //removing the <?xml ...?> declarations so the content can be inserted
-            //into the current doc without problems.
-
-            // Do not bother with the work if a build and text will
-            // not be inlined.
-            if (config.isBuild && !config.inlineText) {
-                onLoad();
-                return;
-            }
-
-            masterConfig.isBuild = config.isBuild;
-
-            var parsed = text.parseName(name),
-                nonStripName = parsed.moduleName +
-                    (parsed.ext ? '.' + parsed.ext : ''),
-                url = req.toUrl(nonStripName),
-                useXhr = (masterConfig.useXhr) ||
-                         text.useXhr;
-
-            //Load the text. Use XHR if possible and in a browser.
-            if (!hasLocation || useXhr(url, defaultProtocol, defaultHostName, defaultPort)) {
-                text.get(url, function (content) {
-                    text.finishLoad(name, parsed.strip, content, onLoad);
-                }, function (err) {
-                    if (onLoad.error) {
-                        onLoad.error(err);
-                    }
-                });
-            } else {
-                //Need to fetch the resource across domains. Assume
-                //the resource has been optimized into a JS module. Fetch
-                //by the module name + extension, but do not include the
-                //!strip part to avoid file system issues.
-                req([nonStripName], function (content) {
-                    text.finishLoad(parsed.moduleName + '.' + parsed.ext,
-                                    parsed.strip, content, onLoad);
-                });
-            }
-        },
-
-        write: function (pluginName, moduleName, write, config) {
-            if (buildMap.hasOwnProperty(moduleName)) {
-                var content = text.jsEscape(buildMap[moduleName]);
-                write.asModule(pluginName + "!" + moduleName,
-                               "define(function () { return '" +
-                                   content +
-                               "';});\n");
-            }
-        },
-
-        writeFile: function (pluginName, moduleName, req, write, config) {
-            var parsed = text.parseName(moduleName),
-                extPart = parsed.ext ? '.' + parsed.ext : '',
-                nonStripName = parsed.moduleName + extPart,
-                //Use a '.js' file name so that it indicates it is a
-                //script that can be loaded across domains.
-                fileName = req.toUrl(parsed.moduleName + extPart) + '.js';
-
-            //Leverage own load() method to load plugin value, but only
-            //write out values that do not have the strip argument,
-            //to avoid any potential issues with ! in file names.
-            text.load(nonStripName, req, function (value) {
-                //Use own write() method to construct full module value.
-                //But need to create shell that translates writeFile's
-                //write() to the right interface.
-                var textWrite = function (contents) {
-                    return write(fileName, contents);
-                };
-                textWrite.asModule = function (moduleName, contents) {
-                    return write.asModule(moduleName, fileName, contents);
-                };
-
-                text.write(pluginName, nonStripName, textWrite, config);
-            }, config);
         }
+        
+        // Chart.treesForRule(lhs, start, end)
+        // return all parse trees for the given lhs, start, and end
+        //  - start, end are optional; defaults to 0, numberOfWords
+        this.treesForRule = function treesForRule(lhs, start, end) {
+            start = start || 0;
+            end = end || numberOfWords;
+            var trees = [];
+            var finalEdges = this.passives[start][lhs];
+            for (var i in finalEdges) {
+                if (finalEdges[i].end == end) {
+                    trees.push(finalEdges[i].tree);
+                }
+            }
+            return trees;
+        }
+        
+        // Chart.allEdges() / Chart.allPassiveEdges() / Chart.allActiveEdges()
+        // return an array of all (passive/active) edges in the chart
+        this.allEdges = function allEdges() {
+            return this.allPassiveEdges().concat(this.allActiveEdges());
+        }
+        this.allPassiveEdges = function allPassiveEdges() {
+            var edges = [];
+            for (var i in this.passives) 
+                for (var j in this.passives[i]) 
+                    for (var k in this.passives[i][j])
+                        edges.push(this.passives[i][j][k]);
+            return edges;
+        }
+        this.allActiveEdges = function allActiveEdges() {
+            var edges = [];
+            for (var i in this.actives) 
+                for (var j in this.actives[i]) 
+                    for (var k in this.actives[i][j])
+                        edges.push(this.actives[i][j][k]);
+            return edges;
+        }
+        
+        // Chart.statistics()
+        // return the number of edges in the chart
+        this.statistics = function statistics() {
+            var passives = this.allPassiveEdges().length;
+            var actives = this.allActiveEdges().length;
+            return {nrEdges: passives+actives, nrPassiveEdges: passives, nrActiveEdges: actives};
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // parse edges: passive and active
+
+    function PassiveEdge(start, end, lhs, out, tree) {
+        this.start = start;
+        this.end = end;
+        this.lhs = lhs;
+        this.out = out;
+        this.tree = tree;
+        this.isPassive = true;
+        
+        var str = "[" + start + "-" + end + "] $" + lhs + " := " + 
+                    stringRepr(out) + " / " + stringRepr(tree);
+        this._string = str;
+        this.toString = function toString() {return this._string;} 
+    }
+
+    function ActiveEdge(start, end, lhs, next, rest, out, rules, children) {
+        this.start = start;
+        this.end = end;
+        this.lhs = lhs;
+        this.next = next;
+        this.rest = rest;
+        this.out = out;
+        this.rules = rules;
+        this.children = children;
+        this.isPassive = false;
+        
+        var str = "<" + start + "-" + end + "> $" + lhs + " -> " + next + 
+                    ", " + rest + " := " + stringRepr(out) + " <- " + 
+                    stringRepr(rules) + " / " + stringRepr(children);
+        this._string = str;
+        this.toString = function toString() {return this._string;} 
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // the main parsing function: a simple top-down chartparser
+    //  - 'words' is an array of strings
+    //  - 'grammar' is a hash table of left-hand-sides mapping to arrays of right-hand-sides
+    //  - 'root' is the starting category (a string)
+    //    if unspecified, use the '$root' property of the grammar
+    //  - 'filter' is an optional left-corner filter 
+    //    (a mapping from categories/rule-refs to words)
+    //    if specified, it is used when predicting new edges
+    // returns the final chart
+
+    function parse(words, grammar, root, filter) {
+        if (!root) {
+            root = grammar.$root;
+        }
+        var chart = new Chart(words.length);
+        var agenda = [];
+        
+        var leftCornerFilter;
+        if (filter == undefined) {
+            leftCornerFilter = function() {return true};
+        } else {
+            leftCornerFilter = function leftCornerFilter(ruleref, position) {
+                var leftCorners = filter[ruleref];
+                return leftCorners ? words[position] in leftCorners : true;
+            }
+        }
+        
+        // add an edge to the chart and the agenda, if it does not already exist
+        function addToChart(inference, start, end, lhs, rhs, out, rules, children) {
+            var edge;
+            if (rhs.length > 0) {
+                var next = rhs[0];
+                var rest = rhs.slice(1);
+                switch (next.constructor) {
+                        
+                    case Array:
+                        // the next symbol is a sequence
+                        addToChart(inference+",SEQUENCE", start, end, lhs, 
+                                   next.concat(rest), out, rules, children);
+                        return;
+                        
+                    case RepeatClass:
+                        // the next symbol is a repetition
+                        var min = next.min;
+                        var max = next.max;
+                        // skip repeat 
+                        if (min <= 0) {
+                            addToChart(inference+",SKIP", start, end, lhs, 
+                                       rest, out, rules, children);
+                        }
+                        // repeat 
+                        if (max > 0) {
+                            var content = next.content;
+                            var rhs = [content];
+                            if (max > 1) {
+                                rhs.push(Repeat(min ? min-1 : min, max-1, content));
+                            }
+                            addToChart(inference+",REPEAT", start, end, lhs, 
+                                       rhs.concat(rest), out, rules, children);
+                        }
+                        return;
+                        
+                    case OneOfClass:
+                        // the next symbol is a disjunction
+                        var oneof = next.content;
+                        for (var i in oneof) {
+                            var rhs = oneof[i].concat(rest);
+                            addToChart(inference+",ONEOF", start, end, lhs, 
+                                       rhs, out, rules, children);
+                        } 
+                        return;
+                        
+                    case TagClass:
+                        // the next symbol is a semantic action
+                        out = clone(out);
+                        rules = clone(rules);
+                        children = clone(children);
+                        eval(next.content);
+                        addToChart(inference+",TAG", start, end, lhs, 
+                                   rest, out, rules, children);
+                        return;
+                }
+                edge = new ActiveEdge(start, end, lhs, next, rest, out, rules, children);
+                
+            } else {
+                var tree;
+                if (makeTree) {
+                    tree = makeTree(lhs, children, out);
+                } else {
+                    tree = out;
+                }
+                edge = new PassiveEdge(start, end, lhs, out, tree);
+            }
+            
+            // try to add the edge; if successful, also add it to the agenda
+            if (chart.add(edge)) {
+                LOG("+ " + inference + ": " + edge);
+                agenda.push(edge);
+            }
+        }
+        
+        // seed the agenda with the starting rule
+        addToChart("INIT", 0, 0, root, grammar[root], {}, {}, []);
+        
+        // main loop
+        while (agenda.length > 0) {
+            var edge = agenda.pop();
+            var start= edge.start;
+            var end  = edge.end;
+            var lhs  = edge.lhs;
+            var next = edge.next;
+            LOG(edge);
+            
+            if (edge.isPassive) {
+                // combine
+                var actives = chart.actives[start][lhs];
+                for (var i in actives) {
+                    var active = actives[i];
+                    var rules = clone(active.rules);
+                    rules[edge.lhs] = clone(edge.out);
+                    var children;
+                    if (makeTree) {
+                        children = clone(active.children);
+                        children.push(clone(edge.tree));
+                    }
+                    addToChart("COMBINE", active.start, end, active.lhs, 
+                               
+                               active.rest, active.out, rules, children);
+                }
+                
+            } else if (next.constructor == RefClass) {
+                var ref = next.content;
+                // combine
+                var passives = chart.passives[end][ref];
+                for (var i in passives) {
+                    var passive = passives[i];
+                    var rules = clone(edge.rules);
+                    rules[passive.lhs] = clone(passive.out);
+                    var children;
+                    if (makeTree) {
+                        children = clone(edge.children);
+                        children.push(clone(passive.tree));
+                    }
+                    addToChart("COMBINE", start, passive.end, lhs, 
+                               edge.rest, edge.out, rules, children);
+                }
+                // predict
+                if (ref in grammar) {
+                    if (leftCornerFilter(ref, end)) {
+                        addToChart("PREDICT", end, end, ref, 
+                                   grammar[ref], {}, {}, []);
+                    }
+                }
+                
+            } else if (next == words[end]) {
+                // scan
+                var children;
+                if (makeTree) {
+                    children = clone(edge.children);
+                    children.push(next);
+                }
+                addToChart("SCAN", start, end+1, lhs, 
+                           edge.rest, edge.out, edge.rules, children);
+            }
+        }
+        
+        return chart;
+    }
+
+    var _returnObj = {
+        Grammar: Grammar,
+        Tag: Tag,
+        OneOf: OneOf,
+        Ref: Ref,
+        RefClass: RefClass,
+        parse: parse
     };
 
-    if (masterConfig.env === 'node' || (!masterConfig.env &&
-            typeof process !== "undefined" &&
-            process.versions &&
-            !!process.versions.node)) {
-        //Using special require.nodeRequire, something added by r.js.
-        fs = require.nodeRequire('fs');
-
-        text.get = function (url, callback, errback) {
-            try {
-                var file = fs.readFileSync(url, 'utf8');
-                //Remove BOM (Byte Mark Order) from utf8 files if it is there.
-                if (file.indexOf('\uFEFF') === 0) {
-                    file = file.substring(1);
-                }
-                callback(file);
-            } catch (e) {
-                errback(e);
-            }
-        };
-    } else if (masterConfig.env === 'xhr' || (!masterConfig.env &&
-            text.createXhr())) {
-        text.get = function (url, callback, errback, headers) {
-            var xhr = text.createXhr(), header;
-            xhr.open('GET', url, true);
-
-            //Allow plugins direct access to xhr headers
-            if (headers) {
-                for (header in headers) {
-                    if (headers.hasOwnProperty(header)) {
-                        xhr.setRequestHeader(header.toLowerCase(), headers[header]);
-                    }
-                }
-            }
-
-            //Allow overrides specified in config
-            if (masterConfig.onXhr) {
-                masterConfig.onXhr(xhr, url);
-            }
-
-            xhr.onreadystatechange = function (evt) {
-                var status, err;
-                //Do not explicitly handle errors, those should be
-                //visible via console output in the browser.
-                if (xhr.readyState === 4) {
-                    status = xhr.status;
-                    if (status > 399 && status < 600) {
-                        //An http 4xx or 5xx error. Signal an error.
-                        err = new Error(url + ' HTTP status: ' + status);
-                        err.xhr = xhr;
-                        errback(err);
-                    } else {
-                        callback(xhr.responseText);
-                    }
-
-                    if (masterConfig.onXhrComplete) {
-                        masterConfig.onXhrComplete(xhr, url);
-                    }
-                }
-            };
-            xhr.send(null);
-        };
-    } else if (masterConfig.env === 'rhino' || (!masterConfig.env &&
-            typeof Packages !== 'undefined' && typeof java !== 'undefined')) {
-        //Why Java, why is this so awkward?
-        text.get = function (url, callback) {
-            var stringBuffer, line,
-                encoding = "utf-8",
-                file = new java.io.File(url),
-                lineSeparator = java.lang.System.getProperty("line.separator"),
-                input = new java.io.BufferedReader(new java.io.InputStreamReader(new java.io.FileInputStream(file), encoding)),
-                content = '';
-            try {
-                stringBuffer = new java.lang.StringBuffer();
-                line = input.readLine();
-
-                // Byte Order Mark (BOM) - The Unicode Standard, version 3.0, page 324
-                // http://www.unicode.org/faq/utf_bom.html
-
-                // Note that when we use utf-8, the BOM should appear as "EF BB BF", but it doesn't due to this bug in the JDK:
-                // http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4508058
-                if (line && line.length() && line.charAt(0) === 0xfeff) {
-                    // Eat the BOM, since we've already found the encoding on this file,
-                    // and we plan to concatenating this buffer with others; the BOM should
-                    // only appear at the top of a file.
-                    line = line.substring(1);
-                }
-
-                if (line !== null) {
-                    stringBuffer.append(line);
-                }
-
-                while ((line = input.readLine()) !== null) {
-                    stringBuffer.append(lineSeparator);
-                    stringBuffer.append(line);
-                }
-                //Make sure we return a JavaScript string and not a Java string.
-                content = String(stringBuffer.toString()); //String
-            } finally {
-                input.close();
-            }
-            callback(content);
-        };
-    } else if (masterConfig.env === 'xpconnect' || (!masterConfig.env &&
-            typeof Components !== 'undefined' && Components.classes &&
-            Components.interfaces)) {
-        //Avert your gaze!
-        Cc = Components.classes,
-        Ci = Components.interfaces;
-        Components.utils['import']('resource://gre/modules/FileUtils.jsm');
-
-        text.get = function (url, callback) {
-            var inStream, convertStream,
-                readData = {},
-                fileObj = new FileUtils.File(url);
-
-            //XPCOM, you so crazy
-            try {
-                inStream = Cc['@mozilla.org/network/file-input-stream;1']
-                           .createInstance(Ci.nsIFileInputStream);
-                inStream.init(fileObj, 1, 0, false);
-
-                convertStream = Cc['@mozilla.org/intl/converter-input-stream;1']
-                                .createInstance(Ci.nsIConverterInputStream);
-                convertStream.init(inStream, "utf-8", inStream.available(),
-                Ci.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER);
-
-                convertStream.readString(inStream.available(), readData);
-                convertStream.close();
-                inStream.close();
-                callback(readData.value);
-            } catch (e) {
-                throw new Error((fileObj && fileObj.path || '') + ': ' + e);
-            }
-        };
-    }
-    return text;
+    return _returnObj;
 });
-define('text!models/../../xml/webSpeechGrammar.xml',[],function () { return '<?xml version="1.0" encoding="UTF-8"?>\r\n<!DOCTYPE grammar PUBLIC "-//W3C//DTD GRAMMAR 1.0//EN"\r\n                  "http://www.w3.org/TR/speech-grammar/grammar.dtd">\r\n \r\n<grammar xmlns="http://www.w3.org/2001/06/grammar"\r\n         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \r\n         xsi:schemaLocation="http://www.w3.org/2001/06/grammar \r\n                             http://www.w3.org/TR/speech-grammar/grammar.xsd"\r\n         xml:lang="ru-RU" version="1.0">\r\n\r\n    <rule scope="public">\r\n        <example>открыть настройки</example>\r\n        <example>открыть помощь</example>\r\n\r\n        открыть\r\n        <one-of>\r\n            <item>настройки</item>\r\n            <item>помощь</item>\r\n        </one-of>\r\n    </rule>\r\n</grammar>';});
+// Generated by CoffeeScript 1.6.2
+define('_features/voiceRecognitionGrammar',['srgs-parser', 'ovivo'], function(parser) {
+  return _.extend(new parser.Grammar('statement'), {
+    statement: [parser.Ref('command'), parser.Tag('out = rules.command')],
+    command: [parser.OneOf([[parser.Ref('commandOpen'), parser.Tag('out.type = \'open\''), parser.Tag('out.target = rules.commandOpen')], [parser.Ref('commandCreate'), parser.Tag('out.type = \'create\''), parser.Tag('out.target = rules.commandCreate')]])],
+    commandOpen: ['open', parser.OneOf([['calendar', parser.Tag('out = \'calendar\'')], ['settings', parser.Tag('out = \'settings\'')], ['feedback', parser.Tag('out = \'feedback\'')], ['help', parser.Tag('out = \'help\'')]])],
+    commandCreate: ['create', parser.OneOf([['time', 'off', parser.Tag('out = \'inactivity\'')], ['timeoff', parser.Tag('out = \'inactivity\'')], ['inactivity', parser.Tag('out = \'inactivity\'')], ['working', 'hours', parser.Tag('out = \'working-hours\'')], ['working', 'hour', parser.Tag('out = \'working-hours\'')]])]
+  });
+});
 
 // Generated by CoffeeScript 1.6.2
-define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceRecognition', 'text!../../xml/webSpeechGrammar.xml', 'ovivo'], function(ResourceBase, View, webSpeechGrammar) {
+define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceRecognition', '_features/voiceRecognitionGrammar', 'srgs-parser', 'ovivo'], function(ResourceBase, View, voiceRecognitionGrammar, parser) {
   return ResourceBase.extend({
     _gettersNames: ['processing', 'show'],
     changeProcessing: function() {
@@ -20283,6 +20482,12 @@ define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceR
       }
       return true;
     },
+    _applyGrammar: function(str) {
+      var _res;
+
+      console.log(_res = parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root));
+      return _res;
+    },
     processStart: function() {
       return console.log('started');
     },
@@ -20297,12 +20502,12 @@ define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceR
       return console.log('error');
     },
     initialize: function() {
+      this._applyGrammar('open calendar');
       if (window.webkitSpeechRecognition === void 0) {
         return;
       }
       this._recognition = new webkitSpeechRecognition();
       this._recognition.lang = ovivo.config.LANG;
-      this._recognition.grammars.addFromString(webSpeechGrammar);
       $(this._recognition).on('start', _.bind(this.processStart, this));
       $(this._recognition).on('end', _.bind(this.processEnd, this));
       $(this._recognition).on('result', _.bind(this.processResult, this));
@@ -21614,7 +21819,8 @@ requirejs.config({
     'airbrake': '../../lib/airbrake',
     'date': '../../lib/date',
     'pickadate': '../../lib/pickadate.legacy',
-    'modernizr': '../../lib/modernizr'
+    'modernizr': '../../lib/modernizr',
+    'srgs-parser': '../../lib/srgs-parser'
   },
   shim: {
     'ovivo': {

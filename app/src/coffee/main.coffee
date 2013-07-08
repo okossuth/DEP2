@@ -11,6 +11,7 @@ requirejs.config
     'date': '../../lib/date'
     'pickadate': '../../lib/pickadate.legacy'
     'modernizr': '../../lib/modernizr'
+    'srgs-parser': '../../lib/srgs-parser'
 
   shim:
     'ovivo':

@@ -3,10 +3,12 @@ define [
 
   'views/VoiceRecognition',
 
-  'text!../../xml/webSpeechGrammar.xml',
+  '_features/voiceRecognitionGrammar',
+
+  'srgs-parser',
 
   'ovivo'
-], (ResourceBase, View, webSpeechGrammar) ->
+], (ResourceBase, View, voiceRecognitionGrammar, parser) ->
   ResourceBase.extend
     _gettersNames: [
       'processing'
@@ -26,6 +28,11 @@ define [
 
       true
 
+    _applyGrammar: (str) ->
+      console.log _res = parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule voiceRecognitionGrammar.$root
+
+      _res
+
     processStart: () ->
       console.log 'started'
 
@@ -41,12 +48,12 @@ define [
       console.log 'error'
 
     initialize: () ->
+      @_applyGrammar 'open calendar'
+
       if window.webkitSpeechRecognition is undefined then return
 
       @_recognition = new webkitSpeechRecognition()
       @_recognition.lang = ovivo.config.LANG
-
-      @_recognition.grammars.addFromString webSpeechGrammar
 
       $(@_recognition).on 'start', _.bind @processStart, @
       $(@_recognition).on 'end', _.bind @processEnd, @
