@@ -46,17 +46,26 @@ module.exports = function(grunt) {
         shell: {
             optimize: {
                 command: 'r.js.cmd -o src/js/build.js optimize=none generateSourceMaps=true preserveLicenseComments=false',
-                stdout: false
+
+                options: {
+                    stdout: false
+                }
             },
 
             minify: {
                 command: 'r.js.cmd -o src/js/build.min.js optimize=uglify2 generateSourceMaps=true preserveLicenseComments=false',
-                stdout: false
+
+                options: {
+                    stdout: false
+                }
             },
 
             templates: {
                 command: 'handlebars src/templates -f dist/templates.js',
-                stdout: false
+
+                options: {
+                    stdout: false
+                }
             },
 
             'closure-compiler': {
