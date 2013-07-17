@@ -13,12 +13,17 @@ define([], function() {
         propertyRegExp: /\bproperty-value-(\w+)\b/,
         modes: ['edit', 'create'],
         processPropertyChange: function(e) {
-          var _header, _input, _name, _value;
+          var _header, _input, _name, _picker, _val, _value;
 
           _input = $(e.target).closest('.property-value');
           _header = $(e.target).closest('.settings-item').children('.header');
           _name = this.propertyRegExp.exec(_input[0].className)[1];
-          _value = this.types[_name](_input.val());
+          if ((_picker = _input.pickadate('picker')) != null) {
+            _val = _picker.get('select', 'yyyy-mm-dd');
+          } else {
+            _val = _input.val();
+          }
+          _value = this.types[_name](_val);
           if (_value === this.original[_name]()) {
             _header.removeClass('changed');
           } else {
@@ -147,7 +152,7 @@ define([], function() {
             if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
               _component.each(function(i, el) {
-                return $(el).data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+                return $(el).pickadate('picker').set('select', _date);
               });
             } else if (_component.hasClass('plain-value')) {
               $.when(_this.model.view[field]()).done(function(_str) {

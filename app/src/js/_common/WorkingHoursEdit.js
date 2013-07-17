@@ -55,7 +55,7 @@ define(['_features/trailZero', 'ovivo'], function(trailZero) {
     initializeEdit: function() {
       this.collection = ovivo.desktop.resources.workingHours;
       this.$('.datepicker').pickadate({
-        format: 'yyyy-mm-dd',
+        format: 'd. mmmm',
         formatSubmit: 'yyyy-mm-dd',
         firstDay: 1
       });

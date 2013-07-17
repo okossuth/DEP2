@@ -48,7 +48,7 @@ define [
     _min.setDate _min.getDate() + 1
 
     @$('.datepicker').pickadate
-      format: 'yyyy-mm-dd'
+      format: 'd. mmmm'
       formatSubmit: 'yyyy-mm-dd'
       firstDay: 1
       min: 1

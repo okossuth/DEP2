@@ -45,7 +45,7 @@ define(['_features/trailZero', 'ovivo'], function(trailZero) {
       _min = Date.today();
       _min.setDate(_min.getDate() + 1);
       this.$('.datepicker').pickadate({
-        format: 'yyyy-mm-dd',
+        format: 'd. mmmm',
         formatSubmit: 'yyyy-mm-dd',
         firstDay: 1,
         min: 1,

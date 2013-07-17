@@ -13,6 +13,11 @@
     padding: 9px 0 9px 0;
     border: 2px solid #007550;
     color: #007550; }
+  .button.green-light, .button.light {
+    border-radius: 2px;
+    font-size: 16px; }
+  .button.green-light {
+    background: #47b869; }
   .button.warning {
     background: #b23333; }
   .button.disabled {
