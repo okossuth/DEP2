@@ -1,4 +1,5 @@
 nodejs-demo
 ===========
 
-Amazon Beanstalk NodeJS Demo
+Integration between Amazon Beanstalk and NodeJS Demo
+for deployment purposes
