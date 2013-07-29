@@ -2,8 +2,14 @@ var _ = require('underscore');
 
 module.exports = function(grunt) {
     grunt.registerMultiTask('dictapply', 'Search for strings, construct dictionary', (function () {
+        var trailingComma = /,?\s*?\}$/m;
+
         function outputSection (name, arr, target) {
-            var _str = '"_COMMENT": "' + name.toUpperCase() + '",\n    ';
+            var _str;
+
+            if (arr.length === 0) { return ''; }
+
+            _str = '"_COMMENT": "' + name.toUpperCase() + '",\n    ';
 
             return _str + _.map(arr, function (str) {
                 var _value;
@@ -53,6 +59,8 @@ module.exports = function(grunt) {
             output += outputSection('Unknown', _unknown, target);
 
             output += '\n}';
+
+            output = output.replace(trailingComma, '\n}');
 
             grunt.file.write(this.data.target, output);
         };

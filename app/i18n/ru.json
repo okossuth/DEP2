@@ -173,8 +173,5 @@
     "Send me notifications via SMS": "Send me notifications via SMS",
     "Send me notifications via e-mail": "Send me notifications via e-mail",
     "Speak": "Speak",
-    "The number of days inside of which a user will be notified of a new event immediately by text and/or email": "The number of days inside of which a user will be notified of a new event immediately by text and/or email",
-
-"_COMMENT": "UNKNOWN",
-    
+    "The number of days inside of which a user will be notified of a new event immediately by text and/or email": "The number of days inside of which a user will be notified of a new event immediately by text and/or email"
 }
