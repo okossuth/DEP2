@@ -11,6 +11,7 @@ env:
 
 install:
   - git checkout master
+  - gem install sass
   - BRANCH_NAME=build/`eval date +%Y-%m-%d"T"%H-%M-%S`
   - TIME_STR=`eval date` 
   - git checkout -b $BRANCH_NAME
