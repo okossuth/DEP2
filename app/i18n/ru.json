@@ -139,6 +139,7 @@
 
 "_COMMENT": "UNTRANSLATED",
     "&#8734;": "&#8734;",
+    "Error state": "Error state",
     "Explanation 1": "Explanation 1",
     "Explanation 10": "Explanation 10",
     "Explanation 11": "Explanation 11",
@@ -166,12 +167,14 @@
     "Explanation 7": "Explanation 7",
     "Explanation 8": "Explanation 8",
     "Explanation 9": "Explanation 9",
+    "Initializing": "Initializing",
     "Send me confirmation when bidding through SMS": "Send me confirmation when bidding through SMS",
     "Send me notifications 24 hour before assigned events starts": "Send me notifications 24 hour before assigned events starts",
     "Send me notifications via SMS": "Send me notifications via SMS",
     "Send me notifications via e-mail": "Send me notifications via e-mail",
+    "Speak": "Speak",
     "The number of days inside of which a user will be notified of a new event immediately by text and/or email": "The number of days inside of which a user will be notified of a new event immediately by text and/or email",
 
-"_COMMENT": "UNKNOWN"
+"_COMMENT": "UNKNOWN",
     
 }
