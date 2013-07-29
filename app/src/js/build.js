@@ -20,6 +20,9 @@
 
   "optimize": "none",
 
+  "uglify2": {
+  },
+
   "shim": {
     "ovivo": {
       "deps": ["templates"]

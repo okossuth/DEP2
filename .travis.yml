@@ -26,6 +26,7 @@ after_script:
   - git config --global user.name "$USER_NAME"
   - git remote add github https://eur00t:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
   - git add .
+  - git reset app/dist/ovivo-desktop-employee-require.js.map
   - git commit -m "Travis CI build on $TIME_STR"
   - git push github $BRANCH_NAME
 
