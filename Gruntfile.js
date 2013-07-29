@@ -203,6 +203,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['coffee', 'sass', 'handlebars', 'translate', 'concat', 'requirejs']);
 
-    grunt.registerTask('dev', ['default', 'watch', 'bgShell:runNode']);
-    grunt.registerTask('travis', ['translate']);
+    grunt.registerTask('dev', ['bgShell:runNode', 'watch']);
+    grunt.registerTask('travis', ['default']);
 }; 

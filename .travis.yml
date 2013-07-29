@@ -11,23 +11,22 @@ env:
 
 install:
   - git checkout master
+  - BRANCH_NAME=build/`eval date +%Y-%m-%d"T"%H-%M-%S`
+  - TIME_STR=`eval date` 
+  - git checkout -b $BRANCH_NAME
   - npm install -g grunt-cli
-  - cd app
   - npm install
-  - cd ../
 
 script:
-  - cd app
   - grunt travis
-  - cd ../
   
 after_script:
   - git config --global user.email "$EMAIL"
   - git config --global user.name "$USER_NAME"
-  - git remote add azure https://eur00t:$PASSWORD@desktop-employee.scm.azurewebsites.net/desktop-employee.git
+  - git remote add github https://eur00t:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
   - git add .
-  - git commit -m "Travis CI build"
-  - git push -f azure master
+  - git commit -m "Travis CI build on $TIME_STR"
+  - git push github $BRANCH_NAME
 
 branches:
   only:
