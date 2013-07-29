@@ -6,14 +6,14 @@ module.exports = function(grunt) {
                 dest: 'app/dist/ovivo-desktop-employee.css'
             },
 
+            css_ie: {
+                src: ['app/src/css/ie/*.css'],
+                dest: 'app/dist/ovivo-desktop-employee-ie.css'
+            },
+
             js: {
                 src: ['app/src/js/preset.js', 'app/src/js/Backbone.sync.js', 'app/src/js/config.js'],
                 dest: 'app/dist/ovivo-desktop-employee.js'
-            },
-
-            ie: {
-                src: ['app/src/css/ie/*.css'],
-                dest: 'app/dist/ovivo-desktop-employee-ie.css'
             },
 
             options: {
@@ -21,21 +21,13 @@ module.exports = function(grunt) {
             }
         },
 
-        shell: {
-            optimize: {
-                command: 'r.js.cmd -o app/src/js/build.js optimize=none generateSourceMaps=true preserveLicenseComments=false'
+        bgShell: {
+            runNode: {
+                cmd: 'node server.js'
             },
 
-            minify: {
-                command: 'r.js.cmd -o app/src/js/build.min.js optimize=uglify2 generateSourceMaps=true preserveLicenseComments=false'
-            },
-
-            templates: {
-                command: 'handlebars app/src/templates -f app/dist/templates.js'  
-            },
-
-            options: {
-                stdout: false
+            _defaults: {
+                bg: true
             }
         },
 
@@ -131,20 +123,86 @@ module.exports = function(grunt) {
             compile: {
                 options: grunt.file.readJSON('app/src/js/build.js')
             }
+        },
+
+        watch: {
+            handlebars: {
+                files: 'app/src/templates/*.handlebars',
+                tasks: ['handlebars', 'requirejs']
+            },
+
+            coffee: {
+                files: 'app/src/coffee/**/*.coffee',
+                tasks: ['coffee', 'requirejs']
+            },
+
+            sass: {
+                files: 'app/src/sass/**/*.sass',
+                tasks: ['sass', 'concat:css']
+            },
+
+            sass_ie: {
+                files: 'app/src/sass/ie/*.sass',
+                tasks: ['sass', 'concat:css_ie']
+            },
+
+            translate: {
+                files: 'app/app.untranslated.html',
+                tasks: ['translate']
+            },
+
+            plain_js: {
+                files: ['app/src/js/preset.js', 'app/src/js/Backbone.sync.js', 'app/src/js/config.js'],
+                tasks: ['concat:js', 'requirejs']
+            }
+        },
+
+        coffee: {
+            compile: {
+                options: {
+                    bare: true
+                },
+
+                files: [{
+                    expand: true,
+                    pwd: 'app/src/coffee/',
+                    src: ['**/*.coffee'],
+                    dest: 'app/src/js/',
+                    rename: function (dest, src) {
+                        return src.replace(/coffee/g, 'js');
+                    }
+                }]
+            }
+        },
+
+        sass: {
+            compile: {
+                files: [{
+                    expand: true,
+                    pwd: 'app/src/sass/',
+                    src: ['**/*.sass'],
+                    dest: 'app/src/css/',
+                    rename: function (dest, src) {
+                        return src.replace(/sass/g, 'css');
+                    }
+                }]
+            }
         }
     });
 
-    grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-bg-shell');
     grunt.loadNpmTasks('grunt-csso');
 
     grunt.loadTasks('tasks');
 
-    // Default task.
-    // grunt.registerTask('default', ['shell:templates', 'concat', 'shell:optimize', 'translate', 'concat:pre-manifest', 'concat:manifest']);
+    grunt.registerTask('default', ['coffee', 'sass', 'handlebars', 'translate', 'concat', 'requirejs']);
 
-    grunt.registerTask('default', ['shell:templates', 'concat:css', 'concat:ie', 'concat:js', 'shell:optimize', 'translate']);
+    grunt.registerTask('dev', ['default', 'watch', 'bgShell:runNode']);
     grunt.registerTask('travis', ['translate']);
 }; 
