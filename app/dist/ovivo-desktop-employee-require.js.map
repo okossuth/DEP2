@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "file": "/Users/eur00t/Projects/Ovivo/desktop-employee/app/dist/ovivo-desktop-employee-require.js",
+  "file": "/home/travis/build/Ovivo/desktop-employee-planner/app/dist/ovivo-desktop-employee-require.js",
   "sources": [
     "../lib/modernizr.js",
     "../lib/date.js",
