@@ -1,5 +1,7 @@
 {
-  paths: {
+  "baseUrl": "app/src/js",
+
+  "paths": {
     "underscore": "../../lib/underscore",
     "backbone": "../../lib/backbone",
     "handlebars": "../../lib/handlebars",
@@ -13,45 +15,50 @@
     "srgs-parser": "../../lib/srgs-parser"
   },
 
-  shim: {
+  "generateSourceMaps": true,
+  "preserveLicenseComments": false,
+
+  "optimize": "none",
+
+  "shim": {
     "ovivo": {
-      deps: ["templates"]
+      "deps": ["templates"]
     },
     
     "templates": {
-      deps: ["handlebars"]
+      "deps": ["handlebars"]
     },
     
     "handlebars": {
-      deps: ["backbone"]
+      "deps": ["backbone"]
     },
     
     "backbone": {
-      deps: ["underscore"]
+      "deps": ["underscore"]
     },
     
     "underscore": {
-      deps: ["pickadate"]
+      "deps": ["pickadate"]
     },
 
     "pickadate": {
-      deps: ["jquery"]
+      "deps": ["jquery"]
     },
     
     "jquery": {
-      deps: ["date"]
+      "deps": ["date"]
     },
 
     "date": {
-      deps: ["modernizr"]
+      "deps": ["modernizr"]
     },
 
     "modernizr": {
-      deps: []
+      "deps": []
     }
   },
 
-  name: 'main',
+  "name": "main",
 
-  out: '../../dist/ovivo-desktop-employee-require.js'
+  "out": "app/dist/ovivo-desktop-employee-require.js"
 }
