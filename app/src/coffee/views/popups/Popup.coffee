@@ -69,4 +69,4 @@ define [
     _Popup.prototype.show = _Popup.prototype._animationShow
     _Popup.prototype.hide = _Popup.prototype._animationHide
 
-  _Popup
+  _Popup

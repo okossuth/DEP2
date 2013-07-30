@@ -1,6 +1,7 @@
-(function() {
-  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['availability'] = template(function (Handlebars,depth0,helpers,partials,data) {
+this["Handlebars"] = this["Handlebars"] || {};
+this["Handlebars"]["templates"] = this["Handlebars"]["templates"] || {};
+
+this["Handlebars"]["templates"]["availability"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -17,7 +18,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>";
   return buffer;
   });
-templates['availability_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["availability_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -54,7 +56,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['calendarMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["calendarMonth"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -122,7 +125,8 @@ function program5(depth0,data) {
     + "\" />\n        </em>\n\n    </div>\n</section>";
   return buffer;
   });
-templates['calendarMonth_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["calendarMonth_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -210,7 +214,8 @@ function program6(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['calendarWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["calendarWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -234,7 +239,8 @@ function program1(depth0,data) {
     + "\" />\n    </em>\n</div>";
   return buffer;
   });
-templates['calendarWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["calendarWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -278,7 +284,8 @@ function program2(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['employeeActivity'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["employeeActivity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -295,7 +302,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>";
   return buffer;
   });
-templates['employeeActivity_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["employeeActivity_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -332,7 +340,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['employeeRowSkill'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["employeeRowSkill"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -345,7 +354,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>\n    </div>\n</div>\n\n<table class=\"day-blocks content\">\n    <tbody>\n        <tr>\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n        </tr>\n\n        <tr class=\"bottom-shadow\">\n        </tr>\n    </tbody>\n</table>";
   return buffer;
   });
-templates['employeeRowSkill_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["employeeRowSkill_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -378,7 +388,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['eventUser'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["eventUser"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -391,7 +402,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>";
   return buffer;
   });
-templates['eventUser_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["eventUser_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -424,7 +436,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['groupFilter'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["groupFilter"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -437,7 +450,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>";
   return buffer;
   });
-templates['groupFilter_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["groupFilter_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -470,7 +484,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['groups'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["groups"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -544,7 +559,8 @@ function program5(depth0,data) {
   buffer += "\n</select>";
   return buffer;
   });
-templates['groupsResourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["groupsResourceNeed"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -573,7 +589,8 @@ function program1(depth0,data) {
   buffer += "\n</ul>";
   return buffer;
   });
-templates['notification'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["notification"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -594,7 +611,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</p>\n\n    <i class=\"mark\"></i>\n</div>";
   return buffer;
   });
-templates['notificationMessage'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["notificationMessage"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -607,7 +625,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>\n</div>";
   return buffer;
   });
-templates['notification_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["notification_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -648,7 +667,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['period'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -736,7 +756,8 @@ function program11(depth0,data) {
   buffer += "</span>\n        </li>\n    </ul>\n</div>";
   return buffer;
   });
-templates['periodBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodBlock"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -817,7 +838,8 @@ function program5(depth0,data) {
   buffer += "\n</ul>";
   return buffer;
   });
-templates['periodBlockWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodBlockWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -838,7 +860,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span></span>\n        </div>\n    </td>\n</tr>";
   return buffer;
   });
-templates['periodBlockWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodBlockWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -879,7 +902,8 @@ function program1(depth0,data) {
   buffer += "\n\n</div>";
   return buffer;
   });
-templates['periodGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -887,7 +911,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   return "<h1 class=\"title\">\n    <span class=\"group-name\"></span>\n</h1>\n\n<ul class=\"time-groups\">\n</ul>\n\n<ul class=\"skill-groups\">\n</ul>\n\n<ul class=\"children-groups\">\n</ul>";
   });
-templates['periodGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -916,7 +941,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['periodMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["periodMonth"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -929,7 +955,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "\n</h1>\n\n<ul class=\"periods\">\n</ul>";
   return buffer;
   });
-templates['period_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["period_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1037,7 +1064,8 @@ function program12(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['primaryDepartments'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["primaryDepartments"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1066,7 +1094,8 @@ function program1(depth0,data) {
   buffer += "\n</select>";
   return buffer;
   });
-templates['resourceBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceBlock"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1099,7 +1128,8 @@ function program1(depth0,data) {
   buffer += "\n    </ul>\n</div>";
   return buffer;
   });
-templates['resourceBlock_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceBlock_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1152,7 +1182,8 @@ function program2(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeed"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -1182,7 +1213,8 @@ function program1(depth0,data) {
   buffer += ")</em>\n        </h2>\n    </div>\n</div>";
   return buffer;
   });
-templates['resourceNeedEdit'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedEdit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
@@ -1326,7 +1358,8 @@ function program19(depth0,data) {
   buffer += "</i>\n    </div>\n</div>";
   return buffer;
   });
-templates['resourceNeedEdit_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedEdit_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1490,7 +1523,8 @@ function program20(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeedSkillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedSkillGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -1515,7 +1549,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span></span>";
   return buffer;
   });
-templates['resourceNeedSkillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedSkillGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1560,7 +1595,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeedTimeGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedTimeGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -1577,7 +1613,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>\n</div>\n\n<ul class=\"resource-needs-rows\">\n</ul>";
   return buffer;
   });
-templates['resourceNeedTimeGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedTimeGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1614,7 +1651,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeedWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -1622,7 +1660,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   return "<table class=\"day-blocks header\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n\n        <tr class=\"bottom-shadow\">\n        </tr>\n    </tbody>\n</table>\n\n<table class=\"day-blocks content\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n    </tbody>\n</table>\n\n<table class=\"day-blocks footer\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n    </tbody>\n</table>";
   });
-templates['resourceNeedWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeedWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1651,7 +1690,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeed_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeed_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
@@ -1701,7 +1741,8 @@ function program2(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['resourceNeeds'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["resourceNeeds"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1734,7 +1775,8 @@ function program1(depth0,data) {
   buffer += "\n</select>";
   return buffer;
   });
-templates['scale'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["scale"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1770,7 +1812,8 @@ function program2(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['skillColumns'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["skillColumns"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1799,7 +1842,8 @@ function program1(depth0,data) {
   buffer += "\n</ul>";
   return buffer;
   });
-templates['skillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["skillGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -1807,7 +1851,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   return "<div class=\"table-container header\">\n    <div class=\"side-block\">\n        <div class=\"inner\">\n            <span class=\"skill-name\"></span>\n        </div>\n\n        <div class=\"bottom-shadow\"></div>\n    </div>\n\n    <table class=\"day-blocks header\">\n        <tbody>\n            <tr>\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n            </tr>\n\n            <tr class=\"bottom-shadow\">\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<div class=\"employee-rows\">\n</div>";
   });
-templates['skillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["skillGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1836,7 +1881,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['skills'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["skills"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1865,7 +1911,38 @@ function program1(depth0,data) {
   buffer += "\n</select>";
   return buffer;
   });
-templates['template'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["speechResults"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <li class=\"";
+  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n";
+  return buffer;
+  }
+
+  buffer += "<ul class=\"results\">\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.results) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.results; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.results) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["template"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -1878,7 +1955,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>\n<ul class=\"dropdown\" style=\"display: none;\">\n    <li>Edit</li>\n    <li>Delete</li>\n</ul>";
   return buffer;
   });
-templates['template_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["template_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1911,7 +1989,8 @@ function program1(depth0,data) {
   buffer += "\n\n</ul>";
   return buffer;
   });
-templates['templates'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["templates"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1944,7 +2023,8 @@ function program1(depth0,data) {
   buffer += "\n</select>";
   return buffer;
   });
-templates['timelineSkills'] = template(function (Handlebars,depth0,helpers,partials,data) {
+
+this["Handlebars"]["templates"]["timelineSkills"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1973,4 +2053,3 @@ function program1(depth0,data) {
   buffer += "\n</ul>";
   return buffer;
   });
-})();

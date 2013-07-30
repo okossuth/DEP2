@@ -9860,1811 +9860,29 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 define("jquery.mousewheel", ["jquery"], function(){});
 
 /*!
- * pickadate.js v2.1.7 - 25 March, 2013
- * By Amsul (http://amsul.ca)
- * Hosted on https://github.com/amsul/pickadate.js
- * Licensed under MIT ("expat" flavour) license.
+ * pickadate.js v3.1.2, 2013/07/06
+ * By Amsul, http://amsul.ca
+ * Hosted on http://amsul.github.io/pickadate.js
+ * Licensed under MIT
  */
+window.Picker=function(e,t,n){function r(i,o,a,s){function c(){return r._.node("div",r._.node("div",r._.node("div",r._.node("div",f.component.nodes(u.open),m.box),m.wrap),m.frame),m.holder)}function l(e){e.stopPropagation(),"focus"==e.type&&f.$root.addClass(m.focused),f.open()}if(!i)return r;var u={id:Math.abs(~~(1e9*Math.random()))},d=a?e.extend(!0,{},a.defaults,s):s||{},m=e.extend({},r.klasses(),d.klass),p=e(i),h=function(){return this.start()},f=h.prototype={constructor:h,$node:p,start:function(){return u&&u.start?f:(u.methods={},u.start=!0,u.open=!1,u.type=i.type,i.autofocus=i==document.activeElement,i.type="text",i.readOnly=!0,f.component=new a(f,d),f.$root=e(r._.node("div",c(),m.picker)).on({focusin:function(e){f.$root.removeClass(m.focused),e.stopPropagation()},mousedown:function(e){e.target!=f.$root.children()[0]&&e.stopPropagation()},click:function(t){var n=t.target,o=n.attributes.length?e(n):e(n).closest("[data-pick]"),a=o.data();n!=f.$root.children()[0]&&(t.stopPropagation(),f.$root.find(document.activeElement).length||i.focus(),a.nav&&!o.hasClass(m.navDisabled)?f.set("highlight",f.component.item.highlight,{nav:a.nav}):r._.isInteger(a.pick)&&!o.hasClass(m.disabled)?f.set("select",a.pick).close(!0):a.clear&&f.clear().close(!0))}}),f._hidden=d.formatSubmit?e("<input type=hidden name="+i.name+(d.hiddenSuffix||"_submit")+(p.data("value")?' value="'+r._.trigger(f.component.formats.toString,f.component,[d.formatSubmit,f.component.item.select])+'"':"")+">")[0]:n,p.addClass(m.input).on("focus.P"+u.id+" click.P"+u.id,l).on("change.P"+u.id,function(){f._hidden&&(f._hidden.value=i.value?r._.trigger(f.component.formats.toString,f.component,[d.formatSubmit,f.component.item.select]):"")}).on("keydown.P"+u.id,function(e){var t=e.keyCode,r=/^(8|46)$/.test(t);return 27==t?(f.close(),!1):((32==t||r||!u.open&&f.component.key[t])&&(e.preventDefault(),e.stopPropagation(),r?f.clear().close():f.open()),n)}).val(p.data("value")?r._.trigger(f.component.formats.toString,f.component,[d.format,f.component.item.select]):i.value).after(f.$root,f._hidden).data(o,f),f.on({start:f.component.onStart,render:f.component.onRender,stop:f.component.onStop,open:f.component.onOpen,close:f.component.onClose,set:f.component.onSet}).on({start:d.onStart,render:d.onRender,stop:d.onStop,open:d.onOpen,close:d.onClose,set:d.onSet}),i.autofocus&&f.open(),f.trigger("start").trigger("render"))},render:function(){return f.$root.html(c()),f.trigger("render")},stop:function(){return u.start?(f.close(),f._hidden&&f._hidden.parentNode.removeChild(f._hidden),f.$root.remove(),p.removeClass(m.input).off(".P"+u.id).removeData(o),i.type=u.type,i.readOnly=!1,f.trigger("stop"),u.methods={},u.start=!1,f):f},open:function(e){return u.open?f:(p.addClass(m.active),f.$root.addClass(m.opened),e!==!1&&(u.open=!0,p.focus(),t.on("click.P"+u.id+" focusin.P"+u.id,function(e){e.target!=i&&e.target!=document&&f.close()}).on("keydown.P"+u.id,function(e){var t=e.keyCode,n=f.component.key[t],o=e.target;27==t?f.close(!0):o!=i||!n&&13!=t?f.$root.find(o).length&&13==t&&(e.preventDefault(),o.click()):(e.preventDefault(),n?r._.trigger(f.component.key.go,f,[n]):f.$root.find("."+m.highlighted).hasClass(m.disabled)||f.set("select",f.component.item.highlight).close())})),f.trigger("open"))},close:function(e){return e&&(p.off("focus.P"+u.id).focus(),setTimeout(function(){p.on("focus.P"+u.id,l)},0)),p.removeClass(m.active),f.$root.removeClass(m.opened+" "+m.focused),u.open&&(u.open=!1,t.off(".P"+u.id)),f.trigger("close")},clear:function(){return f.set("clear")},set:function(e,t,n){var i,o,a=r._.isObject(e),s=a?e:{};if(e){a||(s[e]=t);for(i in s)o=s[i],f.component.item[i]&&f.component.set(i,o,n||{}),("select"==i||"clear"==i)&&p.val("clear"==i?"":r._.trigger(f.component.formats.toString,f.component,[d.format,f.component.get(i)])).trigger("change");f.render()}return f.trigger("set",s)},get:function(e,t){return e=e||"value",null!=u[e]?u[e]:"value"==e?i.value:f.component.item[e]?"string"==typeof t?r._.trigger(f.component.formats.toString,f.component,[t,f.component.get(e)]):f.component.get(e):n},on:function(e,t){var n,i,o=r._.isObject(e),a=o?e:{};if(e){o||(a[e]=t);for(n in a)i=a[n],u.methods[n]=u.methods[n]||[],u.methods[n].push(i)}return f},trigger:function(e,t){var n=u.methods[e];return n&&n.map(function(e){r._.trigger(e,f,[t])}),f}};return new h}return r.klasses=function(e){return e=e||"picker",{picker:e,opened:e+"--opened",focused:e+"--focused",input:e+"__input",active:e+"__input--active",holder:e+"__holder",frame:e+"__frame",wrap:e+"__wrap",box:e+"__box"}},r._={group:function(e){for(var t,n="",i=r._.trigger(e.min,e);r._.trigger(e.max,e,[i])>=i;i+=e.i)t=r._.trigger(e.item,e,[i]),n+=r._.node(e.node,t[0],t[1],t[2]);return n},node:function(e,t,n,r){return t?(t=Array.isArray(t)?t.join(""):t,n=n?' class="'+n+'"':"",r=r?" "+r:"","<"+e+n+r+">"+t+"</"+e+">"):""},lead:function(e){return(10>e?"0":"")+e},trigger:function(e,t,n){return"function"==typeof e?e.apply(t,n||[]):e},digits:function(e){return/\d/.test(e[1])?2:1},isObject:function(e){return{}.toString.call(e).indexOf("Object")>-1},isDate:function(e){return{}.toString.call(e).indexOf("Date")>-1&&this.isInteger(e.getDate())},isInteger:function(e){return{}.toString.call(e).indexOf("Number")>-1&&0===e%1}},r.extend=function(t,n){e.fn[t]=function(i,o){var a=this.data(t);return"picker"==i?a:a&&"string"==typeof i?(r._.trigger(a[i],a,[o]),this):this.each(function(){var o=e(this);o.data(t)||new r(this,t,n,i)})},e.fn[t].defaults=n.defaults},r}(jQuery,jQuery(document));
 
-/*jshint
-   debug: true,
-   devel: true,
-   browser: true,
-   asi: true,
-   unused: true,
-   eqnull: true
+/*!
+ * Date picker for pickadate.js v3.1.2
+ * http://amsul.github.io/pickadate.js/date.htm
  */
-
-
-
-;(function( $, document, undefined ) {
-
-    
-
-
-
-    var
-
-        // Globals & constants
-        DAYS_IN_WEEK = 7,
-        WEEKS_IN_CALENDAR = 6,
-        DAYS_IN_CALENDAR = WEEKS_IN_CALENDAR * DAYS_IN_WEEK,
-
-        STRING_DIV = 'div',
-        STRING_PREFIX_DATEPICKER = 'pickadate__',
-
-        isIE = navigator.userAgent.match( /MSIE/ ),
-
-        $document = $( document ),
-
-        $body = $( document.body ),
-
-
-        /**
-         * The picker constructor that accepts the
-         * jQuery element and the merged settings
-         */
-        Picker = function( $ELEMENT, SETTINGS ) {
-
-            var
-                // Pseudo picker constructor
-                Picker = function() {},
-
-
-                // The picker prototype
-                P = Picker.prototype = {
-
-                    constructor: Picker,
-
-                    $node: $ELEMENT,
-
-                    /**
-                     * Initialize everything
-                     */
-                    init: function() {
-
-
-                        // Bind all the events to the element,
-                        // and then insert everything after it
-                        $ELEMENT.on({
-                            'focus click': function() {
-
-                                // If it's not IE or it is IE and the calendar is not
-                                // being force closed, then open the calendar
-                                if ( !isIE || ( isIE && !CALENDAR._IE ) ) {
-                                    P.open()
-                                }
-
-                                // Add the focused state to the holder
-                                $HOLDER.addClass( CLASSES.focused )
-
-                                // Then flip the IE force close to false
-                                CALENDAR._IE = 0
-                            },
-                            blur: function() {
-                                $HOLDER.removeClass( CLASSES.focused )
-                            },
-                            change: function() {
-
-                                // If there's a hidden input, update the value with formatting or clear it
-                                if ( ELEMENT_HIDDEN ) {
-                                    ELEMENT_HIDDEN.value = ELEMENT.value ? getDateFormatted( SETTINGS.formatSubmit ) : ''
-                                }
-                            },
-                            keydown: function( event ) {
-
-                                var
-                                    // Grab the keycode
-                                    keycode = event.keyCode,
-
-                                    // Check if one of the delete keys was pressed
-                                    isKeycodeDelete = keycode == 8 || keycode == 46
-
-                                // If backspace was pressed or the calendar is closed and the keycode
-                                // warrants a date change, prevent it from going any further.
-                                if ( isKeycodeDelete || !CALENDAR.isOpen && KEYCODE_TO_DATE[ keycode ] ) {
-
-                                    // Prevent it from moving the page
-                                    event.preventDefault()
-
-                                    // Prevent it from propagating to document
-                                    eventPreventPropagation( event )
-
-                                    // If backspace was pressed, clear the values and close the picker
-                                    if ( isKeycodeDelete ) {
-                                        P.clear().close()
-                                    }
-
-                                    // Otherwise open the calendar
-                                    else {
-                                        P.open()
-                                    }
-                                }
-                            }
-                        }).after( [ $HOLDER, ELEMENT_HIDDEN ] )
-
-
-                        // If the element has autofocus, open the calendar
-                        if ( ELEMENT.autofocus ) {
-                            P.open()
-                        }
-
-
-                        // Update the calendar items
-                        CALENDAR.items = getUpdatedCalendarItems()
-
-
-                        // Trigger the `onStart` method within scope of the picker
-                        triggerFunction( SETTINGS.onStart, P )
-
-                        // Trigger the `onRender` method within scope of the picker
-                        triggerFunction( SETTINGS.onRender, P )
-
-                        return P
-                    }, //init
-
-
-                    /**
-                     * Open the calendar
-                     */
-                    open: function() {
-
-                        // If it's already open, do nothing
-                        if ( CALENDAR.isOpen ) return P
-
-
-                        // Set calendar as open
-                        CALENDAR.isOpen = 1
-
-
-                        // Toggle the tabindex of "focusable" calendar items
-                        toggleCalendarElements( 0 )
-
-
-                        // Make sure the element has focus and then
-                        // add the "active" class to the element
-                        $ELEMENT.focus().addClass( CLASSES.inputActive )
-
-                        // Add the "opened" class to the calendar holder
-                        $HOLDER.addClass( CLASSES.opened )
-
-                        // Add the "active" class to the body
-                        $body.addClass( CLASSES.bodyActive )
-
-
-                        // Bind all the events to the document
-                        // while namespacing it with the calendar ID
-                        $document.on( 'focusin.P' + CALENDAR.id, function( event ) {
-
-                            // If the target is not within the holder,
-                            // and is not the element, then close the picker
-                            if ( !$HOLDER.find( event.target ).length && event.target != ELEMENT ) P.close()
-
-                        }).on( 'click.P' + CALENDAR.id, function( event ) {
-
-                            // If the target of the click is not the element,
-                            // then close the calendar picker
-                            // * We don't worry about clicks on the holder
-                            //   because those are stopped from bubbling to the doc
-                            if ( event.target != ELEMENT ) P.close()
-
-                        }).on( 'keydown.P' + CALENDAR.id, function( event ) {
-
-                            var
-                                // Get the keycode
-                                keycode = event.keyCode,
-
-                                // Translate that to a date change
-                                keycodeToDate = KEYCODE_TO_DATE[ keycode ]
-
-
-                            // On escape, focus back onto the element and close the picker
-                            if ( keycode == 27 ) {
-                                ELEMENT.focus()
-                                P.close()
-                            }
-
-
-                            // If the target is the element and there's a keycode to date
-                            // translation or the enter key was pressed
-                            else if ( event.target == ELEMENT && ( keycodeToDate || keycode == 13 ) ) {
-
-                                // Prevent the default action to stop it from moving the page
-                                event.preventDefault()
-
-                                // If the keycode translates to a date change, superficially select
-                                // the date by incrementally (by date change) creating new validated dates.
-                                // * Truthy second argument makes it a superficial selection
-                                if ( keycodeToDate ) {
-                                    setDateSelected( createValidatedDate( [ MONTH_FOCUSED.YEAR, MONTH_FOCUSED.MONTH, DATE_HIGHLIGHTED.DATE + keycodeToDate ], keycodeToDate ), 1 )
-                                }
-
-                                // Otherwise it's the enter key so set the element value as the
-                                // highlighted date, render a new calendar, and then close it
-                                else {
-                                    setElementsValue( DATE_HIGHLIGHTED )
-                                    calendarRender()
-                                    P.close()
-                                }
-
-                            } //if ELEMENT
-                        })
-
-
-                        // Trigger the onOpen method within scope of the picker
-                        triggerFunction( SETTINGS.onOpen, P )
-
-                        return P
-                    }, //open
-
-
-                    /**
-                     * Close the calendar
-                     */
-                    close: function() {
-
-                        // If it's already closed, do nothing
-                        if ( !CALENDAR.isOpen ) return P
-
-
-                        // Set calendar as closed
-                        CALENDAR.isOpen = 0
-
-
-                        // Toggle the tabindex of "focusable" calendar items
-                        toggleCalendarElements( -1 )
-
-
-                        // Remove the "active" class from the element
-                        $ELEMENT.removeClass( CLASSES.inputActive )
-
-                        // Remove the "opened" class from the calendar holder
-                        $HOLDER.removeClass( CLASSES.opened )
-
-                        // Remove the "active" class from the body
-                        $body.removeClass( CLASSES.bodyActive )
-
-
-                        // Unbind the Picker events from the document
-                        $document.off( '.P' + CALENDAR.id )
-
-
-                        // Trigger the onClose method within scope of the picker
-                        triggerFunction( SETTINGS.onClose, P )
-
-                        return P
-                    }, //close
-
-
-                    /**
-                     * Return whether the calendar is open
-                     */
-                    isOpen: function() {
-                        return CALENDAR.isOpen === 1;
-                    }, //isOpen
-
-
-                    /**
-                     * Show a month in focus with 0index compensation
-                     */
-                    show: function( month, year ) {
-                        showMonth( --month, year )
-                        return P
-                    }, //show
-
-
-                    /**
-                     * Clear the value of the input elements
-                     */
-                    clear: function() {
-
-                        // Clear the elements value
-                        setElementsValue( 0 )
-
-                        // Render a new calendar
-                        calendarRender()
-
-                        return P
-                    }, //clear
-
-
-                    /**
-                     * Get the selected date in any format.
-                     */
-                    getDate: function( format ) {
-
-                        // If the format is a literal true, return the underlying JS Date object.
-                        // If the element has no value, just return an empty string.
-                        // Otherwise return the formatted date.
-                        return format === true ? DATE_SELECTED.OBJ : !ELEMENT.value ? '' : getDateFormatted( format )
-                    }, //getDate
-
-
-                    /**
-                     * Set the date with month 0index compensation
-                     * and an option to do a superficial selection
-                     */
-                    setDate: function( year, month, date, isSuperficial ) {
-                        setDateSelected( createValidatedDate([ year, --month, date ]), isSuperficial )
-                        return P
-                    }, //setDate
-
-
-                    /**
-                     * Get the min or max date based on `upper` being truthy or falsey
-                     */
-                    getDateLimit: function( upper, format ) {
-                        return getDateFormatted( format, upper ? DATE_MAX : DATE_MIN )
-                    }, //getDateLimit
-
-
-                    /**
-                     * Set the min or max date based on `upper` being truthy or falsey.
-                     */
-                    setDateLimit: function( limit, upper ) {
-
-                        // If it's the upper limit
-                        if ( upper ) {
-
-                            // Set the max date
-                            DATE_MAX = createBoundaryDate( limit, upper )
-
-                            // If focused month is more than max date set it to max date
-                            if ( MONTH_FOCUSED.TIME > DATE_MAX.TIME ) {
-                                MONTH_FOCUSED = DATE_MAX
-                            }
-                        }
-
-                        // Otherwise it's the lower limit
-                        else {
-
-                            // So set the min date
-                            DATE_MIN = createBoundaryDate( limit )
-
-                            // If focused month is less than min date set it to min date
-                            if ( MONTH_FOCUSED.TIME < DATE_MIN.TIME ) {
-                                MONTH_FOCUSED = DATE_MIN
-                            }
-                        }
-
-                        // Render a new calendar
-                        calendarRender()
-
-                        return P
-                    } //setDateLimit
-                }, //Picker.prototype
-
-
-                // The element node
-                ELEMENT = (function( element ) {
-
-                    // Confirm the focus state, convert the element into
-                    // a regular text input to remove user-agent stylings,
-                    // and then set it as readonly to prevent keyboard popup
-                    element.autofocus = ( element == document.activeElement )
-                    element.type = 'text'
-                    element.readOnly = true
-                    return element
-                })( $ELEMENT[ 0 ] ), //ELEMENT
-
-
-                // The calendar object
-                CALENDAR = {
-                    id: ~~( Math.random() * 1e9 )
-                }, //CALENDAR
-
-
-                // The classes
-                CLASSES = SETTINGS.klass,
-
-
-                // The date in various formats
-                DATE_FORMATS = (function() {
-
-                    // Get the length of the first word
-                    function getFirstWordLength( string ) {
-                        return string.match( /\w+/ )[ 0 ].length
-                    }
-
-                    // If the second character is a digit, length is 2 otherwise 1.
-                    function getDigitsLength( string ) {
-                        return ( /\d/ ).test( string[ 1 ] ) ? 2 : 1
-                    }
-
-                    // Get the length of the month from a string
-                    function getMonthLength( string, dateObj, collection ) {
-
-                        // Grab the first word
-                        var word = string.match( /\w+/ )[ 0 ]
-
-                        // If there's no index for the date object's month,
-                        // find it in the relevant months collection and add 1
-                        // because we subtract 1 when we create the date object
-                        if ( !dateObj.mm && !dateObj.m ) {
-                            dateObj.m = collection.indexOf( word ) + 1
-                        }
-
-                        // Return the length of the word
-                        return word.length
-                    }
-
-
-                    // Return the date formats object
-                    return {
-                        d: function( string ) {
-
-                            // If there's string, then get the digits length.
-                            // Otherwise return the selected date.
-                            return string ? getDigitsLength( string ) : this.DATE
-                        },
-                        dd: function( string ) {
-
-                            // If there's a string, then the length is always 2.
-                            // Otherwise return the selected date with a leading zero.
-                            return string ? 2 : leadZero( this.DATE )
-                        },
-                        ddd: function( string ) {
-
-                            // If there's a string, then get the length of the first word.
-                            // Otherwise return the short selected weekday.
-                            return string ? getFirstWordLength( string ) : SETTINGS.weekdaysShort[ this.DAY ]
-                        },
-                        dddd: function( string ) {
-
-                            // If there's a string, then get the length of the first word.
-                            // Otherwise return the full selected weekday.
-                            return string ? getFirstWordLength( string ) : SETTINGS.weekdaysFull[ this.DAY ]
-                        },
-                        m: function( string ) {
-
-                            // If there's a string, then get the length of the digits
-                            // Otherwise return the selected month with 0index compensation.
-                            return string ? getDigitsLength( string ) : this.MONTH + 1
-                        },
-                        mm: function( string ) {
-
-                            // If there's a string, then the length is always 2.
-                            // Otherwise return the selected month with 0index and leading zero.
-                            return string ? 2 : leadZero( this.MONTH + 1 )
-                        },
-                        mmm: function( string, dateObject ) {
-
-                            var collection = SETTINGS.monthsShort
-
-                            // If there's a string, get length of the relevant month string
-                            // from the short months collection. Otherwise return the
-                            // selected month from that collection.
-                            return string ? getMonthLength( string, dateObject, collection ) : collection[ this.MONTH ]
-                        },
-                        mmmm: function( string, dateObject ) {
-
-                            var collection = SETTINGS.monthsFull
-
-                            // If there's a string, get length of the relevant month string
-                            // from the full months collection. Otherwise return the
-                            // selected month from that collection.
-                            return string ? getMonthLength( string, dateObject, collection ) : collection[ this.MONTH ]
-                        },
-                        yy: function( string ) {
-
-                            // If there's a string, then the length is always 2.
-                            // Otherwise return the selected year by slicing out the first 2 digits.
-                            return string ? 2 : ( '' + this.YEAR ).slice( 2 )
-                        },
-                        yyyy: function( string ) {
-
-                            // If there's a string, then the length is always 4.
-                            // Otherwise return the selected year.
-                            return string ? 4 : this.YEAR
-                        },
-
-                        // Create an array by splitting the format passed
-                        toArray: function( format ) { return format.split( /(?=\b)(d{1,4}|m{1,4}|y{4}|yy)+(\b)/g ) }
-
-                    } //endreturn
-                })(), //DATE_FORMATS
-
-
-                // Create calendar object for today
-                DATE_TODAY = createDate(),
-
-
-                // Create the min date
-                DATE_MIN = createBoundaryDate( SETTINGS.dateMin ),
-
-
-                // Create the max date
-                // * A truthy second argument creates max date
-                DATE_MAX = createBoundaryDate( SETTINGS.dateMax, 1 ),
-
-
-                // Create a pseudo min and max date for disabled
-                // calendars as the respective opposite limit
-                PSEUDO_DATE_MIN = DATE_MAX,
-                PSEUDO_DATE_MAX = DATE_MIN,
-
-
-                // Create a collection of dates to disable
-                DATES_TO_DISABLE = (function( datesCollection ) {
-
-                    // If a collection was passed, we need to create calendar date objects
-                    if ( Array.isArray( datesCollection ) ) {
-
-                        // If the "all" flag is true, remove the flag from the collection
-                        // and flip the condition of which dates to disable
-                        if ( datesCollection[ 0 ] === true ) {
-                            CALENDAR.off = datesCollection.shift()
-                        }
-
-                        // Map through the dates passed and return the collection
-                        return datesCollection.map( function( date ) {
-
-                            // If the date is a number, we need to disable weekdays
-                            if ( !isNaN( date ) ) {
-
-                                // So flip the "off days" boolean
-                                CALENDAR.offDays = 1
-
-                                // If the first day flag is truthy, we maintain the
-                                // 0index of the date by getting the remainder from 7.
-                                // Otherwise return the date with 0index compensation.
-                                return SETTINGS.firstDay ? date % DAYS_IN_WEEK : --date
-                            }
-
-                            // Otherwise assume it's an array and fix the month 0index
-                            --date[ 1 ]
-
-                            // Then create and return the date,
-                            // replacing it in the collection
-                            return createDate( date )
-                        })
-                    }
-                })( SETTINGS.datesDisabled ), //DATES_TO_DISABLE
-
-
-                // Create a function that will filter through the dates
-                // and return true if looped date is to be disabled
-                DISABLED_DATES = (function() {
-
-                    // Check if the looped date should be disabled
-                    // based on the time being the same as a disabled date
-                    // or the day index being within the collection
-                    var isDisabledDate = function( date ) {
-                        return this.TIME == date.TIME || DATES_TO_DISABLE.indexOf( this.DAY ) > -1
-                    }
-
-
-                    // If all calendar dates should be disabled
-                    if ( CALENDAR.off ) {
-
-                        // Map through all the dates to disable
-                        DATES_TO_DISABLE.map( function( loopDate ) {
-
-                            // If the looped date is less than the latest lowest date
-                            // and greater than the minimum date, then set it as the lowest date
-                            if ( loopDate.TIME < PSEUDO_DATE_MIN.TIME && loopDate.TIME > DATE_MIN.TIME ) {
-                                PSEUDO_DATE_MIN = loopDate
-                            }
-
-                            // If the looped date is more than the latest highest date
-                            // and less than the maximum date, then set it as the highest date
-                            if ( loopDate.TIME > PSEUDO_DATE_MAX.TIME && loopDate.TIME <= DATE_MAX.TIME ) {
-                                PSEUDO_DATE_MAX = loopDate
-                            }
-                        })
-
-                        // Finally, return a function that maps each date
-                        // in the collection of dates to not disable.
-                        return function( date, i, collection ) {
-
-                            // Map the array of disabled dates and check if this is not one
-                            return ( collection.map( isDisabledDate, this ).indexOf( true ) < 0 )
-                        }
-                    }
-
-
-                    // Otherwise just return the function that checks if a date is disabled
-                    return isDisabledDate
-                })(), //DISABLED_DATES
-
-
-                // Create calendar object for the highlighted day
-                DATE_HIGHLIGHTED = (function( dateDataValue, dateEntered ) {
-
-                    // If there a date `data-value`
-                    if ( dateDataValue ) {
-
-                        // Set the date entered to an empty object
-                        dateEntered = {}
-
-                        // Map through the submit format array
-                        DATE_FORMATS.toArray( SETTINGS.formatSubmit ).map( function( formatItem ) {
-
-                            // If the formatting length function exists, invoke it
-                            // with the `data-value` and the date we are creating.
-                            // Otherwise it's the length of the formatting item being mapped
-                            var formattingLength = DATE_FORMATS[ formatItem ] ? DATE_FORMATS[ formatItem ]( dateDataValue, dateEntered ) : formatItem.length
-
-                            // If the formatting length function exists, slice up
-                            // the value and pass it into the date we're creating.
-                            if ( DATE_FORMATS[ formatItem ] ) {
-                                dateEntered[ formatItem ] = dateDataValue.slice( 0, formattingLength )
-                            }
-
-                            // Update the remainder of the string by slicing away the format length
-                            dateDataValue = dateDataValue.slice( formattingLength )
-                        })
-
-                        // Finally, create an array with the date entered while
-                        // parsing each item as an integer and compensating for 0index
-                        dateEntered = [ +(dateEntered.yyyy || dateEntered.yy), +(dateEntered.mm || dateEntered.m) - 1, +(dateEntered.dd || dateEntered.d) ]
-                    }
-
-
-                    // Otherwise, try to natively parse the date in the input
-                    else {
-                        dateEntered = Date.parse( dateEntered )
-                    }
-
-
-                    // If there's a valid date in the input or the dateEntered
-                    // is now an array, create a validated date with it.
-                    // Otherwise set the highlighted date to today after validating.
-                    return createValidatedDate( dateEntered && ( !isNaN( dateEntered ) || Array.isArray( dateEntered ) ) ? dateEntered : DATE_TODAY )
-                })( ELEMENT.getAttribute( 'data-value' ), ELEMENT.value ),
-
-
-                // The date selected is initially the date highlighted
-                DATE_SELECTED = DATE_HIGHLIGHTED,
-
-
-                // Month focused is based on highlighted date
-                MONTH_FOCUSED = DATE_HIGHLIGHTED,
-
-
-                // If there's a format for the hidden input element, create the element
-                // using the name of the original input plus suffix and update the value
-                // with whatever is entered in the input on load. Otherwise set it to null.
-                ELEMENT_HIDDEN = SETTINGS.formatSubmit ? $( '<input type=hidden name=' + ELEMENT.name + SETTINGS.hiddenSuffix + '>' ).val( ELEMENT.value ? getDateFormatted( SETTINGS.formatSubmit ) : '' )[ 0 ] : null,
-
-
-                // Create the calendar table head with weekday labels
-                // by "copying" the weekdays collection based on the settings.
-                // * We do a copy so we don't mutate the original array.
-                TABLE_HEAD = (function( weekdaysCollection ) {
-
-                    // If the first day should be Monday, then grab
-                    // Sunday and push it to the end of the collection
-                    if ( SETTINGS.firstDay ) {
-                        weekdaysCollection.push( weekdaysCollection.splice( 0, 1 )[ 0 ] )
-                    }
-
-                    // Go through each day of the week and return a wrapped header row.
-                    // Take the result and apply anoth table head wrapper to group it all.
-                    return createNode( 'thead',
-                        createNode( 'tr',
-                            weekdaysCollection.map( function( weekday ) {
-                                return createNode( 'th', weekday, CLASSES.weekdays )
-                            })
-                        )
-                    )
-                })( ( SETTINGS.showWeekdaysShort ? SETTINGS.weekdaysShort : SETTINGS.weekdaysFull ).slice( 0 ) ), //TABLE_HEAD
-
-
-                // Create the calendar holder with a new wrapped calendar and bind the events
-                $HOLDER = $( createNode( STRING_DIV, createCalendarWrapped(), CLASSES.holder ) ).on( 'mousedown', function( event ) {
-
-                    // If the target of the event is not one of the calendar items,
-                    // prevent default action to keep focus on the input element
-                    if ( CALENDAR.items.indexOf( event.target ) < 0 ) {
-                        event.preventDefault()
-                    }
-                }).on( 'click', function( event ) {
-
-                    // If the calendar is closed and there appears to be no click, do nothing
-                    // * This is done to prevent the "enter" key propagating as a click.
-                    //   On all browsers (except old IEs) the client click x & y are 0.
-                    if ( !CALENDAR.isOpen && !event.clientX && !event.clientY ) {
-                        return
-                    }
-
-                    var
-                        dateToSelect,
-
-                        // Get the jQuery target
-                        $target = $( event.target ),
-
-                        // Get the target data
-                        targetData = $target.data()
-
-
-                    // Stop the event from bubbling to the document
-                    eventPreventPropagation( event )
-
-
-                    // Put focus back onto the element
-                    ELEMENT.focus()
-
-                    // For IE, set the calendar to force close
-                    // * This needs to be after `ELEMENT.focus()`
-                    CALENDAR._IE = 1
-
-
-                    // If a navigator button was clicked,
-                    // show the month in the relative direction
-                    if ( targetData.nav ) {
-                        showMonth( MONTH_FOCUSED.MONTH + targetData.nav )
-                    }
-
-                    // If a clear button was clicked,
-                    // clear the elements value and then close it
-                    else if ( targetData.clear ) {
-                        P.clear().close()
-                    }
-
-                    // If a date was clicked
-                    else if ( targetData.date ) {
-
-                        // Split the target data into an array
-                        dateToSelect = targetData.date.split( '/' )
-
-                        // Set the date and then close the calendar
-                        P.setDate( +dateToSelect[ 0 ], +dateToSelect[ 1 ], +dateToSelect[ 2 ] ).close()
-                    }
-
-                    // If the target is the holder, close the picker
-                    else if ( $target[ 0 ] == $HOLDER[ 0 ] ) {
-                        P.close()
-                    }
-                }), // $HOLDER
-
-
-                // Translate a keycode to a relative change in date
-                KEYCODE_TO_DATE = {
-
-                    // Down
-                    40: 7,
-
-                    // Up
-                    38: -7,
-
-                    // Right
-                    39: 1,
-
-                    // Left
-                    37: -1
-                } //KEYCODE_TO_DATE
-
-
-
-            /**
-             * Create a bounding date allowed on the calendar
-             * * A truthy second argument creates the upper boundary
-             */
-            function createBoundaryDate( limit, upper ) {
-
-                // If the limit is set to true, just return today
-                if ( limit === true ) {
-                    return DATE_TODAY
-                }
-
-                // If the limit is an array, construct the date by fixing month 0index
-                if ( Array.isArray( limit ) ) {
-                    --limit[ 1 ]
-                    return createDate( limit )
-                }
-
-                // If there is a limit and its a number, create a
-                // calendar date relative to today by adding the limit
-                if ( limit && !isNaN( limit ) ) {
-                    return createDate([ DATE_TODAY.YEAR, DATE_TODAY.MONTH, DATE_TODAY.DATE + limit ])
-                }
-
-                // Otherwise create an infinite date
-                return createDate( 0, upper ? Infinity : -Infinity )
-            } //createBoundaryDate
-
-
-            /**
-             * Create a validated date
-             */
-            function createValidatedDate( datePassed, direction, skipMonthCheck ) {
-
-
-                // If the date passed isn't a date, create one
-                datePassed = !datePassed.TIME ? createDate( datePassed ) : datePassed
-
-
-                // If the calendar "disabled" flag is truthy and there are only disabled weekdays
-                if ( CALENDAR.off && !CALENDAR.offDays ) {
-
-                    // If the date is less than the pseudo min date or greater than pseudo max date,
-                    // set it as the pseudo date limit. Otherwise keep it the same.
-                    datePassed = datePassed.TIME < PSEUDO_DATE_MIN.TIME ? PSEUDO_DATE_MIN : datePassed.TIME > PSEUDO_DATE_MAX.TIME ? PSEUDO_DATE_MAX : datePassed
-                }
-
-                // Otherwise if there are disabled dates
-                else if ( DATES_TO_DISABLE ) {
-
-                    // Create a reference to the original date passed
-                    var originalDate = datePassed
-
-                    // Check if this date is disabled. If it is,
-                    // then keep adding the direction (or 1) to the date
-                    // until we get to a date that's enabled.
-                    while ( DATES_TO_DISABLE.filter( DISABLED_DATES, datePassed ).length ) {
-
-                        // Otherwise create the next date based on the direction
-                        datePassed = createDate([ datePassed.YEAR, datePassed.MONTH, datePassed.DATE + ( direction || 1 ) ])
-
-                        // Check if the month check should be skipped to avoid extra loops.
-                        // Otherwise if we've gone through to another month, create a new
-                        // date based on the direction being less than zero (rather than more).
-                        // Then set this new date as the original and looped date.
-                        if ( !skipMonthCheck && datePassed.MONTH != originalDate.MONTH ) {
-                            originalDate = datePassed = createDate([ originalDate.YEAR, originalDate.MONTH, direction < 0 ? --originalDate.DATE : ++originalDate.DATE ])
-                        }
-                    }
-                }
-
-
-                // If it's less that min date, set it to min date
-                // by creating a validated date by adding one
-                // until we find an enabled date
-                // * A truthy third argument skips the month check
-                if ( datePassed.TIME < DATE_MIN.TIME ) {
-                    datePassed = createValidatedDate( DATE_MIN, 1, 1 )
-                }
-
-
-                // If it's more than max date, set it to max date
-                // by creating a validated date by subtracting one
-                // until we find an enabled date
-                // * A truthy third argument skips the month check
-                else if ( datePassed.TIME > DATE_MAX.TIME ) {
-                    datePassed = createValidatedDate( DATE_MAX, -1, 1 )
-                }
-
-
-                // Finally, return the date
-                return datePassed
-            } //createValidatedDate
-
-
-            /**
-             * Create the nav for next/prev month
-             */
-            function createMonthNav( next ) {
-
-                // If the focused month is outside the range, return an empty string
-                if ( ( next && MONTH_FOCUSED.YEAR >= DATE_MAX.YEAR && MONTH_FOCUSED.MONTH >= DATE_MAX.MONTH ) || ( !next && MONTH_FOCUSED.YEAR <= DATE_MIN.YEAR && MONTH_FOCUSED.MONTH <= DATE_MIN.MONTH ) ) {
-                    return ''
-                }
-
-                // Otherwise, return the created month tag
-                var monthTag = 'month' + ( next ? 'Next' : 'Prev' )
-                return createNode( STRING_DIV, SETTINGS[ monthTag ], CLASSES[ monthTag ], 'data-nav=' + ( next || -1 ) )
-            } //createMonthNav
-
-
-            /**
-             * Create the month label
-             */
-            function createMonthLabel( monthsCollection ) {
-
-
-                // If there's a need for a month selector
-                return SETTINGS.monthSelector ?
-
-                    // Create the dom string node for a select element
-                    createNode( 'select',
-
-                        // Map through the months collection
-                        monthsCollection.map( function( month, monthIndex ) {
-
-                            // Create a dom string node for each option
-                            return createNode( 'option',
-
-                                // With the month and no classes
-                                month, 0,
-
-                                // Set the value and selected index
-                                'value=' + monthIndex + ( MONTH_FOCUSED.MONTH == monthIndex ? ' selected' : '' ) +
-
-                                // Plus the disabled attribute if it's outside the range
-                                getMonthInRange( monthIndex, MONTH_FOCUSED.YEAR, ' disabled', '' )
-                            )
-                        }),
-
-                        // The month selector class
-                        CLASSES.selectMonth,
-
-                        // And some tabindex
-                        getTabindexState()
-
-                    // Otherwise just return the month focused
-                    ) : createNode( STRING_DIV, monthsCollection[ MONTH_FOCUSED.MONTH ], CLASSES.month )
-            } //createMonthLabel
-
-
-            /**
-             * Create the year label
-             */
-            function createYearLabel() {
-
-                var
-                    yearFocused = MONTH_FOCUSED.YEAR,
-                    yearsInSelector = SETTINGS.yearSelector
-
-
-                // If there is a need for a years selector
-                // then create a dropdown within the valid range
-                if ( yearsInSelector ) {
-
-                    // If year selector setting is true, default to 5.
-                    // Otherwise divide the years in selector in half
-                    // to get half before and half after
-                    yearsInSelector = yearsInSelector === true ? 5 : ~~( yearsInSelector / 2 )
-
-                    var
-                        // Create a collection to hold the years
-                        yearsCollection = [],
-
-                        // The lowest year possible is the difference between
-                        // the focused year and the number of years in the selector
-                        lowestYear = yearFocused - yearsInSelector,
-
-                        // The first year is the lower of the two numbers:
-                        // the lowest year or the minimum year.
-                        firstYear = getNumberInRange( lowestYear, DATE_MIN.YEAR ),
-
-                        // The highest year is the sum of the focused year
-                        // and the years in selector plus the left over years.
-                        highestYear = yearFocused + yearsInSelector + ( firstYear - lowestYear ),
-
-                        // The last year is the higher of the two numbers:
-                        // the highest year or the maximum year.
-                        lastYear = getNumberInRange( highestYear, DATE_MAX.YEAR, 1 )
-
-
-                    // In case there are leftover years to put in the selector,
-                    // we need to get the lower of the two numbers:
-                    // the lowest year minus leftovers, or the minimum year
-                    firstYear = getNumberInRange( lowestYear - ( highestYear - lastYear ), DATE_MIN.YEAR )
-
-
-                    // Add the years to the collection by looping through the range
-                    for ( var index = 0; index <= lastYear - firstYear; index += 1 ) {
-                        yearsCollection.push( firstYear + index )
-                    }
-
-
-                    // Create the dom string node for a select element
-                    return createNode( 'select',
-
-                        // Map through the years collection
-                        yearsCollection.map( function( year ) {
-
-                            // Create a dom string node for each option
-                            return createNode( 'option',
-
-                                // With the year and no classes
-                                year, 0,
-
-                                // Set the value and selected index
-                                'value=' + year + ( yearFocused == year ? ' selected' : '' )
-                            )
-                        }),
-
-                        // The year selector class
-                        CLASSES.selectYear,
-
-                        // And some tabindex
-                        getTabindexState()
-                    )
-                }
-
-
-                // Otherwise just return the year focused
-                return createNode( STRING_DIV, yearFocused, CLASSES.year )
-            } //createYearLabel
-
-
-            /**
-             * Create the calendar table body
-             */
-            function createTableBody() {
-
-                var
-                    // The loop date object
-                    loopDate,
-
-                    // A pseudo index will be the divider between
-                    // the previous month and the focused month
-                    pseudoIndex,
-
-                    // An array that will hold the classes
-                    // and binding for each looped date
-                    classAndBinding,
-
-                    // Collection of the dates visible on the calendar
-                    // * This gets discarded at the end
-                    calendarDates = [],
-
-                    // Weeks visible on the calendar
-                    calendarWeeks = '',
-
-                    // Count the number of days in the focused month
-                    // by getting the 0-th date of the next month
-                    countMonthDays = createDate([ MONTH_FOCUSED.YEAR, MONTH_FOCUSED.MONTH + 1, 0 ]).DATE,
-
-                    // Count the days to shift the start of the month
-                    // by getting the day the first of the month falls on
-                    // and subtracting 1 to compensate for day 1index
-                    // or 2 if "Monday" should be the first day.
-                    countShiftby = createDate([ MONTH_FOCUSED.YEAR, MONTH_FOCUSED.MONTH, 1 ]).DAY + ( SETTINGS.firstDay ? -2 : -1 )
-
-
-                // If the count to shift by is less than the first day
-                // of the month, then add a week.
-                countShiftby += countShiftby < -1 ? 7 : 0
-
-
-                // Go through all the days in the calendar
-                // and map a calendar date
-                for ( var index = 0; index < DAYS_IN_CALENDAR; index += 1 ) {
-
-                    // Get the distance between the index and the count
-                    // to shift by. This will serve as the separator
-                    // between the previous, current, and next months.
-                    pseudoIndex = index - countShiftby
-
-
-                    // Create a calendar date with a negative or positive pseudoIndex
-                    loopDate = createDate([ MONTH_FOCUSED.YEAR, MONTH_FOCUSED.MONTH, pseudoIndex ])
-
-
-                    // Set the date class and bindings on the looped date.
-                    // If the pseudoIndex is greater than zero,
-                    // and less or equal to the days in the month,
-                    // we need dates from the focused month.
-                    classAndBinding = createDateClassAndBinding( loopDate, ( pseudoIndex > 0 && pseudoIndex <= countMonthDays ) )
-
-
-                    // Create the looped date wrapper,
-                    // and then create the table cell wrapper
-                    // and finally pass it to the calendar array
-                    calendarDates.push( createNode( 'td', createNode( STRING_DIV, loopDate.DATE, classAndBinding[ 0 ], classAndBinding[ 1 ] ) ) )
-
-
-                    // Check if it's the end of a week.
-                    // * We add 1 for 0index compensation
-                    if ( ( index % DAYS_IN_WEEK ) + 1 == DAYS_IN_WEEK ) {
-
-                        // Wrap the week and append it into the calendar weeks
-                        calendarWeeks += createNode( 'tr', calendarDates.splice( 0, DAYS_IN_WEEK ) )
-                    }
-
-                } //endfor
-
-
-
-                // Join the dates and wrap the calendar body
-                return createNode( 'tbody', calendarWeeks, CLASSES.body )
-            } //createTableBody
-
-
-
-            /**
-             * Create the class and data binding for a looped date node.
-             * Returns an array with 2 items:
-             * 1) The classes string
-             * 2) The data binding string
-             */
-            function createDateClassAndBinding( loopDate, isMonthFocused ) {
-
-                var
-                    // State check for date
-                    isDateDisabled,
-
-                    // Create a collection for the classes
-                    // with the default classes already included
-                    klassCollection = [
-
-                        // The generic day class
-                        CLASSES.day,
-
-                        // The class for in or out of focus
-                        ( isMonthFocused ? CLASSES.dayInfocus : CLASSES.dayOutfocus )
-                    ]
-
-
-                // If it's less than the minimum date or greater than the maximum date,
-                // or if there are dates to disable and this looped date is one of them,
-                // flip the "disabled" state to truthy and add the "disabled" class
-                if ( loopDate.TIME < DATE_MIN.TIME || loopDate.TIME > DATE_MAX.TIME || ( DATES_TO_DISABLE && DATES_TO_DISABLE.filter( DISABLED_DATES, loopDate ).length ) ) {
-                    isDateDisabled = 1
-                    klassCollection.push( CLASSES.dayDisabled )
-                }
-
-
-                // If it's today, add the class
-                if ( loopDate.TIME == DATE_TODAY.TIME ) {
-                    klassCollection.push( CLASSES.dayToday )
-                }
-
-
-                // If it's the highlighted date, add the class
-                if ( loopDate.TIME == DATE_HIGHLIGHTED.TIME ) {
-                    klassCollection.push( CLASSES.dayHighlighted )
-                }
-
-
-                // If it's the selected date, add the class
-                if ( loopDate.TIME == DATE_SELECTED.TIME ) {
-                    klassCollection.push( CLASSES.daySelected )
-                }
-
-
-                // Return an array with the classes and data binding
-                return [
-
-                    // Return the classes joined
-                    // by a single whitespace
-                    klassCollection.join( ' ' ),
-
-                    // Create the data binding object
-                    // with the value as a string
-                    'data-' + ( isDateDisabled ? 'disabled' : 'date' ) + '=' + [
-                        loopDate.YEAR,
-                        loopDate.MONTH + 1, // add 1 to display an accurate date
-                        loopDate.DATE
-                    ].join( '/' )
-                ]
-            } //createDateClassAndBinding
-
-
-            /**
-             * Create the "today" and "clear" buttons
-             */
-            function createTodayAndClear() {
-                return createNode( 'button', SETTINGS.today, CLASSES.buttonToday, 'data-date=' + getDateFormatted( 'yyyy/mm/dd', DATE_TODAY ) + ' ' + getTabindexState() ) + createNode( 'button', SETTINGS.clear, CLASSES.buttonClear, 'data-clear=1 ' + getTabindexState() )
-            } //createTodayAndClear
-
-
-            /**
-             * Create the wrapped calendar using the collection
-             * of all calendar items and a new table body
-             */
-            function createCalendarWrapped() {
-
-                // Create a calendar wrapper node
-                return createNode( STRING_DIV,
-
-                    // Create a calendar frame
-                    createNode( STRING_DIV,
-
-                        // Create a calendar box node
-                        createNode( STRING_DIV,
-
-                            // The calendar header
-                            createNode( STRING_DIV,
-
-                                // The prev/next month tags
-                                // * Truthy argument creates "next" tag
-                                createMonthNav() + createMonthNav( 1 ) +
-
-                                // Create the month label
-                                createMonthLabel( SETTINGS.showMonthsFull ? SETTINGS.monthsFull : SETTINGS.monthsShort ) +
-
-                                // Create the year label
-                                createYearLabel(),
-
-                                // The header class
-                                CLASSES.header
-                             ) +
-
-                            // The calendar table with table head
-                            // and a new calendar table body
-                            createNode( 'table', [ TABLE_HEAD, createTableBody() ], CLASSES.table ) +
-
-                            // Create the "today" and "clear" buttons
-                            createNode( STRING_DIV, createTodayAndClear(), CLASSES.footer ),
-
-                            // Calendar class
-                            CLASSES.calendar
-                        ),
-
-                        // Calendar wrap class
-                        CLASSES.wrap
-                    ),
-
-                    // Calendar frame class
-                    CLASSES.frame
-                ) //endreturn
-            } //calendarWrapped
-
-
-            /**
-             * Get the number that's allowed within an upper or lower limit.
-             * * A truthy third argument tests against the upper limit.
-             */
-            function getNumberInRange( number, limit, upper ) {
-
-                // If we need to test against the upper limit
-                // and number is less than the limit,
-                // or we need to test against the lower limit
-                // and number is more than the limit,
-                // return the number. Otherwise return the limit.
-                return ( upper && number < limit ) || ( !upper && number > limit ) ? number : limit
-            } //getNumberInRange
-
-
-            /**
-             * Return a month by comparing with the date range.
-             * If outside the range, returns the "alternate" or "range" value.
-             * Otherwise returns the "in range" value or the month itself.
-             */
-            function getMonthInRange( month, year, alternateValue, inRangeValue ) {
-
-                // If the month is less than the min month,
-                // then return the alternate value or min month.
-                if ( year <= DATE_MIN.YEAR && month < DATE_MIN.MONTH ) {
-                    return alternateValue || DATE_MIN.MONTH
-                }
-
-                // If the month is more than the max month,
-                // then return the alternate value or max month.
-                if ( year >= DATE_MAX.YEAR && month > DATE_MAX.MONTH ) {
-                    return alternateValue || DATE_MAX.MONTH
-                }
-
-                // Otherwise return the "in range" value or the month itself.
-                // * We test `inRangeValue` against null because we need to
-                //   test against null and undefined. 0 should be allowed.
-                return inRangeValue != null ? inRangeValue : month
-            } //getMonthInRange
-
-
-            /**
-             * Get the tabindex based on the calendar open/closed state
-             */
-            function getTabindexState() {
-                return 'tabindex=' + ( CALENDAR.isOpen ? 0 : -1 )
-            }
-
-
-            /**
-             * Get any date in any format. Defaults to getting
-             * the superficially selected date.
-             */
-            function getDateFormatted( format, date ) {
-
-                // Otherwise go through the date formats array and
-                // convert the format passed into an array to map
-                // which we join into a string at the end.
-                return DATE_FORMATS.toArray( format || SETTINGS.format ).map( function( value ) {
-
-                    // Trigger the date formats function
-                    // or just return value itself.
-                    return triggerFunction( DATE_FORMATS[ value ], date || DATE_SELECTED ) || value
-                }).join( '' )
-            } //getDateFormatted
-
-
-            /**
-             * Set a date as selected or superficially selected
-             */
-            function setDateSelected( dateTargeted, isSuperficial ) {
-
-                // Set the target as the highlight
-                DATE_HIGHLIGHTED = dateTargeted
-
-                // Set the target as the focus
-                MONTH_FOCUSED = dateTargeted
-
-                // If it's not just a superficial selection,
-                // update the input elements values
-                if ( !isSuperficial ) {
-                    setElementsValue( dateTargeted )
-                }
-
-                // Then render a new calendar
-                calendarRender()
-            } //setDateSelected
-
-
-            /**
-             * Set the date in the input element and trigger a change event
-             */
-            function setElementsValue( dateTargeted ) {
-
-                // If there's a date targeted, update the selected date
-                DATE_SELECTED = dateTargeted || DATE_SELECTED
-
-                // Set the element value as the formatted date
-                // if there was a date targeted. Otherwise clear it.
-                // And then broadcast a change event.
-                $ELEMENT.val( dateTargeted ? getDateFormatted() : '' ).trigger( 'change' )
-
-                // Trigger the onSelect method within scope of the picker
-                triggerFunction( SETTINGS.onSelect, P )
-            } //setElementsValue
-
-
-            /**
-             * Find something within the calendar holder
-             */
-            function $findInHolder( klass ) {
-                return $HOLDER.find( '.' + klass )
-            } //$findInHolder
-
-
-            /**
-             * Show the month visible on the calendar
-             */
-            function showMonth( month, year ) {
-
-                // Ensure we have a year to work with
-                year = year || MONTH_FOCUSED.YEAR
-
-                // Get the month to be within
-                // the minimum and maximum date limits
-                month = getMonthInRange( month, year )
-
-                // Set the month to show in focus
-                // * We set the date to 1st of the month
-                //   because date doesn't matter here
-                MONTH_FOCUSED = createDate([ year, month, 1 ])
-
-                // Then render a new calendar
-                calendarRender()
-            } //showMonth
-
-
-            /**
-             * Toggle the calendar elements as "tab-able" by mapping
-             * through the calendar items and updating the tabindex.
-             */
-            function toggleCalendarElements( tabindex ) {
-                CALENDAR.items.map( function( item ) {
-                    if ( item ) item.tabIndex = tabindex
-                })
-            } //toggleCalendarElements
-
-
-            /**
-             * Get an updated collection of calendar items.
-             */
-            function getUpdatedCalendarItems() {
-
-                return [
-
-                    // The month selector
-                    $findInHolder( CLASSES.selectMonth ).on({
-
-                        // *** For iOS ***
-                        click: eventPreventPropagation,
-
-                        // Bind the change event
-                        change: function() {
-
-                            // Show the month by floating the option selected
-                            showMonth( +this.value )
-
-                            // Find the new month selector and focus back on it
-                            $findInHolder( CLASSES.selectMonth ).focus()
-                        }
-                    })[ 0 ],
-
-                    // The year selector
-                    $findInHolder( CLASSES.selectYear ).on({
-
-                        // *** For iOS ***
-                        click: eventPreventPropagation,
-
-                        // Bind the change event
-                        change: function() {
-
-                            // Show the year by floating the option selected and month in focus
-                            showMonth( MONTH_FOCUSED.MONTH, +this.value )
-
-                            // Find the new year selector and focus back on it
-                            $findInHolder( CLASSES.selectYear ).focus()
-                        }
-                    })[ 0 ],
-
-                    // The "today" button
-                    $findInHolder( CLASSES.buttonToday )[ 0 ],
-
-                    // The "clear" button
-                    $findInHolder( CLASSES.buttonClear )[ 0 ]
-                ]
-            } //getUpdatedCalendarItems
-
-
-            /**
-             * Render a new calendar
-             */
-            function calendarRender() {
-
-                // Create a new wrapped calendar and place it within the holder
-                $HOLDER.html( createCalendarWrapped() )
-
-                // Update the calendar items
-                CALENDAR.items = getUpdatedCalendarItems()
-
-                // Trigger the onRender method within scope of the picker
-                triggerFunction( SETTINGS.onRender, P )
-            } //calendarRender
-
-
-            /**
-             * Prevent an event from propagating further
-             */
-            function eventPreventPropagation( event ) {
-                event.stopPropagation()
-            } //eventPreventPropagation
-
-
-            // Return a new initialized picker
-            return new P.init()
-        } //Picker
-
-
-
-
-
-    /**
-     * Helper functions
-     */
-
-    // Check if a value is a function and trigger it, if that
-    function triggerFunction( callback, scope ) {
-        if ( typeof callback == 'function' ) {
-            return callback.call( scope )
-        }
-    }
-
-    // Return numbers below 10 with a leading zero
-    function leadZero( number ) {
-        return ( number < 10 ? '0': '' ) + number
-    }
-
-    // Create a dom node string
-    function createNode( wrapper, item, klass, attribute ) {
-
-        // If the item is false-y, just return an empty string
-        if ( !item ) return ''
-
-        // If the item is an array, do a join
-        item = Array.isArray( item ) ? item.join( '' ) : item
-
-        // Check for the class
-        klass = klass ? ' class="' + klass + '"' : ''
-
-        // Check for any attributes
-        attribute = attribute ? ' ' + attribute : ''
-
-        // Return the wrapped item
-        return '<' + wrapper + klass + attribute + '>' + item + '</' + wrapper + '>'
-    } //createNode
-
-    // Create a calendar date
-    function createDate( datePassed, unlimited ) {
-
-        // If the date passed is an array
-        if ( Array.isArray( datePassed ) ) {
-
-            // Create the date
-            datePassed = new Date( datePassed[ 0 ], datePassed[ 1 ], datePassed[ 2 ] )
-        }
-
-        // If the date passed is a number
-        else if ( !isNaN( datePassed ) ) {
-
-            // Create the date
-            datePassed = new Date( datePassed )
-        }
-
-
-        // Otherwise if it's not unlimited
-        else if ( !unlimited ) {
-
-            // Set the date to today
-            datePassed = new Date()
-
-            // Set the time to midnight (for comparison purposes)
-            datePassed.setHours( 0, 0, 0, 0 )
-        }
-
-
-        // Return the calendar date object
-        return {
-            YEAR: unlimited || datePassed.getFullYear(),
-            MONTH: unlimited || datePassed.getMonth(),
-            DATE: unlimited || datePassed.getDate(),
-            DAY: unlimited || datePassed.getDay(),
-            TIME: unlimited || datePassed.getTime(),
-            OBJ: unlimited || datePassed
-        }
-    } //createDate
-
-
-
-
-    /**
-     * Extend jQuery
-     */
-    $.fn.pickadate = function( options ) {
-
-        var pickadate = 'pickadate'
-
-        // Merge the options with a deep copy
-        options = $.extend( true, {}, $.fn.pickadate.defaults, options )
-
-        // Check if it should be disabled
-        // for browsers that natively support `type=date`
-        if ( options.disablePicker ) { return this }
-
-        return this.each( function() {
-            var $this = $( this )
-            if ( this.nodeName == 'INPUT' && !$this.data( pickadate ) ) {
-                $this.data( pickadate, new Picker( $this, options ) )
-            }
-        })
-    } //$.fn.pickadate
-
-
-
-    /**
-     * Default options for the picker
-     */
-    $.fn.pickadate.defaults = {
-
-        monthsFull: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
-        monthsShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
-
-        weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
-        weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
-
-        // Display strings
-        monthPrev: '&#9664;',
-        monthNext: '&#9654;',
-        showMonthsFull: 1,
-        showWeekdaysShort: 1,
-
-        // Today and clear
-        today: 'Today',
-        clear: 'Clear',
-
-        // Date format to show on the input element
-        format: 'd mmmm, yyyy',
-
-        // Date format to send to the server
-        formatSubmit: 0,
-
-        // Hidden element name suffix
-        hiddenSuffix: '_submit',
-
-        // First day of the week: 0 = Sunday, 1 = Monday
-        firstDay: 0,
-
-        // Month & year dropdown selectors
-        monthSelector: 0,
-        yearSelector: 0,
-
-        // Date ranges
-        dateMin: 0,
-        dateMax: 0,
-
-        // Dates to disable
-        datesDisabled: 0,
-
-        // Disable for browsers with native date support
-        disablePicker: 0,
-
-        // Events
-        onOpen: 0,
-        onClose: 0,
-        onSelect: 0,
-        onStart: 0,
-        onRender: 0,
-
-
-        // Classes
-        klass: {
-
-            bodyActive: STRING_PREFIX_DATEPICKER + 'active',
-
-            inputActive: STRING_PREFIX_DATEPICKER + 'input--active',
-
-            holder: STRING_PREFIX_DATEPICKER + 'holder',
-            opened: STRING_PREFIX_DATEPICKER + 'holder--opened',
-            focused: STRING_PREFIX_DATEPICKER + 'holder--focused',
-
-            frame: STRING_PREFIX_DATEPICKER + 'frame',
-            wrap: STRING_PREFIX_DATEPICKER + 'wrap',
-
-            calendar: STRING_PREFIX_DATEPICKER + 'calendar',
-
-            table: STRING_PREFIX_DATEPICKER + 'table',
-
-            header: STRING_PREFIX_DATEPICKER + 'header',
-
-            monthPrev: STRING_PREFIX_DATEPICKER + 'nav--prev',
-            monthNext: STRING_PREFIX_DATEPICKER + 'nav--next',
-
-            month: STRING_PREFIX_DATEPICKER + 'month',
-            year: STRING_PREFIX_DATEPICKER + 'year',
-
-            selectMonth: STRING_PREFIX_DATEPICKER + 'select--month',
-            selectYear: STRING_PREFIX_DATEPICKER + 'select--year',
-
-            weekdays: STRING_PREFIX_DATEPICKER + 'weekday',
-
-            body: STRING_PREFIX_DATEPICKER + 'body',
-
-            day: STRING_PREFIX_DATEPICKER + 'day',
-            dayDisabled: STRING_PREFIX_DATEPICKER + 'day--disabled',
-            daySelected: STRING_PREFIX_DATEPICKER + 'day--selected',
-            dayHighlighted: STRING_PREFIX_DATEPICKER + 'day--highlighted',
-            dayToday: STRING_PREFIX_DATEPICKER + 'day--today',
-            dayInfocus: STRING_PREFIX_DATEPICKER + 'day--infocus',
-            dayOutfocus: STRING_PREFIX_DATEPICKER + 'day--outfocus',
-
-            footer: STRING_PREFIX_DATEPICKER + 'footer',
-
-            buttonClear: STRING_PREFIX_DATEPICKER + 'button--clear',
-            buttonToday: STRING_PREFIX_DATEPICKER + 'button--today'
-        }
-    } //$.fn.pickadate.defaults
-
-
-
-
-
-    /**
-     * Legacy browser support
-     */
-
-    /**
-     * Cross-Browser Split 1.1.1
-     * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
-     * Available under the MIT License
-     * http://blog.stevenlevithan.com/archives/cross-browser-split
-     */
-    var nativeSplit = String.prototype.split, compliantExecNpcg = /()??/.exec('')[1] === undefined
-    String.prototype.split = function(separator, limit) {
-        var str = this
-        if (Object.prototype.toString.call(separator) !== '[object RegExp]') {
-            return nativeSplit.call(str, separator, limit)
-        }
-        var output = [],
-            flags = (separator.ignoreCase ? 'i' : '') +
-                    (separator.multiline  ? 'm' : '') +
-                    (separator.extended   ? 'x' : '') +
-                    (separator.sticky     ? 'y' : ''),
-            lastLastIndex = 0,
-            separator2, match, lastIndex, lastLength
-        separator = new RegExp(separator.source, flags + 'g')
-        str += ''
-        if (!compliantExecNpcg) {
-            separator2 = new RegExp('^' + separator.source + '$(?!\\s)', flags)
-        }
-        limit = limit === undefined ? -1 >>> 0 : limit >>> 0
-        while (match = separator.exec(str)) {
-            lastIndex = match.index + match[0].length
-            if (lastIndex > lastLastIndex) {
-                output.push(str.slice(lastLastIndex, match.index))
-                if (!compliantExecNpcg && match.length > 1) {
-                    match[0].replace(separator2, function () {
-                        for (var i = 1; i < arguments.length - 2; i++) {
-                            if (arguments[i] === undefined) {
-                                match[i] = undefined
-                            }
-                        }
-                    })
-                }
-                if (match.length > 1 && match.index < str.length) {
-                    Array.prototype.push.apply(output, match.slice(1))
-                }
-                lastLength = match[0].length
-                lastLastIndex = lastIndex
-                if (output.length >= limit) {
-                    break
-                }
-            }
-            if (separator.lastIndex === match.index) {
-                separator.lastIndex++
-            }
-        }
-        if (lastLastIndex === str.length) {
-            if (lastLength || !separator.test('')) {
-                output.push('')
-            }
-        } else {
-            output.push(str.slice(lastLastIndex))
-        }
-        return output.length > limit ? output.slice(0, limit) : output
-    }
-
-
-    // isArray support
-    if ( !Array.isArray ) {
-        Array.isArray = function( value ) {
-            return {}.toString.call( value ) == '[object Array]'
-        }
-    }
-
-
-    // Map array support
-    if ( ![].map ) {
-        Array.prototype.map = function ( callback, self ) {
-            var array = this, len = array.length, newArray = new Array( len )
-            for ( var i = 0; i < len; i++ ) {
-                if ( i in array ) {
-                    newArray[ i ] = callback.call( self, array[ i ], i, array )
-                }
-            }
-            return newArray
-        }
-    }
-
-
-    // Filter array support
-    if ( ![].filter ) {
-        Array.prototype.filter = function( callback ) {
-            if ( this == null ) throw new TypeError()
-            var t = Object( this ), len = t.length >>> 0
-            if ( typeof callback != 'function' ) throw new TypeError()
-            var newArray = [], thisp = arguments[ 1 ]
-            for ( var i = 0; i < len; i++ ) {
-              if ( i in t ) {
-                var val = t[ i ]
-                if ( callback.call( thisp, val, i, t ) ) newArray.push( val )
-              }
-            }
-            return newArray
-        }
-    }
-
-
-    // Index of array support
-    if ( ![].indexOf ) {
-        Array.prototype.indexOf = function( searchElement ) {
-            if ( this == null ) throw new TypeError()
-            var t = Object( this ), len = t.length >>> 0
-            if ( len === 0 ) return -1
-            var n = 0
-            if ( arguments.length > 1 ) {
-                n = Number( arguments[ 1 ] )
-                if ( n != n ) {
-                    n = 0
-                }
-                else if ( n != 0 && n != Infinity && n != -Infinity ) {
-                    n = ( n > 0 || -1 ) * Math.floor( Math.abs( n ) )
-                }
-            }
-            if ( n >= len ) return -1
-            var k = n >= 0 ? n : Math.max( len - Math.abs( n ), 0 )
-            for ( ; k < len; k++ ) {
-                if ( k in t && t[ k ] === searchElement ) return k
-            }
-            return -1
-        }
-    }
-
-
-
-})( jQuery, document );
-
-
-
-
-
-
-
+(function(){function e(e,t){var r=this,i=e.$node[0].value,n=e.$node.data("value"),a=n||i,o=n?t.formatSubmit:t.format;r.settings=t,r.queue={min:"measure create",max:"measure create",now:"now create",select:"parse create validate",highlight:"navigate create validate",view:"create validate viewset",disable:"flipItem",enable:"flipItem"},r.item={},r.item.disable=(t.disable||[]).slice(0),r.item.enable=-function(e){return e[0]===!0?e.shift():-1}(r.item.disable),r.set("min",t.min).set("max",t.max).set("now").set("select",a||r.item.now,{format:o,data:function(e){return a&&(e.indexOf("mm")>-1||e.indexOf("m")>-1)}(r.formats.toArray(o))}),r.key={40:7,38:-7,39:1,37:-1,go:function(e){r.set("highlight",[r.item.highlight.year,r.item.highlight.month,r.item.highlight.date+e],{interval:e}),this.render()}},e.on("render",function(){e.$root.find("."+t.klass.selectMonth).on("change",function(){e.set("highlight",[e.get("view").year,this.value,e.get("highlight").date]),e.$root.find("."+t.klass.selectMonth).focus()}),e.$root.find("."+t.klass.selectYear).on("change",function(){e.set("highlight",[this.value,e.get("view").month,e.get("highlight").date]),e.$root.find("."+t.klass.selectYear).focus()})}).on("open",function(){e.$root.find("button, select").attr("disabled",!1)}).on("close",function(){e.$root.find("button, select").attr("disabled",!0)})}var t=7,r=6;e.prototype.set=function(e,t,r){var i=this;return i.item["enable"==e?"disable":"flip"==e?"enable":e]=i.queue[e].split(" ").map(function(n){return t=i[n](e,t,r)}).pop(),"select"==e?i.set("highlight",i.item.select,r):"highlight"==e?i.set("view",i.item.highlight,r):("flip"==e||"min"==e||"max"==e||"disable"==e||"enable"==e)&&i.item.select&&i.item.highlight&&i.set("select",i.item.select,r).set("highlight",i.item.highlight,r),i},e.prototype.get=function(e){return this.item[e]},e.prototype.create=function(e,t,r){var i,n=this;return t=void 0===t?e:t,t==-1/0||1/0==t?i=t:Picker._.isObject(t)&&Picker._.isInteger(t.pick)?t=t.obj:Array.isArray(t)?(t=new Date(t[0],t[1],t[2]),t=Picker._.isDate(t)?t:n.create().obj):t=Picker._.isInteger(t)||Picker._.isDate(t)?n.normalize(new Date(t),r):n.now(e,t,r),{year:i||t.getFullYear(),month:i||t.getMonth(),date:i||t.getDate(),day:i||t.getDay(),obj:i||t,pick:i||t.getTime()}},e.prototype.now=function(e,t,r){return t=new Date,r&&r.rel&&t.setDate(t.getDate()+r.rel),this.normalize(t,r)},e.prototype.navigate=function(e,t,r){if(Picker._.isObject(t)){for(var i=new Date(t.year,t.month+(r&&r.nav?r.nav:0),1),n=i.getFullYear(),a=i.getMonth(),o=t.date;Picker._.isDate(i)&&new Date(n,a,o).getMonth()!==a;)o-=1;t=[n,a,o]}return t},e.prototype.normalize=function(e){return e.setHours(0,0,0,0),e},e.prototype.measure=function(e,t){var r=this;return t?Picker._.isInteger(t)&&(t=r.now(e,t,{rel:t})):t="min"==e?-1/0:1/0,t},e.prototype.viewset=function(e,t){return this.create([t.year,t.month,1])},e.prototype.validate=function(e,t,r){var i,n,a,o,s=this,l=t,c=r&&r.interval?r.interval:1,u=-1===s.item.enable,d=s.item.min,h=s.item.max,m=u&&s.item.disable.filter(function(e){if(Array.isArray(e)){var r=s.create(e).pick;t.pick>r?i=!0:r>t.pick&&(n=!0)}return Picker._.isInteger(e)}).length;if(!r.nav&&(!u&&s.disabled(t)||u&&s.disabled(t)&&(m||i||n)||t.pick<=d.pick||t.pick>=h.pick))for(u&&!m&&(!n&&c>0||!i&&0>c)&&(c*=-1);s.disabled(t)&&(Math.abs(c)>1&&(t.month<l.month||t.month>l.month)&&(t=l,c=Math.abs(c)/c),t.pick<=d.pick?(a=!0,c=1):t.pick>=h.pick&&(o=!0,c=-1),!a||!o);)t=s.create([t.year,t.month,t.date+c]);return t},e.prototype.disabled=function(e){var t=this,r=t.item.disable.filter(function(r){return Picker._.isInteger(r)?e.day===(t.settings.firstDay?r:r-1)%7:Array.isArray(r)?e.pick===t.create(r).pick:void 0}).length;return e.pick<t.item.min.pick||e.pick>t.item.max.pick||-1===t.item.enable?!r:r},e.prototype.parse=function(e,t,r){var i=this,n={};if(!t||Picker._.isInteger(t)||Array.isArray(t)||Picker._.isDate(t)||Picker._.isObject(t)&&Picker._.isInteger(t.pick))return t;if(!r||!r.format)throw"Need a formatting option to parse this..";return i.formats.toArray(r.format).map(function(e){var r=i.formats[e],a=r?Picker._.trigger(r,i,[t,n]):e.replace(/^!/,"").length;r&&(n[e]=t.substr(0,a)),t=t.substr(a)}),[n.yyyy||n.yy,+(n.mm||n.m)-(r.data?1:0),n.dd||n.d]},e.prototype.formats=function(){function e(e,t,r){var i=e.match(/\w+/)[0];return r.mm||r.m||(r.m=t.indexOf(i)),i.length}function t(e){return e.match(/\w+/)[0].length}return{d:function(e,t){return e?Picker._.digits(e):t.date},dd:function(e,t){return e?2:Picker._.lead(t.date)},ddd:function(e,r){return e?t(e):this.settings.weekdaysShort[r.day]},dddd:function(e,r){return e?t(e):this.settings.weekdaysFull[r.day]},m:function(e,t){return e?Picker._.digits(e):t.month+1},mm:function(e,t){return e?2:Picker._.lead(t.month+1)},mmm:function(t,r){var i=this.settings.monthsShort;return t?e(t,i,r):i[r.month]},mmmm:function(t,r){var i=this.settings.monthsFull;return t?e(t,i,r):i[r.month]},yy:function(e,t){return e?2:(""+t.year).slice(2)},yyyy:function(e,t){return e?4:t.year},toArray:function(e){return e.split(/(d{1,4}|m{1,4}|y{4}|yy|!.)/g)},toString:function(e,t){var r=this;return r.formats.toArray(e).map(function(e){return Picker._.trigger(r.formats[e],r,[0,t])||e.replace(/^!/,"")}).join("")}}}(),e.prototype.flipItem=function(e,t){var r=this,i=r.item.disable,n=-1===r.item.enable;return"flip"==t?r.item.enable=n?1:-1:!n&&"enable"==e||n&&"disable"==e?i=r.removeDisabled(i,t):(!n&&"disable"==e||n&&"enable"==e)&&(i=r.addDisabled(i,t)),i},e.prototype.addDisabled=function(e,t){var r=this;return t.map(function(t){r.filterDisabled(e,t).length||e.push(t)}),e},e.prototype.removeDisabled=function(e,t){var r=this;return t.map(function(t){e=r.filterDisabled(e,t,1)}),e},e.prototype.filterDisabled=function(e,t,r){var i=Array.isArray(t);return e.filter(function(e){var n=!i&&t===e||i&&Array.isArray(e)&&""+t==""+e;return r?!n:n})},e.prototype.nodes=function(e){var i=this,n=i.settings,a=i.item.now,o=i.item.select,s=i.item.highlight,l=i.item.view,c=i.item.disable,u=i.item.min,d=i.item.max,h=function(e){return n.firstDay&&e.push(e.shift()),Picker._.node("thead",Picker._.group({min:0,max:t-1,i:1,node:"th",item:function(t){return[e[t],n.klass.weekdays]}}))}((n.showWeekdaysFull?n.weekdaysFull:n.weekdaysShort).slice(0)),m=function(e){return Picker._.node("div"," ",n.klass["nav"+(e?"Next":"Prev")]+(e&&l.year>=d.year&&l.month>=d.month||!e&&l.year<=u.year&&l.month<=u.month?" "+n.klass.navDisabled:""),"data-nav="+(e||-1))},p=function(t){return n.selectMonths?Picker._.node("select",Picker._.group({min:0,max:11,i:1,node:"option",item:function(e){return[t[e],0,"value="+e+(l.month==e?" selected":"")+(l.year==u.year&&u.month>e||l.year==d.year&&e>d.month?" disabled":"")]}}),n.klass.selectMonth,e?"":"disabled"):Picker._.node("div",t[l.month],n.klass.month)},y=function(){var t=l.year,r=n.selectYears===!0?5:~~(n.selectYears/2);if(r){var i=u.year,a=d.year,o=t-r,s=t+r;if(i>o&&(s+=i-o,o=i),s>a){var c=o-i,h=s-a;o-=c>h?h:c,s=a}return Picker._.node("select",Picker._.group({min:o,max:s,i:1,node:"option",item:function(e){return[e,0,"value="+e+(t==e?" selected":"")]}}),n.klass.selectYear,e?"":"disabled")}return Picker._.node("div",t,n.klass.year)};return Picker._.node("div",m()+m(1)+p(n.showMonthsShort?n.monthsShort:n.monthsFull)+y(),n.klass.header)+Picker._.node("table",h+Picker._.node("tbody",Picker._.group({min:0,max:r-1,i:1,node:"tr",item:function(e){var r=n.firstDay&&0===i.create([l.year,l.month,1]).day?-7:0;return[Picker._.group({min:t*e-l.day+r+1,max:function(){return this.min+t-1},i:1,node:"td",item:function(e){return e=i.create([l.year,l.month,e+(n.firstDay?1:0)]),[Picker._.node("div",e.date,function(t){return t.push(l.month==e.month?n.klass.infocus:n.klass.outfocus),a.pick==e.pick&&t.push(n.klass.now),o&&o.pick==e.pick&&t.push(n.klass.selected),s&&s.pick==e.pick&&t.push(n.klass.highlighted),(c&&i.disabled(e)||e.pick<u.pick||e.pick>d.pick)&&t.push(n.klass.disabled),t.join(" ")}([n.klass.day]),"data-pick="+e.pick)]}})]}})),n.klass.table)+Picker._.node("div",Picker._.node("button",n.today,n.klass.buttonToday,"data-pick="+a.pick+(e?"":" disabled"))+Picker._.node("button",n.clear,n.klass.buttonClear,"data-clear=1"+(e?"":" disabled")),n.klass.footer)},e.defaults=function(e){return{monthsFull:["January","February","March","April","May","June","July","August","September","October","November","December"],monthsShort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],weekdaysFull:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],weekdaysShort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],today:"Today",clear:"Clear",format:"d mmmm, yyyy",klass:{table:e+"table",header:e+"header",navPrev:e+"nav--prev",navNext:e+"nav--next",navDisabled:e+"nav--disabled",month:e+"month",year:e+"year",selectMonth:e+"select--month",selectYear:e+"select--year",weekdays:e+"weekday",day:e+"day",disabled:e+"day--disabled",selected:e+"day--selected",highlighted:e+"day--highlighted",now:e+"day--today",infocus:e+"day--infocus",outfocus:e+"day--outfocus",footer:e+"footer",buttonClear:e+"button--clear",buttonToday:e+"button--today"}}}(Picker.klasses().picker+"__"),Picker.extend("pickadate",e)})();
+
+/*!
+ * Legacy browser support
+ */
+Array.isArray||(Array.isArray=function(t){return"[object Array]"=={}.toString.call(t)}),[].map||(Array.prototype.map=function(t,r){for(var e=this,n=e.length,i=Array(n),a=0;n>a;a++)a in e&&(i[a]=t.call(r,e[a],a,e));return i}),[].filter||(Array.prototype.filter=function(t){if(null==this)throw new TypeError;var r=Object(this),e=r.length>>>0;if("function"!=typeof t)throw new TypeError;for(var n=[],i=arguments[1],a=0;e>a;a++)if(a in r){var o=r[a];t.call(i,o,a,r)&&n.push(o)}return n}),[].indexOf||(Array.prototype.indexOf=function(t){if(null==this)throw new TypeError;var r=Object(this),e=r.length>>>0;if(0===e)return-1;var n=0;if(arguments.length>1&&(n=Number(arguments[1]),n!=n?n=0:0!==n&&1/0!=n&&n!=-1/0&&(n=(n>0||-1)*Math.floor(Math.abs(n)))),n>=e)return-1;for(var i=n>=0?n:Math.max(e-Math.abs(n),0);e>i;i++)if(i in r&&r[i]===t)return i;return-1});/*!
+ * Cross-Browser Split 1.1.1
+ * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
+ * Available under the MIT License
+ * http://blog.stevenlevithan.com/archives/cross-browser-split
+ */
+var nativeSplit=String.prototype.split,compliantExecNpcg=void 0===/()??/.exec("")[1];String.prototype.split=function(t,r){var e=this;if("[object RegExp]"!==Object.prototype.toString.call(t))return nativeSplit.call(e,t,r);var n,i,a,o,l=[],p=(t.ignoreCase?"i":"")+(t.multiline?"m":"")+(t.extended?"x":"")+(t.sticky?"y":""),c=0;for(t=RegExp(t.source,p+"g"),e+="",compliantExecNpcg||(n=RegExp("^"+t.source+"$(?!\\s)",p)),r=void 0===r?-1>>>0:r>>>0;(i=t.exec(e))&&(a=i.index+i[0].length,!(a>c&&(l.push(e.slice(c,i.index)),!compliantExecNpcg&&i.length>1&&i[0].replace(n,function(){for(var t=1;arguments.length-2>t;t++)void 0===arguments[t]&&(i[t]=void 0)}),i.length>1&&i.index<e.length&&Array.prototype.push.apply(l,i.slice(1)),o=i[0].length,c=a,l.length>=r)));)t.lastIndex===i.index&&t.lastIndex++;return c===e.length?(o||!t.test(""))&&l.push(""):l.push(e.slice(c)),l.length>r?l.slice(0,r):l};
 define("pickadate", ["jquery.mousewheel"], function(){});
 
 /**
@@ -17574,42 +15792,85 @@ define("pickadate", ["jquery.mousewheel"], function(){});
 }).call(this);
 define("backbone", ["lodash"], function(){});
 
+/*
+
+Copyright (C) 2011 by Yehuda Katz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+@license
+*/
+
+// lib/handlebars/browser-prefix.js
+(function(undefined) {
+  var Handlebars = {};
+
+  window.Handlebars = Handlebars;
+;
 // lib/handlebars/base.js
 
-/*jshint eqnull:true*/
-this.Handlebars = {};
+Handlebars.VERSION = "1.0.0";
+Handlebars.COMPILER_REVISION = 4;
 
-(function(Handlebars) {
-
-Handlebars.VERSION = "1.0.rc.1";
+Handlebars.REVISION_CHANGES = {
+  1: '<= 1.0.rc.2', // 1.0.rc.2 is actually rev2 but doesn't report it
+  2: '== 1.0.0-rc.3',
+  3: '== 1.0.0-rc.4',
+  4: '>= 1.0.0'
+};
 
 Handlebars.helpers  = {};
 Handlebars.partials = {};
 
+var toString = Object.prototype.toString,
+    functionType = '[object Function]',
+    objectType = '[object Object]';
+
 Handlebars.registerHelper = function(name, fn, inverse) {
-  if(inverse) { fn.not = inverse; }
-  this.helpers[name] = fn;
+  if (toString.call(name) === objectType) {
+    if (inverse || fn) { throw new Handlebars.Exception('Arg not supported with multiple helpers'); }
+    Handlebars.Utils.extend(this.helpers, name);
+  } else {
+    if (inverse) { fn.not = inverse; }
+    this.helpers[name] = fn;
+  }
 };
 
 Handlebars.registerPartial = function(name, str) {
-  this.partials[name] = str;
+  if (toString.call(name) === objectType) {
+    Handlebars.Utils.extend(this.partials,  name);
+  } else {
+    this.partials[name] = str;
+  }
 };
 
 Handlebars.registerHelper('helperMissing', function(arg) {
   if(arguments.length === 2) {
     return undefined;
   } else {
-    throw new Error("Could not find property '" + arg + "'");
+    throw new Error("Missing helper: '" + arg + "'");
   }
 });
-
-var toString = Object.prototype.toString, functionType = "[object Function]";
 
 Handlebars.registerHelper('blockHelperMissing', function(context, options) {
   var inverse = options.inverse || function() {}, fn = options.fn;
 
-
-  var ret = "";
   var type = toString.call(context);
 
   if(type === functionType) { context = context.call(this); }
@@ -17638,156 +15899,205 @@ Handlebars.createFrame = Object.create || function(object) {
   return obj;
 };
 
+Handlebars.logger = {
+  DEBUG: 0, INFO: 1, WARN: 2, ERROR: 3, level: 3,
+
+  methodMap: {0: 'debug', 1: 'info', 2: 'warn', 3: 'error'},
+
+  // can be overridden in the host environment
+  log: function(level, obj) {
+    if (Handlebars.logger.level <= level) {
+      var method = Handlebars.logger.methodMap[level];
+      if (typeof console !== 'undefined' && console[method]) {
+        console[method].call(console, obj);
+      }
+    }
+  }
+};
+
+Handlebars.log = function(level, obj) { Handlebars.logger.log(level, obj); };
+
 Handlebars.registerHelper('each', function(context, options) {
   var fn = options.fn, inverse = options.inverse;
-  var ret = "", data;
+  var i = 0, ret = "", data;
+
+  var type = toString.call(context);
+  if(type === functionType) { context = context.call(this); }
 
   if (options.data) {
     data = Handlebars.createFrame(options.data);
   }
 
-  if(context && context.length > 0) {
-    for(var i=0, j=context.length; i<j; i++) {
-      if (data) { data.index = i; }
-      ret = ret + fn(context[i], { data: data });
+  if(context && typeof context === 'object') {
+    if(context instanceof Array){
+      for(var j = context.length; i<j; i++) {
+        if (data) { data.index = i; }
+        ret = ret + fn(context[i], { data: data });
+      }
+    } else {
+      for(var key in context) {
+        if(context.hasOwnProperty(key)) {
+          if(data) { data.key = key; }
+          ret = ret + fn(context[key], {data: data});
+          i++;
+        }
+      }
     }
-  } else {
+  }
+
+  if(i === 0){
     ret = inverse(this);
   }
+
   return ret;
 });
 
-Handlebars.registerHelper('if', function(context, options) {
-  var type = toString.call(context);
-  if(type === functionType) { context = context.call(this); }
+Handlebars.registerHelper('if', function(conditional, options) {
+  var type = toString.call(conditional);
+  if(type === functionType) { conditional = conditional.call(this); }
 
-  if(!context || Handlebars.Utils.isEmpty(context)) {
+  if(!conditional || Handlebars.Utils.isEmpty(conditional)) {
     return options.inverse(this);
   } else {
     return options.fn(this);
   }
 });
 
-Handlebars.registerHelper('unless', function(context, options) {
-  var fn = options.fn, inverse = options.inverse;
-  options.fn = inverse;
-  options.inverse = fn;
-
-  return Handlebars.helpers['if'].call(this, context, options);
+Handlebars.registerHelper('unless', function(conditional, options) {
+  return Handlebars.helpers['if'].call(this, conditional, {fn: options.inverse, inverse: options.fn});
 });
 
 Handlebars.registerHelper('with', function(context, options) {
-  return options.fn(context);
+  var type = toString.call(context);
+  if(type === functionType) { context = context.call(this); }
+
+  if (!Handlebars.Utils.isEmpty(context)) return options.fn(context);
 });
 
-Handlebars.registerHelper('log', function(context) {
-  Handlebars.log(context);
+Handlebars.registerHelper('log', function(context, options) {
+  var level = options.data && options.data.level != null ? parseInt(options.data.level, 10) : 1;
+  Handlebars.log(level, context);
 });
-
-}(this.Handlebars));
 ;
 // lib/handlebars/compiler/parser.js
 /* Jison generated parser */
 var handlebars = (function(){
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"root":3,"program":4,"EOF":5,"statements":6,"simpleInverse":7,"statement":8,"openInverse":9,"closeBlock":10,"openBlock":11,"mustache":12,"partial":13,"CONTENT":14,"COMMENT":15,"OPEN_BLOCK":16,"inMustache":17,"CLOSE":18,"OPEN_INVERSE":19,"OPEN_ENDBLOCK":20,"path":21,"OPEN":22,"OPEN_UNESCAPED":23,"OPEN_PARTIAL":24,"params":25,"hash":26,"DATA":27,"param":28,"STRING":29,"INTEGER":30,"BOOLEAN":31,"hashSegments":32,"hashSegment":33,"ID":34,"EQUALS":35,"pathSegments":36,"SEP":37,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",14:"CONTENT",15:"COMMENT",16:"OPEN_BLOCK",18:"CLOSE",19:"OPEN_INVERSE",20:"OPEN_ENDBLOCK",22:"OPEN",23:"OPEN_UNESCAPED",24:"OPEN_PARTIAL",27:"DATA",29:"STRING",30:"INTEGER",31:"BOOLEAN",34:"ID",35:"EQUALS",37:"SEP"},
-productions_: [0,[3,2],[4,3],[4,1],[4,0],[6,1],[6,2],[8,3],[8,3],[8,1],[8,1],[8,1],[8,1],[11,3],[9,3],[10,3],[12,3],[12,3],[13,3],[13,4],[7,2],[17,3],[17,2],[17,2],[17,1],[17,1],[25,2],[25,1],[28,1],[28,1],[28,1],[28,1],[28,1],[26,1],[32,2],[32,1],[33,3],[33,3],[33,3],[33,3],[33,3],[21,1],[36,3],[36,1]],
+symbols_: {"error":2,"root":3,"program":4,"EOF":5,"simpleInverse":6,"statements":7,"statement":8,"openInverse":9,"closeBlock":10,"openBlock":11,"mustache":12,"partial":13,"CONTENT":14,"COMMENT":15,"OPEN_BLOCK":16,"inMustache":17,"CLOSE":18,"OPEN_INVERSE":19,"OPEN_ENDBLOCK":20,"path":21,"OPEN":22,"OPEN_UNESCAPED":23,"CLOSE_UNESCAPED":24,"OPEN_PARTIAL":25,"partialName":26,"params":27,"hash":28,"dataName":29,"param":30,"STRING":31,"INTEGER":32,"BOOLEAN":33,"hashSegments":34,"hashSegment":35,"ID":36,"EQUALS":37,"DATA":38,"pathSegments":39,"SEP":40,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",14:"CONTENT",15:"COMMENT",16:"OPEN_BLOCK",18:"CLOSE",19:"OPEN_INVERSE",20:"OPEN_ENDBLOCK",22:"OPEN",23:"OPEN_UNESCAPED",24:"CLOSE_UNESCAPED",25:"OPEN_PARTIAL",31:"STRING",32:"INTEGER",33:"BOOLEAN",36:"ID",37:"EQUALS",38:"DATA",40:"SEP"},
+productions_: [0,[3,2],[4,2],[4,3],[4,2],[4,1],[4,1],[4,0],[7,1],[7,2],[8,3],[8,3],[8,1],[8,1],[8,1],[8,1],[11,3],[9,3],[10,3],[12,3],[12,3],[13,3],[13,4],[6,2],[17,3],[17,2],[17,2],[17,1],[17,1],[27,2],[27,1],[30,1],[30,1],[30,1],[30,1],[30,1],[28,1],[34,2],[34,1],[35,3],[35,3],[35,3],[35,3],[35,3],[26,1],[26,1],[26,1],[29,2],[21,1],[39,3],[39,1]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1: return $$[$0-1]; 
 break;
-case 2: this.$ = new yy.ProgramNode($$[$0-2], $$[$0]); 
+case 2: this.$ = new yy.ProgramNode([], $$[$0]); 
 break;
-case 3: this.$ = new yy.ProgramNode($$[$0]); 
+case 3: this.$ = new yy.ProgramNode($$[$0-2], $$[$0]); 
 break;
-case 4: this.$ = new yy.ProgramNode([]); 
+case 4: this.$ = new yy.ProgramNode($$[$0-1], []); 
 break;
-case 5: this.$ = [$$[$0]]; 
+case 5: this.$ = new yy.ProgramNode($$[$0]); 
 break;
-case 6: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
+case 6: this.$ = new yy.ProgramNode([], []); 
 break;
-case 7: this.$ = new yy.BlockNode($$[$0-2], $$[$0-1].inverse, $$[$0-1], $$[$0]); 
+case 7: this.$ = new yy.ProgramNode([]); 
 break;
-case 8: this.$ = new yy.BlockNode($$[$0-2], $$[$0-1], $$[$0-1].inverse, $$[$0]); 
+case 8: this.$ = [$$[$0]]; 
 break;
-case 9: this.$ = $$[$0]; 
+case 9: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
 break;
-case 10: this.$ = $$[$0]; 
+case 10: this.$ = new yy.BlockNode($$[$0-2], $$[$0-1].inverse, $$[$0-1], $$[$0]); 
 break;
-case 11: this.$ = new yy.ContentNode($$[$0]); 
+case 11: this.$ = new yy.BlockNode($$[$0-2], $$[$0-1], $$[$0-1].inverse, $$[$0]); 
 break;
-case 12: this.$ = new yy.CommentNode($$[$0]); 
+case 12: this.$ = $$[$0]; 
 break;
-case 13: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1]); 
+case 13: this.$ = $$[$0]; 
 break;
-case 14: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1]); 
+case 14: this.$ = new yy.ContentNode($$[$0]); 
 break;
-case 15: this.$ = $$[$0-1]; 
+case 15: this.$ = new yy.CommentNode($$[$0]); 
 break;
 case 16: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1]); 
 break;
-case 17: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1], true); 
+case 17: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1]); 
 break;
-case 18: this.$ = new yy.PartialNode($$[$0-1]); 
+case 18: this.$ = $$[$0-1]; 
 break;
-case 19: this.$ = new yy.PartialNode($$[$0-2], $$[$0-1]); 
+case 19:
+    // Parsing out the '&' escape token at this level saves ~500 bytes after min due to the removal of one parser node.
+    this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1], $$[$0-2][2] === '&');
+  
 break;
-case 20: 
+case 20: this.$ = new yy.MustacheNode($$[$0-1][0], $$[$0-1][1], true); 
 break;
-case 21: this.$ = [[$$[$0-2]].concat($$[$0-1]), $$[$0]]; 
+case 21: this.$ = new yy.PartialNode($$[$0-1]); 
 break;
-case 22: this.$ = [[$$[$0-1]].concat($$[$0]), null]; 
+case 22: this.$ = new yy.PartialNode($$[$0-2], $$[$0-1]); 
 break;
-case 23: this.$ = [[$$[$0-1]], $$[$0]]; 
+case 23: 
 break;
-case 24: this.$ = [[$$[$0]], null]; 
+case 24: this.$ = [[$$[$0-2]].concat($$[$0-1]), $$[$0]]; 
 break;
-case 25: this.$ = [[new yy.DataNode($$[$0])], null]; 
+case 25: this.$ = [[$$[$0-1]].concat($$[$0]), null]; 
 break;
-case 26: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
+case 26: this.$ = [[$$[$0-1]], $$[$0]]; 
 break;
-case 27: this.$ = [$$[$0]]; 
+case 27: this.$ = [[$$[$0]], null]; 
 break;
-case 28: this.$ = $$[$0]; 
+case 28: this.$ = [[$$[$0]], null]; 
 break;
-case 29: this.$ = new yy.StringNode($$[$0]); 
+case 29: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
 break;
-case 30: this.$ = new yy.IntegerNode($$[$0]); 
+case 30: this.$ = [$$[$0]]; 
 break;
-case 31: this.$ = new yy.BooleanNode($$[$0]); 
+case 31: this.$ = $$[$0]; 
 break;
-case 32: this.$ = new yy.DataNode($$[$0]); 
+case 32: this.$ = new yy.StringNode($$[$0]); 
 break;
-case 33: this.$ = new yy.HashNode($$[$0]); 
+case 33: this.$ = new yy.IntegerNode($$[$0]); 
 break;
-case 34: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
+case 34: this.$ = new yy.BooleanNode($$[$0]); 
 break;
-case 35: this.$ = [$$[$0]]; 
+case 35: this.$ = $$[$0]; 
 break;
-case 36: this.$ = [$$[$0-2], $$[$0]]; 
+case 36: this.$ = new yy.HashNode($$[$0]); 
 break;
-case 37: this.$ = [$$[$0-2], new yy.StringNode($$[$0])]; 
+case 37: $$[$0-1].push($$[$0]); this.$ = $$[$0-1]; 
 break;
-case 38: this.$ = [$$[$0-2], new yy.IntegerNode($$[$0])]; 
+case 38: this.$ = [$$[$0]]; 
 break;
-case 39: this.$ = [$$[$0-2], new yy.BooleanNode($$[$0])]; 
+case 39: this.$ = [$$[$0-2], $$[$0]]; 
 break;
-case 40: this.$ = [$$[$0-2], new yy.DataNode($$[$0])]; 
+case 40: this.$ = [$$[$0-2], new yy.StringNode($$[$0])]; 
 break;
-case 41: this.$ = new yy.IdNode($$[$0]); 
+case 41: this.$ = [$$[$0-2], new yy.IntegerNode($$[$0])]; 
 break;
-case 42: $$[$0-2].push($$[$0]); this.$ = $$[$0-2]; 
+case 42: this.$ = [$$[$0-2], new yy.BooleanNode($$[$0])]; 
 break;
-case 43: this.$ = [$$[$0]]; 
+case 43: this.$ = [$$[$0-2], $$[$0]]; 
+break;
+case 44: this.$ = new yy.PartialNameNode($$[$0]); 
+break;
+case 45: this.$ = new yy.PartialNameNode(new yy.StringNode($$[$0])); 
+break;
+case 46: this.$ = new yy.PartialNameNode(new yy.IntegerNode($$[$0])); 
+break;
+case 47: this.$ = new yy.DataNode($$[$0]); 
+break;
+case 48: this.$ = new yy.IdNode($$[$0]); 
+break;
+case 49: $$[$0-2].push({part: $$[$0], separator: $$[$0-1]}); this.$ = $$[$0-2]; 
+break;
+case 50: this.$ = [{part: $$[$0]}]; 
 break;
 }
 },
-table: [{3:1,4:2,5:[2,4],6:3,8:4,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,11],22:[1,13],23:[1,14],24:[1,15]},{1:[3]},{5:[1,16]},{5:[2,3],7:17,8:18,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,19],20:[2,3],22:[1,13],23:[1,14],24:[1,15]},{5:[2,5],14:[2,5],15:[2,5],16:[2,5],19:[2,5],20:[2,5],22:[2,5],23:[2,5],24:[2,5]},{4:20,6:3,8:4,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,11],20:[2,4],22:[1,13],23:[1,14],24:[1,15]},{4:21,6:3,8:4,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,11],20:[2,4],22:[1,13],23:[1,14],24:[1,15]},{5:[2,9],14:[2,9],15:[2,9],16:[2,9],19:[2,9],20:[2,9],22:[2,9],23:[2,9],24:[2,9]},{5:[2,10],14:[2,10],15:[2,10],16:[2,10],19:[2,10],20:[2,10],22:[2,10],23:[2,10],24:[2,10]},{5:[2,11],14:[2,11],15:[2,11],16:[2,11],19:[2,11],20:[2,11],22:[2,11],23:[2,11],24:[2,11]},{5:[2,12],14:[2,12],15:[2,12],16:[2,12],19:[2,12],20:[2,12],22:[2,12],23:[2,12],24:[2,12]},{17:22,21:23,27:[1,24],34:[1,26],36:25},{17:27,21:23,27:[1,24],34:[1,26],36:25},{17:28,21:23,27:[1,24],34:[1,26],36:25},{17:29,21:23,27:[1,24],34:[1,26],36:25},{21:30,34:[1,26],36:25},{1:[2,1]},{6:31,8:4,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,11],22:[1,13],23:[1,14],24:[1,15]},{5:[2,6],14:[2,6],15:[2,6],16:[2,6],19:[2,6],20:[2,6],22:[2,6],23:[2,6],24:[2,6]},{17:22,18:[1,32],21:23,27:[1,24],34:[1,26],36:25},{10:33,20:[1,34]},{10:35,20:[1,34]},{18:[1,36]},{18:[2,24],21:41,25:37,26:38,27:[1,45],28:39,29:[1,42],30:[1,43],31:[1,44],32:40,33:46,34:[1,47],36:25},{18:[2,25]},{18:[2,41],27:[2,41],29:[2,41],30:[2,41],31:[2,41],34:[2,41],37:[1,48]},{18:[2,43],27:[2,43],29:[2,43],30:[2,43],31:[2,43],34:[2,43],37:[2,43]},{18:[1,49]},{18:[1,50]},{18:[1,51]},{18:[1,52],21:53,34:[1,26],36:25},{5:[2,2],8:18,9:5,11:6,12:7,13:8,14:[1,9],15:[1,10],16:[1,12],19:[1,11],20:[2,2],22:[1,13],23:[1,14],24:[1,15]},{14:[2,20],15:[2,20],16:[2,20],19:[2,20],22:[2,20],23:[2,20],24:[2,20]},{5:[2,7],14:[2,7],15:[2,7],16:[2,7],19:[2,7],20:[2,7],22:[2,7],23:[2,7],24:[2,7]},{21:54,34:[1,26],36:25},{5:[2,8],14:[2,8],15:[2,8],16:[2,8],19:[2,8],20:[2,8],22:[2,8],23:[2,8],24:[2,8]},{14:[2,14],15:[2,14],16:[2,14],19:[2,14],20:[2,14],22:[2,14],23:[2,14],24:[2,14]},{18:[2,22],21:41,26:55,27:[1,45],28:56,29:[1,42],30:[1,43],31:[1,44],32:40,33:46,34:[1,47],36:25},{18:[2,23]},{18:[2,27],27:[2,27],29:[2,27],30:[2,27],31:[2,27],34:[2,27]},{18:[2,33],33:57,34:[1,58]},{18:[2,28],27:[2,28],29:[2,28],30:[2,28],31:[2,28],34:[2,28]},{18:[2,29],27:[2,29],29:[2,29],30:[2,29],31:[2,29],34:[2,29]},{18:[2,30],27:[2,30],29:[2,30],30:[2,30],31:[2,30],34:[2,30]},{18:[2,31],27:[2,31],29:[2,31],30:[2,31],31:[2,31],34:[2,31]},{18:[2,32],27:[2,32],29:[2,32],30:[2,32],31:[2,32],34:[2,32]},{18:[2,35],34:[2,35]},{18:[2,43],27:[2,43],29:[2,43],30:[2,43],31:[2,43],34:[2,43],35:[1,59],37:[2,43]},{34:[1,60]},{14:[2,13],15:[2,13],16:[2,13],19:[2,13],20:[2,13],22:[2,13],23:[2,13],24:[2,13]},{5:[2,16],14:[2,16],15:[2,16],16:[2,16],19:[2,16],20:[2,16],22:[2,16],23:[2,16],24:[2,16]},{5:[2,17],14:[2,17],15:[2,17],16:[2,17],19:[2,17],20:[2,17],22:[2,17],23:[2,17],24:[2,17]},{5:[2,18],14:[2,18],15:[2,18],16:[2,18],19:[2,18],20:[2,18],22:[2,18],23:[2,18],24:[2,18]},{18:[1,61]},{18:[1,62]},{18:[2,21]},{18:[2,26],27:[2,26],29:[2,26],30:[2,26],31:[2,26],34:[2,26]},{18:[2,34],34:[2,34]},{35:[1,59]},{21:63,27:[1,67],29:[1,64],30:[1,65],31:[1,66],34:[1,26],36:25},{18:[2,42],27:[2,42],29:[2,42],30:[2,42],31:[2,42],34:[2,42],37:[2,42]},{5:[2,19],14:[2,19],15:[2,19],16:[2,19],19:[2,19],20:[2,19],22:[2,19],23:[2,19],24:[2,19]},{5:[2,15],14:[2,15],15:[2,15],16:[2,15],19:[2,15],20:[2,15],22:[2,15],23:[2,15],24:[2,15]},{18:[2,36],34:[2,36]},{18:[2,37],34:[2,37]},{18:[2,38],34:[2,38]},{18:[2,39],34:[2,39]},{18:[2,40],34:[2,40]}],
-defaultActions: {16:[2,1],24:[2,25],38:[2,23],55:[2,21]},
+table: [{3:1,4:2,5:[2,7],6:3,7:4,8:6,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,5],22:[1,14],23:[1,15],25:[1,16]},{1:[3]},{5:[1,17]},{5:[2,6],7:18,8:6,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,19],20:[2,6],22:[1,14],23:[1,15],25:[1,16]},{5:[2,5],6:20,8:21,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,5],20:[2,5],22:[1,14],23:[1,15],25:[1,16]},{17:23,18:[1,22],21:24,29:25,36:[1,28],38:[1,27],39:26},{5:[2,8],14:[2,8],15:[2,8],16:[2,8],19:[2,8],20:[2,8],22:[2,8],23:[2,8],25:[2,8]},{4:29,6:3,7:4,8:6,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,5],20:[2,7],22:[1,14],23:[1,15],25:[1,16]},{4:30,6:3,7:4,8:6,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,5],20:[2,7],22:[1,14],23:[1,15],25:[1,16]},{5:[2,12],14:[2,12],15:[2,12],16:[2,12],19:[2,12],20:[2,12],22:[2,12],23:[2,12],25:[2,12]},{5:[2,13],14:[2,13],15:[2,13],16:[2,13],19:[2,13],20:[2,13],22:[2,13],23:[2,13],25:[2,13]},{5:[2,14],14:[2,14],15:[2,14],16:[2,14],19:[2,14],20:[2,14],22:[2,14],23:[2,14],25:[2,14]},{5:[2,15],14:[2,15],15:[2,15],16:[2,15],19:[2,15],20:[2,15],22:[2,15],23:[2,15],25:[2,15]},{17:31,21:24,29:25,36:[1,28],38:[1,27],39:26},{17:32,21:24,29:25,36:[1,28],38:[1,27],39:26},{17:33,21:24,29:25,36:[1,28],38:[1,27],39:26},{21:35,26:34,31:[1,36],32:[1,37],36:[1,28],39:26},{1:[2,1]},{5:[2,2],8:21,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,19],20:[2,2],22:[1,14],23:[1,15],25:[1,16]},{17:23,21:24,29:25,36:[1,28],38:[1,27],39:26},{5:[2,4],7:38,8:6,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,19],20:[2,4],22:[1,14],23:[1,15],25:[1,16]},{5:[2,9],14:[2,9],15:[2,9],16:[2,9],19:[2,9],20:[2,9],22:[2,9],23:[2,9],25:[2,9]},{5:[2,23],14:[2,23],15:[2,23],16:[2,23],19:[2,23],20:[2,23],22:[2,23],23:[2,23],25:[2,23]},{18:[1,39]},{18:[2,27],21:44,24:[2,27],27:40,28:41,29:48,30:42,31:[1,45],32:[1,46],33:[1,47],34:43,35:49,36:[1,50],38:[1,27],39:26},{18:[2,28],24:[2,28]},{18:[2,48],24:[2,48],31:[2,48],32:[2,48],33:[2,48],36:[2,48],38:[2,48],40:[1,51]},{21:52,36:[1,28],39:26},{18:[2,50],24:[2,50],31:[2,50],32:[2,50],33:[2,50],36:[2,50],38:[2,50],40:[2,50]},{10:53,20:[1,54]},{10:55,20:[1,54]},{18:[1,56]},{18:[1,57]},{24:[1,58]},{18:[1,59],21:60,36:[1,28],39:26},{18:[2,44],36:[2,44]},{18:[2,45],36:[2,45]},{18:[2,46],36:[2,46]},{5:[2,3],8:21,9:7,11:8,12:9,13:10,14:[1,11],15:[1,12],16:[1,13],19:[1,19],20:[2,3],22:[1,14],23:[1,15],25:[1,16]},{14:[2,17],15:[2,17],16:[2,17],19:[2,17],20:[2,17],22:[2,17],23:[2,17],25:[2,17]},{18:[2,25],21:44,24:[2,25],28:61,29:48,30:62,31:[1,45],32:[1,46],33:[1,47],34:43,35:49,36:[1,50],38:[1,27],39:26},{18:[2,26],24:[2,26]},{18:[2,30],24:[2,30],31:[2,30],32:[2,30],33:[2,30],36:[2,30],38:[2,30]},{18:[2,36],24:[2,36],35:63,36:[1,64]},{18:[2,31],24:[2,31],31:[2,31],32:[2,31],33:[2,31],36:[2,31],38:[2,31]},{18:[2,32],24:[2,32],31:[2,32],32:[2,32],33:[2,32],36:[2,32],38:[2,32]},{18:[2,33],24:[2,33],31:[2,33],32:[2,33],33:[2,33],36:[2,33],38:[2,33]},{18:[2,34],24:[2,34],31:[2,34],32:[2,34],33:[2,34],36:[2,34],38:[2,34]},{18:[2,35],24:[2,35],31:[2,35],32:[2,35],33:[2,35],36:[2,35],38:[2,35]},{18:[2,38],24:[2,38],36:[2,38]},{18:[2,50],24:[2,50],31:[2,50],32:[2,50],33:[2,50],36:[2,50],37:[1,65],38:[2,50],40:[2,50]},{36:[1,66]},{18:[2,47],24:[2,47],31:[2,47],32:[2,47],33:[2,47],36:[2,47],38:[2,47]},{5:[2,10],14:[2,10],15:[2,10],16:[2,10],19:[2,10],20:[2,10],22:[2,10],23:[2,10],25:[2,10]},{21:67,36:[1,28],39:26},{5:[2,11],14:[2,11],15:[2,11],16:[2,11],19:[2,11],20:[2,11],22:[2,11],23:[2,11],25:[2,11]},{14:[2,16],15:[2,16],16:[2,16],19:[2,16],20:[2,16],22:[2,16],23:[2,16],25:[2,16]},{5:[2,19],14:[2,19],15:[2,19],16:[2,19],19:[2,19],20:[2,19],22:[2,19],23:[2,19],25:[2,19]},{5:[2,20],14:[2,20],15:[2,20],16:[2,20],19:[2,20],20:[2,20],22:[2,20],23:[2,20],25:[2,20]},{5:[2,21],14:[2,21],15:[2,21],16:[2,21],19:[2,21],20:[2,21],22:[2,21],23:[2,21],25:[2,21]},{18:[1,68]},{18:[2,24],24:[2,24]},{18:[2,29],24:[2,29],31:[2,29],32:[2,29],33:[2,29],36:[2,29],38:[2,29]},{18:[2,37],24:[2,37],36:[2,37]},{37:[1,65]},{21:69,29:73,31:[1,70],32:[1,71],33:[1,72],36:[1,28],38:[1,27],39:26},{18:[2,49],24:[2,49],31:[2,49],32:[2,49],33:[2,49],36:[2,49],38:[2,49],40:[2,49]},{18:[1,74]},{5:[2,22],14:[2,22],15:[2,22],16:[2,22],19:[2,22],20:[2,22],22:[2,22],23:[2,22],25:[2,22]},{18:[2,39],24:[2,39],36:[2,39]},{18:[2,40],24:[2,40],36:[2,40]},{18:[2,41],24:[2,41],36:[2,41]},{18:[2,42],24:[2,42],36:[2,42]},{18:[2,43],24:[2,43],36:[2,43]},{5:[2,18],14:[2,18],15:[2,18],16:[2,18],19:[2,18],20:[2,18],22:[2,18],23:[2,18],25:[2,18]}],
+defaultActions: {17:[2,1]},
 parseError: function parseError(str, hash) {
     throw new Error(str);
 },
@@ -18068,250 +16378,239 @@ lexer.performAction = function anonymous(yy,yy_,$avoiding_name_collisions,YY_STA
 
 var YYSTATE=YY_START
 switch($avoiding_name_collisions) {
-case 0:
+case 0: yy_.yytext = "\\"; return 14; 
+break;
+case 1:
                                    if(yy_.yytext.slice(-1) !== "\\") this.begin("mu");
                                    if(yy_.yytext.slice(-1) === "\\") yy_.yytext = yy_.yytext.substr(0,yy_.yyleng-1), this.begin("emu");
                                    if(yy_.yytext) return 14;
                                  
 break;
-case 1: return 14; 
+case 2: return 14; 
 break;
-case 2:
+case 3:
                                    if(yy_.yytext.slice(-1) !== "\\") this.popState();
                                    if(yy_.yytext.slice(-1) === "\\") yy_.yytext = yy_.yytext.substr(0,yy_.yyleng-1);
                                    return 14;
                                  
 break;
-case 3: return 24; 
+case 4: yy_.yytext = yy_.yytext.substr(0, yy_.yyleng-4); this.popState(); return 15; 
 break;
-case 4: return 16; 
+case 5: return 25; 
 break;
-case 5: return 20; 
+case 6: return 16; 
 break;
-case 6: return 19; 
+case 7: return 20; 
 break;
-case 7: return 19; 
+case 8: return 19; 
 break;
-case 8: return 23; 
+case 9: return 19; 
 break;
-case 9: return 23; 
-break;
-case 10: yy_.yytext = yy_.yytext.substr(3,yy_.yyleng-5); this.popState(); return 15; 
+case 10: return 23; 
 break;
 case 11: return 22; 
 break;
-case 12: return 35; 
+case 12: this.popState(); this.begin('com'); 
 break;
-case 13: return 34; 
+case 13: yy_.yytext = yy_.yytext.substr(3,yy_.yyleng-5); this.popState(); return 15; 
 break;
-case 14: return 34; 
+case 14: return 22; 
 break;
 case 15: return 37; 
 break;
-case 16: /*ignore whitespace*/ 
+case 16: return 36; 
 break;
-case 17: this.popState(); return 18; 
+case 17: return 36; 
 break;
-case 18: this.popState(); return 18; 
+case 18: return 40; 
 break;
-case 19: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 29; 
+case 19: /*ignore whitespace*/ 
 break;
-case 20: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 29; 
+case 20: this.popState(); return 24; 
 break;
-case 21: yy_.yytext = yy_.yytext.substr(1); return 27; 
+case 21: this.popState(); return 18; 
 break;
-case 22: return 31; 
+case 22: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\"/g,'"'); return 31; 
 break;
-case 23: return 31; 
+case 23: yy_.yytext = yy_.yytext.substr(1,yy_.yyleng-2).replace(/\\'/g,"'"); return 31; 
 break;
-case 24: return 30; 
+case 24: return 38; 
 break;
-case 25: return 34; 
+case 25: return 33; 
 break;
-case 26: yy_.yytext = yy_.yytext.substr(1, yy_.yyleng-2); return 34; 
+case 26: return 33; 
 break;
-case 27: return 'INVALID'; 
+case 27: return 32; 
 break;
-case 28: return 5; 
+case 28: return 36; 
+break;
+case 29: yy_.yytext = yy_.yytext.substr(1, yy_.yyleng-2); return 36; 
+break;
+case 30: return 'INVALID'; 
+break;
+case 31: return 5; 
 break;
 }
 };
-lexer.rules = [/^(?:[^\x00]*?(?=(\{\{)))/,/^(?:[^\x00]+)/,/^(?:[^\x00]{2,}?(?=(\{\{|$)))/,/^(?:\{\{>)/,/^(?:\{\{#)/,/^(?:\{\{\/)/,/^(?:\{\{\^)/,/^(?:\{\{\s*else\b)/,/^(?:\{\{\{)/,/^(?:\{\{&)/,/^(?:\{\{![\s\S]*?\}\})/,/^(?:\{\{)/,/^(?:=)/,/^(?:\.(?=[} ]))/,/^(?:\.\.)/,/^(?:[\/.])/,/^(?:\s+)/,/^(?:\}\}\})/,/^(?:\}\})/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:@[a-zA-Z]+)/,/^(?:true(?=[}\s]))/,/^(?:false(?=[}\s]))/,/^(?:[0-9]+(?=[}\s]))/,/^(?:[a-zA-Z0-9_$-]+(?=[=}\s\/.]))/,/^(?:\[[^\]]*\])/,/^(?:.)/,/^(?:$)/];
-lexer.conditions = {"mu":{"rules":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],"inclusive":false},"emu":{"rules":[2],"inclusive":false},"INITIAL":{"rules":[0,1,28],"inclusive":true}};
+lexer.rules = [/^(?:\\\\(?=(\{\{)))/,/^(?:[^\x00]*?(?=(\{\{)))/,/^(?:[^\x00]+)/,/^(?:[^\x00]{2,}?(?=(\{\{|$)))/,/^(?:[\s\S]*?--\}\})/,/^(?:\{\{>)/,/^(?:\{\{#)/,/^(?:\{\{\/)/,/^(?:\{\{\^)/,/^(?:\{\{\s*else\b)/,/^(?:\{\{\{)/,/^(?:\{\{&)/,/^(?:\{\{!--)/,/^(?:\{\{![\s\S]*?\}\})/,/^(?:\{\{)/,/^(?:=)/,/^(?:\.(?=[}\/ ]))/,/^(?:\.\.)/,/^(?:[\/.])/,/^(?:\s+)/,/^(?:\}\}\})/,/^(?:\}\})/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:@)/,/^(?:true(?=[}\s]))/,/^(?:false(?=[}\s]))/,/^(?:-?[0-9]+(?=[}\s]))/,/^(?:[^\s!"#%-,\.\/;->@\[-\^`\{-~]+(?=[=}\s\/.]))/,/^(?:\[[^\]]*\])/,/^(?:.)/,/^(?:$)/];
+lexer.conditions = {"mu":{"rules":[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],"inclusive":false},"emu":{"rules":[3],"inclusive":false},"com":{"rules":[4],"inclusive":false},"INITIAL":{"rules":[0,1,2,31],"inclusive":true}};
 return lexer;})()
 parser.lexer = lexer;
 function Parser () { this.yy = {}; }Parser.prototype = parser;parser.Parser = Parser;
 return new Parser;
-})();
-if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = handlebars;
-exports.Parser = handlebars.Parser;
-exports.parse = function () { return handlebars.parse.apply(handlebars, arguments); }
-exports.main = function commonjsMain(args) {
-    if (!args[1])
-        throw new Error('Usage: '+args[0]+' FILE');
-    var source, cwd;
-    if (typeof process !== 'undefined') {
-        source = require('fs').readFileSync(require('path').resolve(args[1]), "utf8");
-    } else {
-        source = require("file").path(require("file").cwd()).join(args[1]).read({charset: "utf-8"});
-    }
-    return exports.parser.parse(source);
-}
-if (typeof module !== 'undefined' && require.main === module) {
-  exports.main(typeof process !== 'undefined' ? process.argv.slice(1) : require("system").args);
-}
-};
-;
+})();;
 // lib/handlebars/compiler/base.js
+
 Handlebars.Parser = handlebars;
 
-Handlebars.parse = function(string) {
+Handlebars.parse = function(input) {
+
+  // Just return if an already-compile AST was passed in.
+  if(input.constructor === Handlebars.AST.ProgramNode) { return input; }
+
   Handlebars.Parser.yy = Handlebars.AST;
-  return Handlebars.Parser.parse(string);
+  return Handlebars.Parser.parse(input);
 };
-
-Handlebars.print = function(ast) {
-  return new Handlebars.PrintVisitor().accept(ast);
-};
-
-Handlebars.logger = {
-  DEBUG: 0, INFO: 1, WARN: 2, ERROR: 3, level: 3,
-
-  // override in the host environment
-  log: function(level, str) {}
-};
-
-Handlebars.log = function(level, str) { Handlebars.logger.log(level, str); };
 ;
 // lib/handlebars/compiler/ast.js
-(function() {
+Handlebars.AST = {};
 
-  Handlebars.AST = {};
+Handlebars.AST.ProgramNode = function(statements, inverse) {
+  this.type = "program";
+  this.statements = statements;
+  if(inverse) { this.inverse = new Handlebars.AST.ProgramNode(inverse); }
+};
 
-  Handlebars.AST.ProgramNode = function(statements, inverse) {
-    this.type = "program";
-    this.statements = statements;
-    if(inverse) { this.inverse = new Handlebars.AST.ProgramNode(inverse); }
-  };
+Handlebars.AST.MustacheNode = function(rawParams, hash, unescaped) {
+  this.type = "mustache";
+  this.escaped = !unescaped;
+  this.hash = hash;
 
-  Handlebars.AST.MustacheNode = function(rawParams, hash, unescaped) {
-    this.type = "mustache";
-    this.escaped = !unescaped;
-    this.hash = hash;
+  var id = this.id = rawParams[0];
+  var params = this.params = rawParams.slice(1);
 
-    var id = this.id = rawParams[0];
-    var params = this.params = rawParams.slice(1);
+  // a mustache is an eligible helper if:
+  // * its id is simple (a single part, not `this` or `..`)
+  var eligibleHelper = this.eligibleHelper = id.isSimple;
 
-    // a mustache is an eligible helper if:
-    // * its id is simple (a single part, not `this` or `..`)
-    var eligibleHelper = this.eligibleHelper = id.isSimple;
+  // a mustache is definitely a helper if:
+  // * it is an eligible helper, and
+  // * it has at least one parameter or hash segment
+  this.isHelper = eligibleHelper && (params.length || hash);
 
-    // a mustache is definitely a helper if:
-    // * it is an eligible helper, and
-    // * it has at least one parameter or hash segment
-    this.isHelper = eligibleHelper && (params.length || hash);
+  // if a mustache is an eligible helper but not a definite
+  // helper, it is ambiguous, and will be resolved in a later
+  // pass or at runtime.
+};
 
-    // if a mustache is an eligible helper but not a definite
-    // helper, it is ambiguous, and will be resolved in a later
-    // pass or at runtime.
-  };
+Handlebars.AST.PartialNode = function(partialName, context) {
+  this.type         = "partial";
+  this.partialName  = partialName;
+  this.context      = context;
+};
 
-  Handlebars.AST.PartialNode = function(id, context) {
-    this.type    = "partial";
+Handlebars.AST.BlockNode = function(mustache, program, inverse, close) {
+  if(mustache.id.original !== close.original) {
+    throw new Handlebars.Exception(mustache.id.original + " doesn't match " + close.original);
+  }
 
-    // TODO: disallow complex IDs
+  this.type = "block";
+  this.mustache = mustache;
+  this.program  = program;
+  this.inverse  = inverse;
 
-    this.id      = id;
-    this.context = context;
-  };
+  if (this.inverse && !this.program) {
+    this.isInverse = true;
+  }
+};
 
-  var verifyMatch = function(open, close) {
-    if(open.original !== close.original) {
-      throw new Handlebars.Exception(open.original + " doesn't match " + close.original);
+Handlebars.AST.ContentNode = function(string) {
+  this.type = "content";
+  this.string = string;
+};
+
+Handlebars.AST.HashNode = function(pairs) {
+  this.type = "hash";
+  this.pairs = pairs;
+};
+
+Handlebars.AST.IdNode = function(parts) {
+  this.type = "ID";
+
+  var original = "",
+      dig = [],
+      depth = 0;
+
+  for(var i=0,l=parts.length; i<l; i++) {
+    var part = parts[i].part;
+    original += (parts[i].separator || '') + part;
+
+    if (part === ".." || part === "." || part === "this") {
+      if (dig.length > 0) { throw new Handlebars.Exception("Invalid path: " + original); }
+      else if (part === "..") { depth++; }
+      else { this.isScoped = true; }
     }
-  };
+    else { dig.push(part); }
+  }
 
-  Handlebars.AST.BlockNode = function(mustache, program, inverse, close) {
-    verifyMatch(mustache.id, close);
-    this.type = "block";
-    this.mustache = mustache;
-    this.program  = program;
-    this.inverse  = inverse;
+  this.original = original;
+  this.parts    = dig;
+  this.string   = dig.join('.');
+  this.depth    = depth;
 
-    if (this.inverse && !this.program) {
-      this.isInverse = true;
-    }
-  };
+  // an ID is simple if it only has one part, and that part is not
+  // `..` or `this`.
+  this.isSimple = parts.length === 1 && !this.isScoped && depth === 0;
 
-  Handlebars.AST.ContentNode = function(string) {
-    this.type = "content";
-    this.string = string;
-  };
+  this.stringModeValue = this.string;
+};
 
-  Handlebars.AST.HashNode = function(pairs) {
-    this.type = "hash";
-    this.pairs = pairs;
-  };
+Handlebars.AST.PartialNameNode = function(name) {
+  this.type = "PARTIAL_NAME";
+  this.name = name.original;
+};
 
-  Handlebars.AST.IdNode = function(parts) {
-    this.type = "ID";
-    this.original = parts.join(".");
+Handlebars.AST.DataNode = function(id) {
+  this.type = "DATA";
+  this.id = id;
+};
 
-    var dig = [], depth = 0;
+Handlebars.AST.StringNode = function(string) {
+  this.type = "STRING";
+  this.original =
+    this.string =
+    this.stringModeValue = string;
+};
 
-    for(var i=0,l=parts.length; i<l; i++) {
-      var part = parts[i];
-
-      if(part === "..") { depth++; }
-      else if(part === "." || part === "this") { this.isScoped = true; }
-      else { dig.push(part); }
-    }
-
-    this.parts    = dig;
-    this.string   = dig.join('.');
-    this.depth    = depth;
-
-    // an ID is simple if it only has one part, and that part is not
-    // `..` or `this`.
-    this.isSimple = parts.length === 1 && !this.isScoped && depth === 0;
-  };
-
-  Handlebars.AST.DataNode = function(id) {
-    this.type = "DATA";
-    this.id = id;
-  };
-
-  Handlebars.AST.StringNode = function(string) {
-    this.type = "STRING";
-    this.string = string;
-  };
-
-  Handlebars.AST.IntegerNode = function(integer) {
-    this.type = "INTEGER";
+Handlebars.AST.IntegerNode = function(integer) {
+  this.type = "INTEGER";
+  this.original =
     this.integer = integer;
-  };
+  this.stringModeValue = Number(integer);
+};
 
-  Handlebars.AST.BooleanNode = function(bool) {
-    this.type = "BOOLEAN";
-    this.bool = bool;
-  };
+Handlebars.AST.BooleanNode = function(bool) {
+  this.type = "BOOLEAN";
+  this.bool = bool;
+  this.stringModeValue = bool === "true";
+};
 
-  Handlebars.AST.CommentNode = function(comment) {
-    this.type = "comment";
-    this.comment = comment;
-  };
-
-})();;
+Handlebars.AST.CommentNode = function(comment) {
+  this.type = "comment";
+  this.comment = comment;
+};
+;
 // lib/handlebars/utils.js
+
+var errorProps = ['description', 'fileName', 'lineNumber', 'message', 'name', 'number', 'stack'];
+
 Handlebars.Exception = function(message) {
   var tmp = Error.prototype.constructor.apply(this, arguments);
 
-  for (var p in tmp) {
-    if (tmp.hasOwnProperty(p)) { this[p] = tmp[p]; }
+  // Unfortunately errors are not enumerable in Chrome (at least), so `for prop in tmp` doesn't work.
+  for (var idx = 0; idx < errorProps.length; idx++) {
+    this[errorProps[idx]] = tmp[errorProps[idx]];
   }
-
-  this.message = tmp.message;
 };
 Handlebars.Exception.prototype = new Error();
 
@@ -18323,1100 +16622,497 @@ Handlebars.SafeString.prototype.toString = function() {
   return this.string.toString();
 };
 
-(function() {
-  var escape = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#x27;",
-    "`": "&#x60;"
-  };
+var escape = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#x27;",
+  "`": "&#x60;"
+};
 
-  var badChars = /[&<>"'`]/g;
-  var possible = /[&<>"'`]/;
+var badChars = /[&<>"'`]/g;
+var possible = /[&<>"'`]/;
 
-  var escapeChar = function(chr) {
-    return escape[chr] || "&amp;";
-  };
+var escapeChar = function(chr) {
+  return escape[chr] || "&amp;";
+};
 
-  Handlebars.Utils = {
-    escapeExpression: function(string) {
-      // don't escape SafeStrings, since they're already safe
-      if (string instanceof Handlebars.SafeString) {
-        return string.toString();
-      } else if (string == null || string === false) {
-        return "";
-      }
-
-      if(!possible.test(string)) { return string; }
-      return string.replace(badChars, escapeChar);
-    },
-
-    isEmpty: function(value) {
-      if (typeof value === "undefined") {
-        return true;
-      } else if (value === null) {
-        return true;
-      } else if (value === false) {
-        return true;
-      } else if(Object.prototype.toString.call(value) === "[object Array]" && value.length === 0) {
-        return true;
-      } else {
-        return false;
+Handlebars.Utils = {
+  extend: function(obj, value) {
+    for(var key in value) {
+      if(value.hasOwnProperty(key)) {
+        obj[key] = value[key];
       }
     }
-  };
-})();;
+  },
+
+  escapeExpression: function(string) {
+    // don't escape SafeStrings, since they're already safe
+    if (string instanceof Handlebars.SafeString) {
+      return string.toString();
+    } else if (string == null || string === false) {
+      return "";
+    }
+
+    // Force a string conversion as this will be done by the append regardless and
+    // the regex test will do this transparently behind the scenes, causing issues if
+    // an object's to string has escaped characters in it.
+    string = string.toString();
+
+    if(!possible.test(string)) { return string; }
+    return string.replace(badChars, escapeChar);
+  },
+
+  isEmpty: function(value) {
+    if (!value && value !== 0) {
+      return true;
+    } else if(toString.call(value) === "[object Array]" && value.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+};
+;
 // lib/handlebars/compiler/compiler.js
 
 /*jshint eqnull:true*/
-Handlebars.Compiler = function() {};
-Handlebars.JavaScriptCompiler = function() {};
+var Compiler = Handlebars.Compiler = function() {};
 
-(function(Compiler, JavaScriptCompiler) {
-  // the foundHelper register will disambiguate helper lookup from finding a
-  // function in a context. This is necessary for mustache compatibility, which
-  // requires that context functions in blocks are evaluated by blockHelperMissing,
-  // and then proceed as if the resulting value was provided to blockHelperMissing.
+// the foundHelper register will disambiguate helper lookup from finding a
+// function in a context. This is necessary for mustache compatibility, which
+// requires that context functions in blocks are evaluated by blockHelperMissing,
+// and then proceed as if the resulting value was provided to blockHelperMissing.
 
-  Compiler.prototype = {
-    compiler: Compiler,
+Compiler.prototype = {
+  compiler: Compiler,
 
-    disassemble: function() {
-      var opcodes = this.opcodes, opcode, out = [], params, param;
+  disassemble: function() {
+    var opcodes = this.opcodes, opcode, out = [], params, param;
 
-      for (var i=0, l=opcodes.length; i<l; i++) {
-        opcode = opcodes[i];
+    for (var i=0, l=opcodes.length; i<l; i++) {
+      opcode = opcodes[i];
 
-        if (opcode.opcode === 'DECLARE') {
-          out.push("DECLARE " + opcode.name + "=" + opcode.value);
-        } else {
-          params = [];
-          for (var j=0; j<opcode.args.length; j++) {
-            param = opcode.args[j];
-            if (typeof param === "string") {
-              param = "\"" + param.replace("\n", "\\n") + "\"";
-            }
-            params.push(param);
+      if (opcode.opcode === 'DECLARE') {
+        out.push("DECLARE " + opcode.name + "=" + opcode.value);
+      } else {
+        params = [];
+        for (var j=0; j<opcode.args.length; j++) {
+          param = opcode.args[j];
+          if (typeof param === "string") {
+            param = "\"" + param.replace("\n", "\\n") + "\"";
           }
-          out.push(opcode.opcode + " " + params.join(" "));
+          params.push(param);
         }
+        out.push(opcode.opcode + " " + params.join(" "));
       }
-
-      return out.join("\n");
-    },
-
-    guid: 0,
-
-    compile: function(program, options) {
-      this.children = [];
-      this.depths = {list: []};
-      this.options = options;
-
-      // These changes will propagate to the other compiler components
-      var knownHelpers = this.options.knownHelpers;
-      this.options.knownHelpers = {
-        'helperMissing': true,
-        'blockHelperMissing': true,
-        'each': true,
-        'if': true,
-        'unless': true,
-        'with': true,
-        'log': true
-      };
-      if (knownHelpers) {
-        for (var name in knownHelpers) {
-          this.options.knownHelpers[name] = knownHelpers[name];
-        }
-      }
-
-      return this.program(program);
-    },
-
-    accept: function(node) {
-      return this[node.type](node);
-    },
-
-    program: function(program) {
-      var statements = program.statements, statement;
-      this.opcodes = [];
-
-      for(var i=0, l=statements.length; i<l; i++) {
-        statement = statements[i];
-        this[statement.type](statement);
-      }
-      this.isSimple = l === 1;
-
-      this.depths.list = this.depths.list.sort(function(a, b) {
-        return a - b;
-      });
-
-      return this;
-    },
-
-    compileProgram: function(program) {
-      var result = new this.compiler().compile(program, this.options);
-      var guid = this.guid++, depth;
-
-      this.usePartial = this.usePartial || result.usePartial;
-
-      this.children[guid] = result;
-
-      for(var i=0, l=result.depths.list.length; i<l; i++) {
-        depth = result.depths.list[i];
-
-        if(depth < 2) { continue; }
-        else { this.addDepth(depth - 1); }
-      }
-
-      return guid;
-    },
-
-    block: function(block) {
-      var mustache = block.mustache,
-          program = block.program,
-          inverse = block.inverse;
-
-      if (program) {
-        program = this.compileProgram(program);
-      }
-
-      if (inverse) {
-        inverse = this.compileProgram(inverse);
-      }
-
-      var type = this.classifyMustache(mustache);
-
-      if (type === "helper") {
-        this.helperMustache(mustache, program, inverse);
-      } else if (type === "simple") {
-        this.simpleMustache(mustache);
-
-        // now that the simple mustache is resolved, we need to
-        // evaluate it by executing `blockHelperMissing`
-        this.opcode('pushProgram', program);
-        this.opcode('pushProgram', inverse);
-        this.opcode('pushLiteral', '{}');
-        this.opcode('blockValue');
-      } else {
-        this.ambiguousMustache(mustache, program, inverse);
-
-        // now that the simple mustache is resolved, we need to
-        // evaluate it by executing `blockHelperMissing`
-        this.opcode('pushProgram', program);
-        this.opcode('pushProgram', inverse);
-        this.opcode('pushLiteral', '{}');
-        this.opcode('ambiguousBlockValue');
-      }
-
-      this.opcode('append');
-    },
-
-    hash: function(hash) {
-      var pairs = hash.pairs, pair, val;
-
-      this.opcode('push', '{}');
-
-      for(var i=0, l=pairs.length; i<l; i++) {
-        pair = pairs[i];
-        val  = pair[1];
-
-        this.accept(val);
-        this.opcode('assignToHash', pair[0]);
-      }
-    },
-
-    partial: function(partial) {
-      var id = partial.id;
-      this.usePartial = true;
-
-      if(partial.context) {
-        this.ID(partial.context);
-      } else {
-        this.opcode('push', 'depth0');
-      }
-
-      this.opcode('invokePartial', id.original);
-      this.opcode('append');
-    },
-
-    content: function(content) {
-      this.opcode('appendContent', content.string);
-    },
-
-    mustache: function(mustache) {
-      var options = this.options;
-      var type = this.classifyMustache(mustache);
-
-      if (type === "simple") {
-        this.simpleMustache(mustache);
-      } else if (type === "helper") {
-        this.helperMustache(mustache);
-      } else {
-        this.ambiguousMustache(mustache);
-      }
-
-      if(mustache.escaped && !options.noEscape) {
-        this.opcode('appendEscaped');
-      } else {
-        this.opcode('append');
-      }
-    },
-
-    ambiguousMustache: function(mustache, program, inverse) {
-      var id = mustache.id, name = id.parts[0];
-
-      this.opcode('getContext', id.depth);
-
-      this.opcode('pushProgram', program);
-      this.opcode('pushProgram', inverse);
-
-      this.opcode('invokeAmbiguous', name);
-    },
-
-    simpleMustache: function(mustache, program, inverse) {
-      var id = mustache.id;
-
-      if (id.type === 'DATA') {
-        this.DATA(id);
-      } else if (id.parts.length) {
-        this.ID(id);
-      } else {
-        // Simplified ID for `this`
-        this.addDepth(id.depth);
-        this.opcode('getContext', id.depth);
-        this.opcode('pushContext');
-      }
-
-      this.opcode('resolvePossibleLambda');
-    },
-
-    helperMustache: function(mustache, program, inverse) {
-      var params = this.setupFullMustacheParams(mustache, program, inverse),
-          name = mustache.id.parts[0];
-
-      if (this.options.knownHelpers[name]) {
-        this.opcode('invokeKnownHelper', params.length, name);
-      } else if (this.knownHelpersOnly) {
-        throw new Error("You specified knownHelpersOnly, but used the unknown helper " + name);
-      } else {
-        this.opcode('invokeHelper', params.length, name);
-      }
-    },
-
-    ID: function(id) {
-      this.addDepth(id.depth);
-      this.opcode('getContext', id.depth);
-
-      var name = id.parts[0];
-      if (!name) {
-        this.opcode('pushContext');
-      } else {
-        this.opcode('lookupOnContext', id.parts[0]);
-      }
-
-      for(var i=1, l=id.parts.length; i<l; i++) {
-        this.opcode('lookup', id.parts[i]);
-      }
-    },
-
-    DATA: function(data) {
-      this.options.data = true;
-      this.opcode('lookupData', data.id);
-    },
-
-    STRING: function(string) {
-      this.opcode('pushString', string.string);
-    },
-
-    INTEGER: function(integer) {
-      this.opcode('pushLiteral', integer.integer);
-    },
-
-    BOOLEAN: function(bool) {
-      this.opcode('pushLiteral', bool.bool);
-    },
-
-    comment: function() {},
-
-    // HELPERS
-    opcode: function(name) {
-      this.opcodes.push({ opcode: name, args: [].slice.call(arguments, 1) });
-    },
-
-    declare: function(name, value) {
-      this.opcodes.push({ opcode: 'DECLARE', name: name, value: value });
-    },
-
-    addDepth: function(depth) {
-      if(isNaN(depth)) { throw new Error("EWOT"); }
-      if(depth === 0) { return; }
-
-      if(!this.depths[depth]) {
-        this.depths[depth] = true;
-        this.depths.list.push(depth);
-      }
-    },
-
-    classifyMustache: function(mustache) {
-      var isHelper   = mustache.isHelper;
-      var isEligible = mustache.eligibleHelper;
-      var options    = this.options;
-
-      // if ambiguous, we can possibly resolve the ambiguity now
-      if (isEligible && !isHelper) {
-        var name = mustache.id.parts[0];
-
-        if (options.knownHelpers[name]) {
-          isHelper = true;
-        } else if (options.knownHelpersOnly) {
-          isEligible = false;
-        }
-      }
-
-      if (isHelper) { return "helper"; }
-      else if (isEligible) { return "ambiguous"; }
-      else { return "simple"; }
-    },
-
-    pushParams: function(params) {
-      var i = params.length, param;
-
-      while(i--) {
-        param = params[i];
-
-        if(this.options.stringParams) {
-          if(param.depth) {
-            this.addDepth(param.depth);
-          }
-
-          this.opcode('getContext', param.depth || 0);
-          this.opcode('pushStringParam', param.string);
-        } else {
-          this[param.type](param);
-        }
-      }
-    },
-
-    setupMustacheParams: function(mustache) {
-      var params = mustache.params;
-      this.pushParams(params);
-
-      if(mustache.hash) {
-        this.hash(mustache.hash);
-      } else {
-        this.opcode('pushLiteral', '{}');
-      }
-
-      return params;
-    },
-
-    // this will replace setupMustacheParams when we're done
-    setupFullMustacheParams: function(mustache, program, inverse) {
-      var params = mustache.params;
-      this.pushParams(params);
-
-      this.opcode('pushProgram', program);
-      this.opcode('pushProgram', inverse);
-
-      if(mustache.hash) {
-        this.hash(mustache.hash);
-      } else {
-        this.opcode('pushLiteral', '{}');
-      }
-
-      return params;
     }
-  };
 
-  var Literal = function(value) {
-    this.value = value;
-  };
+    return out.join("\n");
+  },
+  equals: function(other) {
+    var len = this.opcodes.length;
+    if (other.opcodes.length !== len) {
+      return false;
+    }
 
-  JavaScriptCompiler.prototype = {
-    // PUBLIC API: You can override these methods in a subclass to provide
-    // alternative compiled forms for name lookup and buffering semantics
-    nameLookup: function(parent, name, type) {
-      if (/^[0-9]+$/.test(name)) {
-        return parent + "[" + name + "]";
-      } else if (JavaScriptCompiler.isValidJavaScriptVariableName(name)) {
-        return parent + "." + name;
+    for (var i = 0; i < len; i++) {
+      var opcode = this.opcodes[i],
+          otherOpcode = other.opcodes[i];
+      if (opcode.opcode !== otherOpcode.opcode || opcode.args.length !== otherOpcode.args.length) {
+        return false;
       }
-      else {
-        return parent + "['" + name + "']";
-      }
-    },
-
-    appendToBuffer: function(string) {
-      if (this.environment.isSimple) {
-        return "return " + string + ";";
-      } else {
-        return "buffer += " + string + ";";
-      }
-    },
-
-    initializeBuffer: function() {
-      return this.quotedString("");
-    },
-
-    namespace: "Handlebars",
-    // END PUBLIC API
-
-    compile: function(environment, options, context, asObject) {
-      this.environment = environment;
-      this.options = options || {};
-
-      Handlebars.log(Handlebars.logger.DEBUG, this.environment.disassemble() + "\n\n");
-
-      this.name = this.environment.name;
-      this.isChild = !!context;
-      this.context = context || {
-        programs: [],
-        aliases: { }
-      };
-
-      this.preamble();
-
-      this.stackSlot = 0;
-      this.stackVars = [];
-      this.registers = { list: [] };
-      this.compileStack = [];
-
-      this.compileChildren(environment, options);
-
-      var opcodes = environment.opcodes, opcode;
-
-      this.i = 0;
-
-      for(l=opcodes.length; this.i<l; this.i++) {
-        opcode = opcodes[this.i];
-
-        if(opcode.opcode === 'DECLARE') {
-          this[opcode.name] = opcode.value;
-        } else {
-          this[opcode.opcode].apply(this, opcode.args);
+      for (var j = 0; j < opcode.args.length; j++) {
+        if (opcode.args[j] !== otherOpcode.args[j]) {
+          return false;
         }
       }
+    }
 
-      return this.createFunctionContext(asObject);
-    },
-
-    nextOpcode: function() {
-      var opcodes = this.environment.opcodes, opcode = opcodes[this.i + 1];
-      return opcodes[this.i + 1];
-    },
-
-    eat: function(opcode) {
-      this.i = this.i + 1;
-    },
-
-    preamble: function() {
-      var out = [];
-
-      if (!this.isChild) {
-        var namespace = this.namespace;
-        var copies = "helpers = helpers || " + namespace + ".helpers;";
-        if (this.environment.usePartial) { copies = copies + " partials = partials || " + namespace + ".partials;"; }
-        if (this.options.data) { copies = copies + " data = data || {};"; }
-        out.push(copies);
-      } else {
-        out.push('');
+    len = this.children.length;
+    if (other.children.length !== len) {
+      return false;
+    }
+    for (i = 0; i < len; i++) {
+      if (!this.children[i].equals(other.children[i])) {
+        return false;
       }
+    }
 
-      if (!this.environment.isSimple) {
-        out.push(", buffer = " + this.initializeBuffer());
-      } else {
-        out.push("");
+    return true;
+  },
+
+  guid: 0,
+
+  compile: function(program, options) {
+    this.children = [];
+    this.depths = {list: []};
+    this.options = options;
+
+    // These changes will propagate to the other compiler components
+    var knownHelpers = this.options.knownHelpers;
+    this.options.knownHelpers = {
+      'helperMissing': true,
+      'blockHelperMissing': true,
+      'each': true,
+      'if': true,
+      'unless': true,
+      'with': true,
+      'log': true
+    };
+    if (knownHelpers) {
+      for (var name in knownHelpers) {
+        this.options.knownHelpers[name] = knownHelpers[name];
       }
+    }
 
-      // track the last context pushed into place to allow skipping the
-      // getContext opcode when it would be a noop
-      this.lastContext = 0;
-      this.source = out;
-    },
+    return this.program(program);
+  },
 
-    createFunctionContext: function(asObject) {
-      var locals = this.stackVars.concat(this.registers.list);
+  accept: function(node) {
+    return this[node.type](node);
+  },
 
-      if(locals.length > 0) {
-        this.source[1] = this.source[1] + ", " + locals.join(", ");
-      }
+  program: function(program) {
+    var statements = program.statements, statement;
+    this.opcodes = [];
 
-      // Generate minimizer alias mappings
-      if (!this.isChild) {
-        var aliases = [];
-        for (var alias in this.context.aliases) {
-          this.source[1] = this.source[1] + ', ' + alias + '=' + this.context.aliases[alias];
-        }
-      }
+    for(var i=0, l=statements.length; i<l; i++) {
+      statement = statements[i];
+      this[statement.type](statement);
+    }
+    this.isSimple = l === 1;
 
-      if (this.source[1]) {
-        this.source[1] = "var " + this.source[1].substring(2) + ";";
-      }
+    this.depths.list = this.depths.list.sort(function(a, b) {
+      return a - b;
+    });
 
-      // Merge children
-      if (!this.isChild) {
-        this.source[1] += '\n' + this.context.programs.join('\n') + '\n';
-      }
+    return this;
+  },
 
-      if (!this.environment.isSimple) {
-        this.source.push("return buffer;");
-      }
+  compileProgram: function(program) {
+    var result = new this.compiler().compile(program, this.options);
+    var guid = this.guid++, depth;
 
-      var params = this.isChild ? ["depth0", "data"] : ["Handlebars", "depth0", "helpers", "partials", "data"];
+    this.usePartial = this.usePartial || result.usePartial;
 
-      for(var i=0, l=this.environment.depths.list.length; i<l; i++) {
-        params.push("depth" + this.environment.depths.list[i]);
-      }
+    this.children[guid] = result;
 
-      if (asObject) {
-        params.push(this.source.join("\n  "));
+    for(var i=0, l=result.depths.list.length; i<l; i++) {
+      depth = result.depths.list[i];
 
-        return Function.apply(this, params);
-      } else {
-        var functionSource = 'function ' + (this.name || '') + '(' + params.join(',') + ') {\n  ' + this.source.join("\n  ") + '}';
-        Handlebars.log(Handlebars.logger.DEBUG, functionSource + "\n\n");
-        return functionSource;
-      }
-    },
+      if(depth < 2) { continue; }
+      else { this.addDepth(depth - 1); }
+    }
 
-    // [blockValue]
-    //
-    // On stack, before: hash, inverse, program, value
-    // On stack, after: return value of blockHelperMissing
-    //
-    // The purpose of this opcode is to take a block of the form
-    // `{{#foo}}...{{/foo}}`, resolve the value of `foo`, and
-    // replace it on the stack with the result of properly
-    // invoking blockHelperMissing.
-    blockValue: function() {
-      this.context.aliases.blockHelperMissing = 'helpers.blockHelperMissing';
+    return guid;
+  },
 
-      var params = ["depth0"];
-      this.setupParams(0, params);
+  block: function(block) {
+    var mustache = block.mustache,
+        program = block.program,
+        inverse = block.inverse;
 
-      this.replaceStack(function(current) {
-        params.splice(1, 0, current);
-        return current + " = blockHelperMissing.call(" + params.join(", ") + ")";
-      });
-    },
+    if (program) {
+      program = this.compileProgram(program);
+    }
 
-    // [ambiguousBlockValue]
-    //
-    // On stack, before: hash, inverse, program, value
-    // Compiler value, before: lastHelper=value of last found helper, if any
-    // On stack, after, if no lastHelper: same as [blockValue]
-    // On stack, after, if lastHelper: value
-    ambiguousBlockValue: function() {
-      this.context.aliases.blockHelperMissing = 'helpers.blockHelperMissing';
+    if (inverse) {
+      inverse = this.compileProgram(inverse);
+    }
 
-      var params = ["depth0"];
-      this.setupParams(0, params);
+    var type = this.classifyMustache(mustache);
 
-      var current = this.topStack();
-      params.splice(1, 0, current);
+    if (type === "helper") {
+      this.helperMustache(mustache, program, inverse);
+    } else if (type === "simple") {
+      this.simpleMustache(mustache);
 
-      this.source.push("if (!" + this.lastHelper + ") { " + current + " = blockHelperMissing.call(" + params.join(", ") + "); }");
-    },
+      // now that the simple mustache is resolved, we need to
+      // evaluate it by executing `blockHelperMissing`
+      this.opcode('pushProgram', program);
+      this.opcode('pushProgram', inverse);
+      this.opcode('emptyHash');
+      this.opcode('blockValue');
+    } else {
+      this.ambiguousMustache(mustache, program, inverse);
 
-    // [appendContent]
-    //
-    // On stack, before: ...
-    // On stack, after: ...
-    //
-    // Appends the string value of `content` to the current buffer
-    appendContent: function(content) {
-      this.source.push(this.appendToBuffer(this.quotedString(content)));
-    },
+      // now that the simple mustache is resolved, we need to
+      // evaluate it by executing `blockHelperMissing`
+      this.opcode('pushProgram', program);
+      this.opcode('pushProgram', inverse);
+      this.opcode('emptyHash');
+      this.opcode('ambiguousBlockValue');
+    }
 
-    // [append]
-    //
-    // On stack, before: value, ...
-    // On stack, after: ...
-    //
-    // Coerces `value` to a String and appends it to the current buffer.
-    //
-    // If `value` is truthy, or 0, it is coerced into a string and appended
-    // Otherwise, the empty string is appended
-    append: function() {
-      var local = this.popStack();
-      this.source.push("if(" + local + " || " + local + " === 0) { " + this.appendToBuffer(local) + " }");
-      if (this.environment.isSimple) {
-        this.source.push("else { " + this.appendToBuffer("''") + " }");
-      }
-    },
+    this.opcode('append');
+  },
 
-    // [appendEscaped]
-    //
-    // On stack, before: value, ...
-    // On stack, after: ...
-    //
-    // Escape `value` and append it to the buffer
-    appendEscaped: function() {
-      var opcode = this.nextOpcode(), extra = "";
-      this.context.aliases.escapeExpression = 'this.escapeExpression';
+  hash: function(hash) {
+    var pairs = hash.pairs, pair, val;
 
-      if(opcode && opcode.opcode === 'appendContent') {
-        extra = " + " + this.quotedString(opcode.args[0]);
-        this.eat(opcode);
-      }
+    this.opcode('pushHash');
 
-      this.source.push(this.appendToBuffer("escapeExpression(" + this.popStack() + ")" + extra));
-    },
-
-    // [getContext]
-    //
-    // On stack, before: ...
-    // On stack, after: ...
-    // Compiler value, after: lastContext=depth
-    //
-    // Set the value of the `lastContext` compiler value to the depth
-    getContext: function(depth) {
-      if(this.lastContext !== depth) {
-        this.lastContext = depth;
-      }
-    },
-
-    // [lookupOnContext]
-    //
-    // On stack, before: ...
-    // On stack, after: currentContext[name], ...
-    //
-    // Looks up the value of `name` on the current context and pushes
-    // it onto the stack.
-    lookupOnContext: function(name) {
-      this.pushStack(this.nameLookup('depth' + this.lastContext, name, 'context'));
-    },
-
-    // [pushContext]
-    //
-    // On stack, before: ...
-    // On stack, after: currentContext, ...
-    //
-    // Pushes the value of the current context onto the stack.
-    pushContext: function() {
-      this.pushStackLiteral('depth' + this.lastContext);
-    },
-
-    // [resolvePossibleLambda]
-    //
-    // On stack, before: value, ...
-    // On stack, after: resolved value, ...
-    //
-    // If the `value` is a lambda, replace it on the stack by
-    // the return value of the lambda
-    resolvePossibleLambda: function() {
-      this.context.aliases.functionType = '"function"';
-
-      this.replaceStack(function(current) {
-        return "typeof " + current + " === functionType ? " + current + "() : " + current;
-      });
-    },
-
-    // [lookup]
-    //
-    // On stack, before: value, ...
-    // On stack, after: value[name], ...
-    //
-    // Replace the value on the stack with the result of looking
-    // up `name` on `value`
-    lookup: function(name) {
-      this.replaceStack(function(current) {
-        return current + " == null || " + current + " === false ? " + current + " : " + this.nameLookup(current, name, 'context');
-      });
-    },
-
-    // [lookupData]
-    //
-    // On stack, before: ...
-    // On stack, after: data[id], ...
-    //
-    // Push the result of looking up `id` on the current data
-    lookupData: function(id) {
-      this.pushStack(this.nameLookup('data', id, 'data'));
-    },
-
-    // [pushStringParam]
-    //
-    // On stack, before: ...
-    // On stack, after: string, currentContext, ...
-    //
-    // This opcode is designed for use in string mode, which
-    // provides the string value of a parameter along with its
-    // depth rather than resolving it immediately.
-    pushStringParam: function(string) {
-      this.pushStackLiteral('depth' + this.lastContext);
-      this.pushString(string);
-    },
-
-    // [pushString]
-    //
-    // On stack, before: ...
-    // On stack, after: quotedString(string), ...
-    //
-    // Push a quoted version of `string` onto the stack
-    pushString: function(string) {
-      this.pushStackLiteral(this.quotedString(string));
-    },
-
-    // [push]
-    //
-    // On stack, before: ...
-    // On stack, after: expr, ...
-    //
-    // Push an expression onto the stack
-    push: function(expr) {
-      this.pushStack(expr);
-    },
-
-    // [pushLiteral]
-    //
-    // On stack, before: ...
-    // On stack, after: value, ...
-    //
-    // Pushes a value onto the stack. This operation prevents
-    // the compiler from creating a temporary variable to hold
-    // it.
-    pushLiteral: function(value) {
-      this.pushStackLiteral(value);
-    },
-
-    // [pushProgram]
-    //
-    // On stack, before: ...
-    // On stack, after: program(guid), ...
-    //
-    // Push a program expression onto the stack. This takes
-    // a compile-time guid and converts it into a runtime-accessible
-    // expression.
-    pushProgram: function(guid) {
-      if (guid != null) {
-        this.pushStackLiteral(this.programExpression(guid));
-      } else {
-        this.pushStackLiteral(null);
-      }
-    },
-
-    // [invokeHelper]
-    //
-    // On stack, before: hash, inverse, program, params..., ...
-    // On stack, after: result of helper invocation
-    //
-    // Pops off the helper's parameters, invokes the helper,
-    // and pushes the helper's return value onto the stack.
-    //
-    // If the helper is not found, `helperMissing` is called.
-    invokeHelper: function(paramSize, name) {
-      this.context.aliases.helperMissing = 'helpers.helperMissing';
-
-      var helper = this.lastHelper = this.setupHelper(paramSize, name);
-      this.register('foundHelper', helper.name);
-
-      this.pushStack("foundHelper ? foundHelper.call(" +
-        helper.callParams + ") " + ": helperMissing.call(" +
-        helper.helperMissingParams + ")");
-    },
-
-    // [invokeKnownHelper]
-    //
-    // On stack, before: hash, inverse, program, params..., ...
-    // On stack, after: result of helper invocation
-    //
-    // This operation is used when the helper is known to exist,
-    // so a `helperMissing` fallback is not required.
-    invokeKnownHelper: function(paramSize, name) {
-      var helper = this.setupHelper(paramSize, name);
-      this.pushStack(helper.name + ".call(" + helper.callParams + ")");
-    },
-
-    // [invokeAmbiguous]
-    //
-    // On stack, before: hash, inverse, program, params..., ...
-    // On stack, after: result of disambiguation
-    //
-    // This operation is used when an expression like `{{foo}}`
-    // is provided, but we don't know at compile-time whether it
-    // is a helper or a path.
-    //
-    // This operation emits more code than the other options,
-    // and can be avoided by passing the `knownHelpers` and
-    // `knownHelpersOnly` flags at compile-time.
-    invokeAmbiguous: function(name) {
-      this.context.aliases.functionType = '"function"';
-
-      this.pushStackLiteral('{}');
-      var helper = this.setupHelper(0, name);
-
-      var helperName = this.lastHelper = this.nameLookup('helpers', name, 'helper');
-      this.register('foundHelper', helperName);
-
-      var nonHelper = this.nameLookup('depth' + this.lastContext, name, 'context');
-      var nextStack = this.nextStack();
-
-      this.source.push('if (foundHelper) { ' + nextStack + ' = foundHelper.call(' + helper.callParams + '); }');
-      this.source.push('else { ' + nextStack + ' = ' + nonHelper + '; ' + nextStack + ' = typeof ' + nextStack + ' === functionType ? ' + nextStack + '() : ' + nextStack + '; }');
-    },
-
-    // [invokePartial]
-    //
-    // On stack, before: context, ...
-    // On stack after: result of partial invocation
-    //
-    // This operation pops off a context, invokes a partial with that context,
-    // and pushes the result of the invocation back.
-    invokePartial: function(name) {
-      var params = [this.nameLookup('partials', name, 'partial'), "'" + name + "'", this.popStack(), "helpers", "partials"];
-
-      if (this.options.data) {
-        params.push("data");
-      }
-
-      this.context.aliases.self = "this";
-      this.pushStack("self.invokePartial(" + params.join(", ") + ");");
-    },
-
-    // [assignToHash]
-    //
-    // On stack, before: value, hash, ...
-    // On stack, after: hash, ...
-    //
-    // Pops a value and hash off the stack, assigns `hash[key] = value`
-    // and pushes the hash back onto the stack.
-    assignToHash: function(key) {
-      var value = this.popStack();
-      var hash = this.topStack();
-
-      this.source.push(hash + "['" + key + "'] = " + value + ";");
-    },
-
-    // HELPERS
-
-    compiler: JavaScriptCompiler,
-
-    compileChildren: function(environment, options) {
-      var children = environment.children, child, compiler;
-
-      for(var i=0, l=children.length; i<l; i++) {
-        child = children[i];
-        compiler = new this.compiler();
-
-        this.context.programs.push('');     // Placeholder to prevent name conflicts for nested children
-        var index = this.context.programs.length;
-        child.index = index;
-        child.name = 'program' + index;
-        this.context.programs[index] = compiler.compile(child, options, this.context);
-      }
-    },
-
-    programExpression: function(guid) {
-      this.context.aliases.self = "this";
-
-      if(guid == null) {
-        return "self.noop";
-      }
-
-      var child = this.environment.children[guid],
-          depths = child.depths.list, depth;
-
-      var programParams = [child.index, child.name, "data"];
-
-      for(var i=0, l = depths.length; i<l; i++) {
-        depth = depths[i];
-
-        if(depth === 1) { programParams.push("depth0"); }
-        else { programParams.push("depth" + (depth - 1)); }
-      }
-
-      if(depths.length === 0) {
-        return "self.program(" + programParams.join(", ") + ")";
-      } else {
-        programParams.shift();
-        return "self.programWithDepth(" + programParams.join(", ") + ")";
-      }
-    },
-
-    register: function(name, val) {
-      this.useRegister(name);
-      this.source.push(name + " = " + val + ";");
-    },
-
-    useRegister: function(name) {
-      if(!this.registers[name]) {
-        this.registers[name] = true;
-        this.registers.list.push(name);
-      }
-    },
-
-    pushStackLiteral: function(item) {
-      this.compileStack.push(new Literal(item));
-      return item;
-    },
-
-    pushStack: function(item) {
-      this.source.push(this.incrStack() + " = " + item + ";");
-      this.compileStack.push("stack" + this.stackSlot);
-      return "stack" + this.stackSlot;
-    },
-
-    replaceStack: function(callback) {
-      var item = callback.call(this, this.topStack());
-
-      this.source.push(this.topStack() + " = " + item + ";");
-      return "stack" + this.stackSlot;
-    },
-
-    nextStack: function(skipCompileStack) {
-      var name = this.incrStack();
-      this.compileStack.push("stack" + this.stackSlot);
-      return name;
-    },
-
-    incrStack: function() {
-      this.stackSlot++;
-      if(this.stackSlot > this.stackVars.length) { this.stackVars.push("stack" + this.stackSlot); }
-      return "stack" + this.stackSlot;
-    },
-
-    popStack: function() {
-      var item = this.compileStack.pop();
-
-      if (item instanceof Literal) {
-        return item.value;
-      } else {
-        this.stackSlot--;
-        return item;
-      }
-    },
-
-    topStack: function() {
-      var item = this.compileStack[this.compileStack.length - 1];
-
-      if (item instanceof Literal) {
-        return item.value;
-      } else {
-        return item;
-      }
-    },
-
-    quotedString: function(str) {
-      return '"' + str
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')
-        .replace(/\n/g, '\\n')
-        .replace(/\r/g, '\\r') + '"';
-    },
-
-    setupHelper: function(paramSize, name) {
-      var params = [];
-      this.setupParams(paramSize, params);
-      var foundHelper = this.nameLookup('helpers', name, 'helper');
-
-      return {
-        params: params,
-        name: foundHelper,
-        callParams: ["depth0"].concat(params).join(", "),
-        helperMissingParams: ["depth0", this.quotedString(name)].concat(params).join(", ")
-      };
-    },
-
-    // the params and contexts arguments are passed in arrays
-    // to fill in
-    setupParams: function(paramSize, params) {
-      var options = [], contexts = [], param, inverse, program;
-
-      options.push("hash:" + this.popStack());
-
-      inverse = this.popStack();
-      program = this.popStack();
-
-      // Avoid setting fn and inverse if neither are set. This allows
-      // helpers to do a check for `if (options.fn)`
-      if (program || inverse) {
-        if (!program) {
-          this.context.aliases.self = "this";
-          program = "self.noop";
-        }
-
-        if (!inverse) {
-         this.context.aliases.self = "this";
-          inverse = "self.noop";
-        }
-
-        options.push("inverse:" + inverse);
-        options.push("fn:" + program);
-      }
-
-      for(var i=0; i<paramSize; i++) {
-        param = this.popStack();
-        params.push(param);
-
-        if(this.options.stringParams) {
-          contexts.push(this.popStack());
-        }
-      }
+    for(var i=0, l=pairs.length; i<l; i++) {
+      pair = pairs[i];
+      val  = pair[1];
 
       if (this.options.stringParams) {
-        options.push("contexts:[" + contexts.join(",") + "]");
+        if(val.depth) {
+          this.addDepth(val.depth);
+        }
+        this.opcode('getContext', val.depth || 0);
+        this.opcode('pushStringParam', val.stringModeValue, val.type);
+      } else {
+        this.accept(val);
       }
 
-      if(this.options.data) {
-        options.push("data:data");
-      }
-
-      params.push("{" + options.join(",") + "}");
-      return params.join(", ");
+      this.opcode('assignToHash', pair[0]);
     }
-  };
+    this.opcode('popHash');
+  },
 
-  var reservedWords = (
-    "break else new var" +
-    " case finally return void" +
-    " catch for switch while" +
-    " continue function this with" +
-    " default if throw" +
-    " delete in try" +
-    " do instanceof typeof" +
-    " abstract enum int short" +
-    " boolean export interface static" +
-    " byte extends long super" +
-    " char final native synchronized" +
-    " class float package throws" +
-    " const goto private transient" +
-    " debugger implements protected volatile" +
-    " double import public let yield"
-  ).split(" ");
+  partial: function(partial) {
+    var partialName = partial.partialName;
+    this.usePartial = true;
 
-  var compilerWords = JavaScriptCompiler.RESERVED_WORDS = {};
+    if(partial.context) {
+      this.ID(partial.context);
+    } else {
+      this.opcode('push', 'depth0');
+    }
 
-  for(var i=0, l=reservedWords.length; i<l; i++) {
-    compilerWords[reservedWords[i]] = true;
+    this.opcode('invokePartial', partialName.name);
+    this.opcode('append');
+  },
+
+  content: function(content) {
+    this.opcode('appendContent', content.string);
+  },
+
+  mustache: function(mustache) {
+    var options = this.options;
+    var type = this.classifyMustache(mustache);
+
+    if (type === "simple") {
+      this.simpleMustache(mustache);
+    } else if (type === "helper") {
+      this.helperMustache(mustache);
+    } else {
+      this.ambiguousMustache(mustache);
+    }
+
+    if(mustache.escaped && !options.noEscape) {
+      this.opcode('appendEscaped');
+    } else {
+      this.opcode('append');
+    }
+  },
+
+  ambiguousMustache: function(mustache, program, inverse) {
+    var id = mustache.id,
+        name = id.parts[0],
+        isBlock = program != null || inverse != null;
+
+    this.opcode('getContext', id.depth);
+
+    this.opcode('pushProgram', program);
+    this.opcode('pushProgram', inverse);
+
+    this.opcode('invokeAmbiguous', name, isBlock);
+  },
+
+  simpleMustache: function(mustache) {
+    var id = mustache.id;
+
+    if (id.type === 'DATA') {
+      this.DATA(id);
+    } else if (id.parts.length) {
+      this.ID(id);
+    } else {
+      // Simplified ID for `this`
+      this.addDepth(id.depth);
+      this.opcode('getContext', id.depth);
+      this.opcode('pushContext');
+    }
+
+    this.opcode('resolvePossibleLambda');
+  },
+
+  helperMustache: function(mustache, program, inverse) {
+    var params = this.setupFullMustacheParams(mustache, program, inverse),
+        name = mustache.id.parts[0];
+
+    if (this.options.knownHelpers[name]) {
+      this.opcode('invokeKnownHelper', params.length, name);
+    } else if (this.options.knownHelpersOnly) {
+      throw new Error("You specified knownHelpersOnly, but used the unknown helper " + name);
+    } else {
+      this.opcode('invokeHelper', params.length, name);
+    }
+  },
+
+  ID: function(id) {
+    this.addDepth(id.depth);
+    this.opcode('getContext', id.depth);
+
+    var name = id.parts[0];
+    if (!name) {
+      this.opcode('pushContext');
+    } else {
+      this.opcode('lookupOnContext', id.parts[0]);
+    }
+
+    for(var i=1, l=id.parts.length; i<l; i++) {
+      this.opcode('lookup', id.parts[i]);
+    }
+  },
+
+  DATA: function(data) {
+    this.options.data = true;
+    if (data.id.isScoped || data.id.depth) {
+      throw new Handlebars.Exception('Scoped data references are not supported: ' + data.original);
+    }
+
+    this.opcode('lookupData');
+    var parts = data.id.parts;
+    for(var i=0, l=parts.length; i<l; i++) {
+      this.opcode('lookup', parts[i]);
+    }
+  },
+
+  STRING: function(string) {
+    this.opcode('pushString', string.string);
+  },
+
+  INTEGER: function(integer) {
+    this.opcode('pushLiteral', integer.integer);
+  },
+
+  BOOLEAN: function(bool) {
+    this.opcode('pushLiteral', bool.bool);
+  },
+
+  comment: function() {},
+
+  // HELPERS
+  opcode: function(name) {
+    this.opcodes.push({ opcode: name, args: [].slice.call(arguments, 1) });
+  },
+
+  declare: function(name, value) {
+    this.opcodes.push({ opcode: 'DECLARE', name: name, value: value });
+  },
+
+  addDepth: function(depth) {
+    if(isNaN(depth)) { throw new Error("EWOT"); }
+    if(depth === 0) { return; }
+
+    if(!this.depths[depth]) {
+      this.depths[depth] = true;
+      this.depths.list.push(depth);
+    }
+  },
+
+  classifyMustache: function(mustache) {
+    var isHelper   = mustache.isHelper;
+    var isEligible = mustache.eligibleHelper;
+    var options    = this.options;
+
+    // if ambiguous, we can possibly resolve the ambiguity now
+    if (isEligible && !isHelper) {
+      var name = mustache.id.parts[0];
+
+      if (options.knownHelpers[name]) {
+        isHelper = true;
+      } else if (options.knownHelpersOnly) {
+        isEligible = false;
+      }
+    }
+
+    if (isHelper) { return "helper"; }
+    else if (isEligible) { return "ambiguous"; }
+    else { return "simple"; }
+  },
+
+  pushParams: function(params) {
+    var i = params.length, param;
+
+    while(i--) {
+      param = params[i];
+
+      if(this.options.stringParams) {
+        if(param.depth) {
+          this.addDepth(param.depth);
+        }
+
+        this.opcode('getContext', param.depth || 0);
+        this.opcode('pushStringParam', param.stringModeValue, param.type);
+      } else {
+        this[param.type](param);
+      }
+    }
+  },
+
+  setupMustacheParams: function(mustache) {
+    var params = mustache.params;
+    this.pushParams(params);
+
+    if(mustache.hash) {
+      this.hash(mustache.hash);
+    } else {
+      this.opcode('emptyHash');
+    }
+
+    return params;
+  },
+
+  // this will replace setupMustacheParams when we're done
+  setupFullMustacheParams: function(mustache, program, inverse) {
+    var params = mustache.params;
+    this.pushParams(params);
+
+    this.opcode('pushProgram', program);
+    this.opcode('pushProgram', inverse);
+
+    if(mustache.hash) {
+      this.hash(mustache.hash);
+    } else {
+      this.opcode('emptyHash');
+    }
+
+    return params;
+  }
+};
+
+Handlebars.precompile = function(input, options) {
+  if (input == null || (typeof input !== 'string' && input.constructor !== Handlebars.AST.ProgramNode)) {
+    throw new Handlebars.Exception("You must pass a string or Handlebars AST to Handlebars.precompile. You passed " + input);
   }
 
-  JavaScriptCompiler.isValidJavaScriptVariableName = function(name) {
-    if(!JavaScriptCompiler.RESERVED_WORDS[name] && /^[a-zA-Z_$][0-9a-zA-Z_$]+$/.test(name)) {
-      return true;
-    }
-    return false;
-  };
-
-})(Handlebars.Compiler, Handlebars.JavaScriptCompiler);
-
-Handlebars.precompile = function(string, options) {
   options = options || {};
-
-  var ast = Handlebars.parse(string);
-  var environment = new Handlebars.Compiler().compile(ast, options);
+  if (!('data' in options)) {
+    options.data = true;
+  }
+  var ast = Handlebars.parse(input);
+  var environment = new Compiler().compile(ast, options);
   return new Handlebars.JavaScriptCompiler().compile(environment, options);
 };
 
-Handlebars.compile = function(string, options) {
-  options = options || {};
+Handlebars.compile = function(input, options) {
+  if (input == null || (typeof input !== 'string' && input.constructor !== Handlebars.AST.ProgramNode)) {
+    throw new Handlebars.Exception("You must pass a string or Handlebars AST to Handlebars.compile. You passed " + input);
+  }
 
+  options = options || {};
+  if (!('data' in options)) {
+    options.data = true;
+  }
   var compiled;
   function compile() {
-    var ast = Handlebars.parse(string);
-    var environment = new Handlebars.Compiler().compile(ast, options);
+    var ast = Handlebars.parse(input);
+    var environment = new Compiler().compile(ast, options);
     var templateSpec = new Handlebars.JavaScriptCompiler().compile(environment, options, undefined, true);
     return Handlebars.template(templateSpec);
   }
@@ -19429,8 +17125,855 @@ Handlebars.compile = function(string, options) {
     return compiled.call(this, context, options);
   };
 };
+
+;
+// lib/handlebars/compiler/javascript-compiler.js
+/*jshint eqnull:true*/
+
+var Literal = function(value) {
+  this.value = value;
+};
+
+
+var JavaScriptCompiler = Handlebars.JavaScriptCompiler = function() {};
+
+JavaScriptCompiler.prototype = {
+  // PUBLIC API: You can override these methods in a subclass to provide
+  // alternative compiled forms for name lookup and buffering semantics
+  nameLookup: function(parent, name /* , type*/) {
+    if (/^[0-9]+$/.test(name)) {
+      return parent + "[" + name + "]";
+    } else if (JavaScriptCompiler.isValidJavaScriptVariableName(name)) {
+      return parent + "." + name;
+    }
+    else {
+      return parent + "['" + name + "']";
+    }
+  },
+
+  appendToBuffer: function(string) {
+    if (this.environment.isSimple) {
+      return "return " + string + ";";
+    } else {
+      return {
+        appendToBuffer: true,
+        content: string,
+        toString: function() { return "buffer += " + string + ";"; }
+      };
+    }
+  },
+
+  initializeBuffer: function() {
+    return this.quotedString("");
+  },
+
+  namespace: "Handlebars",
+  // END PUBLIC API
+
+  compile: function(environment, options, context, asObject) {
+    this.environment = environment;
+    this.options = options || {};
+
+    Handlebars.log(Handlebars.logger.DEBUG, this.environment.disassemble() + "\n\n");
+
+    this.name = this.environment.name;
+    this.isChild = !!context;
+    this.context = context || {
+      programs: [],
+      environments: [],
+      aliases: { }
+    };
+
+    this.preamble();
+
+    this.stackSlot = 0;
+    this.stackVars = [];
+    this.registers = { list: [] };
+    this.compileStack = [];
+    this.inlineStack = [];
+
+    this.compileChildren(environment, options);
+
+    var opcodes = environment.opcodes, opcode;
+
+    this.i = 0;
+
+    for(var l=opcodes.length; this.i<l; this.i++) {
+      opcode = opcodes[this.i];
+
+      if(opcode.opcode === 'DECLARE') {
+        this[opcode.name] = opcode.value;
+      } else {
+        this[opcode.opcode].apply(this, opcode.args);
+      }
+    }
+
+    return this.createFunctionContext(asObject);
+  },
+
+  nextOpcode: function() {
+    var opcodes = this.environment.opcodes;
+    return opcodes[this.i + 1];
+  },
+
+  eat: function() {
+    this.i = this.i + 1;
+  },
+
+  preamble: function() {
+    var out = [];
+
+    if (!this.isChild) {
+      var namespace = this.namespace;
+
+      var copies = "helpers = this.merge(helpers, " + namespace + ".helpers);";
+      if (this.environment.usePartial) { copies = copies + " partials = this.merge(partials, " + namespace + ".partials);"; }
+      if (this.options.data) { copies = copies + " data = data || {};"; }
+      out.push(copies);
+    } else {
+      out.push('');
+    }
+
+    if (!this.environment.isSimple) {
+      out.push(", buffer = " + this.initializeBuffer());
+    } else {
+      out.push("");
+    }
+
+    // track the last context pushed into place to allow skipping the
+    // getContext opcode when it would be a noop
+    this.lastContext = 0;
+    this.source = out;
+  },
+
+  createFunctionContext: function(asObject) {
+    var locals = this.stackVars.concat(this.registers.list);
+
+    if(locals.length > 0) {
+      this.source[1] = this.source[1] + ", " + locals.join(", ");
+    }
+
+    // Generate minimizer alias mappings
+    if (!this.isChild) {
+      for (var alias in this.context.aliases) {
+        if (this.context.aliases.hasOwnProperty(alias)) {
+          this.source[1] = this.source[1] + ', ' + alias + '=' + this.context.aliases[alias];
+        }
+      }
+    }
+
+    if (this.source[1]) {
+      this.source[1] = "var " + this.source[1].substring(2) + ";";
+    }
+
+    // Merge children
+    if (!this.isChild) {
+      this.source[1] += '\n' + this.context.programs.join('\n') + '\n';
+    }
+
+    if (!this.environment.isSimple) {
+      this.source.push("return buffer;");
+    }
+
+    var params = this.isChild ? ["depth0", "data"] : ["Handlebars", "depth0", "helpers", "partials", "data"];
+
+    for(var i=0, l=this.environment.depths.list.length; i<l; i++) {
+      params.push("depth" + this.environment.depths.list[i]);
+    }
+
+    // Perform a second pass over the output to merge content when possible
+    var source = this.mergeSource();
+
+    if (!this.isChild) {
+      var revision = Handlebars.COMPILER_REVISION,
+          versions = Handlebars.REVISION_CHANGES[revision];
+      source = "this.compilerInfo = ["+revision+",'"+versions+"'];\n"+source;
+    }
+
+    if (asObject) {
+      params.push(source);
+
+      return Function.apply(this, params);
+    } else {
+      var functionSource = 'function ' + (this.name || '') + '(' + params.join(',') + ') {\n  ' + source + '}';
+      Handlebars.log(Handlebars.logger.DEBUG, functionSource + "\n\n");
+      return functionSource;
+    }
+  },
+  mergeSource: function() {
+    // WARN: We are not handling the case where buffer is still populated as the source should
+    // not have buffer append operations as their final action.
+    var source = '',
+        buffer;
+    for (var i = 0, len = this.source.length; i < len; i++) {
+      var line = this.source[i];
+      if (line.appendToBuffer) {
+        if (buffer) {
+          buffer = buffer + '\n    + ' + line.content;
+        } else {
+          buffer = line.content;
+        }
+      } else {
+        if (buffer) {
+          source += 'buffer += ' + buffer + ';\n  ';
+          buffer = undefined;
+        }
+        source += line + '\n  ';
+      }
+    }
+    return source;
+  },
+
+  // [blockValue]
+  //
+  // On stack, before: hash, inverse, program, value
+  // On stack, after: return value of blockHelperMissing
+  //
+  // The purpose of this opcode is to take a block of the form
+  // `{{#foo}}...{{/foo}}`, resolve the value of `foo`, and
+  // replace it on the stack with the result of properly
+  // invoking blockHelperMissing.
+  blockValue: function() {
+    this.context.aliases.blockHelperMissing = 'helpers.blockHelperMissing';
+
+    var params = ["depth0"];
+    this.setupParams(0, params);
+
+    this.replaceStack(function(current) {
+      params.splice(1, 0, current);
+      return "blockHelperMissing.call(" + params.join(", ") + ")";
+    });
+  },
+
+  // [ambiguousBlockValue]
+  //
+  // On stack, before: hash, inverse, program, value
+  // Compiler value, before: lastHelper=value of last found helper, if any
+  // On stack, after, if no lastHelper: same as [blockValue]
+  // On stack, after, if lastHelper: value
+  ambiguousBlockValue: function() {
+    this.context.aliases.blockHelperMissing = 'helpers.blockHelperMissing';
+
+    var params = ["depth0"];
+    this.setupParams(0, params);
+
+    var current = this.topStack();
+    params.splice(1, 0, current);
+
+    // Use the options value generated from the invocation
+    params[params.length-1] = 'options';
+
+    this.source.push("if (!" + this.lastHelper + ") { " + current + " = blockHelperMissing.call(" + params.join(", ") + "); }");
+  },
+
+  // [appendContent]
+  //
+  // On stack, before: ...
+  // On stack, after: ...
+  //
+  // Appends the string value of `content` to the current buffer
+  appendContent: function(content) {
+    this.source.push(this.appendToBuffer(this.quotedString(content)));
+  },
+
+  // [append]
+  //
+  // On stack, before: value, ...
+  // On stack, after: ...
+  //
+  // Coerces `value` to a String and appends it to the current buffer.
+  //
+  // If `value` is truthy, or 0, it is coerced into a string and appended
+  // Otherwise, the empty string is appended
+  append: function() {
+    // Force anything that is inlined onto the stack so we don't have duplication
+    // when we examine local
+    this.flushInline();
+    var local = this.popStack();
+    this.source.push("if(" + local + " || " + local + " === 0) { " + this.appendToBuffer(local) + " }");
+    if (this.environment.isSimple) {
+      this.source.push("else { " + this.appendToBuffer("''") + " }");
+    }
+  },
+
+  // [appendEscaped]
+  //
+  // On stack, before: value, ...
+  // On stack, after: ...
+  //
+  // Escape `value` and append it to the buffer
+  appendEscaped: function() {
+    this.context.aliases.escapeExpression = 'this.escapeExpression';
+
+    this.source.push(this.appendToBuffer("escapeExpression(" + this.popStack() + ")"));
+  },
+
+  // [getContext]
+  //
+  // On stack, before: ...
+  // On stack, after: ...
+  // Compiler value, after: lastContext=depth
+  //
+  // Set the value of the `lastContext` compiler value to the depth
+  getContext: function(depth) {
+    if(this.lastContext !== depth) {
+      this.lastContext = depth;
+    }
+  },
+
+  // [lookupOnContext]
+  //
+  // On stack, before: ...
+  // On stack, after: currentContext[name], ...
+  //
+  // Looks up the value of `name` on the current context and pushes
+  // it onto the stack.
+  lookupOnContext: function(name) {
+    this.push(this.nameLookup('depth' + this.lastContext, name, 'context'));
+  },
+
+  // [pushContext]
+  //
+  // On stack, before: ...
+  // On stack, after: currentContext, ...
+  //
+  // Pushes the value of the current context onto the stack.
+  pushContext: function() {
+    this.pushStackLiteral('depth' + this.lastContext);
+  },
+
+  // [resolvePossibleLambda]
+  //
+  // On stack, before: value, ...
+  // On stack, after: resolved value, ...
+  //
+  // If the `value` is a lambda, replace it on the stack by
+  // the return value of the lambda
+  resolvePossibleLambda: function() {
+    this.context.aliases.functionType = '"function"';
+
+    this.replaceStack(function(current) {
+      return "typeof " + current + " === functionType ? " + current + ".apply(depth0) : " + current;
+    });
+  },
+
+  // [lookup]
+  //
+  // On stack, before: value, ...
+  // On stack, after: value[name], ...
+  //
+  // Replace the value on the stack with the result of looking
+  // up `name` on `value`
+  lookup: function(name) {
+    this.replaceStack(function(current) {
+      return current + " == null || " + current + " === false ? " + current + " : " + this.nameLookup(current, name, 'context');
+    });
+  },
+
+  // [lookupData]
+  //
+  // On stack, before: ...
+  // On stack, after: data[id], ...
+  //
+  // Push the result of looking up `id` on the current data
+  lookupData: function(id) {
+    this.push('data');
+  },
+
+  // [pushStringParam]
+  //
+  // On stack, before: ...
+  // On stack, after: string, currentContext, ...
+  //
+  // This opcode is designed for use in string mode, which
+  // provides the string value of a parameter along with its
+  // depth rather than resolving it immediately.
+  pushStringParam: function(string, type) {
+    this.pushStackLiteral('depth' + this.lastContext);
+
+    this.pushString(type);
+
+    if (typeof string === 'string') {
+      this.pushString(string);
+    } else {
+      this.pushStackLiteral(string);
+    }
+  },
+
+  emptyHash: function() {
+    this.pushStackLiteral('{}');
+
+    if (this.options.stringParams) {
+      this.register('hashTypes', '{}');
+      this.register('hashContexts', '{}');
+    }
+  },
+  pushHash: function() {
+    this.hash = {values: [], types: [], contexts: []};
+  },
+  popHash: function() {
+    var hash = this.hash;
+    this.hash = undefined;
+
+    if (this.options.stringParams) {
+      this.register('hashContexts', '{' + hash.contexts.join(',') + '}');
+      this.register('hashTypes', '{' + hash.types.join(',') + '}');
+    }
+    this.push('{\n    ' + hash.values.join(',\n    ') + '\n  }');
+  },
+
+  // [pushString]
+  //
+  // On stack, before: ...
+  // On stack, after: quotedString(string), ...
+  //
+  // Push a quoted version of `string` onto the stack
+  pushString: function(string) {
+    this.pushStackLiteral(this.quotedString(string));
+  },
+
+  // [push]
+  //
+  // On stack, before: ...
+  // On stack, after: expr, ...
+  //
+  // Push an expression onto the stack
+  push: function(expr) {
+    this.inlineStack.push(expr);
+    return expr;
+  },
+
+  // [pushLiteral]
+  //
+  // On stack, before: ...
+  // On stack, after: value, ...
+  //
+  // Pushes a value onto the stack. This operation prevents
+  // the compiler from creating a temporary variable to hold
+  // it.
+  pushLiteral: function(value) {
+    this.pushStackLiteral(value);
+  },
+
+  // [pushProgram]
+  //
+  // On stack, before: ...
+  // On stack, after: program(guid), ...
+  //
+  // Push a program expression onto the stack. This takes
+  // a compile-time guid and converts it into a runtime-accessible
+  // expression.
+  pushProgram: function(guid) {
+    if (guid != null) {
+      this.pushStackLiteral(this.programExpression(guid));
+    } else {
+      this.pushStackLiteral(null);
+    }
+  },
+
+  // [invokeHelper]
+  //
+  // On stack, before: hash, inverse, program, params..., ...
+  // On stack, after: result of helper invocation
+  //
+  // Pops off the helper's parameters, invokes the helper,
+  // and pushes the helper's return value onto the stack.
+  //
+  // If the helper is not found, `helperMissing` is called.
+  invokeHelper: function(paramSize, name) {
+    this.context.aliases.helperMissing = 'helpers.helperMissing';
+
+    var helper = this.lastHelper = this.setupHelper(paramSize, name, true);
+    var nonHelper = this.nameLookup('depth' + this.lastContext, name, 'context');
+
+    this.push(helper.name + ' || ' + nonHelper);
+    this.replaceStack(function(name) {
+      return name + ' ? ' + name + '.call(' +
+          helper.callParams + ") " + ": helperMissing.call(" +
+          helper.helperMissingParams + ")";
+    });
+  },
+
+  // [invokeKnownHelper]
+  //
+  // On stack, before: hash, inverse, program, params..., ...
+  // On stack, after: result of helper invocation
+  //
+  // This operation is used when the helper is known to exist,
+  // so a `helperMissing` fallback is not required.
+  invokeKnownHelper: function(paramSize, name) {
+    var helper = this.setupHelper(paramSize, name);
+    this.push(helper.name + ".call(" + helper.callParams + ")");
+  },
+
+  // [invokeAmbiguous]
+  //
+  // On stack, before: hash, inverse, program, params..., ...
+  // On stack, after: result of disambiguation
+  //
+  // This operation is used when an expression like `{{foo}}`
+  // is provided, but we don't know at compile-time whether it
+  // is a helper or a path.
+  //
+  // This operation emits more code than the other options,
+  // and can be avoided by passing the `knownHelpers` and
+  // `knownHelpersOnly` flags at compile-time.
+  invokeAmbiguous: function(name, helperCall) {
+    this.context.aliases.functionType = '"function"';
+
+    this.pushStackLiteral('{}');    // Hash value
+    var helper = this.setupHelper(0, name, helperCall);
+
+    var helperName = this.lastHelper = this.nameLookup('helpers', name, 'helper');
+
+    var nonHelper = this.nameLookup('depth' + this.lastContext, name, 'context');
+    var nextStack = this.nextStack();
+
+    this.source.push('if (' + nextStack + ' = ' + helperName + ') { ' + nextStack + ' = ' + nextStack + '.call(' + helper.callParams + '); }');
+    this.source.push('else { ' + nextStack + ' = ' + nonHelper + '; ' + nextStack + ' = typeof ' + nextStack + ' === functionType ? ' + nextStack + '.apply(depth0) : ' + nextStack + '; }');
+  },
+
+  // [invokePartial]
+  //
+  // On stack, before: context, ...
+  // On stack after: result of partial invocation
+  //
+  // This operation pops off a context, invokes a partial with that context,
+  // and pushes the result of the invocation back.
+  invokePartial: function(name) {
+    var params = [this.nameLookup('partials', name, 'partial'), "'" + name + "'", this.popStack(), "helpers", "partials"];
+
+    if (this.options.data) {
+      params.push("data");
+    }
+
+    this.context.aliases.self = "this";
+    this.push("self.invokePartial(" + params.join(", ") + ")");
+  },
+
+  // [assignToHash]
+  //
+  // On stack, before: value, hash, ...
+  // On stack, after: hash, ...
+  //
+  // Pops a value and hash off the stack, assigns `hash[key] = value`
+  // and pushes the hash back onto the stack.
+  assignToHash: function(key) {
+    var value = this.popStack(),
+        context,
+        type;
+
+    if (this.options.stringParams) {
+      type = this.popStack();
+      context = this.popStack();
+    }
+
+    var hash = this.hash;
+    if (context) {
+      hash.contexts.push("'" + key + "': " + context);
+    }
+    if (type) {
+      hash.types.push("'" + key + "': " + type);
+    }
+    hash.values.push("'" + key + "': (" + value + ")");
+  },
+
+  // HELPERS
+
+  compiler: JavaScriptCompiler,
+
+  compileChildren: function(environment, options) {
+    var children = environment.children, child, compiler;
+
+    for(var i=0, l=children.length; i<l; i++) {
+      child = children[i];
+      compiler = new this.compiler();
+
+      var index = this.matchExistingProgram(child);
+
+      if (index == null) {
+        this.context.programs.push('');     // Placeholder to prevent name conflicts for nested children
+        index = this.context.programs.length;
+        child.index = index;
+        child.name = 'program' + index;
+        this.context.programs[index] = compiler.compile(child, options, this.context);
+        this.context.environments[index] = child;
+      } else {
+        child.index = index;
+        child.name = 'program' + index;
+      }
+    }
+  },
+  matchExistingProgram: function(child) {
+    for (var i = 0, len = this.context.environments.length; i < len; i++) {
+      var environment = this.context.environments[i];
+      if (environment && environment.equals(child)) {
+        return i;
+      }
+    }
+  },
+
+  programExpression: function(guid) {
+    this.context.aliases.self = "this";
+
+    if(guid == null) {
+      return "self.noop";
+    }
+
+    var child = this.environment.children[guid],
+        depths = child.depths.list, depth;
+
+    var programParams = [child.index, child.name, "data"];
+
+    for(var i=0, l = depths.length; i<l; i++) {
+      depth = depths[i];
+
+      if(depth === 1) { programParams.push("depth0"); }
+      else { programParams.push("depth" + (depth - 1)); }
+    }
+
+    return (depths.length === 0 ? "self.program(" : "self.programWithDepth(") + programParams.join(", ") + ")";
+  },
+
+  register: function(name, val) {
+    this.useRegister(name);
+    this.source.push(name + " = " + val + ";");
+  },
+
+  useRegister: function(name) {
+    if(!this.registers[name]) {
+      this.registers[name] = true;
+      this.registers.list.push(name);
+    }
+  },
+
+  pushStackLiteral: function(item) {
+    return this.push(new Literal(item));
+  },
+
+  pushStack: function(item) {
+    this.flushInline();
+
+    var stack = this.incrStack();
+    if (item) {
+      this.source.push(stack + " = " + item + ";");
+    }
+    this.compileStack.push(stack);
+    return stack;
+  },
+
+  replaceStack: function(callback) {
+    var prefix = '',
+        inline = this.isInline(),
+        stack;
+
+    // If we are currently inline then we want to merge the inline statement into the
+    // replacement statement via ','
+    if (inline) {
+      var top = this.popStack(true);
+
+      if (top instanceof Literal) {
+        // Literals do not need to be inlined
+        stack = top.value;
+      } else {
+        // Get or create the current stack name for use by the inline
+        var name = this.stackSlot ? this.topStackName() : this.incrStack();
+
+        prefix = '(' + this.push(name) + ' = ' + top + '),';
+        stack = this.topStack();
+      }
+    } else {
+      stack = this.topStack();
+    }
+
+    var item = callback.call(this, stack);
+
+    if (inline) {
+      if (this.inlineStack.length || this.compileStack.length) {
+        this.popStack();
+      }
+      this.push('(' + prefix + item + ')');
+    } else {
+      // Prevent modification of the context depth variable. Through replaceStack
+      if (!/^stack/.test(stack)) {
+        stack = this.nextStack();
+      }
+
+      this.source.push(stack + " = (" + prefix + item + ");");
+    }
+    return stack;
+  },
+
+  nextStack: function() {
+    return this.pushStack();
+  },
+
+  incrStack: function() {
+    this.stackSlot++;
+    if(this.stackSlot > this.stackVars.length) { this.stackVars.push("stack" + this.stackSlot); }
+    return this.topStackName();
+  },
+  topStackName: function() {
+    return "stack" + this.stackSlot;
+  },
+  flushInline: function() {
+    var inlineStack = this.inlineStack;
+    if (inlineStack.length) {
+      this.inlineStack = [];
+      for (var i = 0, len = inlineStack.length; i < len; i++) {
+        var entry = inlineStack[i];
+        if (entry instanceof Literal) {
+          this.compileStack.push(entry);
+        } else {
+          this.pushStack(entry);
+        }
+      }
+    }
+  },
+  isInline: function() {
+    return this.inlineStack.length;
+  },
+
+  popStack: function(wrapped) {
+    var inline = this.isInline(),
+        item = (inline ? this.inlineStack : this.compileStack).pop();
+
+    if (!wrapped && (item instanceof Literal)) {
+      return item.value;
+    } else {
+      if (!inline) {
+        this.stackSlot--;
+      }
+      return item;
+    }
+  },
+
+  topStack: function(wrapped) {
+    var stack = (this.isInline() ? this.inlineStack : this.compileStack),
+        item = stack[stack.length - 1];
+
+    if (!wrapped && (item instanceof Literal)) {
+      return item.value;
+    } else {
+      return item;
+    }
+  },
+
+  quotedString: function(str) {
+    return '"' + str
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, '\\n')
+      .replace(/\r/g, '\\r')
+      .replace(/\u2028/g, '\\u2028')   // Per Ecma-262 7.3 + 7.8.4
+      .replace(/\u2029/g, '\\u2029') + '"';
+  },
+
+  setupHelper: function(paramSize, name, missingParams) {
+    var params = [];
+    this.setupParams(paramSize, params, missingParams);
+    var foundHelper = this.nameLookup('helpers', name, 'helper');
+
+    return {
+      params: params,
+      name: foundHelper,
+      callParams: ["depth0"].concat(params).join(", "),
+      helperMissingParams: missingParams && ["depth0", this.quotedString(name)].concat(params).join(", ")
+    };
+  },
+
+  // the params and contexts arguments are passed in arrays
+  // to fill in
+  setupParams: function(paramSize, params, useRegister) {
+    var options = [], contexts = [], types = [], param, inverse, program;
+
+    options.push("hash:" + this.popStack());
+
+    inverse = this.popStack();
+    program = this.popStack();
+
+    // Avoid setting fn and inverse if neither are set. This allows
+    // helpers to do a check for `if (options.fn)`
+    if (program || inverse) {
+      if (!program) {
+        this.context.aliases.self = "this";
+        program = "self.noop";
+      }
+
+      if (!inverse) {
+       this.context.aliases.self = "this";
+        inverse = "self.noop";
+      }
+
+      options.push("inverse:" + inverse);
+      options.push("fn:" + program);
+    }
+
+    for(var i=0; i<paramSize; i++) {
+      param = this.popStack();
+      params.push(param);
+
+      if(this.options.stringParams) {
+        types.push(this.popStack());
+        contexts.push(this.popStack());
+      }
+    }
+
+    if (this.options.stringParams) {
+      options.push("contexts:[" + contexts.join(",") + "]");
+      options.push("types:[" + types.join(",") + "]");
+      options.push("hashContexts:hashContexts");
+      options.push("hashTypes:hashTypes");
+    }
+
+    if(this.options.data) {
+      options.push("data:data");
+    }
+
+    options = "{" + options.join(",") + "}";
+    if (useRegister) {
+      this.register('options', options);
+      params.push('options');
+    } else {
+      params.push(options);
+    }
+    return params.join(", ");
+  }
+};
+
+var reservedWords = (
+  "break else new var" +
+  " case finally return void" +
+  " catch for switch while" +
+  " continue function this with" +
+  " default if throw" +
+  " delete in try" +
+  " do instanceof typeof" +
+  " abstract enum int short" +
+  " boolean export interface static" +
+  " byte extends long super" +
+  " char final native synchronized" +
+  " class float package throws" +
+  " const goto private transient" +
+  " debugger implements protected volatile" +
+  " double import public let yield"
+).split(" ");
+
+var compilerWords = JavaScriptCompiler.RESERVED_WORDS = {};
+
+for(var i=0, l=reservedWords.length; i<l; i++) {
+  compilerWords[reservedWords[i]] = true;
+}
+
+JavaScriptCompiler.isValidJavaScriptVariableName = function(name) {
+  if(!JavaScriptCompiler.RESERVED_WORDS[name] && /^[a-zA-Z_$][0-9a-zA-Z_$]+$/.test(name)) {
+    return true;
+  }
+  return false;
+};
 ;
 // lib/handlebars/runtime.js
+
 Handlebars.VM = {
   template: function(templateSpec) {
     // Just add water
@@ -19441,39 +17984,73 @@ Handlebars.VM = {
       program: function(i, fn, data) {
         var programWrapper = this.programs[i];
         if(data) {
-          return Handlebars.VM.program(fn, data);
-        } else if(programWrapper) {
-          return programWrapper;
-        } else {
-          programWrapper = this.programs[i] = Handlebars.VM.program(fn);
-          return programWrapper;
+          programWrapper = Handlebars.VM.program(i, fn, data);
+        } else if (!programWrapper) {
+          programWrapper = this.programs[i] = Handlebars.VM.program(i, fn);
         }
+        return programWrapper;
+      },
+      merge: function(param, common) {
+        var ret = param || common;
+
+        if (param && common) {
+          ret = {};
+          Handlebars.Utils.extend(ret, common);
+          Handlebars.Utils.extend(ret, param);
+        }
+        return ret;
       },
       programWithDepth: Handlebars.VM.programWithDepth,
-      noop: Handlebars.VM.noop
+      noop: Handlebars.VM.noop,
+      compilerInfo: null
     };
 
     return function(context, options) {
       options = options || {};
-      return templateSpec.call(container, Handlebars, context, options.helpers, options.partials, options.data);
+      var result = templateSpec.call(container, Handlebars, context, options.helpers, options.partials, options.data);
+
+      var compilerInfo = container.compilerInfo || [],
+          compilerRevision = compilerInfo[0] || 1,
+          currentRevision = Handlebars.COMPILER_REVISION;
+
+      if (compilerRevision !== currentRevision) {
+        if (compilerRevision < currentRevision) {
+          var runtimeVersions = Handlebars.REVISION_CHANGES[currentRevision],
+              compilerVersions = Handlebars.REVISION_CHANGES[compilerRevision];
+          throw "Template was precompiled with an older version of Handlebars than the current runtime. "+
+                "Please update your precompiler to a newer version ("+runtimeVersions+") or downgrade your runtime to an older version ("+compilerVersions+").";
+        } else {
+          // Use the embedded version info since the runtime doesn't know about this revision yet
+          throw "Template was precompiled with a newer version of Handlebars than the current runtime. "+
+                "Please update your runtime to a newer version ("+compilerInfo[1]+").";
+        }
+      }
+
+      return result;
     };
   },
 
-  programWithDepth: function(fn, data, $depth) {
-    var args = Array.prototype.slice.call(arguments, 2);
+  programWithDepth: function(i, fn, data /*, $depth */) {
+    var args = Array.prototype.slice.call(arguments, 3);
 
-    return function(context, options) {
+    var program = function(context, options) {
       options = options || {};
 
       return fn.apply(this, [context, options.data || data].concat(args));
     };
+    program.program = i;
+    program.depth = args.length;
+    return program;
   },
-  program: function(fn, data) {
-    return function(context, options) {
+  program: function(i, fn, data) {
+    var program = function(context, options) {
       options = options || {};
 
       return fn(context, options.data || data);
     };
+    program.program = i;
+    program.depth = 0;
+    return program;
   },
   noop: function() { return ""; },
   invokePartial: function(partial, name, context, helpers, partials, data) {
@@ -19494,1807 +18071,2068 @@ Handlebars.VM = {
 
 Handlebars.template = Handlebars.VM.template;
 ;
+}).call(this);
+;
+
 define("handlebars", ["backbone"], function(){});
 
-(function() {
-  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['availability'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+this["Handlebars"] = this["Handlebars"] || {};
+this["Handlebars"]["templates"] = this["Handlebars"]["templates"] || {};
+
+this["Handlebars"]["templates"]["availability"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<span class=\"user\"></span><span class=\"time\">";
-  foundHelper = helpers.start;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " - ";
-  foundHelper = helpers.end;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
-  return buffer;});
-templates['availability_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.start) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (stack1 = helpers.end) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["availability_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <span class=\"user\"></span><span class=\"time\">";
-  foundHelper = helpers.start;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " - ";
-  foundHelper = helpers.end;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <span class=\"user\"></span><span class=\"time\">";
+  if (stack1 = helpers.start) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (stack1 = helpers.end) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['calendarMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["calendarMonth"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n            <tr class=\"row week-row\">\r\n                ";
-  foundHelper = helpers.cells;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n            <tr class=\"row week-row\">\n                ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.cells) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n            </tr>\r\n        ";
-  return buffer;}
+  buffer += "\n            </tr>\n        ";
+  return buffer;
+  }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                    <td class=\"cell";
-  foundHelper = helpers.disabled;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
-  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n                    <td class=\"cell";
+  options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data};
+  if (stack1 = helpers.disabled) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\r\n                        <div>\r\n                            <span class=\"date-value\">";
-  foundHelper = helpers.date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                            <em class=\"events-counter\"></em>\r\n\r\n                            <strong class=\"week-number\">";
-  foundHelper = helpers.week_number;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</strong>\r\n\r\n                            <ul class=\"calendar-items\"></ul>\r\n                        </div>\r\n                    </td>\r\n                ";
-  return buffer;}
+  buffer += "\">\n                        <div>\n                            <span class=\"date-value\">";
+  if (stack1 = helpers.date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                            <em class=\"events-counter\"></em>\n\n                            <strong class=\"week-number\">";
+  if (stack1 = helpers.week_number) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</strong>\n\n                            <ul class=\"calendar-items\"></ul>\n                        </div>\n                    </td>\n                ";
+  return buffer;
+  }
 function program3(depth0,data) {
   
   
-  return " disabled";}
+  return " disabled";
+  }
 
 function program5(depth0,data) {
   
   
-  return "Loading content";}
+  return "Loading content";
+  }
 
-  buffer += "<section class=\"tablet-calendar\">\r\n    <table class=\"days-container\">\r\n        ";
-  foundHelper = helpers.rows;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<section class=\"tablet-calendar\">\n    <table class=\"days-container\">\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.rows) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </table>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  buffer += "\n    </table>\n\n    <div class=\"overlay\">\n        <em>\n            <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span><br />\r\n            <img src=\"";
-  foundHelper = helpers.loaderUrl;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n        </em>\r\n\r\n    </div>\r\n</section>";
-  return buffer;});
-templates['calendarMonth_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "</span><br />\n            <img src=\"";
+  if (stack1 = helpers.loaderUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" />\n        </em>\n\n    </div>\n</section>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["calendarMonth_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <section class=\"tablet-calendar\">\r\n        <table class=\"days-container\">\r\n            ";
-  foundHelper = helpers.rows;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <section class=\"tablet-calendar\">\n        <table class=\"days-container\">\n            ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.rows) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.rows; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </table>\r\n\r\n        <div class=\"overlay\">\r\n            <em>\r\n                <span>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  buffer += "\n        </table>\n\n        <div class=\"overlay\">\n            <em>\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span><br />\r\n                <img src=\"";
-  foundHelper = helpers.loaderUrl;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n            </em>\r\n\r\n        </div>\r\n    </section>\r\n</li>\r\n\r\n";
-  return buffer;}
+  buffer += "</span><br />\n                <img src=\"";
+  if (stack1 = helpers.loaderUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" />\n            </em>\n\n        </div>\n    </section>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                <tr class=\"row week-row\">\r\n                    ";
-  foundHelper = helpers.cells;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
-  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n                <tr class=\"row week-row\">\n                    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data};
+  if (stack1 = helpers.cells) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.cells; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.cells) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n                </tr>\r\n            ";
-  return buffer;}
+  buffer += "\n                </tr>\n            ";
+  return buffer;
+  }
 function program3(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                        <td class=\"cell";
-  foundHelper = helpers.disabled;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
-  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n                        <td class=\"cell";
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  if (stack1 = helpers.disabled) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.disabled; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.disabled) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\r\n                            <div>\r\n                                <span class=\"date-value\">";
-  foundHelper = helpers.date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                                <em class=\"events-counter\"></em>\r\n\r\n                                <strong class=\"week-number\">";
-  foundHelper = helpers.week_number;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</strong>\r\n\r\n                                <ul class=\"calendar-items\"></ul>\r\n                            </div>\r\n                        </td>\r\n                    ";
-  return buffer;}
+  buffer += "\">\n                            <div>\n                                <span class=\"date-value\">";
+  if (stack1 = helpers.date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                                <em class=\"events-counter\"></em>\n\n                                <strong class=\"week-number\">";
+  if (stack1 = helpers.week_number) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.week_number; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</strong>\n\n                                <ul class=\"calendar-items\"></ul>\n                            </div>\n                        </td>\n                    ";
+  return buffer;
+  }
 function program4(depth0,data) {
   
   
-  return " disabled";}
+  return " disabled";
+  }
 
 function program6(depth0,data) {
   
   
-  return "Loading content";}
+  return "Loading content";
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['calendarWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["calendarWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
   
-  return "Loading content";}
+  return "Loading content";
+  }
 
-  buffer += "<ul class=\"period-groups\">\r\n</ul>\r\n\r\n<ul class=\"groups-list\">\r\n</ul>\r\n\r\n<div class=\"overlay\">\r\n    <em>\r\n        <span>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul class=\"period-groups\">\n</ul>\n\n<ul class=\"groups-list\">\n</ul>\n\n<div class=\"overlay\">\n    <em>\n        <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span><br />\r\n        <img src=\"";
-  foundHelper = helpers.loaderUrl;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n    </em>\r\n</div>";
-  return buffer;});
-templates['calendarWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "</span><br />\n        <img src=\"";
+  if (stack1 = helpers.loaderUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" />\n    </em>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["calendarWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <ul class=\"period-groups\">\r\n    </ul>\r\n\r\n    <ul class=\"groups-list\">\r\n    </ul>\r\n\r\n    <div class=\"overlay\">\r\n        <em>\r\n            <span>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <ul class=\"period-groups\">\n    </ul>\n\n    <ul class=\"groups-list\">\n    </ul>\n\n    <div class=\"overlay\">\n        <em>\n            <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span><br />\r\n            <img src=\"";
-  foundHelper = helpers.loaderUrl;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\r\n        </em>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  buffer += "</span><br />\n            <img src=\"";
+  if (stack1 = helpers.loaderUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.loaderUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" />\n        </em>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "Loading content";}
+  return "Loading content";
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['employeeActivity'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["employeeActivity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<div class=\"indicator\"></div><span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
-  return buffer;});
-templates['employeeActivity_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " – ";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["employeeActivity_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"indicator\"></div><span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <div class=\"indicator\"></div><span>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " – ";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['employeeRowSkill'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["employeeRowSkill"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"side-block\">\r\n    <div class=\"inner\">\r\n        <span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    </div>\r\n</div>\r\n\r\n<table class=\"day-blocks content\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n\r\n            <td class=\"day-block container\">\r\n                <div class=\"inner\">\r\n                    <ul class=\"activities\">\r\n                    </ul>\r\n                </div>\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>";
-  return buffer;});
-templates['employeeRowSkill_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "<div class=\"side-block\">\n    <div class=\"inner\">\n        <span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n    </div>\n</div>\n\n<table class=\"day-blocks content\">\n    <tbody>\n        <tr>\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n\n            <td class=\"day-block container\">\n                <div class=\"inner\">\n                    <ul class=\"activities\">\n                    </ul>\n                </div>\n            </td>\n        </tr>\n\n        <tr class=\"bottom-shadow\">\n        </tr>\n    </tbody>\n</table>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["employeeRowSkill_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"side-block\">\r\n        <div class=\"inner\">\r\n            <span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        </div>\r\n    </div>\r\n\r\n    <table class=\"day-blocks content\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"activities\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <div class=\"side-block\">\n        <div class=\"inner\">\n            <span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n        </div>\n    </div>\n\n    <table class=\"day-blocks content\">\n        <tbody>\n            <tr>\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"activities\">\n                        </ul>\n                    </div>\n                </td>\n            </tr>\n\n            <tr class=\"bottom-shadow\">\n            </tr>\n        </tbody>\n    </table>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['eventUser'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["eventUser"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<div class=\"indicator\"></div><span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
-  return buffer;});
-templates['eventUser_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["eventUser_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"indicator\"></div><span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <div class=\"indicator\"></div><span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['groupFilter'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["groupFilter"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>";
-  return buffer;});
-templates['groupFilter_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["groupFilter_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['groups'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["groups"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    ";
-  foundHelper = helpers.pd;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.pd; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.pd) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.pd) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.pd; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.pd) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    ";
-  foundHelper = helpers.groups;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
-  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  buffer += "\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  if (stack1 = helpers.groups) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </optgroup>\r\n";
-  return buffer;}
+  buffer += "\n    </optgroup>\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
+  var buffer = "", stack1;
   buffer += "<optgroup label=\"";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"options-pd options-pd-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  return buffer;}
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"options-pd options-pd-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  return buffer;
+  }
 
 function program4(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n        ";
-  foundHelper = helpers.group;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
-  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.group) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack1 = helpers.group) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.group; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.group) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    ";
-  return buffer;}
+  buffer += "\n    ";
+  return buffer;
+  }
 function program5(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
+  var buffer = "", stack1;
   buffer += "<option value=\"";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  foundHelper = helpers.treeName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.treeName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</option>";
-  return buffer;}
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.treeName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.treeName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</option>";
+  return buffer;
+  }
 
-  buffer += "<select>\r\n";
-  foundHelper = helpers.tree;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.tree; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.tree) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<select>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.tree) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.tree; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.tree) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>";
-  return buffer;});
-templates['groupsResourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n</select>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["groupsResourceNeed"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    <li class=\"group-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n        <span class=\"group-title\">";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        <ul class=\"availabilities\">\r\n        </ul>\r\n    </li>\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n    <li class=\"group-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n        <span class=\"group-title\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n        <ul class=\"availabilities\">\n        </ul>\n    </li>\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n";
-  foundHelper = helpers.groups;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.groups) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</ul>";
-  return buffer;});
-templates['notification'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["notification"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div>\r\n    <h2>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h2>\r\n    <p class=\"message\">";
-  foundHelper = helpers.summary;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.summary; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\r\n    <p class=\"time\">";
-  foundHelper = helpers.timestamp;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.timestamp; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\r\n\r\n    <i class=\"mark\"></i>\r\n</div>";
-  return buffer;});
-templates['notificationMessage'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "<div>\n    <h2>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n    <p class=\"message\">";
+  if (stack1 = helpers.summary) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.summary; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n    <p class=\"time\">";
+  if (stack1 = helpers.timestamp) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.timestamp; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n    <i class=\"mark\"></i>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["notificationMessage"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"notification-message\">\r\n    <div class=\"background\"></div>\r\n    <i class=\"icon-huge ok\"></i>\r\n    <span>";
-  foundHelper = helpers.text;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</div>";
-  return buffer;});
-templates['notification_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "<div class=\"notification-message\">\n    <div class=\"background\"></div>\n    <i class=\"icon-huge ok\"></i>\n    <span>";
+  if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["notification_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"notification\">\r\n    <div>\r\n        <h2>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h2>\r\n        <p class=\"message\">";
-  foundHelper = helpers.summary;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.summary; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\r\n        <p class=\"time\">";
-  foundHelper = helpers.timestamp;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.timestamp; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\r\n\r\n        <i class=\"mark\"></i>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"notification\">\n    <div>\n        <h2>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n        <p class=\"message\">";
+  if (stack1 = helpers.summary) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.summary; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n        <p class=\"time\">";
+  if (stack1 = helpers.timestamp) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.timestamp; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n        <i class=\"mark\"></i>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['period'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
   
-  return "Groups";}
+  return "Groups";
+  }
 
 function program3(depth0,data) {
   
   
-  return "Templates";}
+  return "Templates";
+  }
 
 function program5(depth0,data) {
   
   
-  return "Start date";}
+  return "Start date";
+  }
 
 function program7(depth0,data) {
   
   
-  return "End date";}
+  return "End date";
+  }
 
 function program9(depth0,data) {
   
   
-  return "PD";}
+  return "PD";
+  }
 
 function program11(depth0,data) {
   
   
-  return "Edit";}
+  return "Edit";
+  }
 
-  buffer += "<div class=\"container-top\">\r\n    <dl>\r\n        <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<div class=\"container-top\">\n    <dl>\n        <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd class=\"groups-list\"></dd>\r\n\r\n        <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  buffer += "</dt>\n        <dd class=\"groups-list\"></dd>\n\n        <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd class=\"templates-list\"></dd>\r\n\r\n        <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  buffer += "</dt>\n        <dd class=\"templates-list\"></dd>\n\n        <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd>";
-  foundHelper = helpers.start_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n        <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  buffer += "</dt>\n        <dd>";
+  if (stack1 = helpers.start_date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n        <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd>";
-  foundHelper = helpers.end_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n        <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  buffer += "</dt>\n        <dd>";
+  if (stack1 = helpers.end_date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n        <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n        <dd class=\"primary_department-value\"></dd>\r\n    </dl>\r\n\r\n    <div class=\"percentage\">\r\n        <canvas></canvas>\r\n        <span class=\"value\"></span>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"container-bottom\">\r\n    <ul class=\"operations\">\r\n        <li class=\"operation\">\r\n            <span class=\"edit-button\">";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  buffer += "</dt>\n        <dd class=\"primary_department-value\"></dd>\n    </dl>\n\n    <div class=\"percentage\">\n        <canvas></canvas>\n        <span class=\"value\"></span>\n    </div>\n</div>\n\n<div class=\"container-bottom\">\n    <ul class=\"operations\">\n        <li class=\"operation\">\n            <span class=\"edit-button\">";
+  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\r\n        </li>\r\n    </ul>\r\n</div>";
-  return buffer;});
-templates['periodBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "</span>\n        </li>\n    </ul>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["periodBlock"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n    <span>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n    <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ":</span> <em>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</em>\r\n\r\n    ";
-  return buffer;}
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " – ";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</em>\n\n    ";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "Time range";}
+  return "Time range";
+  }
 
 function program4(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n    <li>\r\n        <span>";
-  foundHelper = helpers.groupName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.groupName; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n\r\n        <ul class=\"hours\">\r\n            ";
-  foundHelper = helpers.hours;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
-  else { stack1 = depth0.hours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.hours) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n    <li>\n        <span>";
+  if (stack1 = helpers.groupName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.groupName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n\n        <ul class=\"hours\">\n            ";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack1 = helpers.hours) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.hours; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.hours) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </ul>\r\n    </li>\r\n    ";
-  return buffer;}
+  buffer += "\n        </ul>\n    </li>\n    ";
+  return buffer;
+  }
 function program5(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n            <li>\r\n                <em>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " – ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</em> <span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n\r\n            ";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n            <li>\n                <em>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " – ";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</em> <span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </li>\n\n            ";
+  return buffer;
+  }
 
-  buffer += "<div class=\"block-info\">\r\n    ";
-  foundHelper = helpers.block;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.block; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.block) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<div class=\"block-info\">\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.block) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.block; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.block) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</div>\r\n\r\n<ul class=\"groups\">\r\n    ";
-  foundHelper = helpers.groups;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
-  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  buffer += "\n</div>\n\n<ul class=\"groups\">\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  if (stack1 = helpers.groups) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</ul>";
-  return buffer;});
-templates['periodBlockWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["periodBlockWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<tr>\r\n    <td class=\"header\">\r\n        <div class=\"inner\">\r\n            <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"content\">\r\n        <div class=\"inner\">\r\n            <ul class=\"employees\">\r\n            </ul>\r\n\r\n            <div class=\"empty\">\r\n                <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> empty slots</span>\r\n            </div>\r\n        </div>\r\n    </td>\r\n\r\n    <td class=\"footer\">\r\n        <div class=\"inner\">\r\n            <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
-  foundHelper = helpers['total_hours-value'];
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n        </div>\r\n    </td>\r\n</tr>";
-  return buffer;});
-templates['periodBlockWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "<tr>\n    <td class=\"header\">\n        <div class=\"inner\">\n            <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>\n        </div>\n    </td>\n\n    <td class=\"content\">\n        <div class=\"inner\">\n            <ul class=\"employees\">\n            </ul>\n\n            <div class=\"empty\">\n                <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> empty slots</span>\n            </div>\n        </div>\n    </td>\n\n    <td class=\"footer\">\n        <div class=\"inner\">\n            <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
+  if (stack1 = helpers['total_hours-value']) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>\n        </div>\n    </td>\n</tr>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["periodBlockWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<table id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <tr>\r\n        <td class=\"header\">\r\n            <div class=\"inner\">\r\n                <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"content\">\r\n            <div class=\"inner\">\r\n                <ul class=\"employees\">\r\n                </ul>\r\n\r\n                <div class=\"empty\">\r\n                    <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> empty slots</span>\r\n                </div>\r\n            </div>\r\n        </td>\r\n\r\n        <td class=\"footer\">\r\n            <div class=\"inner\">\r\n                <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
-  foundHelper = helpers['total_hours-value'];
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n            </div>\r\n        </td>\r\n    </tr>\r\n</table>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<table id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <tr>\n        <td class=\"header\">\n            <div class=\"inner\">\n                <strong class=\"skill_name-value\"></strong><span><span class=\"matched_employees-value\">0</span> of <span class=\"num_employees-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>\n            </div>\n        </td>\n\n        <td class=\"content\">\n            <div class=\"inner\">\n                <ul class=\"employees\">\n                </ul>\n\n                <div class=\"empty\">\n                    <div class=\"indicator\"></div><span><span class=\"empty_slots-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> empty slots</span>\n                </div>\n            </div>\n        </td>\n\n        <td class=\"footer\">\n            <div class=\"inner\">\n                <span><span class=\"matched_hours-value\">0h</span> of <span class=\"total_hours-value\">";
+  if (stack1 = helpers['total_hours-value']) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0['total_hours-value']; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>\n            </div>\n        </td>\n    </tr>\n</table>\n\n";
+  return buffer;
+  }
 
-  buffer += "<div>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<div>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</div>";
-  return buffer;});
-templates['periodGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
+  buffer += "\n\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["periodGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1 class=\"title\">\r\n    <span class=\"group-name\"></span>\r\n</h1>\r\n\r\n<ul class=\"time-groups\">\r\n</ul>\r\n\r\n<ul class=\"skill-groups\">\r\n</ul>\r\n\r\n<ul class=\"children-groups\">\r\n</ul>";});
-templates['periodGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  return "<h1 class=\"title\">\n    <span class=\"group-name\"></span>\n</h1>\n\n<ul class=\"time-groups\">\n</ul>\n\n<ul class=\"skill-groups\">\n</ul>\n\n<ul class=\"children-groups\">\n</ul>";
+  });
+
+this["Handlebars"]["templates"]["periodGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <h1 class=\"title\">\r\n        <span class=\"group-name\"></span>\r\n    </h1>\r\n\r\n    <ul class=\"time-groups\">\r\n    </ul>\r\n\r\n    <ul class=\"skill-groups\">\r\n    </ul>\r\n\r\n    <ul class=\"children-groups\">\r\n    </ul>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <h1 class=\"title\">\n        <span class=\"group-name\"></span>\n    </h1>\n\n    <ul class=\"time-groups\">\n    </ul>\n\n    <ul class=\"skill-groups\">\n    </ul>\n\n    <ul class=\"children-groups\">\n    </ul>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['periodMonth'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["periodMonth"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<h1 class=\"title\">\r\n    ";
-  foundHelper = helpers.month;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.month; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\r\n</h1>\r\n\r\n<ul class=\"periods\">\r\n</ul>";
-  return buffer;});
-templates['period_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "<h1 class=\"title\">\n    ";
+  if (stack1 = helpers.month) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.month; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\n</h1>\n\n<ul class=\"periods\">\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["period_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"container-top\">\r\n        <dl>\r\n            <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <div class=\"container-top\">\n        <dl>\n            <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd class=\"groups-list\"></dd>\r\n\r\n            <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  buffer += "</dt>\n            <dd class=\"groups-list\"></dd>\n\n            <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd class=\"templates-list\"></dd>\r\n\r\n            <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  buffer += "</dt>\n            <dd class=\"templates-list\"></dd>\n\n            <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd>";
-  foundHelper = helpers.start_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n            <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  buffer += "</dt>\n            <dd>";
+  if (stack1 = helpers.start_date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd>";
-  foundHelper = helpers.end_date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</dd>\r\n\r\n            <dt>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  buffer += "</dt>\n            <dd>";
+  if (stack1 = helpers.end_date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>";
+  options = {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dt>\r\n            <dd class=\"primary_department-value\"></dd>\r\n        </dl>\r\n\r\n        <div class=\"percentage\">\r\n            <canvas></canvas>\r\n            <span class=\"value\"></span>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container-bottom\">\r\n        <ul class=\"operations\">\r\n            <li class=\"operation\">\r\n                <span class=\"edit-button\">";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  buffer += "</dt>\n            <dd class=\"primary_department-value\"></dd>\n        </dl>\n\n        <div class=\"percentage\">\n            <canvas></canvas>\n            <span class=\"value\"></span>\n        </div>\n    </div>\n\n    <div class=\"container-bottom\">\n        <ul class=\"operations\">\n            <li class=\"operation\">\n                <span class=\"edit-button\">";
+  options = {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  buffer += "</span>\n            </li>\n        </ul>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "Groups";}
+  return "Groups";
+  }
 
 function program4(depth0,data) {
   
   
-  return "Templates";}
+  return "Templates";
+  }
 
 function program6(depth0,data) {
   
   
-  return "Start date";}
+  return "Start date";
+  }
 
 function program8(depth0,data) {
   
   
-  return "End date";}
+  return "End date";
+  }
 
 function program10(depth0,data) {
   
   
-  return "PD";}
+  return "PD";
+  }
 
 function program12(depth0,data) {
   
   
-  return "Edit";}
+  return "Edit";
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['primaryDepartments'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["primaryDepartments"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    <option value=\"";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</option>\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n    <option value=\"";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n";
+  return buffer;
+  }
 
-  buffer += "<select>\r\n";
-  foundHelper = helpers.primaryDepartments;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.primaryDepartments; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.primaryDepartments) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<select>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.primaryDepartments) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.primaryDepartments; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.primaryDepartments) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>";
-  return buffer;});
-templates['resourceBlock'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n</select>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceBlock"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n            <li class=\"group-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n                <span class=\"available\">";
-  foundHelper = helpers.available;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>/<span class=\"required\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n        ";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n            <li class=\"group-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                <span class=\"available\">";
+  if (stack1 = helpers.available) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>/<span class=\"required\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </li>\n        ";
+  return buffer;
+  }
 
-  buffer += "<div class=\"inner\">\r\n    <ul class=\"info\">\r\n        ";
-  foundHelper = helpers.groups;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<div class=\"inner\">\n    <ul class=\"info\">\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.groups) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </ul>\r\n</div>";
-  return buffer;});
-templates['resourceBlock_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n    </ul>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceBlock_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"inner\">\r\n        <ul class=\"info\">\r\n            ";
-  foundHelper = helpers.groups;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <div class=\"inner\">\n        <ul class=\"info\">\n            ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.groups) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.groups; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.groups) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </ul>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  buffer += "\n        </ul>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n                <li class=\"group-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n                    <span class=\"available\">";
-  foundHelper = helpers.available;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>/<span class=\"required\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                </li>\r\n            ";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n                <li class=\"group-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                    <span class=\"available\">";
+  if (stack1 = helpers.available) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.available; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>/<span class=\"required\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                </li>\n            ";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['resourceNeed'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeed"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
   
-  return "hour|hours";}
+  return "hour|hours";
+  }
 
-  buffer += "<div class=\"element-container\">\r\n    <div class=\"strip\"></div>\r\n\r\n    <div class=\"info\">\r\n        <h2>\r\n            <span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> - <span>";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> <em>(";
-  foundHelper = helpers.deltaHours;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " ";
-  stack1 = depth0.deltaHours;
-  foundHelper = helpers.i18n;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n        </h2>\r\n    </div>\r\n</div>";
-  return buffer;});
-templates['resourceNeedEdit'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
+  buffer += "<div class=\"element-container\">\n    <div class=\"strip\"></div>\n\n    <div class=\"info\">\n        <h2>\n            <span>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> - <span>";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> <em>(";
+  if (stack1 = helpers.deltaHours) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  stack2 = ((stack1 = helpers.i18n || depth0.i18n),stack1 ? stack1.call(depth0, depth0.deltaHours, options) : helperMissing.call(depth0, "i18n", depth0.deltaHours, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += ")</em>\n        </h2>\n    </div>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedEdit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
   
-  return "Time";}
+  return "Time";
+  }
 
 function program3(depth0,data) {
   
   
-  return "to";}
+  return "to";
+  }
 
 function program5(depth0,data) {
   
   
-  return "Skill";}
+  return "Skill";
+  }
 
 function program7(depth0,data) {
   
   
-  return "Employees";}
+  return "Employees";
+  }
 
 function program9(depth0,data) {
   
   
-  return "Type";}
+  return "Type";
+  }
 
 function program11(depth0,data) {
   
   
-  return "PD";}
+  return "PD";
+  }
 
 function program13(depth0,data) {
   
   
-  return "Edit";}
+  return "Edit";
+  }
 
 function program15(depth0,data) {
   
   
-  return "Remove";}
+  return "Remove";
+  }
 
 function program17(depth0,data) {
   
   
-  return "Templates";}
+  return "Templates";
+  }
 
 function program19(depth0,data) {
   
   
-  return "No templates attached";}
+  return "No templates attached";
+  }
 
-  buffer += "<input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n<div class=\"wireframe\">\r\n    <div class=\"side-container\">\r\n        <ul class=\"attributes\">\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<input class=\"resource-need-check\" type=\"checkbox\" />\n\n<div class=\"wireframe\">\n    <div class=\"side-container\">\n        <ul class=\"attributes\">\n            <li>\n                <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</strong>\r\n                <span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)}); }
+  buffer += "</strong>\n                <span>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += " ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)}); }
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </li>\n            <li>\n                <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span class=\"skill-value\"></span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)}); }
+  buffer += " </strong>\n                <span class=\"skill-value\"></span>\n            </li>\n            <li>\n                <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span>";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data)}); }
+  buffer += " </strong>\n                <span>";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </li>\n            <li>\n                <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span>";
-  foundHelper = helpers.employee_type;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.employee_type; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n            </li>\r\n            <li>\r\n                <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)}); }
+  buffer += " </strong>\n                <span>";
+  if (stack1 = helpers.employee_type) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.employee_type; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </li>\n            <li>\n                <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                <span class=\"pd-value\"></span>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n    <ul class=\"columns weekdays\">\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n\r\n        <li class=\"weekday\">\r\n            <i class=\"icon inline unchecked\"></i>\r\n            <i class=\"icon inline checked\"></i>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"edit-button\">\r\n        ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(13, program13, data)}); }
+  buffer += " </strong>\n                <span class=\"pd-value\"></span>\n            </li>\n        </ul>\n    </div>\n\n    <ul class=\"columns weekdays\">\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n\n        <li class=\"weekday\">\n            <i class=\"icon inline unchecked\"></i>\n            <i class=\"icon inline checked\"></i>\n        </li>\n    </ul>\n\n    <div class=\"edit-button\">\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n\r\n    <div class=\"remove-button\">\r\n        ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)}); }
+  buffer += "\n    </div>\n\n    <div class=\"remove-button\">\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(15, program15, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n\r\n    <div class=\"templates-names\">\r\n        <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)}); }
+  buffer += "\n    </div>\n\n    <div class=\"templates-names\">\n        <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ":</strong>\r\n        <span></span>\r\n        <i>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)}); }
+  buffer += ":</strong>\n        <span></span>\n        <i>";
+  options = {hash:{},inverse:self.noop,fn:self.program(19, program19, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</i>\r\n    </div>\r\n</div>";
-  return buffer;});
-templates['resourceNeedEdit_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "</i>\n    </div>\n</div>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedEdit_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <input class=\"resource-need-check\" type=\"checkbox\" />\r\n\r\n    <div class=\"wireframe\">\r\n        <div class=\"side-container\">\r\n            <ul class=\"attributes\">\r\n                <li>\r\n                    <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}); }
+  var buffer = "", stack1, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <input class=\"resource-need-check\" type=\"checkbox\" />\n\n    <div class=\"wireframe\">\n        <div class=\"side-container\">\n            <ul class=\"attributes\">\n                <li>\n                    <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</strong>\r\n                    <span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)}); }
+  buffer += "</strong>\n                    <span>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += " ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                </li>\r\n                <li>\r\n                    <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)}); }
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                </li>\n                <li>\n                    <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                    <span class=\"skill-value\"></span>\r\n                </li>\r\n                <li>\r\n                    <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data)}); }
+  buffer += " </strong>\n                    <span class=\"skill-value\"></span>\n                </li>\n                <li>\n                    <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                    <span>";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                </li>\r\n                <li>\r\n                    <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)}); }
+  buffer += " </strong>\n                    <span>";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                </li>\n                <li>\n                    <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                    <span>";
-  foundHelper = helpers.employee_type;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.employee_type; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n                </li>\r\n                <li>\r\n                    <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data)}); }
+  buffer += " </strong>\n                    <span>";
+  if (stack1 = helpers.employee_type) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.employee_type; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                </li>\n                <li>\n                    <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " </strong>\r\n                    <span class=\"pd-value\"></span>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <ul class=\"columns weekdays\">\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n\r\n            <li class=\"weekday\">\r\n                <i class=\"icon inline unchecked\"></i>\r\n                <i class=\"icon inline checked\"></i>\r\n            </li>\r\n        </ul>\r\n\r\n        <div class=\"edit-button\">\r\n            ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(14, program14, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(14, program14, data)}); }
+  buffer += " </strong>\n                    <span class=\"pd-value\"></span>\n                </li>\n            </ul>\n        </div>\n\n        <ul class=\"columns weekdays\">\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n\n            <li class=\"weekday\">\n                <i class=\"icon inline unchecked\"></i>\n                <i class=\"icon inline checked\"></i>\n            </li>\n        </ul>\n\n        <div class=\"edit-button\">\n            ";
+  options = {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </div>\r\n\r\n        <div class=\"remove-button\">\r\n            ";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)}); }
+  buffer += "\n        </div>\n\n        <div class=\"remove-button\">\n            ";
+  options = {hash:{},inverse:self.noop,fn:self.program(16, program16, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n        </div>\r\n\r\n        <div class=\"templates-names\">\r\n            <strong>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)}); }
+  buffer += "\n        </div>\n\n        <div class=\"templates-names\">\n            <strong>";
+  options = {hash:{},inverse:self.noop,fn:self.program(18, program18, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ":</strong>\r\n            <span></span>\r\n            <i>";
-  foundHelper = helpers.i18n;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(20, program20, data)}); }
+  buffer += ":</strong>\n            <span></span>\n            <i>";
+  options = {hash:{},inverse:self.noop,fn:self.program(20, program20, data),data:data};
+  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</i>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  buffer += "</i>\n        </div>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "Time";}
+  return "Time";
+  }
 
 function program4(depth0,data) {
   
   
-  return "to";}
+  return "to";
+  }
 
 function program6(depth0,data) {
   
   
-  return "Skill";}
+  return "Skill";
+  }
 
 function program8(depth0,data) {
   
   
-  return "Employees";}
+  return "Employees";
+  }
 
 function program10(depth0,data) {
   
   
-  return "Type";}
+  return "Type";
+  }
 
 function program12(depth0,data) {
   
   
-  return "PD";}
+  return "PD";
+  }
 
 function program14(depth0,data) {
   
   
-  return "Edit";}
+  return "Edit";
+  }
 
 function program16(depth0,data) {
   
   
-  return "Remove";}
+  return "Remove";
+  }
 
 function program18(depth0,data) {
   
   
-  return "Templates";}
+  return "Templates";
+  }
 
 function program20(depth0,data) {
   
   
-  return "No templates attached";}
+  return "No templates attached";
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['resourceNeeds'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    <option value=\"";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " - ";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</option>\r\n";
-  return buffer;}
-
-  buffer += "<select>\r\n";
-  foundHelper = helpers.resourceNeeds;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.resourceNeeds; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.resourceNeeds) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>";
-  return buffer;});
-templates['resourceNeedSkillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+this["Handlebars"]["templates"]["resourceNeedSkillGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<strong><span class=\"start_time-value\">";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> – <span class=\"end_time-value\">";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">";
-  foundHelper = helpers.matched_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> of <span class=\"num_employees-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>";
-  return buffer;});
-templates['resourceNeedSkillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> – <span class=\"end_time-value\">";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></strong><span><span class=\"matched_employees-value\">";
+  if (stack1 = helpers.matched_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> of <span class=\"num_employees-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedSkillGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <strong><span class=\"start_time-value\">";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> – <span class=\"end_time-value\">";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></strong><span><span class=\"matched_employees-value\">";
-  foundHelper = helpers.matched_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> of <span class=\"num_employees-value\">";
-  foundHelper = helpers.num_employees;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span></span>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <strong><span class=\"start_time-value\">";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> – <span class=\"end_time-value\">";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></strong><span><span class=\"matched_employees-value\">";
+  if (stack1 = helpers.matched_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.matched_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> of <span class=\"num_employees-value\">";
+  if (stack1 = helpers.num_employees) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.num_employees; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span></span>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['resourceNeedTimeGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedTimeGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"time-range\">\r\n    <span class=\"time top start-time-value\">";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    <span class=\"time bottom end-time-value\">";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n</div>\r\n\r\n<ul class=\"resource-needs-rows\">\r\n</ul>";
-  return buffer;});
-templates['resourceNeedTimeGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "<div class=\"time-range\">\n    <span class=\"time top start-time-value\">";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n    <span class=\"time bottom end-time-value\">";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n</div>\n\n<ul class=\"resource-needs-rows\">\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedTimeGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"time-range\">\r\n        <span class=\"time top start-time-value\">";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n        <span class=\"time bottom end-time-value\">";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    </div>\r\n\r\n    <ul class=\"resource-needs-rows\">\r\n    </ul>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <div class=\"time-range\">\n        <span class=\"time top start-time-value\">";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n        <span class=\"time bottom end-time-value\">";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n    </div>\n\n    <ul class=\"resource-needs-rows\">\n    </ul>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['resourceNeedWeek'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeedWeek"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<table class=\"day-blocks header\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n        </tr>\r\n\r\n        <tr class=\"bottom-shadow\">\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<table class=\"day-blocks content\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<table class=\"day-blocks footer\">\r\n    <tbody>\r\n        <tr>\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n\r\n            <td class=\"day-block\">\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>";});
-templates['resourceNeedWeek_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  return "<table class=\"day-blocks header\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n\n        <tr class=\"bottom-shadow\">\n        </tr>\n    </tbody>\n</table>\n\n<table class=\"day-blocks content\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n    </tbody>\n</table>\n\n<table class=\"day-blocks footer\">\n    <tbody>\n        <tr>\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n\n            <td class=\"day-block\">\n            </td>\n        </tr>\n    </tbody>\n</table>";
+  });
+
+this["Handlebars"]["templates"]["resourceNeedWeek_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <table class=\"day-blocks header\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <table class=\"day-blocks content\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n\r\n    <table class=\"day-blocks footer\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n\r\n                <td class=\"day-block\">\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <table class=\"day-blocks header\">\n        <tbody>\n            <tr>\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n            </tr>\n\n            <tr class=\"bottom-shadow\">\n            </tr>\n        </tbody>\n    </table>\n\n    <table class=\"day-blocks content\">\n        <tbody>\n            <tr>\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n            </tr>\n        </tbody>\n    </table>\n\n    <table class=\"day-blocks footer\">\n        <tbody>\n            <tr>\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n\n                <td class=\"day-block\">\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['resourceNeed_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeed_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"working-hour element\">\r\n    <div class=\"element-container\">\r\n        <div class=\"strip\"></div>\r\n\r\n        <div class=\"info\">\r\n            <h2>\r\n                <span>";
-  foundHelper = helpers.start_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> - <span>";
-  foundHelper = helpers.end_time;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> <em>(";
-  foundHelper = helpers.deltaHours;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " ";
-  stack1 = depth0.deltaHours;
-  foundHelper = helpers.i18n;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "i18n", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ")</em>\r\n            </h2>\r\n        </div>\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1, stack2, options;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"working-hour element\">\n    <div class=\"element-container\">\n        <div class=\"strip\"></div>\n\n        <div class=\"info\">\n            <h2>\n                <span>";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> - <span>";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> <em>(";
+  if (stack1 = helpers.deltaHours) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.deltaHours; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  stack2 = ((stack1 = helpers.i18n || depth0.i18n),stack1 ? stack1.call(depth0, depth0.deltaHours, options) : helperMissing.call(depth0, "i18n", depth0.deltaHours, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += ")</em>\n            </h2>\n        </div>\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "hour|hours";}
+  return "hour|hours";
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['scale'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["resourceNeeds"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"date\">";
-  foundHelper = helpers.date;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span> <span class=\"time\">00:00</span>\r\n        </span>\r\n    </li>\r\n\r\n    ";
-  foundHelper = helpers.last;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(2, program2, data),fn:self.noop}); }
-  else { stack1 = depth0.last; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.last) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(2, program2, data),fn:self.noop}); }
+  var buffer = "", stack1;
+  buffer += "\n    <option value=\"";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n";
+  return buffer;
+  }
+
+  buffer += "<select>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.resourceNeeds) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.resourceNeeds; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.resourceNeeds) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n    ";
-  return buffer;}
+  buffer += "\n</select>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["scale"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, options;
+  buffer += "\n\n    <li class=\"date\">\n        <span>\n            <span class=\"date\">";
+  if (stack1 = helpers.date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span> <span class=\"time\">00:00</span>\n        </span>\n    </li>\n\n    ";
+  options = {hash:{},inverse:self.program(2, program2, data),fn:self.noop,data:data};
+  if (stack1 = helpers.last) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.last; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.last) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    ";
+  return buffer;
+  }
 function program2(depth0,data) {
   
   
-  return "\r\n    \r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">06:00</span>\r\n        </span>\r\n    </li>\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">12:00</span>\r\n        </span>\r\n    </li>\r\n    <li class=\"date\">\r\n        <span>\r\n            <span class=\"time\">18:00</span>\r\n        </span>\r\n    </li>\r\n\r\n    ";}
+  return "\n    \n    <li class=\"date\">\n        <span>\n            <span class=\"time\">06:00</span>\n        </span>\n    </li>\n    <li class=\"date\">\n        <span>\n            <span class=\"time\">12:00</span>\n        </span>\n    </li>\n    <li class=\"date\">\n        <span>\n            <span class=\"time\">18:00</span>\n        </span>\n    </li>\n\n    ";
+  }
 
-  buffer += "<ul>\r\n    ";
-  foundHelper = helpers.scale;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.scale; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.scale) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.scale) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.scale; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.scale) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['skillColumns'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["skillColumns"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n    <li class=\"skill-column-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" style=\"width: ";
-  foundHelper = helpers.width;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + ";\">\r\n        <ul class=\"blocks\">\r\n        </ul>\r\n    </li>\r\n\r\n    ";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n    <li class=\"skill-column-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" style=\"width: ";
+  if (stack1 = helpers.width) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + ";\">\n        <ul class=\"blocks\">\n        </ul>\n    </li>\n\n    ";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n    ";
-  foundHelper = helpers.skills;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.skills) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</ul>";
-  return buffer;});
-templates['skillGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
+  buffer += "\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["skillGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"table-container header\">\r\n    <div class=\"side-block\">\r\n        <div class=\"inner\">\r\n            <span class=\"skill-name\"></span>\r\n        </div>\r\n\r\n        <div class=\"bottom-shadow\"></div>\r\n    </div>\r\n\r\n    <table class=\"day-blocks header\">\r\n        <tbody>\r\n            <tr>\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n\r\n                <td class=\"day-block container\">\r\n                    <div class=\"inner\">\r\n                        <ul class=\"resource-needs\">\r\n                        </ul>\r\n                    </div>\r\n                </td>\r\n            </tr>\r\n\r\n            <tr class=\"bottom-shadow\">\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n\r\n<div class=\"employee-rows\">\r\n</div>";});
-templates['skillGroup_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  return "<div class=\"table-container header\">\n    <div class=\"side-block\">\n        <div class=\"inner\">\n            <span class=\"skill-name\"></span>\n        </div>\n\n        <div class=\"bottom-shadow\"></div>\n    </div>\n\n    <table class=\"day-blocks header\">\n        <tbody>\n            <tr>\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n\n                <td class=\"day-block container\">\n                    <div class=\"inner\">\n                        <ul class=\"resource-needs\">\n                        </ul>\n                    </div>\n                </td>\n            </tr>\n\n            <tr class=\"bottom-shadow\">\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<div class=\"employee-rows\">\n</div>";
+  });
+
+this["Handlebars"]["templates"]["skillGroup_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\r\n    <div class=\"table-container header\">\r\n        <div class=\"side-block\">\r\n            <div class=\"inner\">\r\n                <span class=\"skill-name\"></span>\r\n            </div>\r\n\r\n            <div class=\"bottom-shadow\"></div>\r\n        </div>\r\n\r\n        <table class=\"day-blocks header\">\r\n            <tbody>\r\n                <tr>\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n\r\n                    <td class=\"day-block container\">\r\n                        <div class=\"inner\">\r\n                            <ul class=\"resource-needs\">\r\n                            </ul>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n\r\n                <tr class=\"bottom-shadow\">\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n    <div class=\"employee-rows\">\r\n    </div>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <div class=\"table-container header\">\n        <div class=\"side-block\">\n            <div class=\"inner\">\n                <span class=\"skill-name\"></span>\n            </div>\n\n            <div class=\"bottom-shadow\"></div>\n        </div>\n\n        <table class=\"day-blocks header\">\n            <tbody>\n                <tr>\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n\n                    <td class=\"day-block container\">\n                        <div class=\"inner\">\n                            <ul class=\"resource-needs\">\n                            </ul>\n                        </div>\n                    </td>\n                </tr>\n\n                <tr class=\"bottom-shadow\">\n                </tr>\n            </tbody>\n        </table>\n    </div>\n\n    <div class=\"employee-rows\">\n    </div>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['skills'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["skills"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    <option value=\"";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</option>\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n    <option value=\"";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n";
+  return buffer;
+  }
 
-  buffer += "<select>\r\n";
-  foundHelper = helpers.skills;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<select>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.skills) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>";
-  return buffer;});
-templates['template'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+  buffer += "\n</select>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["speechResults"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <li class=\"";
+  if (stack1 = helpers.status) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.status; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n";
+  return buffer;
+  }
+
+  buffer += "<ul class=\"results\">\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.results) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.results; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.results) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["template"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
   buffer += "<span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n<ul class=\"dropdown\" style=\"display: none;\">\r\n    <li>Edit</li>\r\n    <li>Delete</li>\r\n</ul>";
-  return buffer;});
-templates['templates'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n<ul class=\"dropdown\" style=\"display: none;\">\n    <li>Edit</li>\n    <li>Delete</li>\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["template_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n    <option value=\"";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"options-pd options-pd-";
-  foundHelper = helpers.primary_department;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.primary_department; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</option>\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n<li id=\"element-view-";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "-";
+  if (stack1 = helpers.cid) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"template\">\n    <span>";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n    <ul class=\"dropdown\" style=\"display: none;\">\n        <li>Edit</li>\n        <li>Delete</li>\n    </ul>\n</li>\n\n";
+  return buffer;
+  }
 
-  buffer += "<select>\r\n";
-  foundHelper = helpers.templates;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.templates; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.templates) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.elements) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</select>";
-  return buffer;});
-templates['template_group'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n\n</ul>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["templates"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n<li id=\"element-view-";
-  foundHelper = helpers.pk;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "-";
-  foundHelper = helpers.cid;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.cid; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"template\">\r\n    <span>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</span>\r\n    <ul class=\"dropdown\" style=\"display: none;\">\r\n        <li>Edit</li>\r\n        <li>Delete</li>\r\n    </ul>\r\n</li>\r\n\r\n";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n    <option value=\"";
+  if (stack1 = helpers.pk) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.pk; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"options-pd options-pd-";
+  if (stack1 = helpers.primary_department) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.primary_department; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n\r\n";
-  foundHelper = helpers.elements;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.elements; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.elements) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<select>\n";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.templates) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.templates; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.templates) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n</ul>";
-  return buffer;});
-templates['timelineSkills'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  buffer += "\n</select>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["timelineSkills"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
-  buffer += "\r\n\r\n    <li style=\"width: ";
-  foundHelper = helpers.width;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + ";\">\r\n        ";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\r\n    </li>\r\n\r\n    ";
-  return buffer;}
+  var buffer = "", stack1;
+  buffer += "\n\n    <li style=\"width: ";
+  if (stack1 = helpers.width) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.width; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + ";\">\n        ";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\n    </li>\n\n    ";
+  return buffer;
+  }
 
-  buffer += "<ul>\r\n    ";
-  foundHelper = helpers.skills;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
-  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.call(depth0) : stack1; }
-  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  buffer += "<ul>\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.skills) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.skills; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.skills) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n</ul>";
-  return buffer;});
-})();
+  buffer += "\n</ul>";
+  return buffer;
+  });
 define("templates", ["handlebars"], function(){});
 
-// Generated by CoffeeScript 1.6.2
 define('_features/indicator',[], function() {
   return {
     start: function() {
@@ -21328,12 +20166,10 @@ define('_features/indicator',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/localStorageCache',[], function() {
   return {
     _get: function(model, url) {
       var _str;
-
       if (typeof (_str = localStorage[url]) !== 'undefined') {
         return JSON.parse(localStorage[url]);
       } else {
@@ -21364,7 +20200,6 @@ define('_features/localStorageCache',[], function() {
     },
     reset: function(model, url, options) {
       var _value;
-
       _value = this._get(model, url);
       if (_value !== null) {
         (model instanceof Backbone.Model ? model.set : model instanceof Backbone.Collection ? model.add : void 0).call(model, _value);
@@ -21377,7 +20212,6 @@ define('_features/localStorageCache',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 if (typeof window.ovivo === 'undefined') {
   window.ovivo = {};
 }
@@ -21388,14 +20222,12 @@ if (typeof window.ovivo.desktop === 'undefined') {
 
 Date.parse = (function() {
   var _parse, _processors;
-
   _parse = Date.parse;
   _processors = [
     {
       regExp: /^\s*(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).*Z\s*$/,
       processor: function(str) {
         var date, month, parts;
-
         parts = str.match(this.regExp);
         date = new Date(NaN);
         month = +parts[2];
@@ -21412,7 +20244,6 @@ Date.parse = (function() {
       regExp: /^(\d{4})-(\d{1,2})-(\d{1,2})$/,
       processor: function(str) {
         var day, match, month, year, _ref;
-
         _ref = str.match(this.regExp), match = _ref[0], year = _ref[1], month = _ref[2], day = _ref[3];
         return new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
       }
@@ -21420,7 +20251,6 @@ Date.parse = (function() {
       regExp: /^(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).(\d\d\d\d\d\d)$/,
       processor: function(str) {
         var _day, _hours, _milliseconds, _minutes, _month, _ref, _ref1, _seconds, _year;
-
         _ref = str.match(this.regExp).slice(1), _year = _ref[0], _month = _ref[1], _day = _ref[2], _hours = _ref[3], _minutes = _ref[4], _seconds = _ref[5], _milliseconds = _ref[6];
         _ref1 = [parseInt(_year), parseInt(_month), parseInt(_day), parseInt(_hours), parseInt(_minutes), parseInt(_seconds), parseInt(_milliseconds)], _year = _ref1[0], _month = _ref1[1], _day = _ref1[2], _hours = _ref1[3], _minutes = _ref1[4], _seconds = _ref1[5], _milliseconds = _ref1[6];
         return new Date(_year, _month - 1, _day, _hours, _minutes, _seconds, _milliseconds);
@@ -21429,7 +20259,6 @@ Date.parse = (function() {
   ];
   return function(str) {
     var _obj;
-
     _obj = _.find(_processors, function(obj) {
       return obj.regExp.test(str);
     });
@@ -21443,7 +20272,6 @@ Date.parse = (function() {
 
 Handlebars.registerHelper('i18n', function(value, options) {
   var _plural, _ref, _singular, _value;
-
   if (value === void 0) {
     value = options;
   }
@@ -21489,11 +20317,9 @@ ovivo.parseBoolean = function(str) {
   return Boolean(str);
 };
 
-// Generated by CoffeeScript 1.6.2
 requirejs(['_features/indicator', '_features/localStorageCache'], function(indicator, localStorageCache) {
   return (function() {
     var _callbackCreatorCreator, _callsCounter, _errorCreator, _postProcess, _processFlag, _processLocalStorageCache, _processReadSuccess, _queue, _queueRules, _successCreator, _sync;
-
     _sync = Backbone.sync;
     _callsCounter = 0;
     _processFlag = false;
@@ -21513,7 +20339,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       return function(originalCallback, method, model, options) {
         return function(model, resp) {
           var _curObj, _nextObj, _res;
-
           _callsCounter -= 1;
           if (typeof (_res = action(options._url, model, resp, method, options)) === 'object') {
             resp = _res;
@@ -21544,14 +20369,12 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
         if (model.fullResponse === true) {
           _.each(_.without.apply(_, [model.pluck('pk')].concat(_.pluck(resp, 'pk'))), function(pk) {
             var _model;
-
             _model = model.get(pk);
             return model.remove(_model);
           });
         }
         _.each(resp, function(obj, i) {
           var _model;
-
           if ((_model = model.get(obj.pk)) != null) {
             _model.set(obj, {
               cache_update: true
@@ -21583,7 +20406,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
     };
     _processLocalStorageCache = function(model, options) {
       var _ref;
-
       if (localStorageCache.allowed() === true) {
         if (localStorageCache.reset(model, options._url, options) === true) {
           if ((_ref = model.def) != null) {
@@ -21600,7 +20422,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
     return Backbone.sync = function(method, model, options) {
       var _args, _call, _flag, _resp,
         _this = this;
-
       if (model.localStorageOnly !== true) {
         _callsCounter += 1;
       }
@@ -21615,7 +20436,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
       _flag = method === 'read' ? _processLocalStorageCache(model, options) : model.localStorageOnly === true ? (_resp = model.toJSON(), method === 'create' ? _resp.pk = Date.now().valueOf() : void 0, options.success(model, _resp, options), model.trigger('sync', model, _resp, options), false) : true;
       _call = function() {
         var _stamp;
-
         _stamp = (new Date()).valueOf().toString() + _callsCounter.toString();
         model._syncStamp = _stamp;
         options.success = _successCreator.apply(null, [options.success].concat(_args));
@@ -21648,7 +20468,6 @@ requirejs(['_features/indicator', '_features/localStorageCache'], function(indic
   })();
 });
 
-// Generated by CoffeeScript 1.6.2
 if (window.ovivo == null) {
   window.ovivo = {};
 }
@@ -21673,7 +20492,6 @@ ovivo.config.VALIDATION_REGEXP_TIME = /^(((\d\d):(\d\d))|((\d\d)\.(\d\d))|((\d\d
 
 ovivo.config.ANIMATION_END = (function() {
   var _animation;
-
   if ((_animation = Modernizr.prefixed('animation')) === false) {
     return false;
   }
@@ -21699,10 +20517,8 @@ if (ovivo._config != null) {
 ;
 define("ovivo", ["templates"], function(){});
 
-// Generated by CoffeeScript 1.6.2
 define('routers/main',['ovivo'], function() {
   var _Router;
-
   _Router = Backbone.Router.extend({
     routes: {},
     initialize: function() {
@@ -21712,7 +20528,6 @@ define('routers/main',['ovivo'], function() {
   return new _Router();
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/ToolsBase',['ovivo'], function() {
   return {
     localStorageCacheFunc: function(funcName, func) {
@@ -21721,7 +20536,6 @@ define('_common/ToolsBase',['ovivo'], function() {
       } else {
         return function() {
           var _args, _cached, _key, _res;
-
           _args = Array.prototype.slice.call(arguments, 0);
           _key = funcName + '-' + _.reduce(_args, (function(str, arg) {
             return str + '-' + arg;
@@ -21739,7 +20553,6 @@ define('_common/ToolsBase',['ovivo'], function() {
     },
     proxyCall: function(methodName, args) {
       var _args, _tail;
-
       _args = Array.prototype.slice.call(args, 0);
       _tail = Array.prototype.slice.call(arguments, 2);
       _args = _tail.concat(_args);
@@ -21747,7 +20560,6 @@ define('_common/ToolsBase',['ovivo'], function() {
     },
     once: function(funcName, func) {
       var _flagPropertyName;
-
       _flagPropertyName = "_callFlag-" + funcName;
       return function() {
         if (this[_flagPropertyName] !== true) {
@@ -21760,12 +20572,10 @@ define('_common/ToolsBase',['ovivo'], function() {
     },
     throttle: function(func, limit) {
       var _prevCall, _timeout;
-
       _prevCall = 0;
       _timeout = null;
       return function() {
         var _args, _this;
-
         _this = this;
         _args = Array.prototype.slice.call(arguments, 0);
         if (_timeout === null) {
@@ -21784,11 +20594,9 @@ define('_common/ToolsBase',['ovivo'], function() {
     },
     bounceRepeater: function(start, bounce, func) {
       var _func;
-
       _func = function(args, delay, iteration) {
         var _timeoutFunc,
           _this = this;
-
         _timeoutFunc = function() {
           func.apply(_this, args);
           iteration -= 1;
@@ -21802,21 +20610,18 @@ define('_common/ToolsBase',['ovivo'], function() {
       };
       return function() {
         var _args;
-
         _args = Array.prototype.slice.call(arguments, 0);
         return _func.call(this, _args, start, bounce);
       };
     },
     throttleGroup: function(funcName, groupFuncName, limit) {
       var _processGroupCall;
-
       _processGroupCall = function() {
         this[groupFuncName](this.common.calls);
         return delete this.common.timer;
       };
       return function() {
         var _args;
-
         _args = Array.prototype.slice.call(arguments, 0);
         if (this.doNotThrottleGroup === true) {
           return this["_" + funcName].apply(this, _args);
@@ -21834,7 +20639,6 @@ define('_common/ToolsBase',['ovivo'], function() {
     },
     onceEventBind: function(obj, eventName, handler) {
       var _func;
-
       _func = function() {
         handler.apply(this, arguments);
         return obj.off(eventName, _func);
@@ -21849,15 +20653,12 @@ define('_common/ToolsBase',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
-
   _Base = Backbone.Model.extend(_.extend({}, ToolsBase, {
     idAttribute: 'pk',
     createGetters: (function() {
       var _foreignGetter, _nativeGetter;
-
       _nativeGetter = function(_name) {
         return function() {
           return this.get(_name);
@@ -21870,10 +20671,8 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
       };
       return ToolsBase.once('createGetters', function() {
         var _this = this;
-
         return _.each(this._gettersNames, function(arr) {
           var _getter, _name;
-
           _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
           _name = typeof arr === 'string' ? arr : arr[0];
           if (_this.constructor.prototype[_name] == null) {
@@ -21898,14 +20697,12 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
     },
     highlight: function() {
       var _this = this;
-
       return _.each(_.values(this.calendarDays), function(day) {
         return day.highlight(_this);
       });
     },
     removeHighlight: function() {
       var _this = this;
-
       return _.each(_.values(this.calendarDays), function(day) {
         return day.removeHighlight(_this);
       });
@@ -21928,7 +20725,6 @@ define('models/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/ToolsBase', 'ovivo'], function(localStorageCache, ToolsBase) {
   return {
     _fetchSuccess: function() {
@@ -21950,7 +20746,6 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
     },
     _fetch: function(data) {
       var _queryStringFinal;
-
       _queryStringFinal = (this._getQueryString(data)).slice(1);
       this.fetch({
         update: true,
@@ -21963,7 +20758,6 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
     },
     setValue: function(name, value) {
       var _model;
-
       if (this instanceof Backbone.Model) {
         this.set(name, value);
       } else if (this instanceof Backbone.Collection) {
@@ -21984,7 +20778,6 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
     },
     _checkIfIgnore: function(model) {
       var _changed, _i;
-
       if (this._ignoreChange instanceof Array) {
         _i = 0;
         _changed = _.keys(model.changed);
@@ -22022,7 +20815,6 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
     },
     initResource: function() {
       var _this = this;
-
       this._url = (function() {
         if (typeof _this.url === 'function') {
           return _this.url();
@@ -22043,7 +20835,6 @@ define('_common/ResourceManagerBase',['_features/localStorageCache', '_common/To
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/User',['models/resources/ResourceBase', '_common/ResourceManagerBase', 'ovivo'], function(ResourceBase, ResourceManagerBase) {
   return ResourceBase.extend(_.extend({}, ResourceManagerBase, {
     name: 'user',
@@ -22054,7 +20845,6 @@ define('models/resources/User',['models/resources/ResourceBase', '_common/Resour
     _gettersNames: ['pk', 'first_name', 'last_name', 'groups', 'skills', 'email', 'email_confirmed', 'mobile_phone_prefix', 'mobile_phone'],
     toJSON: function() {
       var _json;
-
       _json = Backbone.Model.prototype.toJSON.call(this);
       delete _json.groups;
       delete _json.skills;
@@ -22068,15 +20858,12 @@ define('models/resources/User',['models/resources/ResourceBase', '_common/Resour
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/AnimationControl',[], function() {
   return {
     _attachHandlers: (function() {
       var _animationEnd;
-
       _animationEnd = function($el) {
         var _handler;
-
         _handler = function() {
           return $el.off(ovivo.config.ANIMATION_END, _handler);
         };
@@ -22091,11 +20878,9 @@ define('_common/AnimationControl',[], function() {
     },
     _wrapHanlder: function(handler) {
       var _argsOutter, _handler;
-
       _argsOutter = Array.prototype.slice.call(arguments, 1);
       return _handler = function() {
         var _args;
-
         _args = Array.prototype.slice.call(arguments, 0);
         return handler.apply(this, [_handler].concat(_argsOutter).concat(_args));
       };
@@ -22103,10 +20888,8 @@ define('_common/AnimationControl',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/Popup',['_common/AnimationControl', 'ovivo'], function(AnimationControl) {
   var _Popup, _counter;
-
   _counter = 0;
   _Popup = Backbone.View.extend(_.extend({}, AnimationControl, {
     events: {
@@ -22164,7 +20947,6 @@ define('views/popups/Popup',['_common/AnimationControl', 'ovivo'], function(Anim
   return _Popup;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/ResourceEditCommon',[], function() {
   return {
     get: function(parentEvents) {
@@ -22179,12 +20961,16 @@ define('_common/ResourceEditCommon',[], function() {
         propertyRegExp: /\bproperty-value-(\w+)\b/,
         modes: ['edit', 'create'],
         processPropertyChange: function(e) {
-          var _input, _item, _name, _value;
-
+          var _input, _item, _name, _picker, _val, _value;
           _input = $(e.target).closest('.property-value');
           _item = $(e.target).closest('.item-content');
           _name = this.propertyRegExp.exec(_input[0].className)[1];
-          _value = this.types[_name](_input.val());
+          if ((_picker = _input.pickadate('picker')) != null) {
+            _val = _picker.get('select', 'yyyy-mm-dd');
+          } else {
+            _val = _input.val();
+          }
+          _value = this.types[_name](_val);
           if (_value === this.original[_name]()) {
             _item.removeClass('changed');
           } else {
@@ -22196,7 +20982,6 @@ define('_common/ResourceEditCommon',[], function() {
         },
         _getAddSyncHandler: function(collection, model, originalModel) {
           var _handler;
-
           _handler = function() {
             collection.add(model);
             if (model.postEditSync != null) {
@@ -22209,7 +20994,6 @@ define('_common/ResourceEditCommon',[], function() {
         },
         _getSaveSyncHandler: function(collection, model, originalModel) {
           var _handler, _this;
-
           _this = this;
           _handler = function() {
             _this.clearChangeState();
@@ -22250,7 +21034,6 @@ define('_common/ResourceEditCommon',[], function() {
         initMode: function(name) {
           var _hide,
             _this = this;
-
           _hide = _.without(this.modes, name);
           _.each(_hide, function(name) {
             return _this.$("." + name + "-mode").hide();
@@ -22277,7 +21060,6 @@ define('_common/ResourceEditCommon',[], function() {
         },
         _createEditCopy: function(model) {
           var _copy;
-
           _copy = new model.constructor(model.toJSON());
           _copy.editCopy = true;
           if (_copy.finishCopy != null) {
@@ -22287,7 +21069,6 @@ define('_common/ResourceEditCommon',[], function() {
         },
         _initComponents: function() {
           var _this = this;
-
           this._components = {};
           _.each(this.fields, function(field, i) {
             if (typeof field === 'object') {
@@ -22305,7 +21086,6 @@ define('_common/ResourceEditCommon',[], function() {
         },
         setModel: function(model, mode) {
           var _this = this;
-
           this.clearChangeState();
           this._initComponents();
           this.original = model;
@@ -22317,7 +21097,6 @@ define('_common/ResourceEditCommon',[], function() {
           this.trigger('change:model', this.model);
           return _.each(this.fields, function(field) {
             var _component, _date, _v;
-
             if (typeof field === 'object') {
               _this[field.setValue](field.name, _this.model[field.name]());
               return true;
@@ -22326,7 +21105,7 @@ define('_common/ResourceEditCommon',[], function() {
             if (_component.hasClass('datepicker')) {
               _date = new Date(Date.parse(_this.model[field]()));
               _component.each(function(i, el) {
-                return $(el).data('pickadate').setDate(_date.getFullYear(), _date.getMonth() + 1, _date.getDate());
+                return $(el).pickadate('picker').set('select', _date);
               });
             } else if (_component.hasClass('plain-value')) {
               $.when(_this.model.view[field]()).done(function(_str) {
@@ -22347,19 +21126,16 @@ define('_common/ResourceEditCommon',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/EditPopup',['views/popups/Popup', '_common/ResourceEditCommon', 'ovivo'], function(Popup, ResourceEditCommon) {
   return Popup.extend(ResourceEditCommon.get(Popup.prototype.events));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/trailZero',[], function() {
   return function(str) {
     return ("0" + str).slice(-2);
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-resource-need',
@@ -22394,7 +21170,6 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
     },
     createNew: function(obj, mode) {
       var _end, _now, _ref, _ref1, _start;
-
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
       _start = new Date(_now);
@@ -22428,7 +21203,6 @@ define('views/popups/EditPopupResourceNeed',['views/popups/EditPopup', '_feature
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-template',
@@ -22461,7 +21235,6 @@ define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/tr
     },
     processResourceNeeds: function() {
       var _select;
-
       _select = this.$('.property-value-resource_needs');
       _select.children().remove();
       return _select.append($(this.resourceNeedsTemplate(this)).children());
@@ -22469,7 +21242,6 @@ define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/tr
     initialize: function() {
       var _resourceNeedsProcessor,
         _this = this;
-
       this.types = this.types();
       this.collection = ovivo.desktop.resources.templates;
       this._initialize();
@@ -22485,7 +21257,6 @@ define('views/popups/EditPopupTemplate',['views/popups/EditPopup', '_features/tr
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trailZero', 'ovivo'], function(EditPopup, trailZero) {
   return EditPopup.extend({
     el: '.popup-period',
@@ -22529,7 +21300,6 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
     modes: ['edit', 'create'],
     createNew: function(obj, mode) {
       var _end, _now, _ref, _start;
-
       _now = Date.today();
       _now.moveToFirstDayOfMonth();
       _start = new Date(_now);
@@ -22558,7 +21328,6 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
     },
     processPrimaryDepartmentChange: function(model) {
       var _pd;
-
       this.processGroups();
       this.processTemplates();
       _pd = model.primary_department();
@@ -22572,7 +21341,6 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
     },
     processModelChange: (function() {
       var _attachHanlders, _detachHanlders;
-
       _attachHanlders = function(model) {
         return model.on('change:primary_department', this.processPrimaryDepartmentChange, this);
       };
@@ -22590,7 +21358,6 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
     })(),
     initialize: function() {
       var _this = this;
-
       this.types = this.types();
       this.collection = ovivo.desktop.resources.periods;
       this.$('.datepicker').pickadate({
@@ -22614,7 +21381,6 @@ define('views/popups/EditPopupPeriod',['views/popups/EditPopup', '_features/trai
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(Popup) {
   return Popup.extend({
     el: '.popup-create-new',
@@ -22644,7 +21410,6 @@ define('views/popups/CreateNewPopup',['views/popups/Popup', 'ovivo'], function(P
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/popups/PeriodBlockPopup',['views/popups/Popup', 'ovivo'], function(Popup) {
   return Popup.extend({
     el: '.popup-period-block',
@@ -22660,13 +21425,10 @@ define('views/popups/PeriodBlockPopup',['views/popups/Popup', 'ovivo'], function
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/transition',[], function() {
   var _animationEndGen;
-
   _animationEndGen = function(_def, enterClass, exitClass) {
     var _func;
-
     _func = function(e) {
       $(this).addClass('post-animation');
       _def.resolve();
@@ -22679,7 +21441,6 @@ define('_features/transition',[], function() {
     transit: function(prev, next, enterClass, exitClass, reverse) {
       var _def, _defNext, _defPrev,
         _this = this;
-
       _defNext = $.Deferred();
       _defPrev = $.Deferred();
       if (reverse === true) {
@@ -22713,12 +21474,10 @@ define('_features/transition',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/Page',['ovivo'], function() {
   return Backbone.Model.extend({
     forwardEvent: function() {
       var _args;
-
       _args = Array.prototype.slice.call(arguments, 0);
       _args.splice(1, 0, this);
       return this.trigger.apply(this, _args);
@@ -22735,13 +21494,11 @@ define('models/Page',['ovivo'], function() {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/Pages',['_features/transition', 'models/Page', 'ovivo'], function(transition, Model) {
   return Backbone.Collection.extend({
     model: Model,
     addPage: function(Page, name, options) {
       var _model;
-
       _model = new Model({}, {
         Page: Page,
         name: name,
@@ -22753,7 +21510,6 @@ define('collections/Pages',['_features/transition', 'models/Page', 'ovivo'], fun
     transition: function(source, target, _args) {
       var _sourceView, _targetView,
         _this = this;
-
       _sourceView = source.page.view;
       _targetView = target.page.view;
       _.each([_sourceView, _targetView], function(page) {
@@ -22771,7 +21527,6 @@ define('collections/Pages',['_features/transition', 'models/Page', 'ovivo'], fun
     },
     processShow: function(page) {
       var _args;
-
       _args = Array.prototype.slice.call(arguments, 1);
       if (page.page.menuFlag !== false) {
         ovivo.desktop.sideBar.setPage(page.page.name);
@@ -22799,17 +21554,14 @@ define('collections/Pages',['_features/transition', 'models/Page', 'ovivo'], fun
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
-
   _Base = Backbone.Model.extend(_.extend({}, ToolsBase, {
     show: function() {
       return this.view.show.apply(this.view, Array.prototype.slice.call(arguments, 0));
     },
     processChange: function() {
       var _localStorage;
-
       if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null)) {
         _localStorage[this.id] = JSON.stringify(this.toJSON());
       }
@@ -22817,7 +21569,6 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
     },
     _getFromLocalStorage: function() {
       var _localStorage, _objStr;
-
       if ((this.saveState !== false) && ((_localStorage = window.localStorage) != null) && ((_objStr = _localStorage[this.id]) != null)) {
         this.set(JSON.parse(_objStr));
       }
@@ -22830,7 +21581,6 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
     },
     initialize: function(attrs, options) {
       var _obj;
-
       this.name = attrs.name;
       this.on('change:subView', this.processChange, this);
       this.id = "page-" + this.name;
@@ -22854,10 +21604,8 @@ define('models/pages/PageBase',['_common/ToolsBase', 'ovivo'], function(ToolsBas
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovivo'], function(ToolsBase, transition) {
   var _Base;
-
   _Base = Backbone.View.extend(_.extend({}, ToolsBase, {
     show: function() {
       this.model.trigger.apply(this.model, ['show'].concat(Array.prototype.slice.call(arguments, 0)));
@@ -22916,7 +21664,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     showSubView: function(name) {
       var _subView;
-
       if (name == null) {
         return;
       }
@@ -22934,7 +21681,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     transition: function(source, target) {
       var _this = this;
-
       _.each([source, target], function(page) {
         page.showEl();
         return true;
@@ -22947,7 +21693,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     processSubView: function(page) {
       var _subView, _subViewName,
         _this = this;
-
       _subViewName = this.subView();
       _subView = this.subViews[_subViewName];
       if (_subView != null) {
@@ -22966,7 +21711,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     _initSubView: function() {
       var _subViewName;
-
       if ((_subViewName = this.subView()) == null) {
         this.model.set('subView', this.defaultSubView);
       } else {
@@ -22982,10 +21726,8 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     processContentScrollBind: (function() {
       var _cache, _checkScrollBottom, _checkScrollTop, _func, _initialHandler, _usualHandler;
-
       _checkScrollTop = function() {
         var _scrollTop;
-
         _scrollTop = this.el.scrollTop;
         if (_scrollTop !== 0) {
           if (!(this.$el.hasClass('scrolled-top'))) {
@@ -23001,7 +21743,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
       };
       _checkScrollBottom = function() {
         var _scrollTop;
-
         _scrollTop = this.el.scrollTop;
         if ((this.offsetHeight + _scrollTop) !== this.scrollHeight) {
           if (!(this.$el.hasClass('scrolled-bottom'))) {
@@ -23031,7 +21772,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
       _cache = [];
       _func = function($el, el) {
         var _ctx, _handler;
-
         _ctx = {
           handler: _initialHandler,
           el: el,
@@ -23049,7 +21789,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
       };
       _func.process = function(el) {
         var _ctx;
-
         if (!$(el).hasClass('scrollable')) {
           el = $('.scrollable', el)[0];
         }
@@ -23074,12 +21813,10 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
     },
     initialize: function() {
       var _this = this;
-
       this.model.on('change:subView', this.processSubView, this);
       this.content = this.$('div.content');
       this.scrollProcessors = this.$('.scrollable').map(function(i, el) {
         var _processor;
-
         _processor = _this.processContentScrollBind(_this.$el, el);
         $(el).on('scroll', _processor);
         return _processor;
@@ -23087,7 +21824,6 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
       this.subViews = [];
       _.each(this.SubViews, function(SubView) {
         var _subView;
-
         _subView = new SubView();
         _subView.page = _this;
         _subView.baseView = _this;
@@ -23102,12 +21838,10 @@ define('views/pages/PageBase',['_common/ToolsBase', '_features/transition', 'ovi
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
   return {
     navigate: function() {
       var _collector, _key;
-
       console.log(window._time = new Date());
       _key = this._getKey.apply(this, Array.prototype.slice.call(arguments, 0));
       if (this._isToday.apply(this, Array.prototype.slice.call(arguments, 0)) === true) {
@@ -23142,7 +21876,6 @@ define('views/pages/Calendar/DaysCollectorPage',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/calendar/Days',['ovivo'], function() {
   return Backbone.Collection.extend({
     comparator: function(day) {
@@ -23150,10 +21883,8 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     initElements: function(elements, days) {
       var _this = this;
-
       return _.each(_.zip(elements, days), function(_arg) {
         var day, element;
-
         element = _arg[0], day = _arg[1];
         _this.add(day, {
           el: element
@@ -23163,7 +21894,6 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     _addDayCache: function(day, cache, model) {
       var _arr, _key;
-
       _key = model.id;
       if ((_arr = cache[_key]) == null) {
         _arr = cache[_key] = [];
@@ -23178,10 +21908,8 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     _rangeResultProcessor: function(rangeResult, hash, adderName) {
       var _this = this;
-
       return _.each(rangeResult, function(obj) {
         var _day, _key;
-
         _key = "" + (obj.date.getFullYear()) + "-" + (obj.date.getMonth()) + "-" + (obj.date.getDate());
         _day = _this.get(_key);
         if (_day != null) {
@@ -23195,7 +21923,6 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     processResourceNeedAdd: function(workingHour) {
       var end, start;
-
       start = this.first().dateObj();
       end = this.last().dateObj();
       return this._rangeResultProcessor(workingHour.processRange(start, end), this.resourceNeedsCache, 'addResourceNeed');
@@ -23212,7 +21939,6 @@ define('collections/calendar/Days',['ovivo'], function() {
     },
     processAvailabilityAdd: function(model) {
       var _data, _day, _key;
-
       _data = new Date(Date.parse(model.start()));
       _key = model._key = "" + (_data.getFullYear()) + "-" + (_data.getMonth()) + "-" + (_data.getDate());
       _day = this.get(_key);
@@ -23227,17 +21953,14 @@ define('collections/calendar/Days',['ovivo'], function() {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/calendar/DaysCollectors',['_common/ToolsBase', 'collections/calendar/Days', 'ovivo'], function(ToolsBase, Days) {
   var _Base;
-
   _Base = Backbone.Collection.extend(_.extend({}, ToolsBase, {
     comparator: function(elem) {
       return elem.firstDate();
     },
     addElement: function(obj) {
       var _elem;
-
       _elem = new this.model(obj, {
         collection: this
       });
@@ -23267,7 +21990,6 @@ define('collections/calendar/DaysCollectors',['_common/ToolsBase', 'collections/
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/CalendarBase',[], function() {
   return {
     year: function() {
@@ -23312,7 +22034,6 @@ define('_common/CalendarBase',[], function() {
     },
     _getWeekNumber: function(d) {
       var weekNo, yearStart;
-
       d = new Date(d);
       d.setHours(0, 0, 0);
       d.setDate(d.getDate() + 4 - (d.getDay() || 7));
@@ -23324,7 +22045,6 @@ define('_common/CalendarBase',[], function() {
     },
     getWeeksArr: function(year, month) {
       var _daysAfter, _daysBefore, _daysNum, _firstDayOfMonth, _i, _lastDayOfMonth, _month, _nextDaysNum, _nextMonth, _nextYear, _prevDaysNum, _prevMonth, _prevYear, _returnValue, _weeks, _year;
-
       _returnValue = [];
       _year = year != null ? year : this.year();
       _month = month != null ? month : this.month();
@@ -23350,7 +22070,6 @@ define('_common/CalendarBase',[], function() {
       if (_daysBefore > 0) {
         _weeks = _weeks.concat((function() {
           var _j, _ref, _results;
-
           _results = [];
           for (_i = _j = _ref = _prevDaysNum - _daysBefore + 1; _ref <= _prevDaysNum ? _j <= _prevDaysNum : _j >= _prevDaysNum; _i = _ref <= _prevDaysNum ? ++_j : --_j) {
             _results.push({
@@ -23366,7 +22085,6 @@ define('_common/CalendarBase',[], function() {
       }
       _weeks = _weeks.concat((function() {
         var _j, _results;
-
         _results = [];
         for (_i = _j = 1; 1 <= _daysNum ? _j <= _daysNum : _j >= _daysNum; _i = 1 <= _daysNum ? ++_j : --_j) {
           _results.push({
@@ -23382,7 +22100,6 @@ define('_common/CalendarBase',[], function() {
       if (_daysAfter > 0) {
         _weeks = _weeks.concat((function() {
           var _j, _results;
-
           _results = [];
           for (_i = _j = 1; 1 <= _daysAfter ? _j <= _daysAfter : _j >= _daysAfter; _i = 1 <= _daysAfter ? ++_j : --_j) {
             _results.push({
@@ -23399,7 +22116,6 @@ define('_common/CalendarBase',[], function() {
       if (_weeks.length === 35) {
         _weeks = _weeks.concat((function() {
           var _j, _results;
-
           _results = [];
           for (_i = _j = 1; _j <= 7; _i = ++_j) {
             _results.push({
@@ -23415,7 +22131,6 @@ define('_common/CalendarBase',[], function() {
       }
       _returnValue = (function() {
         var _j, _ref, _results;
-
         _results = [];
         for (_i = _j = 0, _ref = _weeks.length / 7; 0 <= _ref ? _j < _ref : _j > _ref; _i = 0 <= _ref ? ++_j : --_j) {
           _results.push(_weeks.slice(_i * 7, (_i + 1) * 7));
@@ -23427,10 +22142,8 @@ define('_common/CalendarBase',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
-
   _Base = Backbone.View.extend(_.extend({}, ToolsBase, {
     _render: function() {
       this.$el.html(this.template(this));
@@ -23455,7 +22168,6 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
     },
     exposeAttrs: ToolsBase.once('exposeAttrs', function() {
       var _this = this;
-
       return _.each(this.model._gettersNames, function(name) {
         if (name instanceof Array) {
           name = name[0];
@@ -23470,7 +22182,6 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50),
     renderGroup: function(views) {
       var _DOM, _hash;
-
       views = _.pluck(views, 'ctx');
       _hash = {};
       views = _.filter(views, function(view) {
@@ -23486,7 +22197,6 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       }));
       _.each(views, function(view) {
         var _elements;
-
         _elements = $('#element-view-' + view.model.pk() + '-' + view.cid, _DOM);
         view.$el.children().remove();
         view.$el.append(_elements.children());
@@ -23513,7 +22223,6 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
     },
     _addViewSorted: function(container, collection, model) {
       var _i;
-
       if (model instanceof Array) {
         _.each(model, function(model) {
           return container.append(model.view.el);
@@ -23550,7 +22259,6 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -23564,7 +22272,6 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
     },
     getEmployeeHours: function(num) {
       var _val;
-
       _val = (this.resourceNeed().endValue() - this.resourceNeed().startValue()) / 60 * num;
       if ((_val * 100 - Math.floor(_val * 100)) !== 0) {
         _val = parseFloat(_val.toFixed(2));
@@ -23595,11 +22302,9 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
     changeHanlder: function(resourceNeed) {
       var _changed,
         _this = this;
-
       _changed = _.keys(resourceNeed.changed);
       return _.each(_changed, function(field) {
         var _el, _field, _method, _processMethod, _sel;
-
         _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         if (_this[_method] != null) {
@@ -23636,7 +22341,6 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
     },
     _updateMatchedValues: function(value) {
       var _this = this;
-
       return this.renderDef.done(function() {
         _this.model.set('matched_employees', value);
         _this.model.set('matched_hours', _this.getEmployeeHours(value));
@@ -23674,7 +22378,6 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
     addEventUser: function(eventUser) {
       var _i,
         _this = this;
-
       _i = this.model.eventUsers.indexOf(eventUser);
       if (_i === (this.model.eventUsers.length - 1)) {
         this.renderDef.done(function() {
@@ -23692,7 +22395,6 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
     },
     initialize: function() {
       var _this = this;
-
       this.model.eventUsers.on('add', this.addEventUser, this);
       this.model.eventUsers.on('add', this._updateScroll, this);
       this.model.eventUsers.on('remove', this._updateScroll, this);
@@ -23706,7 +22408,6 @@ define('views/period/PeriodBlockWeek',['views/resources/ResourceBase', 'ovivo'],
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/DaysCollector',['views/period/PeriodBlockWeek', 'ovivo'], function(PeriodBlockWeekView) {
   return {
     firstDate: function() {
@@ -23727,10 +22428,8 @@ define('models/calendar/DaysCollector',['views/period/PeriodBlockWeek', 'ovivo']
     initResources: function() {
       var _end, _start,
         _this = this;
-
       _start = (function() {
         var _i;
-
         _i = 0;
         while (_this.days[_i].disabled === true) {
           _i += 1;
@@ -23739,7 +22438,6 @@ define('models/calendar/DaysCollector',['views/period/PeriodBlockWeek', 'ovivo']
       })();
       _end = (function() {
         var _i;
-
         _i = _this.days.length - 1;
         while (_this.days[_i].disabled === true) {
           _i -= 1;
@@ -23766,7 +22464,6 @@ define('models/calendar/DaysCollector',['views/period/PeriodBlockWeek', 'ovivo']
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/DaysCollector',['ovivo'], function() {
   return {
     tagName: 'li',
@@ -23789,7 +22486,6 @@ define('views/calendar/DaysCollector',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/Month',['views/calendar/DaysCollector', 'views/resources/ResourceBase', 'ovivo'], function(DaysCollector, ResourceBase) {
   return ResourceBase.extend(_.extend({}, DaysCollector, {
     common: {},
@@ -23817,7 +22513,6 @@ define('views/calendar/Month',['views/calendar/DaysCollector', 'views/resources/
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/Month',['_common/CalendarBase', 'models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views/calendar/Month', 'ovivo'], function(CalendarBase, ResourceBase, DaysCollector, View) {
   return ResourceBase.extend(_.extend({}, CalendarBase, DaysCollector, {
     _gettersNames: ['month', 'year', 'pk'],
@@ -23834,14 +22529,12 @@ define('models/calendar/Month',['_common/CalendarBase', 'models/resources/Resour
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/Day',['ovivo'], function() {
   return {
     _gettersNames: ['date', 'disabled', 'month', 'week_number', 'year', 'dateObj'],
     addResourceNeed: function(model) {
       var _view,
         _this = this;
-
       _view = model.getView();
       this.view.addResourceNeed(_view, model);
       return _.each(_.reduce(_.intersection(model._groups, _.keys(this.groupCache)), (function(memo, group) {
@@ -23856,7 +22549,6 @@ define('models/calendar/Day',['ovivo'], function() {
     addAvailability: function(model) {
       var _arr,
         _this = this;
-
       if ((_arr = this.groupCache[model.group()]) == null) {
         _arr = this.groupCache[model.group()] = [];
       }
@@ -23867,7 +22559,6 @@ define('models/calendar/Day',['ovivo'], function() {
     },
     checkToday: function() {
       var _now;
-
       if (this.collection.todayFound !== true) {
         _now = Date.today();
         if ((_now - this.dateObj()) === 0) {
@@ -23897,7 +22588,6 @@ define('models/calendar/Day',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/Day',['ovivo'], function() {
   return {
     events: {
@@ -23911,19 +22601,16 @@ define('views/calendar/Day',['ovivo'], function() {
     },
     _removeFromArr: function(elem, arr) {
       var _i;
-
       _i = _.indexOf(arr, elem);
       return arr.splice(_i, 1);
     },
     _insertBefore: function(elem, arr, next) {
       var _i;
-
       _i = _.indexOf(arr, next);
       return arr.splice(_i, 0, elem);
     },
     _getFromHash: function(elem) {
       var _name;
-
       _name = elem.typeName;
       if (_name === 'resourceNeed') {
         return this.resourceNeeds[elem.id];
@@ -23931,7 +22618,6 @@ define('views/calendar/Day',['ovivo'], function() {
     },
     _removeModel: function(model, hash) {
       var _view;
-
       _view = hash[model.id];
       model.removeDay(this.model);
       if (_view != null) {
@@ -23943,11 +22629,9 @@ define('views/calendar/Day',['ovivo'], function() {
     },
     _insertElement: (function() {
       var _compare, _order;
-
       _order = ['resourceNeed'];
       _compare = function(a, b) {
         var _delta, _orderA, _orderB, _timeA, _timeB;
-
         _orderA = _.indexOf(_order, a.typeName);
         _orderB = _.indexOf(_order, b.typeName);
         if (((_delta = _orderB - _orderA) !== 0) || (_orderA === 0)) {
@@ -23960,7 +22644,6 @@ define('views/calendar/Day',['ovivo'], function() {
       };
       return function(model, view, hash) {
         var _element, _i;
-
         _i = 0;
         while ((_i < this.elements.length) && (_compare((_element = this.elements[_i]), model) > 0)) {
           _i += 1;
@@ -24003,19 +22686,16 @@ define('views/calendar/Day',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/MonthDay',['views/calendar/Day', 'views/resources/ResourceBase', 'ovivo'], function(Day, ResourceBase) {
   return ResourceBase.extend(_.extend({}, Day, {}));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/MonthDay',['models/calendar/Day', 'models/resources/ResourceBase', 'views/calendar/MonthDay', 'ovivo'], function(Day, ResourceBase, View) {
   return ResourceBase.extend(_.extend({}, Day, {
     View: View
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/calendar/Months',['collections/calendar/DaysCollectors', 'models/calendar/Month', 'models/calendar/MonthDay', 'ovivo'], function(DaysCollectors, Model, MonthDay) {
   return DaysCollectors.extend({
     model: Model,
@@ -24027,7 +22707,6 @@ define('collections/calendar/Months',['collections/calendar/DaysCollectors', 'mo
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'collections/calendar/Months', 'ovivo'], function(DaysCollectorPage, PageBase, Months) {
   return PageBase.extend(_.extend({}, DaysCollectorPage, {
     el: '.page.page-calendar .month-view',
@@ -24053,7 +22732,6 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     },
     today: function() {
       var _today;
-
       _today = Date.today();
       this.current.setMonth(_today.getMonth());
       this.current.setFullYear(_today.getFullYear());
@@ -24062,7 +22740,6 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     },
     _isToday: function(year, month) {
       var _today;
-
       _today = Date.today();
       return (_today.getFullYear() === year) && (_today.getMonth() === month);
     },
@@ -24072,7 +22749,6 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     processCollectorHide: function(collector) {},
     moveToday: function() {
       var _currentTop;
-
       _currentTop = this.$('.cell.current').position().top;
       return this.$el.animate({
         scrollTop: _currentTop
@@ -24080,7 +22756,6 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
     },
     initialize: function() {
       var _now;
-
       this.current = _now = Date.today().moveToFirstDayOfMonth();
       this._initialize();
       this.title = $('.page.page-calendar header span.title.month-title');
@@ -24093,12 +22768,10 @@ define('views/pages/Calendar/Month',['views/pages/Calendar/DaysCollectorPage', '
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/WeekEmployees',[], function() {
   return {
     addEvent: function(event) {
       var _group;
-
       if ((_group = this.periodGroups.get(event.group())) != null) {
         _group.addEvent(event);
       }
@@ -24106,7 +22779,6 @@ define('views/calendar/WeekEmployees',[], function() {
     },
     removeEvent: function(event) {
       var _group;
-
       if ((_group = this.periodGroups.get(event.group())) != null) {
         _group.removeEvent(event);
       }
@@ -24114,7 +22786,6 @@ define('views/calendar/WeekEmployees',[], function() {
     },
     addHoursBlock: function(block) {
       var _periodGroup;
-
       _periodGroup = this.periodGroups.get(block.group());
       if (_periodGroup != null) {
         _periodGroup.addHoursBlock(block);
@@ -24123,7 +22794,6 @@ define('views/calendar/WeekEmployees',[], function() {
     },
     removeHoursBlock: function(block) {
       var _periodGroup;
-
       _periodGroup = this.periodGroups.get(block.group());
       if (_periodGroup != null) {
         _periodGroup.removeHoursBlock(block);
@@ -24132,14 +22802,12 @@ define('views/calendar/WeekEmployees',[], function() {
     },
     addHoursBlocks: function(arr) {
       var _this = this;
-
       return _.each(arr, function(block) {
         return _this.addHoursBlock(block);
       });
     },
     removeHoursBlocks: function(arr) {
       var _this = this;
-
       return _.each(arr, function(block) {
         return _this.removeHoursBlocks(block);
       });
@@ -24158,12 +22826,10 @@ define('views/calendar/WeekEmployees',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/objsMerger',['ovivo'], function() {
   return {
     funcMerge: function() {
       var _hash, _objs, _res;
-
       _objs = Array.prototype.slice.call(arguments, 0);
       _hash = {};
       _.each(_objs, function(obj) {
@@ -24171,7 +22837,6 @@ define('_features/objsMerger',['ovivo'], function() {
           return typeof obj[key] === 'function';
         }), function(key) {
           var _arr;
-
           if ((_arr = _hash[key]) === void 0) {
             _arr = _hash[key] = [];
           }
@@ -24188,7 +22853,6 @@ define('_features/objsMerger',['ovivo'], function() {
         return _res[key] = function() {
           var _args,
             _this = this;
-
           _args = arguments;
           return _.map(arr, function(func) {
             return func.apply(_this, _args);
@@ -24200,12 +22864,10 @@ define('_features/objsMerger',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/GroupSectionBase',['ovivo'], function() {
   return {
     _animateFolding: function(_val, val) {
       var _frac;
-
       if (_val !== val) {
         _frac = (val - _val) / this.MIN_BLOCK_HEIGHT;
         this.el.style.opacity = Math.pow(1 - _frac, 2);
@@ -24243,7 +22905,6 @@ define('views/period/GroupSectionBase',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/EventEmployee',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -24263,7 +22924,6 @@ define('views/period/EventEmployee',['views/resources/ResourceBase', 'ovivo'], f
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/WorkingHourEmployee',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -24283,7 +22943,6 @@ define('views/period/WorkingHourEmployee',['views/resources/ResourceBase', 'oviv
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/period/EventEmployee', 'views/period/WorkingHourEmployee', 'ovivo'], function(ResourceBase, GroupSectionBase, EventEmployee, WorkingHourEmployee) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
@@ -24306,7 +22965,6 @@ define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/p
     addEvent: function(event, obj) {
       var _view,
         _this = this;
-
       _view = new EventEmployee({
         model: event
       }, obj);
@@ -24318,7 +22976,6 @@ define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/p
     addHoursBlock: function(block) {
       var _view,
         _this = this;
-
       _view = new WorkingHourEmployee({
         model: block.workingHour()
       }, {
@@ -24336,7 +22993,6 @@ define('views/period/SkillEmployeeRow',['views/resources/ResourceBase', 'views/p
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/SkillEmployeeRow',['models/resources/ResourceBase', 'views/period/SkillEmployeeRow', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['pk', 'user', ['name', 'user']],
@@ -24371,13 +23027,11 @@ define('models/period/SkillEmployeeRow',['models/resources/ResourceBase', 'views
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/SkillEmployeeRows',['models/period/SkillEmployeeRow', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
     addModel: function(obj) {
       var _model;
-
       _model = new this.model(obj);
       this.add(_model);
       return _model;
@@ -24388,7 +23042,6 @@ define('collections/period/SkillEmployeeRows',['models/period/SkillEmployeeRow',
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -24403,7 +23056,6 @@ define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 
     },
     matched_employees: function() {
       var _num;
-
       _num = this.model.matched_employees();
       if (typeof _num !== 'number') {
         return '0';
@@ -24414,11 +23066,9 @@ define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 
     changeHanlder: function(resourceNeed) {
       var _changed,
         _this = this;
-
       _changed = _.keys(resourceNeed.changed);
       return _.each(_changed, function(field) {
         var _field, _method, _processMethod;
-
         _method = "_render" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         _processMethod = "_process" + (field.slice(0, 1).toUpperCase() + field.slice(1));
         if (_this[_method] != null) {
@@ -24445,7 +23095,6 @@ define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 
     },
     initialize: function() {
       var _this = this;
-
       this.renderDef = new $.Deferred();
       this.renderDef.done(function() {
         return _this._attachHandlers();
@@ -24456,7 +23105,6 @@ define('views/period/PeriodBlockWeekEmployees',['views/resources/ResourceBase', 
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/period/PeriodBlockWeekEmployees', 'ovivo'], function(ResourceBase, GroupSectionBase, PeriodBlockView) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
@@ -24477,7 +23125,6 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
     },
     processScroll: function(obj, val) {
       var _val;
-
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this._animateHeader(_val, val);
       if (obj.last === true) {
@@ -24487,10 +23134,8 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
     },
     addBlock: function(block) {
       var _this = this;
-
       return this.renderDef.done(function() {
         var _view;
-
         _view = new PeriodBlockView({
           model: block
         });
@@ -24509,7 +23154,6 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
     },
     _renderEmployees: function() {
       var _this = this;
-
       this.addEmployeeRows(this.model.skillEmployeeRows.map(function(t) {
         return t;
       }));
@@ -24527,7 +23171,6 @@ define('views/period/SkillGroup',['views/resources/ResourceBase', 'views/period/
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'models/resources/ResourceBase', 'views/period/SkillGroup', 'ovivo'], function(SkillEmployeeRows, ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['pk', 'group', 'frame'],
@@ -24550,7 +23193,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     addEvent: function(event) {
       var _frame,
         _this = this;
-
       if (this.events[event.pk()] != null) {
         return;
       }
@@ -24563,7 +23205,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
       }
       this.events[event.pk()] = _.compact(_.map(event.users(), function(obj) {
         var _row;
-
         if ((_row = _this.skillEmployeeRows.get(obj.pk)) == null) {
           return;
         }
@@ -24573,7 +23214,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     },
     removeEvent: function(event) {
       var _arr;
-
       if (this.employeesDef.state() !== 'resolved') {
         return;
       }
@@ -24588,7 +23228,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     },
     addHoursBlock: function(block) {
       var _row;
-
       if (this.employeesDef.state() !== 'resolved') {
         return;
       }
@@ -24599,7 +23238,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     },
     _initEvents: function() {
       var _this = this;
-
       return ovivo.desktop.resources.events.def.done(function() {
         return _.each(ovivo.desktop.resources.events.getBy({
           'skill': _this.pk(),
@@ -24611,10 +23249,8 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     },
     _initEmployees: function(pk, group) {
       var _this = this;
-
       return ovivo.desktop.resources.users.def.done(function() {
         var _arr;
-
         _this.users = _arr = ovivo.desktop.resources.users.getBy({
           'skills': pk,
           'groups': group
@@ -24634,7 +23270,6 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
     _initWorkingHours: function() {
       var _blocks,
         _this = this;
-
       this.frame().addWorkingHours(ovivo.desktop.resources.workingHours.getBy({
         'groups': this.group(),
         'user': _.map(this.users, function(u) {
@@ -24666,11 +23301,9 @@ define('models/period/SkillGroup',['collections/period/SkillEmployeeRows', 'mode
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/binarySearch',['ovivo'], function() {
   return function(arr, val, comparator) {
     var _cur, _end, _shift, _start;
-
     if (arr.length < 1) {
       return null;
     }
@@ -24698,7 +23331,6 @@ define('_features/binarySearch',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'], function(binarySearch) {
   return {
     _scrollComparator: function(obj, val) {
@@ -24712,7 +23344,6 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
     },
     addModel: function(obj) {
       var _model;
-
       _model = new this.model(obj);
       this.add(_model);
       return _model;
@@ -24722,7 +23353,6 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
     },
     _forwardCall: function(model, methodName) {
       var _args, _inner, _type;
-
       if (this.innerCollectionName == null) {
         return;
       }
@@ -24740,7 +23370,6 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
     },
     processScroll: function(val, height) {
       var _delta, _res;
-
       _res = binarySearch(this._scrollData, val, this._scrollComparator);
       if (_res !== null) {
         _delta = val - _res.start;
@@ -24768,14 +23397,12 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
     },
     calcScrollData: function() {
       var _this = this;
-
       if (this._prev != null) {
         this._prev.model.clearScroll();
       }
       this._prev = null;
       this._scrollData = _.map(this._itemsSelector(), function(model) {
         var _h, _t;
-
         _h = model.view.el.offsetHeight;
         _t = model.view.el.offsetTop;
         _this._forwardCall(model, 'calcScrollData');
@@ -24795,7 +23422,6 @@ define('collections/period/GroupSectionsBase',['_features/binarySearch', 'ovivo'
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/SkillGroups',['models/period/SkillGroup', 'collections/period/GroupSectionsBase', 'ovivo'], function(Model, GroupSectionsBase) {
   return Backbone.Collection.extend(_.extend({}, GroupSectionsBase, {
     model: Model,
@@ -24805,12 +23431,10 @@ define('collections/period/SkillGroups',['models/period/SkillGroup', 'collection
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', 'ovivo'], function(SkillGroups) {
   return {
     _addBlockPartial: function(block) {
       var _key, _skillGroup;
-
       _key = block.skill();
       _skillGroup = this.skillGroups.get(_key);
       if (_skillGroup == null) {
@@ -24824,7 +23448,6 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
     },
     _removeBlockPartial: function(block) {
       var _key, _ref, _skillGroup;
-
       if (((_ref = block.resourceNeed().changed) != null ? _ref.skill : void 0) != null) {
         _key = block.resourceNeed().previous('skill');
       } else {
@@ -24837,7 +23460,6 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
     },
     addEvent: function(event) {
       var _group;
-
       if ((_group = this.skillGroups.get(event.skill())) != null) {
         _group.addEvent(event);
       }
@@ -24845,7 +23467,6 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
     },
     removeEvent: function(event) {
       var _group;
-
       if ((_group = this.skillGroups.get(event.skill())) != null) {
         _group.removeEvent(event);
       }
@@ -24853,11 +23474,9 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
     },
     addHoursBlock: function(block) {
       var _this = this;
-
       return ovivo.desktop.resources.users.def.done(function() {
         _.each(block.skills(), function(skill) {
           var _group;
-
           if ((_group = _this.skillGroups.get(skill)) != null) {
             return _group.addHoursBlock(block);
           }
@@ -24873,7 +23492,6 @@ define('models/period/PeriodGroupEmployees',['collections/period/SkillGroups', '
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'], function(ResourceBase, GroupSectionBase) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
@@ -24897,7 +23515,6 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'views/p
     },
     processScroll: function(obj, val) {
       var _val;
-
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this._animateHeader(_val, val);
       if (obj.last === true) {
@@ -24908,7 +23525,6 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'views/p
     },
     addBlock: function(block) {
       var _this = this;
-
       return $.when(block.view.renderDef, this.renderDef).done(function() {
         $(_this.headers.get(block.day)).append(block.view.header);
         $(_this.footers.get(block.day)).append(block.view.footer);
@@ -24938,7 +23554,6 @@ define('views/period/ResourceNeedWeek',['views/resources/ResourceBase', 'views/p
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views/period/ResourceNeedWeek', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['resourceNeed', ['pk', 'resourceNeed'], ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed']],
@@ -24968,7 +23583,6 @@ define('models/period/ResourceNeedWeek',['models/resources/ResourceBase', 'views
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek', 'collections/period/GroupSectionsBase', 'ovivo'], function(Model, GroupSectionsBase) {
   return Backbone.Collection.extend(_.extend({}, GroupSectionsBase, {
     model: Model,
@@ -24978,7 +23592,6 @@ define('collections/period/ResourceNeedWeeks',['models/period/ResourceNeedWeek',
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/ResourceNeedTimeGroup',['views/resources/ResourceBase', 'views/period/GroupSectionBase', 'ovivo'], function(ResourceBase, GroupSectionBase) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, {
     common: {},
@@ -24999,7 +23612,6 @@ define('views/period/ResourceNeedTimeGroup',['views/resources/ResourceBase', 'vi
     },
     processScroll: function(obj, val) {
       var _val;
-
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this.timeRange.style.height = "" + (obj.height - _val) + "px";
       if (obj.last === true) {
@@ -25010,7 +23622,6 @@ define('views/period/ResourceNeedTimeGroup',['views/resources/ResourceBase', 'vi
     addBlock: function(block) {},
     postRender: function() {
       var _this = this;
-
       this.resourceNeedWeeks = this.$('.resource-needs-rows');
       this.timeRange = this.$('.time-range')[0];
       this.addResourcNeedWeeks(this.model.resourceNeedWeeks.map(function(rnw) {
@@ -25030,7 +23641,6 @@ define('views/period/ResourceNeedTimeGroup',['views/resources/ResourceBase', 'vi
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', 'collections/period/ResourceNeedWeeks', 'views/period/ResourceNeedTimeGroup', 'ovivo'], function(ResourceBase, ResourceNeedWeeks, View) {
   return ResourceBase.extend({
     _gettersNames: ['pk', 'start_time', 'end_time', 'startValue'],
@@ -25042,7 +23652,6 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
     },
     addBlock: function(block) {
       var _resourceNeedWeek, _rn;
-
       block.timeGroup = this;
       _rn = block.resourceNeed();
       _resourceNeedWeek = this.resourceNeedWeeks.get(_rn.pk());
@@ -25056,7 +23665,6 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
     },
     removeBlock: function(block) {
       var _resourceNeedWeek;
-
       delete block.timeGroup;
       _resourceNeedWeek = this.resourceNeedWeeks.get(block.resourceNeed().pk());
       if (_resourceNeedWeek != null) {
@@ -25077,7 +23685,6 @@ define('models/period/ResourceNeedTimeGroup',['models/resources/ResourceBase', '
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/ResourceNeedTimeGroups',['models/period/ResourceNeedTimeGroup', 'collections/period/GroupSectionsBase', 'ovivo'], function(Model, GroupSectionsBase) {
   return Backbone.Collection.extend(_.extend({}, GroupSectionsBase, {
     model: Model,
@@ -25091,12 +23698,10 @@ define('collections/period/ResourceNeedTimeGroups',['models/period/ResourceNeedT
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/PeriodGroupEmployees',['ovivo'], function() {
   return {
     postRender: function() {
       var _this = this;
-
       this.skillGroups = this.$('.skill-groups');
       this.addSkillGroups(this.model.skillGroups.map(function(t) {
         return t;
@@ -25109,7 +23714,6 @@ define('views/period/PeriodGroupEmployees',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/PeriodGroup',['_features/objsMerger', 'views/resources/ResourceBase', 'views/period/GroupSectionBase', 'views/period/PeriodGroupEmployees', 'ovivo'], function(objsMerger, ResourceBase, GroupSectionBase, PeriodGroupEmployees) {
   return ResourceBase.extend(_.extend({}, GroupSectionBase, objsMerger.funcMerge(PeriodGroupEmployees, {
     common: {},
@@ -25130,7 +23734,6 @@ define('views/period/PeriodGroup',['_features/objsMerger', 'views/resources/Reso
     },
     processScroll: function(obj, val) {
       var _val;
-
       _val = Math.min(obj.height - this.MIN_BLOCK_HEIGHT, val);
       this._animateHeader(_val, val);
       this._animateFolding(_val, val);
@@ -25142,7 +23745,6 @@ define('views/period/PeriodGroup',['_features/objsMerger', 'views/resources/Reso
     },
     postRender: function() {
       var _this = this;
-
       ovivo.desktop.resources.groups.def.done(_.bind(this._renderGroup, this));
       this.timeGroups = this.$('.time-groups');
       this.header = this.$('h1.title')[0];
@@ -25167,7 +23769,6 @@ define('views/period/PeriodGroup',['_features/objsMerger', 'views/resources/Reso
   })));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/PeriodGroup',['_features/objsMerger', 'models/resources/ResourceBase', 'models/period/PeriodGroupEmployees', 'collections/period/ResourceNeedTimeGroups', 'views/period/PeriodGroup', 'ovivo'], function(objsMerger, ResourceBase, PeriodGroupEmployees, TimeGroups, View) {
   return ResourceBase.extend(objsMerger.funcMerge(PeriodGroupEmployees, {
     _gettersNames: ['pk', 'root', 'visible', 'frame'],
@@ -25179,14 +23780,12 @@ define('models/period/PeriodGroup',['_features/objsMerger', 'models/resources/Re
     },
     addBlocks: function(blocks) {
       var _this = this;
-
       return _.each(blocks, function(b) {
         return _this.addBlock(b);
       });
     },
     _addBlockPartial: function(block) {
       var _key, _timeGroup;
-
       _key = ("" + (block.start_time()) + "-" + (block.end_time())).replace(/\:/g, '-');
       _timeGroup = this.timeGroups.get(_key);
       if (_timeGroup == null) {
@@ -25212,7 +23811,6 @@ define('models/period/PeriodGroup',['_features/objsMerger', 'models/resources/Re
     },
     _removeBlockPartial: function(block) {
       var _timeGroup;
-
       _timeGroup = block.timeGroup;
       if (_timeGroup != null) {
         return _timeGroup.removeBlock(block);
@@ -25228,7 +23826,6 @@ define('models/period/PeriodGroup',['_features/objsMerger', 'models/resources/Re
     },
     processVisibility: function() {
       var _blocks;
-
       if (this._periodsInitFlag === false && this.visible() === true) {
         this._periodsInitFlag = true;
         _blocks = this.frame().periodBlocks.getBy('group', this.pk());
@@ -25250,14 +23847,12 @@ define('models/period/PeriodGroup',['_features/objsMerger', 'models/resources/Re
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/CachableCollection',['ovivo'], function() {
   return {
     get: function(fields) {
       return {
         _cacheAddProcessorField: function(model, field, _value) {
           var _this = this;
-
           if (_value == null) {
             _value = model[field]();
           }
@@ -25269,7 +23864,6 @@ define('_common/CachableCollection',['ovivo'], function() {
           }
           return _.each(_value, function(value) {
             var _obj;
-
             if (value == null) {
               return;
             }
@@ -25281,7 +23875,6 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         _cacheRemoveProcessorField: function(model, field, _value) {
           var _this = this;
-
           if (_value == null) {
             _value = model[field]();
           }
@@ -25293,7 +23886,6 @@ define('_common/CachableCollection',['ovivo'], function() {
           }
           return _.each(_value, function(value) {
             var _obj;
-
             _obj = _this._cache[field][value.valueOf()];
             if (_obj != null) {
               return delete _obj[model.cid];
@@ -25302,14 +23894,12 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         _cacheAddProcessor: function(model) {
           var _this = this;
-
           return _.each(fields, function(field) {
             return _this._cacheAddProcessorField(model, field);
           });
         },
         _cacheRemoveProcessor: function(model) {
           var _this = this;
-
           return _.each(fields, function(field) {
             return _this._cacheRemoveProcessorField(model, field);
           });
@@ -25320,7 +23910,6 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         recalculateCache: function(fields) {
           var _this = this;
-
           return _.each(fields, function(field) {
             _this._cache[field] = {};
             return _this.each(function(model) {
@@ -25330,7 +23919,6 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         initCacheProcessors: function() {
           var _this = this;
-
           this._cache = {};
           _.each(fields, function(field) {
             return _this._cache[field] = {};
@@ -25343,7 +23931,6 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         _getBySingle: function(field, values) {
           var _this = this;
-
           if ((values instanceof Array) !== true) {
             values = [values];
           }
@@ -25353,7 +23940,6 @@ define('_common/CachableCollection',['ovivo'], function() {
         },
         _getByGroup: function(request) {
           var _this = this;
-
           return _.intersection.apply(_, _.map(_.keys(request), function(field) {
             return _this._getBySingle(field, request[field]);
           }));
@@ -25373,7 +23959,6 @@ define('_common/CachableCollection',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/PeriodGroups',['models/period/PeriodGroup', 'collections/period/GroupSectionsBase', '_common/CachableCollection', 'ovivo'], function(Model, GroupSectionsBase, CachableCollection) {
   return Backbone.Collection.extend(_.extend({}, GroupSectionsBase, CachableCollection.get(['pk', 'root']), {
     model: Model,
@@ -25394,7 +23979,6 @@ define('collections/period/PeriodGroups',['models/period/PeriodGroup', 'collecti
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/GroupFilter',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -25422,7 +24006,6 @@ define('views/period/GroupFilter',['views/resources/ResourceBase', 'ovivo'], fun
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/GroupFilter',['models/resources/ResourceBase', 'views/period/GroupFilter', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['pk', ['name', 'root']],
@@ -25436,7 +24019,6 @@ define('models/period/GroupFilter',['models/resources/ResourceBase', 'views/peri
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/GroupFilters',['models/period/GroupFilter', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
@@ -25445,7 +24027,6 @@ define('collections/period/GroupFilters',['models/period/GroupFilter', 'ovivo'],
     },
     addGroup: function(model) {
       var _model, _root;
-
       _root = ovivo.desktop.resources.groups.get(model.root());
       _model = this.get(_root.pk());
       if (_model != null) {
@@ -25464,7 +24045,6 @@ define('collections/period/GroupFilters',['models/period/GroupFilter', 'ovivo'],
     },
     removeGroup: function(model) {
       var _model, _root;
-
       _root = ovivo.desktop.resources.groups.get(model.root());
       _model = this.get(_root.pk());
       if ((_model != null) && (_model.count -= 1) === 0) {
@@ -25513,7 +24093,6 @@ define('collections/period/GroupFilters',['models/period/GroupFilter', 'ovivo'],
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/WeekEmployees', 'views/resources/ResourceBase', 'collections/period/PeriodGroups', 'collections/period/GroupFilters', '_common/ToolsBase', '_features/objsMerger', 'ovivo'], function(DaysCollector, WeekEmployees, ResourceBase, PeriodGroups, GroupFilters, ToolsBase, objsMerger) {
   return ResourceBase.extend(_.extend({}, DaysCollector, objsMerger.funcMerge(WeekEmployees, {
     common: {},
@@ -25543,24 +24122,20 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/We
     },
     addBlocks: function(arr) {
       var _this = this;
-
       return _.each(arr, function(block) {
         return _this.addBlock(block);
       });
     },
     removeBlocks: function(arr) {
       var _this = this;
-
       return _.each(arr, function(block) {
         return _this.removeBlock(block);
       });
     },
     addBlock: function(block) {
       var _this = this;
-
       return ovivo.desktop.resources.groups.def.done(function() {
         var _periodGroup;
-
         _periodGroup = _this.periodGroups.get(block.group());
         if (_periodGroup == null) {
           _periodGroup = _this.periodGroups.addModel({
@@ -25577,7 +24152,6 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/We
     },
     removeBlock: function(block) {
       var _periodGroup;
-
       _periodGroup = this.periodGroups.get(block.group());
       if (_periodGroup != null) {
         return _periodGroup.removeBlock(block);
@@ -25604,7 +24178,6 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/We
     },
     addPeriodGroup: function(model) {
       var _this = this;
-
       return this.frameInitDef.done(function() {
         return _this.container.append(model.view.$el);
       });
@@ -25630,7 +24203,6 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/We
     },
     _renderMode: function() {
       var _mode, _prevMode;
-
       _mode = this.model.frame.mode();
       _prevMode = this.model.frame.previous('mode');
       return this.$el.removeClass("" + _prevMode + "-mode").addClass("" + _mode + "-mode");
@@ -25666,13 +24238,11 @@ define('views/calendar/Week',['views/calendar/DaysCollector', 'views/calendar/We
   })));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/Week',['models/resources/ResourceBase', 'models/calendar/DaysCollector', 'views/calendar/Week', 'ovivo'], function(ResourceBase, DaysCollector, View) {
   return ResourceBase.extend(_.extend({}, DaysCollector, {
     _gettersNames: ['number', 'month', 'year', 'pk'],
     getDaysArr: function() {
       var _arr, _date;
-
       _arr = [];
       _date = new Date(this._firstDate);
       _date.moveToDayOfWeek(1, -1);
@@ -25690,7 +24260,6 @@ define('models/calendar/Week',['models/resources/ResourceBase', 'models/calendar
     },
     initialize: function(attrs, options) {
       var _def;
-
       this._initialize();
       this.View = View;
       this.set('pk', "" + attrs.year + "-" + attrs.number);
@@ -25708,19 +24277,16 @@ define('models/calendar/Week',['models/resources/ResourceBase', 'models/calendar
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/calendar/WeekDay',['views/calendar/Day', 'views/resources/ResourceBase', 'ovivo'], function(Day, ResourceBase) {
   return ResourceBase.extend(_.extend({}, Day, {}));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/calendar/WeekDay',['models/calendar/Day', 'models/resources/ResourceBase', 'views/calendar/WeekDay', 'ovivo'], function(Day, ResourceBase, View) {
   return ResourceBase.extend(_.extend({}, Day, {
     View: View
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/calendar/Weeks',['collections/calendar/DaysCollectors', 'models/calendar/Week', 'models/calendar/WeekDay', 'ovivo'], function(DaysCollectors, Model, WeekDay) {
   return DaysCollectors.extend({
     model: Model,
@@ -25732,7 +24298,6 @@ define('collections/calendar/Weeks',['collections/calendar/DaysCollectors', 'mod
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'views/pages/PageBase', 'collections/calendar/Weeks', '_common/ToolsBase', 'ovivo'], function(DaysCollectorPage, PageBase, Weeks, ToolsBase) {
   return PageBase.extend(_.extend({}, DaysCollectorPage, {
     el: '.page.page-calendar .week-view',
@@ -25786,7 +24351,6 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     },
     today: function() {
       var _now;
-
       _now = Date.today();
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
@@ -25796,7 +24360,6 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     },
     _isToday: function(year, number) {
       var _now;
-
       _now = Date.today();
       _now.setWeek(_now.getWeek());
       _now.moveToDayOfWeek(4);
@@ -25805,7 +24368,6 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     processCollectorShow: function(collector) {
       var _now, _nowDate, _nowMonth, _nowYear,
         _this = this;
-
       _now = Date.today();
       _nowDate = _now.getDate();
       _nowMonth = _now.getMonth();
@@ -25831,7 +24393,6 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
     },
     initialize: function() {
       var _now;
-
       this.current = _now = new Date.today();
       this._scrollDataFlag = false;
       $(window).on('resize', _.bind(this.processWindowResize, this));
@@ -25856,10 +24417,8 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/Switcher',['ovivo'], function() {
   var _Switcher;
-
   _Switcher = function(container, data) {
     this.container = container;
     container.children().each(function(i, el) {
@@ -25874,7 +24433,6 @@ define('_features/Switcher',['ovivo'], function() {
   };
   _Switcher.prototype._clickHandler = function(e) {
     var _el, _value;
-
     _el = $(e.target).closest('.switcher-option');
     if (_el.length > 0) {
       this.clear();
@@ -25898,7 +24456,6 @@ define('_features/Switcher',['ovivo'], function() {
   return _Switcher;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calendar/Week', '_features/Switcher', 'ovivo'], function(PageBase, MonthView, WeekView, Switcher) {
   return PageBase.extend({
     el: '.page.page-calendar',
@@ -25984,7 +24541,6 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Calendar',['models/pages/PageBase', 'views/pages/Calendar/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     initialize: function(attrs, options) {
@@ -25995,10 +24551,8 @@ define('models/pages/Calendar',['models/pages/PageBase', 'views/pages/Calendar/P
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_common/EmptyListDetector',[], function() {
   var _createAddHanler, _createRemoveHanler;
-
   _createAddHanler = function(_empty, collection) {
     return function() {
       return _empty.hide();
@@ -26014,7 +24568,6 @@ define('_common/EmptyListDetector',[], function() {
   return {
     initEmptyListDetector: function(collection) {
       var _empty;
-
       _empty = this.$('ul li.empty');
       collection.on('add', _createAddHanler(_empty, collection), this);
       return collection.on('remove', _createRemoveHanler(_empty, collection), this);
@@ -26022,7 +24575,6 @@ define('_common/EmptyListDetector',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Resources/Templates',['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(PageBase, EmptyListDetector) {
   return PageBase.extend(_.extend({}, EmptyListDetector, {
     el: '.page.page-resources .content-templates',
@@ -26059,13 +24611,10 @@ define('views/pages/Resources/Templates',['views/pages/PageBase', '_common/Empty
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/PercentageIndicator',[], function() {
   var _PercentageIndicator;
-
   _PercentageIndicator = function(container, width, height, value) {
     var _ref, _ref1, _ref2, _ref3;
-
     this.container = $(container);
     this.canvas = $('canvas', this.container);
     this.valueSpan = $('.value', this.container);
@@ -26089,7 +24638,6 @@ define('_features/PercentageIndicator',[], function() {
   return _PercentageIndicator;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/PeriodMonth',['ovivo'], function() {
   return Backbone.View.extend({
     tagName: 'li',
@@ -26106,7 +24654,6 @@ define('views/PeriodMonth',['ovivo'], function() {
     },
     render: function() {
       var _now;
-
       _now = Date.today();
       this.$el.html(this.template(this));
       if ((_now.getMonth() === this.model.month()) && (_now.getFullYear() === this.model.year())) {
@@ -26121,7 +24668,6 @@ define('views/PeriodMonth',['ovivo'], function() {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/PeriodMonth',['views/PeriodMonth', 'ovivo'], function(View) {
   return Backbone.Model.extend({
     idAttribute: 'key',
@@ -26144,7 +24690,6 @@ define('models/PeriodMonth',['views/PeriodMonth', 'ovivo'], function(View) {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/PeriodMonths',['models/PeriodMonth', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
@@ -26153,7 +24698,6 @@ define('collections/PeriodMonths',['models/PeriodMonth', 'ovivo'], function(Mode
     },
     addMonth: function(obj) {
       var _model;
-
       _model = new Model(obj);
       this.add(_model);
       return _model;
@@ -26164,7 +24708,6 @@ define('collections/PeriodMonths',['models/PeriodMonth', 'ovivo'], function(Mode
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/PercentageIndicator', 'collections/PeriodMonths', 'ovivo'], function(PageBase, PercentageIndicator, PeriodMonths) {
   return PageBase.extend({
     el: '.page.page-resources .content-periods',
@@ -26176,7 +24719,6 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
     },
     periodAdd: function(model) {
       var _date, _key, _period;
-
       this.empty.hide();
       _date = new Date(Date.parse(model.start_date()));
       _key = "" + (_date.getFullYear()) + "-" + (_date.getMonth());
@@ -26191,7 +24733,6 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
     },
     monthAdd: function(model) {
       var _i;
-
       _i = this.periodMonths.indexOf(model);
       if (_i === (this.periodMonths.length - 1)) {
         return this.monthsContainer.append(model.view.el);
@@ -26211,10 +24752,8 @@ define('views/pages/Resources/Periods',['views/pages/PageBase', '_features/Perce
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Resources/Template',['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function(PageBase, ResourceEditCommon) {
   var _resourceEditCommon;
-
   _resourceEditCommon = ResourceEditCommon.get({});
   return PageBase.extend(_.extend({}, _resourceEditCommon, {
     el: '.page.page-resources .content-template',
@@ -26261,7 +24800,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     resourceNeedRegExp: /resource-need-template-(.+)/,
     clickCheckbox: function(e) {
       var _arr, _el, _i, _id, _model, _val;
-
       _el = $(e.target).closest('.resource-need')[0];
       if (_el == null) {
         return true;
@@ -26301,7 +24839,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
       });
       return _.each(model.resource_needs(), function(need) {
         var _ref;
-
         ovivo.desktop.resources.resourceNeeds.get(need).set('checked', true);
         return (_ref = $("#resource-need-template-" + need + " .resource-need-check")[0]) != null ? _ref.checked = true : void 0;
       });
@@ -26320,7 +24857,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     createNew: function(obj, mode) {
       var _ref;
-
       return this.setModel(new this.collection.model(_.extend({
         name: '',
         resource_needs: [],
@@ -26336,7 +24872,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     addResourceNeed: function(model) {
       var _view;
-
       _view = model.getEditView('templateView');
       _view.$el.addClass('show-checkbox');
       _view.el.id = "resource-need-template-" + _view.model.id;
@@ -26351,7 +24886,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     processPrimaryDepartmentChange: function(model) {
       var _hide, _needs, _show;
-
       if (model == null) {
         return;
       }
@@ -26372,7 +24906,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
     },
     processModelChange: (function() {
       var _attachHanlders, _detachHanlders;
-
       _attachHanlders = function(model) {
         model.on('change:primary_department', this.processPrimaryDepartmentChange, this);
         return model.on('change:resource_needs', this.setResourceNeedsCheckboxes, this);
@@ -26408,7 +24941,6 @@ define('views/pages/Resources/Template',['views/pages/PageBase', '_common/Resour
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trailZero', 'ovivo'], function(PageBase, trailZero) {
   return PageBase.extend({
     el: '.page.page-resources .content-timeline',
@@ -26422,7 +24954,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     },
     scale: function() {
       var _arr, _end, _i, _obj;
-
       _arr = [];
       _i = new Date(Date.parse(this.model.start_date()));
       _end = new Date(Date.parse(this.model.end_date()));
@@ -26441,7 +24972,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     },
     skills: function() {
       var _keys, _percentage;
-
       _keys = this.blocks.getKeys('skill');
       _percentage = 100 / _keys.length;
       return _.map(_.map(this.blocks.getKeys('skill'), function(id) {
@@ -26466,7 +24996,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     },
     _initScale: function() {
       var _end, _start;
-
       _start = new Date(Date.parse(this.model.start_date()));
       _end = new Date(Date.parse(this.model.end_date()));
       _end = _end.setDate(_end.getDate() + 1);
@@ -26475,7 +25004,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     _renderBlocks: function() {
       var _start,
         _this = this;
-
       _start = new Date(Date.parse(this.model.start_date()));
       return this.blocks.each(function(block) {
         block.view.adjustPosition(_start, _this.timeRange, _this.height);
@@ -26484,7 +25012,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     },
     initPeriod: function() {
       var _this = this;
-
       this.blocks = this.model.getBlocks();
       this._renderTimeline();
       this.height = this.scaleContainer.height();
@@ -26499,7 +25026,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
     },
     setPeriod: (function() {
       var _attachHanlders, _detachHanlders;
-
       _attachHanlders = function(model) {};
       _detachHanlders = function(model) {};
       return function(model) {
@@ -26521,7 +25047,6 @@ define('views/pages/Resources/Timeline',['views/pages/PageBase', '_features/trai
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Resources/Templates', 'views/pages/Resources/Periods', 'views/pages/Resources/Template', 'views/pages/Resources/Timeline', 'ovivo'], function(PageBase, TemplatesView, PeriodsView, TemplateView, TimelineView) {
   return PageBase.extend({
     el: '.page.page-resources',
@@ -26552,7 +25077,6 @@ define('views/pages/Resources/Page',['views/pages/PageBase', 'views/pages/Resour
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     saveState: false,
@@ -26565,7 +25089,6 @@ define('models/pages/Resources',['models/pages/PageBase', 'views/pages/Resources
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/General',['views/pages/PageBase', '_common/ResourceEditCommon', 'ovivo'], function(PageBase, ResourceEditCommon) {
   return PageBase.extend(_.extend({}, ResourceEditCommon.get({}), {
     el: '.page.page-settings .general-view',
@@ -26583,7 +25106,6 @@ define('views/pages/Settings/General',['views/pages/PageBase', '_common/Resource
     close: function() {},
     show: function() {
       var _this = this;
-
       return ovivo.desktop.resources.user.def.done(function() {
         return _this.setModel(ovivo.desktop.resources.user);
       });
@@ -26596,7 +25118,6 @@ define('views/pages/Settings/General',['views/pages/PageBase', '_common/Resource
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/EmptyListDetector', 'ovivo'], function(PageBase, EmptyListDetector) {
   return PageBase.extend(_.extend({}, EmptyListDetector, {
     el: '.page.page-settings .resource-need-view',
@@ -26611,7 +25132,6 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/Emp
     },
     addResourceNeed: function(model) {
       var _view;
-
       _view = model.getEditView('settingsView');
       return this.resourceNeeds.prepend(_view.el);
     },
@@ -26624,7 +25144,6 @@ define('views/pages/Settings/ResourceNeed',['views/pages/PageBase', '_common/Emp
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator) {
   return _.extend({}, Backbone.Events, {
     _set: function(name, value) {
@@ -26638,7 +25157,6 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
     },
     processFBLoginStatus: function(obj) {
       var _ref, _ref1;
-
       this.signedRequest = obj != null ? (_ref = obj.authResponse) != null ? _ref.signedRequest : void 0 : void 0;
       this._set('fb-status', obj.status);
       if (obj.status === 'connected') {
@@ -26684,7 +25202,6 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
     },
     connectFB: function() {
       var _this = this;
-
       this.connectFBdef = new $.Deferred();
       FB.login(function() {
         return FB.getLoginStatus(_.bind(_this.processFBLogin, _this), {
@@ -26695,7 +25212,6 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
     },
     disconnectFB: function() {
       var _this = this;
-
       return FB.logout(function() {
         return FB.getLoginStatus(_.bind(_this.processFBLogout, _this));
       });
@@ -26728,7 +25244,6 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
     linkFacebook: function() {
       var _FBStatus, _status,
         _this = this;
-
       _FBStatus = this._get('fb-status');
       _status = this._get('status');
       if (_FBStatus === 'connected') {
@@ -26751,7 +25266,6 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
     },
     initialize: function() {
       var _this = this;
-
       this.once('_setHandlers', this._setHandlers, this);
       if (window.FB != null) {
         this.initFB();
@@ -26765,10 +25279,8 @@ define('_features/facebook',['_features/indicator', 'ovivo'], function(indicator
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/Connections',['views/pages/PageBase', '_features/Switcher', '_features/facebook', 'ovivo'], function(PageBase, Switcher, facebook) {
   var _processors;
-
   _processors = {
     'facebook': facebook
   };
@@ -26781,7 +25293,6 @@ define('views/pages/Settings/Connections',['views/pages/PageBase', '_features/Sw
     variants: [[true, false]],
     _valueHandlerCreator: function(key, processor) {
       var _func;
-
       _func = function(value) {
         return processor._set('status', value);
       };
@@ -26789,7 +25300,6 @@ define('views/pages/Settings/Connections',['views/pages/PageBase', '_features/Sw
     },
     _valueHandlerSetCreator: function(key) {
       var _connect, _disconnect, _func;
-
       _connect = this.$(".options-" + key + " .option-connect");
       _disconnect = this.$(".options-" + key + " .option-disconnect");
       _func = function(value) {
@@ -26806,11 +25316,9 @@ define('views/pages/Settings/Connections',['views/pages/PageBase', '_features/Sw
     },
     initialize: function() {
       var _this = this;
-
       this.switchers = {};
       _.each(this.keys, function(key, i) {
         var _processor, _switcher;
-
         _switcher = _this.switchers[key] = new Switcher(_this.$('.options-' + key), _this.variants[_this.types[i]]);
         _processor = _processors[key];
         _processor.initialize();
@@ -26822,7 +25330,6 @@ define('views/pages/Settings/Connections',['views/pages/PageBase', '_features/Sw
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Settings/Page',['views/pages/PageBase', 'views/pages/Settings/General', 'views/pages/Settings/ResourceNeed', 'views/pages/Settings/Connections', 'ovivo'], function(PageBase, GeneralView, ResourceNeedView, ConnectionsView) {
   return PageBase.extend({
     el: '.page.page-settings',
@@ -26835,7 +25342,6 @@ define('views/pages/Settings/Page',['views/pages/PageBase', 'views/pages/Setting
     menuRegExp: /\bsections-menu-item-(.+)\b/,
     menuClick: function(e) {
       var _item;
-
       _item = $(e.target).closest('.sections-menu-item');
       return this.showSubView(this.menuRegExp.exec(_item[0].className)[1]);
     },
@@ -26864,7 +25370,6 @@ define('views/pages/Settings/Page',['views/pages/PageBase', 'views/pages/Setting
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Settings',['models/pages/PageBase', 'views/pages/Settings/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     initialize: function(attrs, options) {
@@ -26875,10 +25380,8 @@ define('models/pages/Settings',['models/pages/PageBase', 'views/pages/Settings/P
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/PageStandaloneAnimation',['_common/AnimationControl', 'ovivo'], function(AnimationControl) {
   var _obj;
-
   _obj = _.extend({}, AnimationControl, {
     _handlerEnterEnd: function(handler, $el, e) {
       $el.removeClass('enter');
@@ -26906,7 +25409,6 @@ define('views/pages/PageStandaloneAnimation',['_common/AnimationControl', 'ovivo
   }
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Notifications/Page',['views/pages/PageBase', 'views/pages/PageStandaloneAnimation', 'ovivo'], function(PageBase, PageStandaloneAnimation) {
   return PageBase.extend(_.extend({}, PageStandaloneAnimation, {
     el: '.page.page-notifications',
@@ -26941,7 +25443,6 @@ define('views/pages/Notifications/Page',['views/pages/PageBase', 'views/pages/Pa
     },
     resetHandler: function() {
       var _this = this;
-
       ovivo.desktop.resources.notifications.each(function(model) {
         return _this.appendItem(model.view.el);
       });
@@ -26950,7 +25451,6 @@ define('views/pages/Notifications/Page',['views/pages/PageBase', 'views/pages/Pa
     },
     addHandler: function(model, collection, options) {
       var next, _i, _j;
-
       _i = collection.indexOf(model);
       _j = _i + 1;
       while (((next = collection.at(_j)) != null) && (next.inserted !== true)) {
@@ -26978,7 +25478,6 @@ define('views/pages/Notifications/Page',['views/pages/PageBase', 'views/pages/Pa
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Notifications',['models/pages/PageBase', 'views/pages/Notifications/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     popup: true,
@@ -26990,15 +25489,12 @@ define('models/pages/Notifications',['models/pages/PageBase', 'views/pages/Notif
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/notificationMessage',['ovivo'], function() {
   var _template;
-
   _template = Handlebars.templates['notificationMessage'];
   return {
     post: function(selector, text) {
       var _message;
-
       _message = $(_template({
         text: text
       }));
@@ -27012,7 +25508,6 @@ define('_features/notificationMessage',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Feedback/Page',['_features/Switcher', '_features/indicator', 'views/pages/PageBase', '_features/notificationMessage', 'ovivo'], function(Switcher, indicator, PageBase, notificationMessage) {
   return PageBase.extend({
     el: '.page.page-feedback',
@@ -27096,7 +25591,6 @@ define('views/pages/Feedback/Page',['_features/Switcher', '_features/indicator',
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Feedback',['models/pages/PageBase', 'views/pages/Feedback/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     initialize: function(attrs, options) {
@@ -27107,7 +25601,6 @@ define('models/pages/Feedback',['models/pages/PageBase', 'views/pages/Feedback/P
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/pages/Help/Page',['views/pages/PageBase', 'ovivo'], function(PageBase) {
   return PageBase.extend({
     el: '.page.page-help',
@@ -27138,7 +25631,6 @@ define('views/pages/Help/Page',['views/pages/PageBase', 'ovivo'], function(PageB
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/pages/Help',['models/pages/PageBase', 'views/pages/Help/Page', 'ovivo'], function(PageBase, View) {
   return PageBase.extend({
     initialize: function(attrs, options) {
@@ -27149,7 +25641,709 @@ define('models/pages/Help',['models/pages/PageBase', 'views/pages/Help/Page', 'o
   });
 });
 
-// Generated by CoffeeScript 1.6.2
+define('views/VoiceRecognition',['ovivo'], function() {
+  return Backbone.View.extend({
+    el: '#voice-recognition',
+    processKey: function(e) {
+      if (!((e.ctrlKey === true) && (e.shiftKey === true) && (e.keyCode === 19))) {
+        return;
+      }
+      this.model.set('show', true);
+      return this.model.set('processing', true);
+    },
+    resultsTemplate: Handlebars.templates['speechResults'],
+    _clearState: function() {
+      return this.$el.removeClass('initial processing result error');
+    },
+    changeShow: function() {
+      var _this = this;
+      if (this.model.show() === true) {
+        this._clearState();
+        this.$el.addClass('initial');
+        this.$el.addClass('show');
+      } else {
+        setTimeout((function() {
+          _this._clearState();
+          return _this.$el.removeClass('show');
+        }), 1000);
+      }
+      return true;
+    },
+    processStart: function() {
+      this._clearState();
+      return this.$el.addClass('processing');
+    },
+    processEnd: function() {},
+    processResult: function(results) {
+      var _this = this;
+      this._clearState();
+      this.$el.addClass('result');
+      return this.$('.result').html(this.resultsTemplate({
+        results: _.map(results, function(res) {
+          return {
+            status: res.flag === true ? 'success' : 'error',
+            text: res.text
+          };
+        })
+      }));
+    },
+    processError: function() {
+      this._clearState();
+      return this.$el.addClass('error');
+    },
+    initialize: function() {
+      $(window).on('keypress', _.bind(this.processKey, this));
+      this.model.on('change:show', this.changeShow, this);
+      return true;
+    }
+  });
+});
+
+define('srgs-parser',[
+    'ovivo'
+], function () {
+    //
+    //  srgs.js
+    //  Copyright (C) 2009, 2010, Peter Ljunglöf. All rights reserved.
+    //
+    /*
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published 
+      by the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+      
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+      
+      You should have received a copy of the GNU General Public License
+      and the GNU Lesser General Public License along with this program.  
+      If not, see <http://www.gnu.org/licenses/>.
+    */
+
+    //////////////////////////////////////////////////////////////////////
+    // encoding SRGS grammars in javascript
+
+    function Grammar(root) {
+        this.$root = root;
+        
+        this.VOID = [OneOf([])];
+        this.NULL = [];
+        this.GARBAGE = []; 
+        
+        this.$check = function() {
+            for (var i in this) {
+                if (i !== "$root" && i !== "$check") {
+                    try {
+                        checkSequenceExpansion(this[i]);
+                    } catch(err) {
+                        throwRuleError("When checking grammar rule '" + i + "'", err);
+                    }
+                }
+            }
+        }
+    }
+
+    function WordSet(str) {
+        var words = str.split(/ +/);
+        var set = {};
+        for (var i in words) {
+            set[words[i]] = true;
+        }
+        return set;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // rule expansion constructors
+
+    // sequences are ordinary arrays
+    function Sequence(seq) {
+        return seq;
+    }
+
+    function Ref(ref) {
+        return new RefClass(ref);
+    }
+
+    function Tag(tag) {
+        return new TagClass(tag);
+    }
+
+    function OneOf(alternatives) {
+        return new OneOfClass(alternatives);
+    }
+
+    function Repeat(min, max, sequence) {
+        return new RepeatClass(min, max, sequence);
+    }
+
+    function Optional(sequence) {
+        return new RepeatClass(0, 1, sequence);
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // rule expansion classes
+
+    var RefClass = function (ruleref) {
+        this.content = ruleref;
+        this._string = "$" + ruleref;
+        this.toString = function toString() {return this._string}
+    }
+        
+    function TagClass(tag) {
+        this.content = tag;
+        this._string = "{" + tag + "}";
+        this.toString = function toString() {return this._string}
+    }
+
+    function OneOfClass(alternatives) {
+        this.content = alternatives;
+        this._string = "(" + alternatives.join("|") + ")";
+        this.toString = function toString() {return this._string}
+    }
+
+    function RepeatClass(min, max, sequence) {
+        this.min = min;
+        this.max = max;
+        this.content = sequence;
+        this._string = this.content + "<" + this.min + "-" + (this.max==Infinity ? "" : this.max) + ">"
+        this.toString = function toString() {return this._string}
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // checking rule expansions
+
+    function throwRuleError(message, error) {
+        if (error == undefined) {
+            throw TypeError(message);
+        } else {
+            throw TypeError(message + "; " + error.message);
+        }
+    }
+
+    function checkSequenceExpansion(sequence) {
+        try {
+            if (sequence.constructor !== Array) {
+                throwRuleError("Expected Array, found " + sequence.constructor.name);
+            }
+            for (var i in sequence) {
+                if (sequence[i].constructor == Array) {
+                    checkSequenceExpansion(sequence[i]);
+                } else if (sequence[i].constructor != String) {
+                    sequence[i].checkExpansion();
+                }
+            }
+        } catch(err) {
+            throwRuleError("When checking sequence expansion", err);
+        }
+    }
+
+    RefClass.prototype.checkExpansion = function checkExpansion() {
+        if (this.content.constructor !== String) {
+            throwRuleError("When checking Ref content; Expected String, found " + 
+                           this.content.constructor.name);
+        }
+    }
+
+    TagClass.prototype.checkExpansion = function checkExpansion() {
+        if (this.content.constructor !== String) {
+            throwRuleError("When checking Tag content; Expected String, found " + 
+                           this.content.constructor.name);
+        }
+    }
+
+    OneOfClass.prototype.checkExpansion = function checkExpansion() {
+        try {
+            if (this.content.constructor !== Array) {
+                throwRuleError("Expected Array, found " + this.content.constructor.name);
+            }
+            for (var i in this.content) {
+                checkSequenceExpansion(this.content[i]);
+            }
+        } catch(err) {
+            throwRuleError("When checking OneOf content", err);
+        }
+    }
+
+    RepeatClass.prototype.checkExpansion = function checkExpansion() {
+        try {
+            if (this.min.constructor !== Number || this.max.constructor !== Number) {
+                throwRuleError("Expected min/max to be Number, found " + 
+                               this.min.constructor.name + "/" + this.max.constructor.name);
+            }
+            if (!(0 <= this.min && this.min <= this.max)) {
+                throwRuleError("Expected 0 <= min <= max, found " + this.min + "/" + this.max);
+            }
+            checkSequenceExpansion(this.content);
+        } catch(err) {
+            throwRuleError("When checking Repeat content", err);
+        }
+    }
+
+    //
+    //  chartparser.js
+    //  Copyright (C) 2009, 2010, Peter Ljunglöf. All rights reserved.
+    //
+    /*
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU Lesser General Public License as published 
+      by the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+      
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+      
+      You should have received a copy of the GNU General Public License
+      and the GNU Lesser General Public License along with this program.  
+      If not, see <http://www.gnu.org/licenses/>.
+    */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // by default we do not produce debugging output:
+
+    function LOG(str) {}
+
+    // if you want to debug the parsing process, 
+    // define the following before calling the parse() function:
+    /* function LOG(msg) {console.log(String(msg));} */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // by default we include parse trees in the parse results:
+
+    function makeTree(label, children, data) {
+        return {label: label, children: children, data: data};
+    }
+
+    // ...which can result in bigger parse charts and longer execution times.
+    // if you don't want to include parse trees, 
+    // define the following before calling the parse() function:
+    /*
+     makeTree = false;
+     */
+
+
+    //////////////////////////////////////////////////////////////////////
+    // we need to be able to clone objects between different edges
+    // borrowed from http://keithdevens.com/weblog/archive/2007/Jun/07/javascript.clone
+
+    function clone(obj){
+        if (obj == null || typeof(obj) != 'object') {
+            return obj;
+        }
+        var temp = new obj.constructor(); 
+        for (var key in obj) {
+            temp[key] = clone(obj[key]);
+        }
+        return temp;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // objects are by default printed "[Object]"
+    // to be able to use objects in hash tables, 
+    // we need a better string representation
+
+    function stringRepr(obj) {
+        if (obj == null || typeof(obj) != 'object') {
+            return String(obj);
+        }
+        var str = "{";
+        for (var key in obj) {
+            str += key + ":" + stringRepr(obj[key]) + ";";
+        }
+        return str + "}";
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // parse chart
+    // conceptually this is a set of edges, but it is optimized
+
+    function Chart(numberOfWords) {
+        this.numberOfWords = numberOfWords;
+        this.passives = new Array(numberOfWords);
+        this.actives = new Array(numberOfWords);
+        for (var i = 0; i <= numberOfWords; i++) {
+            this.passives[i] = {};
+            this.actives[i] = {};
+        }
+        
+        // Chart.add(edge)
+        // add the edge to the chart, return true if the chart was changed 
+        // (i.e. if the chart didn't already contain the edge)
+        this.add = function add(edge) {
+            var subchart, cat;
+            if (edge.isPassive) {
+                subchart = this.passives[edge.start];
+                cat = edge.lhs;
+            } else {
+                subchart = this.actives[edge.end];
+                cat = edge.next.content;
+            }
+            if (!(cat in subchart)) {
+                subchart[cat] = {};
+            }
+            if (edge in subchart[cat]) {
+                return false;
+            } else {
+                subchart[cat][edge] = edge;
+                return true;
+            }
+        }
+        
+        // Chart.treesForRule(lhs, start, end)
+        // return all parse trees for the given lhs, start, and end
+        //  - start, end are optional; defaults to 0, numberOfWords
+        this.treesForRule = function treesForRule(lhs, start, end) {
+            start = start || 0;
+            end = end || numberOfWords;
+            var trees = [];
+            var finalEdges = this.passives[start][lhs];
+            for (var i in finalEdges) {
+                if (finalEdges[i].end == end) {
+                    trees.push(finalEdges[i].tree);
+                }
+            }
+            return trees;
+        }
+        
+        // Chart.allEdges() / Chart.allPassiveEdges() / Chart.allActiveEdges()
+        // return an array of all (passive/active) edges in the chart
+        this.allEdges = function allEdges() {
+            return this.allPassiveEdges().concat(this.allActiveEdges());
+        }
+        this.allPassiveEdges = function allPassiveEdges() {
+            var edges = [];
+            for (var i in this.passives) 
+                for (var j in this.passives[i]) 
+                    for (var k in this.passives[i][j])
+                        edges.push(this.passives[i][j][k]);
+            return edges;
+        }
+        this.allActiveEdges = function allActiveEdges() {
+            var edges = [];
+            for (var i in this.actives) 
+                for (var j in this.actives[i]) 
+                    for (var k in this.actives[i][j])
+                        edges.push(this.actives[i][j][k]);
+            return edges;
+        }
+        
+        // Chart.statistics()
+        // return the number of edges in the chart
+        this.statistics = function statistics() {
+            var passives = this.allPassiveEdges().length;
+            var actives = this.allActiveEdges().length;
+            return {nrEdges: passives+actives, nrPassiveEdges: passives, nrActiveEdges: actives};
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // parse edges: passive and active
+
+    function PassiveEdge(start, end, lhs, out, tree) {
+        this.start = start;
+        this.end = end;
+        this.lhs = lhs;
+        this.out = out;
+        this.tree = tree;
+        this.isPassive = true;
+        
+        var str = "[" + start + "-" + end + "] $" + lhs + " := " + 
+                    stringRepr(out) + " / " + stringRepr(tree);
+        this._string = str;
+        this.toString = function toString() {return this._string;} 
+    }
+
+    function ActiveEdge(start, end, lhs, next, rest, out, rules, children) {
+        this.start = start;
+        this.end = end;
+        this.lhs = lhs;
+        this.next = next;
+        this.rest = rest;
+        this.out = out;
+        this.rules = rules;
+        this.children = children;
+        this.isPassive = false;
+        
+        var str = "<" + start + "-" + end + "> $" + lhs + " -> " + next + 
+                    ", " + rest + " := " + stringRepr(out) + " <- " + 
+                    stringRepr(rules) + " / " + stringRepr(children);
+        this._string = str;
+        this.toString = function toString() {return this._string;} 
+    }
+
+
+    //////////////////////////////////////////////////////////////////////
+    // the main parsing function: a simple top-down chartparser
+    //  - 'words' is an array of strings
+    //  - 'grammar' is a hash table of left-hand-sides mapping to arrays of right-hand-sides
+    //  - 'root' is the starting category (a string)
+    //    if unspecified, use the '$root' property of the grammar
+    //  - 'filter' is an optional left-corner filter 
+    //    (a mapping from categories/rule-refs to words)
+    //    if specified, it is used when predicting new edges
+    // returns the final chart
+
+    function parse(words, grammar, root, filter) {
+        if (!root) {
+            root = grammar.$root;
+        }
+        var chart = new Chart(words.length);
+        var agenda = [];
+        
+        var leftCornerFilter;
+        if (filter == undefined) {
+            leftCornerFilter = function() {return true};
+        } else {
+            leftCornerFilter = function leftCornerFilter(ruleref, position) {
+                var leftCorners = filter[ruleref];
+                return leftCorners ? words[position] in leftCorners : true;
+            }
+        }
+        
+        // add an edge to the chart and the agenda, if it does not already exist
+        function addToChart(inference, start, end, lhs, rhs, out, rules, children) {
+            var edge;
+            if (rhs.length > 0) {
+                var next = rhs[0];
+                var rest = rhs.slice(1);
+                switch (next.constructor) {
+                        
+                    case Array:
+                        // the next symbol is a sequence
+                        addToChart(inference+",SEQUENCE", start, end, lhs, 
+                                   next.concat(rest), out, rules, children);
+                        return;
+                        
+                    case RepeatClass:
+                        // the next symbol is a repetition
+                        var min = next.min;
+                        var max = next.max;
+                        // skip repeat 
+                        if (min <= 0) {
+                            addToChart(inference+",SKIP", start, end, lhs, 
+                                       rest, out, rules, children);
+                        }
+                        // repeat 
+                        if (max > 0) {
+                            var content = next.content;
+                            var rhs = [content];
+                            if (max > 1) {
+                                rhs.push(Repeat(min ? min-1 : min, max-1, content));
+                            }
+                            addToChart(inference+",REPEAT", start, end, lhs, 
+                                       rhs.concat(rest), out, rules, children);
+                        }
+                        return;
+                        
+                    case OneOfClass:
+                        // the next symbol is a disjunction
+                        var oneof = next.content;
+                        for (var i in oneof) {
+                            var rhs = oneof[i].concat(rest);
+                            addToChart(inference+",ONEOF", start, end, lhs, 
+                                       rhs, out, rules, children);
+                        } 
+                        return;
+                        
+                    case TagClass:
+                        // the next symbol is a semantic action
+                        out = clone(out);
+                        rules = clone(rules);
+                        children = clone(children);
+                        eval(next.content);
+                        addToChart(inference+",TAG", start, end, lhs, 
+                                   rest, out, rules, children);
+                        return;
+                }
+                edge = new ActiveEdge(start, end, lhs, next, rest, out, rules, children);
+                
+            } else {
+                var tree;
+                if (makeTree) {
+                    tree = makeTree(lhs, children, out);
+                } else {
+                    tree = out;
+                }
+                edge = new PassiveEdge(start, end, lhs, out, tree);
+            }
+            
+            // try to add the edge; if successful, also add it to the agenda
+            if (chart.add(edge)) {
+                LOG("+ " + inference + ": " + edge);
+                agenda.push(edge);
+            }
+        }
+        
+        // seed the agenda with the starting rule
+        addToChart("INIT", 0, 0, root, grammar[root], {}, {}, []);
+        
+        // main loop
+        while (agenda.length > 0) {
+            var edge = agenda.pop();
+            var start= edge.start;
+            var end  = edge.end;
+            var lhs  = edge.lhs;
+            var next = edge.next;
+            LOG(edge);
+            
+            if (edge.isPassive) {
+                // combine
+                var actives = chart.actives[start][lhs];
+                for (var i in actives) {
+                    var active = actives[i];
+                    var rules = clone(active.rules);
+                    rules[edge.lhs] = clone(edge.out);
+                    var children;
+                    if (makeTree) {
+                        children = clone(active.children);
+                        children.push(clone(edge.tree));
+                    }
+                    addToChart("COMBINE", active.start, end, active.lhs, 
+                               
+                               active.rest, active.out, rules, children);
+                }
+                
+            } else if (next.constructor == RefClass) {
+                var ref = next.content;
+                // combine
+                var passives = chart.passives[end][ref];
+                for (var i in passives) {
+                    var passive = passives[i];
+                    var rules = clone(edge.rules);
+                    rules[passive.lhs] = clone(passive.out);
+                    var children;
+                    if (makeTree) {
+                        children = clone(edge.children);
+                        children.push(clone(passive.tree));
+                    }
+                    addToChart("COMBINE", start, passive.end, lhs, 
+                               edge.rest, edge.out, rules, children);
+                }
+                // predict
+                if (ref in grammar) {
+                    if (leftCornerFilter(ref, end)) {
+                        addToChart("PREDICT", end, end, ref, 
+                                   grammar[ref], {}, {}, []);
+                    }
+                }
+                
+            } else if (next == words[end]) {
+                // scan
+                var children;
+                if (makeTree) {
+                    children = clone(edge.children);
+                    children.push(next);
+                }
+                addToChart("SCAN", start, end+1, lhs, 
+                           edge.rest, edge.out, edge.rules, children);
+            }
+        }
+        
+        return chart;
+    }
+
+    var _returnObj = {
+        Grammar: Grammar,
+        Tag: Tag,
+        OneOf: OneOf,
+        Ref: Ref,
+        RefClass: RefClass,
+        parse: parse
+    };
+
+    return _returnObj;
+});
+define('_features/voiceRecognitionGrammar',['srgs-parser', 'ovivo'], function(parser) {
+  return _.extend(new parser.Grammar('statement'), {
+    statement: [parser.Ref('command'), parser.Tag('out = rules.command')],
+    command: [parser.OneOf([[parser.Ref('commandOpen'), parser.Tag('out.type = \'open\''), parser.Tag('out.target = rules.commandOpen')], [parser.Ref('commandCreate'), parser.Tag('out.type = \'create\''), parser.Tag('out.target = rules.commandCreate')]])],
+    commandOpen: [gettext('open'), parser.OneOf([[gettext('calendar'), parser.Tag('out = \'calendar\'')], [gettext('settings'), parser.Tag('out = \'settings\'')], [gettext('feedback'), parser.Tag('out = \'feedback\'')], [gettext('help'), parser.Tag('out = \'help\'')]])],
+    commandCreate: [gettext('create'), parser.OneOf([['time', 'off', parser.Tag('out = \'inactivity\'')], ['timeoff', parser.Tag('out = \'inactivity\'')], ['inactivity', parser.Tag('out = \'inactivity\'')], ['working', 'hours', parser.Tag('out = \'working-hours\'')], ['working', 'hour', parser.Tag('out = \'working-hours\'')]])]
+  });
+});
+
+define('models/VoiceRecognition',['models/resources/ResourceBase', 'views/VoiceRecognition', '_features/voiceRecognitionGrammar', 'srgs-parser', 'ovivo'], function(ResourceBase, View, voiceRecognitionGrammar, parser) {
+  return ResourceBase.extend({
+    _gettersNames: ['processing', 'show'],
+    changeProcessing: function() {
+      var _val;
+      _val = this.processing();
+      if (_val === false) {
+        this.set('show', false);
+        return;
+      }
+      if (_val === true) {
+        this._recognition.start();
+      }
+      return true;
+    },
+    _applyGrammar: function(str) {
+      return parser.parse(str.split(/\s+/), voiceRecognitionGrammar, voiceRecognitionGrammar.$root).treesForRule(voiceRecognitionGrammar.$root);
+    },
+    _analyseSpeech: (function() {
+      return function(str) {
+        var _tree;
+        if ((_tree = this._applyGrammar(str)[0]) == null) {
+          return false;
+        }
+        switch (_tree.data.type) {
+          case 'open':
+            ovivo.desktop.pages[_tree.data.target].show();
+        }
+        return true;
+      };
+    })(),
+    processStart: function() {
+      return this.view.processStart();
+    },
+    processEnd: function() {
+      this.view.processEnd();
+      return this.set('processing', false);
+    },
+    processResult: function(e) {
+      var _this = this;
+      this.view.processResult(_.flatten(_.map(e.originalEvent.results, function(res) {
+        return _.map(res, function(res) {
+          var _flag;
+          _flag = _this._analyseSpeech(res.transcript);
+          return {
+            text: res.transcript,
+            flag: _flag
+          };
+        });
+      })));
+      return true;
+    },
+    processError: function() {
+      return this.view.processError();
+    },
+    initialize: function() {
+      if (window.webkitSpeechRecognition === void 0) {
+        return;
+      }
+      this._recognition = new webkitSpeechRecognition();
+      this._recognition.lang = ovivo.config.LANG;
+      $(this._recognition).on('start', _.bind(this.processStart, this));
+      $(this._recognition).on('end', _.bind(this.processEnd, this));
+      $(this._recognition).on('result', _.bind(this.processResult, this));
+      $(this._recognition).on('error', _.bind(this.processError, this));
+      this.on('change:processing', this.changeProcessing, this);
+      this.View = View;
+      return this.proxyCall('initialize', arguments);
+    }
+  });
+});
+
 define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   return Backbone.View.extend({
     el: '.side-bar',
@@ -27162,7 +26356,6 @@ define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     updateNotifications: function(model, collection, options) {
       var _unread,
         _this = this;
-
       _unread = ovivo.desktop.resources.notifications.unreadLength();
       this.$('.notifications-indicator-container').fadeOut(300).promise().then(function() {
         if (_unread !== 0) {
@@ -27218,7 +26411,6 @@ define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     },
     processItemClick: function(e) {
       var _item;
-
       _item = $(e.target).closest('.menu-item');
       ovivo.desktop.pages[this.menuItemRegExp.exec(_item[0].id)[1]].show();
       this._processItem(_item);
@@ -27226,7 +26418,6 @@ define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     },
     setPage: function(name) {
       var _item;
-
       _item = this.$('#menu-item-' + name);
       return this._processItem(_item);
     },
@@ -27257,7 +26448,6 @@ define('views/SideBar',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -27291,7 +26481,6 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
     postRender: function() {},
     _checkMatch: function(av_, need) {
       var end, start, _end, _start;
-
       _start = av_.startValue;
       _end = av_.endValue;
       start = need.startValue;
@@ -27300,7 +26489,6 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
     },
     _addAvailability: function(model) {
       var _container, _el;
-
       _el = model.getView().el;
       _container = this.$('li.group-' + model.group() + ' ul.availabilities');
       return _container.append(_el);
@@ -27320,7 +26508,6 @@ define('views/resources/ResourceNeed',['views/resources/ResourceBase', 'ovivo'],
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -27335,7 +26522,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     weekdayClick: function(e) {
       var _i, _item;
-
       _item = $(e.target).closest('.weekday');
       _i = _item.index();
       return this.model.processWeek(_i, this.model.weekdaysHash[_i]);
@@ -27346,7 +26532,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     templates: function() {
       var _templates;
-
       _templates = this.model.templates();
       if (typeof _templates === 'object') {
         return _.map(_.keys(_templates), function(id) {
@@ -27358,17 +26543,14 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     renderSkill: function() {
       var _ref;
-
       return this.$('.skill-value').html((_ref = ovivo.desktop.resources.skills.get(this.model.skill())) != null ? _ref.name() : void 0);
     },
     renderPD: function() {
       var _ref;
-
       return this.$('.pd-value').html((_ref = ovivo.desktop.resources.primaryDepartments.get(this.model.primary_department())) != null ? _ref.name() : void 0);
     },
     renderTemplates: function() {
       var _templates;
-
       _templates = this.templates();
       if ((_templates !== null) && (_templates.length > 0)) {
         return this.$('.templates-names span').html(_.map(this.templates(), function(template) {
@@ -27380,7 +26562,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     postRender: function() {
       var _this = this;
-
       this.$('.columns.weekdays > li').each(function(i, elem) {
         if (_this.model.weekdaysHash[i] === true) {
           return $(elem).addClass('checked');
@@ -27395,7 +26576,6 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
     },
     initialize: function() {
       var _this = this;
-
       this.proxyCall('initialize', arguments);
       this.model.on('change:templates', function() {
         return _this.render();
@@ -27406,12 +26586,10 @@ define('views/resources/ResourceNeedEdit',['views/resources/ResourceBase', 'oviv
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/validators',[], function() {
   return {
     time: function(name, time) {
       var match, _hours, _minutes, _returnValue;
-
       _returnValue = void 0;
       match = _.compact(ovivo.config.VALIDATION_REGEXP_TIME.exec(time));
       if (match.length === 0) {
@@ -27440,7 +26618,6 @@ define('_features/validators',[], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/resources/ResourceNeed', 'views/resources/ResourceNeedEdit', '_features/validators', 'ovivo'], function(ResourceBase, View, EditView, validators) {
   return ResourceBase.extend({
     typeName: 'resourceNeed',
@@ -27456,7 +26633,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     processWeek: function(num, value) {
       var _weeks;
-
       value = !value;
       this.weekdaysHash[num] = value;
       _weeks = this._getTrueHash(this.weekdaysHash);
@@ -27472,7 +26648,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     validate: function(attrs) {
       var _this = this;
-
       return _.reduce([
         {
           name: 'start_time',
@@ -27499,7 +26674,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     processModelChange: function() {},
     toJSON: function() {
       var _json;
-
       _json = Backbone.Model.prototype.toJSON.call(this);
       if ((_json.groups instanceof Array) && (_json.groups.length === 0)) {
         this.set('groups', null, {
@@ -27516,7 +26690,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     changePrimaryDepartment: function(model) {
       var _templates;
-
       _templates = this.templates();
       if (typeof _templates === 'object') {
         return _.each(_.keys(_templates), function(id) {
@@ -27526,17 +26699,14 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     setDeltaHours: (function() {
       var _getMinutes;
-
       _getMinutes = function(str) {
         var hours, minutes, _ref, _ref1;
-
         _ref = _.compact(ovivo.config.VALIDATION_REGEXP_TIME.exec(str)).slice(-2), hours = _ref[0], minutes = _ref[1];
         _ref1 = [parseInt(hours), parseInt(minutes)], hours = _ref1[0], minutes = _ref1[1];
         return hours * 60 + minutes;
       };
       return function() {
         var _delta, _end, _start;
-
         _end = _getMinutes(this.end_time());
         _start = _getMinutes(this.start_time());
         if (_start <= _end) {
@@ -27549,7 +26719,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     })(),
     updateWeekdaysHash: function() {
       var _ref;
-
       return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
         memo[parseInt(elem) - 1] = true;
         return memo;
@@ -27557,7 +26726,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     _getTimeValue: function(str) {
       var _hours, _minutes, _ref, _ref1;
-
       _ref = str.split(':'), _hours = _ref[0], _minutes = _ref[1];
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
@@ -27569,14 +26737,12 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     addTemplate: function(id) {
       var _obj;
-
       _obj = _.extend({}, this.templates());
       _obj[id] = true;
       return this.set('templates', _obj);
     },
     removeTemplate: function(id) {
       var _obj;
-
       _obj = _.extend({}, this.templates());
       delete _obj[id];
       return this.set('templates', _obj);
@@ -27592,17 +26758,14 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
     },
     updateFrame: function() {
       var _templates;
-
       _templates = this.templates();
       if (typeof _templates === 'object') {
         _.each(_.unique(_.reduce(_.keys(_templates), (function(memo, id) {
           var _periods;
-
           _periods = ovivo.desktop.resources.templates.get(id).periods();
           return memo.concat(typeof _periods === 'object' ? _.keys(_periods) : []);
         }), [])), function(id) {
           var _period;
-
           _period = ovivo.desktop.resources.periods.get(id);
           return ovivo.desktop.resources.periods.trigger('updateFrames', _period);
         });
@@ -27626,7 +26789,6 @@ define('models/resources/ResourceNeed',['models/resources/ResourceBase', 'views/
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '_common/ResourceManagerBase', '_common/CachableCollection', 'ovivo'], function(Model, ResourceManagerBase, CachableCollection) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['primary_department']), {
     model: Model,
@@ -27640,13 +26802,11 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     _ignoreChange: ['checked', 'deltaHours', 'templates'],
     processRemove: function(model) {
       var _templates;
-
       if ((_templates = model.templates()) == null) {
         return;
       }
       return _.each(_.keys(_templates), function(id) {
         var _template;
-
         _template = ovivo.desktop.resources.templates.get(id);
         if (_template == null) {
           return;
@@ -27657,7 +26817,6 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     passFrameUpdate: function(model) {
       return _.each(_.keys(model.templates()), function(id) {
         var _template;
-
         _template = ovivo.desktop.resources.templates.get(id);
         if (_template == null) {
           return;
@@ -27667,11 +26826,9 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
     },
     processFrameUpdate: (function() {
       var _monitorChanges;
-
       _monitorChanges = ['repeat', 'weekdays', 'skill'];
       return function(resourceNeed) {
         var _int;
-
         _int = _.intersection(_.keys(resourceNeed.changed), _monitorChanges);
         if (_int.length > 0) {
           this.passFrameUpdate(resourceNeed);
@@ -27689,7 +26846,6 @@ define('collections/resources/ResourceNeeds',['models/resources/ResourceNeed', '
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -27707,7 +26863,6 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
     },
     _periods: function(def) {
       var _keys, _periods, _str;
-
       _periods = this.model.periods();
       _str = '';
       if ((typeof _periods !== 'object') || ((_keys = _.keys(_periods)).length === 0)) {
@@ -27715,7 +26870,6 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
       } else {
         _str = _.map(_.keys(_periods), function(id) {
           var _period;
-
           _period = ovivo.desktop.resources.periods.get(id);
           return _period.view.start_date() + ' – ' + _period.view.end_date();
         }).join(', ');
@@ -27724,7 +26878,6 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
     },
     periods: function() {
       var _def;
-
       _def = new $.Deferred();
       ovivo.desktop.resources.periods.def.done(_.bind(_.wrap(_def, this._periods), this));
       return _def;
@@ -27736,7 +26889,6 @@ define('views/resources/Template',['views/resources/ResourceBase', 'ovivo'], fun
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Template',['models/resources/ResourceBase', 'views/resources/Template', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     typeName: 'template',
@@ -27746,7 +26898,6 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     },
     toJSON: function() {
       var _json;
-
       _json = Backbone.Model.prototype.toJSON.call(this);
       delete _json.periods;
       return _json;
@@ -27760,7 +26911,6 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     resourceNeedsChange: function(_prev) {
       var _cur, _new, _removed,
         _this = this;
-
       if (this.id == null) {
         return true;
       }
@@ -27776,7 +26926,6 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     },
     removeResourceNeed: function(id) {
       var _arr, _i, _val;
-
       _val = [];
       _arr = this.resource_needs();
       _.each(_arr, function(el) {
@@ -27790,21 +26939,18 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
     },
     addPeriod: function(id) {
       var _obj;
-
       _obj = _.extend({}, this.periods());
       _obj[id] = true;
       return this.set('periods', _obj);
     },
     removePeriod: function(id) {
       var _obj;
-
       _obj = _.extend({}, this.periods());
       delete _obj[id];
       return this.set('periods', _obj);
     },
     changePrimaryDepartment: function(model) {
       var _periods;
-
       _periods = this.periods();
       if (typeof _periods === 'object') {
         return _.each(_.keys(_periods), function(id) {
@@ -27826,7 +26972,6 @@ define('models/resources/Template',['models/resources/ResourceBase', 'views/reso
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Templates',['models/resources/Template', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -27836,7 +26981,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     _processTemplateAdd: function(model) {
       var _id,
         _this = this;
-
       _id = model.id;
       return _.each(model.resource_needs(), function(id) {
         return ovivo.desktop.resources.resourceNeeds.get(id).addTemplate(_id);
@@ -27845,7 +26989,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     _processTemplateRemove: function(model) {
       var _id,
         _this = this;
-
       _id = model.id;
       return _.each(model.resource_needs(), function(id) {
         return ovivo.desktop.resources.resourceNeeds.get(id).removeTemplate(_id);
@@ -27853,27 +26996,23 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     },
     processTemplateAdd: function(model) {
       var _this = this;
-
       return ovivo.desktop.resources.resourceNeeds.def.done(function() {
         return _this._processTemplateAdd(model);
       });
     },
     processTemplateRemove: function(model) {
       var _this = this;
-
       return ovivo.desktop.resources.resourceNeeds.def.done(function() {
         return _this._processTemplateRemove(model);
       });
     },
     processRemove: function(model) {
       var _periods;
-
       if ((_periods = model.periods()) == null) {
         return;
       }
       return _.each(_.keys(_periods), function(id) {
         var _period;
-
         _period = ovivo.desktop.resources.periods.get(id);
         if (_period == null) {
           return;
@@ -27884,7 +27023,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     passFrameUpdate: function(model) {
       return _.each(_.keys(model.periods()), function(id) {
         var _period;
-
         _period = ovivo.desktop.resources.periods.get(id);
         if (_period == null) {
           return;
@@ -27894,11 +27032,9 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
     },
     processFrameUpdate: (function() {
       var _monitorChanges;
-
       _monitorChanges = ['resource_needs'];
       return function(template) {
         var _int;
-
         _int = _.intersection(_.keys(template.changed), _monitorChanges);
         if (_int.length > 0) {
           this.passFrameUpdate(template);
@@ -27917,7 +27053,6 @@ define('collections/resources/Templates',['models/resources/Template', '_common/
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/Blocks',['ovivo'], function() {
   return Backbone.Collection.extend({
     _initialize: function() {
@@ -27927,7 +27062,6 @@ define('collections/period/Blocks',['ovivo'], function() {
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/EventUser',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -27946,7 +27080,6 @@ define('views/period/EventUser',['views/resources/ResourceBase', 'ovivo'], funct
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/EventUser',['models/resources/ResourceBase', 'views/period/EventUser', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['event', 'name', 'type', ['pk', 'event']],
@@ -27958,13 +27091,11 @@ define('models/period/EventUser',['models/resources/ResourceBase', 'views/period
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/EventUsers',['_common/CachableCollection', 'models/period/EventUser', 'ovivo'], function(CachableCollection, Model) {
   return Backbone.Collection.extend(_.extend({}, CachableCollection.get(['pk', 'type']), {
     model: Model,
     comparator: (function() {
       var _order;
-
       _order = {
         'closed': 1,
         'open-responses': 2,
@@ -27981,7 +27112,6 @@ define('collections/period/EventUsers',['_common/CachableCollection', 'models/pe
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -28013,7 +27143,6 @@ define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], fun
     },
     _getTimeObj: function(field) {
       var _hours, _minutes, _obj, _ref, _ref1;
-
       _obj = new Date(Date.parse(this.date()));
       _ref = this[field]().split(':'), _hours = _ref[0], _minutes = _ref[1];
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
@@ -28028,10 +27157,8 @@ define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], fun
     },
     groups: function() {
       var _this = this;
-
       return _.map(this.model.groups(), function(pk) {
         var _ref;
-
         return {
           pk: pk,
           num_employees: _this.num_employees(),
@@ -28041,7 +27168,6 @@ define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], fun
     },
     adjustPosition: function(start, range, height) {
       var _end, _scale, _start;
-
       _start = this._getTimeObj('start_time');
       _end = this._getTimeObj('end_time');
       _scale = height / range;
@@ -28061,14 +27187,11 @@ define('views/period/PeriodBlock',['views/resources/ResourceBase', 'ovivo'], fun
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
   var _Base;
-
   _Base = Backbone.Model.extend(_.extend({}, ToolsBase, {
     createGetters: (function() {
       var _foreignGetter, _nativeGetter;
-
       _nativeGetter = function(_name) {
         return function() {
           return this.get(_name);
@@ -28081,10 +27204,8 @@ define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase)
       };
       return ToolsBase.once('createGetters', function() {
         var _this = this;
-
         return _.each(this._gettersNames, function(arr) {
           var _getter, _name;
-
           _getter = (typeof arr === 'string' ? _nativeGetter : _foreignGetter)(arr);
           _name = typeof arr === 'string' ? arr : arr[0];
           if (_this.constructor.prototype[_name] == null) {
@@ -28107,20 +27228,17 @@ define('models/period/Block',['_common/ToolsBase', 'ovivo'], function(ToolsBase)
   return _Base;
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/period/PeriodBlock', 'models/period/Block', 'ovivo'], function(EventUsers, View, Block) {
   return Block.extend({
     idAttribute: 'cid',
     _gettersNames: ['date', 'hours', 'resourceNeed', 'template', 'period', 'code', 'skill_name', 'total_hours', 'matched_employees', 'matched_hours', 'empty_slots', 'group', ['start_time', 'resourceNeed'], ['end_time', 'resourceNeed'], ['skill', 'resourceNeed'], ['employee_type', 'resourceNeed'], ['num_employees', 'resourceNeed'], ['groups', 'period'], ['pk', 'period'], ['startValue', 'resourceNeed'], ['endValue', 'resourceNeed']],
     dateKey: function() {
       var _date;
-
       _date = this.date();
       return "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate());
     },
     addHour: function(hour, groups) {
       var _this = this;
-
       return _.each(groups, function(group) {
         _this.groupsHash[group].push(hour);
         return _this.view.updateGroup(group);
@@ -28128,7 +27246,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     tryHour: function(hour, groups) {
       var _e, _e1, _s, _s1;
-
       _s = hour.startValue();
       _e = hour.endValue();
       _s1 = this.startValue();
@@ -28139,7 +27256,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     initGroups: function() {
       var _this = this;
-
       this.groupsHash = {};
       return _.each(this.get('period').groups(), function(group) {
         return _this.groupsHash[group] = [];
@@ -28147,11 +27263,9 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     initEvents: (function() {
       var _init;
-
       _init = function() {
         var _byDate, _byGroup, _bySkill, _key,
           _this = this;
-
         _key = this.dateKey();
         _byDate = ovivo.desktop.resources.events.getBy('date', _key);
         _bySkill = ovivo.desktop.resources.events.getBy('skill', this.skill());
@@ -28166,7 +27280,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     })(),
     removeAllEvents: function() {
       var _this = this;
-
       return _.each(_.values(this.events), function(event) {
         return _this.removeEvent(event);
       });
@@ -28181,7 +27294,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     addEvent: function(event) {
       var _this = this;
-
       if (!((event.group() === this.group()) && (event.skill() === this.skill()) && (event.start_time() === this.start_time()) && (event.end_time() === this.end_time()))) {
         return;
       }
@@ -28190,10 +27302,8 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
       event.on('change', this.changeEvent, this);
       ovivo.desktop.resources.users.def.done(function() {
         var _models;
-
         _models = _.map(event.users(), function(obj) {
           var _user;
-
           _user = ovivo.desktop.resources.users.get(obj.pk);
           return {
             event: event,
@@ -28211,7 +27321,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     removeEvent: function(event) {
       var _remove,
         _this = this;
-
       _remove = this.eventUsers.getBy('pk', event.pk());
       _.each(_remove, function(eventUser) {
         return _this.eventUsers.remove(eventUser);
@@ -28223,7 +27332,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     _updateMatchedValues: function() {
       var _closed;
-
       _closed = this.eventUsers.getBy('type', 'closed');
       if (this.view._updateMatchedValues != null) {
         return this.view._updateMatchedValues(_closed.length);
@@ -28231,7 +27339,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
     },
     initialize: function() {
       var _day;
-
       this.View = this.collection.View != null ? this.collection.View : View;
       this.initGroups();
       this.events = {};
@@ -28248,7 +27355,6 @@ define('models/period/PeriodBlock',['collections/period/EventUsers', 'views/peri
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/period/PeriodBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
   return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skill', 'group', 'groups', 'date', 'code', 'dateKey']), {
     model: Model,
@@ -28262,7 +27368,6 @@ define('collections/period/PeriodBlocks',['collections/period/Blocks', 'models/p
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/HoursBlock',['models/period/Block', 'ovivo'], function(Block) {
   return Block.extend({
     idAttribute: 'cid',
@@ -28270,7 +27375,6 @@ define('models/period/HoursBlock',['models/period/Block', 'ovivo'], function(Blo
     initialize: function() {
       var _day,
         _this = this;
-
       this.proxyCall('initialize', arguments);
       this.groupsHash = this.workingHour().groupsHash;
       ovivo.desktop.resources.users.def.done(function() {
@@ -28286,7 +27390,6 @@ define('models/period/HoursBlock',['models/period/Block', 'ovivo'], function(Blo
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/HoursBlocks',['collections/period/Blocks', 'models/period/HoursBlock', '_common/CachableCollection', 'ovivo'], function(Blocks, Model, CachableCollection) {
   return Blocks.extend(_.extend({}, CachableCollection.get(['pk', 'skills', 'user', 'code', 'group', 'groups', 'date']), {
     model: Model,
@@ -28297,13 +27400,11 @@ define('collections/period/HoursBlocks',['collections/period/Blocks', 'models/pe
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/period/Frame',['models/resources/ResourceBase', 'collections/period/PeriodBlocks', 'collections/period/HoursBlocks', 'ovivo'], function(ResourceBase, PeriodBlocks, HoursBlocks) {
   return ResourceBase.extend({
     _gettersNames: ['start', 'end', 'mode'],
     _compileGroups: function(model, start, end, codeGenerator, group) {
       var _blocksInitial, _groups;
-
       if (group != null) {
         if (group instanceof Array) {
           _groups = group;
@@ -28326,7 +27427,6 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     _changeModel: function(model, compileMethod, collection, groups) {
       var _add, _curBlocks, _curCodes, _hash, _newBlocks, _newCodes, _remove,
         _this = this;
-
       _hash = {};
       _curBlocks = collection.getBy('pk', model.pk());
       _curCodes = _.map(_curBlocks, function(block) {
@@ -28335,7 +27435,6 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
       _newBlocks = this[compileMethod](model, this.start(), this.end(), groups);
       _newCodes = _.map(_newBlocks, function(block) {
         var _code;
-
         _code = block.code;
         _hash[_code] = block;
         return _code;
@@ -28364,10 +27463,8 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     addWorkingHours: function(whs, group) {
       var _blocks,
         _this = this;
-
       whs = _.filter(whs, function(wh) {
         var _arr, _key;
-
         _key = group != null ? "" + (wh.pk()) + "-" + group : wh.pk();
         if (_this.whsHash[_key] != null) {
           return false;
@@ -28388,7 +27485,6 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     },
     addWorkingHour: function(wh, group) {
       var _arr, _blocks, _key;
-
       _key = "" + (wh.pk()) + "-" + group;
       if (this.whsHash[_key] != null) {
         return;
@@ -28406,7 +27502,6 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     removeWorkingHour: function(wh) {
       var _arr, _pk,
         _this = this;
-
       _pk = wh.pk();
       delete this.whsHash[_pk];
       if ((_arr = this.whsGroupsHash[_pk]) != null) {
@@ -28424,13 +27519,11 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     },
     addPeriod: function(period) {
       var _blocks;
-
       _blocks = this._compilePeriodGroups(period, this.start(), this.end());
       return this.periodBlocks.add(_blocks);
     },
     removePeriod: function(period) {
       var _this = this;
-
       return _.each(this.periodBlocks.getBy('pk', period.pk()), function(block) {
         return _this.periodBlocks.remove(block);
       });
@@ -28440,7 +27533,6 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
     },
     addEvent: function(event) {
       var _byDate, _bySkill;
-
       _byDate = this.periodBlocks.getBy('dateKey', event.date());
       _bySkill = this.periodBlocks.getBy('skill', event.skill());
       return _.each(_.intersection(_byDate, _bySkill), function(block) {
@@ -28470,14 +27562,12 @@ define('models/period/Frame',['models/resources/ResourceBase', 'collections/peri
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Model) {
   return Backbone.Collection.extend({
     model: Model,
     doNotFetch: true,
     addFrame: function(start, end, options) {
       var _model;
-
       _model = new Model({
         start: start,
         end: end,
@@ -28589,13 +27679,11 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
     _initHandlers: function(resource, handlersGroup) {
       var _obj,
         _this = this;
-
       if (handlersGroup == null) {
         handlersGroup = resource;
       }
       return _.each((_obj = this._handlers[handlersGroup]).events, function(event) {
         var _method;
-
         _method = _obj.method.replace(/\{\{s\}\}/, event.slice(0, 1).toUpperCase() + event.slice(1));
         return ovivo.desktop.resources[resource].on(event, _this[_method], _this);
       });
@@ -28621,7 +27709,6 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
     ],
     initialize: function() {
       var _this = this;
-
       this.on('add', this.processFrameAdd, this);
       _.each(this._initSequence, function(obj) {
         return $.when.apply($, _.map(obj.deps.split(','), function(s) {
@@ -28635,7 +27722,6 @@ define('collections/period/Frames',['models/period/Frame', 'ovivo'], function(Mo
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -28662,7 +27748,6 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
     },
     _renderValues: function(field, emptyStr, selector) {
       var _items, _list, _str;
-
       _items = this[field]();
       _str = '';
       _list = this.$(selector);
@@ -28707,12 +27792,10 @@ define('views/resources/Period',['views/resources/ResourceBase', 'ovivo'], funct
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/RuleCompiler',['ovivo'], function() {
   return {
     compile: function(start, end, start_date, end_date, repeat, weekdaysHash, models, codeGen) {
       var _arr, _day, _end, _i, _obj, _start, _startMonday, _startWeek;
-
       _arr = [];
       _start = new Date(Date.parse(start_date));
       _startWeek = _start.getWeek();
@@ -28749,7 +27832,6 @@ define('_features/RuleCompiler',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Period',['models/resources/ResourceBase', 'views/resources/Period', '_features/RuleCompiler', 'collections/period/PeriodBlocks', 'ovivo'], function(ResourceBase, View, RuleCompiler, PeriodBlocks) {
   return ResourceBase.extend({
     typeName: 'period',
@@ -28764,7 +27846,6 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
     changeTemplates: function(_prev) {
       var _cur, _new, _removed,
         _this = this;
-
       if (this.id == null) {
         return true;
       }
@@ -28780,7 +27861,6 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
     },
     removeTemplate: function(id) {
       var _arr, _i, _val;
-
       _val = [];
       _arr = this.templates();
       _.each(_arr, function(el) {
@@ -28794,14 +27874,12 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
     },
     _blockCodeGenerator: function(obj) {
       var _date;
-
       _date = obj.date;
       return "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate()) + "." + (obj.resourceNeed.pk()) + "." + (obj.template.pk()) + "." + (obj.period.pk());
     },
     compile: function(start, end) {
       var _arr,
         _this = this;
-
       if (start == null) {
         start = new Date(Date.parse(this.start_date()));
       }
@@ -28826,18 +27904,15 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
     },
     getBlocks: function() {
       var _this = this;
-
       this.blocks = new PeriodBlocks();
       this.blocks.add(this.compile());
       this.hoursBlocks = ovivo.desktop.resources.workingHours.getBlocks(this.blocks.getKeys('skill'), this.groups(), this.start_date(), this.end_date());
       this.blocks.each(function(block) {
         var _hours, _skill;
-
         _skill = block.skill();
         _hours = _this.hoursBlocks.getBy('date', block.date());
         return _hours = _.filter(_hours, function(hour) {
           var _flag, _groups;
-
           _flag = false;
           _groups = [];
           _.each(block.groups(), function(group) {
@@ -28862,7 +27937,6 @@ define('models/resources/Period',['models/resources/ResourceBase', 'views/resour
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Periods',['collections/period/Frames', 'models/resources/Period', '_common/ResourceManagerBase', 'ovivo'], function(Frames, Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -28871,7 +27945,6 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
     _processPeriodAdd: function(model) {
       var _id,
         _this = this;
-
       _id = model.id;
       return _.each(model.templates(), function(id) {
         return ovivo.desktop.resources.templates.get(id).addPeriod(_id);
@@ -28880,7 +27953,6 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
     _processPeriodRemove: function(model) {
       var _id,
         _this = this;
-
       _id = model.id;
       return _.each(model.templates(), function(id) {
         return ovivo.desktop.resources.templates.get(id).removePeriod(_id);
@@ -28888,25 +27960,21 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
     },
     processPeriodAdd: function(model) {
       var _this = this;
-
       return ovivo.desktop.resources.templates.def.done(function() {
         return _this._processPeriodAdd(model);
       });
     },
     processPeriodRemove: function(model) {
       var _this = this;
-
       return ovivo.desktop.resources.templates.def.done(function() {
         return _this._processPeriodRemove(model);
       });
     },
     processFrameUpdate: (function() {
       var _monitorChanges;
-
       _monitorChanges = ['templates', 'start_date', 'end_date', 'groups'];
       return function(period) {
         var _int;
-
         _int = _.intersection(_.keys(period.changed), _monitorChanges);
         if (_int.length > 0) {
           this.trigger('updateFrames', period);
@@ -28924,7 +27992,6 @@ define('collections/resources/Periods',['collections/period/Frames', 'models/res
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Skill',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'skill',
@@ -28936,7 +28003,6 @@ define('models/resources/Skill',['models/resources/ResourceBase', 'ovivo'], func
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Skills',['models/resources/Skill', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -28949,7 +28015,6 @@ define('collections/resources/Skills',['models/resources/Skill', '_common/Resour
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Municipality',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'municipality',
@@ -28961,7 +28026,6 @@ define('models/resources/Municipality',['models/resources/ResourceBase', 'ovivo'
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Municipalities',['models/resources/Municipality', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -28974,7 +28038,6 @@ define('collections/resources/Municipalities',['models/resources/Municipality', 
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/PrimaryDepartment',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'primaryDepartment',
@@ -28986,7 +28049,6 @@ define('models/resources/PrimaryDepartment',['models/resources/ResourceBase', 'o
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/PrimaryDepartments',['models/resources/PrimaryDepartment', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -28999,14 +28061,12 @@ define('collections/resources/PrimaryDepartments',['models/resources/PrimaryDepa
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Group',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'group',
     _gettersNames: ['pk', 'name', 'primary_department', 'parent', 'level', 'treeName', 'chainName', 'pkRoot'],
     levelChange: function() {
       var _level;
-
       _level = this.level();
       return this.set('treeName', Array(_level + 1).join('\u2003') + '\u21b3 ' + this.name());
     },
@@ -29019,7 +28079,6 @@ define('models/resources/Group',['models/resources/ResourceBase', 'ovivo'], func
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Groups',['models/resources/Group', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -29027,11 +28086,9 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
     url: "" + ovivo.config.API_URL_PREFIX + "groups/",
     createTree: (function() {
       var _processGroup, _processPD;
-
       _processGroup = function(group, name, level, pkRoot) {
         var _arr,
           _this = this;
-
         _arr = [];
         if (name !== '') {
           name += ' → ';
@@ -29050,7 +28107,6 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
       };
       _processPD = function(pd) {
         var _this = this;
-
         return {
           pd: pd,
           groups: _.reduce(this.filter(function(group) {
@@ -29062,7 +28118,6 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
       };
       return function() {
         var _this = this;
-
         this.tree = ovivo.desktop.resources.primaryDepartments.map((function(pd) {
           return _processPD.call(_this, pd);
         }));
@@ -29071,10 +28126,8 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
     })(),
     setChildren: function() {
       var _this = this;
-
       return this.each(function(group) {
         var _parent;
-
         if ((_parent = group.parent()) != null) {
           return _this.get(group.parent()).children.push(group);
         }
@@ -29091,7 +28144,6 @@ define('collections/resources/Groups',['models/resources/Group', '_common/Resour
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/UserModel',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     _gettersNames: ['pk', 'first_name', 'last_name', 'name', 'groups', 'skills', 'email', 'email_confirmed', 'mobile_phone_prefix', 'mobile_phone'],
@@ -29103,7 +28155,6 @@ define('models/resources/UserModel',['models/resources/ResourceBase', 'ovivo'], 
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Users',['models/resources/UserModel', '_common/CachableCollection', '_common/ResourceManagerBase', 'ovivo'], function(Model, CachableCollection, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['skills', 'groups']), {
     model: Model,
@@ -29117,14 +28168,12 @@ define('collections/resources/Users',['models/resources/UserModel', '_common/Cac
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/WorkingHour',['models/resources/ResourceBase', '_features/RuleCompiler', 'ovivo'], function(ResourceBase, RuleCompiler) {
   return ResourceBase.extend({
     typeName: 'workingHour',
     _gettersNames: ['weekdays', 'available', 'repeat', 'exclusions', 'groups', 'start_date', 'end_date', 'start_time', 'end_time', 'user', 'skills', 'pk', 'startValue', 'endValue'],
     groups: function() {
       var _groups;
-
       if ((_groups = this.get('groups')) != null) {
         return _groups;
       } else {
@@ -29133,12 +28182,10 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', '_featur
     },
     skills: function() {
       var _ref;
-
       return (_ref = ovivo.desktop.resources.users.get(this.user())) != null ? _ref.skills() : void 0;
     },
     updateWeekdaysHash: function() {
       var _ref;
-
       return this.weekdaysHash = _.reduce((_ref = this.weekdays()) != null ? _ref.split(',') : void 0, (function(memo, elem) {
         memo[parseInt(elem) - 1] = true;
         return memo;
@@ -29158,20 +28205,17 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', '_featur
     },
     _getTimeValue: function(str) {
       var _hours, _minutes, _ref, _ref1;
-
       _ref = str.split(':'), _hours = _ref[0], _minutes = _ref[1];
       _ref1 = [parseInt(_hours), parseInt(_minutes)], _hours = _ref1[0], _minutes = _ref1[1];
       return _hours * 60 + _minutes;
     },
     _blockCodeGenerator: function(obj) {
       var _date;
-
       _date = obj.date;
       return "" + (_date.getFullYear()) + "-" + (_date.getMonth()) + "-" + (_date.getDate()) + "." + (obj.workingHour.pk());
     },
     compile: function(start, end) {
       var _arr;
-
       start = new Date(Date.parse(start));
       end = new Date(Date.parse(end));
       return _arr = RuleCompiler.compile(start, end, this.start_date(), this.end_date(), this.repeat(), this.weekdaysHash, {
@@ -29196,7 +28240,6 @@ define('models/resources/WorkingHour',['models/resources/ResourceBase', '_featur
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_common/ResourceManagerBase', '_common/CachableCollection', '_features/RuleCompiler', 'collections/period/HoursBlocks', 'ovivo'], function(Model, ResourceManagerBase, CachableCollection, RuleCompiler, HoursBlocks) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, CachableCollection.get(['groups', 'user', 'skills']), {
     model: Model,
@@ -29207,10 +28250,8 @@ define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_c
     },
     preProcessJSON: (function() {
       var _processUser;
-
       _processUser = function(arr, user) {
         var _this = this;
-
         return _.map(arr, function(obj) {
           obj.user = user;
           return obj;
@@ -29225,7 +28266,6 @@ define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_c
     },
     getBlocks: function(skills, groups, start, end) {
       var _arr, _blocks, _match;
-
       start = new Date(Date.parse(start));
       end = new Date(Date.parse(end));
       _arr = [];
@@ -29247,15 +28287,12 @@ define('collections/resources/WorkingHours',['models/resources/WorkingHour', '_c
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/dateFormatter',['_features/trailZero', 'ovivo'], function(trailZero) {
   var NORMAL_DATE_RANGE, TIME_TITLES;
-
   TIME_TITLES = [[-10800000, gettext('just now')], [0, gettext('just now')], [1000, gettext('a second ago')], [60000, gettext('a minute ago')], [180000, gettext('few minutes ago')], [3600000, gettext('an hour ago')], [7200000, gettext('few hours ago')]];
   NORMAL_DATE_RANGE = 10800000;
   return function(date) {
     var delta, returnValue;
-
     if ((date instanceof Date) !== true) {
       date = new Date(Date.parse(date));
     }
@@ -29274,7 +28311,6 @@ define('_features/dateFormatter',['_features/trailZero', 'ovivo'], function(trai
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 define('views/resources/Notification',['_features/dateFormatter', 'views/resources/ResourceBase', 'ovivo'], function(dateFormatter, ResourceBase) {
   return ResourceBase.extend({
     common: {},
@@ -29306,7 +28342,6 @@ define('views/resources/Notification',['_features/dateFormatter', 'views/resourc
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Notification',['models/resources/ResourceBase', 'views/resources/Notification', 'ovivo'], function(ResourceBase, View) {
   return ResourceBase.extend({
     _gettersNames: ['timestamp', 'link', 'summary', 'event_id', 'read', 'last', 'pk'],
@@ -29318,7 +28353,6 @@ define('models/resources/Notification',['models/resources/ResourceBase', 'views/
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Notifications',['models/resources/Notification', '_common/ResourceManagerBase', 'ovivo'], function(Model, ResourceManagerBase) {
   return Backbone.Collection.extend(_.extend({}, ResourceManagerBase, {
     model: Model,
@@ -29342,7 +28376,6 @@ define('collections/resources/Notifications',['models/resources/Notification', '
     },
     loadMore: function() {
       var _lastId;
-
       _lastId = this.last().id;
       return this._fetch({
         'start_pk': _lastId
@@ -29350,7 +28383,6 @@ define('collections/resources/Notifications',['models/resources/Notification', '
     },
     readAll: function() {
       var _jsonArr, _unread;
-
       _unread = this.filter(function(notification) {
         return notification.read() === false;
       });
@@ -29379,14 +28411,12 @@ define('collections/resources/Notifications',['models/resources/Notification', '
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('models/resources/Event',['models/resources/ResourceBase', 'ovivo'], function(ResourceBase) {
   return ResourceBase.extend({
     typeName: 'event',
     _gettersNames: ['pk', 'comment', 'users', 'start_time', 'skill', 'pub_date', 'group', 'creator_name', 'num_comments', 'response_deadline', 'assignees', 'end_time', 'type', 'start_date'],
     date: function() {
       var date, month, year, _ref, _ref1;
-
       if (this.key != null) {
         return this.key;
       } else {
@@ -29397,7 +28427,6 @@ define('models/resources/Event',['models/resources/ResourceBase', 'ovivo'], func
     },
     initialize: function(attrs, options) {
       var _day;
-
       this.dateObj = new Date(Date.parse(attrs.start_date));
       _day = this.dateObj.getDay() - 1;
       if (_day === -1) {
@@ -29410,7 +28439,6 @@ define('models/resources/Event',['models/resources/ResourceBase', 'ovivo'], func
   });
 });
 
-// Generated by CoffeeScript 1.6.2
 define('collections/resources/Events',['_common/CachableCollection', 'models/resources/Event', 'ovivo'], function(CachableCollection, Event) {
   return Backbone.Collection.extend(_.extend({}, CachableCollection.get(['date', 'skill', 'group']), {
     model: Event,
@@ -29437,7 +28465,6 @@ define('collections/resources/Events',['_common/CachableCollection', 'models/res
     _fetch: function(data) {
       var _callObj, _def, _queryStringFinal,
         _this = this;
-
       _queryStringFinal = (this._getQueryString(data) + this._getTypeQueryString(this.type)).slice(1);
       if (this.def.state() === 'resolved') {
         this.def = new $.Deferred();
@@ -29468,7 +28495,6 @@ define('collections/resources/Events',['_common/CachableCollection', 'models/res
     fetchMonth: function(month, year) {
       var _def,
         _this = this;
-
       _def = new $.Deferred();
       if (typeof this.monthCache["" + year + "-" + month] !== 'undefined') {
         _def.resolve();
@@ -29496,7 +28522,6 @@ define('collections/resources/Events',['_common/CachableCollection', 'models/res
     initFetch: function() {
       var _defs,
         _this = this;
-
       this._ready = true;
       _defs = _.map(this._calls, function(callObj) {
         return _this.fetch(callObj);
@@ -29521,13 +28546,10 @@ define('collections/resources/Events',['_common/CachableCollection', 'models/res
   }));
 });
 
-// Generated by CoffeeScript 1.6.2
 define('_features/socket.io',['ovivo'], function() {
   var _getCookie, _handlers, _pathRegexp;
-
   _getCookie = function(name) {
     var _match;
-
     _match = document.cookie.match(new RegExp("" + name + "=(.*?)(;|$)"));
     if (_match !== null) {
       return _match[1];
@@ -29553,7 +28575,6 @@ define('_features/socket.io',['ovivo'], function() {
   return {
     _initHandlers: function() {
       var _this = this;
-
       _.each(_handlers, function(func, name) {
         _this._socket.on(name, _.bind(func, _this));
         _this._socket.on(name, function() {
@@ -29566,7 +28587,6 @@ define('_features/socket.io',['ovivo'], function() {
     },
     _processMessage: function(msg) {
       var _id, _match, _model, _path, _ref, _target;
-
       msg = msg.data;
       _ref = msg.target.match(_pathRegexp), _match = _ref[0], _path = _ref[1], _id = _ref[2];
       if ((_target = ovivo.desktop.resources[_path]) != null) {
@@ -29599,7 +28619,6 @@ define('_features/socket.io',['ovivo'], function() {
     init: function() {
       var _cookie,
         _this = this;
-
       if ((typeof io !== "undefined" && io !== null) && (io.connect != null)) {
         this._socket = io.connect(ovivo.config.SOCKET_IO_CONNECT_URL);
         this._sessionId = (_cookie = _getCookie('sessionid')) != null ? _cookie : ovivo.config.TEST_SESSIONID_COOKIE;
@@ -29614,7 +28633,6 @@ define('_features/socket.io',['ovivo'], function() {
   };
 });
 
-// Generated by CoffeeScript 1.6.2
 requirejs.config({
   paths: {
     'underscore': '../../lib/underscore',
@@ -29629,7 +28647,8 @@ requirejs.config({
     'airbrake': '../../lib/airbrake',
     'date': '../../lib/date',
     'pickadate': '../../lib/pickadate.legacy',
-    'modernizr': '../../lib/modernizr'
+    'modernizr': '../../lib/modernizr',
+    'srgs-parser': '../../lib/srgs-parser'
   },
   shim: {
     'ovivo': {
@@ -29665,15 +28684,15 @@ requirejs.config({
   }
 });
 
-require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'models/pages/Notifications', 'models/pages/Feedback', 'models/pages/Help', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/period/Frames', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, FeedbackPage, HelpPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) {
+require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourceNeed', 'views/popups/EditPopupTemplate', 'views/popups/EditPopupPeriod', 'views/popups/CreateNewPopup', 'views/popups/PeriodBlockPopup', 'collections/Pages', 'models/pages/Calendar', 'models/pages/Resources', 'models/pages/Settings', 'models/pages/Notifications', 'models/pages/Feedback', 'models/pages/Help', 'models/VoiceRecognition', 'views/SideBar', 'collections/resources/ResourceNeeds', 'collections/resources/Templates', 'collections/resources/Periods', 'collections/resources/Skills', 'collections/resources/Municipalities', 'collections/resources/PrimaryDepartments', 'collections/resources/Groups', 'collections/resources/Users', 'collections/resources/WorkingHours', 'collections/resources/Notifications', 'collections/resources/Events', 'collections/period/Frames', '_features/socket.io', 'ovivo'], function(routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, FeedbackPage, HelpPage, VoiceRecognition, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) {
   $(function() {
     var _resourcesForLoad;
-
     socketIO.init();
     ovivo.desktop.routers = {};
     ovivo.desktop.routers.main = routerMain;
     ovivo.desktop.pages = new Pages();
     ovivo.desktop.resources = {};
+    new VoiceRecognition();
     $.when.apply($, _.map([
       {
         name: 'municipalities',
@@ -29752,11 +28771,11 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       }
     ], function(o) {
       var _page;
-
       _page = ovivo.desktop.pages.addPage(o.constr, o.name);
       return true;
     });
     ovivo.desktop.popups = {};
+    ovivo.desktop.popups.shown = {};
     _.each([
       {
         name: 'editPopupResourceNeed',
@@ -29782,7 +28801,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
     });
     _.each(_resourcesForLoad, (function() {
       var _complete, _num, _total;
-
       _num = 0;
       _total = _resourcesForLoad.length;
       _complete = function() {
@@ -29791,7 +28809,6 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
       };
       return function(value) {
         var _res;
-
         _res = value.initFetch();
         if (_res.then != null) {
           return _res.then(_complete);
@@ -29806,4 +28823,4 @@ require(['routers/main', 'models/resources/User', 'views/popups/EditPopupResourc
 
 define("main", function(){});
 
-//@ sourceMappingURL=ovivo-desktop-employee-require.js.map
+//# sourceMappingURL=ovivo-desktop-employee-require.js.map

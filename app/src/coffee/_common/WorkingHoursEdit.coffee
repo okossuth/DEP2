@@ -59,7 +59,7 @@ define [
     @collection = ovivo.desktop.resources.workingHours
 
     @$('.datepicker').pickadate
-      format: 'yyyy-mm-dd'
+      format: 'd. mmmm'
       formatSubmit: 'yyyy-mm-dd'
       firstDay: 1
 

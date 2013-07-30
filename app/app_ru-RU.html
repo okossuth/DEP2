@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<!--<html lang="en" manifest="/app.appcache"> -->
+
+<html lang="en">
+    <head>
+        <script>
+            window._start = new Date()
+        </script>
+
+        <script>
+            (function(t,e){if(typeof exports=="object")module.exports=e();else if(typeof define=="function"&&define.amd)define(e);else t.Spinner=e()})(this,function(){"use strict";var t=["webkit","Moz","ms","O"],e={},i;function o(t,e){var i=document.createElement(t||"div"),o;for(o in e)i[o]=e[o];return i}function n(t){for(var e=1,i=arguments.length;e<i;e++)t.appendChild(arguments[e]);return t}var r=function(){var t=o("style",{type:"text/css"});n(document.getElementsByTagName("head")[0],t);return t.sheet||t.styleSheet}();function s(t,o,n,s){var a=["opacity",o,~~(t*100),n,s].join("-"),f=.01+n/s*100,l=Math.max(1-(1-t)/o*(100-f),t),d=i.substring(0,i.indexOf("Animation")).toLowerCase(),u=d&&"-"+d+"-"||"";if(!e[a]){r.insertRule("@"+u+"keyframes "+a+"{"+"0%{opacity:"+l+"}"+f+"%{opacity:"+t+"}"+(f+.01)+"%{opacity:1}"+(f+o)%100+"%{opacity:"+t+"}"+"100%{opacity:"+l+"}"+"}",r.cssRules.length);e[a]=1}return a}function a(e,i){var o=e.style,n,r;if(o[i]!==undefined)return i;i=i.charAt(0).toUpperCase()+i.slice(1);for(r=0;r<t.length;r++){n=t[r]+i;if(o[n]!==undefined)return n}}function f(t,e){for(var i in e)t.style[a(t,i)||i]=e[i];return t}function l(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var o in i)if(t[o]===undefined)t[o]=i[o]}return t}function d(t){var e={x:t.offsetLeft,y:t.offsetTop};while(t=t.offsetParent)e.x+=t.offsetLeft,e.y+=t.offsetTop;return e}var u={lines:12,length:7,width:5,radius:10,rotate:0,corners:1,color:"#000",direction:1,speed:1,trail:100,opacity:1/4,fps:20,zIndex:2e9,className:"spinner",top:"auto",left:"auto",position:"relative"};function p(t){if(typeof this=="undefined")return new p(t);this.opts=l(t||{},p.defaults,u)}p.defaults={};l(p.prototype,{spin:function(t){this.stop();var e=this,n=e.opts,r=e.el=f(o(0,{className:n.className}),{position:n.position,width:0,zIndex:n.zIndex}),s=n.radius+n.length+n.width,a,l;if(t){t.insertBefore(r,t.firstChild||null);l=d(t);a=d(r);f(r,{left:(n.left=="auto"?l.x-a.x+(t.offsetWidth>>1):parseInt(n.left,10)+s)+"px",top:(n.top=="auto"?l.y-a.y+(t.offsetHeight>>1):parseInt(n.top,10)+s)+"px"})}r.setAttribute("role","progressbar");e.lines(r,e.opts);if(!i){var u=0,p=(n.lines-1)*(1-n.direction)/2,c,h=n.fps,m=h/n.speed,y=(1-n.opacity)/(m*n.trail/100),g=m/n.lines;(function v(){u++;for(var t=0;t<n.lines;t++){c=Math.max(1-(u+(n.lines-t)*g)%m*y,n.opacity);e.opacity(r,t*n.direction+p,c,n)}e.timeout=e.el&&setTimeout(v,~~(1e3/h))})()}return e},stop:function(){var t=this.el;if(t){clearTimeout(this.timeout);if(t.parentNode)t.parentNode.removeChild(t);this.el=undefined}return this},lines:function(t,e){var r=0,a=(e.lines-1)*(1-e.direction)/2,l;function d(t,i){return f(o(),{position:"absolute",width:e.length+e.width+"px",height:e.width+"px",background:t,boxShadow:i,transformOrigin:"left",transform:"rotate("+~~(360/e.lines*r+e.rotate)+"deg) translate("+e.radius+"px"+",0)",borderRadius:(e.corners*e.width>>1)+"px"})}for(;r<e.lines;r++){l=f(o(),{position:"absolute",top:1+~(e.width/2)+"px",transform:e.hwaccel?"translate3d(0,0,0)":"",opacity:e.opacity,animation:i&&s(e.opacity,e.trail,a+r*e.direction,e.lines)+" "+1/e.speed+"s linear infinite"});if(e.shadow)n(l,f(d("#000","0 0 4px "+"#000"),{top:2+"px"}));n(t,n(l,d(e.color,"0 0 1px rgba(0,0,0,.1)")))}return t},opacity:function(t,e,i){if(e<t.childNodes.length)t.childNodes[e].style.opacity=i}});function c(){function t(t,e){return o("<"+t+' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">',e)}r.addRule(".spin-vml","behavior:url(#default#VML)");p.prototype.lines=function(e,i){var o=i.length+i.width,r=2*o;function s(){return f(t("group",{coordsize:r+" "+r,coordorigin:-o+" "+-o}),{width:r,height:r})}var a=-(i.width+i.length)*2+"px",l=f(s(),{position:"absolute",top:a,left:a}),d;function u(e,r,a){n(l,n(f(s(),{rotation:360/i.lines*e+"deg",left:~~r}),n(f(t("roundrect",{arcsize:i.corners}),{width:o,height:i.width,left:i.radius,top:-i.width>>1,filter:a}),t("fill",{color:i.color,opacity:i.opacity}),t("stroke",{opacity:0}))))}if(i.shadow)for(d=1;d<=i.lines;d++)u(d,-2,"progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)");for(d=1;d<=i.lines;d++)u(d);return n(e,l)};p.prototype.opacity=function(t,e,i,o){var n=t.firstChild;o=o.shadow&&o.lines||0;if(n&&e+o<n.childNodes.length){n=n.childNodes[e+o];n=n&&n.firstChild;n=n&&n.firstChild;if(n)n.opacity=i}}}var h=f(o("group"),{behavior:"url(#default#VML)"});if(!a(h,"transform")&&h.adj)c();else i=a(h,"animation");return p});
+        </script>
+
+        <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link href="/dist/ovivo-desktop-employee.css" rel="stylesheet" />
+        
+        <title>Ovivo</title>
+
+        <!--[if lte IE 8]>
+        <script src="/lib/html5shiv.js"></script>
+        <script src="/lib/excanvas.compiled.js"></script>
+
+        <link href="/dist/ovivo-desktop-employee-ie.css" rel="stylesheet" />
+        <![endif]-->
+     </head>
+
+    <body style="overflow: hidden;">
+        <div id="initial-load-spinner" style="position: absolute; left: 0; top: 0; bottom: 0; right: 0;">
+        </div>
+
+        <script>
+            if (typeof window.ovivo === 'undefined') {
+                window.ovivo = {};
+            }
+
+            window.ovivo.spinner = new Spinner({ lines: 5, length: 20, width: 5, radius: 7.5, corners: 1, rotate: 55, direction: 1, color: '#333', speed: 1.8, trail: 75, shadow: false, hwaccel: false, className: 'spinner', zIndex: 2e9, top: 'auto', left: 'auto' }).spin(document.getElementById('initial-load-spinner'));
+        </script>
+
+        <section class="page page-calendar initial-hide initial-loading hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <!-- <div class="button bordered today month-today month-only">
+                        <span>Go to today</span>
+                    </div>
+
+                    <div class="button bordered today week-today week-only">
+                        <span>Go to today</span>
+                    </div> -->
+
+                    <!-- <div class="button black week-only add-groups">
+                        <span><i class="icon-smaller plus"></i><i class="icon-smaller cross"></i> Groups</span>
+                    </div> -->
+
+                    <div class="groups-popup" style="display: none;">
+                        <ul class="groups-list">
+                            <li class="group-item">
+                                <i class="icon-smaller inline checkbox"></i>
+                                <span>Root group 1</span>
+                            </li>
+
+                            <li class="group-item">
+                                <i class="icon-smaller inline checkbox checked"></i>
+                                <span>Root group 1</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="button black week-only button-resources">
+                        <span>Resources</span>
+                    </div>
+
+                    <!-- <ul class="switcher switcher-view">
+                        <li>
+                            <span>Неделя</span>
+                        </li>
+                        
+                        <li class="ignore-animation">
+                            <span class="apply-animation">Месяц</span>
+                        </li>
+                    </ul> -->
+                </div>
+
+                <div class="weekdays">
+                    <ul class="row weekdays-row">
+                        <li>
+                            <span>Понедельник</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Вторник</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Среда</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Четверг</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Пятница</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Суббота</span>
+                            <span class="date week-only"></span>
+                        </li>
+
+                        <li>
+                            <span>Воскресенье</span>
+                            <span class="date week-only"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="week-banner week-only">
+                    <ul>
+                        <li class="week-block">
+                            <strong class="week-value">21</strong>
+                            <em>Week</em>
+
+                            <button class="arrow left navigate-left">
+                                <div class="inner"></div>
+                            </button>
+
+                            <button class="arrow right navigate-right">
+                                <div class="inner"></div>
+                            </button>
+                        </li>
+
+                        <li class="month-block">
+                            <span class="month-value">Aug</span>
+                        </li>
+
+                        <li class="year-block">
+                            <span class="year-value">2013</span>
+                        </li>
+                    </ul>
+
+                    <ul class="white switcher week-view-switcher">
+                        <li class="users-block clickable ignore-animation">
+                            <i class="icon inline user apply-animation"></i>
+                            <div class="stripe"></div>
+                        </li>
+
+                        <li class="time-block clickable ignore-animation">
+                            <i class="icon inline clock apply-animation"></i>
+                            <div class="stripe"></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="static-headers">
+                </div>
+            </header>
+
+            <div class="content month-view scrollable hide">
+                <ul class="months-list specific">
+                </ul>
+            </div>
+
+            <div class="content week-view hide">
+                <ul class="weeks-list specific">
+                </ul>
+            </div>
+
+            <div class="scroller week-only">
+                <div class="inner">
+                </div>
+            </div>
+        </section>
+
+        <section class="page page-feedback hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title">Отзыв</span>
+
+                    <ul class="switcher switcher-feedback-type">
+                        <li>
+                            <span>Ошибка</span>
+                        </li>
+                        
+                        <li>
+                            <span>Комментарий</span>
+                        </li>
+
+                        <li>
+                            <span>Совет</span>
+                        </li>
+                    </ul>
+
+                    <div class="button right send-button capital">
+                        <span>Отправить</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="textarea-block">
+                    <div>
+                        <textarea rows="10" placeholder="Оставьте свой отзыв здесь"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page page-settings hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title">Настройки</span>
+                </div>
+            </header>
+
+            <div class="content general-view hide">
+                <div class="line">
+                    <h2 class="title">Настройки</h2>
+
+                    <div class="placeholder"></div>
+
+                    <ul class="sections-menu">
+                        <li class="selected sections-menu-item sections-menu-item-general">
+                            <span>Общие</span>
+                        </li>
+
+                        <li class="sections-menu-item sections-menu-item-resourceNeed">
+                            <span>Resource needs</span>
+                        </li>
+
+                        <li class="sections-menu-item sections-menu-item-connections">
+                            <span>Контакты</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="scroll-container scrollable settings-items apply-animation">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Имя</span>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input class="value property-value property-value-first_name" type="text" placeholder="Имя" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Фамилия</span>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input class="value property-value property-value-last_name" type="text" placeholder="Фамилия" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Мобильный телефон</span>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input class="value property-value property-value-mobile_phone" type="text" placeholder="Мобильный телефон" />
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>E-mail адрес</span>
+                        </div>
+
+                        <div class="item-content">
+                            <div class="input-wrapper">
+                                <input class="value property-value property-value-email" type="text" placeholder="E-mail адрес" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="shadow top apply-animation"></div>
+                <div class="shadow bottom apply-animation"></div>
+            </div>
+
+            <div class="content resource-need-view resource-needs-container hide">
+                <div class="line">
+                    <h2 class="title">Настройки</h2>
+
+                    <div class="placeholder"></div>
+
+                    <ul class="sections-menu">
+                        <li class="sections-menu-item sections-menu-item-general">
+                            <span>Общие</span>
+                        </li>
+
+                        <li class="selected sections-menu-item sections-menu-item-resourceNeed">
+                            <span>Resource needs</span>
+                        </li>
+
+                        <li class="sections-menu-item sections-menu-item-connections">
+                            <span>Контакты</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info apply-animation">
+                    <h2>Explanation 11</h2>
+                    <h3>Explanation 12</h3>
+                </div>
+
+                <div class="wireframe elements-header apply-animation">
+                    <div class="side-container">
+                        <div class="button button-add-new">
+                            <span>+ Add new resource need</span>
+                        </div>
+                    </div>
+
+                    <ul class="columns weekdays-titles">
+                        <li>Понедельник</li>
+                        <li>Вторник</li>
+                        <li>Среда</li>
+                        <li>Четверг</li>
+                        <li>Пятница</li>
+                        <li>Суббота</li>
+                        <li>Воскресенье</li>
+                    </ul>
+                </div>
+
+                <ul class="scroll-container scrollable elements resource-needs apply-animation">
+                    <li class="empty">
+                        A list of resource needs is empty
+                    </li>
+                </ul>
+
+                <div class="shadow top"></div>
+                <div class="shadow bottom"></div>
+            </div>
+
+            <div class="content connections-view hide">
+                <div class="line">
+                    <h2 class="title">Настройки</h2>
+
+                    <div class="placeholder"></div>
+
+                    <ul class="sections-menu">
+                        <li class="sections-menu-item sections-menu-item-general">
+                            <span>Общие</span>
+                        </li>
+
+                        <li class="sections-menu-item sections-menu-item-resourceNeed">
+                            <span>Resource needs</span>
+                        </li>
+
+                        <li class="selected sections-menu-item sections-menu-item-connections">
+                            <span>Контакты</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info apply-animation">
+                    <h2>Explanation 15</h2>
+                    <h3>Explanation 16</h3>
+                </div>
+
+                <ul class="connections-container apply-animation">
+                    <li>
+                        <i class="icon-huge facebook"></i>
+                        <ul class="options-group options-facebook">
+                            <li class="option option-connect selected">
+                                <span>Подключить</span>
+                            </li>
+
+                            <li class="option option-disconnect">
+                                <span>Отключить</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="general-only notifications-only">
+                <div class="line">
+                    <div class="placeholder"></div>
+
+                    <div class="button right button-save capital">
+                        <span>Сохранить</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <section class="page page-help hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title">Помощь</span>
+                </div>
+            </header>
+
+            <div class="content">
+                <iframe></iframe>
+            </div>
+        </section>
+
+        <section class="page page-event-details hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title"></span>
+
+                    <div class="button capital right button-close">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <div class="event-container">
+                </div>
+            </div>
+
+            <footer>
+                <div class="text-container">
+                    <div class="inner-container">
+                        <input class="comment-input" type="text" placeholder="Напишите комментарий здесь..." />
+                    </div>
+                </div>
+
+                <div class="button-post post-comment">
+                    <span>Отправить</span>
+                </div>
+            </footer>
+        </section>
+
+        <section class="page page-notifications hide">
+            <header>
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <span class="title">Уведомление</span>
+
+                    <div class="button right capital done-button">
+                        <span>X</span>
+                    </div>
+                </div>
+                
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content scrollable">
+                <ul class="notifications-list">
+                </ul>
+
+                <div class="button load-more-button">
+                    <span>Загрусить еще</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="page side-enabled page-resources hide">
+            <header>
+                <div class="line periods-only">
+                    <div class="placeholder"></div>
+
+                    <div class="button button-close capital">
+                        <span>x</span>
+                    </div>
+
+                    <span class="title">Current running periodes</span>
+
+                    <div class="button right button-add capital">
+                        <span>Add periode</span>
+                    </div>
+                </div>
+
+                <div class="line template-only">
+                    <div class="placeholder"></div>
+                    <span class="title create-mode">Create template</span>
+                    <span class="title edit-mode">Edit template</span>
+
+                    <div class="button right button-close-subview capital">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="line timeline-only">
+                    <div class="placeholder"></div>
+                    <span class="title">Timeline</span>
+
+                    <div class="button right button-close-subview capital">
+                        <span>X</span>
+                    </div>
+                </div>
+
+                <div class="shadow"></div>
+            </header>
+
+            <div class="content content-periods scrollable hide">
+                <ul class="month-sections">
+                    <li class="empty"><em>No periods here</em></li>
+                </ul>
+            </div>
+
+            <div class="side content content-templates">
+                <div class="button dark button-add-template capital">
+                    <span>Create new template</span>
+                </div>
+
+                <h2>Saved templates</h2>
+
+                <ul class="templates">
+                    <li class="empty">
+                        <span>No templates here</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content content-template scrollable resource-needs-container hide">
+                <div class="periods-container">
+                    <strong>Periods:</strong>
+                    <span class="property-value plain-value property-value-periods"></span>
+                </div>
+
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Name</span>
+                        </div>
+
+                        <div class="item-content">
+                            <input type="text" class="property-value property-value-name" />
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Primary department</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-primary_department">
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="wireframe elements-header">
+                    <div class="side-container">
+                        <div class="button button-add-new">
+                            <span>+ Add new resource need</span>
+                        </div>
+                    </div>
+
+                    <ul class="columns weekdays-titles">
+                        <li>Понедельник</li>
+                        <li>Вторник</li>
+                        <li>Среда</li>
+                        <li>Четверг</li>
+                        <li>Пятница</li>
+                        <li>Суббота</li>
+                        <li>Воскресенье</li>
+                    </ul>
+                </div>
+
+                <ul class="scroll-container elements resource-needs">
+                    <li class="empty">
+                        No resource needs here
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content content-timeline hide">
+                <div class="skills-container">
+                    <ul class="skills">
+                    </ul>
+                </div>
+
+                <div class="timeline">
+                    <ul class="scale">
+                    </ul>
+                    <ul class="skill-columns">
+                    </ul>
+                </div>
+            </div>
+
+            <footer class="template-only">
+                <div class="shadow"></div>
+
+                <div class="line">
+                    <div class="placeholder"></div>
+                    <div class="button right create-mode button-add capital">
+                        <span>Save template</span>
+                    </div>
+
+                    <div class="button right edit-mode button-save capital">
+                        <span>Сохранить</span>
+                    </div>
+
+                    <div class="button warning right edit-mode button-delete capital">
+                        <span>Удалить</span>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+        <section class="side-bar">
+            <h1 class="title">
+                <img src="/assets/img/global-loader.gif" />
+                <i class="logo title"></i>
+
+                <div class="notifications-indicator-container" style="display: none;">
+                    <div class="arrow"></div>
+                    <div class="notifications-indicator">
+                        
+                    </div>
+                </div>
+            </h1>
+
+            <ul class="menu">
+                <li>
+                    Dashboard
+                </li>
+
+                <li id="menu-item-calendar" class="menu-item">
+                    Календарь
+                </li>
+
+                <li>
+                    Employees
+                </li>
+
+                <li>
+                    Inbox
+                </li>
+
+                <li>
+                    App store
+                </li>
+
+                <li id="menu-item-settings" class="menu-item">
+                    Настройки
+                </li>
+
+                <li class="right">
+                    <a href="#">Выйти</a>
+                </li>
+
+                <li class="right user-name-value">
+                </li>
+
+                <li id="menu-item-help"  class="menu-item right">
+                    Помощь
+                </li>
+
+                <li id="menu-item-feedback"  class="menu-item right">
+                    Отзыв
+                </li>
+            </ul>
+
+            <div class="menu-toggle">
+                <span class="more">more</span>
+                <span class="less">less</span>
+            </div>
+        </section>
+
+        <div class="popup-overlay" style="display: none;"></div>
+
+        <div class="popup popup-create-new no-bottom-bar" style="display: none;">
+            <h1 class="create-mode">Выберите вариант</h1>
+            <div class="close">Закрыть</div>
+
+            <div class="button capital button-create-resource-need">
+                Create resource need
+            </div>
+        </div>
+
+        <div class="popup popup-period-block" style="display: none;">
+            <div class="close">X</div>
+
+            <div class="groups">
+            </div>
+        </div>
+
+        <div class="popup popup-period wide" style="display: none;">
+            <h1 class="create-mode">Add new period</h1>
+            <h1 class="edit-mode">Edit period</h1>
+
+            <div class="close">Закрыть</div>
+
+            <div class="columns-container">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Дата</span>
+                        </div>
+
+                        <div class="item-content two">
+                            <input type="text" class="property-value property-value-start_date datepicker" />
+                            <span>до</span>
+                            <input type="date" class="property-value property-value-end_date datepicker" />
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Primary department</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-primary_department">
+                            </select>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Templates</span>
+                        </div>
+
+                        <div class="item-content two">
+                            <select multiple="multiple" class="property-value property-value-templates">
+
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Groups</span>
+                        </div>
+
+                        <div class="item-content two">
+                            <select multiple="multiple" class="property-value property-value-groups">
+
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="button capital button-add create-mode">
+                + Add period
+            </div>
+
+            <div class="buttons-container">
+                <div class="button capital warning button-delete edit-mode">
+                    Удалить
+                </div><div class="button capital button-save edit-mode">
+                    Сохранить
+                </div>
+            </div>
+        </div>
+
+        <div class="popup popup-resource-need wide" style="display: none;">
+            <h1 class="create-mode">Add new resource need</h1>
+            <h1 class="edit-mode">Edit resource need</h1>
+
+            <div class="close">Закрыть</div>
+
+            <div class="columns-container">
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Время</span>
+                        </div>
+
+                        <div class="item-content two">
+                            <input type="time" class="property-value property-value-start_time" />
+                            <span>до</span>
+                            <input type="time" class="property-value property-value-end_time" />
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Employee type</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-employee_type">
+                                <option value="fulltime">Full time</option>
+                                <option value="parttime">Part time</option>
+                            </select>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Повторение</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-repeat">
+                                <option value="1">Каждую неделю</option>
+                                <option value="2">Каждую вторую неделю</option>
+                                <option value="3">Каждую третью неделю</option>
+                                <option value="4">Каждую четверту неделю</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="settings-items">
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Skill</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-skill">
+                            </select>
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Number of employees</span>
+                        </div>
+
+                        <div class="item-content">
+                            <input type="text" class="property-value property-value-num_employees" />
+                        </div>
+                    </li>
+
+                    <li class="settings-item">
+                        <div class="header">
+                            <span>Primary department</span>
+                        </div>
+
+                        <div class="item-content">
+                            <select class="property-value property-value-primary_department">
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="button capital button-add create-mode">
+                + Add resource need
+            </div>
+
+            <div class="buttons-container">
+                <div class="button capital warning button-delete edit-mode">
+                    Удалить
+                </div><div class="button capital button-save edit-mode">
+                    Сохранить
+                </div>
+            </div>
+        </div>
+
+        <div id="voice-recognition">
+            <div class="initial">
+                Initializing
+            </div>
+
+            <div class="processing">
+                Speak
+            </div>
+
+            <div class="result">
+            </div>
+
+            <div class="error">
+                Error state
+            </div>
+        </div>
+
+        <div id="fb-root"></div>
+
+        <script>
+            if (typeof window.ovivo === 'undefined') {
+                window.ovivo = {};
+            }
+
+            window.ovivo.dict = {"Activity report":"Отчет об активности","Add day off":"Добавить выходной","Add new day off":"Добавить новый выходной","Add new time":"Добавить новое время","Add new time for one day":"Добавить новое время в один день","Add new time off":"Добавить новые выходные","Add time":"Добавить время","Add time for one day":"Добавить время в один день","Add time off":"Добавить выходные","Approved":"Подтверждено","April":"Апрель","Assigned":"Назначено","August":"Август","Availability":"Доступность","Available":"Доступен","Awaiting reply":"Ожидание ответа","Bidding closed":"Этап ответа завершен","Calendar":"Календарь","Choose an option":"Выберите вариант","Close":"Закрыть","Comment":"Комментарий","Connect":"Подключить","Connected":"Подключено","Connections":"Контакты","Create new":"Создать новое","Create time":"Создать время","Create timeoff":"Создать выходной","Created by":"Создано","Date":"Дата","December":"Декабрь","Delete":"Удалить","Disconnect":"Отключить","Disconnected":"Отключено","E-mail address":"E-mail адрес","Edit":"Редактировать","Edit day off":"Редактировать выходной","Edit inactivity":"Редактировать выходные","Edit one-day inactivity":"Редактировать выходной","Edit one-day working hours":"Редактировать рабочее время","Edit time":"Редактировать время","Edit time for one day":"Редактировать время за одинь день","Edit time off":"Редактировать выходной","Edit working hours":"Редактировать время","End date":"Конец","End time":"Начало","Enter a reason of inactivity":"Введите причину выходного","Error":"Ошибка","Every fourth week":"Каждую четверту неделю","Every other week":"Каждую неделю","Every second week":"Каждую вторую неделю","Every third week":"Каждую третью неделю","February":"Февраль","Feedback":"Отзыв","First name":"Имя","Friday":"Пятница","General":"Общие","Help":"Помощь","January":"Январь","July":"Июль","June":"Июнь","Last name":"Фамилия","Leave your feedback here":"Оставьте свой отзыв здесь","Load more":"Загрусить еще","Loading content":"Загрузка","Logout":"Выйти","Make a bid":"Ответить","March":"Март","May":"Май","Mobile number":"Мобильный телефон","Monday":"Понедельник","Month":"Месяц","No":"Нет","Not approved":"Нет подтверждения","Note":"Запись","Notifications":"Уведомление","November":"Ноябрь","October":"Октябрь","Params are missing":"Параметры отсутствуют","Pending":"Ожидание","Post":"Отправить","Reason":"Причина","Remove":"Удалить","Repeat":"Повторение","Saturday":"Суббота","Save":"Сохранить","Select start and end dates of vacation period":"Выберите начало и конец периода выходных","Select time off day date":"Выберите дату выходного","Send":"Отправить","September":"Сентябрь","Settings":"Настройки","Start date":"Начало","Start time":"Конец","Status":"Статус","Suggestion":"Совет","Sunday":"Воскресенье","Thanks for your feedback":"Спасибо за ваш отзыв","Thursday":"Четверг","Time":"Время","Time off":"Выходной","Today":"Сегодня","Tuesday":"Вторник","Unavailable":"Недоступно","Wednesday":"Среда","Week":"Неделя","Write a comment here...":"Напишите комментарий здесь...","Yes":"Да","Your bid has been removed":"Ваш ответ был удален","Your bid has now been received":"Ваш ответ получен","a minute ago":"минуту назад","a second ago":"секунду назад","an hour ago":"час назад","calendar":"календарь","changed":"изменено","create":"создать","d":"д","date":"дата","event":"событие","events":"события","feedback":"отзыв","few hours ago":"несколько часов назад","few minutes ago":"несколько минут назад","friday":"пятница","from":"от","help":"помощь","hour":"час","hours":"часов","just now":"только что","monday":"понедельник","open":"открыть","saturday":"суббота","settings":"настройки","sunday":"воскресенье","thursday":"четверг","to":"до","tuesday":"вторник","wednesday":"среда","&#8734;":"&#8734;","Error state":"Error state","Explanation 1":"Explanation 1","Explanation 10":"Explanation 10","Explanation 11":"Explanation 11","Explanation 12":"Explanation 12","Explanation 13":"Explanation 13","Explanation 14":"Explanation 14","Explanation 15":"Explanation 15","Explanation 16":"Explanation 16","Explanation 17":"Explanation 17","Explanation 18":"Explanation 18","Explanation 19":"Explanation 19","Explanation 2":"Explanation 2","Explanation 20":"Explanation 20","Explanation 21":"Explanation 21","Explanation 22":"Explanation 22","Explanation 23":"Explanation 23","Explanation 24":"Explanation 24","Explanation 25":"Explanation 25","Explanation 26":"Explanation 26","Explanation 27":"Explanation 27","Explanation 3":"Explanation 3","Explanation 4":"Explanation 4","Explanation 5":"Explanation 5","Explanation 6":"Explanation 6","Explanation 7":"Explanation 7","Explanation 8":"Explanation 8","Explanation 9":"Explanation 9","Initializing":"Initializing","Send me confirmation when bidding through SMS":"Send me confirmation when bidding through SMS","Send me notifications 24 hour before assigned events starts":"Send me notifications 24 hour before assigned events starts","Send me notifications via SMS":"Send me notifications via SMS","Send me notifications via e-mail":"Send me notifications via e-mail","Speak":"Speak","The number of days inside of which a user will be notified of a new event immediately by text and/or email":"The number of days inside of which a user will be notified of a new event immediately by text and/or email"};
+        </script>
+
+        <script>
+            if (typeof window.gettext === 'undefined') {
+                window.gettext = (function () {
+                    return function (msgid) {
+                        if (typeof window.ovivo.dict[msgid] !== 'undefined') {
+                            return window.ovivo.dict[msgid];
+                        }
+
+                        return msgid;
+                    };
+                } ());
+            }
+
+            if (typeof window.ngettext === 'undefined') {
+                window.ngettext = (function () {
+                    return function (singular, plural, num) {
+                        if ((num === 1) || (num % 10 === 1)) {
+                            return (window.ovivo.dict[singular] !== undefined)? window.ovivo.dict[singular]: singular;
+                        } else {
+                            return (window.ovivo.dict[plural] !== undefined)? window.ovivo.dict[plural]: plural;
+                        }
+                    };
+                } ());
+            }
+        </script>
+
+        <script>
+            if (typeof ovivo === 'undefined') { ovivo = {}; }
+
+            ovivo._config = {
+                USER_ID: 2716,
+                TEST_SESSIONID_COOKIE: '765b7cf89fe8eb340373b8b8d16ed955',
+                SOCKET_IO_CONNECT_URL: 'http://dev.ovivo.dk:8888/',
+                FB_APP_ID: 450545431639022,
+                TIMEZONE_OFFSET: 7200000,
+                PAGE_TRANSITION_ANIMATION: true,
+                LOADER_URL: '/assets/img/ajax-loader.gif',
+                LANG: 'ru-RU'
+            };
+        </script>
+
+        <!-- <script src="/lib/require.js" data-main="/src/js/main"></script> -->
+        <script src="/lib/require.js"></script>
+        <script src="/dist/ovivo-desktop-employee-require.js"></script>
+
+        <script>
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <script>
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "http://dev.ovivo.dk:8888/socket.io/socket.io.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'socket_io'));
+        </script>
+    </body>
+</html>

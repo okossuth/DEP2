@@ -682,9 +682,9 @@
 
         <div class="popup-overlay" style="display: none;"></div>
 
-        <div class="popup popup-create-new" style="display: none;">
+        <div class="popup popup-create-new no-bottom-bar" style="display: none;">
             <h1 class="create-mode">{{#i18n}}Choose an option{{/i18n}}</h1>
-            <div class="close">X</div>
+            <div class="close">{{#i18n}}Close{{/i18n}}</div>
 
             <div class="button capital button-create-resource-need">
                 {{#i18n}}Create resource need{{/i18n}}
@@ -702,7 +702,7 @@
             <h1 class="create-mode">{{#i18n}}Add new period{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit period{{/i18n}}</h1>
 
-            <div class="close">X</div>
+            <div class="close">{{#i18n}}Close{{/i18n}}</div>
 
             <div class="columns-container">
                 <ul class="settings-items">
@@ -774,7 +774,7 @@
             <h1 class="create-mode">{{#i18n}}Add new resource need{{/i18n}}</h1>
             <h1 class="edit-mode">{{#i18n}}Edit resource need{{/i18n}}</h1>
 
-            <div class="close">X</div>
+            <div class="close">{{#i18n}}Close{{/i18n}}</div>
 
             <div class="columns-container">
                 <ul class="settings-items">
@@ -867,6 +867,23 @@
             </div>
         </div>
 
+        <div id="voice-recognition">
+            <div class="initial">
+                {{#i18n}}Initializing{{/i18n}}
+            </div>
+
+            <div class="processing">
+                {{#i18n}}Speak{{/i18n}}
+            </div>
+
+            <div class="result">
+            </div>
+
+            <div class="error">
+                {{#i18n}}Error state{{/i18n}}
+            </div>
+        </div>
+
         <div id="fb-root"></div>
 
         <script>
@@ -913,7 +930,8 @@
                 FB_APP_ID: 450545431639022,
                 TIMEZONE_OFFSET: 7200000,
                 PAGE_TRANSITION_ANIMATION: true,
-                LOADER_URL: '/assets/img/ajax-loader.gif'
+                LOADER_URL: '/assets/img/ajax-loader.gif',
+                LANG: '{{locale-code}}'
             };
         </script>
 

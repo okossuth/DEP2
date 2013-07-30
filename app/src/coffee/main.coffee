@@ -13,6 +13,7 @@ requirejs.config
     'date': '../../lib/date'
     'pickadate': '../../lib/pickadate.legacy'
     'modernizr': '../../lib/modernizr'
+    'srgs-parser': '../../lib/srgs-parser'
 
   shim:
     'ovivo':
@@ -64,6 +65,7 @@ require [
   'models/pages/Feedback',
   'models/pages/Help',
 
+  'models/VoiceRecognition',
   'views/SideBar',
 
   'collections/resources/ResourceNeeds',
@@ -82,7 +84,7 @@ require [
   '_features/socket.io',
 
   'ovivo'
-], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, FeedbackPage, HelpPage, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) ->
+], (routerMain, User, EditPopupResourceNeed, EditPopupTemplate, EditPopupPeriod, CreateNewPopup, PeriodBlockPopup, Pages, CalendarPage, ResourcesPage, SettingsPage, NotificationsPage, FeedbackPage, HelpPage, VoiceRecognition, SideBar, ResourceNeeds, Templates, Periods, Skills, Municipalities, PrimaryDepartments, Groups, Users, WorkingHours, Notifications, Events, Frames, socketIO) ->
   $ () ->
       socketIO.init()
 
@@ -91,6 +93,8 @@ require [
 
       ovivo.desktop.pages = new Pages()
       ovivo.desktop.resources = {}
+
+      new VoiceRecognition()
 
       $.when.apply($, _.map [
         { name: 'municipalities', constr: Municipalities },
@@ -136,6 +140,7 @@ require [
         true
 
       ovivo.desktop.popups = {}
+      ovivo.desktop.popups.shown = {}
 
       _.each [
         { name: 'editPopupResourceNeed', constr: EditPopupResourceNeed },

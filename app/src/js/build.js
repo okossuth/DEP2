@@ -1,5 +1,7 @@
 {
-  paths: {
+  "baseUrl": "app/src/js",
+
+  "paths": {
     "underscore": "../../lib/underscore",
     "lodash": "../../lib/lodash",
     "backbone": "../../lib/backbone",
@@ -11,52 +13,61 @@
     "fastclick": "../../lib/fastclick",
     "date": "../../lib/date",
     "pickadate": "../../lib/pickadate.legacy",
-    "modernizr": "../../lib/modernizr"
+    "modernizr": "../../lib/modernizr",
+    "srgs-parser": "../../lib/srgs-parser"
   },
 
-  shim: {
+  "generateSourceMaps": true,
+  "preserveLicenseComments": false,
+
+  "optimize": "none",
+
+  "uglify2": {
+  },
+
+  "shim": {
     "ovivo": {
-      deps: ["templates"]
+      "deps": ["templates"]
     },
     
     "templates": {
-      deps: ["handlebars"]
+      "deps": ["handlebars"]
     },
     
     "handlebars": {
-      deps: ["backbone"]
+      "deps": ["backbone"]
     },
     
     "backbone": {
-      deps: ["lodash"]
+      "deps": ["lodash"]
     },
     
     "lodash": {
-      deps: ["pickadate"]
+      "deps": ["pickadate"]
     },
 
     "pickadate": {
-      deps: ["jquery.mousewheel"]
+      "deps": ["jquery.mousewheel"]
     },
 
     "jquery.mousewheel": {
-      deps: ["jquery"]
+      "deps": ["jquery"]
     },
     
     "jquery": {
-      deps: ["date"]
+      "deps": ["date"]
     },
 
     "date": {
-      deps: ["modernizr"]
+      "deps": ["modernizr"]
     },
 
     "modernizr": {
-      deps: []
+      "deps": []
     }
   },
 
-  name: 'main',
+  "name": "main",
 
-  out: '../../dist/ovivo-desktop-employee-require.js'
+  "out": "app/dist/ovivo-desktop-employee-require.js"
 }

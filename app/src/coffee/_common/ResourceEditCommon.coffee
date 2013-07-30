@@ -17,7 +17,14 @@ define [
       _item = $(e.target).closest('.item-content')
 
       _name = @propertyRegExp.exec(_input[0].className)[1]
-      _value = @types[_name](_input.val())
+
+      if (_picker = _input.pickadate('picker'))?
+        _val = _picker.get 'select', 'yyyy-mm-dd'
+
+      else
+        _val = _input.val()
+
+      _value = @types[_name] _val
 
       if _value is @original[_name]()
         _item.removeClass 'changed'
@@ -156,7 +163,7 @@ define [
         if _component.hasClass 'datepicker'
           _date = new Date Date.parse @model[field]()
 
-          _component.each (i, el) -> $(el).data('pickadate').setDate _date.getFullYear(), _date.getMonth() + 1, _date.getDate()
+          _component.each (i, el) -> $(el).pickadate('picker').set 'select', _date
 
         else if _component.hasClass 'plain-value'
           $.when(@model.view[field]()).done (_str) -> _component.html _str

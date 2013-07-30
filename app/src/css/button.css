@@ -15,6 +15,11 @@
     font-family: OvivoHelveticaNeue, "Helvetica Neue", "HelveticaNeue", sans-serif;
     font-size: 16px;
     color: black; }
+  .button.green-light, .button.light {
+    border-radius: 2px;
+    font-size: 16px; }
+  .button.green-light {
+    background: #47b869; }
   .button.warning {
     background: #b23333; }
   .button.disabled {
