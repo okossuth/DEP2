@@ -330,7 +330,7 @@ function program1(depth0,data) {
 this["Handlebars"]["templates"]["event"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
@@ -346,95 +346,23 @@ function program3(depth0,data) {
 
 function program5(depth0,data) {
   
-  var buffer = "", stack1, options;
-  buffer += "\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
-  if (stack1 = helpers.isClosed) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
-  if (stack1 = helpers.isOpenResponses) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data};
-  if (stack1 = helpers.isOpen) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            ";
-  return buffer;
-  }
-function program6(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program7(depth0,data) {
-  
   
   return "Assigned";
   }
 
-function program9(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program10(depth0,data) {
+function program7(depth0,data) {
   
   
   return "Awaiting reply";
   }
 
-function program12(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program13(depth0,data) {
+function program9(depth0,data) {
   
   
   return "Make a bid";
   }
 
-function program15(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                <div class=\"button-inner\">\n                    </i><span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(16, program16, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                </div>\n            ";
-  return buffer;
-  }
-function program16(depth0,data) {
+function program11(depth0,data) {
   
   
   return "Bidding closed";
@@ -482,26 +410,38 @@ function program16(depth0,data) {
   if (stack2 = helpers.creationTime) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.creationTime; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</span>\n        </h4>\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            ";
-  options = {hash:{},inverse:self.program(5, program5, data),fn:self.noop,data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+    + "</span>\n        </h4>\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            <div class=\"button-inner label-closed\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n            ";
-  options = {hash:{},inverse:self.noop,fn:self.program(15, program15, data),data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-open-responses\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n        </div>\n    </div>\n</div>";
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-open\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-bidding-closed\">\n                </i><span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
 this["Handlebars"]["templates"]["eventDetails"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
@@ -528,40 +468,10 @@ function program5(depth0,data) {
 
 function program7(depth0,data) {
   
-  var buffer = "", stack1, options;
-  buffer += "\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data};
-  if (stack1 = helpers.isClosed) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
-  if (stack1 = helpers.isOpenResponses) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data};
-  if (stack1 = helpers.isOpen) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            ";
-  return buffer;
-  }
-function program8(depth0,data) {
   
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
+  return "Bid status";
   }
+
 function program9(depth0,data) {
   
   
@@ -570,53 +480,17 @@ function program9(depth0,data) {
 
 function program11(depth0,data) {
   
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program12(depth0,data) {
-  
   
   return "Awaiting reply";
   }
 
-function program14(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(15, program15, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program15(depth0,data) {
+function program13(depth0,data) {
   
   
   return "Make a bid";
   }
 
-function program17(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                <div class=\"button-inner\">\n                    </i><span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(18, program18, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                </div>\n            ";
-  return buffer;
-  }
-function program18(depth0,data) {
+function program15(depth0,data) {
   
   
   return "Bidding closed";
@@ -670,19 +544,37 @@ function program18(depth0,data) {
   else { stack2 = depth0.hasComment; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   if (!helpers.hasComment) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n        <div class=\"switcher\">\n            <div class=\"handle\"></div>\n        </div>\n\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            ";
-  options = {hash:{},inverse:self.program(7, program7, data),fn:self.noop,data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  buffer += "\n\n        <div class=\"switcher\">\n            <div class=\"handle\"></div>\n            <div class=\"status\">";
+  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n            ";
-  options = {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  buffer += ":</div>\n        </div>\n\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            <div class=\"button-inner label-closed\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n        </div>\n    </div>\n</div>\n\n<ul class=\"comments\">\n</ul>";
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-open-responses\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-open\">\n                <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n            </div>\n\n            <div class=\"button-inner label-bidding-closed\">\n                </i><span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(15, program15, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n            </div>\n        </div>\n    </div>\n</div>\n\n<ul class=\"comments\">\n</ul>";
   return buffer;
   });
 
@@ -719,7 +611,7 @@ function program1(depth0,data) {
 this["Handlebars"]["templates"]["event_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
@@ -774,19 +666,31 @@ function program1(depth0,data) {
   if (stack2 = helpers.creationTime) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.creationTime; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</span>\n            </h4>\n        </div>\n\n        <div class=\"buttons\">\n            <div class=\"button-element single type-button\">\n                <div class=\"button-background\">\n                    <div></div>\n                </div>\n\n                ";
-  options = {hash:{},inverse:self.program(6, program6, data),fn:self.noop,data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+    + "</span>\n            </h4>\n        </div>\n\n        <div class=\"buttons\">\n            <div class=\"button-element single type-button\">\n                <div class=\"button-background\">\n                    <div></div>\n                </div>\n\n                <div class=\"button-inner label-closed\">\n                    <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n                ";
-  options = {hash:{},inverse:self.noop,fn:self.program(16, program16, data),data:data};
-  if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
-  else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  if (!helpers.biddingClosed) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  buffer += "</span>\n                </div>\n\n                <div class=\"button-inner label-open-responses\">\n                    <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n            </div>\n        </div>\n    </div>\n</li>\n\n";
+  buffer += "</span>\n                </div>\n\n                <div class=\"button-inner label-open\">\n                    <span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n                </div>\n\n                <div class=\"button-inner label-bidding-closed\">\n                    </i><span>";
+  options = {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data};
+  if (stack2 = helpers.i18n) { stack2 = stack2.call(depth0, options); }
+  else { stack2 = depth0.i18n; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (!helpers.i18n) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</span>\n                </div>\n            </div>\n        </div>\n    </div>\n</li>\n\n";
   return buffer;
   }
 function program2(depth0,data) {
@@ -803,95 +707,23 @@ function program4(depth0,data) {
 
 function program6(depth0,data) {
   
-  var buffer = "", stack1, options;
-  buffer += "\n                    ";
-  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
-  if (stack1 = helpers.isClosed) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isClosed; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isClosed) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                    ";
-  options = {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data};
-  if (stack1 = helpers.isOpenResponses) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpenResponses; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpenResponses) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                    ";
-  options = {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data};
-  if (stack1 = helpers.isOpen) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.isOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.isOpen) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                ";
-  return buffer;
-  }
-function program7(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"button-inner\">\n                            <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                        </div>\n                    ";
-  return buffer;
-  }
-function program8(depth0,data) {
-  
   
   return "Assigned";
   }
 
-function program10(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"button-inner\">\n                            <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                        </div>\n                    ";
-  return buffer;
-  }
-function program11(depth0,data) {
+function program8(depth0,data) {
   
   
   return "Awaiting reply";
   }
 
-function program13(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"button-inner\">\n                            <span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                        </div>\n                    ";
-  return buffer;
-  }
-function program14(depth0,data) {
+function program10(depth0,data) {
   
   
   return "Make a bid";
   }
 
-function program16(depth0,data) {
-  
-  var buffer = "", stack1, options;
-  buffer += "\n                    <div class=\"button-inner\">\n                        </i><span>";
-  options = {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data};
-  if (stack1 = helpers.i18n) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.i18n; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.i18n) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n                    </div>\n                ";
-  return buffer;
-  }
-function program17(depth0,data) {
+function program12(depth0,data) {
   
   
   return "Bidding closed";

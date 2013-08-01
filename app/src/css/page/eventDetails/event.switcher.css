@@ -18,7 +18,15 @@
   -moz-transition: background 300ms;
   -ms-transition: background 300ms;
   -o-transition: background 300ms;
-  transition: background 300ms; }
+  transition: background 300ms;
+  cursor: pointer; }
+  .page.page-event-details div.content .event .switcher > .status {
+    position: absolute;
+    width: 100px;
+    text-align: right;
+    left: -105px;
+    top: 3px;
+    font-size: 12px; }
   .page.page-event-details div.content .event .switcher > .handle {
     position: absolute;
     top: 2px;

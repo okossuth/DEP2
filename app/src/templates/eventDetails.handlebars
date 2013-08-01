@@ -26,6 +26,7 @@
 
         <div class="switcher">
             <div class="handle"></div>
+            <div class="status">{{#i18n}}Bid status{{/i18n}}:</div>
         </div>
 
     </div>
@@ -36,31 +37,21 @@
                 <div></div>
             </div>
 
-            {{^biddingClosed}}
-                {{#isClosed}}
-                    <div class="button-inner">
-                        <span>{{#i18n}}Assigned{{/i18n}}</span>
-                    </div>
-                {{/isClosed}}
+            <div class="button-inner label-closed">
+                <span>{{#i18n}}Assigned{{/i18n}}</span>
+            </div>
 
-                {{#isOpenResponses}}
-                    <div class="button-inner">
-                        <span>{{#i18n}}Awaiting reply{{/i18n}}</span>
-                    </div>
-                {{/isOpenResponses}}
+            <div class="button-inner label-open-responses">
+                <span>{{#i18n}}Awaiting reply{{/i18n}}</span>
+            </div>
 
-                {{#isOpen}}
-                    <div class="button-inner">
-                        <span>{{#i18n}}Make a bid{{/i18n}}</span>
-                    </div>
-                {{/isOpen}}
-            {{/biddingClosed}}
+            <div class="button-inner label-open">
+                <span>{{#i18n}}Make a bid{{/i18n}}</span>
+            </div>
 
-            {{#biddingClosed}}
-                <div class="button-inner">
-                    </i><span>{{#i18n}}Bidding closed{{/i18n}}</span>
-                </div>
-            {{/biddingClosed}}
+            <div class="button-inner label-bidding-closed">
+                </i><span>{{#i18n}}Bidding closed{{/i18n}}</span>
+            </div>
         </div>
     </div>
 </div>

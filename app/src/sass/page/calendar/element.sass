@@ -29,17 +29,39 @@ ul.months-list, ul.weeks-list, .page-event-details
 
         background: red
 
+        -webkit-transition: background 300ms
+        -moz-transition: background 300ms
+        -ms-transition: background 300ms
+        -o-transition: background 300ms
+        transition: background 300ms
+
+      .label-open, .label-closed, .label-open-responses, .label-bidding-closed
+        display: none
+
       &.closed
         > div.strip
           background: #007550
+
+        .label-closed
+          display: block
 
       &.open
         > div.strip
           background: #da4444
 
+        .label-open
+          display: block
+
       &.open-responses
         > div.strip
           background: #d8da44
+
+        .label-open-responses
+          display: block
+
+      &.bidding-closed
+        &.label-bidding-closed
+          display: block
 
       &.available
         > div.strip

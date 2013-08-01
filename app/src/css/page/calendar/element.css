@@ -15,13 +15,28 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
     box-shadow: 0 1px 2px #cccccc, 0 0 10px #999999; }
   ul.months-list .element > div.element-container > div.strip, ul.weeks-list .element > div.element-container > div.strip, .page-event-details .element > div.element-container > div.strip {
     height: 5px;
-    background: red; }
+    background: red;
+    -webkit-transition: background 300ms;
+    -moz-transition: background 300ms;
+    -ms-transition: background 300ms;
+    -o-transition: background 300ms;
+    transition: background 300ms; }
+  ul.months-list .element > div.element-container .label-open, ul.months-list .element > div.element-container .label-closed, ul.months-list .element > div.element-container .label-open-responses, ul.months-list .element > div.element-container .label-bidding-closed, ul.weeks-list .element > div.element-container .label-open, ul.weeks-list .element > div.element-container .label-closed, ul.weeks-list .element > div.element-container .label-open-responses, ul.weeks-list .element > div.element-container .label-bidding-closed, .page-event-details .element > div.element-container .label-open, .page-event-details .element > div.element-container .label-closed, .page-event-details .element > div.element-container .label-open-responses, .page-event-details .element > div.element-container .label-bidding-closed {
+    display: none; }
   ul.months-list .element > div.element-container.closed > div.strip, ul.weeks-list .element > div.element-container.closed > div.strip, .page-event-details .element > div.element-container.closed > div.strip {
     background: #007550; }
+  ul.months-list .element > div.element-container.closed .label-closed, ul.weeks-list .element > div.element-container.closed .label-closed, .page-event-details .element > div.element-container.closed .label-closed {
+    display: block; }
   ul.months-list .element > div.element-container.open > div.strip, ul.weeks-list .element > div.element-container.open > div.strip, .page-event-details .element > div.element-container.open > div.strip {
     background: #da4444; }
+  ul.months-list .element > div.element-container.open .label-open, ul.weeks-list .element > div.element-container.open .label-open, .page-event-details .element > div.element-container.open .label-open {
+    display: block; }
   ul.months-list .element > div.element-container.open-responses > div.strip, ul.weeks-list .element > div.element-container.open-responses > div.strip, .page-event-details .element > div.element-container.open-responses > div.strip {
     background: #d8da44; }
+  ul.months-list .element > div.element-container.open-responses .label-open-responses, ul.weeks-list .element > div.element-container.open-responses .label-open-responses, .page-event-details .element > div.element-container.open-responses .label-open-responses {
+    display: block; }
+  ul.months-list .element > div.element-container.bidding-closed.label-bidding-closed, ul.weeks-list .element > div.element-container.bidding-closed.label-bidding-closed, .page-event-details .element > div.element-container.bidding-closed.label-bidding-closed {
+    display: block; }
   ul.months-list .element > div.element-container.available > div.strip, ul.weeks-list .element > div.element-container.available > div.strip, .page-event-details .element > div.element-container.available > div.strip {
     background: #0066cc; }
   ul.months-list .element > div.element-container.unavailable > div.strip, ul.weeks-list .element > div.element-container.unavailable > div.strip, .page-event-details .element > div.element-container.unavailable > div.strip {
