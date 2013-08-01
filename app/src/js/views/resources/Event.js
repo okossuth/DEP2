@@ -9,6 +9,7 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       'click': 'processClick',
       'click .type-button': 'changeType'
     },
+    _ignoreRender: ['has_applied', 'type'],
     processClick: function(e) {
       ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
         trigger: true
@@ -115,8 +116,12 @@ define(['_features/trailZero', '_features/notificationMessage', '_common/ToolsBa
       }
       return true;
     },
+    processTypeChange: function() {
+      return this.postRender();
+    },
     initialize: function() {
       this.model.setDeltaHours();
+      this.model.on('change:type', this.processTypeChange, this);
       this.biddingClosed = this._biddingClosed();
       this.proxyCall('initialize', arguments);
       if ((ovivo.desktop.resources.groups.def.state() !== 'resolved') || (ovivo.desktop.resources.municipalities.def.state() !== 'resolved') || (ovivo.desktop.resources.primaryDepartments.def.state() !== 'resolved')) {

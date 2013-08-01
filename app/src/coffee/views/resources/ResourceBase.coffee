@@ -27,6 +27,11 @@ define [
 
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50)
 
+    _renderOnChange: () ->
+      if @_ignoreRender? and ((_changed = _.keys(@model.changed)).length > 0) and (_.intersection(@_ignoreRender, _changed).length > 0) then return
+
+      @render.apply @, arguments
+
     renderGroup: (views) ->
       views = _.pluck views, 'ctx'
 
@@ -64,7 +69,7 @@ define [
 
       @render()
 
-      @model.on 'change', @render, @
+      @model.on 'change', @_renderOnChange, @
       @model.on 'remove', @_processRemove, @
 
       true

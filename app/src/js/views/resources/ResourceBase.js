@@ -33,6 +33,13 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
       });
     }),
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50),
+    _renderOnChange: function() {
+      var _changed;
+      if ((this._ignoreRender != null) && ((_changed = _.keys(this.model.changed)).length > 0) && (_.intersection(this._ignoreRender, _changed).length > 0)) {
+        return;
+      }
+      return this.render.apply(this, arguments);
+    },
     renderGroup: function(views) {
       var _DOM, _hash;
       views = _.pluck(views, 'ctx');
@@ -76,7 +83,7 @@ define(['_common/ToolsBase', 'ovivo'], function(ToolsBase) {
     initialize: function() {
       this.exposeAttrs();
       this.render();
-      this.model.on('change', this.render, this);
+      this.model.on('change', this._renderOnChange, this);
       this.model.on('remove', this._processRemove, this);
       return true;
     }

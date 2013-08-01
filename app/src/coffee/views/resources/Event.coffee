@@ -20,6 +20,11 @@ define [
       'click': 'processClick'
       'click .type-button': 'changeType'
 
+    _ignoreRender: [
+      'has_applied'
+      'type'
+    ]
+
     processClick: (e) -> 
       ovivo.desktop.routers.main.navigate "/events/#{@model.id}/", { trigger: true }
 
@@ -100,8 +105,13 @@ define [
 
       true
 
+    processTypeChange: () ->
+      @postRender()
+
     initialize: () ->
       @model.setDeltaHours()
+
+      @model.on 'change:type', @processTypeChange, @
 
       @biddingClosed = @_biddingClosed()
 

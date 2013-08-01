@@ -16992,6 +16992,13 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
       });
     }),
     render: ToolsBase.throttleGroup('render', 'renderGroup', 50),
+    _renderOnChange: function() {
+      var _changed;
+      if ((this._ignoreRender != null) && ((_changed = _.keys(this.model.changed)).length > 0) && (_.intersection(this._ignoreRender, _changed).length > 0)) {
+        return;
+      }
+      return this.render.apply(this, arguments);
+    },
     renderGroup: function(views) {
       var _DOM, _hash;
       views = _.pluck(views, 'ctx');
@@ -17035,7 +17042,7 @@ define('views/resources/ResourceBase',['_common/ToolsBase', 'ovivo'], function(T
     initialize: function() {
       this.exposeAttrs();
       this.render();
-      this.model.on('change', this.render, this);
+      this.model.on('change', this._renderOnChange, this);
       this.model.on('remove', this._processRemove, this);
       return true;
     }
@@ -17231,6 +17238,7 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       'click': 'processClick',
       'click .type-button': 'changeType'
     },
+    _ignoreRender: ['has_applied', 'type'],
     processClick: function(e) {
       ovivo.desktop.routers.main.navigate("/events/" + this.model.id + "/", {
         trigger: true
@@ -17337,8 +17345,12 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       }
       return true;
     },
+    processTypeChange: function() {
+      return this.postRender();
+    },
     initialize: function() {
       this.model.setDeltaHours();
+      this.model.on('change:type', this.processTypeChange, this);
       this.biddingClosed = this._biddingClosed();
       this.proxyCall('initialize', arguments);
       if ((ovivo.desktop.resources.groups.def.state() !== 'resolved') || (ovivo.desktop.resources.municipalities.def.state() !== 'resolved') || (ovivo.desktop.resources.primaryDepartments.def.state() !== 'resolved')) {
