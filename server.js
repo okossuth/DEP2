@@ -3,7 +3,7 @@ try{
 } catch (err){
     var config = {}
 
-    config.rabbit_host = 'localhost111'
+    config.rabbit_host = 'localhost1batman11'
 
     config.django_host = 'localhost'
     config.django_port = 8000
