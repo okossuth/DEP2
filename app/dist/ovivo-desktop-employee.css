@@ -1256,7 +1256,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     -ms-animation: event-details-exit 200ms ease-out 0s;
     -o-animation: event-details-exit 200ms ease-out 0s;
     animation: event-details-exit 200ms ease-out 0s; }
-  .page.page-edit > header > div.line > div.button {
+  .page.page-edit > header > div.line > div.button.right {
     width: 40px; }
 
 .page.page-edit .settings-items {

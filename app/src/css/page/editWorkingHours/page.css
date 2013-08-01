@@ -15,5 +15,5 @@
     -ms-animation: event-details-exit 200ms ease-out 0s;
     -o-animation: event-details-exit 200ms ease-out 0s;
     animation: event-details-exit 200ms ease-out 0s; }
-  .page.page-edit > header > div.line > div.button {
+  .page.page-edit > header > div.line > div.button.right {
     width: 40px; }
