@@ -23,6 +23,7 @@ after_script:
 #  - git reset app/dist/ovivo-desktop-employee-require.js.map
   - git commit -m "Travis CI build on $TIME_STR"
   - git push github master
+  - git aws.push
 
 branches:
   only:
