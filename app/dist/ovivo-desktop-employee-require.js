@@ -17295,7 +17295,7 @@ define('views/resources/Event',['_features/trailZero', '_features/notificationMe
       return "" + (ovivo.config.DAYS[_date.getDay()].toLowerCase()) + ", " + (_date.getDate()) + ". " + ovivo.config.MONTHS[_date.getMonth()];
     },
     changeType: function(e) {
-      if (this._isActual() === true) {
+      if ((this._isActual() === true) && (this.type() !== 'closed')) {
         this.model.switchType();
       }
       return this.stopPropagation(e);
