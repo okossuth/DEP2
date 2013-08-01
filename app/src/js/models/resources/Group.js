@@ -6,7 +6,7 @@ define(['models/resources/ResourceBase', 'ovivo'], function(ResourceBase, View) 
       _str = this.name();
       _cur = this;
       while ((_cur = this.collection.get(_cur.parent())) != null) {
-        _str = _cur.name() + ' - ' + _str;
+        _str = _cur.name() + ' → ' + _str;
       }
       this.set('chainName', _str);
       return true;

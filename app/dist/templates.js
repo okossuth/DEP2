@@ -444,7 +444,7 @@ function program16(depth0,data) {
   if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> – <span>";
   if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -460,7 +460,7 @@ function program16(depth0,data) {
   if (stack2 = helpers.primaryDepartment) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.primaryDepartment; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</span> - <span>";
+    + "</span> → <span>";
   if (stack2 = helpers.groupChainName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.groupChainName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -626,7 +626,7 @@ function program18(depth0,data) {
   if (stack1 = helpers.primaryDepartment) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.primaryDepartment; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> → <span>";
   if (stack1 = helpers.groupChainName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.groupChainName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -634,7 +634,7 @@ function program18(depth0,data) {
   if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> – <span>";
   if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -736,7 +736,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> – <span>";
   if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -752,7 +752,7 @@ function program1(depth0,data) {
   if (stack2 = helpers.primaryDepartment) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.primaryDepartment; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</span> - <span>";
+    + "</span> → <span>";
   if (stack2 = helpers.groupChainName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.groupChainName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -1292,7 +1292,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> – <span>";
   if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -1584,7 +1584,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.start_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.start_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> - <span>";
+    + "</span> – <span>";
   if (stack1 = helpers.end_time) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.end_time; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

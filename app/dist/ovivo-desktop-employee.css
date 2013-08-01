@@ -1291,6 +1291,9 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
         margin: 8px 0 0 0;
         color: #807e73; }
 
+.page.page-event-details div.content .event .info {
+  position: relative; }
+
 .page.page-event-details > footer {
   position: absolute;
   bottom: 0;
