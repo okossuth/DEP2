@@ -1,0 +1,29 @@
+language: node_js
+
+node_js:
+  - "0.8.14"
+
+install:
+  - git checkout master
+#  - gem install sass
+#  - BRANCH_NAME=build/`eval date +%Y-%m-%d"T"%H-%M-%S`
+  - TIME_STR=`eval date` 
+#  - git checkout -b $BRANCH_NAME
+  - npm install -g grunt-cli
+  - npm install
+
+script:
+  - grunt travis
+  
+after_script:
+  - git config --global user.email "$EMAIL"
+  - git config --global user.name "$USER_NAME"
+  - git remote add github https://okossuth:$PASSWORD@github.com/okossuth/nodejs-demo.git
+  - git add .
+#  - git reset app/dist/ovivo-desktop-employee-require.js.map
+  - git commit -m "Travis CI build on $TIME_STR"
+  - git push github master
+
+branches:
+  only:
+    - master
