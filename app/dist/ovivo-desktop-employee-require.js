@@ -15459,7 +15459,7 @@ function program18(depth0,data) {
   else { stack2 = depth0.hasComment; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   if (!helpers.hasComment) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            ";
+  buffer += "\n\n        <div class=\"switcher\">\n            <div class=\"handle\"></div>\n        </div>\n\n    </div>\n\n    <div class=\"buttons\">\n        <div class=\"button-element single type-button\">\n            <div class=\"button-background\">\n                <div></div>\n            </div>\n\n            ";
   options = {hash:{},inverse:self.program(7, program7, data),fn:self.noop,data:data};
   if (stack2 = helpers.biddingClosed) { stack2 = stack2.call(depth0, options); }
   else { stack2 = depth0.biddingClosed; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
@@ -17353,6 +17353,9 @@ define('views/resources/EventDetails',['views/resources/Event', 'ovivo'], functi
   return Event.extend({
     tagName: 'div',
     doNotThrottleGroup: true,
+    events: _.extend({}, Event.prototype.events, {
+      'click .switcher': 'changeType'
+    }),
     render: function() {
       var _comments;
       _comments = this.$('ul.comments').children();

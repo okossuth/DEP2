@@ -8,6 +8,9 @@ define [
 
     doNotThrottleGroup: true
 
+    events: _.extend {}, Event.prototype.events,
+      'click .switcher': 'changeType'
+
     render: () ->
       _comments = @$('ul.comments').children()
 
