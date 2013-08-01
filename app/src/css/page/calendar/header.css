@@ -7,7 +7,7 @@
   width: 100%; }
   .page.page-calendar > header .weekdays ul.row {
     font-size: 12px;
-    margin: 0 50px 0 30px;
+    margin: 0 30px 0 30px;
     overflow: auto; }
     .page.page-calendar > header .weekdays ul.row > li {
       width: 14.28571%;
