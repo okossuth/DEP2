@@ -48,10 +48,14 @@ define(['views/pages/PageBase', 'views/pages/Calendar/Month', 'views/pages/Calen
       this.viewSwitcher.setValue(name);
       return true;
     },
+    clickOverlay: function() {
+      return this.eventsFilterSwitcher.setValue(null);
+    },
     initialize: function() {
       this.SubViews = [MonthView, WeekView];
       this.defaultSubView = 'week';
       this._popupOverlay = $('.popup-overlay');
+      this._popupOverlay.on('click', _.bind(this.clickOverlay, this));
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);

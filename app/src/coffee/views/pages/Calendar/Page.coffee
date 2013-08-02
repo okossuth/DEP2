@@ -59,11 +59,15 @@ define [
 
       true
 
+    clickOverlay: () ->
+      @eventsFilterSwitcher.setValue null
+
     initialize: () ->
       @SubViews = [MonthView, WeekView]
       @defaultSubView = 'week'
 
       @_popupOverlay = $('.popup-overlay')
+      @_popupOverlay.on 'click', _.bind @clickOverlay, @
 
       @on 'subViewChange', @processSubViewChange, @
 
