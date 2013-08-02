@@ -23,7 +23,11 @@ after_script:
 #  - git reset app/dist/ovivo-desktop-employee-require.js.map
   - git commit -m "Travis CI build on $TIME_STR"
   - git push github master
-  - git aws.push
+  - wget https://s3.amazonaws.com/ovivo-beanstalk/AWSbean.tar.gz
+  - tar xfvz AWSbean.tar.gz
+  - eb status
+#  - eb init -I $AWSAKEY -S $AWSSKEY -a oskar -e oskar-env --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
+#  - eb start -f
 
 branches:
   only:
