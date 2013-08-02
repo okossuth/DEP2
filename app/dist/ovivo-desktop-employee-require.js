@@ -19108,12 +19108,15 @@ define('views/pages/Calendar/Week',['views/pages/Calendar/DaysCollectorPage', 'v
 
 define('_features/Switcher',['ovivo'], function() {
   var _Switcher;
-  _Switcher = function(container, data) {
+  _Switcher = function(container, data, options) {
     this.container = container;
     container.children().each(function(i, el) {
       return $(el).addClass('switcher-option').data('value', data[i]);
     });
     container.on('click', _.bind(this._clickHandler, this));
+    if (options != null) {
+      _.extend(this, options);
+    }
     return this;
   };
   _.extend(_Switcher.prototype, Backbone.Events);
@@ -19121,12 +19124,18 @@ define('_features/Switcher',['ovivo'], function() {
     return $('.switcher-option.selected', this.container).removeClass('selected');
   };
   _Switcher.prototype._clickHandler = function(e) {
-    var _el;
+    var _el, _selected, _value;
     _el = $(e.target).closest('.switcher-option');
     if (_el.length > 0) {
+      _selected = _el.hasClass('selected');
       this.clear();
-      _el.addClass('selected');
-      this.trigger('value', _el.data('value'));
+      if (this.nullable === true && _selected === true) {
+        _value = null;
+      } else {
+        _value = _el.data('value');
+        _el.addClass('selected');
+      }
+      this.trigger('value', _value);
     }
     return true;
   };
@@ -19178,8 +19187,12 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       var _body;
       (_body = $('body')).removeClass('highlight-events open open-responses closed');
       if (value != null) {
-        return _body.addClass("highlight-events " + value);
+        _body.addClass("highlight-events " + value);
+        this._popupOverlay.show();
+      } else {
+        this._popupOverlay.hide();
       }
+      return true;
     },
     processSubViewChange: function(name) {
       this.mode = name;
@@ -19189,10 +19202,13 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     initialize: function() {
       this.SubViews = [MonthView, WeekView];
       this.defaultSubView = 'week';
+      this._popupOverlay = $('.popup-overlay');
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
-      this.eventsFilterSwitcher = new Switcher(this.$('.switcher-events-filter'), ['open', 'open-responses', 'closed']);
+      this.eventsFilterSwitcher = new Switcher(this.$('.switcher-events-filter'), ['open', 'open-responses', 'closed'], {
+        nullable: true
+      });
       this.eventsFilterSwitcher.on('value', this.processEventsFilterSwitcherValue, this);
       this.proxyCall('initialize', arguments);
       return true;

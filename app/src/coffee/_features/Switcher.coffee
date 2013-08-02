@@ -1,12 +1,14 @@
 define [
   'ovivo'
 ], () ->
-  _Switcher = (container, data) ->
+  _Switcher = (container, data, options) ->
     @container = container
 
     container.children().each (i, el) -> $(el).addClass('switcher-option').data 'value', data[i]
 
     container.on 'click', _.bind @_clickHandler, @
+
+    if options? then _.extend @, options
 
     @
 
@@ -18,11 +20,19 @@ define [
     _el = $(e.target).closest('.switcher-option')
 
     if _el.length > 0
+      _selected = _el.hasClass('selected')
+
       @clear()
 
-      _el.addClass 'selected'
+      if @nullable is true and _selected is true
+        _value = null
 
-      @trigger 'value', _el.data 'value'
+      else
+        _value = _el.data 'value'
+
+        _el.addClass 'selected'
+
+      @trigger 'value', _value
 
     true
 

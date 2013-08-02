@@ -45,6 +45,11 @@ define [
       if value?
         _body.addClass "highlight-events #{value}"
 
+        @_popupOverlay.show()
+
+      else
+        @_popupOverlay.hide()
+
       true
 
     processSubViewChange: (name) ->
@@ -58,12 +63,16 @@ define [
       @SubViews = [MonthView, WeekView]
       @defaultSubView = 'week'
 
+      @_popupOverlay = $('.popup-overlay')
+
       @on 'subViewChange', @processSubViewChange, @
 
       @viewSwitcher = new Switcher @$('.switcher-view'), ['week', 'month']
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
 
-      @eventsFilterSwitcher = new Switcher @$('.switcher-events-filter'), ['open', 'open-responses', 'closed']
+      @eventsFilterSwitcher = new Switcher @$('.switcher-events-filter'), ['open', 'open-responses', 'closed'],
+        nullable: true
+
       @eventsFilterSwitcher.on 'value', @processEventsFilterSwitcherValue, @
 
       @proxyCall 'initialize', arguments
