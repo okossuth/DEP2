@@ -13,3 +13,6 @@ body.highlight-events.highlight-events.open-responses .element-container.open-re
 body.highlight-events.highlight-events.closed .element-container.closed {
   z-index: 100000;
   position: relative; }
+body.highlight-events .page > header > div.line > ul.switcher-events-filter, body.highlight-events .page > footer > div.line > ul.switcher-events-filter {
+  z-index: 100000;
+  position: relative; }

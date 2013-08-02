@@ -19174,6 +19174,13 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
     processViewSwitcherValue: function(value) {
       return this.showSubView(value);
     },
+    processEventsFilterSwitcherValue: function(value) {
+      var _body;
+      (_body = $('body')).removeClass('highlight-events open open-responses closed');
+      if (value != null) {
+        return _body.addClass("highlight-events " + value);
+      }
+    },
     processSubViewChange: function(name) {
       this.mode = name;
       this.viewSwitcher.setValue(name);
@@ -19185,6 +19192,8 @@ define('views/pages/Calendar/Page',['views/pages/PageBase', 'views/pages/Calenda
       this.on('subViewChange', this.processSubViewChange, this);
       this.viewSwitcher = new Switcher(this.$('.switcher-view'), ['week', 'month']);
       this.viewSwitcher.on('value', this.processViewSwitcherValue, this);
+      this.eventsFilterSwitcher = new Switcher(this.$('.switcher-events-filter'), ['open', 'open-responses', 'closed']);
+      this.eventsFilterSwitcher.on('value', this.processEventsFilterSwitcherValue, this);
       this.proxyCall('initialize', arguments);
       return true;
     }

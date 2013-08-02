@@ -39,6 +39,14 @@ define [
     processViewSwitcherValue: (value) ->
       @showSubView value
 
+    processEventsFilterSwitcherValue: (value) ->
+      (_body = $('body')).removeClass 'highlight-events open open-responses closed'
+
+      if value?
+        _body.addClass "highlight-events #{value}"
+
+      true
+
     processSubViewChange: (name) ->
       @mode = name
 
@@ -54,6 +62,9 @@ define [
 
       @viewSwitcher = new Switcher @$('.switcher-view'), ['week', 'month']
       @viewSwitcher.on 'value', @processViewSwitcherValue, @
+
+      @eventsFilterSwitcher = new Switcher @$('.switcher-events-filter'), ['open', 'open-responses', 'closed']
+      @eventsFilterSwitcher.on 'value', @processEventsFilterSwitcherValue, @
 
       @proxyCall 'initialize', arguments
 

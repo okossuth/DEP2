@@ -8,7 +8,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
   background: white;
   padding: 28px 0 28px 0; }
@@ -52,7 +51,10 @@
     .page > header > div.line > ul.switcher, .page > footer > div.line > ul.switcher {
       display: inline-block;
       float: right;
-      margin: 0 20px 0 0; }
+      margin: 0 20px 0 0;
+      padding: 0 4px;
+      background: white;
+      height: 40px; }
       .page > header > div.line > ul.switcher > li, .page > footer > div.line > ul.switcher > li {
         display: inline-block;
         position: relative;

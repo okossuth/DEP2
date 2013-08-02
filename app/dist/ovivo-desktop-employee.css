@@ -1012,6 +1012,9 @@ body.highlight-events.highlight-events.open-responses .element-container.open-re
 body.highlight-events.highlight-events.closed .element-container.closed {
   z-index: 100000;
   position: relative; }
+body.highlight-events .page > header > div.line > ul.switcher-events-filter, body.highlight-events .page > footer > div.line > ul.switcher-events-filter {
+  z-index: 100000;
+  position: relative; }
 
 ul.months-list .row > td:first-child li.inactivity > span, ul.weeks-list .row > td:first-child li.inactivity > span {
   visibility: visible; }
@@ -1462,7 +1465,6 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
   background: white;
   padding: 28px 0 28px 0; }
@@ -1506,7 +1508,10 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     .page > header > div.line > ul.switcher, .page > footer > div.line > ul.switcher {
       display: inline-block;
       float: right;
-      margin: 0 20px 0 0; }
+      margin: 0 20px 0 0;
+      padding: 0 4px;
+      background: white;
+      height: 40px; }
       .page > header > div.line > ul.switcher > li, .page > footer > div.line > ul.switcher > li {
         display: inline-block;
         position: relative;
