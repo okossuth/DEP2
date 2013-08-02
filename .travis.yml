@@ -5,8 +5,8 @@ node_js:
 
 env:
    global:
-    - secure: "mYOC6dG49YEyF6vyV2OyBHdAt7tj+zRFWIjgYy7njP921e0TiaNumMa+FqMzlJLBW8eu3v4CnskXshgSqOjY9KqqszRW9x29gTwFPdqFuAcCvHYXq1zTY92SBXjTCJ1le7rbp9Z93iLErWFhsPhdu3jsUucNvGvT8nHbf4+s0eA="
-    - secure: "uZvQQDkK20nuxTgccON7G242q/DzuL8qdGJ7XSRnmIoLJ9h4IMZh34F5fqCMjSKZ7TGSBHe4DpHw9xTu9lqnjJlNoRtFwRFg/m69R2olqqe//O1/21cmESvz4vYB3U0dtnaz8cPHTHlfri0E5lA7WjyvFQK6Xf4axmPIEZoKxlY="
+    - secure: "iT0Z8F0GtQNXbOWdRssRApmsUbyaOUo70eapavwcoDfX3x18EU6SI2wYtT/9Fd3DfHtd8UvSIdkB/VpNdBBb5UmfgDYyYc91yvfON1MfIrlN6pGzbIxnMmJ0np30XIdFxxmOuiWwN4N4D8WoQa4/i9cEEMmvWtrC4TtwLm3kapA="
+    - secure: "LxxGmkFK+kCES3CuurVojqf6Ignv6WeiXe4nD2vPhMig70a4YKmaBf2zg3MKmqrMBRBe+kd2fv99B2xmgZnasLBw104dKj+mnAChocd6DCm18ziI12U9VVFF2hK+7m9BdSqUMPPPxS//ogKskJN4wyXbvoaQINlOIZGDdKfp9m0="
 
 install:
   - git checkout master
