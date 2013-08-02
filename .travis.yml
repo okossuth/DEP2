@@ -3,6 +3,11 @@ language: node_js
 node_js:
   - "0.8.14"
 
+env:
+   global:
+    - secure: "mYOC6dG49YEyF6vyV2OyBHdAt7tj+zRFWIjgYy7njP921e0TiaNumMa+FqMzlJLBW8eu3v4CnskXshgSqOjY9KqqszRW9x29gTwFPdqFuAcCvHYXq1zTY92SBXjTCJ1le7rbp9Z93iLErWFhsPhdu3jsUucNvGvT8nHbf4+s0eA="
+    - secure: "uZvQQDkK20nuxTgccON7G242q/DzuL8qdGJ7XSRnmIoLJ9h4IMZh34F5fqCMjSKZ7TGSBHe4DpHw9xTu9lqnjJlNoRtFwRFg/m69R2olqqe//O1/21cmESvz4vYB3U0dtnaz8cPHTHlfri0E5lA7WjyvFQK6Xf4axmPIEZoKxlY="
+
 install:
   - git checkout master
 #  - gem install sass
@@ -26,9 +31,9 @@ after_script:
   - wget https://s3.amazonaws.com/ovivo-beanstalk/AWSbean.tar.gz
   - tar xfvz AWSbean.tar.gz
   - export PATH=$PATH:$PWD/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
-  - eb status
-#  - eb init -I $AWSAKEY -S $AWSSKEY -a oskar -e oskar-env --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
-#  - eb start -f
+#  - eb status
+  - eb init -I $AWSAKEY -S $AWSSKEY -a oskar -e oskar-env --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
+  - eb start -f
 
 branches:
   only:
