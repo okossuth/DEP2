@@ -86,8 +86,6 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
       ul.months-list > li table.days-container .week-row > .cell.expanded > div > em.add-working-hours, ul.weeks-list > li table.days-container .week-row > .cell.expanded > div > em.add-working-hours {
         display: inline-block; }
   ul.months-list > li table.days-container .week-row > .cell, ul.weeks-list > li table.days-container .week-row > .cell {
-    position: relative;
-    z-index: 0;
     border: 1px solid #c9c7b6;
     padding: 0;
     vertical-align: top;

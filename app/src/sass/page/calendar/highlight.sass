@@ -1,0 +1,33 @@
+body.highlight-events
+  ul.months-list, ul.weeks-list
+    > li
+      table.days-container
+        .week-row
+          > .cell
+            .element.event
+              position: static
+
+            > div
+              position: static
+
+              > strong.week-number
+                display: none
+
+  &.highlight-events
+    &.open
+      .element-container.open
+        z-index: 100000
+
+        position: relative
+
+    &.open-responses
+      .element-container.open-responses
+        z-index: 100000
+
+        position: relative
+
+    &.closed
+      .element-container.closed
+        z-index: 100000
+
+        position: relative

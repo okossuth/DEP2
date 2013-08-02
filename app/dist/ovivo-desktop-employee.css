@@ -997,6 +997,22 @@ ul.months-list .element > div.element-container, ul.weeks-list .element > div.el
       .page.page-calendar > header .weekdays ul.row > li > span {
         margin: 0 0 0 7px; }
 
+body.highlight-events ul.months-list > li table.days-container .week-row > .cell .element.event, body.highlight-events ul.weeks-list > li table.days-container .week-row > .cell .element.event {
+  position: static; }
+body.highlight-events ul.months-list > li table.days-container .week-row > .cell > div, body.highlight-events ul.weeks-list > li table.days-container .week-row > .cell > div {
+  position: static; }
+  body.highlight-events ul.months-list > li table.days-container .week-row > .cell > div > strong.week-number, body.highlight-events ul.weeks-list > li table.days-container .week-row > .cell > div > strong.week-number {
+    display: none; }
+body.highlight-events.highlight-events.open .element-container.open {
+  z-index: 100000;
+  position: relative; }
+body.highlight-events.highlight-events.open-responses .element-container.open-responses {
+  z-index: 100000;
+  position: relative; }
+body.highlight-events.highlight-events.closed .element-container.closed {
+  z-index: 100000;
+  position: relative; }
+
 ul.months-list .row > td:first-child li.inactivity > span, ul.weeks-list .row > td:first-child li.inactivity > span {
   visibility: visible; }
 ul.months-list li.inactivity, ul.weeks-list li.inactivity {
@@ -1118,8 +1134,6 @@ ul.months-list > li table.days-container, ul.weeks-list > li table.days-containe
       ul.months-list > li table.days-container .week-row > .cell.expanded > div > em.add-working-hours, ul.weeks-list > li table.days-container .week-row > .cell.expanded > div > em.add-working-hours {
         display: inline-block; }
   ul.months-list > li table.days-container .week-row > .cell, ul.weeks-list > li table.days-container .week-row > .cell {
-    position: relative;
-    z-index: 0;
     border: 1px solid #c9c7b6;
     padding: 0;
     vertical-align: top;
@@ -1401,7 +1415,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
 
 .page.page-event-details {
   width: 500px;
-  z-index: 9999;
+  z-index: 100000;
   box-shadow: -2px 0 30px #888888;
   left: auto; }
   .page.page-event-details.enter {
