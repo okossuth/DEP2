@@ -8,6 +8,8 @@ define [
 
       $(this).off ovivo.config.ANIMATION_END, _func
 
+      $(this).css 'z-index', ''
+
       true
 
     _func

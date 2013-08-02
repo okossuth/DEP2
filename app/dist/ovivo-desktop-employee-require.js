@@ -17857,6 +17857,7 @@ define('_features/transition',[], function() {
       $(this).addClass('post-animation');
       _def.resolve();
       $(this).off(ovivo.config.ANIMATION_END, _func);
+      $(this).css('z-index', '');
       return true;
     };
     return _func;
