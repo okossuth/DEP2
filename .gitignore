@@ -9,3 +9,6 @@ node_modules
 /app/src/js/*
 !/app/src/js/text.js
 !/app/src/js/build.js
+
+/app/app.html
+/app/app_*.html
