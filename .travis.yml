@@ -12,8 +12,8 @@ env:
 install:
   - git checkout master
   - gem install sass
-  - BRANCH_NAME=build/`eval date +%Y-%m-%d"T"%H-%M-%S`
-  - TIME_STR=`eval date` 
+  - BRANCH_NAME=build-$TRAVIS_BRANCH/`eval date +%Y-%m-%d"T"%H-%M-%S`
+  - TIME_STR=`eval date`
   - git checkout -b $BRANCH_NAME
   - npm install -g grunt-cli
   - npm install
@@ -26,7 +26,6 @@ after_script:
   - git config --global user.name "$USER_NAME"
   - git remote add github https://eur00t:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
   - git add .
-  - git reset app/dist/ovivo-desktop-employee-require.js.map
   - git commit -m "Travis CI build on $TIME_STR"
   - git push github $BRANCH_NAME
 
