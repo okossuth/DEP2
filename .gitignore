@@ -14,4 +14,3 @@ node_modules
 /app/app_*.html
 
 /app/dist/*
-.elasticbeanstalk/
