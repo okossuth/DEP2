@@ -5,6 +5,294 @@
 ;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.6.2",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.cssanimations=function(){return C("animationName")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e.prefixed=function(a,b,c){return b?C(a,b,c):C(a,"pfx")},e}(this,this.document);
 define("modernizr", function(){});
 
+;(function(process){  require.m = { 0:[function(require,module,exports){ window.playAlert = require('./');
+ },{"./":1}],1:[function(require,module,exports){ var play    = require('play-audio'),
+    content = require('./content'),
+    playing = play().autoplay();
+
+module.exports = playAlert;
+module.exports.content = content;
+module.exports.volume = playing.volume;
+module.exports.player = playing;
+
+function playAlert(name){
+  name || ( name = 'bottle' );
+
+  if (!content[name]) return;
+
+  playing.src(content[name]);
+}
+ },{"./content":2,"play-audio":3}],2:[function(require,module,exports){ module.exports = {
+  bottle: ['http://i.cloudup.com/y29czRwU3R.m4a', 'http://i.cloudup.com/baNnhH1I7M.ogg'],
+  funk: ['http://i.cloudup.com/KkfWRzYC77.m4a', 'http://i.cloudup.com/7SSbOm5XZS.ogg'],
+  glass: ['http://i.cloudup.com/E021I9zUG3.m4a', 'http://i.cloudup.com/3gveeCqUD6.ogg'],
+  morse: ['http://i.cloudup.com/h7r7MsF4q3.m4a', 'http://i.cloudup.com/b0EXCVaceT.ogg'],
+  pop: ['http://i.cloudup.com/vTka9yOizT.m4a', 'http://i.cloudup.com/4TnDj0v9GE.ogg'],
+  purr: ['http://i.cloudup.com/5HJSHCtOzZ.m4a', 'http://i.cloudup.com/YdDNGA0sj5.ogg'],
+  submarine: ['http://i.cloudup.com/r4ZENSF0Hu.m4a', 'http://i.cloudup.com/2OPb5OYAI2.ogg'],
+  tink: ['http://i.cloudup.com/nCtoNq3kJN.m4a', 'http://i.cloudup.com/SNi1RX8iwb.ogg']
+};
+ },{}],3:[function(require,module,exports){ module.exports = require('./lib/player');
+ },{"./lib/player":4}],4:[function(require,module,exports){ var newChain  = require('new-chain'),
+    src = require('./src'),
+    render = require('./render');
+
+module.exports = play;
+
+function play(urls, dom){
+  var el, chain, url;
+
+  dom || ( dom = document.documentElement );
+  el = render();
+  dom.appendChild(el);
+
+  chain = newChain({
+    autoplay: bool('autoplay'),
+    controls: bool('controls'),
+    load: method('load'),
+    loop: bool('loop'),
+    muted: bool('muted'),
+    on: on,
+    pause: method('pause'),
+    play: method('play'),
+    preload: bool('preload')
+  });
+
+  chain.currentTime = attr('currentTime');
+  chain.element = element;
+  chain.src = src.attr(el);
+  chain.volume = attr('volume');
+  chain.remove = remove;
+
+  chain.src(urls);
+
+  return chain;
+
+  function attr(name){
+    return function(value){
+      if ( arguments.length ) {
+        el[name] = value;
+        return chain;
+      }
+
+      return el[name];
+    };
+  }
+
+  function bool(name){
+    return function(value){
+      if (value === false) {
+        return el[name] = false;
+      }
+
+      return el[name] = true;
+    };
+  }
+
+  function element(){
+    return el;
+  }
+
+  function on(event, callback){
+    el.addEventListener(event, callback, false);
+  }
+
+  function method(name){
+    return function(){
+      return el[name].apply(el, arguments);
+    };
+  }
+
+  function remove(){
+    return el.parentNode.removeChild(el);
+  }
+
+}
+ },{"./src":5,"./render":7,"new-chain":10}],5:[function(require,module,exports){ var mimeOf = require("./mime");
+
+module.exports = {
+  attr: attr,
+  pick: pick
+};
+
+function attr(el){
+  var value;
+
+  return function(urls){
+    if (arguments.length) {
+      value = urls;
+      el.setAttribute('src', pick(el, value));
+    }
+
+    return value;
+  };
+}
+
+function pick(el, urls){
+  if(!urls) return;
+
+  if(typeof urls == 'string'){
+    return urls;
+  }
+
+  return urls.filter(function(url){
+    return !!el.canPlayType(mimeOf(url));
+  })[0];
+}
+ },{"./mime":6}],7:[function(require,module,exports){ var domify = require('domify'),
+    templates = require("./templates");
+
+module.exports = render;
+
+function render(src){
+  return domify(templates['audio.html']);
+}
+ },{"./templates":8,"domify":9}],8:[function(require,module,exports){ exports["audio.html"] = "<audio preload=\"auto\" /></audio>" },{}],6:[function(require,module,exports){ var table = {
+  aif  : "audio/x-aiff",
+  aiff : "audio/x-aiff",
+  wav  : "audio/x-wav",
+  mp3  : 'audio/mpeg',
+  m3u  : "audio/x-mpegurl",
+  mid  : "audio/midi",
+  midi : "audio/midi",
+  m4a  : 'audio/m4a',
+  ogg  : 'audio/ogg'
+};
+
+module.exports = mimeOf;
+
+function mimeOf(url){
+  return table[ url.split('.').slice(-1)[0] ];
+}
+ },{}],10:[function(require,module,exports){ module.exports = newChain;
+module.exports.from = from;
+
+function from(chain){
+
+  return function(){
+    var m, i;
+
+    m = methods.apply(undefined, arguments);
+    i   = m.length;
+
+    while ( i -- ) {
+      chain[ m[i].name ] = m[i].fn;
+    }
+
+    m.forEach(function(method){
+      chain[ method.name ] = function(){
+        method.fn.apply(this, arguments);
+        return chain;
+      };
+    });
+
+    return chain;
+  };
+
+}
+
+function methods(){
+  var all, el, i, len, result, key;
+
+  all    = Array.prototype.slice.call(arguments);
+  result = [];
+  i      = all.length;
+
+  while ( i -- ) {
+    el = all[i];
+
+    if ( typeof el == 'function' ) {
+      result.push({ name: el.name, fn: el });
+      continue;
+    }
+
+    if ( typeof el != 'object' ) continue;
+
+    for ( key in el ) {
+      result.push({ name: key, fn: el[key] });
+    }
+  }
+
+  return result;
+}
+
+function newChain(){
+  return from({}).apply(undefined, arguments);
+}
+ },{}],9:[function(require,module,exports){ 
+/**
+ * Expose `parse`.
+ */
+
+module.exports = parse;
+
+/**
+ * Wrap map from jquery.
+ */
+
+var map = {
+  option: [1, '<select multiple="multiple">', '</select>'],
+  optgroup: [1, '<select multiple="multiple">', '</select>'],
+  legend: [1, '<fieldset>', '</fieldset>'],
+  thead: [1, '<table>', '</table>'],
+  tbody: [1, '<table>', '</table>'],
+  tfoot: [1, '<table>', '</table>'],
+  colgroup: [1, '<table>', '</table>'],
+  caption: [1, '<table>', '</table>'],
+  tr: [2, '<table><tbody>', '</tbody></table>'],
+  td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
+  th: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
+  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
+  _default: [0, '', '']
+};
+
+/**
+ * Parse `html` and return the children.
+ *
+ * @param {String} html
+ * @return {Array}
+ * @api private
+ */
+
+function parse(html) {
+  if ('string' != typeof html) throw new TypeError('String expected');
+
+  // tag name
+  var m = /<([\w:]+)/.exec(html);
+  if (!m) throw new Error('No elements were generated.');
+  var tag = m[1];
+
+  // body support
+  if (tag == 'body') {
+    var el = document.createElement('html');
+    el.innerHTML = html;
+    return el.removeChild(el.lastChild);
+  }
+
+  // wrap map
+  var wrap = map[tag] || map._default;
+  var depth = wrap[0];
+  var prefix = wrap[1];
+  var suffix = wrap[2];
+  var el = document.createElement('div');
+  el.innerHTML = prefix + html + suffix;
+  while (depth--) el = el.lastChild;
+
+  var els = el.children;
+  if (1 == els.length) {
+    return el.removeChild(els[0]);
+  }
+
+  var fragment = document.createDocumentFragment();
+  while (els.length) {
+    fragment.appendChild(el.removeChild(els[0]));
+  }
+
+  return fragment;
+}
+ },{}] }; function require(o){ if(o[2]) return o[2].exports; o[0](function(u){ if(!require.m[o[1][u]]) { throw new Error('Cannot find module "' + u + '"'); } return require(require.m[o[1][u]]); }, o[2] = { exports: {} }, o[2].exports); return o[2].exports; };  return require(require.m[0]); }({ env:{} }));
+define("alert", ["modernizr"], function(){});
+
 /**
  * @version: 1.0 Alpha-1
  * @author: Coolite Inc. http://www.coolite.com/
@@ -150,7 +438,7 @@ if(s instanceof Date){return s;}
 try{r=$D.Grammar.start.call({},s.replace(/^\s*(\S*(\s+\S+)*)\s*$/,"$1"));}catch(e){return null;}
 return((r[1].length===0)?r[0]:null);};$D.getParseFunction=function(fx){var fn=$D.Grammar.formats(fx);return function(s){var r=null;try{r=fn.call({},s);}catch(e){return null;}
 return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.getParseFunction(fx)(s);};}());
-define("date", ["modernizr"], function(){});
+define("date", ["alert"], function(){});
 
 /*!
  * jQuery JavaScript Library v1.9.1
@@ -21902,6 +22190,7 @@ define('_features/socket.io',['ovivo'], function() {
           case 'delete':
             _target.remove(_model);
         }
+        playAlert('glass');
       } else {
         throw new Error('Socket.IO: wrong target');
       }
@@ -21937,7 +22226,8 @@ requirejs.config({
     'date': '../../lib/date',
     'pickadate': '../../lib/pickadate.legacy',
     'modernizr': '../../lib/modernizr',
-    'srgs-parser': '../../lib/srgs-parser'
+    'srgs-parser': '../../lib/srgs-parser',
+    'alert': '../../lib/alert'
   },
   shim: {
     'ovivo': {
@@ -21962,6 +22252,9 @@ requirejs.config({
       deps: ['date']
     },
     'date': {
+      deps: ['alert']
+    },
+    'alert': {
       deps: ['modernizr']
     },
     'modernizr': {

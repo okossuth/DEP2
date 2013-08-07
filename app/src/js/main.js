@@ -11,7 +11,8 @@ requirejs.config({
     'date': '../../lib/date',
     'pickadate': '../../lib/pickadate.legacy',
     'modernizr': '../../lib/modernizr',
-    'srgs-parser': '../../lib/srgs-parser'
+    'srgs-parser': '../../lib/srgs-parser',
+    'alert': '../../lib/alert'
   },
   shim: {
     'ovivo': {
@@ -36,6 +37,9 @@ requirejs.config({
       deps: ['date']
     },
     'date': {
+      deps: ['alert']
+    },
+    'alert': {
       deps: ['modernizr']
     },
     'modernizr': {

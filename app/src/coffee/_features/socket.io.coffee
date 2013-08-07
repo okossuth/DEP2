@@ -50,13 +50,15 @@ define [
 
       switch msg.action
         when 'create'
-          _target.add msg.data, {'socket_io': true}
+          _target.add msg.data, { 'socket_io': true }
 
         when 'update'
-          if _model? then _model.set msg.data, {'socket_io': true} else _target.add msg.data, {'socket_io': true}
+          if _model? then _model.set msg.data, { 'socket_io': true } else _target.add msg.data, { 'socket_io': true }
 
         when 'delete'
           _target.remove _model
+
+      playAlert 'glass'
 
     else
       throw new Error 'Socket.IO: wrong target'

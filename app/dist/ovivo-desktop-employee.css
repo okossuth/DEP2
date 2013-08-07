@@ -879,7 +879,7 @@ select {
   margin: 0; }
 
 * {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: transparent; }
 
 @font-face {
   font-family: OvivoHelveticaNeueBold;
@@ -1396,7 +1396,7 @@ ul.months-list.specific .element.event, ul.weeks-list.specific .element.event {
     opacity: 0.5;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
     ul.months-list.specific .element.event > div.element-container.non-actual > div.strip, ul.weeks-list.specific .element.event > div.element-container.non-actual > div.strip {
-      background: gray; }
+      background: grey; }
   ul.months-list.specific .element.event > div.element-container .info, ul.weeks-list.specific .element.event > div.element-container .info {
     cursor: pointer; }
     ul.months-list.specific .element.event > div.element-container .info > h3, ul.months-list.specific .element.event > div.element-container .info > h4, ul.weeks-list.specific .element.event > div.element-container .info > h3, ul.weeks-list.specific .element.event > div.element-container .info > h4 {

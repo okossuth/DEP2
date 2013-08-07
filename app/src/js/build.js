@@ -12,7 +12,8 @@
     "date": "../../lib/date",
     "pickadate": "../../lib/pickadate.legacy",
     "modernizr": "../../lib/modernizr",
-    "srgs-parser": "../../lib/srgs-parser"
+    "srgs-parser": "../../lib/srgs-parser",
+    "alert": "../../lib/alert"
   },
 
   "generateSourceMaps": true,
@@ -53,6 +54,10 @@
     },
 
     "date": {
+      "deps": ["alert"]
+    },
+
+    "alert": {
       "deps": ["modernizr"]
     },
 

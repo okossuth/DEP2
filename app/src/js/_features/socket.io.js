@@ -63,6 +63,7 @@ define(['ovivo'], function() {
           case 'delete':
             _target.remove(_model);
         }
+        playAlert('glass');
       } else {
         throw new Error('Socket.IO: wrong target');
       }
