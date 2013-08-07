@@ -2,5 +2,10 @@ node_modules
 .sass-cache
 .project
 .DS_Store
-/app/src/css
-/app/src/js
+
+/app/src/css/*
+!/app/src/css/pickadate.02.classic.css
+
+/app/src/js/*
+!/app/src/js/text.js
+!/app/src/js/build.js
