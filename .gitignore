@@ -12,3 +12,5 @@ node_modules
 
 /app/app.html
 /app/app_*.html
+
+/app/dist/*

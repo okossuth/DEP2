@@ -3,17 +3,17 @@ module.exports = function(grunt) {
         concat: {
             css: {
                 src: ['app/src/css/**/*.css'],
-                dest: 'app/dist/ovivo-desktop-employee.css'
+                dest: 'app/dist/style.css'
             },
 
             css_ie: {
                 src: ['app/src/css/ie/*.css'],
-                dest: 'app/dist/ovivo-desktop-employee-ie.css'
+                dest: 'app/dist/style-ie.css'
             },
 
             js: {
                 src: ['app/src/js/preset.js', 'app/src/js/Backbone.sync.js', 'app/src/js/config.js'],
-                dest: 'app/dist/ovivo-desktop-employee.js'
+                dest: 'app/dist/script-nomodule.js'
             },
 
             options: {

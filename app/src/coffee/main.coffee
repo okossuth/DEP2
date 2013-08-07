@@ -3,7 +3,7 @@ requirejs.config
     'underscore': '../../lib/underscore'
     'backbone': '../../lib/backbone'
     'handlebars': '../../lib/handlebars'
-    'ovivo': '../../dist/ovivo-desktop-employee'
+    'ovivo': '../../dist/script-nomodule'
     'jquery': '../../lib/jquery-1.9.1'
     'templates': '../../dist/templates'
     'fastclick': '../../lib/fastclick'
