@@ -7,6 +7,9 @@
     "ejs": "0.7.x",
     "underscore": "1.4.4"
   },
+  "scripts": {
+    "start": "node server.js"
+  },
   "devDependencies": {
     "grunt": "0.4.x",
     "grunt-closure-compiler": "0.0.x",
