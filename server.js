@@ -1,5 +1,5 @@
 
-/// test alpha
+/// alpha
 var app, express, getPages, pg, port, processMainPage;
 var proxy, supportProxy;
 var httpProxy = require('http-proxy');
