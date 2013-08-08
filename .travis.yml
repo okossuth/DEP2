@@ -31,10 +31,12 @@ after_script:
   - git add .
   - git commit -m "Travis CI build on $TIME_STR"
   - git push github $BRANCH_NAME
+  - git config http.postBuffer 109715200
   - wget https://s3.amazonaws.com/ovivo-beanstalk/AWSbean.tar.gz
   - tar xfvz AWSbean.tar.gz
   - export PATH=$PATH:$PWD/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
   - eb init -I $AWSAKEY -S $AWSSKEY -a desktop-employee -e development --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
+  - eb branch
   - eb start -f
 
 branches:
