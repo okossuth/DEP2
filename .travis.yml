@@ -1,3 +1,5 @@
+# test 4 travis.yml
+
 language: node_js
 
 node_js:
@@ -5,12 +7,12 @@ node_js:
 
 env:
   global:
-    - secure: "THIWPLRobMlM5daCZbJeOSjLLlc1MXwWlHKnZ/QiZkmMB+YThmScAj9Mof3anB15fAoOyOzgrREZ5fcwG/25y8UGRqvfm8MI7v6YO7yrwS8Emk/M/S7oTiq2EFDD9ixM3hJ2dWWlQC/w+KYqT7aWNJ+DNXS3nC9Ta7ypFGU2E8E="
-    - secure: "FKclWhuVXX5MJHlvwebc9r1dsvtyqk1e8pvOI7ope7B7WLdLyxmhMPqnxXj+Ase5g1Dq/49nOK0khi8NH0DVupv9/qA/hjqPeAGeFxRRxnD8q2lbgSfqPiKJDtFzCfFByHAkw+qcOmVouNe08sIbdt+8KmiTXrxZMC4zv8UeX2I="
-    - secure: "Eos5/VOoTbO84mzdB5tFjfK/jNOKjcfZ7aoz3AFkbBHY95mlDJS5CBc75PoWynpt6NfRUmdaHzL1897jHxHreMzNReakWjhXuEGA9DC4MA9f8zKNze5k9CuzmdCnwrNuQy26Gsrn++7PwRaMFdCw3q6LvSIWfXUCykkKvm77/Bk="
-    - secure: "OA4ABEnlKkRYtvpwdd6bsXtAjC9oA5sHjb400SAxFL+7QjLLdrLVLhoVu2PGuuGv1KmMYcmQcpV4ypX+cX5cz3WJivT6sNFwaPZi2nCM67gvtz5JdZ3NHlvaT+ZpOvQ5WtKRW+6yfMQi0SkgIIeSCu7n5SO40vl/t5MM9xZNYCo="
-    - secure: "ND1pDi31lNjgXDLsBhRwVS948iDnbPLDtwh4PfH8XBkjtidEwRZzoZY4RmD9Er0erTIa51UnHHRwVhDdKrzMthSNfpxVTvy1r/GYXEoAcrJnX42IPUi23QWCre0MHruMfK/VwarxU61AEDWMmwkmkefXl7e1HOUu+jDC/KSgmyM="
-
+  - secure: "TmyLYpgYU6pcmsjw1FktTddlXNafjf+T+xqwzoB1dHgIF0dSKZpgG2dcmpPN6aVlfV76GmYJ+j2tXbODps/dNGtEITweiAUml4vm9kbjA60xV3D2+ZbfaV78Y5ctGgJglnZIrgLPMVBo1K+t/LFenLTdGW8BwMxkSyHn849Va/s="
+  - secure: "h7aXeOFeANki8kgnimpEBzOHp4syRdea2f4FWn1OrsmLexzlPWPw2/xMa3qCAVLsA9XlxdJVVCpaP6dcdpi0eEVI/N1LJvZ59ITTLM1TG9AObYe/uuI/478OnBIKha+Uiv+R2Ym7jbi6EK7XE+BFXX3k0AsaN+THf/sPkKo0iE0="
+  - secure: "G3Duir0oV8KeGZvAj5pp7/d7vEvYrbvBxq31RQaFarqMZYyRIgxom8GAOhVtgskk4m9ObCaChv2KjDIDYRxWqZBbJ2jfNyYYfztCpy4AEc1zocGYvplEF6C+ipN2/aYnwazOaxfVFDgnkkNa9HCv1XJ02jLqOfbfxsO7YaGLs20="  
+  - secure: "E8Ic4LGfpeDxMPzrSDSkGotCjPnoYbxLShnVnJ6Uht+TO25wGlH2dI7mqrfzrCWFNfbEhDaXYn9dmRFGpUmo35RFO6YOc+rpZpFgjCXqrRiUEEtbjbJCqxdO0iSD/+rfTkSvoPwTsjDD1ZoWbYx6SNOHWNBydbsu6EcpYv3dANw="
+  - secure: "czrirUrzjHTwOISWOgjNcwho3kXn+GZnoi3LEYztyFBLOM4BBqoJ5F9nl5UbSET3zTcF8rUOGbpv/Pk3dhWfk5cf5TAwPakg4TU66Np4m90A6b3Fws7MYr5HsSLSX7euCtAHK8f1NdXEUJbsP8dCelZ4THjhGmZc4If9qKZ7BU8="
+ 
 install:
   - git checkout master
   - gem install sass
@@ -26,7 +28,7 @@ script:
 after_script:
   - git config --global user.email "$EMAIL"
   - git config --global user.name "$USER_NAME"
-  - git remote add github https://$USER_NAME:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
+  - git remote add github https://$USER_NAME:$PASSWORD@github.com/$USER_NAME/DEP2.git
   - echo -e '\n\n!/app/src/css/*\n!/app/src/js/*\n!/app/app.html\n!/app/app_*.html\n!/app/dist/*' >> .gitignore
   - git add .
   - git commit -m "Travis CI build on $TIME_STR"
@@ -35,7 +37,7 @@ after_script:
   - wget https://s3.amazonaws.com/ovivo-beanstalk/AWSbean.tar.gz
   - tar xfvz AWSbean.tar.gz
   - export PATH=$PATH:$PWD/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
-  - eb init -I $AWSAKEY -S $AWSSKEY -a desktop-employee -e ovivo-desktop-employee --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
+  - eb init -I $AWSAKEY -S $AWSSKEY -a desktop-employee-oskar -e oskar-env --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
   - eb branch
   - eb start -f
   - git aws.push
