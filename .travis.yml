@@ -7,11 +7,12 @@ node_js:
 
 env:
   global:
-  -  secure: "h5ZsbWA0vx5Gvs6lYSbaOM2HjlCP0WDSarsV8YU+j/k/OxOUVlZtZfF1Q4Yd5+S654OcOU8NfGybdhv8hsZ6D0FO/XtRmN9+DUKUuS8ffWU8AkRf0QUFkyAcF8GwD+5AR8MdwiEcA/8bGg1w6/OiRS+wX1ViHY6K9+wkh/3kpwM=" 
-  - secure: "gdQIPclXs57/+VPVNKa+ePR1kNMiPs0TJZEzgQYIU//vyfRqiQM+C4aq+yhOH5F3YTNlPoNUC1+9T8Htyo5T8TRHUua4AJLks2PDi46jdYkIOiYZlR/2fAN7GO3a0Po54/oG0U3wahKQ5hy6QaSYJXQA6zwtasELFpB4aZiZerE="
-  -  secure: "VY6CJhThwyjJhxjlm7llrtJQp82vrHzafb6w1iDm7rUuVzbqEroT1ghZmAOUumA/8U85nwjWaotWcGfWHjZuwcJt/gtmX1l+BxqtjeTMqpnKEhRr7Xq1AOaZWFcjY1cUjcBXrx3d+rQ8DRDXOsJKPVT3hAc+JN0zK5jp2btnCuE=" 
-  - secure: "O2G1ZXBZlB3r9Gzf/xOLPtp4ip5I4ZLghvoTR6bk1EUl+NRahhVQq5+2bCCBDG2cQHW7D/YP3KQqRVyh/GdTa/XkfaZGKCfP2AbaWzgrnuB/9WfvyFHkddPHW7KjKc88mdqIT51x8N13ImyWh/m3Dxwp8DVlDxlBtoMbPlgg/8s=" 
-  - secure: "ZVjkbZkLH4G01ApRz1lZNv0anZe7lXxF4emTNib/5H5yvCerWAV8oTrVN6r6L4wPl8Y5e17aty0lZAQ96LNQW89rgN6f8sm9WgtbSZPEW7W+q4O0yGcYi36k7D8tkIgSkkN/+2bdHNitMZjzaqIZTBdrU1GmjkxK18BQGoRDQ3A=" 
+   - secure: "P55fyPdg3XSDuvY1k/W1sUYRWMS87vl/xnQWFkg+NLf5EBO/EBLpY7Rxg6hphVSeQp3IvHQk4mUxfI5Nn3XWZYD1iflEMUYu53lTcDJX5ZQzLFBHKDK6GC1xgRS9NNFsDSYCijOYBeP0gmOOUQcA8lKkoodMy6FZSccGzFcbyS0="
+   - secure: "RHZm8aArGvct0H6fKOBSmFFUislqrvHOl5a5FdHdctZDRB7NqJ7EwgPcMohmkf8nLbW3T90ecw+ixfho0WYSTU7WThAXNcZFXLzflhqTi9ZuIAuIumxcg97uxj/5t9dnE+Lx9r5XNQQZqB3RXa8MBzmBPWnFlDWU//I/n3oprLo="
+   - secure: "X1spNTPoXngP03qg2cOo+nvP9ifsE5bfx3vMOo1W9zW4GcA3OMaewf2cbuR1Mw1Nc2Uh3REDMaBBAxPUkPTWAQhurUQbC3vA68AwkbFnpCZdCN6XAJ+n2s3f09O+ugVsxwci5ycwkASS0iFsyrjUc3W9fKSnxOS9h1Yk3jBYWAQ="
+   - secure: "Y8rpoSv/ajwRDIxkWhVUc9K+8Clh3nT8KIDUP6oMqpf4av6puN2it3WuZ6bdHar8e7UvuMy/sPfJQlUL4kZbM2cTRT846OeCayYM+aOL+8nNEaexnpt5PkLhCdrIspoinfKPXkqMLXe4hiMY5STJZR/ELDkee1NHKsE/kDn6qDM="
+   - secure: "BAhUEizElhNFNRDqv3EMIxRIb9fy28t+2/nohTszNHmyWs48+++UqTUAVPcR19uk/XKrO56HRozhk/7ex+b64nexpbR3bxfxdNQXBJcKll+r641zdByD7yB1v+yymg4M4bMwNDVmz0xHutV56E4Umw1HEYEd6i/dgcHKwpLqkrA="
+
 install:
   - git checkout master
   - gem install sass
