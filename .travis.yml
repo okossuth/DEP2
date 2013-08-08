@@ -26,7 +26,7 @@ script:
 after_script:
   - git config --global user.email "$EMAIL"
   - git config --global user.name "$USER_NAME"
-  - git remote add github https://eur00t:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
+  - git remote add github https://$USER_NAME:$PASSWORD@github.com/Ovivo/desktop-employee-planner.git
   - echo -e '\n\n!/app/src/css/*\n!/app/src/js/*\n!/app/app.html\n!/app/app_*.html\n!/app/dist/*' >> .gitignore
   - git add .
   - git commit -m "Travis CI build on $TIME_STR"
