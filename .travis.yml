@@ -39,7 +39,7 @@ after_script:
   - eb init -I $AWSAKEY -S $AWSSKEY -a ovivo -e vpctest --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
   - eb branch
   - eb start -f
-  - git fsck --strict
+  - git fsck --full
   - git aws.push
 
 branches:
