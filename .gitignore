@@ -15,3 +15,10 @@ node_modules
 
 /app/dist/*
 .elasticbeanstalk/
+
+
+!/app/src/css/*
+!/app/src/js/*
+!/app/app.html
+!/app/app_*.html
+!/app/dist/*
