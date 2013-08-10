@@ -37,10 +37,8 @@ after_script:
   - tar xfvz AWSbean.tar.gz
   - export PATH=$PATH:$PWD/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
   - eb init -I $AWSAKEY -S $AWSSKEY -a amorko -e orkos --region "eu-west-1" -s "64bit Amazon Linux running Node.js"
+  - cp $PWD/AWS-ElasticBeanstalk-CLI-2.5.1/Ovivo/optionsettings $PWD/.elasticbeanstalk/
   - eb branch
-#  - git add .ebextensions/orko.config
-#  - git commit -m "test"
-  - git aws.push
   - eb start -f
   - git aws.push
 
