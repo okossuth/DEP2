@@ -1,0 +1,29 @@
+$spriteWidth: 254px
+$spriteHeight: 250px
+
+@mixin icon-body($sizeW, $sizeH, $shift, $iconNames, $backgroundUrl)
+  display: block
+  
+  &.inline
+    display: inline-block
+    
+  width: $sizeW
+  height: $sizeH
+  
+  background: url($backgroundUrl) no-repeat
+  
+  background-size: $spriteWidth $spriteHeight
+  
+  @for $i from 1 through length($iconNames)
+    &.#{nth($iconNames, $i)}
+      background-position: $shift (-($i - 1) * $sizeH)
+
+i.logo
+  @include icon-body(100px, 40px, 0, ('title') , '../assets/img/sprite.png')
+
+i.icon
+  @include icon-body(29px, 29px, -100px, ('left', 'right', 'month', 'week', 'checked', 'unchecked', 'wait') , '../assets/img/sprite.png')
+
+i.icon-huge
+  @include icon-body(125px, 125px, -129px, ('ok', 'facebook') , '../assets/img/sprite.png')
+    

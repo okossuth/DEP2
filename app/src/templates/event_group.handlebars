@@ -1,0 +1,53 @@
+<ul>
+{{#elements}}
+
+<li id="element-view-{{pk}}-{{cid}}" class="event element">
+    <div class="element-container">
+        <div class="strip"></div>
+
+        <div class="info">
+            <h2>
+                <span>{{start_time}}</span> – <span>{{end_time}}</span> <em>({{deltaHours}} {{#i18n deltaHours}}hour|hours{{/i18n}})</em>
+            </h2>
+
+            <h2>
+                <span>{{primaryDepartment}}</span> → <span>{{groupChainName}}</span>
+            </h2>
+
+            <h3>
+                <span>{{municipality}}</span>
+            </h3>
+
+            <h4>
+                <span>{{#i18n}}Created by{{/i18n}} {{creator_name}} {{creationTime}}</span>
+            </h4>
+        </div>
+
+        <div class="buttons">
+            <div class="button-element single type-button">
+                <div class="button-background">
+                    <div></div>
+                </div>
+
+                <div class="button-inner label-closed">
+                    <span>{{#i18n}}Assigned{{/i18n}}</span>
+                </div>
+
+                <div class="button-inner label-open-responses">
+                    <span>{{#i18n}}Awaiting reply{{/i18n}}</span>
+                </div>
+
+                <div class="button-inner label-open">
+                    <span>{{#i18n}}Make a bid{{/i18n}}</span>
+                </div>
+
+                <div class="button-inner label-bidding-closed">
+                    </i><span>{{#i18n}}Bidding closed{{/i18n}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+
+{{/elements}}
+<ul>

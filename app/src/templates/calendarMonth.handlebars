@@ -1,0 +1,28 @@
+<section class="tablet-calendar">
+    <table class="days-container">
+        {{#rows}}
+            <tr class="row week-row">
+                {{#cells}}
+                    <td class="cell{{#disabled}} disabled{{/disabled}}">
+                        <div>
+                            <span class="date-value">{{date}}</span>
+                            <em class="events-counter"></em>
+
+                            <strong class="week-number">{{week_number}}</strong>
+
+                            <ul class="calendar-items"></ul>
+                        </div>
+                    </td>
+                {{/cells}}
+            </tr>
+        {{/rows}}
+    </table>
+
+    <div class="overlay">
+        <em>
+            <span>{{#i18n}}Loading content{{/i18n}}</span><br />
+            <img src="{{loaderUrl}}" />
+        </em>
+
+    </div>
+</section>

@@ -1,0 +1,3 @@
+define [
+], () ->
+  clear: () -> @remove @models
