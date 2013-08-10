@@ -17,11 +17,11 @@ install:
  - BRANCH_NAME=build-$TRAVIS_BRANCH/`eval date +%Y-%m-%d"T"%H-%M-%S`
  - TIME_STR=`eval date`
  - git checkout -b $BRANCH_NAME
- - npm install -g grunt-cli
+# - npm install -g grunt-cli
  - npm install
 
-script:
- - grunt travis
+#script:
+# - grunt travis
 
 after_script:
  - git config --global user.email "$EMAIL"
