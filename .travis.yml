@@ -1,0 +1,47 @@
+language: node_js
+
+node_js:
+ - 0.8.14
+
+env:
+  global: 
+   - secure: "EcNmbx2KraxUGHaTgXT8CrIi4BE8mGRL0OOfXIORFUT50UKz6mw0VHe9MfZUXhvlAtczszuWo/qK29hBhvIPAPVq8qQ4sg1Aw+rQAo6Z9yA2ugczzKLgxDBI7ty/1kpd+pj89759k0SKI+wa9b3lNaHfeyuqELwm6Q5gDiZmcnw="
+   - secure: "ANszI86xzJZ4s7q9kszm3XO24OKLPtAvZzxV39Hdb1C+zecCkYbXQpIhFK1tLESd1fTl0FAbyTSey4Vc6h8ZFke9aOswmpbmUAQEApk6Lem4cG14pvPMFpKNFaPxh+Z5s/KYx3G7M9b5RyH3IVm5MyvXR6s1m+cpQrymMwdkcPU="
+   - secure: "VnHndQ2xM5TjNDGkYoMgHeg/NVeyllSOA78hfgrrDLvThx32H7tc+y4TTjTOFZXo24A+lvYQqYQpHRaCUijoT4v4OlBZe+qiCQEiFY0SwkTMikXQ30jzwv0EzLhlFX5iklZ2zIUyJGhHsebxAnjqYWvLiy5GCWyJgiIwJsNoKDo="
+   - secure: "Wa8Sp/tueKYAvP0a9W5dzo1+6qDvsv2sWveDas+swb3EnOE6uMDyP2daFCN4hqoehegtERkbNd3B7tqC7AoGGST4PHwuIq3dUR8XyLr+4iYELArST7QsqjVbkZqL9T2oYjMnSFDTvQUsrIE//EqPoJlccgk2zXcUc3jGWMQP5KY="
+   - secure: "c+oGsQF1S09bs4qmX9xfmpQXY2p3tw/ifSO0AF6wNSSHtlVY3wWjskp0UgdRD8iJMyrB7fnjhlJu/H/rI+Ys03iHMB6m/CIJy3qun5GOfEYgZEHuJT8VCzxsh6TaxgpGBRQLy5W5aAAhMIj48V1p2uXTdDComF6y/tRhZrkCW40="
+
+install:
+ - git checkout master
+ - gem install sass
+ - BRANCH_NAME=build-$TRAVIS_BRANCH/`eval date +%Y-%m-%d"T"%H-%M-%S`
+ - TIME_STR=`eval date`
+ - git checkout -b $BRANCH_NAME
+ - npm install -g grunt-cli
+ - npm install
+
+script:
+ - grunt travis
+
+after_script:
+ - git config --global user.email "$EMAIL"
+ - git config --global user.name "$USER_NAME"
+ - git remote add github https://$USER_NAME:$PASSWORD@github.com/$USER_NAME/DEP2.git
+ - echo -e '\n\n!/app/src/css/*\n!/app/src/js/*\n!/app/app.html\n!/app/app_*.html\n!/app/dist/*' >> .gitignore
+ - git add .
+ - git commit -m "Travis CI build on $TIME_STR"
+ - git push github $BRANCH_NAME
+ - git config http.postBuffer 109715200
+ - wget https://s3.amazonaws.com/ovivo-beanstalk/AWSbean.tar.gz
+ - tar xfvz AWSbean.tar.gz
+ - export PATH=$PATH:$PWD/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
+ - eb init -I $AWSAKEY -S $AWSSKEY -a milo -e scorpius --region "eu-west-1" -s "64bit
+  Amazon Linux running Node.js"
+ - cp $PWD/AWS-ElasticBeanstalk-CLI-2.5.1/Ovivo/optionsettings $PWD/.elasticbeanstalk/
+ - eb branch
+ - eb start -f
+ - git aws.push
+
+branches:
+  only:
+  - master
